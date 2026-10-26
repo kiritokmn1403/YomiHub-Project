@@ -1,0 +1,27 @@
+YomiHub 0.1.8 (06/10/2026) - thay doi so voi 0.1.7
+Android 7.0+ (arm64, armv7, x86_64) - Windows 10/11 x64
+
+TINH NANG MOI
+- Duyet: 3 tab Comic / Film & Movie / Novel Setting Extension, moi tab co Nguon / Tien ich / De xuat (de xuat theo nhan ban hay doc/xem).
+- Da ngon ngu cho toan bo man hinh YomiHub (900 chuoi, 18 ngon ngu), doi ngon ngu la ap dung ngay.
+- Nhat ky ung dung (Cai dat > Thong tin): luon ghi canh bao/loi, xem/chia se/xoa.
+- AVSub/web player: tu phat, Hinh trong hinh (Android + Windows), chan quang cao trong player, loc quang cao chen trong luong HLS.
+- AdBlock: them AdGuard DNS filter + Annoyances, an phan tu theo trang; ap cho trinh duyet, player, WebView tien ich.
+- Nut Pho bien / Moi nhat / Bo loc luon co; nut Short cho YouTube & FikFap, man Short Video vuot doc; SponsorBlock bo qua doan tai tro.
+- VPN: AdGuard VPN (qua app chinh thuc / SOCKS5), Urban VPN (nhap .ovpn cua ban, 83 vi tri), xoay vong may chu SoftEther.
+- Kotatsu: cap nhat ten mien, danh muc parser hien trong Comic > Tien ich, cai tu the tien ich.
+- Gop tien ich da ngon ngu: chon ngon ngu ngay trong o nguon.
+- Doi chieu thu muc tai xuong voi thu vien (6 gio/lan).
+- Hang doi cap nhat tracker khi mat mang.
+- Cloudflare: tu bam Turnstile; bo giai CloakBrowser tren Windows (ban tu cai).
+- Trinh doc ebook kieu FBReader (giao dien, phong, gian dong, le, tim kiem, dau trang); dich chuong novel (song ngu, co cache).
+- Sao luu Google Drive: tai len tung phan 8 MB, giu N ban, tai xuong dang stream.
+- Web Scanner: them kiem tra CSP, HSTS, CORS, thu vien cu, form khong an toan...
+- Splash moi 5 giay; Liquid Glass 1 cong tac; noi dung khong bi thanh dieu huong che.
+
+SUA LOI
+- Crash khi mo Short Video (go_router extra null).
+- Sao luu nhan dien theo noi dung (.backup.db) thay vi ten tep.
+- Windows: M-Extension-Server mo Hive truoc khi khoi tao (HiveError) -> cau tien ich APK co the khong tu chay.
+- Loi tien ich/isolate nay duoc ghi vao nhat ky.
+- Mot so chuoi con tieng Viet khi chon ngon ngu khac; bo sung 5 chuoi ARB thieu o moi ngon ngu.
