@@ -1,0 +1,418 @@
+[
+  {
+    "id": "FC01",
+    "sheet": "Feature Check",
+    "cell": "C3",
+    "requirement": "Kiểm tra cập nhật, đồng thời tiến hành tối ưu hoá code rồi bổ sung vào các tính năng của ứng dụng cho các hạng mục có trong sheet Project GitHub.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC02",
+    "sheet": "Feature Check",
+    "cell": "C4",
+    "requirement": "Nâng cấp ứng dụng, bắt buộc tối ưu hoá tất cả các đoạn code với 1 vài cập nhật mới, yêu cầu mới của các project Github và các yêu cầu sửa đổi được đưa ra trong sheet YomiHub Update, sau đó tích hợp thẳng vào ứng dụng (lưu ý toàn bộ yêu cầu trong sheet YomiHub Update là bắt buộc)",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC03",
+    "sheet": "Feature Check",
+    "cell": "C5",
+    "requirement": "Kiểm tra tính tương thích, độ đồng nhất, ngôn ngữ thiết kế của bộ giao diện giữa các phiên bản ứng dụng Android và Windows.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC04",
+    "sheet": "Feature Check",
+    "cell": "C6",
+    "requirement": "Khả năng đồng bộ với các thư viện khác, đặc biệt là lỗi không đồng bộ Extension Repo của các project GitHub trên, đặc biệt là Aniyomi, Nekoyomi, Kotatsu, IReader và LNReader",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC05",
+    "sheet": "Feature Check",
+    "cell": "C7",
+    "requirement": "Khả năng tương thích của các Extension Repo có sẵn với ứng dụng",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC06",
+    "sheet": "Feature Check",
+    "cell": "C8",
+    "requirement": "Khả năng tải xuống ổn định, đầy đủ của các Extension; Khả năng tương thích và hoạt động ổn định, đầy đủ của bộ lọc với các Extension",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC07",
+    "sheet": "Feature Check",
+    "cell": "C9",
+    "requirement": "Khả năng tương thích, check lỗi kỹ thuật của bộ giao diện; Kiểm tra các tính năng, độ ổn định của Liquid Glass",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC08",
+    "sheet": "Feature Check",
+    "cell": "C10",
+    "requirement": "Khả năng tương thích của các extension với ứng dụng.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC09",
+    "sheet": "Feature Check",
+    "cell": "C11",
+    "requirement": "Độ ổn định của tính năng Mangayomi Extension Server, Mangayomi ApkBridge, MiHon Extension Server.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC10",
+    "sheet": "Feature Check",
+    "cell": "C12",
+    "requirement": "Mức độ ổn định của trình duyệt, cập nhật dựa trên nhân Chromium và Firefox.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC11",
+    "sheet": "Feature Check",
+    "cell": "C13",
+    "requirement": "Khả năng hoạt động, tính ổn định và cập nhật các tính năng VPN & DNS, AdBlock có trong mục Project GitHub.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC12",
+    "sheet": "Feature Check",
+    "cell": "C14",
+    "requirement": "Kiểm tra lỗi không load được chương và không load được hình của các extension Novel và Comic, kiểm tra tính năng cuộn vô hạn của các extension Comic và Novel.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC13",
+    "sheet": "Feature Check",
+    "cell": "C15",
+    "requirement": "Kiểm tra lỗi không xem được phim, kiểm tra tính năng đổi server của các nguồn Anime, Film & Movie có sẵn; kiểm tra khả năng xem phim của tiện ích Anime47 (thông tin đăng nhập nằm trong tài liệu gốc).",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC14",
+    "sheet": "Feature Check",
+    "cell": "C16",
+    "requirement": "Độ ổn định, check lỗi các tính năng đọc file ebook và PDF",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC15",
+    "sheet": "Feature Check",
+    "cell": "C17",
+    "requirement": "Độ ổn định, check lỗi tính năng Picture-in-Picture (PiP); Kiểm tra tính năng PiP đối với các extension trong sheet Website Extension.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC16",
+    "sheet": "Feature Check",
+    "cell": "C18",
+    "requirement": "Độ ổn định, cập nhật bộ tính năng Web Scanner.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC17",
+    "sheet": "Feature Check",
+    "cell": "C19",
+    "requirement": "Kiểm tra, check lỗi tính năng đổi URL, tên miền và cưỡng chế đổi URL, tên miền của ứng dụng đối với extension; check xem sau khi đổi tên miền hoặc cưỡng chế đổi tên miền thì tiện ích có hoạt động bình thường không.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC18",
+    "sheet": "Feature Check",
+    "cell": "C20",
+    "requirement": "Đối chiếu và thống nhất ngôn ngữ, cách bố trí của bộ giao diện ứng dụng bản Windows và Android.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC19",
+    "sheet": "Feature Check",
+    "cell": "C21",
+    "requirement": "Kiểm tra độ ổn định, check lỗi của tính năng Cloudflare và Cloudflare Bypass.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC20",
+    "sheet": "Feature Check",
+    "cell": "C22",
+    "requirement": "Kiểm tra tính năng Check For Update, đối với đường dẫn https://drive.google.com/drive/folders/16PCPorl1Ae9nmKMMWAC3Oz1rp_w9tH__?usp=sharing",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC21",
+    "sheet": "Feature Check",
+    "cell": "C23",
+    "requirement": "Khi mở ứng dụng, hãy quét thông tin về các Extension Repo trên các website có trong sheet Website Scan - Extension Repo , khi người dùng vào mục Extension Repo thì sẽ tự động gợi ý các Extension Repo có sẵn trên các website đó, nếu Extension Repo đó đã có sẵn thì thôi không hiển thị nữa.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC22",
+    "sheet": "Feature Check",
+    "cell": "C24",
+    "requirement": "Kiểm tra độ ổn định và tiến hành vá lỗi, sửa đổi tính năng Thư mục cục bộ nằm trong mục Tải Xuống, cho phép thêm nhiều thư mục cục bộ khác nhau.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC23",
+    "sheet": "Feature Check",
+    "cell": "C25",
+    "requirement": "Kiểm tra, tối ưu hóa bộ giao diện loading khi mở ứng dụng, thiết kế lại bộ giao diện loading sao cho bắt mắt hơn, vẫn giữ thời gian giao diện loading dài 5 giây.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC24",
+    "sheet": "Feature Check",
+    "cell": "C26",
+    "requirement": "Kiểm tra khả năng hoạt động, độ ổn định của tính năng AirDrop & Quicksharing, bao gồm khả năng chuyển file giữa các thiết bị với nhau, khả năng chuyển file giữa điện thoại với điện thoại, điện thoại với máy tính và giữa máy tính với máy tính.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "FC25",
+    "sheet": "Feature Check",
+    "cell": "C27",
+    "requirement": "Kiểm tra khả năng hoạt động, độ ổn định của tính năng trình theo dõi (tracker) trong ứng dụng.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP01",
+    "sheet": "YomiHub Update",
+    "cell": "A2",
+    "requirement": "Tiến hành quét mã nguồn của Aniyomi, Mangayomi, Kotatsu, MiHon, Miyomi, Tachiyomi, đồng thời quét các project trong sheet Tracker, sau đó tối ưu hóa code và cập nhật cho bộ tính năng Tracker.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP02",
+    "sheet": "YomiHub Update",
+    "cell": "A3",
+    "requirement": "Quét mã nguồn của IReader, Miyomi, Anikku, tối ưu hóa và viết lại code để tích hợp thẳng vào ứng dụng YomiHub và hoạt động ổn định.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP03",
+    "sheet": "YomiHub Update",
+    "cell": "A4",
+    "requirement": "Quét mã nguồn của CloakBrowser, tối ưu hóa và viết lại code để tích hợp thẳng vào bộ cài đặt tính năng Cloudflare Bypass Setting.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP04",
+    "sheet": "YomiHub Update",
+    "cell": "A5",
+    "requirement": "Quét mã nguồn của Foxit Software, tối ưu hóa và viết lại code để tích hợp thẳng vào tính năng PDF Reader.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP05",
+    "sheet": "YomiHub Update",
+    "cell": "A6",
+    "requirement": "Quét mã nguồn của vancedTube, YouTube Vanced, tối ưu hóa và viết lại code để tích hợp thẳng vào extension Youtube.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP06",
+    "sheet": "YomiHub Update",
+    "cell": "A7",
+    "requirement": "Sửa lỗi tính năng PiP không hoạt động, khắc phục lỗi không tự động phát video ngay sau khi chọn tập để xem trong extension AVSub – AnimeVietsub.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP07",
+    "sheet": "YomiHub Update",
+    "cell": "A8",
+    "requirement": "Quét mã nguồn của AdGuard, tích hợp bộ tính năng AdBlock của AdGuard vào công cụ AdBlock của ứng dụng.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP08",
+    "sheet": "YomiHub Update",
+    "cell": "A9",
+    "requirement": "Quét mã nguồn của AdGuardVPN, tích hợp thêm dịch vụ VPN của AdGuardVPN vào cài đặt Dịch vụ VPN, hỗ trợ cho tất cả các cài đặt VPN khác.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP09",
+    "sheet": "YomiHub Update",
+    "cell": "A10",
+    "requirement": "Quét các mã nguồn của Urban VPN trong sheet Project GitHub, tích hợp thêm dịch vụ VPN của UrbanVPN vào cài đặt Dịch vụ VPN, hỗ trợ cho tất cả các cài đặt VPN khác.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP10",
+    "sheet": "YomiHub Update",
+    "cell": "A11",
+    "requirement": "Quét mã nguồn của FBReader, tối ưu hóa và viết lại code để tích hợp thẳng vào tính năng ebook reader và PDF Reader.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP11",
+    "sheet": "YomiHub Update",
+    "cell": "A12",
+    "requirement": "Quét mã nguồn của FBReader và các project vBook, vBook 2, tối ưu hóa và viết lại code để cải thiện, cập nhật và tích hợp thẳng vào tính năng sao lưu lên Google Drive.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP12",
+    "sheet": "YomiHub Update",
+    "cell": "A13",
+    "requirement": "Tối ưu lại bộ giao diện, để các chức năng trong ứng dụng không bị che mất bởi thanh điều hướng và các phím điều hướng.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP13",
+    "sheet": "YomiHub Update",
+    "cell": "A14",
+    "requirement": "Đưa tính năng Liquid Glass vào tất cả các extension, các nút lựa chọn trên tất cả các extension; tích hợp Liquid Glass vào bộ lọc của tất cả các extension.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP14",
+    "sheet": "YomiHub Update",
+    "cell": "A15",
+    "requirement": "Các cài đặt kích hoạt tính năng Liquid Glass không để riêng lẻ từng hạng mục, mà sẽ kích hoạt theo hệ thống.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP15",
+    "sheet": "YomiHub Update",
+    "cell": "A16",
+    "requirement": "Bộ lọc của tất cả các extension bắt buộc phải có đủ 3 phím: Phổ biến, Mới Nhất, Bộ Lọc.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP16",
+    "sheet": "YomiHub Update",
+    "cell": "A17",
+    "requirement": "Các Báo Cáo Lỗi của ứng dụng đều được ghi vào Nhật ký ứng dụng.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP17",
+    "sheet": "YomiHub Update",
+    "cell": "A18",
+    "requirement": "Khi tiến hành sao lưu, file sao lưu vẫn để tên có tiền tố là mangayomi, hãy đổi lại thành yomihub.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP18",
+    "sheet": "YomiHub Update",
+    "cell": "A19",
+    "requirement": "Trong cài đặt TOR ở mục VPN & DNS, thêm ô lựa chọn cho tính năng Tự Động Đổi Danh Tính, sau khi kích hoạt sẽ cho phép người dùng chọn thời gian làm mới danh tính.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP19",
+    "sheet": "YomiHub Update",
+    "cell": "A20",
+    "requirement": "Trong cài đặt SoftEther VPN, thêm ô lựa chọn tự động đổi máy chủ SoftEther, sau khi kích hoạt sẽ cho phép người dùng chọn thời gian tự động đổi máy chủ.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP20",
+    "sheet": "YomiHub Update",
+    "cell": "A21",
+    "requirement": "Phân tích mã nguồn các project của tính năng Video Short Scroll, viết lại và tối ưu hóa code để tạo tính năng Short Video dành cho 2 extension Youtube và Fikfap, sau đó vào bên cạnh nút Bộ Lọc của hai extension này.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP21",
+    "sheet": "YomiHub Update",
+    "cell": "A22",
+    "requirement": "Trong mục Duyệt, thiết kế lại giao diện như sau: Nguồn Comic và Tiện Ích Comic được gộp chung lại thành Comic Setting Extension; Nguồn Film & Movie và Tiện Ích Film & Movie được gộp chung lại thành Film & Movie Setting Extension; Nguồn Novel và Tiện Ích Novel được gộp chung lại thành Novel Setting Extension",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP22",
+    "sheet": "YomiHub Update",
+    "cell": "A23",
+    "requirement": "Phân tích mã nguồn của Kotatsu và Mangayomi, tối ưu hóa và viết lại code để thực hiện yêu cầu sau: Trong các mục Comic Setting Extension, Film & Movie Setting Extension, Novel Setting Extension, hãy thiết kế thêm 1 mục đề xuất nội dung liên quan tới các hạng mục đó, dựa trên các nguồn đã được cài đặt và các nhãn dán, các tag của các tác phẩm người dùng đã và đang xem.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP23",
+    "sheet": "YomiHub Update",
+    "cell": "A24",
+    "requirement": "Tiến hành quét mã nguồn của Aniyomi, Mangayomi, Kotatsu, MiHon, Miyomi, Tachiyomi, viết lại và tối ưu hóa code để thêm tính năng lập chỉ mục tải xuống trong cài đặt Dữ Liệu Và Bộ Nhớ, mặc định là mục này bật (chỉ người dùng có thể tắt nó).",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP24",
+    "sheet": "YomiHub Update",
+    "cell": "A25",
+    "requirement": "AdBlock không hoạt động với các extension trong mục Website Extension, hãy khắc phục",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP25",
+    "sheet": "YomiHub Update",
+    "cell": "A26",
+    "requirement": "Các nguồn của Kotatsu sẽ được gộp vào Comic, Tiến hành quét webview của toàn bộ các nguồn Kotatsu Multi Parsers; tối ưu hóa và viết lại các đoạn code để cho các nguồn của Kotatsu Multi Parsers cũng có thể hợp nhất với các tiện ích khác với tính năng Hợp nhất các Extension.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP26",
+    "sheet": "YomiHub Update",
+    "cell": "A27",
+    "requirement": "Trong tính năng Hợp nhất các extension, nếu các extension đó thuộc nhiều ngôn ngữ khác nhau thì sau khi hợp nhất, ở extension hợp nhất đó sẽ có thêm tùy chọn thay đổi ngôn ngữ.",
+    "status": "pending",
+    "evidence": []
+  },
+  {
+    "id": "UP27",
+    "sheet": "YomiHub Update",
+    "cell": "A28",
+    "requirement": "Tiến hành phiên dịch toàn bộ văn bản trong ứng dụng cho tất cả ngôn ngữ được ứng dụng hỗ trợ; kể cả các mục Comic, Film & Movie, Novel.",
+    "status": "pending",
+    "evidence": []
+  }
+]
