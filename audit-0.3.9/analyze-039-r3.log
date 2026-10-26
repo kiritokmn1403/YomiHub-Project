@@ -1,0 +1,210 @@
+Analyzing lib...
+
+warning - eval\javascript\http.dart:174:14 - The operand can't be 'null', so the condition is always 'true'. Remove the condition. - unnecessary_null_comparison
+warning - modules\browse\browse_screen.dart:419:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\browse\extension\extension_detail.dart:57:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\browse\extension\extension_lang.dart:35:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\browse\extension\extension_screen.dart:78:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\browse\extension\widgets\extension_list_tile_widget.dart:318:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\browse\global_search\global_search_screen.dart:196:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\browse\global_search\global_search_screen.dart:271:37 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\browse\global_search\global_search_screen.dart:396:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\browse\sources\sources_filter_screen.dart:19:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\browse\sources\sources_screen.dart:86:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\history\history_screen.dart:21:8 - Unused import: 'package:mangayomi/utils/extensions/build_context_extensions.dart'. Try removing the import directive. - unused_import
+warning - modules\history\history_screen.dart:70:49 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\history\history_screen.dart:79:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\history\history_screen.dart:156:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\library\library_screen.dart:622:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\library\widgets\library_app_bar.dart:148:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\library\widgets\library_body.dart:70:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\library\widgets\library_dialogs.dart:34:50 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\library\widgets\library_dialogs.dart:189:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\library\widgets\library_settings_sheet.dart:26:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\library\widgets\library_settings_sheet.dart:58:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\library\widgets\library_settings_sheet.dart:371:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\library\widgets\library_settings_sheet.dart:393:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\library\widgets\search_text_form_field.dart:25:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\detail_overflow_actions.dart:32:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\manga_detail_view.dart:92:46 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\manga_detail_view.dart:277:70 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\manga_detail_view.dart:463:54 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\manga_detail_view.dart:717:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\manga_detail_view.dart:1010:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\manga_details_view.dart:96:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\manga_details_view.dart:174:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\chapter_list_tile_widget.dart:46:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\detail_app_bar.dart:51:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\download_quick_menu.dart:28:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\manga_info_header.dart:62:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\manga_info_header.dart:652:54 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\manga_info_header.dart:706:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\manga_info_header.dart:821:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\migrate_screen.dart:62:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\migrate_screen.dart:214:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\migrate_screen.dart:308:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\migrate_screen.dart:446:52 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\readmore.dart:25:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\split_chapters_dialog.dart:8:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracker_widget.dart:172:43 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracker_widget.dart:275:39 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracker_widget.dart:276:39 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracker_widget.dart:345:71 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracker_widget.dart:357:43 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracker_widget.dart:457:29 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracker_widget.dart:472:37 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracker_widget.dart:502:29 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracker_widget.dart:513:37 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracker_widget.dart:543:29 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\detail\widgets\tracking_menu.dart:81:63 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\download\download_page_widget.dart:99:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\home\manga_home_screen.dart:87:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\home\widget\filter_widget.dart:63:38 - Dead code. Try removing the code, or fixing the code before it so that it can be reached. - dead_code
+warning - modules\manga\home\widget\filter_widget.dart:63:41 - The left operand can't be null, so the right operand is never executed. Try removing the operator and the right operand. - dead_null_aware_expression
+warning - modules\manga\home\widget\filter_widget.dart:114:34 - Unnecessary type check; the result is always 'true'. Try correcting the type check, or removing the type check. - unnecessary_type_check
+warning - modules\manga\home\widget\filter_widget.dart:117:18 - Unnecessary cast. Try removing the cast. - unnecessary_cast
+warning - modules\manga\reader\reader_view.dart:63:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\reader\subsampling_scale_image_view\src\min_subsampling_image_view.dart:432:46 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\reader\widgets\double_page_view.dart:292:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\reader\widgets\reader_page_content.dart:341:50 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\reader\widgets\reader_settings_modal.dart:17:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\reader\widgets\reader_settings_modal.dart:65:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\reader\widgets\reader_settings_modal.dart:127:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\reader\widgets\reader_settings_modal.dart:522:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\reader\widgets\reader_settings_modal.dart:936:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\manga\reader\widgets\reader_settings_modal.dart:1146:50 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\about\about_screen.dart:36:38 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\about\error_reports_screen.dart:30:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\about\error_reports_screen.dart:81:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\about\providers\download_file_screen.dart:71:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\categories\categories_screen.dart:59:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\categories\categories_screen.dart:103:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\categories\categories_screen.dart:250:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\categories\categories_screen.dart:411:31 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\categories\widgets\custom_textfield.dart:46:19 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\categories\widgets\custom_textfield.dart:47:19 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\data_and_storage\data_and_storage.dart:40:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\data_and_storage\data_and_storage.dart:460:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\data_and_storage\providers\backup_decoder.dart:34:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\data_and_storage\providers\restore.dart:157:18 - The operand can't be 'null', so the condition is always 'true'. Remove the condition. - unnecessary_null_comparison
+warning - modules\more\data_and_storage\providers\restore.dart:158:51 - The operand can't be 'null', so the condition is always 'true'. Remove the condition. - unnecessary_null_comparison
+warning - modules\more\data_and_storage\widgets\backup_encryption_password_dialog.dart:23:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\data_and_storage\widgets\backup_encryption_password_dialog.dart:103:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\data_and_storage\widgets\backup_encryption_password_dialog.dart:199:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\download_queue\download_queue_screen.dart:30:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\more_screen.dart:41:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\appearance\appearance_screen.dart:78:38 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\appearance\widgets\blend_level_slider.dart:23:17 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\appearance\widgets\dark_mode_button.dart:29:23 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\appearance\widgets\follow_system_theme_button.dart:25:23 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\browse_screen.dart:37:38 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\extension_server\android_proxy_server_dialog.dart:11:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\extension_server\extension_server_tiles.dart:19:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\extension_server\extension_server_tiles.dart:64:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\extension_server_screen.dart:89:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\extension_server_screen.dart:413:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\extension_server_screen.dart:480:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\extension_server_screen.dart:508:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\extension_server_screen.dart:530:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\extension_server_screen.dart:554:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\extension_server_screen.dart:643:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\source_repositories.dart:45:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\browse\source_repositories.dart:77:35 - The value of 'refresh' should be used. Try using the result by invoking a member, passing it to a function, or returning it from this function. - unused_result
+warning - modules\more\settings\downloads\downloads_screen.dart:45:38 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\general\general_screen.dart:68:38 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\player\player_overview_screen.dart:18:38 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\settings_screen.dart:26:38 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\sync\sync.dart:28:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\sync\sync.dart:276:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\sync\sync.dart:323:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\sync\sync.dart:433:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\sync\widgets\sync_listile.dart:26:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\track\manage_trackers\tracking_detail.dart:41:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\track\track.dart:31:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\track\track.dart:33:60 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\track\track.dart:193:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\settings\track\widgets\track_listile.dart:27:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\widgets\downloaded_only_widget.dart:19:21 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\more\widgets\incognito_mode_widget.dart:31:21 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\onboarding\onboarding_screen.dart:438:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\onboarding\onboarding_screen.dart:513:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\onboarding\onboarding_screen.dart:936:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\tracker_library\tracker_item_card.dart:28:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\tracker_library\tracker_library_screen.dart:62:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\tracker_library\tracker_section_screen.dart:71:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\updates\updates_screen.dart:32:49 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\updates\updates_screen.dart:60:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\updates\updates_screen.dart:182:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\webview\webview.dart:285:51 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\widgets\base_library_tab_screen.dart:85:44 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - modules\widgets\category_selection_dialog.dart:26:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - services\anilist_discovery.dart:4:8 - Unused import: 'package:http/http.dart'. Try removing the import directive. - unused_import
+warning - services\discovery\kitsu_discovery.dart:4:8 - Unused import: 'package:http/http.dart'. Try removing the import directive. - unused_import
+warning - services\get_chapter_pages.dart:17:8 - Unused import: 'package:mangayomi/utils/utils.dart'. Try removing the import directive. - unused_import
+warning - services\get_html_content.dart:12:8 - Unused import: 'package:mangayomi/utils/utils.dart'. Try removing the import directive. - unused_import
+warning - services\get_video_list.dart:17:8 - Unused import: 'package:mangayomi/utils/utils.dart'. Try removing the import directive. - unused_import
+warning - services\http\m_client.dart:978:16 - The operand can't be 'null', so the condition is always 'true'. Remove the condition. - unnecessary_null_comparison
+warning - utils\constant.dart:28:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - utils\constant.dart:51:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - utils\date.dart:28:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - utils\date.dart:122:42 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+warning - utils\localized_message.dart:10:12 - The operand can't be 'null', so the condition is always 'false'. Try removing the condition, an enclosing condition, or the whole conditional statement. - unnecessary_null_comparison
+warning - utils\localized_message.dart:10:21 - Dead code. Try removing the code, or fixing the code before it so that it can be reached. - dead_code
+warning - yomihub\extensions\url_override.dart:18:8 - Unused import: 'package:mangayomi/utils/log/logger.dart'. Try removing the import directive. - unused_import
+warning - yomihub\merge\content_merge_screen.dart:9:8 - Unused import: 'package:mangayomi/utils/constant.dart'. Try removing the import directive. - unused_import
+warning - yomihub\merge\content_merge_screen.dart:12:8 - Unused import: 'package:mangayomi/yomihub/ui/liquid_glass.dart'. Try removing the import directive. - unused_import
+warning - yomihub\merge\content_merge_screen.dart:14:8 - Unused import: 'package:mangayomi/modules/more/data_and_storage/widgets/source_management_tiles.dart'. Try removing the import directive. - unused_import
+warning - yomihub\merge\extension_merge_screen.dart:4:8 - Unused import: 'package:mangayomi/models/manga.dart'. Try removing the import directive. - unused_import
+warning - yomihub\merge\extension_merge_screen.dart:7:8 - Unused import: 'package:mangayomi/utils/constant.dart'. Try removing the import directive. - unused_import
+warning - yomihub\reader\novel_translate.dart:8:8 - Unused import: 'package:http/http.dart'. Try removing the import directive. - unused_import
+   info - main.dart:123:75 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - modules\anime\anime_player_view.dart:1260:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - modules\history\history_screen.dart:261:51 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - modules\more\data_and_storage\widgets\source_management_tiles.dart:269:41 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - modules\more\data_and_storage\widgets\source_management_tiles.dart:680:45 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - modules\more\data_and_storage\widgets\source_management_tiles.dart:752:23 - 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - modules\more\data_and_storage\widgets\source_management_tiles.dart:753:23 - 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - modules\more\data_and_storage\widgets\source_management_tiles.dart:846:35 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - modules\more\settings\player\player_screen.dart:128:29 - 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - modules\more\settings\player\player_screen.dart:130:29 - 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - modules\more\settings\track\track.dart:54:41 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - services\download_manager\m_downloader.dart:161:25 - Use the null-aware operator '?.' rather than an explicit 'null' comparison. Try using '?.'. - prefer_null_aware_operators
+   info - services\extension_store_service.dart:71:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - services\extension_store_service.dart:103:19 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - utils\chapter_recognition.dart:99:33 - Unnecessary use of string interpolation. Try replacing the string literal with the variable name. - unnecessary_string_interpolations
+   info - yomihub\backup\yomi_backup_extras.dart:140:15 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\browser\browser_screen.dart:455:7 - 'onDownloadStartRequest' is deprecated and shouldn't be used. Use onDownloadStarting instead. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\browser\userscripts_screen.dart:156:134 - Unnecessary escape in string literal. Remove the '\' escape. - unnecessary_string_escapes
+   info - yomihub\browser\userscripts_screen.dart:156:146 - Unnecessary escape in string literal. Remove the '\' escape. - unnecessary_string_escapes
+   info - yomihub\extensions\builtin_extensions.dart:415:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\extensions\url_override.dart:65:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\extensions\url_override.dart:299:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\health\health_connect_service.dart:4:8 - The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive. - unnecessary_import
+   info - yomihub\health\health_connect_service.dart:101:72 - Unnecessary braces in a string interpolation. Try removing the braces. - unnecessary_brace_in_string_interps
+   info - yomihub\merge\chapter_origins.dart:18:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\merge\chapter_origins.dart:57:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\merge\content_merge_screen.dart:368:47 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - yomihub\merge\extension_merge_screen.dart:252:47 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - yomihub\merge\extension_merge_screen.dart:308:18 - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check. Guard a 'State.context' use with a 'mounted' check on the State, and other BuildContext use with a 'mounted' check on the BuildContext. - use_build_context_synchronously
+   info - yomihub\merge\extension_merge_screen.dart:316:37 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - yomihub\perf\perf_watchdog.dart:2:8 - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/scheduler.dart'. Try removing the import directive. - unnecessary_import
+   info - yomihub\perf\perf_watchdog.dart:4:8 - The import of 'package:flutter/painting.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/widgets.dart'. Try removing the import directive. - unnecessary_import
+   info - yomihub\playbooks\play_books_screen.dart:127:45 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\reader\ebook_reader_screen.dart:54:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\reader\ebook_reader_screen.dart:177:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\reader\ebook_reader_screen.dart:304:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\reader\ebook_reader_screen.dart:557:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\reader\ebook_reader_screen.dart:652:35 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - yomihub\reader\pdf_reader_screen.dart:311:29 - 'cacheExtent' is deprecated and shouldn't be used. Use scrollCacheExtent instead. This feature was deprecated after v3.41.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\share\bluetooth_share.dart:179:42 - 'allowMultiple' is deprecated and shouldn't be used. use pickFile for single-file selection; this parameter will be removed in a future release. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\wifi\wifi_settings_screen.dart:470:19 - 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\wifi\wifi_settings_screen.dart:471:19 - 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\wifi\wifi_settings_screen.dart:480:19 - 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\wifi\wifi_settings_screen.dart:481:19 - 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\wifi\wifi_settings_screen.dart:490:19 - 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\wifi\wifi_settings_screen.dart:491:19 - 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\wifi\wifi_settings_screen.dart:500:19 - 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\wifi\wifi_settings_screen.dart:501:19 - 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - yomihub\wifi\wifi_settings_screen.dart:655:19 - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+
+206 issues found.
