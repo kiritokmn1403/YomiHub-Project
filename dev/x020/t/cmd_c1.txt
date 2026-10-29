@@ -1,0 +1,1 @@
+Tap 300 1420 12; Shot 'c1_kwiky'; Labels 'c1' | Select-Object -First 25; Crash

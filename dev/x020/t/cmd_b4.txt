@@ -1,0 +1,1 @@
+TapText '^Show in sources' 2; Back 2; Back 2; Back 2; Tap 848 2169 3; Tap 864 273 3; Adb shell input swipe 540 1800 540 600 400; Start-Sleep 2; Labels 'b4' | Select-Object -First 60

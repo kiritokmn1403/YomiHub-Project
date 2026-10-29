@@ -1,0 +1,3221 @@
+{
+  "Project GitHub": [
+    {
+      "row": 1,
+      "cells": {
+        "A": "Android & Windows GitHub Project"
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A": "STT",
+        "B": "Tên Project",
+        "C": "Link GitHub"
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A": "I",
+        "B": "Ứng Dụng"
+      }
+    },
+    {
+      "row": 4,
+      "cells": {
+        "A": "1",
+        "B": "Aidoku",
+        "C": "https://github.com/Aidoku/Aidoku"
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A": "2",
+        "B": "Anikku",
+        "C": "https://github.com/komikku-app/anikku"
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "A": "3",
+        "B": "Aniyomi",
+        "C": "https://github.com/aniyomiorg/aniyomi"
+      }
+    },
+    {
+      "row": 7,
+      "cells": {
+        "A": "4",
+        "B": "Kotatsu",
+        "C": "https://github.com/KotatsuApp"
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "A": "5",
+        "B": "Kotatsu Multi Parsers",
+        "C": "https://github.com/Shebyyy/kotatsu-multi-parsers "
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A": "6",
+        "B": "Miyomi",
+        "C": "https://github.com/dazedcat19/FMD2"
+      }
+    },
+    {
+      "row": 10,
+      "cells": {
+        "A": "7",
+        "B": "Mangayomi",
+        "C": "https://github.com/kodjodevf/mangayomi"
+      }
+    },
+    {
+      "row": 11,
+      "cells": {
+        "A": "8",
+        "B": "Mangayomi Extension Server",
+        "C": "https://github.com/kodjodevf/M-Extension-Server"
+      }
+    },
+    {
+      "row": 12,
+      "cells": {
+        "A": "9",
+        "B": "Mangayomi ApkBridge",
+        "C": "https://github.com/Schnitzel5/ApkBridge "
+      }
+    },
+    {
+      "row": 13,
+      "cells": {
+        "A": "10",
+        "B": "Mangayomi Custom Buttons",
+        "C": "https://github.com/Schnitzel5/mangayomi-custom-buttons "
+      }
+    },
+    {
+      "row": 14,
+      "cells": {
+        "A": "11",
+        "B": "MiHon",
+        "C": "https://miyomi.app/software/mihon"
+      }
+    },
+    {
+      "row": 15,
+      "cells": {
+        "A": "12",
+        "B": "MiHon Proxy Server",
+        "C": "https://github.com/wen-shion/mihon-proxy "
+      }
+    },
+    {
+      "row": 16,
+      "cells": {
+        "A": "13",
+        "B": "Nekoyomi",
+        "C": "https://github.com/Seguaz/Nekoyomi"
+      }
+    },
+    {
+      "row": 17,
+      "cells": {
+        "A": "14",
+        "B": "Tachimanga",
+        "C": "https://github.com/tachimanga"
+      }
+    },
+    {
+      "row": 18,
+      "cells": {
+        "A": "15",
+        "B": "Zenbu",
+        "C": "https://github.com/meesam4687/zenbu"
+      }
+    },
+    {
+      "row": 19,
+      "cells": {
+        "A": "16",
+        "B": "LNReader",
+        "C": "https://github.com/LNReader/lnreader"
+      }
+    },
+    {
+      "row": 20,
+      "cells": {
+        "A": "17",
+        "B": "vBook",
+        "C": "https://github.com/Darkrai9x/vbook-extensions"
+      }
+    },
+    {
+      "row": 21,
+      "cells": {
+        "A": "18",
+        "B": "vBook 2",
+        "C": "https://github.com/duongden/vbook/"
+      }
+    },
+    {
+      "row": 22,
+      "cells": {
+        "A": "19",
+        "B": "Google Play Books",
+        "C": "https://github.com/TheLox95/Google-Play-Books-Desktop  "
+      }
+    },
+    {
+      "row": 23,
+      "cells": {
+        "C": "https://github.com/SanHsien/openshelf"
+      }
+    },
+    {
+      "row": 24,
+      "cells": {
+        "C": "https://github.com/seanpm2001/Stop-reading-from-Google-Books"
+      }
+    },
+    {
+      "row": 25,
+      "cells": {
+        "C": "https://github.com/t27/highlights-convert"
+      }
+    },
+    {
+      "row": 26,
+      "cells": {
+        "C": "https://github.com/TwoSolutions/ABC"
+      }
+    },
+    {
+      "row": 27,
+      "cells": {
+        "C": "https://github.com/topics/google-play-books"
+      }
+    },
+    {
+      "row": 28,
+      "cells": {
+        "C": "https://github.com/murazor97dicaprio/google-play-books"
+      }
+    },
+    {
+      "row": 29,
+      "cells": {
+        "C": "https://github.com/Brandon123b/Playbook-Analytics"
+      }
+    },
+    {
+      "row": 30,
+      "cells": {
+        "C": "https://github.com/yukik8/yomirin"
+      }
+    },
+    {
+      "row": 31,
+      "cells": {
+        "C": "https://github.com/smokehost24k/google-play-books"
+      }
+    },
+    {
+      "row": 32,
+      "cells": {
+        "C": "https://github.com/crxssed7/play-books-frankenstein"
+      }
+    },
+    {
+      "row": 33,
+      "cells": {
+        "C": "https://github.com/1905/google-play-books-downloader"
+      }
+    },
+    {
+      "row": 34,
+      "cells": {
+        "C": "https://github.com/Ray1979ANYWAY/FewType"
+      }
+    },
+    {
+      "row": 35,
+      "cells": {
+        "C": "https://github.com/xLexip/Adaptive-Theme"
+      }
+    },
+    {
+      "row": 36,
+      "cells": {
+        "C": "https://github.com/laduygaga/playbook-android-reader"
+      }
+    },
+    {
+      "row": 37,
+      "cells": {
+        "C": "https://github.com/bradlegge/google-playbook"
+      }
+    },
+    {
+      "row": 38,
+      "cells": {
+        "C": "https://github.com/liyasthomas/books"
+      }
+    },
+    {
+      "row": 39,
+      "cells": {
+        "C": "https://developers.google.com/books?hl=vi"
+      }
+    },
+    {
+      "row": 40,
+      "cells": {
+        "C": "https://github.com/devnoname120/google-play-book-downloader"
+      }
+    },
+    {
+      "row": 41,
+      "cells": {
+        "A": "20",
+        "B": "IReader",
+        "C": "https://github.com/IReaderorg/Ireader"
+      }
+    },
+    {
+      "row": 42,
+      "cells": {
+        "A": "21",
+        "B": "Tachiyomi",
+        "C": "https://github.com/tachiyomiorg"
+      }
+    },
+    {
+      "row": 43,
+      "cells": {
+        "A": "II",
+        "B": "Trình Chặn Quảng Cáo, AdBlock"
+      }
+    },
+    {
+      "row": 44,
+      "cells": {
+        "A": "1",
+        "B": "AdBlock",
+        "C": "https://github.com/adblockplus"
+      }
+    },
+    {
+      "row": 45,
+      "cells": {
+        "A": "2",
+        "B": "uBlock Origin",
+        "C": "https://github.com/gorhill/uBlock"
+      }
+    },
+    {
+      "row": 46,
+      "cells": {
+        "A": "3",
+        "B": "uBlock",
+        "C": "https://github.com/uBlock-LLC/uBlock"
+      }
+    },
+    {
+      "row": 47,
+      "cells": {
+        "A": "4",
+        "B": "Tampermonkey Adblock Script",
+        "C": "https://gist.github.com/DerFichtl/af462414df838ff397603f8bf9db24e3"
+      }
+    },
+    {
+      "row": 48,
+      "cells": {
+        "A": "5",
+        "B": "AdGuard",
+        "C": "https://github.com/AdguardTeam "
+      }
+    },
+    {
+      "row": 49,
+      "cells": {
+        "A": "III",
+        "B": "VPN & DNS"
+      }
+    },
+    {
+      "row": 50,
+      "cells": {
+        "A": "1",
+        "B": "Tor Project",
+        "C": "https://github.com/torproject"
+      }
+    },
+    {
+      "row": 51,
+      "cells": {
+        "C": "https://github.com/jeremy-jr-benthum/onion-browser-button/releases "
+      }
+    },
+    {
+      "row": 52,
+      "cells": {
+        "A": "2",
+        "B": "CloudFlare Warp",
+        "C": "https://github.com/topics/cloudflare-warp"
+      }
+    },
+    {
+      "row": 53,
+      "cells": {
+        "A": "3",
+        "B": "HolaVPN",
+        "C": "https://github.com/hola"
+      }
+    },
+    {
+      "row": 54,
+      "cells": {
+        "A": "4",
+        "B": "OpenVPN",
+        "C": "https://github.com/OpenVPN "
+      }
+    },
+    {
+      "row": 55,
+      "cells": {
+        "A": "5",
+        "B": "WireGuard",
+        "C": "https://github.com/WireGuard "
+      }
+    },
+    {
+      "row": 56,
+      "cells": {
+        "A": "6",
+        "B": "SoftEtherVPN",
+        "C": "https://github.com/SoftEtherVPN/SoftEtherVPN/ "
+      }
+    },
+    {
+      "row": 57,
+      "cells": {
+        "A": "7",
+        "B": "AdGuardVPN",
+        "C": "https://github.com/AdguardTeam/AdGuardVPNForWindows"
+      }
+    },
+    {
+      "row": 58,
+      "cells": {
+        "A": "8",
+        "B": "Urban VPN",
+        "C": "https://github.com/DanTheSanjiFan/urbanvpn"
+      }
+    },
+    {
+      "row": 59,
+      "cells": {
+        "C": "https://github.com/doxdk/UrbanVPN/blob/main/README.md"
+      }
+    },
+    {
+      "row": 60,
+      "cells": {
+        "C": "https://github.com/VulcanoSoftware/urbanvpn/releases"
+      }
+    },
+    {
+      "row": 61,
+      "cells": {
+        "C": "https://github.com/jamie950315/Urban-Proxy"
+      }
+    },
+    {
+      "row": 62,
+      "cells": {
+        "C": "https://github.com/topics/urban-vpn"
+      }
+    },
+    {
+      "row": 63,
+      "cells": {
+        "A": "IV",
+        "B": "Youtube"
+      }
+    },
+    {
+      "row": 64,
+      "cells": {
+        "A": "1",
+        "B": "Pure Tuber",
+        "C": "https://github.com/huythai1602/Pure_tuber_app"
+      }
+    },
+    {
+      "row": 65,
+      "cells": {
+        "A": "2",
+        "B": "Pure Tuber 2",
+        "C": "https://github.com/PureTuber "
+      }
+    },
+    {
+      "row": 66,
+      "cells": {
+        "A": "3",
+        "B": "NewPipe",
+        "C": "https://github.com/TeamNewPipe/NewPipe"
+      }
+    },
+    {
+      "row": 67,
+      "cells": {
+        "A": "4",
+        "B": "vancedTube",
+        "C": "https://github.com/dexter9code/vancedTube"
+      }
+    },
+    {
+      "row": 68,
+      "cells": {
+        "A": "5",
+        "B": "YouTube Vanced",
+        "C": "https://github.com/laynz28/ytvancedx"
+      }
+    },
+    {
+      "row": 69,
+      "cells": {
+        "A": "6",
+        "B": "Website: ",
+        "C": "https://www.youtube.com/ "
+      }
+    },
+    {
+      "row": 70,
+      "cells": {
+        "A": "V",
+        "B": "Ebook Reader"
+      }
+    },
+    {
+      "row": 71,
+      "cells": {
+        "A": "1",
+        "B": "Sigil",
+        "C": "https://github.com/Sigil-Ebook/Sigil"
+      }
+    },
+    {
+      "row": 72,
+      "cells": {
+        "A": "2",
+        "B": "Calibre",
+        "C": "https://github.com/kovidgoyal/calibre "
+      }
+    },
+    {
+      "row": 73,
+      "cells": {
+        "A": "3",
+        "B": "FBReader",
+        "C": "https://github.com/FBReader"
+      }
+    },
+    {
+      "row": 74,
+      "cells": {
+        "A": "VI",
+        "B": "Trình Duyệt"
+      }
+    },
+    {
+      "row": 75,
+      "cells": {
+        "A": "1",
+        "B": "Chromium",
+        "C": "https://github.com/chromium/chromium"
+      }
+    },
+    {
+      "row": 76,
+      "cells": {
+        "A": "2",
+        "B": "Firefox",
+        "C": "https://github.com/mozilla-firefox/firefox "
+      }
+    },
+    {
+      "row": 77,
+      "cells": {
+        "A": "3",
+        "B": "Coccoc",
+        "C": "https://github.com/coccoc "
+      }
+    },
+    {
+      "row": 78,
+      "cells": {
+        "A": "4",
+        "B": "Browser Fingerprint",
+        "C": "https://github.com/fingerprintjs/fingerprintjs"
+      }
+    },
+    {
+      "row": 79,
+      "cells": {
+        "C": "https://github.com/eisman/fingerprintjs2"
+      }
+    },
+    {
+      "row": 80,
+      "cells": {
+        "C": "https://github.com/niespodd/browser-fingerprinting"
+      }
+    },
+    {
+      "row": 81,
+      "cells": {
+        "C": "https://eisman.github.io/fingerprintjs2/"
+      }
+    },
+    {
+      "row": 82,
+      "cells": {
+        "A": "VII",
+        "B": "CloudFlare - CloudFlare ByPass"
+      }
+    },
+    {
+      "row": 83,
+      "cells": {
+        "A": "1",
+        "B": "Cloudflare",
+        "C": "https://github.com/cloudflare"
+      }
+    },
+    {
+      "row": 84,
+      "cells": {
+        "A": "2",
+        "B": "CloudScraper",
+        "C": "https://github.com/VeNoMouS/cloudscraper "
+      }
+    },
+    {
+      "row": 85,
+      "cells": {
+        "A": "3",
+        "B": "CloakBrowser",
+        "C": "https://github.com/CloakHQ/CloakBrowser"
+      }
+    },
+    {
+      "row": 86,
+      "cells": {
+        "A": "VIII",
+        "B": "PDF Reader"
+      }
+    },
+    {
+      "row": 87,
+      "cells": {
+        "A": "1",
+        "B": "Foxit Software",
+        "C": "https://github.com/foxitsoftware"
+      }
+    },
+    {
+      "row": 88,
+      "cells": {
+        "A": "2",
+        "B": "PDF24",
+        "C": "https://github.com/PDF24 "
+      }
+    },
+    {
+      "row": 89,
+      "cells": {
+        "A": "3",
+        "B": "iLovePDF",
+        "C": "https://github.com/ilovepdf "
+      }
+    },
+    {
+      "row": 90,
+      "cells": {
+        "A": "IX",
+        "B": "Picture in Picture (PiP)"
+      }
+    },
+    {
+      "row": 91,
+      "cells": {
+        "A": "1",
+        "B": "Picture-in-Picture",
+        "C": "https://gist.github.com/silasmariusz/74cdbd298672c1f6d96f4551c0bd8209 "
+      }
+    },
+    {
+      "row": 92,
+      "cells": {
+        "A": "2",
+        "B": "Picture-in-Picture API",
+        "C": "https://gist.github.com/silasmariusz/74cdbd298672c1f6d96f4551c0bd8209"
+      }
+    },
+    {
+      "row": 93,
+      "cells": {
+        "A": "X",
+        "B": "Tính Năng Khác - Other Features"
+      }
+    },
+    {
+      "row": 94,
+      "cells": {
+        "A": "1",
+        "B": "AirDrop",
+        "C": "https://github.com/seemoo-lab/opendrop "
+      }
+    },
+    {
+      "row": 95,
+      "cells": {
+        "A": "2",
+        "B": "Quickshare",
+        "C": "https://github.com/ihexxa/quickshare"
+      }
+    },
+    {
+      "row": 96,
+      "cells": {
+        "A": "3",
+        "B": "Quickshare 2",
+        "C": "https://github.com/Martichou/rquickshare "
+      }
+    },
+    {
+      "row": 97,
+      "cells": {
+        "A": "4",
+        "B": "VLC",
+        "C": "https://github.com/videolan/vlc "
+      }
+    },
+    {
+      "row": 98,
+      "cells": {
+        "A": "5",
+        "B": "MicroG",
+        "C": "https://github.com/microg "
+      }
+    },
+    {
+      "row": 99,
+      "cells": {
+        "A": "6",
+        "B": "ReVanced Manager",
+        "C": "https://github.com/ReVanced/revanced-manager/"
+      }
+    },
+    {
+      "row": 100,
+      "cells": {
+        "A": "7",
+        "B": "NetSetMan",
+        "C": "https://github.com/netsynx/NetSetMan "
+      }
+    },
+    {
+      "row": 101,
+      "cells": {
+        "A": "8",
+        "B": "Qr Code Generator",
+        "C": "https://github.com/nayuki/QR-Code-generator "
+      }
+    },
+    {
+      "row": 102,
+      "cells": {
+        "A": "9",
+        "B": "Google Lens",
+        "C": "https://gist.github.com/qt-kaneko/d5969bae8c31b306408038581297dd33"
+      }
+    },
+    {
+      "row": 103,
+      "cells": {
+        "A": "10",
+        "B": "Video Short Scroll",
+        "C": "https://github.com/riteshkumar072/ShortStream"
+      }
+    },
+    {
+      "row": 104,
+      "cells": {
+        "C": "https://github.com/dkaoster/scrolly-video"
+      }
+    },
+    {
+      "row": 105,
+      "cells": {
+        "C": "https://gist.github.com/codegenixdev/413d2e995f8f536edc00a8ad62c9049b"
+      }
+    },
+    {
+      "row": 106,
+      "cells": {
+        "C": "https://adncwy.github.io/video-scroller/"
+      }
+    },
+    {
+      "row": 107,
+      "cells": {
+        "C": "https://github.com/Tyson3101/Auto-Youtube-Shorts-Scroller/"
+      }
+    },
+    {
+      "row": 108,
+      "cells": {
+        "C": "https://github.com/KHAJAMOINUDDINKHADRI/Video-Scrolling"
+      }
+    },
+    {
+      "row": 109,
+      "cells": {
+        "C": "https://gist.github.com/Rochdy/aeadab548fb657cb1e90c3b5b1b30038"
+      }
+    },
+    {
+      "row": 110,
+      "cells": {
+        "C": "https://github.com/umair-hashmii/VideoShorts"
+      }
+    },
+    {
+      "row": 111,
+      "cells": {
+        "A": "11",
+        "B": "SpeedTest",
+        "C": "https://github.com/librespeed/speedtest"
+      }
+    },
+    {
+      "row": 112,
+      "cells": {
+        "A": "12",
+        "B": "Video Downloader",
+        "C": "https://github.com/aandrew-me/ytDownloader"
+      }
+    },
+    {
+      "row": 113,
+      "cells": {
+        "C": "https://github.com/ChiefInnovator/videodownloader"
+      }
+    },
+    {
+      "row": 114,
+      "cells": {
+        "C": "https://github.com/jely2002/youtube-dl-gui"
+      }
+    },
+    {
+      "row": 115,
+      "cells": {
+        "C": "https://github.com/hanyin111/Vdown"
+      }
+    },
+    {
+      "row": 116,
+      "cells": {
+        "C": "https://github.com/averygan/reclip"
+      }
+    },
+    {
+      "row": 117,
+      "cells": {
+        "C": "https://github.com/mhogomchungu/media-downloader"
+      }
+    },
+    {
+      "row": 118,
+      "cells": {
+        "C": "https://github.com/Unrud/video-downloader"
+      }
+    },
+    {
+      "row": 119,
+      "cells": {
+        "A": "13",
+        "B": "Runtime Native/Hybrid",
+        "C": "https://github.com/runtimerevolution/hybrid-to-native"
+      }
+    },
+    {
+      "row": 120,
+      "cells": {
+        "C": "https://www.hybridclr.cn/en/docs/intro"
+      }
+    },
+    {
+      "row": 121,
+      "cells": {
+        "C": "https://github.com/focus-creative-games/hybridclr"
+      }
+    },
+    {
+      "row": 122,
+      "cells": {
+        "C": "https://docs.github.com/en/actions/reference/runners/github-hosted-runners"
+      }
+    },
+    {
+      "row": 123,
+      "cells": {
+        "C": "https://blogs.windows.com/windowsexperience/2026/10/07/building-windows-for-hybrid-intelligence/"
+      }
+    },
+    {
+      "row": 124,
+      "cells": {
+        "C": "https://vgodsoe.github.io/ryzen-ai-documentation/hybrid_oga.html"
+      }
+    },
+    {
+      "row": 125,
+      "cells": {
+        "C": "https://github.com/runtimerevolution/hybrid-to-native/blob/main/README.md"
+      }
+    },
+    {
+      "row": 126,
+      "cells": {
+        "C": "https://github.com/namdpran8/Setu"
+      }
+    },
+    {
+      "row": 127,
+      "cells": {
+        "C": "https://github.com/microsoft/onnxruntime"
+      }
+    },
+    {
+      "row": 128,
+      "cells": {
+        "C": "https://github.com/phi-media-lab/apu-hybrid-runtime-Phi"
+      }
+    },
+    {
+      "row": 129,
+      "cells": {
+        "A": "XI",
+        "B": "Liquid Glass"
+      }
+    },
+    {
+      "row": 130,
+      "cells": {
+        "A": "1",
+        "B": "Liquid Glass",
+        "C": "https://github.com/archisvaze/liquid-glass "
+      }
+    },
+    {
+      "row": 131,
+      "cells": {
+        "A": "2",
+        "B": "Liquid Glass 2",
+        "C": "https://github.com/rdev/liquid-glass-react "
+      }
+    },
+    {
+      "row": 132,
+      "cells": {
+        "A": "3",
+        "B": "Liquid Glass 3",
+        "C": "https://dashersw.github.io/liquid-glass-js/ "
+      }
+    },
+    {
+      "row": 133,
+      "cells": {
+        "A": "4",
+        "B": "Liduid Glass 4",
+        "C": "https://gist.github.com/leiniaozl229/fd6909f33aca60a03dc947a9225fbaf4 "
+      }
+    },
+    {
+      "row": 134,
+      "cells": {
+        "A": "XII",
+        "B": "Web Scanner"
+      }
+    },
+    {
+      "row": 135,
+      "cells": {
+        "A": "1",
+        "B": "Web Scanner",
+        "C": "https://github.com/topics/web-scanner "
+      }
+    },
+    {
+      "row": 136,
+      "cells": {
+        "A": "2",
+        "B": "Web Scanner 2",
+        "C": "https://github.com/topics/website-vulnerability-scanner"
+      }
+    },
+    {
+      "row": 137,
+      "cells": {
+        "A": "3",
+        "B": "Web Scanner 3",
+        "C": "https://waymapscanner.github.io/ "
+      }
+    },
+    {
+      "row": 138,
+      "cells": {
+        "A": "4",
+        "B": "SiteCheck",
+        "C": "https://github.com/cixtor/sitecheck"
+      }
+    },
+    {
+      "row": 139,
+      "cells": {
+        "A": "XIII",
+        "B": "Image Translation"
+      }
+    },
+    {
+      "row": 140,
+      "cells": {
+        "A": "1",
+        "B": "Image Translation",
+        "C": "https://github.com/topics/image-to-image-translation"
+      }
+    },
+    {
+      "row": 141,
+      "cells": {
+        "C": "https://github.com/topics/image-translation"
+      }
+    },
+    {
+      "row": 142,
+      "cells": {
+        "C": "https://github.com/phillipi/pix2pix"
+      }
+    },
+    {
+      "row": 143,
+      "cells": {
+        "C": "https://github.com/Utkarsh87"
+      }
+    },
+    {
+      "row": 144,
+      "cells": {
+        "A": "2",
+        "B": "CHAN for Image-to-Image Translation",
+        "C": "https://github.com/fei-aiart/chan"
+      }
+    },
+    {
+      "row": 145,
+      "cells": {
+        "A": "3",
+        "B": "Pix2Pix Image Translation",
+        "C": "https://atikul-islam-sajib.github.io/pix2pix-deploy/"
+      }
+    },
+    {
+      "row": 146,
+      "cells": {
+        "A": "XIV",
+        "B": "Wifi Setting"
+      }
+    },
+    {
+      "row": 147,
+      "cells": {
+        "A": "1",
+        "B": "Wifi Setting",
+        "C": "https://github.com/We5ter/Scanners-Box"
+      }
+    },
+    {
+      "row": 148,
+      "cells": {
+        "C": "https://github.com/ankit0183/Wifi-Hacking"
+      }
+    },
+    {
+      "row": 149,
+      "cells": {
+        "C": "https://github.com/koutto/pi-pwnbox-rogueap#wifi-hacking-cheatsheets--mind-map"
+      }
+    },
+    {
+      "row": 150,
+      "cells": {
+        "C": "https://github.com/3xploitGuy/lazyaircrack"
+      }
+    },
+    {
+      "row": 151,
+      "cells": {
+        "C": "https://github.com/ricardojoserf/wifi-pentesting-guide"
+      }
+    },
+    {
+      "row": 152,
+      "cells": {
+        "C": "https://github.com/akashblackhat/wifi-hacking.py"
+      }
+    },
+    {
+      "row": 153,
+      "cells": {
+        "C": "https://github.com/trevatk/Wifi-Cracker"
+      }
+    },
+    {
+      "row": 154,
+      "cells": {
+        "C": "https://github.com/blackhillsinfosec/WifiForge"
+      }
+    },
+    {
+      "row": 155,
+      "cells": {
+        "A": "XV",
+        "B": "Office Suite"
+      }
+    },
+    {
+      "row": 156,
+      "cells": {
+        "A": "1",
+        "B": "LibreOffice",
+        "C": "https://github.com/LibreOffice"
+      }
+    },
+    {
+      "row": 157,
+      "cells": {
+        "C": "https://github.com/orgs/LibreOffice/repositories"
+      }
+    },
+    {
+      "row": 158,
+      "cells": {
+        "C": "https://github.com/topics/libreoffice"
+      }
+    },
+    {
+      "row": 159,
+      "cells": {
+        "C": "https://github.com/gurecn/LibreOffice-android"
+      }
+    },
+    {
+      "row": 160,
+      "cells": {
+        "C": "https://github.com/LibreOffice/core"
+      }
+    },
+    {
+      "row": 161,
+      "cells": {
+        "A": "2",
+        "B": "OpenOffice",
+        "C": "https://github.com/apache/openoffice"
+      }
+    },
+    {
+      "row": 162,
+      "cells": {
+        "C": "https://www.git.openoffice.org/"
+      }
+    },
+    {
+      "row": 163,
+      "cells": {
+        "C": "https://github.com/apache/openoffice-docs"
+      }
+    },
+    {
+      "row": 164,
+      "cells": {
+        "C": "https://github.com/topics/openoffice"
+      }
+    },
+    {
+      "row": 165,
+      "cells": {
+        "A": "3",
+        "B": "Excel Functions",
+        "C": "https://github.com/topics/excel-functions"
+      }
+    },
+    {
+      "row": 166,
+      "cells": {
+        "C": "https://fsprojects.github.io/ExcelFinancialFunctions/"
+      }
+    },
+    {
+      "row": 167,
+      "cells": {
+        "C": "https://support.microsoft.com/vi-vn/excel/excel-functions-by-category"
+      }
+    },
+    {
+      "row": 168,
+      "cells": {
+        "C": "https://excel.net.vn/danh-sach-cac-ham-trong-excel/"
+      }
+    },
+    {
+      "row": 169,
+      "cells": {
+        "C": "https://support.microsoft.com/vi-vn/excel/excel-functions-alphabetical"
+      }
+    },
+    {
+      "row": 170,
+      "cells": {
+        "C": "https://1drv.ms/x/c/78d8476b55038486/ESRkXZpwfgtJk4FZFERr05UBu1SYcWfn5RJxoSmLmmaPSw?e=s2fFfN&nav=MTVfezZBRTU3MDkwLTEyMEEtNEY4Qi1BMTEyLTRGQzY5QkU3QTI0M30"
+      }
+    },
+    {
+      "row": 171,
+      "cells": {
+        "C": "https://blog.hocexcel.online/cac-ham-trong-excel-va-cac-vi-du-minh-hoa.html"
+      }
+    },
+    {
+      "row": 172,
+      "cells": {
+        "C": "https://itgo.vn/cac-ham-trong-excel"
+      }
+    },
+    {
+      "row": 173,
+      "cells": {
+        "C": "https://exceljet.net/functions#:~:text=Complete%20reference%20for%20400%2B%20built-in%20Excel%20functions%2C%20each,1000%2B%20Formulas%2C%20101%20Functions%2C%20and%20New%20Excel%20Functions."
+      }
+    },
+    {
+      "row": 174,
+      "cells": {
+        "C": "https://www.ketoan.vn/kien-thuc-excel/cac-ham-trong-excel/"
+      }
+    },
+    {
+      "row": 175,
+      "cells": {
+        "C": "https://excelx.com/formulas-functions/"
+      }
+    },
+    {
+      "row": 176,
+      "cells": {
+        "C": "https://github.com/MatrixFun/AutoXL"
+      }
+    },
+    {
+      "row": 177,
+      "cells": {
+        "A": "4",
+        "B": "Google Office Suite",
+        "C": "https://github.com/topics/google-sheets"
+      }
+    },
+    {
+      "row": 178,
+      "cells": {
+        "C": "https://github.com/Google-Slides"
+      }
+    },
+    {
+      "row": 179,
+      "cells": {
+        "C": "https://github.com/topics/google-docs"
+      }
+    },
+    {
+      "row": 180,
+      "cells": {
+        "A": "5",
+        "B": "OnlyOffice",
+        "C": "https://github.com/ONLYOFFICE"
+      }
+    },
+    {
+      "row": 181,
+      "cells": {
+        "C": "https://www.onlyoffice.com/"
+      }
+    },
+    {
+      "row": 182,
+      "cells": {
+        "A": "6",
+        "B": "WPS Office",
+        "C": "https://github.com/wps-office-bizflow-pro"
+      }
+    },
+    {
+      "row": 183,
+      "cells": {
+        "C": "https://github.com/Hona-Cao/FlyPPTTimer"
+      }
+    },
+    {
+      "row": 184,
+      "cells": {
+        "C": "https://github.com/LanyuanXiaoyao-Studio/utools-recent-projects"
+      }
+    },
+    {
+      "row": 185,
+      "cells": {
+        "C": "https://github.com/b2git/WPS-0DAY-20230809"
+      }
+    },
+    {
+      "row": 186,
+      "cells": {
+        "C": "https://github.com/linhut/document-ai-assistant"
+      }
+    },
+    {
+      "row": 187,
+      "cells": {
+        "C": "https://github.com/wachin/wps-office-all-mui-win-language"
+      }
+    },
+    {
+      "row": 188,
+      "cells": {
+        "C": "https://github.com/linhut/gongwen-skill"
+      }
+    },
+    {
+      "row": 189,
+      "cells": {
+        "C": "https://github.com/lewis-hui1202/WPS-AI"
+      }
+    },
+    {
+      "row": 190,
+      "cells": {
+        "C": "https://github.com/houbb/iexcel"
+      }
+    },
+    {
+      "row": 191,
+      "cells": {
+        "C": "https://github.com/chairc/wps-invite"
+      }
+    },
+    {
+      "row": 192,
+      "cells": {
+        "C": "https://github.com/yaoysyao/Auto_checkin_release"
+      }
+    },
+    {
+      "row": 193,
+      "cells": {
+        "C": "https://github.com/Xiao-rx/wps-mcp-server"
+      }
+    },
+    {
+      "row": 194,
+      "cells": {
+        "C": "https://github.com/Streamesymbolize/WPS-Office-2026-Setup-Guide"
+      }
+    },
+    {
+      "row": 195,
+      "cells": {
+        "C": "https://github.com/sueccku/dsh-plugin-wps-office-next"
+      }
+    },
+    {
+      "row": 196,
+      "cells": {
+        "C": "https://github.com/fengyec2/custom-seewo-splash-screen"
+      }
+    },
+    {
+      "row": 197,
+      "cells": {
+        "C": "https://github.com/zacksleo/wps-alfred-workflow"
+      }
+    },
+    {
+      "row": 198,
+      "cells": {
+        "C": "https://github.com/okazaki112/Jsa-vibcoding-skill"
+      }
+    },
+    {
+      "row": 199,
+      "cells": {
+        "C": "https://github.com/Bwkyd/wps-skills"
+      }
+    },
+    {
+      "row": 200,
+      "cells": {
+        "C": "https://github.com/PlasmaShaper/WPS-Office-Pro-Setup"
+      }
+    },
+    {
+      "row": 201,
+      "cells": {
+        "C": "https://github.com/eiixy/wps-weboffice"
+      }
+    },
+    {
+      "row": 202,
+      "cells": {
+        "C": "https://github.com/Jolly-J/CharFloat"
+      }
+    },
+    {
+      "row": 203,
+      "cells": {
+        "C": "https://github.com/CreatureFiremanPatch/WPS-Office-Pro-Setup"
+      }
+    },
+    {
+      "row": 204,
+      "cells": {
+        "C": "https://github.com/openSUSE-zh/wps-office-installer"
+      }
+    },
+    {
+      "row": 205,
+      "cells": {
+        "C": "https://github.com/wachin/wps-office-12-language-packs"
+      }
+    },
+    {
+      "row": 206,
+      "cells": {
+        "C": "https://github.com/SnakeSel/WPS-Linux-Russian-MUI"
+      }
+    },
+    {
+      "row": 207,
+      "cells": {
+        "C": "https://github.com/listary/Listary.FileAppPlugin.WPS"
+      }
+    },
+    {
+      "row": 208,
+      "cells": {
+        "C": "https://github.com/tranhoangnam712/wps-bug-ubuntu-fonts"
+      }
+    },
+    {
+      "row": 209,
+      "cells": {
+        "C": "https://github.com/zdzZDZ123/zotero-obsidian-codex-word-wps-workflow"
+      }
+    },
+    {
+      "row": 210,
+      "cells": {
+        "C": "https://github.com/JohnnyYwQ/wps-skills-py"
+      }
+    },
+    {
+      "row": 211,
+      "cells": {
+        "C": "https://github.com/GoranTopic/Fidecomiso-LatinTrust"
+      }
+    },
+    {
+      "row": 212,
+      "cells": {
+        "C": "https://github.com/TonyV2Intl/Office-backup-utilities"
+      }
+    },
+    {
+      "row": 213,
+      "cells": {
+        "C": "https://github.com/thenw-123/CO-WPSppt"
+      }
+    },
+    {
+      "row": 214,
+      "cells": {
+        "C": "https://github.com/osmanonurkoc/wps-office-turkish"
+      }
+    },
+    {
+      "row": 215,
+      "cells": {
+        "C": "https://github.com/topics/wps-office"
+      }
+    },
+    {
+      "row": 216,
+      "cells": {
+        "A": "7",
+        "B": "MathType",
+        "C": "https://github.com/transpect/docx2tex"
+      }
+    },
+    {
+      "row": 217,
+      "cells": {
+        "C": "https://github.com/wiris/html-integrations"
+      }
+    },
+    {
+      "row": 218,
+      "cells": {
+        "C": "https://github.com/transpect/mathtype-extension"
+      }
+    },
+    {
+      "row": 219,
+      "cells": {
+        "C": "https://github.com/wiris/moodle-filter_wiris"
+      }
+    },
+    {
+      "row": 220,
+      "cells": {
+        "C": "https://github.com/wiris/moodle-tinymce_tiny_mce_wiris"
+      }
+    },
+    {
+      "row": 221,
+      "cells": {
+        "C": "https://github.com/ll2010650-coder/mathmodel-pro"
+      }
+    },
+    {
+      "row": 222,
+      "cells": {
+        "C": "https://github.com/wiris/moodle-atto_wiris"
+      }
+    },
+    {
+      "row": 223,
+      "cells": {
+        "C": "https://github.com/aminya/AcuteMSWord"
+      }
+    },
+    {
+      "row": 224,
+      "cells": {
+        "C": "https://github.com/HuangCongQing/LaTeX"
+      }
+    },
+    {
+      "row": 225,
+      "cells": {
+        "C": "https://github.com/emblemtaleshadow/mathtype-pro"
+      }
+    },
+    {
+      "row": 226,
+      "cells": {
+        "C": "https://github.com/wiris/wiris-moodle-docker"
+      }
+    },
+    {
+      "row": 227,
+      "cells": {
+        "C": "https://github.com/wiris"
+      }
+    },
+    {
+      "row": 228,
+      "cells": {
+        "C": "https://github.com/Jack251970/Math-Editor"
+      }
+    },
+    {
+      "row": 229,
+      "cells": {
+        "C": "https://github.com/Nick12-hub/Inserting-Math-Formulas-In-MS-Office"
+      }
+    },
+    {
+      "row": 230,
+      "cells": {
+        "C": "https://github.com/xiao0xiao0/word-mathtype-native-equations"
+      }
+    },
+    {
+      "row": 231,
+      "cells": {
+        "C": "https://github.com/TLE-11/nsfc-md2docx"
+      }
+    },
+    {
+      "row": 232,
+      "cells": {
+        "C": "https://github.com/YYK-beep/word-omml-mathtype"
+      }
+    },
+    {
+      "row": 233,
+      "cells": {
+        "C": "https://github.com/yeshen246800-source/YYGPT-mathtype-copy"
+      }
+    },
+    {
+      "row": 234,
+      "cells": {
+        "C": "https://github.com/goldfish-x/formula-flow"
+      }
+    },
+    {
+      "row": 235,
+      "cells": {
+        "C": "https://softvn.vn/huong-dan-mathtype/"
+      }
+    },
+    {
+      "row": 236,
+      "cells": {
+        "C": "https://github.com/loLollipop/FormulaSnip"
+      }
+    },
+    {
+      "row": 237,
+      "cells": {
+        "C": "https://github.com/zxl19/MathType-Cheatsheet"
+      }
+    },
+    {
+      "row": 238,
+      "cells": {
+        "C": "https://github.com/felimet/mathtype-for-word"
+      }
+    },
+    {
+      "row": 239,
+      "cells": {
+        "A": "8",
+        "B": "Apache Project",
+        "C": "https://poi.apache.org/"
+      }
+    },
+    {
+      "row": 240,
+      "cells": {
+        "C": "https://github.com/TomRoush/PdfBox-Android"
+      }
+    },
+    {
+      "row": 241,
+      "cells": {
+        "C": "https://tika.apache.org/"
+      }
+    },
+    {
+      "row": 242,
+      "cells": {
+        "A": "9",
+        "B": "Word (Project)",
+        "C": "https://github.com/youichi-uda/droiddoc"
+      }
+    },
+    {
+      "row": 243,
+      "cells": {
+        "C": "https://stackoverflow.com/questions/4854947/android-microsoft-office-library-doc-docx-xls-ppt-etc"
+      }
+    },
+    {
+      "row": 244,
+      "cells": {
+        "C": "https://github.com/opendocument-app/OpenDocument.droid"
+      }
+    },
+    {
+      "row": 245,
+      "cells": {
+        "C": "https://github.com/Asutosh11/DocumentReader"
+      }
+    },
+    {
+      "row": 246,
+      "cells": {
+        "C": "https://github.com/Victor2018/DocViewer"
+      }
+    },
+    {
+      "row": 247,
+      "cells": {
+        "C": "https://github.com/sabir-aspose/Aspose.Words-for-Android"
+      }
+    },
+    {
+      "row": 248,
+      "cells": {
+        "C": "https://github.com/fuweiwei/AndroidPoiWord"
+      }
+    },
+    {
+      "row": 249,
+      "cells": {
+        "C": "https://github.com/wordpress-mobile/WordPress-Android"
+      }
+    },
+    {
+      "row": 250,
+      "cells": {
+        "C": "https://github.com/ashille/Aspose_Words_Android"
+      }
+    },
+    {
+      "row": 251,
+      "cells": {
+        "A": "10",
+        "B": "Excel (Project)",
+        "C": "https://github.com/lxx328/android-excel"
+      }
+    },
+    {
+      "row": 252,
+      "cells": {
+        "C": "https://elirehema.github.io/worksheet/"
+      }
+    },
+    {
+      "row": 253,
+      "cells": {
+        "C": "https://shreyashkore.github.io/kexcel/"
+      }
+    },
+    {
+      "row": 254,
+      "cells": {
+        "C": "https://blog.csdn.net/gitblog_00500/article/details/142156578"
+      }
+    },
+    {
+      "row": 255,
+      "cells": {
+        "C": "https://blog.csdn.net/gitblog_00797/article/details/142242607"
+      }
+    },
+    {
+      "row": 256,
+      "cells": {
+        "C": "https://gist.github.com/mwshubham/ff700c997a06c2a8a84966f7f0d6f4c3"
+      }
+    },
+    {
+      "row": 257,
+      "cells": {
+        "C": "https://github.com/yangxiaoge/AndroidExcelReadWrite"
+      }
+    },
+    {
+      "row": 258,
+      "cells": {
+        "C": "https://github.com/September26/ExcelView"
+      }
+    },
+    {
+      "row": 259,
+      "cells": {
+        "C": "https://github.com/vkatz/AndroidXLSViewer"
+      }
+    },
+    {
+      "row": 260,
+      "cells": {
+        "C": "https://github.com/Srihitha18798/ExcelReader"
+      }
+    },
+    {
+      "row": 261,
+      "cells": {
+        "C": "https://github.com/reallin/Android_Excel"
+      }
+    },
+    {
+      "row": 262,
+      "cells": {
+        "C": "https://github.com/zjtone/Android-Office"
+      }
+    },
+    {
+      "row": 263,
+      "cells": {
+        "C": "https://github.com/topics/android-excel"
+      }
+    },
+    {
+      "row": 264,
+      "cells": {
+        "C": "https://github.com/Crustack/android-translations-converter-plugin"
+      }
+    },
+    {
+      "row": 265,
+      "cells": {
+        "C": "https://github.com/ma-amin/MyExcel"
+      }
+    },
+    {
+      "row": 266,
+      "cells": {
+        "C": "https://github.com/zhouchaoyuan/excelPanel"
+      }
+    },
+    {
+      "row": 267,
+      "cells": {
+        "C": "https://github.com/elirehema/worksheet"
+      }
+    },
+    {
+      "row": 268,
+      "cells": {
+        "A": "11",
+        "B": "Powerpoint (Project)",
+        "C": "https://github.com/youichi-uda/droidslide"
+      }
+    },
+    {
+      "row": 269,
+      "cells": {
+        "C": "https://github.com/itsrts/pptviewer-android"
+      }
+    },
+    {
+      "row": 270,
+      "cells": {
+        "C": "https://y1uda.gumroad.com/l/droidslide"
+      }
+    },
+    {
+      "row": 271,
+      "cells": {
+        "C": "https://products.aspose.com/slides/android-java/"
+      }
+    },
+    {
+      "row": 272,
+      "cells": {
+        "C": "https://github.com/ideepu/PPT-Controller"
+      }
+    },
+    {
+      "row": 273,
+      "cells": {
+        "C": "https://github.com/zjtone/Android-Offic"
+      }
+    },
+    {
+      "row": 274,
+      "cells": {
+        "A": "12",
+        "B": "OOXML",
+        "C": "https://github.com/ooxml-tools"
+      }
+    },
+    {
+      "row": 275,
+      "cells": {
+        "C": "https://github.com/dotnet/Open-XML-SDK"
+      }
+    },
+    {
+      "row": 276,
+      "cells": {
+        "C": "https://github.com/pterror/ooxml"
+      }
+    },
+    {
+      "row": 277,
+      "cells": {
+        "C": "https://scuderia-fe.github.io/ooxml-tools/"
+      }
+    },
+    {
+      "row": 278,
+      "cells": {
+        "C": "https://ooxml-tools.github.io/toolbox/"
+      }
+    },
+    {
+      "row": 279,
+      "cells": {
+        "C": "https://github.com/ooxml-tools/toolbox"
+      }
+    },
+    {
+      "row": 280,
+      "cells": {
+        "C": "https://ooxml.org/"
+      }
+    },
+    {
+      "row": 281,
+      "cells": {
+        "C": "https://ooxml.silurus.dev/"
+      }
+    },
+    {
+      "row": 282,
+      "cells": {
+        "C": "https://github.com/yukiyokotani/office-open-xml-viewer"
+      }
+    },
+    {
+      "row": 283,
+      "cells": {
+        "C": "https://openooxml.com/"
+      }
+    },
+    {
+      "row": 284,
+      "cells": {
+        "C": "https://github.com/openooxml/betteroffice"
+      }
+    },
+    {
+      "row": 285,
+      "cells": {
+        "C": "https://ojadeveloper.github.io/ooxml-excel-editor/"
+      }
+    },
+    {
+      "row": 286,
+      "cells": {
+        "C": "https://pterror.github.io/ooxml/"
+      }
+    },
+    {
+      "row": 287,
+      "cells": {
+        "A": "13",
+        "B": "ODF (OpenDocument Format)",
+        "C": "https://github.com/jdum/odfdo"
+      }
+    },
+    {
+      "row": 288,
+      "cells": {
+        "C": "https://github.com/fiduswriter/fiduswriter"
+      }
+    },
+    {
+      "row": 289,
+      "cells": {
+        "C": "https://github.com/oldrev/maltreport"
+      }
+    },
+    {
+      "row": 290,
+      "cells": {
+        "C": "https://github.com/corbindavenport/peek"
+      }
+    },
+    {
+      "row": 291,
+      "cells": {
+        "C": "https://github.com/miachm/SODS"
+      }
+    },
+    {
+      "row": 292,
+      "cells": {
+        "C": "https://github.com/westonganger/rodf"
+      }
+    },
+    {
+      "row": 293,
+      "cells": {
+        "C": "https://github.com/jferard/fastods"
+      }
+    },
+    {
+      "row": 294,
+      "cells": {
+        "C": "https://github.com/opendocument-app/OpenDocument.core"
+      }
+    },
+    {
+      "row": 295,
+      "cells": {
+        "C": "https://github.com/GitHubNewbie0/odf-kit"
+      }
+    },
+    {
+      "row": 296,
+      "cells": {
+        "C": "https://github.com/connium/simple-odf"
+      }
+    },
+    {
+      "row": 297,
+      "cells": {
+        "C": "https://github.com/gitbra/pwic"
+      }
+    },
+    {
+      "row": 298,
+      "cells": {
+        "C": "https://github.com/mmulqueen/odswriter"
+      }
+    },
+    {
+      "row": 299,
+      "cells": {
+        "C": "https://github.com/fwilhe2/rechenbrett"
+      }
+    },
+    {
+      "row": 300,
+      "cells": {
+        "C": "https://github.com/CasualOffice/opencalc"
+      }
+    },
+    {
+      "row": 301,
+      "cells": {
+        "C": "https://github.com/nbeguier/opendocument-security"
+      }
+    },
+    {
+      "row": 302,
+      "cells": {
+        "C": "https://github.com/seichter/odp2md"
+      }
+    },
+    {
+      "row": 303,
+      "cells": {
+        "C": "https://github.com/ma-laforge/ElectricalDiagrams"
+      }
+    },
+    {
+      "row": 304,
+      "cells": {
+        "C": "https://github.com/jze/ods-reader"
+      }
+    },
+    {
+      "row": 305,
+      "cells": {
+        "C": "https://github.com/thom4parisot/asciidoctor-converter-opendocument"
+      }
+    },
+    {
+      "row": 306,
+      "cells": {
+        "C": "https://github.com/devlup-labs/iitj_family_tree"
+      }
+    },
+    {
+      "row": 307,
+      "cells": {
+        "C": "https://github.com/mattkerlogue/tidyods"
+      }
+    },
+    {
+      "row": 308,
+      "cells": {
+        "C": "https://www.oasis-open.org/tc-opendocument/"
+      }
+    },
+    {
+      "row": 309,
+      "cells": {
+        "C": "https://github.com/topics/opendocument"
+      }
+    },
+    {
+      "row": 310,
+      "cells": {
+        "A": "14",
+        "B": "Craft Project",
+        "C": "https://github.com/storytold/gridcraft"
+      }
+    },
+    {
+      "row": 311,
+      "cells": {
+        "C": "https://github.com/storytold/wordcraft"
+      }
+    },
+    {
+      "row": 312,
+      "cells": {
+        "C": "https://github.com/deckcraft-app/deckcraft"
+      }
+    },
+    {
+      "row": 313,
+      "cells": {
+        "A": "15",
+        "B": "VBA & Macro",
+        "C": "https://learn.microsoft.com/en-us/answers/questions/1852367/how-to-install-microsoft-visual-basic-for-applicat"
+      }
+    },
+    {
+      "row": 314,
+      "cells": {
+        "C": "https://www.techbloat.com/how-to-enable-macros-in-excel-for-office-365.html"
+      }
+    },
+    {
+      "row": 315,
+      "cells": {
+        "C": "https://www.supportyourtech.com/excel/how-to-add-vba-to-excel-a-step-by-step-guide-for-beginners/"
+      }
+    },
+    {
+      "row": 316,
+      "cells": {
+        "C": "https://support.microsoft.com/vi-vn/excel/work-with-vba-macros-in-excel-for-the-web"
+      }
+    },
+    {
+      "row": 317,
+      "cells": {
+        "C": "https://gitiho.com/blog/huong-dan-mo-vba-trong-excel-va-tim-hieu-cac-cua-so-lam-viec-trong-vba-7166.html"
+      }
+    },
+    {
+      "row": 318,
+      "cells": {
+        "C": "https://github.com/hlydecker/vba-macros"
+      }
+    },
+    {
+      "row": 319,
+      "cells": {
+        "C": "https://github.com/NetOfficeFw/vbamc"
+      }
+    },
+    {
+      "row": 320,
+      "cells": {
+        "C": "https://allenmattson.github.io/VBA/"
+      }
+    },
+    {
+      "row": 321,
+      "cells": {
+        "C": "https://github.com/AllenMattson/VBA"
+      }
+    },
+    {
+      "row": 322,
+      "cells": {
+        "C": "https://www.wps.com/academy/how-to-download-vba-support-library-for-wps-office-a-detailed-guide-quick-tutorials-1878140/"
+      }
+    },
+    {
+      "row": 323,
+      "cells": {
+        "C": "https://code.visualstudio.com/docs/other/office"
+      }
+    },
+    {
+      "row": 324,
+      "cells": {
+        "C": "https://github.com/microsoft/vscode"
+      }
+    },
+    {
+      "row": 325,
+      "cells": {
+        "C": "https://github.com/TrevorStyler/M365-Office-Macros"
+      }
+    },
+    {
+      "row": 326,
+      "cells": {
+        "C": "https://github.com/ThiagoMaria-SecurityIT/Microsoft_Office_Automation_VBA"
+      }
+    },
+    {
+      "row": 327,
+      "cells": {
+        "C": "https://github.com/VBA-tools/VBA-Web"
+      }
+    },
+    {
+      "row": 328,
+      "cells": {
+        "C": "https://idafchev.github.io/blog/office365_amsi_bypass/"
+      }
+    },
+    {
+      "row": 329,
+      "cells": {
+        "C": "https://bettersolutions.com/vba/ribbon/office-ribbonx-editor.htm"
+      }
+    },
+    {
+      "row": 330,
+      "cells": {
+        "C": "https://github.com/fernandreu/office-ribbonx-editor/releases/tag/v1.9.0"
+      }
+    },
+    {
+      "row": 331,
+      "cells": {
+        "C": "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.7-windows-x64-installer"
+      }
+    },
+    {
+      "row": 332,
+      "cells": {
+        "C": "https://gist.github.com/bran921007/5d229d8f5b9981a20c72a821f99400b7"
+      }
+    },
+    {
+      "row": 333,
+      "cells": {
+        "C": "https://stackoverflow.com/questions/36024342/how-to-put-excel-vba-into-git"
+      }
+    },
+    {
+      "row": 334,
+      "cells": {
+        "C": "https://pnp.github.io/cli-microsoft365/sample-scripts/introduction/"
+      }
+    },
+    {
+      "row": 335,
+      "cells": {
+        "C": "https://github.com/evanw/esbuild"
+      }
+    },
+    {
+      "row": 336,
+      "cells": {
+        "C": "https://esbuild.github.io/content-types/#ts-vs-tsx"
+      }
+    },
+    {
+      "row": 337,
+      "cells": {
+        "C": "https://github.com/pnp/cli-microsoft365"
+      }
+    },
+    {
+      "row": 338,
+      "cells": {
+        "C": "https://github.com/David-Brewin/PowerpointToPDF"
+      }
+    },
+    {
+      "row": 339,
+      "cells": {
+        "C": "https://github.com/nilostolte/MicroVBA-PowerPoint"
+      }
+    },
+    {
+      "row": 340,
+      "cells": {
+        "C": "https://learn.microsoft.com/en-us/office/vba/library-reference/concepts/getting-started-with-vba-in-office"
+      }
+    },
+    {
+      "row": 341,
+      "cells": {
+        "A": "16",
+        "B": "Powerpoint Animation",
+        "C": "https://github.com/HypertextAssassin0273/Unique_PowerPoint_Presentations"
+      }
+    },
+    {
+      "row": 342,
+      "cells": {
+        "C": "https://hypertextassassin0273.github.io/mini-projects/2020-08-22-ppt-slides/"
+      }
+    },
+    {
+      "row": 343,
+      "cells": {
+        "C": "https://github.com/HypertextAssassin0273"
+      }
+    },
+    {
+      "row": 344,
+      "cells": {
+        "C": "https://gitbrent.github.io/PptxGenJS/"
+      }
+    },
+    {
+      "row": 345,
+      "cells": {
+        "C": "https://github.com/gitbrent/PptxGenJS/"
+      }
+    },
+    {
+      "row": 346,
+      "cells": {
+        "C": "https://hugohe3.github.io/ppt-master-examples/"
+      }
+    },
+    {
+      "row": 347,
+      "cells": {
+        "C": "https://github.com/hugohe3/ppt-master"
+      }
+    },
+    {
+      "row": 348,
+      "cells": {
+        "C": "https://gist.github.com/pcmoritz/4b0e1be7f2dfcc4e51e2ace50426f67d"
+      }
+    },
+    {
+      "row": 349,
+      "cells": {
+        "C": "https://github.com/icebird1998/scientific-illustrator"
+      }
+    },
+    {
+      "row": 350,
+      "cells": {
+        "C": "https://github.com/topics/powerpoint-automation"
+      }
+    },
+    {
+      "row": 351,
+      "cells": {
+        "C": "https://github.com/maxonthegit/PPspliT"
+      }
+    },
+    {
+      "row": 352,
+      "cells": {
+        "C": "https://github.com/iappyx/Instrumenta"
+      }
+    },
+    {
+      "row": 353,
+      "cells": {
+        "C": "https://github.com/singerla/pptx-automizer"
+      }
+    },
+    {
+      "row": 354,
+      "cells": {
+        "C": "https://github.com/leonid20000/odin-slides"
+      }
+    },
+    {
+      "row": 355,
+      "cells": {
+        "C": "https://github.com/rodrigolourencofarinha/ProDeck"
+      }
+    },
+    {
+      "row": 356,
+      "cells": {
+        "C": "https://github.com/siril9/presentation-skill"
+      }
+    },
+    {
+      "row": 357,
+      "cells": {
+        "C": "https://github.com/sbroenne/mcp-server-powerpoint"
+      }
+    },
+    {
+      "row": 358,
+      "cells": {
+        "C": "https://github.com/mrigankad/SlideArchitect"
+      }
+    },
+    {
+      "row": 359,
+      "cells": {
+        "C": "https://gist.github.com/whoiscarlo/4c2b19f0ff4489c7e1a25720e0c5b964"
+      }
+    },
+    {
+      "row": 360,
+      "cells": {
+        "C": "https://github.com/BramAlkema/pptx-animation-skill"
+      }
+    },
+    {
+      "row": 361,
+      "cells": {
+        "A": "17",
+        "B": "Ely Office",
+        "C": "https://github.com/ELY-Open-Source/ElyOffice/"
+      }
+    },
+    {
+      "row": 362,
+      "cells": {
+        "A": "18",
+        "B": "GenOffice",
+        "C": "https://genoffice.ai/"
+      }
+    },
+    {
+      "row": 363,
+      "cells": {
+        "C": "https://github.com/genspark-ai/genoffice"
+      }
+    },
+    {
+      "row": 364,
+      "cells": {
+        "A": "19",
+        "B": "Table Office",
+        "C": "https://github.com/iOfficeAI/OfficeCLI/wiki/word-table"
+      }
+    },
+    {
+      "row": 365,
+      "cells": {
+        "C": "https://github.com/RUCKBReasoning/TableLLM"
+      }
+    },
+    {
+      "row": 366,
+      "cells": {
+        "C": "https://github.com/insightsengineering/rtables.officer"
+      }
+    },
+    {
+      "row": 367,
+      "cells": {
+        "C": "https://github.com/OfficeDev/office-scripts-docs/blob/main/docs/resources/samples/table-samples.md"
+      }
+    },
+    {
+      "row": 368,
+      "cells": {
+        "C": "https://github.com/Lewis4564/office-table-design"
+      }
+    },
+    {
+      "row": 370,
+      "cells": {
+        "A": "XVI",
+        "B": "Google, Dropbox, Microsoft, Mediafire - Cloud"
+      }
+    },
+    {
+      "row": 371,
+      "cells": {
+        "A": "1",
+        "B": "Rclone",
+        "C": "https://github.com/rclone/rclone"
+      }
+    },
+    {
+      "row": 372,
+      "cells": {
+        "A": "2",
+        "B": "Google Workspace",
+        "C": "https://github.com/googleworkspace"
+      }
+    },
+    {
+      "row": 373,
+      "cells": {
+        "A": "3",
+        "B": "StackEdit",
+        "C": "https://github.com/benweet/stackedit"
+      }
+    },
+    {
+      "row": 374,
+      "cells": {
+        "A": "4",
+        "B": "Drive",
+        "C": "https://github.com/odeke-em/drive"
+      }
+    },
+    {
+      "row": 375,
+      "cells": {
+        "A": "5",
+        "B": "Google Drive Ocamlfuse",
+        "C": "https://github.com/astrada/google-drive-ocamlfuse"
+      }
+    },
+    {
+      "row": 376,
+      "cells": {
+        "A": "6",
+        "B": "GDown",
+        "C": "https://github.com/wkentaro/gdown"
+      }
+    },
+    {
+      "row": 377,
+      "cells": {
+        "A": "7",
+        "B": "Cyberduck",
+        "C": "https://github.com/iterate-ch/cyberduck"
+      }
+    },
+    {
+      "row": 378,
+      "cells": {
+        "A": "8",
+        "B": "GAM",
+        "C": "https://github.com/GAM-team/GAM"
+      }
+    },
+    {
+      "row": 379,
+      "cells": {
+        "A": "9",
+        "B": "Hassio Google Drive Backup",
+        "C": "https://github.com/sabeechen/hassio-google-drive-backup"
+      }
+    },
+    {
+      "row": 380,
+      "cells": {
+        "A": "10",
+        "B": "Google Workspace MCP",
+        "C": "https://github.com/taylorwilsdon/google_workspace_mcp"
+      }
+    },
+    {
+      "row": 381,
+      "cells": {
+        "A": "11",
+        "B": "G-Desktop-Suite",
+        "C": "https://github.com/alexkim205/G-Desktop-Suite"
+      }
+    },
+    {
+      "row": 382,
+      "cells": {
+        "A": "12",
+        "B": "OneDrive",
+        "C": "https://github.com/abraunegg/onedrive"
+      }
+    },
+    {
+      "row": 383,
+      "cells": {
+        "A": "13",
+        "B": "DriftSync",
+        "C": "https://github.com/xiaochun-z/driftsync"
+      }
+    },
+    {
+      "row": 384,
+      "cells": {
+        "A": "14",
+        "B": "GitNotOneDrive",
+        "C": "https://gist.github.com/plembo/ff6839d9593ec8afca0ba97d890cce58"
+      }
+    },
+    {
+      "row": 385,
+      "cells": {
+        "A": "15",
+        "B": "Github and Microsoft Onedrive Integration",
+        "C": "https://www.ayudo.ai/app-integrations/github-microsoft-onedrive"
+      }
+    },
+    {
+      "row": 386,
+      "cells": {
+        "A": "16",
+        "B": "Onedrive Sync Client",
+        "C": "https://github.com/gzxu/onedrive-sync-client"
+      }
+    },
+    {
+      "row": 387,
+      "cells": {
+        "A": "17",
+        "B": "OneDrive-Sync",
+        "C": "https://github.com/ggobbe/onedrive-sync"
+      }
+    },
+    {
+      "row": 388,
+      "cells": {
+        "A": "18",
+        "B": "Mediafire Project",
+        "C": "https://github.com/NicKoehler/mediafire_bulk_downloader"
+      }
+    },
+    {
+      "row": 389,
+      "cells": {
+        "C": "https://github.com/NicKoehler/mediafire_rs"
+      }
+    },
+    {
+      "row": 390,
+      "cells": {
+        "C": "https://github.com/u0feff/MediaFireDownloader"
+      }
+    },
+    {
+      "row": 391,
+      "cells": {
+        "C": "https://github.com/sacms/File-Host"
+      }
+    },
+    {
+      "row": 392,
+      "cells": {
+        "C": "https://github.com/bayy420-999/mediafire-dl-async"
+      }
+    },
+    {
+      "row": 393,
+      "cells": {
+        "C": "https://github.com/mehmoodkhanzafarkhel-56/mediafire_folder_downloader"
+      }
+    },
+    {
+      "row": 394,
+      "cells": {
+        "C": "https://github.com/dheison0/mdl"
+      }
+    },
+    {
+      "row": 395,
+      "cells": {
+        "C": "https://github.com/Hexadecinull/MediaFolderPro"
+      }
+    },
+    {
+      "row": 396,
+      "cells": {
+        "C": "https://github.com/Adolfbeaming31/OpenDownloader"
+      }
+    },
+    {
+      "row": 397,
+      "cells": {
+        "C": "https://github.com/retired64/mediafire_py"
+      }
+    },
+    {
+      "row": 398,
+      "cells": {
+        "C": "https://github.com/GonnAnalytics/mediafire-folder-downloader"
+      }
+    },
+    {
+      "row": 399,
+      "cells": {
+        "C": "https://github.com/joaozacchello08/mediafire-url-parser"
+      }
+    },
+    {
+      "row": 400,
+      "cells": {
+        "C": "https://github.com/juvenal-yescas/mediafire-dl"
+      }
+    },
+    {
+      "row": 401,
+      "cells": {
+        "A": "19",
+        "B": "FreeFileSync",
+        "C": "https://freefilesync.org/"
+      }
+    },
+    {
+      "row": 402,
+      "cells": {
+        "A": "20",
+        "B": "DropBox Project",
+        "C": "https://github.com/harsimrans/DropboxSyncer"
+      }
+    },
+    {
+      "row": 403,
+      "cells": {
+        "C": "https://ndy40.github.io/cairn/docs/sync/"
+      }
+    },
+    {
+      "row": 404,
+      "cells": {
+        "C": "https://gist.github.com/patrickng/5158985"
+      }
+    },
+    {
+      "row": 405,
+      "cells": {
+        "C": "https://github.com/maximebf/dboxsync"
+      }
+    },
+    {
+      "row": 408,
+      "cells": {
+        "A": "XVII",
+        "B": "CamScanner"
+      }
+    },
+    {
+      "row": 409,
+      "cells": {
+        "A": "1",
+        "B": "CamScanner",
+        "C": "https://github.com/Srinija/SwiftCamScanner"
+      }
+    },
+    {
+      "row": 410,
+      "cells": {
+        "C": "https://github.com/sourabhkhemka/DocumentScanner"
+      }
+    },
+    {
+      "row": 411,
+      "cells": {
+        "C": "https://github.com/ankitshaw/Document-Scanner-and-OCR"
+      }
+    },
+    {
+      "row": 412,
+      "cells": {
+        "C": "https://github.com/garg-lucifer/AndroidDocumentFilter"
+      }
+    },
+    {
+      "row": 413,
+      "cells": {
+        "C": "https://github.com/techno-disaster/InvoiceMate"
+      }
+    },
+    {
+      "row": 414,
+      "cells": {
+        "C": "https://github.com/devsebastian/WonderScan"
+      }
+    },
+    {
+      "row": 415,
+      "cells": {
+        "C": "https://github.com/ankityddv/DocScan-iOS"
+      }
+    },
+    {
+      "row": 416,
+      "cells": {
+        "C": "https://github.com/AndroidWithRossyn/Scanny-Document-Scanner-CamScanner"
+      }
+    },
+    {
+      "row": 417,
+      "cells": {
+        "C": "https://github.com/viveksb007/camScannerWatermarkRemoverAndroid"
+      }
+    },
+    {
+      "row": 418,
+      "cells": {
+        "C": "https://github.com/farimarwat/Document-Scanner"
+      }
+    },
+    {
+      "row": 419,
+      "cells": {
+        "C": "https://github.com/ArashNasrEsfahani/Python-Document-Scanner-OpenCV"
+      }
+    },
+    {
+      "row": 420,
+      "cells": {
+        "C": "https://github.com/Fireboltz/aasaan"
+      }
+    },
+    {
+      "row": 421,
+      "cells": {
+        "C": "https://github.com/Gauravv97/LNotes-Linked-Notes"
+      }
+    },
+    {
+      "row": 422,
+      "cells": {
+        "C": "https://github.com/lxsfful/SimpleScanner"
+      }
+    },
+    {
+      "row": 423,
+      "cells": {
+        "C": "https://github.com/HannaSkief/SimpleCamScanner"
+      }
+    },
+    {
+      "row": 424,
+      "cells": {
+        "C": "https://github.com/nimadorostkar/CamScanner"
+      }
+    },
+    {
+      "row": 425,
+      "cells": {
+        "C": "https://github.com/crabfeather/CSMarkRemover"
+      }
+    },
+    {
+      "row": 426,
+      "cells": {
+        "C": "https://github.com/CS-CamScanner/camscanner"
+      }
+    },
+    {
+      "row": 427,
+      "cells": {
+        "C": "https://github.com/hasanfirnas/PDF_Magic-Color_filter"
+      }
+    },
+    {
+      "row": 429,
+      "cells": {
+        "A": "XVIII",
+        "B": "A.I Chatbot"
+      }
+    },
+    {
+      "row": 430,
+      "cells": {
+        "A": "1",
+        "B": "Gemini",
+        "C": "https://github.com/google-gemini"
+      }
+    },
+    {
+      "row": 431,
+      "cells": {
+        "C": "https://deepmind.google/models/gemini/"
+      }
+    },
+    {
+      "row": 432,
+      "cells": {
+        "C": "https://github.blog/changelog/2026-10-13-gemini-4-argon-in-github-copilot/"
+      }
+    },
+    {
+      "row": 433,
+      "cells": {
+        "C": "https://gemini.google.com/app"
+      }
+    },
+    {
+      "row": 434,
+      "cells": {
+        "C": "https://github.com/google-gemini/gemini-cli"
+      }
+    },
+    {
+      "row": 435,
+      "cells": {
+        "A": "2",
+        "B": "Copilot",
+        "C": "https://github.com/features/copilot"
+      }
+    },
+    {
+      "row": 436,
+      "cells": {
+        "C": "https://copilot.com/chat?fromcode=cmmlf487uwy&es=Click&redirfrom=userTypeCookie&redirfrom=cosmicRingCookie"
+      }
+    },
+    {
+      "row": 437,
+      "cells": {
+        "C": "https://support.microsoft.com/en-us/microsoft-365-copilot/control-review-sources-copilot-chat"
+      }
+    },
+    {
+      "row": 438,
+      "cells": {
+        "A": "3",
+        "B": "ChatGPT",
+        "C": "https://github.com/topics/chatgpt"
+      }
+    },
+    {
+      "row": 439,
+      "cells": {
+        "C": "https://github.com/NousResearch/hermes-agent"
+      }
+    },
+    {
+      "row": 440,
+      "cells": {
+        "C": "https://github.com/f/prompts.chat"
+      }
+    },
+    {
+      "row": 441,
+      "cells": {
+        "C": "https://github.com/topics/chatgpt-api"
+      }
+    },
+    {
+      "row": 442,
+      "cells": {
+        "C": "https://abdur75648.github.io/ChatGPT-API-Python/"
+      }
+    },
+    {
+      "row": 443,
+      "cells": {
+        "C": "https://chatgpt.com/"
+      }
+    },
+    {
+      "row": 444,
+      "cells": {
+        "A": "4",
+        "B": "Deepseek",
+        "C": "https://github.com/deepseek-ai/DeepSeek-V3"
+      }
+    },
+    {
+      "row": 445,
+      "cells": {
+        "C": "https://github.com/deepseek-ai"
+      }
+    },
+    {
+      "row": 446,
+      "cells": {
+        "C": "https://www.deepseek.com/en/harness/"
+      }
+    },
+    {
+      "row": 447,
+      "cells": {
+        "C": "https://github.com/sums001/Deepseek-API"
+      }
+    },
+    {
+      "row": 448,
+      "cells": {
+        "C": "https://chat.deepseek.com/"
+      }
+    },
+    {
+      "row": 449,
+      "cells": {
+        "C": "https://deepseek-ai.xin/vi/blog/deepseek-excel-data-guide/"
+      }
+    },
+    {
+      "row": 450,
+      "cells": {
+        "A": "5",
+        "B": "Grok",
+        "C": "https://github.com/xai-org/grok-build"
+      }
+    },
+    {
+      "row": 451,
+      "cells": {
+        "C": "https://github.com/xai-org/grok-1"
+      }
+    },
+    {
+      "row": 452,
+      "cells": {
+        "C": "https://x.ai/open-source"
+      }
+    },
+    {
+      "row": 453,
+      "cells": {
+        "C": "https://github.blog/changelog/2026-08-14-grok-4-6-is-now-available-in-github-copilot/"
+      }
+    },
+    {
+      "row": 454,
+      "cells": {
+        "C": "https://grok.com/connectors"
+      }
+    },
+    {
+      "row": 455,
+      "cells": {
+        "A": "6",
+        "B": "Claude",
+        "C": "https://github.com/anthropics/claude-code"
+      }
+    },
+    {
+      "row": 456,
+      "cells": {
+        "C": "https://github.com/anthropics/"
+      }
+    },
+    {
+      "row": 457,
+      "cells": {
+        "C": "https://buildwire.ai/blog/the-5-best-github-repos-for-claude-code/"
+      }
+    },
+    {
+      "row": 458,
+      "cells": {
+        "C": "https://claude.ai/new"
+      }
+    },
+    {
+      "row": 459,
+      "cells": {
+        "C": "https://github.blog/changelog/2026-09-22-claude-opus-5-5-is-now-available-in-github-copilot/"
+      }
+    },
+    {
+      "row": 460,
+      "cells": {
+        "A": "7",
+        "B": "OpenHay A.I",
+        "C": "https://github.com/openhay-ai"
+      }
+    },
+    {
+      "row": 461,
+      "cells": {
+        "C": "https://github.com/openhay-ai/openhay"
+      }
+    },
+    {
+      "row": 463,
+      "cells": {
+        "A": "XIX",
+        "B": "Dex Mode"
+      }
+    },
+    {
+      "row": 464,
+      "cells": {
+        "A": "1",
+        "B": "Android Dex Mode",
+        "C": "https://github.com/Shrey113/Android-Dex"
+      }
+    },
+    {
+      "row": 465,
+      "cells": {
+        "C": "https://techydruid.com/android-dex-desktop-mode/"
+      }
+    },
+    {
+      "row": 466,
+      "cells": {
+        "C": "https://github.com/Dylanmurzello/zed-android-port"
+      }
+    },
+    {
+      "row": 467,
+      "cells": {
+        "C": "https://github.com/dotnetdreamer/open-android-dex"
+      }
+    },
+    {
+      "row": 468,
+      "cells": {
+        "C": "https://github.com/maze-mei/DX-Manager"
+      }
+    },
+    {
+      "row": 469,
+      "cells": {
+        "C": "https://github.com/supermarsx/magisk-samsung-dex-standalone-mode"
+      }
+    },
+    {
+      "row": 470,
+      "cells": {
+        "C": "https://github.com/sumdher/VSCode-on-Android"
+      }
+    },
+    {
+      "row": 471,
+      "cells": {
+        "C": "https://github.com/dotnetdreamer/awesome-samsung-dex"
+      }
+    },
+    {
+      "row": 472,
+      "cells": {
+        "C": "https://github.com/nudou350/Xreal-tools"
+      }
+    },
+    {
+      "row": 473,
+      "cells": {
+        "C": "https://github.com/yongtingzhengcn-web/dex-for-mac"
+      }
+    },
+    {
+      "row": 474,
+      "cells": {
+        "C": "https://github.com/gabdevele/DexOnLinux"
+      }
+    },
+    {
+      "row": 475,
+      "cells": {
+        "C": "https://github.com/yukkerike/dex_feature_enabler"
+      }
+    },
+    {
+      "row": 476,
+      "cells": {
+        "C": "https://github.com/yazanj082/momiji"
+      }
+    },
+    {
+      "row": 477,
+      "cells": {
+        "C": "https://github.com/gysosin/droidpier"
+      }
+    },
+    {
+      "row": 478,
+      "cells": {
+        "C": "https://github.com/ctech1313/Enter2Send"
+      }
+    },
+    {
+      "row": 479,
+      "cells": {
+        "C": "https://github.com/super-magistro/DeXtop-mode"
+      }
+    },
+    {
+      "row": 480,
+      "cells": {
+        "C": "https://github.com/Misael-art/android-dex"
+      }
+    },
+    {
+      "row": 481,
+      "cells": {
+        "C": "https://github.com/Aquino1M/SamsungDexbyAquino"
+      }
+    },
+    {
+      "row": 482,
+      "cells": {
+        "C": "https://github.com/JzviaginPhoneConnect/phone-connect"
+      }
+    },
+    {
+      "row": 483,
+      "cells": {
+        "C": "https://github.com/luceat-lux-vestra/crossinput"
+      }
+    },
+    {
+      "row": 484,
+      "cells": {
+        "C": "https://github.com/Keremerk/MyDeX"
+      }
+    },
+    {
+      "row": 485,
+      "cells": {
+        "C": "https://shrey113.github.io/Android-Dex/"
+      }
+    },
+    {
+      "row": 486,
+      "cells": {
+        "C": "https://github.com/KaliRootSuperUser/android-dex"
+      }
+    },
+    {
+      "row": 487,
+      "cells": {
+        "C": "https://github.com/blworld/Shrey113-Android-Dex"
+      }
+    },
+    {
+      "row": 488,
+      "cells": {
+        "C": "https://github.com/KaliRootSuperUser/android-dex"
+      }
+    },
+    {
+      "row": 489,
+      "cells": {
+        "C": "https://github.com/Gyoonus/deoptfuscator"
+      }
+    },
+    {
+      "row": 490,
+      "cells": {
+        "C": "https://techydruid.com/android-dex-desktop-mode/"
+      }
+    },
+    {
+      "row": 491,
+      "cells": {
+        "C": "https://github.com/maxwell-nc/AndroidDexEncrypt"
+      }
+    },
+    {
+      "row": 492,
+      "cells": {
+        "C": "https://github.com/VincentTung/LoadDex"
+      }
+    },
+    {
+      "row": 493,
+      "cells": {
+        "C": "https://github.com/poping520/libdex-ts"
+      }
+    },
+    {
+      "row": 494,
+      "cells": {
+        "C": "https://github.com/TangXiaoLv/Android-Easy-MultiDex"
+      }
+    },
+    {
+      "row": 495,
+      "cells": {
+        "C": "https://github.com/Shrey113/Adb-Device-Manager-2"
+      }
+    }
+  ]
+}

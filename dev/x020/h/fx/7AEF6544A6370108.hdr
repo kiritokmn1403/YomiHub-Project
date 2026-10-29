@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+server: openresty
+date: Wed, 07 Oct 2026 14:01:08 GMT
+content-type: application/json; charset=utf-8
+transfer-encoding: chunked
+set-cookie: accessAgeDisclaimerPH=deleted; expires=Thu, 01 Jan 1970 00:00:01 GMT; Max-Age=0; path=/; domain=pornhub.com; secure
+x-frame-options: SAMEORIGIN
+vary: User-Agent
+rating: RTA-5042-1996-1400-1577-RTA
+accept-ch: Sec-CH-UA,Sec-CH-UA-Arch,Sec-CH-UA-Full-Version,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Model,Sec-CH-UA-Platform,Sec-CH-UA-Platform-Version
+strict-transport-security: max-age=63072000; includeSubDomains; preload
+

@@ -1,0 +1,44 @@
+YomiHub 0.2.4 – nhật ký thay đổi (so với 0.2.3)
+=================================================
+
+TÍNH NĂNG MỚI & NÂNG CẤP
+- Tương thích nền tảng Android & Windows:
+  · Android: Hạ minSdkVersion xuống 23 trong android/app/build.gradle, đảm bảo tương thích từ Android 6.0 (Marshmallow) trở lên.
+  · Windows: Tối ưu hoá toàn diện bộ cài Windows x64 (bản tiêu chuẩn và bản full tích hợp sẵn JRE, JVM Bridge và VPN helpers).
+- Thanh tìm kiếm "Hợp nhất tiện ích" (Merge Extensions):
+  · Thêm thanh tìm kiếm trực quan trong giao diện Hợp nhất tiện ích.
+  · Cho phép lọc và tìm nhanh theo tên tiện ích, tên miền (host domain) hoặc đường dẫn URL.
+  · Tích hợp nút xoá nhanh từ khoá và thông báo khi không tìm thấy kết quả phù hợp.
+- Quản lý và xác minh kho tiện ích (Extensions Repo):
+  · Hiển thị huy hiệu tích xanh xác minh (Icons.verified) cho các kho có tiện ích hoạt động.
+  · Hiển thị cảnh báo màu cam (Icons.warning_amber_rounded) kèm thông báo cho kho chưa xác minh hoặc có 0 tiện ích.
+  · Tự động ghi lỗi chi tiết vào Nhật ký ứng dụng (AppLogger.error) khi thêm kho thất bại hoặc kho trả về 0 tiện ích.
+- Trình chạy tiện ích JavaScript (QuickJS Engine):
+  · Viết lại cơ chế khởi tạo tiện ích bằng IIFE thông minh, loại bỏ việc gắn cứng DefaultExtension.
+  · Tự động nhận diện và khởi tạo đa dạng kiểu cấu trúc tiện ích: class DefaultExtension, mảng đa nguồn mangayomiSources, các lớp kế thừa MProvider hoặc đối tượng chứa hàm getPopular/getHeaders.
+  · Tương thích hoàn toàn với MangaDex và các tiện ích đa nguồn từ cộng đồng.
+
+SỬA LỖI & TỐI ƯU HOÁ HIỆU NĂNG
+- Sửa lỗi sập JavaScript "DefaultExtension is not defined":
+  · Khắc phục triệt để lỗi ReferenceError: 'DefaultExtension' is not defined khi nạp nguồn.
+- Sửa lỗi không tải được video (HihiSex, FikFap và các nguồn video/anime):
+  · Sửa lỗi kiểm tra định dạng URL bị sai khi đường dẫn có chứa query parameters (?token=..., ?for=...), hash fragments.
+  · Bổ sung cơ chế fallback tự động chuyển đổi sang luồng video trực tiếp nếu nguồn đã trả về danh sách video, loại bỏ lỗi "No downloadable URL among video(s)".
+- Sửa lỗi Aidoku WASM ABI type mismatch (Cứu Truyện, CManga...):
+  · Kiểm tra imports của module WASM trong engine Wasmi trước khi liên kết (linking).
+  · Tự động chuyển đổi giữa chữ ký (f32, f32) -> i32 (Aidoku v5) và (f64, f64) -> i32 cho canvas.new_context, canvas.draw_image, canvas.copy_image.
+  · Tự động chuyển đổi kiểu trả về i32 và i64 cho std.utc_offset (Aidoku v8).
+- Loại bỏ hiện tượng đơ/khựng giao diện 21.3 giây:
+  · Trong download_index.dart, bỏ qua việc kiểm tra từng chương khi thư mục tải xuống rỗng (files == 0) hoặc chưa được mount.
+  · Bổ sung điều tiết luồng sự kiện vi tác vụ (yield Future.delayed) mỗi 50 chương giúp giao diện người dùng luôn mượt mà.
+- Bảo vệ chống lỗi ép kiểu HTTP Headers:
+  · Chuẩn hoá an toàn việc duyệt Map dynamic trong m_client.dart và cloudscraper.dart, triệt tiêu lỗi sập type 'List<dynamic>' is not a subtype of type 'String'.
+
+DANH SÁCH BỘ CÀI PHÁT HÀNH 0.2.4
+- Android:
+  · YomiHub-0.2.4-arm64-v8a.apk (163.1 MB)
+  · YomiHub-0.2.4-armeabi-v7a.apk (159.1 MB)
+  · YomiHub-0.2.4-x86_64.apk (171.3 MB)
+- Windows:
+  · YomiHub-0.2.4-windows-x64.zip (137.9 MB)
+  · YomiHub-0.2.4-windows-x64-full.zip (265.8 MB - kèm sẵn JRE, JVM Bridge, Xray & Tor)

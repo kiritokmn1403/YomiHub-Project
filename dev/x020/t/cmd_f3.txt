@@ -1,0 +1,1 @@
+Tap 540 425 8; Labels 'f3' | Select-Object -First 40

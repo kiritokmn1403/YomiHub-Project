@@ -1,0 +1,412 @@
+[
+  {
+    "sha": "b3c000024563920d3eecde5816f2e9d3734fa467",
+    "node_id": "C_kwDOQQAhadoAKGIzYzAwMDAyNDU2MzkyMGQzZWVjZGU1ODE2ZjJlOWQzNzM0ZmE0Njc",
+    "commit": {
+      "author": {
+        "name": "Raphael Boullay",
+        "email": "raphael.boullaylefur@lyceeconnecte.fr",
+        "date": "2026-09-17T00:34:29Z"
+      },
+      "committer": {
+        "name": "Raphael Boullay",
+        "email": "raphael.boullaylefur@lyceeconnecte.fr",
+        "date": "2026-09-17T00:34:29Z"
+      },
+      "message": "fixes",
+      "tree": {
+        "sha": "0ddb35ae71fa62f009e38317e1d1544efaedbf8e",
+        "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/trees/0ddb35ae71fa62f009e38317e1d1544efaedbf8e"
+      },
+      "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/commits/b3c000024563920d3eecde5816f2e9d3734fa467",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/b3c000024563920d3eecde5816f2e9d3734fa467",
+    "html_url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo/commit/b3c000024563920d3eecde5816f2e9d3734fa467",
+    "comments_url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/b3c000024563920d3eecde5816f2e9d3734fa467/comments",
+    "author": {
+      "login": "clquwu",
+      "id": 60440820,
+      "node_id": "MDQ6VXNlcjYwNDQwODIw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60440820?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/clquwu",
+      "html_url": "https://github.com/clquwu",
+      "followers_url": "https://api.github.com/users/clquwu/followers",
+      "following_url": "https://api.github.com/users/clquwu/following{/other_user}",
+      "gists_url": "https://api.github.com/users/clquwu/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/clquwu/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/clquwu/subscriptions",
+      "organizations_url": "https://api.github.com/users/clquwu/orgs",
+      "repos_url": "https://api.github.com/users/clquwu/repos",
+      "events_url": "https://api.github.com/users/clquwu/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/clquwu/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "clquwu",
+      "id": 60440820,
+      "node_id": "MDQ6VXNlcjYwNDQwODIw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60440820?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/clquwu",
+      "html_url": "https://github.com/clquwu",
+      "followers_url": "https://api.github.com/users/clquwu/followers",
+      "following_url": "https://api.github.com/users/clquwu/following{/other_user}",
+      "gists_url": "https://api.github.com/users/clquwu/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/clquwu/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/clquwu/subscriptions",
+      "organizations_url": "https://api.github.com/users/clquwu/orgs",
+      "repos_url": "https://api.github.com/users/clquwu/repos",
+      "events_url": "https://api.github.com/users/clquwu/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/clquwu/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "00499da26a93e2310ff97026120c6311e787cb69",
+        "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/00499da26a93e2310ff97026120c6311e787cb69",
+        "html_url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo/commit/00499da26a93e2310ff97026120c6311e787cb69"
+      }
+    ]
+  },
+  {
+    "sha": "00499da26a93e2310ff97026120c6311e787cb69",
+    "node_id": "C_kwDOQQAhadoAKDAwNDk5ZGEyNmE5M2UyMzEwZmY5NzAyNjEyMGM2MzExZTc4N2NiNjk",
+    "commit": {
+      "author": {
+        "name": "Raphael Boullay",
+        "email": "raphael.boullaylefur@lyceeconnecte.fr",
+        "date": "2026-09-16T23:34:22Z"
+      },
+      "committer": {
+        "name": "Raphael Boullay",
+        "email": "raphael.boullaylefur@lyceeconnecte.fr",
+        "date": "2026-09-16T23:34:22Z"
+      },
+      "message": "Fixes",
+      "tree": {
+        "sha": "066c6f56d0aa09ccfff26599b93effe90977f8af",
+        "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/trees/066c6f56d0aa09ccfff26599b93effe90977f8af"
+      },
+      "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/commits/00499da26a93e2310ff97026120c6311e787cb69",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/00499da26a93e2310ff97026120c6311e787cb69",
+    "html_url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo/commit/00499da26a93e2310ff97026120c6311e787cb69",
+    "comments_url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/00499da26a93e2310ff97026120c6311e787cb69/comments",
+    "author": {
+      "login": "clquwu",
+      "id": 60440820,
+      "node_id": "MDQ6VXNlcjYwNDQwODIw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60440820?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/clquwu",
+      "html_url": "https://github.com/clquwu",
+      "followers_url": "https://api.github.com/users/clquwu/followers",
+      "following_url": "https://api.github.com/users/clquwu/following{/other_user}",
+      "gists_url": "https://api.github.com/users/clquwu/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/clquwu/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/clquwu/subscriptions",
+      "organizations_url": "https://api.github.com/users/clquwu/orgs",
+      "repos_url": "https://api.github.com/users/clquwu/repos",
+      "events_url": "https://api.github.com/users/clquwu/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/clquwu/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "clquwu",
+      "id": 60440820,
+      "node_id": "MDQ6VXNlcjYwNDQwODIw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60440820?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/clquwu",
+      "html_url": "https://github.com/clquwu",
+      "followers_url": "https://api.github.com/users/clquwu/followers",
+      "following_url": "https://api.github.com/users/clquwu/following{/other_user}",
+      "gists_url": "https://api.github.com/users/clquwu/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/clquwu/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/clquwu/subscriptions",
+      "organizations_url": "https://api.github.com/users/clquwu/orgs",
+      "repos_url": "https://api.github.com/users/clquwu/repos",
+      "events_url": "https://api.github.com/users/clquwu/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/clquwu/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "38cfb00b0a610dad264f7b577164c99354d30d03",
+        "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/38cfb00b0a610dad264f7b577164c99354d30d03",
+        "html_url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo/commit/38cfb00b0a610dad264f7b577164c99354d30d03"
+      }
+    ]
+  },
+  {
+    "sha": "38cfb00b0a610dad264f7b577164c99354d30d03",
+    "node_id": "C_kwDOQQAhadoAKDM4Y2ZiMDBiMGE2MTBkYWQyNjRmN2I1NzcxNjRjOTkzNTRkMzBkMDM",
+    "commit": {
+      "author": {
+        "name": "Raphael Boullay",
+        "email": "raphael.boullaylefur@lyceeconnecte.fr",
+        "date": "2026-09-05T18:03:27Z"
+      },
+      "committer": {
+        "name": "Raphael Boullay",
+        "email": "raphael.boullaylefur@lyceeconnecte.fr",
+        "date": "2026-09-05T18:03:27Z"
+      },
+      "message": "Update OniSaga.kt",
+      "tree": {
+        "sha": "42a3bd77c6598f396c284806f5e23767744d0ed0",
+        "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/trees/42a3bd77c6598f396c284806f5e23767744d0ed0"
+      },
+      "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/commits/38cfb00b0a610dad264f7b577164c99354d30d03",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/38cfb00b0a610dad264f7b577164c99354d30d03",
+    "html_url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo/commit/38cfb00b0a610dad264f7b577164c99354d30d03",
+    "comments_url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/38cfb00b0a610dad264f7b577164c99354d30d03/comments",
+    "author": {
+      "login": "clquwu",
+      "id": 60440820,
+      "node_id": "MDQ6VXNlcjYwNDQwODIw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60440820?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/clquwu",
+      "html_url": "https://github.com/clquwu",
+      "followers_url": "https://api.github.com/users/clquwu/followers",
+      "following_url": "https://api.github.com/users/clquwu/following{/other_user}",
+      "gists_url": "https://api.github.com/users/clquwu/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/clquwu/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/clquwu/subscriptions",
+      "organizations_url": "https://api.github.com/users/clquwu/orgs",
+      "repos_url": "https://api.github.com/users/clquwu/repos",
+      "events_url": "https://api.github.com/users/clquwu/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/clquwu/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "clquwu",
+      "id": 60440820,
+      "node_id": "MDQ6VXNlcjYwNDQwODIw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60440820?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/clquwu",
+      "html_url": "https://github.com/clquwu",
+      "followers_url": "https://api.github.com/users/clquwu/followers",
+      "following_url": "https://api.github.com/users/clquwu/following{/other_user}",
+      "gists_url": "https://api.github.com/users/clquwu/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/clquwu/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/clquwu/subscriptions",
+      "organizations_url": "https://api.github.com/users/clquwu/orgs",
+      "repos_url": "https://api.github.com/users/clquwu/repos",
+      "events_url": "https://api.github.com/users/clquwu/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/clquwu/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "714e1e512757d913c33a87be9e81b2b213934663",
+        "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/714e1e512757d913c33a87be9e81b2b213934663",
+        "html_url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo/commit/714e1e512757d913c33a87be9e81b2b213934663"
+      }
+    ]
+  },
+  {
+    "sha": "714e1e512757d913c33a87be9e81b2b213934663",
+    "node_id": "C_kwDOQQAhadoAKDcxNGUxZTUxMjc1N2Q5MTNjMzNhODdiZTllODFiMmIyMTM5MzQ2NjM",
+    "commit": {
+      "author": {
+        "name": "Raphael Boullay",
+        "email": "raphael.boullaylefur@lyceeconnecte.fr",
+        "date": "2026-09-05T17:39:13Z"
+      },
+      "committer": {
+        "name": "Raphael Boullay",
+        "email": "raphael.boullaylefur@lyceeconnecte.fr",
+        "date": "2026-09-05T17:39:13Z"
+      },
+      "message": "Update OniSaga.kt",
+      "tree": {
+        "sha": "5e33aa6731193dfbea5ed276aceb39912263fc7a",
+        "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/trees/5e33aa6731193dfbea5ed276aceb39912263fc7a"
+      },
+      "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/commits/714e1e512757d913c33a87be9e81b2b213934663",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/714e1e512757d913c33a87be9e81b2b213934663",
+    "html_url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo/commit/714e1e512757d913c33a87be9e81b2b213934663",
+    "comments_url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/714e1e512757d913c33a87be9e81b2b213934663/comments",
+    "author": {
+      "login": "clquwu",
+      "id": 60440820,
+      "node_id": "MDQ6VXNlcjYwNDQwODIw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60440820?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/clquwu",
+      "html_url": "https://github.com/clquwu",
+      "followers_url": "https://api.github.com/users/clquwu/followers",
+      "following_url": "https://api.github.com/users/clquwu/following{/other_user}",
+      "gists_url": "https://api.github.com/users/clquwu/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/clquwu/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/clquwu/subscriptions",
+      "organizations_url": "https://api.github.com/users/clquwu/orgs",
+      "repos_url": "https://api.github.com/users/clquwu/repos",
+      "events_url": "https://api.github.com/users/clquwu/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/clquwu/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "clquwu",
+      "id": 60440820,
+      "node_id": "MDQ6VXNlcjYwNDQwODIw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60440820?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/clquwu",
+      "html_url": "https://github.com/clquwu",
+      "followers_url": "https://api.github.com/users/clquwu/followers",
+      "following_url": "https://api.github.com/users/clquwu/following{/other_user}",
+      "gists_url": "https://api.github.com/users/clquwu/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/clquwu/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/clquwu/subscriptions",
+      "organizations_url": "https://api.github.com/users/clquwu/orgs",
+      "repos_url": "https://api.github.com/users/clquwu/repos",
+      "events_url": "https://api.github.com/users/clquwu/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/clquwu/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "374862993ee0d0efd111475d967c7f6878437eb8",
+        "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/374862993ee0d0efd111475d967c7f6878437eb8",
+        "html_url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo/commit/374862993ee0d0efd111475d967c7f6878437eb8"
+      }
+    ]
+  },
+  {
+    "sha": "374862993ee0d0efd111475d967c7f6878437eb8",
+    "node_id": "C_kwDOQQAhadoAKDM3NDg2Mjk5M2VlMGQwZWZkMTExNDc1ZDk2N2M3ZjY4Nzg0MzdlYjg",
+    "commit": {
+      "author": {
+        "name": "Raphael Boullay",
+        "email": "raphael.boullaylefur@lyceeconnecte.fr",
+        "date": "2026-09-05T17:07:11Z"
+      },
+      "committer": {
+        "name": "Raphael Boullay",
+        "email": "raphael.boullaylefur@lyceeconnecte.fr",
+        "date": "2026-09-05T17:07:11Z"
+      },
+      "message": "Update OniSaga.kt",
+      "tree": {
+        "sha": "f140397db99bb8e0be321ccf28ebc64337021907",
+        "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/trees/f140397db99bb8e0be321ccf28ebc64337021907"
+      },
+      "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/commits/374862993ee0d0efd111475d967c7f6878437eb8",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/374862993ee0d0efd111475d967c7f6878437eb8",
+    "html_url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo/commit/374862993ee0d0efd111475d967c7f6878437eb8",
+    "comments_url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/374862993ee0d0efd111475d967c7f6878437eb8/comments",
+    "author": {
+      "login": "clquwu",
+      "id": 60440820,
+      "node_id": "MDQ6VXNlcjYwNDQwODIw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60440820?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/clquwu",
+      "html_url": "https://github.com/clquwu",
+      "followers_url": "https://api.github.com/users/clquwu/followers",
+      "following_url": "https://api.github.com/users/clquwu/following{/other_user}",
+      "gists_url": "https://api.github.com/users/clquwu/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/clquwu/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/clquwu/subscriptions",
+      "organizations_url": "https://api.github.com/users/clquwu/orgs",
+      "repos_url": "https://api.github.com/users/clquwu/repos",
+      "events_url": "https://api.github.com/users/clquwu/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/clquwu/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "clquwu",
+      "id": 60440820,
+      "node_id": "MDQ6VXNlcjYwNDQwODIw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60440820?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/clquwu",
+      "html_url": "https://github.com/clquwu",
+      "followers_url": "https://api.github.com/users/clquwu/followers",
+      "following_url": "https://api.github.com/users/clquwu/following{/other_user}",
+      "gists_url": "https://api.github.com/users/clquwu/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/clquwu/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/clquwu/subscriptions",
+      "organizations_url": "https://api.github.com/users/clquwu/orgs",
+      "repos_url": "https://api.github.com/users/clquwu/repos",
+      "events_url": "https://api.github.com/users/clquwu/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/clquwu/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "b601b8511e3f06ed6664a9120b7398eabaa68349",
+        "url": "https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits/b601b8511e3f06ed6664a9120b7398eabaa68349",
+        "html_url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo/commit/b601b8511e3f06ed6664a9120b7398eabaa68349"
+      }
+    ]
+  }
+]

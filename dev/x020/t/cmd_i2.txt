@@ -1,0 +1,1 @@
+Back 2; Adb shell input swipe 540 1500 540 600 300; Start-Sleep 1; TapText '^AVSub' 20; Shot 'i2'; Labels 'i2' | Select-Object -First 14

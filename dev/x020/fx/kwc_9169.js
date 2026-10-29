@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunk_platform_client=globalThis.webpackChunk_platform_client||[]).push([[9169],{39169(l,a,t){t.r(a),t.d(a,{default:()=>e});var s=t(93736),c=t(31085);const e=()=>(0,c.jsx)(s.A,{})}}]);

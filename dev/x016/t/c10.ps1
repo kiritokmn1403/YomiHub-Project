@@ -1,0 +1,1 @@
+& $ADB shell '(printf "\004\001\000\120\000\000\000\001\000check.torproject.org\000"; sleep 15; printf "GET /api/ip HTTP/1.0\r\nHost: check.torproject.org\r\n\r\n"; sleep 30) | nc 127.0.0.1 9050 | od -c | head -20; echo rc=$?' 2>&1

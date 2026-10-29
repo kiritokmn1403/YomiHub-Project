@@ -1,0 +1,1 @@
+Tap 848 2169 3; Tap 864 273 3; Adb shell input swipe 540 1800 540 700 400; Start-Sleep 2; Labels 'b6' | Select-Object -First 60; Shot 'b6'

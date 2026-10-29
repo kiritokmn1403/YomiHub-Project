@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="vi" class="light">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Tensei shite High Elf ni Narimashita ga, Slow Life wa 120-nen de Akimashita - Cổng Light Novel - Đọc Light Novel</title>
+
+    <meta name="description" content="Chuyển Sinh Thành High Elf, Nhưng Tôi Đã Chán Cuộc Sống An Nhàn Sau 120 Năm kể về Acer , một người mang ký ức kiếp trước và sinh ra với thân phận High Elf. Sau hơn một thế kỷ cố hòa mình vào cuộc sống bình lặng giữa rừng...">
+    <meta name="theme-color" content="#000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="e1yr5gItaytGESodXtprvwLAdHws1VO9VBAnIg57">
+    <meta name="logged-in" content="0">
+    <meta property="fb:app_id" content="1864643850436909">
+
+    <link rel="canonical" href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam">
+        <meta property="og:image" content="https://i2.hako.vip/ln/series/covers/s28293-f7927c7d-9ee4-435f-8e0f-2c766654e8da.webp">
+
+    <link rel="preconnect" href="https://www.google-analytics.com">
+
+    <link rel="shortcut icon" href="/img/favicon-2026-2x.png?v=1">
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon.png?v=3">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png?v=3">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png?v=3">
+
+    <link rel="stylesheet" href="/css/interface.css?id=49911c2745139837fadade9e19b06330">
+    <link rel="stylesheet" href="/css/tailwind.css?id=18fa3bafb2c09381f87f77e7b554fa31">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" crossorigin="anonymous" />
+        
+    <script src="/scripts/plugins.js?id=b612d946b32459430eed3066ed15adf2"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34864968-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+      gtag('config', 'UA-34864968-3');
+    </script>
+</head>
+
+<body>
+	    <div id="page-top"></div>
+    <div data-scrollto="#page-top" class="backtoTop"><i class="fas fa-angle-double-up"></i></div>
+    <div id="navbar" class="headroom">
+        <div class="container">
+            <div id="sidenav-icon" class="none-xl">
+                <div class="sidenav-icon-content">
+                    <span class="sidenav-icon_white"></span>
+                    <span class="sidenav-icon_white"></span>
+                    <span class="sidenav-icon_white"></span>
+                </div>
+                <ul class="navbar-menu none hidden-block at-mobile unstyle">   
+                    <div class="navbar-search block none-m in-navbar-menu">
+                        <form class="" action="/tim-kiem" method="get">
+                            <input class="search-input" type="text" placeholder="Tối thiểu 2 kí tự" name="keywords" value="">
+                            <button class="search-submit" type="submit" value="Tìm kiếm"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>               
+
+                    <li><a class="nav-menu_item" href="/sang-tac"><span class="">Sáng tác</span></a></li>
+                                        <li><a class="nav-menu_item" href="https://ln.hako.vn/ai-dich"><span class="">AI dịch</span></a></li>
+                                        <li><a class="nav-menu_item" href="/xuat-ban"><span class="">Xuất bản</span></a></li>
+                    <li><a class="nav-menu_item" href="/thao-luan"><span class="">Thảo luận</span></a></li>
+                    <li><a class="nav-menu_item" href="/danh-sach"><span class="">Danh sách</span></a></li>
+                    
+                    <li class="nav-has-submenu">
+                        <a class="nav-menu_item">
+                            <span class="">Thông tin</span>
+                            <i class="fas fa-chevron-down dropdown-icon" style="float: right; margin-top: 6px"></i>
+                        </a>
+
+                        <ul class="nav-submenu list-unstyled none">
+                            <li><a href="/thao-luan/368-huong-dan-dang-truyen"><span>Đăng truyện</span></a></li>
+                            <li><a href="/thao-luan/2-gioi-thieu-cong-light-novel"><span>Giới thiệu</span></a></li>
+                            <li><a href="/thao-luan/1-mo-trang-thao-luan-gop-y-va-bao-loi"><span>Góp ý - Báo lỗi</span></a></li>
+                            <li><a href="/privacy-policy"><span>Chính sách bảo mật</span></a></li>
+                            <li><a href="/tos"><span>Điều khoản sử dụng</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="navbar-logo-wrapper">
+                <a href="/" class="navbar-logo" style="background-image: url('/img/logo-tet-2026-2x.png')" title="Trang chủ"></a>
+            </div>
+             
+            <div id="navbar-user" class="guest">						
+                <a class="login-link" href="/login">Đăng nhập</a>
+				<div id="guest-menu">
+					<div class="icon">
+						<span class="white-point"></span>
+						<span class="white-point"></span>
+						<span class="white-point"></span>
+					</div>
+					<ul class="nav-submenu hidden-block unstyled none">
+						<li>
+							<div class="nightmode-toggle li-inner">
+                                <span><i class="fas fa-moon"></i>Nền tối</span>
+								<div class="toggle-icon">
+									<i class="fa fa-toggle-off"></i>
+								</div>
+							</div>
+						</li>
+                        <li>
+                            <a class="li-inner" href="/lich-su-doc"><i class="fas fa-history"></i><span>Lịch sử</span></a>
+                        </li>
+					</ul>
+				</div>
+			</div>
+                        <div class="navbar-mainblock">
+                <div class="navbar-search none block-m">
+                    <form class="" action="/tim-kiem" method="get">
+                        <input class="search-input" type="text" placeholder="Tối thiểu 2 kí tự" name="keywords" value="">
+                        <button class="search-submit" type="submit" value="Tìm kiếm"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>          
+                <ul class="navbar-menu at-navbar none d-xl-block unstyled">               
+                    <li><a class="nav-menu_item" href="/sang-tac"><i class="fas fa-pen-nib menu-icon"></i><span class="">Sáng tác</span></a></li>
+
+                                        <li><a class="nav-menu_item" href="https://ln.hako.vn/ai-dich"><i class="fas fa-book menu-icon"></i><span class="">AI dịch</span></a></li>
+                                        
+                    <li><a class="nav-menu_item" href="/xuat-ban"><i class="fas fa-calendar menu-icon"></i><span class="">Xuất bản</span></a></li>
+                    
+                    <li><a class="nav-menu_item" href="/thao-luan"><i class="fas fa-users menu-icon"></i><span class="">Thảo luận</span></a></li>
+                    
+                    <li><a class="nav-menu_item" href="/danh-sach"><i class="fas fa-th-list menu-icon"></i><span class="">Danh sách</span></a></li>
+                    
+                    <li class="nav-has-submenu">
+                        <a class="nav-menu_item">
+                            <i class="fas fa-question menu-icon"></i><span class="">Thông tin</span>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                            <i class="fas fa-chevron-right dropdown-icon"></i>
+                        </a>
+
+                        <ul class="nav-submenu hidden-block unstyled none">
+                            <li><a href="/thao-luan/368-huong-dan-dang-truyen"><span>Đăng truyện</span></a></li>
+                            <li><a href="/thao-luan/2-gioi-thieu-cong-light-novel"><span>Giới thiệu</span></a></li>
+                            <li><a href="/thao-luan/1-mo-trang-thao-luan-gop-y-va-bao-loi"><span>Góp ý - Báo lỗi</span></a></li>
+                            <li><a href="/privacy-policy"><span>Chính sách bảo mật</span></a></li>
+                            <li><a href="/tos"><span>Điều khoản sử dụng</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!--<section id="nav-search"></section>-->
+        </div>
+    </div>
+        <div class="page-top-group ">
+                <a href="/">
+                        <div class="index-background d-none d-lg-block" style="background-image: url('/images/banners/2026/summer/ld.png')"></div>
+            <div class="index-background d-lg-none" style="background-image: url('/images/banners/2026/summer/lm.png'); background-size: cover"></div>
+                    </a>
+            </div>
+        
+    <div x-data="{ open: Cookies.get('globalwarning3') === undefined ? true : false }">
+    <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4" x-show="open" style="display: none">
+        <div class="flex">
+            <div class="shrink-0">
+                <button x-on:click="open = false; Cookies.set('globalwarning3', false, { expires: 0.5 })" type="button" class="inline-flex rounded-md bg-yellow-50 p-1.5 text-yellow-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 focus:ring-offset-yellow-50">
+                    <span class="sr-only">Dismiss</span>
+                    <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                    <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="ml-3 font-bold">
+                <p class="text-sm text-yellow-700">
+                    Nếu không thể <a class="font-medium text-blue-700" href="/thao-luan/2898-ten-mien-da-bi-chan">truy cập trang web</a> xin vui lòng sử dụng DNS 
+                    <a class="font-medium text-blue-700" href="https://www.google.com/search?q=c%C3%A1ch+c%C3%A0i+dns+1.1.1.1" target="_blank">1.1.1.1</a> hoặc <a class="font-medium text-blue-700" href="https://docln.sbs" target="_blank">docln.sbs</a>
+                    
+                </p>
+                <p class="text-sm text-green-700">
+                    Các truyện có đơn vị sở hữu bản quyền sẽ bị xóa, nếu cố tình vi phạm sẽ bị khóa tài khoản. Xin báo cáo truyện bản quyền tại <a href="/thao-luan/2789-bao-cao-truyen-vi-pham" class="font-medium text-blue-700" target="_blank">đây</a>
+                </p>
+                <p class="text-sm text-purple-700">
+                    Bị đứt 4 tuyến cáp quang biển nên kết nối sẽ chậm, nhất là vào giờ cao điểm.
+                </p
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+	    
+    <main id="mainpart"
+        class="project-page convert-type">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-breadcrumb">
+    <span class="breadcrum-level"><a href="https://ln.hako.vn"><i class="fas fa-home"></i></a></span>
+        <span class="next-icon"><i class="fas fa-chevron-right"></i></span>
+    <span class="breadcrum-level"><a href="https://ln.hako.vn/ai-dich">AI dịch</a></span>
+    </div>
+
+                </div>
+                            </div>
+        </div>
+        <div class="container">
+            <div class="row d-block clearfix">
+                <div class="col-12 col-lg-9 float-left">
+                    <section class="feature-section at-series clear">
+                        <main class="section-body">
+                            <div class="top-part">
+                                <div class="row">
+                                    <div class="left-column col-12 col-md-3">
+                                        <div
+                                            class="series-cover">
+                                            <div class="series-type">
+                                                                                                    <span>AI dịch</span>
+                                                                                            </div>
+                                            <div class="a6-ratio">
+                                                <div class="content img-in-ratio"
+                                                    style="background-image: url('https://i2.hako.vip/ln/series/covers/s28293-f7927c7d-9ee4-435f-8e0f-2c766654e8da.webp')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-9 flex flex-col">
+                                        <div class="flex-1">
+                                            <div class="series-name-group">
+                                                                                                                                                <span class="series-name">
+                                                    <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam">Tensei shite High Elf ni Narimashita ga, Slow Life wa 120-nen de Akimashita</a>
+                                                </span>
+                                            </div>
+                                            <div class="series-information mb-0 flex flex-col">
+                                                
+                                                <div class="series-gernes" x-data="{ more: false }">
+				<a class="series-gerne-item" href="https://ln.hako.vn/the-loai/adventure">Adventure</a>
+		<a class="series-gerne-item" href="https://ln.hako.vn/the-loai/drama">Drama</a>
+		<a class="series-gerne-item" href="https://ln.hako.vn/the-loai/fantasy">Fantasy</a>
+		<a class="series-gerne-item" href="https://ln.hako.vn/the-loai/isekai">Isekai</a>
+		<a class="series-gerne-item" href="https://ln.hako.vn/the-loai/magic">Magic</a>
+		<a class="series-gerne-item" href="https://ln.hako.vn/the-loai/slice-of-life">Slice of Life</a>
+		
+	
+	</div>
+
+                                                                                                
+                                                <div class="info-item">
+                                                    <span class="info-name">Tình trạng:</span>
+                                                    <span class="info-value">
+                                                        <a
+                                                            href="https://ln.hako.vn/convert-dang-tien-hanh">Đang tiến hành</a>
+                                                    </span>
+                                                </div>
+
+                                                                                                    <a x-data="{ lastRead: (JSON.parse(localStorage.getItem('reading_series')) || []).filter(x => x['series_id'] == 28293) }" x-show="lastRead.length"
+                                                        class="self-center md:self-start rounded-full bg-[#d9534f] mt-3 mb-3 px-4 py-2 text-sm font-semibold text-white hover:!text-red-400 shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d43f3a] justify-center"
+                                                        :href="lastRead[0] ? lastRead[0]['chapter_url'] : '#'"
+                                                        style="display: none">Đọc tiếp</a>
+                                                                                            </div>
+                                        </div>
+                                        <div class="side-features flex-none">
+                                            <div class="row">
+                                                <div class="col-4 col-md feature-item width-auto-xl">
+                                                                                                            <a id="collect" class="side-feature-button button-follow follow"
+                                                            href="https://ln.hako.vn/login">
+                                                            <span class="block feature-value"><i
+                                                                    class="far fa-heart"></i></span>
+                                                            <span class="block feature-name">
+                                                                                                                                    64
+                                                                                                                            </span>
+                                                        </a>
+                                                                                                    </div>
+
+                                                <div class="col-4 col-md feature-item width-auto-xl">
+                                                    <div class="series-rating rated">
+                                                        <a href="https://ln.hako.vn/truyen/28293/danh-gia">
+                                                            <label for="open-rating"
+                                                                class="side-feature-button button-rate">
+                                                                <span class="block feature-value"><i
+                                                                        class="far fa-star"></i></span>
+                                                                <span class="block feature-name">Đánh giá</span>
+                                                            </label>
+                                                        </a>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 col-md feature-item width-auto-xl">
+                                                    <div class="catalog-icon side-feature-button">
+                                                        <span class="block feature-value"><i class="fas fa-list"></i></span>
+                                                        <span class="block feature-name">Mục lục</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 col-md feature-item width-auto-xl">
+                                                    <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam#series-comments"
+                                                        class="side-feature-button">
+                                                        <span class="block feature-value"><i
+                                                                class="fas fa-comments"></i></span>
+                                                        <span class="block feature-name">Bàn luận</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-4 col-md feature-item width-auto-xl">
+                                                    <label for="open-sharing" class="side-feature-button">
+                                                        <span class="block feature-value"><i
+                                                                class="fas fa-share-alt"></i></span>
+                                                        <span class="block feature-name">Chia sẻ</span>
+                                                    </label>
+                                                    <input type="checkbox" id="open-sharing" />
+                                                    <div class="sharing-box">
+                                                        <a x-data href="#" class="sharing-item"
+                                                            @click.prevent="window.navigator.clipboard.writeText('https://ln.hako.vn/truyen/28293'); $store.toast.show('Copy thành công!')">Link
+                                                            rút gọn</a>
+                                                        <a class="sharing-item"
+                                                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fln.hako.vn%2Fai-dich%2F28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam"
+                                                            target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                                        <a class="sharing-item"
+                                                            href="https://twitter.com/intent/tweet?text=Tensei shite High Elf ni Narimashita ga, Slow Life wa 120-nen de Akimashita&url=https%3A%2F%2Fln.hako.vn%2Fai-dich%2F28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam"
+                                                            target="_blank"><i class="fab fa-twitter"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-part">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row statistic-list">
+                                            <div class="col-12 col-md-3 statistic-item block-wide at-mobile">
+                                                <div class="statistic-name">Lần cuối</div>
+                                                <div class="statistic-value"><time class="timeago"
+                                                        title="03/10/2026 08:02:01"
+                                                        datetime="2026-10-03T08:02:01+07:00">Đang
+                                                        chạy...</time></div>
+                                            </div>
+                                            <div class="col-4 col-md-3 statistic-item">
+                                                <div class="statistic-name">Số từ</div>
+                                                <div class="statistic-value">
+                                                    298.444</div>
+                                            </div>
+                                            
+                                            <div class="col-4 col-md-3 statistic-item">
+                                                <div class="statistic-name">Đánh giá</div>
+                                                <div class="statistic-value">
+                                                    5,00 /
+                                                    <small>2</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 col-md-3 statistic-item">
+                                                <div class="statistic-name">Lượt xem</div>
+                                                <div class="statistic-value">
+                                                    7.660</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                        <div class="summary-wrapper col-12">
+                                                                                    <div class="series-summary">
+                                                <h4 class="font-bold">Tóm tắt</h4>
+                                                <div class="summary-content">
+                                                    <p><strong>Chuyển Sinh Thành High Elf, Nhưng Tôi Đã Chán Cuộc Sống An Nhàn Sau 120 Năm</strong> kể về <strong>Acer</strong>, một người mang ký ức kiếp trước và sinh ra với thân phận High Elf. Sau hơn một thế kỷ cố hòa mình vào cuộc sống bình lặng giữa rừng sâu, Acer cuối cùng chán ngấy sự an nhàn và quyết định bước ra thế giới bên ngoài, chu du qua những vùng đất của con người, dwarf và nhiều chủng tộc khác.</p><p>Từ một chuyến đi đơn giản vì tò mò, hành trình ấy dần trở thành câu chuyện về <strong>kiếm thuật, nghề rèn, ma thuật, những nền văn hóa khác biệt và vô số cuộc gặp gỡ</strong>, đồng thời khắc họa rất rõ ý nghĩa của tình bạn và chia ly dưới góc nhìn của một High Elf có tuổi thọ vượt xa những người mà anh yêu quý.</p>
+                                                </div>
+                                                <div class="summary-more none more-state">
+                                                    <div class="see_more">Xem thêm</div>
+                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+                            </div>
+                        </main>
+                    </section>
+                </div>
+                <div id="rd-sidebar" class="col-12 col-lg-3 float-right">
+                    <div class="row top-group">
+                        <div class="col-12 no-push push-3-m col-md-6 no-push-l col-lg-12">
+                            <section class="series-users">
+                                <main>
+                                    <div class="series-owner group-mem overflow-visible">
+                                        <div class="relative w-fit inline-block">
+                                            <img width="50px" height="50px" src="https://i2.hako.vip/ln/users/avatars/u250779-fe0770f9-6004-4be1-85b7-a572d5e8efa9.webp"
+                                                alt="Poster's avatar" class="rounded-full owner-avatar">
+                                                                                    </div>
+                                        <div class="series-owner-title">
+                                            <span class="series-owner_name"><a
+                                                    href="/thanh-vien/250779">inariod</a></span>
+                                                                                    </div>
+                                    </div>
+                                    <div class="fantrans-section">
+                                        <div class="fantrans-name">Nhóm dịch</div>
+                                        <div class="fantrans-value"><a
+                                                href="https://ln.hako.vn/nhom-dich/3656-inarz">inaRz</a>
+                                        </div>
+                                    </div>
+                                                                        <div class="owner-donate" style="padding: 0">
+                                        <!-- <span class="donate-intro">Bạn muốn tiến độ đều hơn ?</span>
+                                                    <span class="button button-red" onclick="alert('Chức năng đang được hoàn thiện')">Hãy Ủng hộ !!</span> -->
+                                    </div>
+                                </main>
+                            </section>
+                        </div>
+                    </div>
+
+                    
+
+                    
+                    
+
+                    <section class="basic-section gradual-mobile">
+                        <header class="sect-header"><span class="sect-title">Thảo luận</span><span class="mobile-icon"><i
+                                    class="fas fa-chevron-down"></i></span></header>
+                        <main class="d-lg-block">
+                                                        <div class="text-right pad-10">
+                                <a class="button button-green"
+                                    href="https://ln.hako.vn/action/page/create?series_id=28293">
+                                    <i class="fas fa-plus"></i> Tạo bài viết
+                                </a>
+                            </div>
+                        </main>
+                    </section>
+
+                    <section id='list-vol' class="none list_vol-section">
+                        <div class="list-volume-wrapper basic-section">
+                            <header class="sect-header"><span class="sect-title">Mục lục</span></header>
+                            <span class="list-vol_off">
+                                <i class="fas fa-times"></i>
+                            </span>
+                            <ol class="list-volume unstyled no-margin no-padding">
+                                                                                                    <li data-scrollTo="#volume_43576"><span
+                                            class="list_vol-order">01.</span><span
+                                            class="list_vol-title">Tập 1</span></li>
+                                                                    <li data-scrollTo="#volume_44357"><span
+                                            class="list_vol-order">02.</span><span
+                                            class="list_vol-title">Tập 2</span></li>
+                                                                    <li data-scrollTo="#volume_44843"><span
+                                            class="list_vol-order">03.</span><span
+                                            class="list_vol-title">Tập 3</span></li>
+                                                                    <li data-scrollTo="#volume_45240"><span
+                                            class="list_vol-order">04.</span><span
+                                            class="list_vol-title">Tập 4</span></li>
+                                                            </ol>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-12 col-lg-9 float-left">
+                    <div style="text-align: center; margin: 0 auto 10px auto;">
+                                                                    </div>
+
+                                            <section id="series-reviews" class="basic-section">
+    <header class="sect-header tab-list"> 
+        <span class="sect-title tab-title" data-tab-index="1">Reviews mới</span></span>
+    </header>
+    <div class="overflow-hidden shadow">
+        <ul role="list" class="">
+                        <li>
+                <a href="https://ln.hako.vn/truyen/28293/danh-gia" class="block hover:bg-gray-50 dark:hover:!bg-zinc-700">
+                    <div class="px-4 py-4 sm:px-6">
+                        <div class="flex items-center justify-between">
+                            <p class="truncate text-sm font-bold text-indigo-600 dark:text-white">seikaiser</p>
+                            <div class="ml-2 flex flex-shrink-0">
+                                <div class="d-flex justify-content-around">
+            <div class="text-base text-yellow-400">
+            <i class="fas fa-star"></i>
+        </div>
+            <div class="text-base text-yellow-400">
+            <i class="fas fa-star"></i>
+        </div>
+            <div class="text-base text-yellow-400">
+            <i class="fas fa-star"></i>
+        </div>
+            <div class="text-base text-yellow-400">
+            <i class="fas fa-star"></i>
+        </div>
+            <div class="text-base text-yellow-400">
+            <i class="fas fa-star"></i>
+        </div>
+    </div> 
+                            </div>
+                        </div>
+                        <div class="mt-2 sm:flex sm:justify-between">
+                            <div class="sm:flex">
+                                <p class="flex items-center text-sm text-gray-500 dark:text-white">
+                                    <svg class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M10 2c-2.236 0-4.43.18-6.57.524C1.993 2.755 1 4.014 1 5.426v5.148c0 1.413.993 2.67 2.43 2.902.848.137 1.705.248 2.57.331v3.443a.75.75 0 001.28.53l3.58-3.579a.78.78 0 01.527-.224 41.202 41.202 0 005.183-.5c1.437-.232 2.43-1.49 2.43-2.903V5.426c0-1.413-.993-2.67-2.43-2.902A41.289 41.289 0 0010 2zm0 7a1 1 0 100-2 1 1 0 000 2zM8 8a1 1 0 11-2 0 1 1 0 012 0zm5 1a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                    </svg>
+                                    &quot;Đi tới đi tới, cô nương yêu dấu còn tại phương xa...
+                                </p>
+                            </div>
+                            <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 dark:text-white">
+                                <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
+                                </svg>
+                                <p>
+                                    <time class="topic-time timeago" title="01-10-2026 21:08:56" datetime="2026-10-01T21:08:56+07:00"></time>                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+                        <li>
+                <a href="https://ln.hako.vn/truyen/28293/danh-gia" class="block hover:bg-gray-50 dark:hover:!bg-zinc-700">
+                    <div class="px-4 py-4 sm:px-6">
+                        <div class="flex items-center justify-between">
+                            <p class="truncate text-sm font-bold text-indigo-600 dark:text-white">C17H33COOH</p>
+                            <div class="ml-2 flex flex-shrink-0">
+                                <div class="d-flex justify-content-around">
+            <div class="text-base text-yellow-400">
+            <i class="fas fa-star"></i>
+        </div>
+            <div class="text-base text-yellow-400">
+            <i class="fas fa-star"></i>
+        </div>
+            <div class="text-base text-yellow-400">
+            <i class="fas fa-star"></i>
+        </div>
+            <div class="text-base text-yellow-400">
+            <i class="fas fa-star"></i>
+        </div>
+            <div class="text-base text-yellow-400">
+            <i class="fas fa-star"></i>
+        </div>
+    </div> 
+                            </div>
+                        </div>
+                        <div class="mt-2 sm:flex sm:justify-between">
+                            <div class="sm:flex">
+                                <p class="flex items-center text-sm text-gray-500 dark:text-white">
+                                    <svg class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M10 2c-2.236 0-4.43.18-6.57.524C1.993 2.755 1 4.014 1 5.426v5.148c0 1.413.993 2.67 2.43 2.902.848.137 1.705.248 2.57.331v3.443a.75.75 0 001.28.53l3.58-3.579a.78.78 0 01.527-.224 41.202 41.202 0 005.183-.5c1.437-.232 2.43-1.49 2.43-2.903V5.426c0-1.413-.993-2.67-2.43-2.902A41.289 41.289 0 0010 2zm0 7a1 1 0 100-2 1 1 0 000 2zM8 8a1 1 0 11-2 0 1 1 0 012 0zm5 1a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                    </svg>
+                                    Quả truyện rất hay, 5s nhé.
+                                </p>
+                            </div>
+                            <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 dark:text-white">
+                                <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
+                                </svg>
+                                <p>
+                                    <time class="topic-time timeago" title="19-09-2026 13:43:10" datetime="2026-09-19T13:43:10+07:00"></time>                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+                    </ul>
+    </div>
+</section>
+                    
+                                                                    <section
+                            class="volume-list at-series basic-section volume-mobile gradual-mobile ">
+                            <header id="volume_43576" class="sect-header">
+                                                                <span class="mobile-icon"><i class="fas fa-chevron-down"></i></span>
+                                <span class="sect-title">
+                                    Tập 1
+                                </span>
+                            </header>
+                            <main class="d-lg-block">
+                                <div class="row">
+                                    <div class="col-12 col-md-2">
+                                        <div class="volume-cover">
+                                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/t43576-vol-1">
+                                                <div class="a6-ratio">
+                                                    <div class="content img-in-ratio"
+                                                        style="background-image: url('https://i2.hako.vip/ln/books/covers/s43576-b67081e6-5ea2-4d6c-8ea6-d5bdb63f8240.webp')">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-10">
+                                                                                <ul class="list-chapters at-series">
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c590090-minh-hoa"
+                                                            title="Minh hoạ">Minh hoạ</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        24/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c590152-chuong-1-ga-elf-khon-kiep-va-ga-dwarf-khon-kiep"
+                                                            title="Chương 1: Gã elf khốn kiếp và gã dwarf khốn kiếp">Chương 1: Gã elf khốn kiếp và gã dwarf khốn kiếp</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        24/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c591498-chuong-2-high-elf-va-cong-chua-kiem"
+                                                            title="Chương 2: High Elf và Công Chúa Kiếm">Chương 2: High Elf và Công Chúa Kiếm</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        25/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c592543-chuong-3-bien-ngu-dan-thuy-thu-va"
+                                                            title="Chương 3: Biển, ngư dân, thủy thủ và…">Chương 3: Biển, ngư dân, thủy thủ và…</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        26/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c593570-chuong-4-hanh-trinh-va-phut-tuy-hung"
+                                                            title="Chương 4: Hành trình và phút tùy hứng">Chương 4: Hành trình và phút tùy hứng</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        27/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c594666-chuong-5-tho-ren-va-ma-thuat-su-doi-chim-lien-canh"
+                                                            title="Chương 5: Thợ rèn và ma thuật sư, đôi chim liền cánh">Chương 5: Thợ rèn và ma thuật sư, đôi chim liền cánh</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        28/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c597173-doan-chuong-1-kiem-hanh-quyet"
+                                                            title="Đoạn chương 1: Kiếm hành quyết">Đoạn chương 1: Kiếm hành quyết</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        29/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c598341-doan-chuong-2-ban-tay-diu-dang-cham-vao-mai-toc"
+                                                            title="Đoạn chương 2: Bàn tay dịu dàng chạm vào mái tóc">Đoạn chương 2: Bàn tay dịu dàng chạm vào mái tóc</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        30/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c598344-ngoai-truyen-1-cuoc-phieu-luu-cua-astre"
+                                                            title="Ngoại truyện 1: Cuộc phiêu lưu của Astre">Ngoại truyện 1: Cuộc phiêu lưu của Astre</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        30/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c598351-ngoai-truyen-2-gieng-cua-elf"
+                                                            title="Ngoại truyện 2: Giếng của elf">Ngoại truyện 2: Giếng của elf</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        30/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c598356-ngoai-truyen-3-hang-ngoai-nhap-va-long-da-phu-nu"
+                                                            title="Ngoại truyện 3: Hàng ngoại nhập và lòng dạ phụ nữ">Ngoại truyện 3: Hàng ngoại nhập và lòng dạ phụ nữ</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        30/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c598372-ngoai-truyen-4-duoc-goi-la-su-phu-dwarf-khon-kiep"
+                                                            title="Ngoại truyện 4: Được gọi là Sư phụ Dwarf Khốn Kiếp">Ngoại truyện 4: Được gọi là Sư phụ Dwarf Khốn Kiếp</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        30/08/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c606239-truyen-viet-rieng-dac-biet-tro-choi-sang-the"
+                                                            title="Truyện viết riêng đặc biệt: Trò chơi Sáng Thế">Truyện viết riêng đặc biệt: Trò chơi Sáng Thế</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        05/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c606270-loi-bat"
+                                                            title="Lời bạt">Lời bạt</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        05/09/2026
+                                                    </div>
+                                                </li>
+                                                                                                                                        <div class="mobile-more">
+                                                    <div class="see_more">
+                                                        <span>Xem tiếp (9 chương)</span>
+                                                    </div>
+                                                </div>
+                                                                                    </ul>
+                                    </div>
+                                </div>
+                            </main>
+                        </section>
+                                                                    <section
+                            class="volume-list at-series basic-section volume-mobile gradual-mobile ">
+                            <header id="volume_44357" class="sect-header">
+                                                                <span class="mobile-icon"><i class="fas fa-chevron-down"></i></span>
+                                <span class="sect-title">
+                                    Tập 2
+                                </span>
+                            </header>
+                            <main class="d-lg-block">
+                                <div class="row">
+                                    <div class="col-12 col-md-2">
+                                        <div class="volume-cover">
+                                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/t44357-vol-2">
+                                                <div class="a6-ratio">
+                                                    <div class="content img-in-ratio"
+                                                        style="background-image: url('https://i2.hako.vip/ln/books/covers/s44357-0edf94df-1be0-427d-8f87-b8f6cad4d72b.webp')">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-10">
+                                                                                <ul class="list-chapters at-series">
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c609779-minh-hoa"
+                                                            title="Minh hoạ">Minh hoạ</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        06/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c609782-chuong-1-high-half-va-thi-tran-lua-mi"
+                                                            title="Chương 1: High &amp; Half và thị trấn lúa mì">Chương 1: High &amp; Half và thị trấn lúa mì</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        06/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c617468-chuong-2-loi-nguyen-kiem-khong-the-doan-tuyet"
+                                                            title="Chương 2: Lời nguyền kiếm không thể đoạn tuyệt">Chương 2: Lời nguyền kiếm không thể đoạn tuyệt</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        11/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c618210-chuong-3-su-phu-cua-toi-va-su-phu-cua-nguoi-ay"
+                                                            title="Chương 3: Sư phụ của tôi và sư phụ của người ấy">Chương 3: Sư phụ của tôi và sư phụ của người ấy</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        12/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c621518-chuong-4-ma-ca-rong-giua-thi-tran-tuyet-roi"
+                                                            title="Chương 4: Ma cà rồng giữa thị trấn tuyết rơi">Chương 4: Ma cà rồng giữa thị trấn tuyết rơi</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        13/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c625774-chuong-5-elf-va-dwarf"
+                                                            title="Chương 5: Elf và dwarf">Chương 5: Elf và dwarf</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        14/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c626348-doan-chuong-1-xay-bot-va-dua-tre-tho"
+                                                            title="Đoạn chương 1: Xay bột và đứa trẻ thơ">Đoạn chương 1: Xay bột và đứa trẻ thơ</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        15/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c626491-doan-chuong-2-noi-co-doc-vi-suc-manh"
+                                                            title="Đoạn chương 2: Nỗi cô độc vì sức mạnh">Đoạn chương 2: Nỗi cô độc vì sức mạnh</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        15/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c626870-doan-chuong-3-thep-tro"
+                                                            title="Đoạn chương 3: Thép Tro">Đoạn chương 3: Thép Tro</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        15/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c627233-ngoai-truyen-1-dau-chan-cua-high-elf"
+                                                            title="Ngoại truyện 1: Dấu chân của High Elf">Ngoại truyện 1: Dấu chân của High Elf</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        16/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c627477-ngoai-truyen-2-la-thu-tu-phuong-xa"
+                                                            title="Ngoại truyện 2: Lá thư từ phương xa">Ngoại truyện 2: Lá thư từ phương xa</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        16/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c627725-ngoai-truyen-3-ngoanh-lai-qua-khu-ben-kia-lan-hoi-nuoc"
+                                                            title="Ngoại truyện 3: Ngoảnh lại quá khứ bên kia làn hơi nước">Ngoại truyện 3: Ngoảnh lại quá khứ bên kia làn hơi nước</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        16/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c627890-ngoai-truyen-4-bong-lung-ay-xa-voi-voi"
+                                                            title="Ngoại truyện 4: Bóng lưng ấy xa vời vợi">Ngoại truyện 4: Bóng lưng ấy xa vời vợi</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        16/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c628118-truyen-viet-rieng-dac-biet-ba-muoi-phut-cua-mot-buoi-sang"
+                                                            title="Truyện viết riêng đặc biệt: Ba mươi phút của một buổi sáng">Truyện viết riêng đặc biệt: Ba mươi phút của một buổi sáng</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        17/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c628315-loi-bat"
+                                                            title="Lời bạt">Lời bạt</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        17/09/2026
+                                                    </div>
+                                                </li>
+                                                                                                                                        <div class="mobile-more">
+                                                    <div class="see_more">
+                                                        <span>Xem tiếp (10 chương)</span>
+                                                    </div>
+                                                </div>
+                                                                                    </ul>
+                                    </div>
+                                </div>
+                            </main>
+                        </section>
+                                                                    <section
+                            class="volume-list at-series basic-section volume-mobile gradual-mobile ">
+                            <header id="volume_44843" class="sect-header">
+                                                                <span class="mobile-icon"><i class="fas fa-chevron-down"></i></span>
+                                <span class="sect-title">
+                                    Tập 3 <span style="color: red">*</span>
+                                </span>
+                            </header>
+                            <main class="d-lg-block">
+                                <div class="row">
+                                    <div class="col-12 col-md-2">
+                                        <div class="volume-cover">
+                                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/t44843-vol-3">
+                                                <div class="a6-ratio">
+                                                    <div class="content img-in-ratio"
+                                                        style="background-image: url('https://i2.hako.vip/ln/books/covers/s44843-4bf0415e-9f9a-45a6-93c5-50f54dfae7ba.webp')">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-10">
+                                                                                <ul class="list-chapters at-series">
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c628819-minh-hoa"
+                                                            title="Minh hoạ">Minh hoạ</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        17/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c629245-chuong-1-chia-ly"
+                                                            title="Chương 1: Chia ly">Chương 1: Chia ly</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        18/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c630784-chuong-2-dau-vay-toi-van-khong-dung-buoc"
+                                                            title="Chương 2: Dẫu vậy, tôi vẫn không dừng bước">Chương 2: Dẫu vậy, tôi vẫn không dừng bước</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        19/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c631912-chuong-3-nguoi-dan-dat-gio-va-lua"
+                                                            title="Chương 3: Người dẫn dắt gió và lửa">Chương 3: Người dẫn dắt gió và lửa</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        20/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c635688-chuong-4-dai-de-quoc-noi-phuong-xa-phan-dau"
+                                                            title="Chương 4: Đại đế quốc nơi phương xa - Phần đầu">Chương 4: Đại đế quốc nơi phương xa - Phần đầu</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        21/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c636672-chuong-5-dai-de-quoc-noi-phuong-xa-phan-sau"
+                                                            title="Chương 5: Đại đế quốc nơi phương xa - Phần sau">Chương 5: Đại đế quốc nơi phương xa - Phần sau</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        22/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c637881-doan-chuong-1-thao-nguyen-yen-tiec-va-mot-tran-nao-loan-ngoc-nghech"
+                                                            title="Đoạn chương 1: Thảo nguyên, yến tiệc và một trận náo loạn ngốc nghếch">Đoạn chương 1: Thảo nguyên, yến tiệc và một trận náo loạn ngốc nghếch</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        23/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c638376-doan-chuong-2-tuan-ma-thong-thai-cua-rung"
+                                                            title="Đoạn chương 2: Tuấn mã thông thái của rừng">Đoạn chương 2: Tuấn mã thông thái của rừng</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        23/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c639075-doan-chuong-3-boi-cau-ay-la-nguoi-ban-hop-y"
+                                                            title="Đoạn chương 3: Bởi cậu ấy là người bạn hợp ý">Đoạn chương 3: Bởi cậu ấy là người bạn hợp ý</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        24/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c639824-ngoai-truyen-1-nha-tro-o-thi-tran-lua-mi"
+                                                            title="Ngoại truyện 1: Nhà trọ ở thị trấn lúa mì">Ngoại truyện 1: Nhà trọ ở thị trấn lúa mì</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        24/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c640007-ngoai-truyen-2-hiem-hoa-danh-thuc-giac-ngu-co-xua"
+                                                            title="Ngoại truyện 2: Hiểm họa đánh thức giấc ngủ cổ xưa">Ngoại truyện 2: Hiểm họa đánh thức giấc ngủ cổ xưa</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        25/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c640391-ngoai-truyen-3-gio"
+                                                            title="Ngoại truyện 3: Gió">Ngoại truyện 3: Gió</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        25/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c641128-ngoai-truyen-4-nhung-dieu-suy-nghi-de-luu-lai"
+                                                            title="Ngoại truyện 4: Những điều suy nghĩ để lưu lại">Ngoại truyện 4: Những điều suy nghĩ để lưu lại</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        26/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c641310-truyen-viet-rieng-dac-biet-tro-choi-sang-the-cac-chung-toc-thuo-khai-thien"
+                                                            title="Truyện viết riêng đặc biệt: Trò chơi Sáng Thế - Các chủng tộc thuở khai thiên">Truyện viết riêng đặc biệt: Trò chơi Sáng Thế - Các chủng tộc thuở khai thiên</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        26/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c641553-loi-bat"
+                                                            title="Lời bạt">Lời bạt</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        26/09/2026
+                                                    </div>
+                                                </li>
+                                                                                                                                        <div class="mobile-more">
+                                                    <div class="see_more">
+                                                        <span>Xem tiếp (10 chương)</span>
+                                                    </div>
+                                                </div>
+                                                                                    </ul>
+                                    </div>
+                                </div>
+                            </main>
+                        </section>
+                                                                    <section
+                            class="volume-list at-series basic-section volume-mobile gradual-mobile ">
+                            <header id="volume_45240" class="sect-header">
+                                                                <span class="mobile-icon"><i class="fas fa-chevron-down"></i></span>
+                                <span class="sect-title">
+                                    Tập 4 <span style="color: red">*</span>
+                                </span>
+                            </header>
+                            <main class="d-lg-block">
+                                <div class="row">
+                                    <div class="col-12 col-md-2">
+                                        <div class="volume-cover">
+                                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/t45240-tap-4">
+                                                <div class="a6-ratio">
+                                                    <div class="content img-in-ratio"
+                                                        style="background-image: url('https://i2.hako.vip/ln/books/covers/s45240-5a0e79b6-617d-4b6d-a487-83733b0cf267.webp')">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-10">
+                                                                                <ul class="list-chapters at-series">
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c641919-minh-hoa"
+                                                            title="Minh hoạ">Minh hoạ</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        27/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c642076-chuong-1-tren-ngon-cay-vuon-toi-tan-may"
+                                                            title="Chương 1: Trên ngọn cây vươn tới tận mây">Chương 1: Trên ngọn cây vươn tới tận mây</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        27/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c643420-chuong-2-duong-ve-xanh-tham"
+                                                            title="Chương 2: Đường về xanh thẳm">Chương 2: Đường về xanh thẳm</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        28/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c644457-chuong-3-nhung-dieu-doi-thay-nhung-dieu-khong-doi-phan-dau"
+                                                            title="Chương 3: Những điều đổi thay, những điều không đổi - Phần đầu">Chương 3: Những điều đổi thay, những điều không đổi - Phần đầu</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        29/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c645411-chuong-4-nhung-dieu-doi-thay-nhung-dieu-khong-doi-phan-sau"
+                                                            title="Chương 4: Những điều đổi thay, những điều không đổi - Phần sau">Chương 4: Những điều đổi thay, những điều không đổi - Phần sau</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        30/09/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c646613-doan-chuong-1-an-hue-cua-rung-va-huong-vi-banh-mi"
+                                                            title="Đoạn chương 1: Ân huệ của rừng và hương vị bánh mì">Đoạn chương 1: Ân huệ của rừng và hương vị bánh mì</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        01/10/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c647042-doan-chuong-2-bau-vat-nguoi-ban-de-lai"
+                                                            title="Đoạn chương 2: Báu vật người bạn để lại">Đoạn chương 2: Báu vật người bạn để lại</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        01/10/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c648229-doan-chuong-3-loi-hua"
+                                                            title="Đoạn chương 3: Lời hứa">Đoạn chương 3: Lời hứa</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        02/10/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c648337-ngoai-truyen-1-vi-khach-ky-quac"
+                                                            title="Ngoại truyện 1: Vị khách kỳ quặc">Ngoại truyện 1: Vị khách kỳ quặc</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        02/10/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c648990-ngoai-truyen-2-dem-phu-tang-thu-chuyen-minh"
+                                                            title="Ngoại truyện 2: Đêm Phù Tang Thụ chuyển mình">Ngoại truyện 2: Đêm Phù Tang Thụ chuyển mình</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        02/10/2026
+                                                    </div>
+                                                </li>
+                                                                                            <li class="none">
+                                                    <div class="chapter-name">
+                                                                                                                    <div class="new-status badge">
+                                                                <div class="badge-item new">Mới</div>
+                                                            </div>
+                                                        
+                                                                                                                    <i class="fas fa-image" aria-hidden="true"
+                                                                title="Có chứa ảnh"></i>
+                                                        
+                                                        <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c649391-ngoai-truyen-3-anh-hung-phuong-tay"
+                                                            title="Ngoại truyện 3: Anh hùng phương Tây">Ngoại truyện 3: Anh hùng phương Tây</a>
+
+                                                                                                            </div>
+                                                    <div class="chapter-time">
+                                                        03/10/2026
+                                                    </div>
+                                                </li>
+                                                                                                                                        <div class="mobile-more">
+                                                    <div class="see_more">
+                                                        <span>Xem tiếp (6 chương)</span>
+                                                    </div>
+                                                </div>
+                                                                                    </ul>
+                                    </div>
+                                </div>
+                            </main>
+                        </section>
+                    
+                    
+
+                    <div wire:snapshot="{&quot;data&quot;:{&quot;readyToLoad&quot;:false,&quot;series&quot;:[null,{&quot;class&quot;:&quot;App\\Models\\Series&quot;,&quot;key&quot;:28293,&quot;s&quot;:&quot;mdl&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;GpIlTMakrzZWhaKPpS0t&quot;,&quot;name&quot;:&quot;pub.series.view.components.relevance&quot;,&quot;path&quot;:&quot;ai-dich\/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;lazyLoaded&quot;:false,&quot;lazyIsolated&quot;:true,&quot;errors&quot;:[],&quot;locale&quot;:&quot;vi&quot;},&quot;checksum&quot;:&quot;792d0a0d1b5a3d0770d9979fc1bebc5ec0910c21af97b957b1bbbd1657afb984&quot;}" wire:effects="[]" wire:id="GpIlTMakrzZWhaKPpS0t" x-intersect="$wire.__lazyLoad(&#039;eyJkYXRhIjp7ImZvck1vdW50IjpbeyJzZXJpZXMiOltudWxsLHsiY2xhc3MiOiJBcHBcXE1vZGVsc1xcU2VyaWVzIiwia2V5IjoyODI5MywicyI6Im1kbCJ9XX0seyJzIjoiYXJyIn1dfSwibWVtbyI6eyJpZCI6Ik1ySzRzaVk3T3Z6bHJhTzFiUUk0IiwibmFtZSI6Il9fbW91bnRQYXJhbXNDb250YWluZXIifSwiY2hlY2tzdW0iOiI4MWEyYzE1NTdkYjY0ZWZiOGQ5NTRjNTM3NjBkN2JiMGI4NGM5OTA4NWFjNjQzYjRkYTI4MjY0OTNhN2QxNGY4In0=&#039;)"></div>
+                    <section id="series-comments" class="basic-section">
+                        <header class="sect-header tab-list">
+                            <span class="sect-title tab-title" data-tab-index="1">Tổng bình luận <span
+                                    class="comments-count">(58)</span></span>
+                        </header>
+                        <main id="fbcmt_root" class="comment-wrapper d-lg-block clear">
+                            <span class="font-bold text-teal-600" style="padding: 8px; display: block;">Báo cáo bình luận không phù hợp ở <a href="/thao-luan/619-bao-cao-binh-luan" class="font-bold text-orange-500" target="_blank">đây</a></span>
+                            <span class="font-bold text-lime-600" style="padding: 8px; display: inline-block;">Báo cáo lỗi chương truyện "nội dung không phù hợp" ở <a href="/thao-luan/3579-topic-bao-loi-filter" class="font-bold text-orange-500" target="_blank">đây</a></span>
+                            <div id="tab-content-1" class="tab-content clear">
+                                <section class="ln-comment">
+    
+    <header>
+        <h3 class="text-lg font-bold dark:text-white">19 Bình luận </h3>
+        <!-- <i id="refresh_comment" class="fas fa-refresh" aria-hidden="true" style="margin-left: 10px; font-size: 18px"></i></h3> -->
+            </header>
+
+    <main class="ln-comment-body">
+                    <div class="ln-comment_sign-in long-text">
+                Bạn phải <a href="/login">đăng nhập</a> hoặc <a href="/register">tạo tài khoản</a> để bình luận.
+            </div>
+                
+        
+        
+        <div class="ln-comment-group">
+    <div id="ln-comment-3762357"
+    class="ln-comment-item mt-3 clear"
+    data-comment="3762357" data-parent="3762357"
+    data-reply-locked="0"
+    data-spoiler="0"
+    data-type="chapter" data-typeid="648990">
+    <div class="flex gap-1 max-w-full">
+        <div class="w-[50px] overflow-visible">
+            <div class="mx-1 my-1">
+                <div class="relative overflow-visible">
+                    <img src="https://ln.hako.vn/img/noava.png"
+                        class="w-full rounded-full " />
+                                    </div>
+                <div class="text-center mt-1 text-[10px] leading-tight px-0.5 capitalize inline-block p-1">
+                    <span class="text-slate-500 dark:text-slate-400">
+                        <i class="fas fa-leaf text-[8px]"></i>
+                        học nghề
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-full min-w-0 rounded-md bg-gray-100 ps-1 pe-0 pb-1 pt-0 dark:!bg-zinc-800 ">
+            <div class="flex min-w-0 flex-col px-2">
+                <div class="flex align-top justify-between">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 align-middle pt-1">
+    <div class="self-center">
+        <a class="font-bold leading-6 md:leading-7 ln-username " href="/thanh-vien/21058">seikaiser</a>
+    </div>
+                                    </div>
+                    
+                </div>
+                                    <span class="text-sm"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c648990-ngoai-truyen-2-dem-phu-tang-thu-chuyen-minh"
+                            class="text-slate-500 inline-block">Ngoại truyện 2: Đêm Phù Tang Thụ chuyển mình</a></span>
+                                                                            <div class="ln-comment-content long-text">
+                            <div data-comment-content>Bá vậy</div>
+                        </div>
+                        <div class="comment_see_more expand none">Xem thêm</div>
+                        <div class="flex gap-2 align-bottom text-[13px] visible-toolkit">
+                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?comment_id=3762357#ln-comment-3762357"
+                                class="text-slate-500">
+                                <time class="timeago" title="02-10-2026 22:24:59"
+                                    datetime="2026-10-02T22:24:59+07:00">
+                                    02-10-2026 22:24:59
+                                </time>
+                            </a>
+                            <a
+                                class="self-center visible-toolkit-item do-like cursor-pointer">
+                                <i class="fas fa-thumbs-up me-1"></i>
+                                <span class="likecount font-semibold"></span>
+                            </a>
+                                                                                </div>
+                                                </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+<div class="ln-comment-group">
+    <div id="ln-comment-3759318"
+    class="ln-comment-item mt-3 clear"
+    data-comment="3759318" data-parent="3759318"
+    data-reply-locked="0"
+    data-spoiler="0"
+    data-type="chapter" data-typeid="647042">
+    <div class="flex gap-1 max-w-full">
+        <div class="w-[50px] overflow-visible">
+            <div class="mx-1 my-1">
+                <div class="relative overflow-visible">
+                    <img src="https://ln.hako.vn/img/noava.png"
+                        class="w-full rounded-full " />
+                                    </div>
+                <div class="text-center mt-1 text-[10px] leading-tight px-0.5 capitalize inline-block p-1">
+                    <span class="text-slate-500 dark:text-slate-400">
+                        <i class="fas fa-leaf text-[8px]"></i>
+                        học nghề
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-full min-w-0 rounded-md bg-gray-100 ps-1 pe-0 pb-1 pt-0 dark:!bg-zinc-800 ">
+            <div class="flex min-w-0 flex-col px-2">
+                <div class="flex align-top justify-between">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 align-middle pt-1">
+    <div class="self-center">
+        <a class="font-bold leading-6 md:leading-7 ln-username " href="/thanh-vien/21058">seikaiser</a>
+    </div>
+                                    </div>
+                    
+                </div>
+                                    <span class="text-sm"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c647042-doan-chuong-2-bau-vat-nguoi-ban-de-lai"
+                            class="text-slate-500 inline-block">Đoạn chương 2: Báu vật người bạn để lại</a></span>
+                                                                            <div class="ln-comment-content long-text">
+                            <div data-comment-content>Em dep lam</div>
+                        </div>
+                        <div class="comment_see_more expand none">Xem thêm</div>
+                        <div class="flex gap-2 align-bottom text-[13px] visible-toolkit">
+                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?comment_id=3759318#ln-comment-3759318"
+                                class="text-slate-500">
+                                <time class="timeago" title="01-10-2026 21:12:23"
+                                    datetime="2026-10-01T21:12:23+07:00">
+                                    01-10-2026 21:12:23
+                                </time>
+                            </a>
+                            <a
+                                class="self-center visible-toolkit-item do-like cursor-pointer">
+                                <i class="fas fa-thumbs-up me-1"></i>
+                                <span class="likecount font-semibold"></span>
+                            </a>
+                                                                                </div>
+                                                </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+<div class="ln-comment-group">
+    <div id="ln-comment-3759199"
+    class="ln-comment-item mt-3 clear"
+    data-comment="3759199" data-parent="3759199"
+    data-reply-locked="0"
+    data-spoiler="0"
+    data-type="chapter" data-typeid="645411">
+    <div class="flex gap-1 max-w-full">
+        <div class="w-[50px] overflow-visible">
+            <div class="mx-1 my-1">
+                <div class="relative overflow-visible">
+                    <img src="https://ln.hako.vn/img/noava.png"
+                        class="w-full rounded-full " />
+                                    </div>
+                <div class="text-center mt-1 text-[10px] leading-tight px-0.5 capitalize inline-block p-1">
+                    <span class="text-slate-500 dark:text-slate-400">
+                        <i class="fas fa-leaf text-[8px]"></i>
+                        học nghề
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-full min-w-0 rounded-md bg-gray-100 ps-1 pe-0 pb-1 pt-0 dark:!bg-zinc-800 ">
+            <div class="flex min-w-0 flex-col px-2">
+                <div class="flex align-top justify-between">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 align-middle pt-1">
+    <div class="self-center">
+        <a class="font-bold leading-6 md:leading-7 ln-username " href="/thanh-vien/21058">seikaiser</a>
+    </div>
+                                    </div>
+                    
+                </div>
+                                    <span class="text-sm"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c645411-chuong-4-nhung-dieu-doi-thay-nhung-dieu-khong-doi-phan-sau"
+                            class="text-slate-500 inline-block">Chương 4: Những điều đổi thay, những điều không đổi - Phần sau</a></span>
+                                                                            <div class="ln-comment-content long-text">
+                            <div data-comment-content>Hay qua</div>
+                        </div>
+                        <div class="comment_see_more expand none">Xem thêm</div>
+                        <div class="flex gap-2 align-bottom text-[13px] visible-toolkit">
+                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?comment_id=3759199#ln-comment-3759199"
+                                class="text-slate-500">
+                                <time class="timeago" title="01-10-2026 20:30:13"
+                                    datetime="2026-10-01T20:30:13+07:00">
+                                    01-10-2026 20:30:13
+                                </time>
+                            </a>
+                            <a
+                                class="self-center visible-toolkit-item do-like cursor-pointer">
+                                <i class="fas fa-thumbs-up me-1"></i>
+                                <span class="likecount font-semibold"></span>
+                            </a>
+                                                                                </div>
+                                                </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+<div class="ln-comment-group">
+    <div id="ln-comment-3759111"
+    class="ln-comment-item mt-3 clear"
+    data-comment="3759111" data-parent="3759111"
+    data-reply-locked="0"
+    data-spoiler="0"
+    data-type="chapter" data-typeid="644457">
+    <div class="flex gap-1 max-w-full">
+        <div class="w-[50px] overflow-visible">
+            <div class="mx-1 my-1">
+                <div class="relative overflow-visible">
+                    <img src="https://ln.hako.vn/img/noava.png"
+                        class="w-full rounded-full " />
+                                    </div>
+                <div class="text-center mt-1 text-[10px] leading-tight px-0.5 capitalize inline-block p-1">
+                    <span class="text-slate-500 dark:text-slate-400">
+                        <i class="fas fa-leaf text-[8px]"></i>
+                        học nghề
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-full min-w-0 rounded-md bg-gray-100 ps-1 pe-0 pb-1 pt-0 dark:!bg-zinc-800 ">
+            <div class="flex min-w-0 flex-col px-2">
+                <div class="flex align-top justify-between">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 align-middle pt-1">
+    <div class="self-center">
+        <a class="font-bold leading-6 md:leading-7 ln-username " href="/thanh-vien/21058">seikaiser</a>
+    </div>
+                                    </div>
+                    
+                </div>
+                                    <span class="text-sm"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c644457-chuong-3-nhung-dieu-doi-thay-nhung-dieu-khong-doi-phan-dau"
+                            class="text-slate-500 inline-block">Chương 3: Những điều đổi thay, những điều không đổi - Phần đầu</a></span>
+                                                                            <div class="ln-comment-content long-text">
+                            <div data-comment-content>Người quen càng ít, độ láo càng tăng</div>
+                        </div>
+                        <div class="comment_see_more expand none">Xem thêm</div>
+                        <div class="flex gap-2 align-bottom text-[13px] visible-toolkit">
+                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?comment_id=3759111#ln-comment-3759111"
+                                class="text-slate-500">
+                                <time class="timeago" title="01-10-2026 19:55:48"
+                                    datetime="2026-10-01T19:55:48+07:00">
+                                    01-10-2026 19:55:48
+                                </time>
+                            </a>
+                            <a
+                                class="self-center visible-toolkit-item do-like cursor-pointer">
+                                <i class="fas fa-thumbs-up me-1"></i>
+                                <span class="likecount font-semibold"></span>
+                            </a>
+                                                                                </div>
+                                                </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+<div class="ln-comment-group">
+    <div id="ln-comment-3759028"
+    class="ln-comment-item mt-3 clear"
+    data-comment="3759028" data-parent="3759028"
+    data-reply-locked="0"
+    data-spoiler="0"
+    data-type="chapter" data-typeid="643420">
+    <div class="flex gap-1 max-w-full">
+        <div class="w-[50px] overflow-visible">
+            <div class="mx-1 my-1">
+                <div class="relative overflow-visible">
+                    <img src="https://ln.hako.vn/img/noava.png"
+                        class="w-full rounded-full " />
+                                    </div>
+                <div class="text-center mt-1 text-[10px] leading-tight px-0.5 capitalize inline-block p-1">
+                    <span class="text-slate-500 dark:text-slate-400">
+                        <i class="fas fa-leaf text-[8px]"></i>
+                        học nghề
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-full min-w-0 rounded-md bg-gray-100 ps-1 pe-0 pb-1 pt-0 dark:!bg-zinc-800 ">
+            <div class="flex min-w-0 flex-col px-2">
+                <div class="flex align-top justify-between">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 align-middle pt-1">
+    <div class="self-center">
+        <a class="font-bold leading-6 md:leading-7 ln-username " href="/thanh-vien/21058">seikaiser</a>
+    </div>
+                                    </div>
+                    
+                </div>
+                                    <span class="text-sm"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c643420-chuong-2-duong-ve-xanh-tham"
+                            class="text-slate-500 inline-block">Chương 2: Đường về xanh thẳm</a></span>
+                                                                            <div class="ln-comment-content long-text">
+                            <div data-comment-content>Điểm đầu của chuyến đi xa</div>
+                        </div>
+                        <div class="comment_see_more expand none">Xem thêm</div>
+                        <div class="flex gap-2 align-bottom text-[13px] visible-toolkit">
+                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?comment_id=3759028#ln-comment-3759028"
+                                class="text-slate-500">
+                                <time class="timeago" title="01-10-2026 19:24:53"
+                                    datetime="2026-10-01T19:24:53+07:00">
+                                    01-10-2026 19:24:53
+                                </time>
+                            </a>
+                            <a
+                                class="self-center visible-toolkit-item do-like cursor-pointer">
+                                <i class="fas fa-thumbs-up me-1"></i>
+                                <span class="likecount font-semibold"></span>
+                            </a>
+                                                                                </div>
+                                                </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+<div class="ln-comment-group">
+    <div id="ln-comment-3758945"
+    class="ln-comment-item mt-3 clear"
+    data-comment="3758945" data-parent="3758945"
+    data-reply-locked="0"
+    data-spoiler="0"
+    data-type="chapter" data-typeid="642076">
+    <div class="flex gap-1 max-w-full">
+        <div class="w-[50px] overflow-visible">
+            <div class="mx-1 my-1">
+                <div class="relative overflow-visible">
+                    <img src="https://ln.hako.vn/img/noava.png"
+                        class="w-full rounded-full " />
+                                    </div>
+                <div class="text-center mt-1 text-[10px] leading-tight px-0.5 capitalize inline-block p-1">
+                    <span class="text-slate-500 dark:text-slate-400">
+                        <i class="fas fa-leaf text-[8px]"></i>
+                        học nghề
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-full min-w-0 rounded-md bg-gray-100 ps-1 pe-0 pb-1 pt-0 dark:!bg-zinc-800 ">
+            <div class="flex min-w-0 flex-col px-2">
+                <div class="flex align-top justify-between">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 align-middle pt-1">
+    <div class="self-center">
+        <a class="font-bold leading-6 md:leading-7 ln-username " href="/thanh-vien/21058">seikaiser</a>
+    </div>
+                                    </div>
+                    
+                </div>
+                                    <span class="text-sm"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c642076-chuong-1-tren-ngon-cay-vuon-toi-tan-may"
+                            class="text-slate-500 inline-block">Chương 1: Trên ngọn cây vươn tới tận mây</a></span>
+                                                                            <div class="ln-comment-content long-text">
+                            <div data-comment-content>Di de tro ve</div>
+                        </div>
+                        <div class="comment_see_more expand none">Xem thêm</div>
+                        <div class="flex gap-2 align-bottom text-[13px] visible-toolkit">
+                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?comment_id=3758945#ln-comment-3758945"
+                                class="text-slate-500">
+                                <time class="timeago" title="01-10-2026 18:46:36"
+                                    datetime="2026-10-01T18:46:36+07:00">
+                                    01-10-2026 18:46:36
+                                </time>
+                            </a>
+                            <a
+                                class="self-center visible-toolkit-item do-like cursor-pointer">
+                                <i class="fas fa-thumbs-up me-1"></i>
+                                <span class="likecount font-semibold"></span>
+                            </a>
+                                                                                </div>
+                                                </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+<div class="ln-comment-group">
+    <div id="ln-comment-3758749"
+    class="ln-comment-item mt-3 clear"
+    data-comment="3758749" data-parent="3758749"
+    data-reply-locked="0"
+    data-spoiler="0"
+    data-type="chapter" data-typeid="641310">
+    <div class="flex gap-1 max-w-full">
+        <div class="w-[50px] overflow-visible">
+            <div class="mx-1 my-1">
+                <div class="relative overflow-visible">
+                    <img src="https://ln.hako.vn/img/noava.png"
+                        class="w-full rounded-full " />
+                                    </div>
+                <div class="text-center mt-1 text-[10px] leading-tight px-0.5 capitalize inline-block p-1">
+                    <span class="text-slate-500 dark:text-slate-400">
+                        <i class="fas fa-leaf text-[8px]"></i>
+                        học nghề
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-full min-w-0 rounded-md bg-gray-100 ps-1 pe-0 pb-1 pt-0 dark:!bg-zinc-800 ">
+            <div class="flex min-w-0 flex-col px-2">
+                <div class="flex align-top justify-between">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 align-middle pt-1">
+    <div class="self-center">
+        <a class="font-bold leading-6 md:leading-7 ln-username " href="/thanh-vien/21058">seikaiser</a>
+    </div>
+                                    </div>
+                    
+                </div>
+                                    <span class="text-sm"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c641310-truyen-viet-rieng-dac-biet-tro-choi-sang-the-cac-chung-toc-thuo-khai-thien"
+                            class="text-slate-500 inline-block">Truyện viết riêng đặc biệt: Trò chơi Sáng Thế - Các chủng tộc thuở khai thiên</a></span>
+                                                                            <div class="ln-comment-content long-text">
+                            <div data-comment-content>Nhung xuong kieu gi thi anh khong noi</div>
+                        </div>
+                        <div class="comment_see_more expand none">Xem thêm</div>
+                        <div class="flex gap-2 align-bottom text-[13px] visible-toolkit">
+                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?comment_id=3758749#ln-comment-3758749"
+                                class="text-slate-500">
+                                <time class="timeago" title="01-10-2026 16:53:22"
+                                    datetime="2026-10-01T16:53:22+07:00">
+                                    01-10-2026 16:53:22
+                                </time>
+                            </a>
+                            <a
+                                class="self-center visible-toolkit-item do-like cursor-pointer">
+                                <i class="fas fa-thumbs-up me-1"></i>
+                                <span class="likecount font-semibold"></span>
+                            </a>
+                                                                                </div>
+                                                </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+<div class="ln-comment-group">
+    <div id="ln-comment-3758746"
+    class="ln-comment-item mt-3 clear"
+    data-comment="3758746" data-parent="3758746"
+    data-reply-locked="0"
+    data-spoiler="0"
+    data-type="chapter" data-typeid="641128">
+    <div class="flex gap-1 max-w-full">
+        <div class="w-[50px] overflow-visible">
+            <div class="mx-1 my-1">
+                <div class="relative overflow-visible">
+                    <img src="https://ln.hako.vn/img/noava.png"
+                        class="w-full rounded-full " />
+                                    </div>
+                <div class="text-center mt-1 text-[10px] leading-tight px-0.5 capitalize inline-block p-1">
+                    <span class="text-slate-500 dark:text-slate-400">
+                        <i class="fas fa-leaf text-[8px]"></i>
+                        học nghề
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-full min-w-0 rounded-md bg-gray-100 ps-1 pe-0 pb-1 pt-0 dark:!bg-zinc-800 ">
+            <div class="flex min-w-0 flex-col px-2">
+                <div class="flex align-top justify-between">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 align-middle pt-1">
+    <div class="self-center">
+        <a class="font-bold leading-6 md:leading-7 ln-username " href="/thanh-vien/21058">seikaiser</a>
+    </div>
+                                    </div>
+                    
+                </div>
+                                    <span class="text-sm"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c641128-ngoai-truyen-4-nhung-dieu-suy-nghi-de-luu-lai"
+                            class="text-slate-500 inline-block">Ngoại truyện 4: Những điều suy nghĩ để lưu lại</a></span>
+                                                                            <div class="ln-comment-content long-text">
+                            <div data-comment-content>Da khoc rat nhieu</div>
+                        </div>
+                        <div class="comment_see_more expand none">Xem thêm</div>
+                        <div class="flex gap-2 align-bottom text-[13px] visible-toolkit">
+                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?comment_id=3758746#ln-comment-3758746"
+                                class="text-slate-500">
+                                <time class="timeago" title="01-10-2026 16:51:10"
+                                    datetime="2026-10-01T16:51:10+07:00">
+                                    01-10-2026 16:51:10
+                                </time>
+                            </a>
+                            <a
+                                class="self-center visible-toolkit-item do-like cursor-pointer">
+                                <i class="fas fa-thumbs-up me-1"></i>
+                                <span class="likecount font-semibold"></span>
+                            </a>
+                                                                                </div>
+                                                </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+<div class="ln-comment-group">
+    <div id="ln-comment-3758726"
+    class="ln-comment-item mt-3 clear"
+    data-comment="3758726" data-parent="3758726"
+    data-reply-locked="0"
+    data-spoiler="0"
+    data-type="chapter" data-typeid="640007">
+    <div class="flex gap-1 max-w-full">
+        <div class="w-[50px] overflow-visible">
+            <div class="mx-1 my-1">
+                <div class="relative overflow-visible">
+                    <img src="https://ln.hako.vn/img/noava.png"
+                        class="w-full rounded-full " />
+                                    </div>
+                <div class="text-center mt-1 text-[10px] leading-tight px-0.5 capitalize inline-block p-1">
+                    <span class="text-slate-500 dark:text-slate-400">
+                        <i class="fas fa-leaf text-[8px]"></i>
+                        học nghề
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-full min-w-0 rounded-md bg-gray-100 ps-1 pe-0 pb-1 pt-0 dark:!bg-zinc-800 ">
+            <div class="flex min-w-0 flex-col px-2">
+                <div class="flex align-top justify-between">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 align-middle pt-1">
+    <div class="self-center">
+        <a class="font-bold leading-6 md:leading-7 ln-username " href="/thanh-vien/21058">seikaiser</a>
+    </div>
+                                    </div>
+                    
+                </div>
+                                    <span class="text-sm"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c640007-ngoai-truyen-2-hiem-hoa-danh-thuc-giac-ngu-co-xua"
+                            class="text-slate-500 inline-block">Ngoại truyện 2: Hiểm họa đánh thức giấc ngủ cổ xưa</a></span>
+                                                                            <div class="ln-comment-content long-text">
+                            <div data-comment-content>Toan cac anh liem</div>
+                        </div>
+                        <div class="comment_see_more expand none">Xem thêm</div>
+                        <div class="flex gap-2 align-bottom text-[13px] visible-toolkit">
+                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?comment_id=3758726#ln-comment-3758726"
+                                class="text-slate-500">
+                                <time class="timeago" title="01-10-2026 16:45:18"
+                                    datetime="2026-10-01T16:45:18+07:00">
+                                    01-10-2026 16:45:18
+                                </time>
+                            </a>
+                            <a
+                                class="self-center visible-toolkit-item do-like cursor-pointer">
+                                <i class="fas fa-thumbs-up me-1"></i>
+                                <span class="likecount font-semibold"></span>
+                            </a>
+                                                                                </div>
+                                                </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+<div class="ln-comment-group">
+    <div id="ln-comment-3758720"
+    class="ln-comment-item mt-3 clear"
+    data-comment="3758720" data-parent="3758720"
+    data-reply-locked="0"
+    data-spoiler="0"
+    data-type="chapter" data-typeid="639824">
+    <div class="flex gap-1 max-w-full">
+        <div class="w-[50px] overflow-visible">
+            <div class="mx-1 my-1">
+                <div class="relative overflow-visible">
+                    <img src="https://ln.hako.vn/img/noava.png"
+                        class="w-full rounded-full " />
+                                    </div>
+                <div class="text-center mt-1 text-[10px] leading-tight px-0.5 capitalize inline-block p-1">
+                    <span class="text-slate-500 dark:text-slate-400">
+                        <i class="fas fa-leaf text-[8px]"></i>
+                        học nghề
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-full min-w-0 rounded-md bg-gray-100 ps-1 pe-0 pb-1 pt-0 dark:!bg-zinc-800 ">
+            <div class="flex min-w-0 flex-col px-2">
+                <div class="flex align-top justify-between">
+                    <div class="flex flex-wrap gap-x-2 gap-y-1 align-middle pt-1">
+    <div class="self-center">
+        <a class="font-bold leading-6 md:leading-7 ln-username " href="/thanh-vien/21058">seikaiser</a>
+    </div>
+                                    </div>
+                    
+                </div>
+                                    <span class="text-sm"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c639824-ngoai-truyen-1-nha-tro-o-thi-tran-lua-mi"
+                            class="text-slate-500 inline-block">Ngoại truyện 1: Nhà trọ ở thị trấn lúa mì</a></span>
+                                                                            <div class="ln-comment-content long-text">
+                            <div data-comment-content>Nonna...🤧</div>
+                        </div>
+                        <div class="comment_see_more expand none">Xem thêm</div>
+                        <div class="flex gap-2 align-bottom text-[13px] visible-toolkit">
+                            <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?comment_id=3758720#ln-comment-3758720"
+                                class="text-slate-500">
+                                <time class="timeago" title="01-10-2026 16:41:45"
+                                    datetime="2026-10-01T16:41:45+07:00">
+                                    01-10-2026 16:41:45
+                                </time>
+                            </a>
+                            <a
+                                class="self-center visible-toolkit-item do-like cursor-pointer">
+                                <i class="fas fa-thumbs-up me-1"></i>
+                                <span class="likecount font-semibold"></span>
+                            </a>
+                                                                                </div>
+                                                </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+<div class="ln-comment-page">
+<div class="pagination-footer">
+        <div class="pagination_wrap">
+            <a href="" class="paging_item paging_prevnext prev  disabled ">Trước</a>
+
+                            <a href="https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam?page=2" class="paging_item paging_prevnext next">Sau</a>
+                    </div>
+    </div>
+</div>
+    </main>
+
+    <script>
+        var token = 'e1yr5gItaytGESodXtprvwLAdHws1VO9VBAnIg57';
+        var comment_type = 'series';
+        var comment_typeid = '28293';
+    </script>
+
+    </section>
+
+
+                            </div>
+                        </main>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        $(document).ready(function() {
+            listab("#series-comments");
+            // Switch to FB tab if request fb_comment_id
+            if (getParameterByName('fb_comment_id') != null) {
+                $('span[data-tab-index="2"]').click();
+            }
+
+            $('ol.list-volume li').on('click', function() {
+                var vol = $(this);
+                var scrollTo = vol.data('scrollto');
+                $('html, body').animate({
+                    scrollTop: $(scrollTo).offset().top
+                });
+            });
+
+            $('.catalog-icon').on('click', function() {
+                $('#list-vol').toggleClass('animation fade-in-right');
+                $('#list-vol').toggle();
+            });
+
+            $('.list-vol_off').on('click', function() {
+                $('#list-vol').hide();
+            });
+        });
+
+        series_id = parseInt('28293');
+    </script>
+
+    
+
+    
+    <script src="/scripts/service-manager.js?r=6"></script>
+
+    <script src="/scripts/app.js?id=936e11140b1e2cfb5b4a72ae484a7c9c"></script>
+    <script src="https://ln.hako.vn/vendor/livewire/livewire.min.js?id=df3a17f2"   data-csrf="e1yr5gItaytGESodXtprvwLAdHws1VO9VBAnIg57" data-update-uri="/livewire/update" data-navigate-once="true"></script>
+
+    
+    <script>(function(s){s.dataset.zone='9831105',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    
+            
+            <footer id="footer">
+    <div class="container">
+        <!--<span><a href="">Hako.re</a></span>-->
+        <span class="right">Liên hệ: <a href="mailto:contact@hako.vn" target="_blank" style="color: #5fff46">contact@hako.vn</a></span>
+
+        <span>© 2016 - 2026 Cổng Light Novel - Đọc Light Novel</span>
+    </div>
+</footer>    
+    <div x-data x-show="$store.toast.on" @click="$store.toast.hide()" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md fixed w-3/4 md:w-1/2 z-20 inset-x-0 bottom-10 mx-auto" role="alert" style="display: none">
+    <div class="flex">
+        <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+        <div>
+            <p class="font-bold capitalize">Chú ý</p>
+            <p class="text-sm" x-text="$store.toast.message"></p>
+        </div>
+    </div>
+</div><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a44826cccab2277e',t:'MTc5MDk5MDcxMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

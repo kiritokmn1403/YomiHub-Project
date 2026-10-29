@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="vi" class="light">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Danh sách truyện - Cổng Light Novel - Đọc Light Novel</title>
+
+    <meta name="description" content="Đọc Light Novel online, bình luận Light Novel. Thư viện Light Novel Tiếng Việt lớn nhất, chất lượng cao, cập nhật liên tục, nhiều chức năng hỗ trợ việc đọc truyện dễ dàng.">
+    <meta name="theme-color" content="#000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="pijPfCgfXxrVZCUMj6UPejoopwRxUB02st2gIFZ2">
+    <meta name="logged-in" content="0">
+    <meta property="fb:app_id" content="1864643850436909">
+
+    <link rel="canonical" href="https://ln.hako.vn/danh-sach">
+    <meta property="og:image" content="https://ln.hako.vn/img/nocover.jpg">
+    
+    <link rel="preconnect" href="https://www.google-analytics.com">
+
+    <link rel="shortcut icon" href="/img/favicon-2026-2x.png?v=1">
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon.png?v=3">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png?v=3">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png?v=3">
+
+    <link rel="stylesheet" href="/css/interface.css?id=49911c2745139837fadade9e19b06330">
+    <link rel="stylesheet" href="/css/tailwind.css?id=18fa3bafb2c09381f87f77e7b554fa31">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" crossorigin="anonymous" />
+        
+    <script src="/scripts/plugins.js?id=b612d946b32459430eed3066ed15adf2"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34864968-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+      gtag('config', 'UA-34864968-3');
+    </script>
+</head>
+
+<body>
+	    <div id="page-top"></div>
+    <div data-scrollto="#page-top" class="backtoTop"><i class="fas fa-angle-double-up"></i></div>
+    <div id="navbar" class="headroom">
+        <div class="container">
+            <div id="sidenav-icon" class="none-xl">
+                <div class="sidenav-icon-content">
+                    <span class="sidenav-icon_white"></span>
+                    <span class="sidenav-icon_white"></span>
+                    <span class="sidenav-icon_white"></span>
+                </div>
+                <ul class="navbar-menu none hidden-block at-mobile unstyle">   
+                    <div class="navbar-search block none-m in-navbar-menu">
+                        <form class="" action="/tim-kiem" method="get">
+                            <input class="search-input" type="text" placeholder="Tối thiểu 2 kí tự" name="keywords" value="">
+                            <button class="search-submit" type="submit" value="Tìm kiếm"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>               
+
+                    <li><a class="nav-menu_item" href="/sang-tac"><span class="">Sáng tác</span></a></li>
+                                        <li><a class="nav-menu_item" href="https://ln.hako.vn/ai-dich"><span class="">AI dịch</span></a></li>
+                                        <li><a class="nav-menu_item" href="/xuat-ban"><span class="">Xuất bản</span></a></li>
+                    <li><a class="nav-menu_item" href="/thao-luan"><span class="">Thảo luận</span></a></li>
+                    <li><a class="nav-menu_item" href="/danh-sach"><span class="">Danh sách</span></a></li>
+                    
+                    <li class="nav-has-submenu">
+                        <a class="nav-menu_item">
+                            <span class="">Thông tin</span>
+                            <i class="fas fa-chevron-down dropdown-icon" style="float: right; margin-top: 6px"></i>
+                        </a>
+
+                        <ul class="nav-submenu list-unstyled none">
+                            <li><a href="/thao-luan/368-huong-dan-dang-truyen"><span>Đăng truyện</span></a></li>
+                            <li><a href="/thao-luan/2-gioi-thieu-cong-light-novel"><span>Giới thiệu</span></a></li>
+                            <li><a href="/thao-luan/1-mo-trang-thao-luan-gop-y-va-bao-loi"><span>Góp ý - Báo lỗi</span></a></li>
+                            <li><a href="/privacy-policy"><span>Chính sách bảo mật</span></a></li>
+                            <li><a href="/tos"><span>Điều khoản sử dụng</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="navbar-logo-wrapper">
+                <a href="/" class="navbar-logo" style="background-image: url('/img/logo-tet-2026-2x.png')" title="Trang chủ"></a>
+            </div>
+             
+            <div id="navbar-user" class="guest">						
+                <a class="login-link" href="/login">Đăng nhập</a>
+				<div id="guest-menu">
+					<div class="icon">
+						<span class="white-point"></span>
+						<span class="white-point"></span>
+						<span class="white-point"></span>
+					</div>
+					<ul class="nav-submenu hidden-block unstyled none">
+						<li>
+							<div class="nightmode-toggle li-inner">
+                                <span><i class="fas fa-moon"></i>Nền tối</span>
+								<div class="toggle-icon">
+									<i class="fa fa-toggle-off"></i>
+								</div>
+							</div>
+						</li>
+                        <li>
+                            <a class="li-inner" href="/lich-su-doc"><i class="fas fa-history"></i><span>Lịch sử</span></a>
+                        </li>
+					</ul>
+				</div>
+			</div>
+                        <div class="navbar-mainblock">
+                <div class="navbar-search none block-m">
+                    <form class="" action="/tim-kiem" method="get">
+                        <input class="search-input" type="text" placeholder="Tối thiểu 2 kí tự" name="keywords" value="">
+                        <button class="search-submit" type="submit" value="Tìm kiếm"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>          
+                <ul class="navbar-menu at-navbar none d-xl-block unstyled">               
+                    <li><a class="nav-menu_item" href="/sang-tac"><i class="fas fa-pen-nib menu-icon"></i><span class="">Sáng tác</span></a></li>
+
+                                        <li><a class="nav-menu_item" href="https://ln.hako.vn/ai-dich"><i class="fas fa-book menu-icon"></i><span class="">AI dịch</span></a></li>
+                                        
+                    <li><a class="nav-menu_item" href="/xuat-ban"><i class="fas fa-calendar menu-icon"></i><span class="">Xuất bản</span></a></li>
+                    
+                    <li><a class="nav-menu_item" href="/thao-luan"><i class="fas fa-users menu-icon"></i><span class="">Thảo luận</span></a></li>
+                    
+                    <li><a class="nav-menu_item" href="/danh-sach"><i class="fas fa-th-list menu-icon"></i><span class="">Danh sách</span></a></li>
+                    
+                    <li class="nav-has-submenu">
+                        <a class="nav-menu_item">
+                            <i class="fas fa-question menu-icon"></i><span class="">Thông tin</span>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                            <i class="fas fa-chevron-right dropdown-icon"></i>
+                        </a>
+
+                        <ul class="nav-submenu hidden-block unstyled none">
+                            <li><a href="/thao-luan/368-huong-dan-dang-truyen"><span>Đăng truyện</span></a></li>
+                            <li><a href="/thao-luan/2-gioi-thieu-cong-light-novel"><span>Giới thiệu</span></a></li>
+                            <li><a href="/thao-luan/1-mo-trang-thao-luan-gop-y-va-bao-loi"><span>Góp ý - Báo lỗi</span></a></li>
+                            <li><a href="/privacy-policy"><span>Chính sách bảo mật</span></a></li>
+                            <li><a href="/tos"><span>Điều khoản sử dụng</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!--<section id="nav-search"></section>-->
+        </div>
+    </div>
+        <div class="page-top-group ">
+                <a href="/truyen/14653">
+                        <div class="index-background d-none d-lg-block" style="background-image: url('https://i2.hako.vip/ln/banners/2026-09-26/14653-d.png')"></div>
+            <div class="index-background d-lg-none" style="background-image: url('https://i2.hako.vip/ln/banners/2026-09-26/14653-m.png'); background-size: cover"></div>
+                    </a>
+            </div>
+        
+    <div x-data="{ open: Cookies.get('globalwarning3') === undefined ? true : false }">
+    <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4" x-show="open" style="display: none">
+        <div class="flex">
+            <div class="shrink-0">
+                <button x-on:click="open = false; Cookies.set('globalwarning3', false, { expires: 0.5 })" type="button" class="inline-flex rounded-md bg-yellow-50 p-1.5 text-yellow-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 focus:ring-offset-yellow-50">
+                    <span class="sr-only">Dismiss</span>
+                    <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                    <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="ml-3 font-bold">
+                <p class="text-sm text-yellow-700">
+                    Nếu không thể <a class="font-medium text-blue-700" href="/thao-luan/2898-ten-mien-da-bi-chan">truy cập trang web</a> xin vui lòng sử dụng DNS 
+                    <a class="font-medium text-blue-700" href="https://www.google.com/search?q=c%C3%A1ch+c%C3%A0i+dns+1.1.1.1" target="_blank">1.1.1.1</a> hoặc <a class="font-medium text-blue-700" href="https://docln.sbs" target="_blank">docln.sbs</a>
+                    
+                </p>
+                <p class="text-sm text-green-700">
+                    Các truyện có đơn vị sở hữu bản quyền sẽ bị xóa, nếu cố tình vi phạm sẽ bị khóa tài khoản. Xin báo cáo truyện bản quyền tại <a href="/thao-luan/2789-bao-cao-truyen-vi-pham" class="font-medium text-blue-700" target="_blank">đây</a>
+                </p>
+                <p class="text-sm text-purple-700">
+                    Bị đứt 4 tuyến cáp quang biển nên kết nối sẽ chậm, nhất là vào giờ cao điểm.
+                </p
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+	        
+<form method="get">
+    <main id="mainpart" class="browser-page">
+        <div style="text-align: center; margin: 0 auto 10px auto;">
+                                </div>
+
+        <div class="container">
+        <div class="page-breadcrumb">
+    <span class="breadcrum-level"><a href="https://ln.hako.vn"><i class="fas fa-home"></i></a></span>
+        <span class="next-icon"><i class="fas fa-chevron-right"></i></span>
+    <span class="breadcrum-level"><a href="https://ln.hako.vn/danh-sach">Danh sách</a></span>
+    </div>
+
+        </div>
+
+        <div class="container">
+            <div class="row d-block clear">
+                                <div class="col-12 none d-lg-block col-lg-3 float-right filters-wrapper">
+                    <div class="none-l pad-bottom-20 text-right pad-top-20">
+                        <span class="js-off-filters-wrapper button button-red">Tắt bộ lọc</span>
+                    </div>
+
+                                        <section class="sub-index-style">
+                        <div class="title-wrapper">
+                            <div class="section-title">Chữ cái</div>
+                        </div>
+                        <div class="browse-alphabet">
+                            <a class="alphabet_item  current " href="https://ln.hako.vn/danh-sach">Tất cả</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/khac">#</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/a">A</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/b">B</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/c">C</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/d">D</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/e">E</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/f">F</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/g">G</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/h">H</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/i">I</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/j">J</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/k">K</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/l">L</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/m">M</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/n">N</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/o">O</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/p">P</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/q">Q</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/r">R</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/s">S</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/t">T</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/u">U</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/v">V</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/w">W</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/x">X</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/y">Y</a>
+                                                        <a class="alphabet_item " href="https://ln.hako.vn/danh-sach/z">Z</a>
+                               
+                        </div>
+                    </section>
+                                        
+                                        <section class="sub-index-style filter-section">
+                        <div class="title-wrapper">
+                            <div class="section-title">Phân loại</div>
+                        </div>
+                        <div class="section-content">
+                            <ul class="filter-type unstyled">
+                                <li><input type="checkbox" name="truyendich" value="1" checked> Truyện dịch</li>
+                                <li><input type="checkbox" name="sangtac" value="1" checked> Truyện sáng tác</li>
+                                <li><input type="checkbox" name="convert" value="1" > Truyện AI dịch</li>
+                            </ul>
+                            <div class="submit-wrapper">
+                                <input type="submit" class="button bg-green-600 text-white hover:bg-green-700" value="Áp dụng">
+                            </div>
+                        </div>
+                    </section>
+                    
+                                        <section class="sub-index-style filter-section">
+                        <div class="title-wrapper">
+                            <div class="section-title">Tình trạng</div>
+                        </div>
+                        <div class="section-content">
+                        <ul class="filter-type unstyled">
+                            <li><input type="checkbox" name="dangtienhanh" value="1" checked> Đang tiến hành</li>
+                            <li><input type="checkbox" name="tamngung" value="1" checked> Tạm ngưng</li>
+                            <li><input type="checkbox" name="hoanthanh" value="1" checked> Đã hoàn thành</li>
+                            <li><input type="checkbox" name="chuaduyet" value="1" > Truyện chưa duyệt</li>
+                        </ul>
+                        <div class="submit-wrapper">
+                            <input type="submit" class="button bg-green-600 text-white hover:bg-green-700" value="Áp dụng">
+                        </div>
+                        </div>
+                    </section>
+                        
+
+                                        <section class="sub-index-style">
+                        <div class="title-wrapper">
+                            <div class="section-title">Phân loại</div>
+                        </div>
+                        <div class="section-content">
+                            <ul class="filter-type unstyled clear">
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/action">Action</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/adapted-to-anime">Adapted to Anime</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/adapted-to-drama-cd">Adapted to Drama CD</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/adapted-to-manga">Adapted to Manga</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/adapted-to-manhua">Adapted to Manhua</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/adapted-to-manhwa">Adapted to Manhwa</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/adventure">Adventure</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/age-gap">Age Gap</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/boys-love">Boys Love</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/character-growth">Character Growth</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/chinese-novel">Chinese Novel</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/comedy">Comedy</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/cooking">Cooking</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/different-social-status">Different Social Status</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/drama">Drama</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/ecchi">Ecchi</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/english-novel">English Novel</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/fanfiction">Fanfiction</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/fantasy">Fantasy</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/female-protagonist">Female Protagonist</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/game">Game</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/gender-bender">Gender Bender</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/harem">Harem</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/historical">Historical</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/horror">Horror</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/isekai">Isekai</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/josei">Josei</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/korean-novel">Korean Novel</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/magic">Magic</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/martial-arts">Martial Arts</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/mecha">Mecha</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/military">Military</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/misunderstanding">Misunderstanding</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/mystery">Mystery</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/netorare">Netorare</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/obsession">Obsession</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/one-shot">One shot</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/otome-game">Otome Game</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/parody">Parody</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/psychological">Psychological</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/reverse-harem">Reverse Harem</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/romance">Romance</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/satire">Satire</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/school-life">School Life</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/science-fiction">Science Fiction</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/seinen">Seinen</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/shoujo">Shoujo</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/shoujo-ai">Shoujo ai</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/shounen">Shounen</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/shounen-ai">Shounen ai</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/slice-of-life">Slice of Life</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/slow-life">Slow Life</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/sports">Sports</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/super-power">Super Power</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/supernatural">Supernatural</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/suspense">Suspense</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/tragedy">Tragedy</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/wars">Wars</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/web-novel">Web Novel</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/workplace">Workplace</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/wuxia">Wuxia</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/xianxia">Xianxia</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/yandere">Yandere</a>
+                                                            <li class="filter-type_item"><a href="https://ln.hako.vn/the-loai/yuri">Yuri</a>
+                                                        </ul>
+                        </div>
+                    </section>
+                                    </div>
+                
+                <div class="col-12 float-left col-lg-9">
+                        
+                    
+                    <section class="thumb-section-flow"> 
+                        <header class="filter-container pad-bottom-10">
+                            <!-- <button class="button button-general" type="submit" name="sapxep" value="tentruyen">
+                                <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i> A - Z
+                            </button>
+                            <button class="button button-general" type="submit" name="sapxep" value="tentruyenza">
+                                <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i> Z - A
+                            </button>
+                            <button class="button button-general button-primary-green" type="submit" name="sapxep" value="capnhat">
+                                <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Mới cập nhật
+                            </button>
+                            <button class="button button-general" type="submit" name="sapxep" value="truyenmoi">
+                                <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Truyện mới
+                            </button>
+                            <button class="button button-general" type="submit" name="sapxep" value="theodoi">
+                                <i class="fa fa-heart" aria-hidden="true"></i> Theo dõi
+                            </button>
+                            <button class="button button-general" type="submit" name="sapxep" value="top">
+                                <i class="fa fa-fire" aria-hidden="true"></i> Top
+                            </button>
+                            <button class="button button-general type="submit" name="sapxep" value="topthang">
+                                <i class="fa fa-fire" aria-hidden="true"></i> Top tháng
+                            </button>  -->
+                            <select name="sapxep" onchange="this.form.submit()" class="block inline-m">
+                                <option value="tentruyen" >A - Z</option>
+                                <option value="tentruyenza" >Z - A</option>
+                                <option value="capnhat" selected=&quot;selected&quot;>Mới cập nhật</option>
+                                <option value="truyenmoi" >Truyện mới</option>
+                                <option value="theodoi" >Theo dõi</option>
+                                <option value="top" >Top toàn thời gian</option>
+                                <option value="topthang"  >Top tháng</option>
+                                <option value="sotu"  >Số từ</option>
+                            </select>
+                            <div class="text-right inline-block-m right-m none-l">
+                            <span class="button button-green js-call-filters-wrapper"><i class="fas fa-filter" style="margin-right: 10px;"></i>Bộ lọc</span>
+                            </div>
+                        </header>
+                        <main class="row">           
+                                                                                <div class="thumb-item-flow col-4 col-md-3 col-lg-2 type-original ">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_27357">
+        <a href="/sang-tac/27357-oneshot-dem-he-oi-buc-co-mot-nguoi-lang-khach/c501999-hoi-7-chang-vang" title="Hồi 7: Chạng vạng">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s27357-dd9ac622-43e9-4803-a896-70d0ad500956.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Hồi 7: Chạng vạng"><a href="/sang-tac/27357-oneshot-dem-he-oi-buc-co-mot-nguoi-lang-khach/c501999-hoi-7-chang-vang" title="Hồi 7: Chạng vạng">Hồi 7: Chạng vạng</a></div>
+            <div class="thumb_attr volume-title">Toàn truyện</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/sang-tac/27357-oneshot-dem-he-oi-buc-co-mot-nguoi-lang-khach" title="[Oneshot] - Đêm hè oi bức có một người lãng khách">[Oneshot] - Đêm hè oi bức có một người lãng khách</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_27357">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            [Oneshot] - Đêm hè oi bức có một người lãng khách
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 25.955</div>
+                                            <div>Lượt xem: 2.539</div>
+                                            <div>Lượt thích: 13</div>
+                                        </p>
+                                        
+                                        Trong một làng quê yên bình mang tên Kiviena, có một chàng trai là con cả của trưởng làng, người sống trong gông cùm lễ giáo và định kiến khắt khe. Thế nhưng, cậu lại yêu tha thiết chàng thợ săn cùng...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_24127">
+        <a href="/truyen/24127-nhan-vat-chinh-trong-truyen-lang-man-ky-ao-chi-thich-minh-toi/c649390-day-la-verbena" title="Đây là Verbena.">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s24127-e8b1570b-b8f3-4a74-8bc1-dd9d73bcc545.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Đây là Verbena."><a href="/truyen/24127-nhan-vat-chinh-trong-truyen-lang-man-ky-ao-chi-thich-minh-toi/c649390-day-la-verbena" title="Đây là Verbena.">Đây là Verbena.</a></div>
+            <div class="thumb_attr volume-title">Thông báo</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/24127-nhan-vat-chinh-trong-truyen-lang-man-ky-ao-chi-thich-minh-toi" title="Nhân vật chính trong truyện lãng mạn kỳ ảo chỉ thích mình tôi">Nhân vật chính trong truyện lãng mạn kỳ ảo chỉ thích mình tôi</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_24127">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Nhân vật chính trong truyện lãng mạn kỳ ảo chỉ thích mình tôi
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 472.090</div>
+                                            <div>Lượt xem: 786.441</div>
+                                            <div>Lượt thích: 1.467</div>
+                                        </p>
+                                        
+                                        Quý cô sa cơ Marigold, cho đến khi em hạnh phúc.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_20874">
+        <a href="/truyen/20874-quen-tat-stream-chang-streamer-20-tuoi-vo-tinh-de-lo-tinh-cach-tot-bung/c649363-chuong-4-danh-tinh-cua-doi-thu-dinh-menh" title="Chương 4: Danh tính của đối thủ định mệnh">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s20874-35d891de-000a-44a3-97e3-a264cecf3426.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 4: Danh tính của đối thủ định mệnh"><a href="/truyen/20874-quen-tat-stream-chang-streamer-20-tuoi-vo-tinh-de-lo-tinh-cach-tot-bung/c649363-chuong-4-danh-tinh-cua-doi-thu-dinh-menh" title="Chương 4: Danh tính của đối thủ định mệnh">Chương 4: Danh tính của đối thủ định mệnh</a></div>
+            <div class="thumb_attr volume-title">Vol 4</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/20874-quen-tat-stream-chang-streamer-20-tuoi-vo-tinh-de-lo-tinh-cach-tot-bung" title="Quên tắt stream, chàng streamer 20 tuổi vô tình để lộ tính cách tốt bụng">Quên tắt stream, chàng streamer 20 tuổi vô tình để lộ tính cách tốt bụng</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_20874">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Quên tắt stream, chàng streamer 20 tuổi vô tình để lộ tính cách tốt bụng
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 186.003</div>
+                                            <div>Lượt xem: 429.245</div>
+                                            <div>Lượt thích: 1.264</div>
+                                        </p>
+                                        
+                                        "Chuyện xảy ra hôm nay là bí mật giữa chúng ta, được chứ?"
+Nakayama Haruto là một game streamer nổi tiếng với phong cách toxic dưới danh nghĩa streamer "Oni-chan". Sau khi kết thúc buổi livestream như...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28929">
+        <a href="/truyen/28929-tan-binh-quai-chieu-cua-dien-dan-cuc-quan-ly/c649361-3-tutorial-3" title="3. Tutorial (3)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28929-d30bc092-8056-4b95-b0de-57fd6cbe3c4d.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="3. Tutorial (3)"><a href="/truyen/28929-tan-binh-quai-chieu-cua-dien-dan-cuc-quan-ly/c649361-3-tutorial-3" title="3. Tutorial (3)">3. Tutorial (3)</a></div>
+            <div class="thumb_attr volume-title">Tập 1: Tân binh của Chi nhánh 941</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28929-tan-binh-quai-chieu-cua-dien-dan-cuc-quan-ly" title="Tân Binh Quái Chiêu Của Diễn Đàn Cục Quản Lý">Tân Binh Quái Chiêu Của Diễn Đàn Cục Quản Lý</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28929">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Tân Binh Quái Chiêu Của Diễn Đàn Cục Quản Lý
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 8.591</div>
+                                            <div>Lượt xem: 958</div>
+                                            <div>Lượt thích: 29</div>
+                                        </p>
+                                        
+                                        - ????- Khoan, cái này mà cũng giải quyết kiểu đó được à?- Tân binh lần này sao pro thế.- Tân binh à? Mày có tố chất đấy, cố gắng lên.Ừm, có đến mức đó không?Chừng này chẳng phải chỉ là “thường thức”...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_19792">
+        <a href="/truyen/19792-thoat-khoi-khach-san-bi-an/c649360-chuong-787-phong-302-phong-nguyen-rua-the-gioi-moi-tuoi-dep-50" title="Chương 787: Phòng 302, Phòng Nguyền Rủa - “Thế Giới Mới Tươi Đẹp” (50)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s19792-77594e2c-94db-4479-a26d-0be07f104fc4.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 787: Phòng 302, Phòng Nguyền Rủa - “Thế Giới Mới Tươi Đẹp” (50)"><a href="/truyen/19792-thoat-khoi-khach-san-bi-an/c649360-chuong-787-phong-302-phong-nguyen-rua-the-gioi-moi-tuoi-dep-50" title="Chương 787: Phòng 302, Phòng Nguyền Rủa - “Thế Giới Mới Tươi Đẹp” (50)">Chương 787: Phòng 302, Phòng Nguyền Rủa - “Thế Giới Mới Tươi Đẹp” (50)</a></div>
+            <div class="thumb_attr volume-title">Chương 701-800</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/19792-thoat-khoi-khach-san-bi-an" title="Thoát Khỏi Khách Sạn Bí Ẩn">Thoát Khỏi Khách Sạn Bí Ẩn</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_19792">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Thoát Khỏi Khách Sạn Bí Ẩn
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 2.175.616</div>
+                                            <div>Lượt xem: 953.371</div>
+                                            <div>Lượt thích: 604</div>
+                                        </p>
+                                        
+                                        Khi Han Kain tỉnh lại, cậu và vài người khác đang ở một khách sạn bí ẩn với những luật lệ và mục tiêu khác nhau.
+Tiến vào từng căn phòng của khách sạn, họ sẽ lạc vào những thế giới và bối cảnh khác, n...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_26990">
+        <a href="/truyen/26990-chuyen-sinh-thanh-suc-vat-quy-toc-an-hai-ta-pha-vo-dinh-menh-va-tro-thanh-ke-manh-nhat/c649355-chapter-138-len-cap" title="Chapter 138: Lên Cấp">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s26990-81062011-98b7-43e8-9d61-c55c6c98d61c.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chapter 138: Lên Cấp"><a href="/truyen/26990-chuyen-sinh-thanh-suc-vat-quy-toc-an-hai-ta-pha-vo-dinh-menh-va-tro-thanh-ke-manh-nhat/c649355-chapter-138-len-cap" title="Chapter 138: Lên Cấp">Chapter 138: Lên Cấp</a></div>
+            <div class="thumb_attr volume-title">Chương IX: Câu Chuyện Không Hồi Kết</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/26990-chuyen-sinh-thanh-suc-vat-quy-toc-an-hai-ta-pha-vo-dinh-menh-va-tro-thanh-ke-manh-nhat" title="Quý Tộc Phản Diện Mạnh Nhất Học Viện">Quý Tộc Phản Diện Mạnh Nhất Học Viện</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_26990">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Quý Tộc Phản Diện Mạnh Nhất Học Viện
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 336.116</div>
+                                            <div>Lượt xem: 399.731</div>
+                                            <div>Lượt thích: 1.290</div>
+                                        </p>
+                                        
+                                        Weiss Vincent.Một tên quý tộc phản diện súc vật đồi bại, sở hữu thái độ kiêu ngạo cùng bản chất độc ác tận xương tủy... đùng một cái, tôi nhận ra mình đã đầu thai thành hắn!!Gã rác rưởi lười nhác, vô...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28706">
+        <a href="/truyen/28706-lieu-chuyen-tinh-giua-toi-va-co-nu-sinh-mang-tam-ly-bat-on-menhera-fuyunagi-san-nhung-luon-gia-vo-la-gai-ngoan-se-di-den-dau/c649350-chuong-20-diem-bao" title="Chương 20. Điềm báo">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://ln.hako.vn/img/nocover.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 20. Điềm báo"><a href="/truyen/28706-lieu-chuyen-tinh-giua-toi-va-co-nu-sinh-mang-tam-ly-bat-on-menhera-fuyunagi-san-nhung-luon-gia-vo-la-gai-ngoan-se-di-den-dau/c649350-chuong-20-diem-bao" title="Chương 20. Điềm báo">Chương 20. Điềm báo</a></div>
+            <div class="thumb_attr volume-title">Toàn Tập</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28706-lieu-chuyen-tinh-giua-toi-va-co-nu-sinh-mang-tam-ly-bat-on-menhera-fuyunagi-san-nhung-luon-gia-vo-la-gai-ngoan-se-di-den-dau" title="Liệu chuyện tình giữa tôi và cô nữ sinh mang tâm lý bất ổn (menhera) Fuyunagi-san nhưng luôn giả vờ là gái ngoan - sẽ đi đến đâu?">Liệu chuyện tình giữa tôi và cô nữ sinh mang tâm lý bất ổn (menhera) Fuyunagi-san nhưng luôn giả vờ là gái ngoan - sẽ đi đến đâu?</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28706">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Liệu chuyện tình giữa tôi và cô nữ sinh mang tâm lý bất ổn (menhera) Fuyunagi-san nhưng luôn giả vờ là gái ngoan - sẽ đi đến đâu?
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 26.857</div>
+                                            <div>Lượt xem: 10.841</div>
+                                            <div>Lượt thích: 68</div>
+                                        </p>
+                                        
+                                        Cô bạn gái đầu tiên tôi có sau khi vào cao trung là một mỹ nhân tóc đen thuần khiết, quý phái, dịu dàng như từ mẫu và luôn luôn là tâm điểm của cả lớp. Thế nhưng, ẩn sau vẻ ngoài ấy lại là một người í...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28753">
+        <a href="/truyen/28753-ga-giao-su-vo-lai-cua-hoc-vien/c649329-chuong-82-anh-sang-va-bong-toi-5" title="Chương 82: Ánh Sáng và Bóng Tối (5)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28753-3206e409-b3ab-4f38-8482-5ddf11d9fdfd.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 82: Ánh Sáng và Bóng Tối (5)"><a href="/truyen/28753-ga-giao-su-vo-lai-cua-hoc-vien/c649329-chuong-82-anh-sang-va-bong-toi-5" title="Chương 82: Ánh Sáng và Bóng Tối (5)">Chương 82: Ánh Sáng và Bóng Tối (5)</a></div>
+            <div class="thumb_attr volume-title">Web Novel</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28753-ga-giao-su-vo-lai-cua-hoc-vien" title="Gã Giáo Sư Vô Lại Của Học Viện">Gã Giáo Sư Vô Lại Của Học Viện</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28753">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Gã Giáo Sư Vô Lại Của Học Viện
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 195.843</div>
+                                            <div>Lượt xem: 127.994</div>
+                                            <div>Lượt thích: 564</div>
+                                        </p>
+                                        
+                                        Tôi đã quay lưng với gia tộc.Ngay cả người yêu cũng bị kẻ khác cướp mất.Cuộc đời thảm hại của tôi rồi sẽ trôi về đâu?
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_26619">
+        <a href="/truyen/26619-hanh-trinh-ban-phat-dan-chu-va-tro-thanh-nguoi-manh-nhat-voi-ky-nang-bac-thay-vu-khi/c649322-chapter-346-tan-tich-krishna-loi-ma-thu-jalandhara-1" title="Chapter 346: Tàn Tích Krishna - Lõi Ma Thú Jalandhara (1)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s26619-3b8d7a84-e959-4bec-b7e6-60e5ac87c081.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chapter 346: Tàn Tích Krishna - Lõi Ma Thú Jalandhara (1)"><a href="/truyen/26619-hanh-trinh-ban-phat-dan-chu-va-tro-thanh-nguoi-manh-nhat-voi-ky-nang-bac-thay-vu-khi/c649322-chapter-346-tan-tich-krishna-loi-ma-thu-jalandhara-1" title="Chapter 346: Tàn Tích Krishna - Lõi Ma Thú Jalandhara (1)">Chapter 346: Tàn Tích Krishna - Lõi Ma Thú Jalandhara (1)</a></div>
+            <div class="thumb_attr volume-title">Chương XXII: Thảm Họa Stampede Tái Diễn (331 - ?)</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/26619-hanh-trinh-ban-phat-dan-chu-va-tro-thanh-nguoi-manh-nhat-voi-ky-nang-bac-thay-vu-khi" title="Dị Giới Dân Chủ">Dị Giới Dân Chủ</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_26619">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Dị Giới Dân Chủ
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 678.419</div>
+                                            <div>Lượt xem: 469.094</div>
+                                            <div>Lượt thích: 795</div>
+                                        </p>
+                                        
+                                        Trong một thế giới nơi có đến 40% nhân loại thức tỉnh [Năng lực], khi ma thú cùng các hầm ngục xuất hiện ở khắp mọi nơi, "Mạo hiểm giả" nghiễm nhiên trở thành cái nghề hái ra tiền bậc nhất.Sasha, thủ...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_25328">
+        <a href="/truyen/25328-goc-nhin-cua-ke-toan-tri/c649321-chuong-190-hay-noi-rang-co-muon-song-6" title="Chương 190: Hãy nói rằng cô muốn sống - 6">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s25328-53bc2fa7-40ac-4d91-bdf3-ded4cba2cd3c.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 190: Hãy nói rằng cô muốn sống - 6"><a href="/truyen/25328-goc-nhin-cua-ke-toan-tri/c649321-chuong-190-hay-noi-rang-co-muon-song-6" title="Chương 190: Hãy nói rằng cô muốn sống - 6">Chương 190: Hãy nói rằng cô muốn sống - 6</a></div>
+            <div class="thumb_attr volume-title">Arc 2: Amitengard</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/25328-goc-nhin-cua-ke-toan-tri" title="Góc Nhìn của Kẻ Toàn Tri">Góc Nhìn của Kẻ Toàn Tri</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_25328">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Góc Nhìn của Kẻ Toàn Tri
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 625.426</div>
+                                            <div>Lượt xem: 166.996</div>
+                                            <div>Lượt thích: 525</div>
+                                        </p>
+                                        
+                                        Tôi bị tống giam vào chốn ngục tù một cách oan ức, nhưng tại đó tôi đã có cơ hội gặp một Kẻ Hồi Quy.Sau khi đọc được suy nghĩ của người đó, tôi biết rằng mình sẽ chết sau một năm nữa.Và mười năm sau,...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28360">
+        <a href="/truyen/28360-cam-nang-speedrun-cua-co-phu-thuy/c649318-chuong-234-thanh-ansu-dung-la-lam-nhan-tai" title="Chương 234: Thành Ansu đúng là lắm nhân tài">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28360-e76dbb12-aa20-4ce1-900c-02ec28444d12.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 234: Thành Ansu đúng là lắm nhân tài"><a href="/truyen/28360-cam-nang-speedrun-cua-co-phu-thuy/c649318-chuong-234-thanh-ansu-dung-la-lam-nhan-tai" title="Chương 234: Thành Ansu đúng là lắm nhân tài">Chương 234: Thành Ansu đúng là lắm nhân tài</a></div>
+            <div class="thumb_attr volume-title">Chương 201-300</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28360-cam-nang-speedrun-cua-co-phu-thuy" title="Cẩm Nang Speedrun Của Cô Phù Thủy">Cẩm Nang Speedrun Của Cô Phù Thủy</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28360">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Cẩm Nang Speedrun Của Cô Phù Thủy
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 764.189</div>
+                                            <div>Lượt xem: 108.037</div>
+                                            <div>Lượt thích: 297</div>
+                                        </p>
+                                        
+                                        Trong năm thứ ba sống ở thế giới Steampunk này, Ciel đã có được khả năng mô phỏng cả quá khứ lẫn tương lai.Những mô phỏng ấy biến thành một trò chơi, nơi cô có thể hành động không chút ràng buộc, và s...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28844">
+        <a href="/truyen/28844-let-this-grieving-soul-retire-woe-is-the-weakling-who-leads-the-strongest-party/c649315-prologue-tam-giam" title="Prologue: Tạm giam">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28844-0db21d57-1808-4326-87a3-d032bd863a41.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Prologue: Tạm giam"><a href="/truyen/28844-let-this-grieving-soul-retire-woe-is-the-weakling-who-leads-the-strongest-party/c649315-prologue-tam-giam" title="Prologue: Tạm giam">Prologue: Tạm giam</a></div>
+            <div class="thumb_attr volume-title">Vol 14</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28844-let-this-grieving-soul-retire-woe-is-the-weakling-who-leads-the-strongest-party" title="Let This Grieving Soul Retire ! Woe is the Weakling Who Leads the Strongest Party">Let This Grieving Soul Retire ! Woe is the Weakling Who Leads the Strongest Party</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28844">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Let This Grieving Soul Retire ! Woe is the Weakling Who Leads the Strongest Party
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 18.748</div>
+                                            <div>Lượt xem: 1.097</div>
+                                            <div>Lượt thích: 19</div>
+                                        </p>
+                                        
+                                        (Lightnovel)【Nội dung câu chuyện】Cùng làm thợ săn kho báu nào!Mục tiêu chỉ có một: Trở thành anh hùng mạnh nhất thế giới!Xưa kia, có 6 người đã thề hứa như vậy với nhau. Duy chỉ có một chàng trai tr...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_12957">
+        <a href="/truyen/12957-rebuild-world/c649303-chuong-291-lot-bo" title="Chương 291: Lột bỏ">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s12957-0967eee9-e0c5-4ac6-bfe4-b9ee8413145a.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 291: Lột bỏ"><a href="/truyen/12957-rebuild-world/c649303-chuong-291-lot-bo" title="Chương 291: Lột bỏ">Chương 291: Lột bỏ</a></div>
+            <div class="thumb_attr volume-title">[LN] Quyển 9 - Trung - Nhận thức và lòng tin [ON GOING]</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/12957-rebuild-world" title="Rebuild World">Rebuild World</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_12957">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Rebuild World
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 2.192.489</div>
+                                            <div>Lượt xem: 2.602.910</div>
+                                            <div>Lượt thích: 2.787</div>
+                                        </p>
+                                        
+                                        Đỉnh cao của nền văn minh nhân loại đã sụp đổ, để lại phía sau chỉ là những tàn tích đổ nát. Xã hội và khoa học giờ đây chật vật tái thiết, lần mò trong bóng tối để tìm lại những mảnh vụn tri thức từ...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28878">
+        <a href="/truyen/28878-trung-sinh-bat-qua-tang-hoa-khoi-lanh-lung-an-trom-o-sieu-thi/c649302-chuong-343-tam-rua-phat-hien-vet-thuong-cua-tri-thao-thao" title="Chương 343: Tắm rửa phát hiện vết thương của Trì Thảo Thảo">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28878-81193849-f50e-439f-8d3a-b6632d120d18.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 343: Tắm rửa phát hiện vết thương của Trì Thảo Thảo"><a href="/truyen/28878-trung-sinh-bat-qua-tang-hoa-khoi-lanh-lung-an-trom-o-sieu-thi/c649302-chuong-343-tam-rua-phat-hien-vet-thuong-cua-tri-thao-thao" title="Chương 343: Tắm rửa phát hiện vết thương của Trì Thảo Thảo">Chương 343: Tắm rửa phát hiện vết thương của Trì Thảo Thảo</a></div>
+            <div class="thumb_attr volume-title">夏若繁花 (Hạ Nhược Phồn Hoa)</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28878-trung-sinh-bat-qua-tang-hoa-khoi-lanh-lung-an-trom-o-sieu-thi" title="Trùng Sinh: Bắt Quả Tang Hoa Khôi Lạnh Lùng Ăn Trộm Ở Siêu Thị">Trùng Sinh: Bắt Quả Tang Hoa Khôi Lạnh Lùng Ăn Trộm Ở Siêu Thị</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28878">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Trùng Sinh: Bắt Quả Tang Hoa Khôi Lạnh Lùng Ăn Trộm Ở Siêu Thị
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 64.308</div>
+                                            <div>Lượt xem: 3.988</div>
+                                            <div>Lượt thích: 44</div>
+                                        </p>
+                                        
+                                        Trùng sinh về thời cắp sách tới trường, Lục Viễn Thu đang trông nom siêu thị của gia đình thì bất ngờ phát hiện qua camera giám sát một thiếu nữ có dung mạo thanh tú, thuần khiết đang lén lút lấy trộm...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28889">
+        <a href="/truyen/28889-tro-thanh-de-nhat-ac-nu-lich-su-trung-hoa/c649301-chuong-2-nang-dau-tre-nha-luu-dinh-truong-1-la-tri-va-chuong-heo" title="Chương 2. Nàng Dâu Trẻ Nhà Lưu Đình Trưởng (1) Lã Trĩ Và Chuồng Heo">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28889-288d8ac5-c7c7-4200-94aa-c2b3a444d012.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 2. Nàng Dâu Trẻ Nhà Lưu Đình Trưởng (1) Lã Trĩ Và Chuồng Heo"><a href="/truyen/28889-tro-thanh-de-nhat-ac-nu-lich-su-trung-hoa/c649301-chuong-2-nang-dau-tre-nha-luu-dinh-truong-1-la-tri-va-chuong-heo" title="Chương 2. Nàng Dâu Trẻ Nhà Lưu Đình Trưởng (1) Lã Trĩ Và Chuồng Heo">Chương 2. Nàng Dâu Trẻ Nhà Lưu Đình Trưởng (1) Lã Trĩ Và Chuồng Heo</a></div>
+            <div class="thumb_attr volume-title">WN</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28889-tro-thanh-de-nhat-ac-nu-lich-su-trung-hoa" title="Trở Thành Đệ Nhất Ác Nữ Lịch Sử Trung Hoa">Trở Thành Đệ Nhất Ác Nữ Lịch Sử Trung Hoa</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28889">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Trở Thành Đệ Nhất Ác Nữ Lịch Sử Trung Hoa
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 24.075</div>
+                                            <div>Lượt xem: 3.623</div>
+                                            <div>Lượt thích: 37</div>
+                                        </p>
+                                        
+                                        Là chính thất của Hán Cao Tổ Lưu Bang, tôi đã trở thành Lã Hậu, Lã Trĩ....Nhân trư á? Ai biết gì đâu.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28899">
+        <a href="/truyen/28899-thanh-mai-truc-ma-don-phuong-toi-muoi-nam-may-ma-toi-da-trong-sinh/c649299-chuong-17-cau-la-cai-do-cuc-ky-dang-ghet" title="Chương 17: Cậu là cái đồ cực kỳ đáng ghét">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28899-e9a8f48e-1bd9-4922-92ad-422eefdb0998.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 17: Cậu là cái đồ cực kỳ đáng ghét"><a href="/truyen/28899-thanh-mai-truc-ma-don-phuong-toi-muoi-nam-may-ma-toi-da-trong-sinh/c649299-chuong-17-cau-la-cai-do-cuc-ky-dang-ghet" title="Chương 17: Cậu là cái đồ cực kỳ đáng ghét">Chương 17: Cậu là cái đồ cực kỳ đáng ghét</a></div>
+            <div class="thumb_attr volume-title">Thời cấp ba</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28899-thanh-mai-truc-ma-don-phuong-toi-muoi-nam-may-ma-toi-da-trong-sinh" title="Thanh mai trúc mã đơn phương tôi mười năm, may mà tôi đã trọng sinh">Thanh mai trúc mã đơn phương tôi mười năm, may mà tôi đã trọng sinh</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28899">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Thanh mai trúc mã đơn phương tôi mười năm, may mà tôi đã trọng sinh
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 40.836</div>
+                                            <div>Lượt xem: 2.832</div>
+                                            <div>Lượt thích: 48</div>
+                                        </p>
+                                        
+                                        [Lãng mạn đời thường] [Nhiều nữ chính] "Giờ anh gần như có tất cả mọi thứ rồi. Anh có hối tiếc điều gì không? Phóng viên hỏi Trần Bạch."Tôi rất có lỗi với mẹ, trước đây tôi còn rất non nớt, luôn khiến...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_25081">
+        <a href="/truyen/25081-phan-dien-toc-vang-trong-tieu-thuyet-phuong-ngao-thien-cung-muon-hanh-phuc/c649277-chuong-113-mach-chay-ngam-moi" title="Chương 113: Mạch chảy ngầm mới">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s25081-e09193c6-852c-48c4-a2bc-d92aea60f36f.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 113: Mạch chảy ngầm mới"><a href="/truyen/25081-phan-dien-toc-vang-trong-tieu-thuyet-phuong-ngao-thien-cung-muon-hanh-phuc/c649277-chuong-113-mach-chay-ngam-moi" title="Chương 113: Mạch chảy ngầm mới">Chương 113: Mạch chảy ngầm mới</a></div>
+            <div class="thumb_attr volume-title">Quyển 3: Nghiệp Hỏa</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/25081-phan-dien-toc-vang-trong-tieu-thuyet-phuong-ngao-thien-cung-muon-hanh-phuc" title="Phản Diện Tóc Vàng Trong Tiểu Thuyết Phượng Ngạo Thiên Cũng Muốn Hạnh Phúc">Phản Diện Tóc Vàng Trong Tiểu Thuyết Phượng Ngạo Thiên Cũng Muốn Hạnh Phúc</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_25081">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Phản Diện Tóc Vàng Trong Tiểu Thuyết Phượng Ngạo Thiên Cũng Muốn Hạnh Phúc
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 705.034</div>
+                                            <div>Lượt xem: 180.898</div>
+                                            <div>Lượt thích: 421</div>
+                                        </p>
+                                        
+                                        Chuyển sinh thành một phản diện tóc vàng trong giai đoạn đầu của một cuốn tiểu thuyết kiểu "Phượng Ngạo Thiên", Muen chỉ muốn sống yên ổn.Nhưng cốt truyện có vẻ không ổn lắm?Đã hạ thuốc Công chúa, mọi...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_23438">
+        <a href="/truyen/23438-ta-phong-than-o-the-gioi-bi-hiem/c649243-chuong-275-luon-o-ben-cham-soc" title="Chương 275: Luôn ở bên chăm sóc">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s23438-7041e714-8963-4348-a28d-eaf773ebaf16.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 275: Luôn ở bên chăm sóc"><a href="/truyen/23438-ta-phong-than-o-the-gioi-bi-hiem/c649243-chuong-275-luon-o-ben-cham-soc" title="Chương 275: Luôn ở bên chăm sóc">Chương 275: Luôn ở bên chăm sóc</a></div>
+            <div class="thumb_attr volume-title">Thế Giới Hiện Thực (271-276)</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/23438-ta-phong-than-o-the-gioi-bi-hiem" title="Ta Phong Thần Ở Thế Giới Bí Hiểm">Ta Phong Thần Ở Thế Giới Bí Hiểm</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_23438">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Ta Phong Thần Ở Thế Giới Bí Hiểm
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 466.978</div>
+                                            <div>Lượt xem: 168.188</div>
+                                            <div>Lượt thích: 163</div>
+                                        </p>
+                                        
+                                        Bạch Trà từ nhỏ thân thể yếu ớt, bệnh tật triền miên, ai nấy đều nghĩ cô không sống nổi quá hai mươi tuổi!Cho đến khi một kiện hàng của bạn cùng phòng đã gửi Bạch Trà vào một trò chơi kinh dị vô hạn.L...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28569">
+        <a href="/truyen/28569-sau-khi-ly-hon-vo-cu-thanh-chu-no/c649237-chuong-32-ke-hoach-thanh-cong" title="Chương 32: Kế Hoạch Thành Công">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28569-90113b19-d9b7-4dad-a9c6-ba8439b1dfe1.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 32: Kế Hoạch Thành Công"><a href="/truyen/28569-sau-khi-ly-hon-vo-cu-thanh-chu-no/c649237-chuong-32-ke-hoach-thanh-cong" title="Chương 32: Kế Hoạch Thành Công">Chương 32: Kế Hoạch Thành Công</a></div>
+            <div class="thumb_attr volume-title">1-100</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28569-sau-khi-ly-hon-vo-cu-thanh-chu-no" title="Sau Khi Ly Hôn, Vợ Cũ Thành Chủ Nợ">Sau Khi Ly Hôn, Vợ Cũ Thành Chủ Nợ</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28569">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Sau Khi Ly Hôn, Vợ Cũ Thành Chủ Nợ
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 59.861</div>
+                                            <div>Lượt xem: 16.453</div>
+                                            <div>Lượt thích: 108</div>
+                                        </p>
+                                        
+                                        Không có dị năng, không có trùng sinh, cũng chẳng có huyền huyễn, bàn tay vàng duy nhất là cái đầu của Hàn Khiêm.Hàn Khiêm ký với vợ một bản hợp đồng hôn nhân ba năm. Hắn cưới cô chỉ để giúp vợ chờ đợ...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28497">
+        <a href="/truyen/28497-mmn-maxing-my-trpg-build-in-another-world/c649233-cao-trao-phan-1" title="Cao trào - Phần 1">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28497-c6d9a12f-5b41-49c1-9eed-514d18f54ad0.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Cao trào - Phần 1"><a href="/truyen/28497-mmn-maxing-my-trpg-build-in-another-world/c649233-cao-trao-phan-1" title="Cao trào - Phần 1">Cao trào - Phần 1</a></div>
+            <div class="thumb_attr volume-title">Tập 4 - Canto II</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28497-mmn-maxing-my-trpg-build-in-another-world" title="Min-Maxing My TRPG Build In Another World">Min-Maxing My TRPG Build In Another World</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28497">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Min-Maxing My TRPG Build In Another World
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 623.768</div>
+                                            <div>Lượt xem: 38.765</div>
+                                            <div>Lượt thích: 206</div>
+                                        </p>
+                                        
+                                        Được ủy thác khi trút hơi thở cuối cùng để cứu lấy một thế giới đang lâm nguy, một fan cuồng nhiệt của dòng game TRPG đã tái sinh thành một cậu bé nông dân khiêm tốn và nắm giữ trong tay cuốn sách quy...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_26162">
+        <a href="/truyen/26162-seiken-tsukai-no-world-break/c649212-mo-dau" title="Mở đầu">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s26162-15bb611e-aefc-4112-8daa-55669e615214.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Mở đầu"><a href="/truyen/26162-seiken-tsukai-no-world-break/c649212-mo-dau" title="Mở đầu">Mở đầu</a></div>
+            <div class="thumb_attr volume-title">Vol 9</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/26162-seiken-tsukai-no-world-break" title="Khúc Nguyền Ca Của Thánh Kiếm Sĩ">Khúc Nguyền Ca Của Thánh Kiếm Sĩ</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_26162">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Khúc Nguyền Ca Của Thánh Kiếm Sĩ
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 638.477</div>
+                                            <div>Lượt xem: 30.993</div>
+                                            <div>Lượt thích: 231</div>
+                                        </p>
+                                        
+                                        Bộ truyện diễn ra ở một trường trung học tư thục có liên quan đến một khái niệm gọi là Cứu Thế Giả. Họ được biết như những người thức tỉnh kí ức về tiền kiếp của mình. Câu chuyện xoay quanh một chàng...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28874">
+        <a href="/truyen/28874-nhat-duoc-cuon-so-chat-day-am-anh-cac-co-gai-xung-quanh-toi-bong-tro-nen-ky-la/c649209-chuong-26-tim-thay-roi" title="Chương 26: Tìm thấy rồi">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28874-a79e3463-4523-4855-b7ca-a8aa1bd1bb68.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 26: Tìm thấy rồi"><a href="/truyen/28874-nhat-duoc-cuon-so-chat-day-am-anh-cac-co-gai-xung-quanh-toi-bong-tro-nen-ky-la/c649209-chuong-26-tim-thay-roi" title="Chương 26: Tìm thấy rồi">Chương 26: Tìm thấy rồi</a></div>
+            <div class="thumb_attr volume-title">WN</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28874-nhat-duoc-cuon-so-chat-day-am-anh-cac-co-gai-xung-quanh-toi-bong-tro-nen-ky-la" title="Nhặt Được Cuốn Sổ Chất Đầy Ám Ảnh, Các Cô Gái Xung Quanh Tôi Bỗng Trở Nên Kỳ Lạ">Nhặt Được Cuốn Sổ Chất Đầy Ám Ảnh, Các Cô Gái Xung Quanh Tôi Bỗng Trở Nên Kỳ Lạ</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28874">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Nhặt Được Cuốn Sổ Chất Đầy Ám Ảnh, Các Cô Gái Xung Quanh Tôi Bỗng Trở Nên Kỳ Lạ
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 49.535</div>
+                                            <div>Lượt xem: 25.558</div>
+                                            <div>Lượt thích: 323</div>
+                                        </p>
+                                        
+                                        Shiomi Yuu tình cờ nhặt được một cuốn sổ mang tiêu đề:『Cách biến cậu ấy thành của riêng mình』Bên trong là những dòng chữ chất chứa thứ tình cảm nặng nề đến mức gần như ám ảnh.Chỉ cần nhìn mình là đủ...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_27595">
+        <a href="/truyen/27595-as-long-as-you-live-long-enough-you-become-a-legend/c649171-chuong-30-mua-trang-5" title="Chương 30: Mưa Trắng (5)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s27595-a01e50a2-a598-4c9b-8e99-b75bbac7aba8.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 30: Mưa Trắng (5)"><a href="/truyen/27595-as-long-as-you-live-long-enough-you-become-a-legend/c649171-chuong-30-mua-trang-5" title="Chương 30: Mưa Trắng (5)">Chương 30: Mưa Trắng (5)</a></div>
+            <div class="thumb_attr volume-title">Web Novel</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/27595-as-long-as-you-live-long-enough-you-become-a-legend" title="As Long as You Live Long Enough, You Become a legend">As Long as You Live Long Enough, You Become a legend</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_27595">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            As Long as You Live Long Enough, You Become a legend
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 69.011</div>
+                                            <div>Lượt xem: 12.180</div>
+                                            <div>Lượt thích: 86</div>
+                                        </p>
+                                        
+                                        Chín mươi nghìn năm sau khi nền văn minh sụp đổ, cô tỉnh giấc giữa vùng đất hoang tàn và trơ trọi. Dõi theo ánh sáng và hơi ấm, cô chứng kiến sự trỗi dậy của các nền văn minh mới và sự sụp đổ của nhữn...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28014">
+        <a href="/truyen/28014-vien-truong-phan-dien-dang-cham-tre/c649130-chuong-39" title="Chương 39">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28014-993b6753-3788-404e-a7f6-5d251b674ae2.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 39"><a href="/truyen/28014-vien-truong-phan-dien-dang-cham-tre/c649130-chuong-39" title="Chương 39">Chương 39</a></div>
+            <div class="thumb_attr volume-title">31-40</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28014-vien-truong-phan-dien-dang-cham-tre" title="Viện trưởng phản diện đang chăm trẻ!">Viện trưởng phản diện đang chăm trẻ!</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28014">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Viện trưởng phản diện đang chăm trẻ!
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 107.351</div>
+                                            <div>Lượt xem: 9.395</div>
+                                            <div>Lượt thích: 79</div>
+                                        </p>
+                                        
+                                        Tôi, một giáo viên mẫu giáo, đã nhập vào thân xác của tên viện trưởng tàn bạo chuyên ngược đãi nhân vật chính vốn là vật thí nghiệm.Tôi đã hết lòng nuôi dưỡng bọn trẻ, giúp chúng trốn thoát, rồi lui v...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_26893">
+        <a href="/truyen/26893-thieu-gia-phan-dien-sao-co-the-la-thanh-nu-chu/c649129-chuong-40-hien-te" title="Chương 40: Hiến tế">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s26893-53fb8c20-fb5c-49d7-b9d0-71d948662278.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 40: Hiến tế"><a href="/truyen/26893-thieu-gia-phan-dien-sao-co-the-la-thanh-nu-chu/c649129-chuong-40-hien-te" title="Chương 40: Hiến tế">Chương 40: Hiến tế</a></div>
+            <div class="thumb_attr volume-title">Vol 4</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/26893-thieu-gia-phan-dien-sao-co-the-la-thanh-nu-chu" title="Thiếu gia phản diện sao có thể là thánh nữ chứ?">Thiếu gia phản diện sao có thể là thánh nữ chứ?</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_26893">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Thiếu gia phản diện sao có thể là thánh nữ chứ?
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 1.414.843</div>
+                                            <div>Lượt xem: 301.366</div>
+                                            <div>Lượt thích: 428</div>
+                                        </p>
+                                        
+                                        Với cả sự rụt rè lẫn khao khát, Winnie đã lấy hết dũng khí để tỏ tình với cô bạn thanh mai trúc mã của mình, nàng công chúa của vương quốc, giữa chốn đông người, để rồi bị cự tuyệt một cách phũ phàng....
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_23080">
+        <a href="/truyen/23080-ore-wa-shiranai-uchi-ni-gakkou-ichi-no-bishoujo-wo-kudoite-itarashii/c649065-chuong-03-su-co-lon-o-cho-lam" title="Chương 03 : Sự cố lớn ở chỗ làm">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s23080-4bfedd74-5577-4dab-8680-63405f710da8.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 03 : Sự cố lớn ở chỗ làm"><a href="/truyen/23080-ore-wa-shiranai-uchi-ni-gakkou-ichi-no-bishoujo-wo-kudoite-itarashii/c649065-chuong-03-su-co-lon-o-cho-lam" title="Chương 03 : Sự cố lớn ở chỗ làm">Chương 03 : Sự cố lớn ở chỗ làm</a></div>
+            <div class="thumb_attr volume-title">Tập 03</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/23080-ore-wa-shiranai-uchi-ni-gakkou-ichi-no-bishoujo-wo-kudoite-itarashii" title="Ore wa Shiranai Uchi ni Gakkou Ichi no Bishoujo wo Kudoite Itarashii">Ore wa Shiranai Uchi ni Gakkou Ichi no Bishoujo wo Kudoite Itarashii</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_23080">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Ore wa Shiranai Uchi ni Gakkou Ichi no Bishoujo wo Kudoite Itarashii
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 148.157</div>
+                                            <div>Lượt xem: 51.117</div>
+                                            <div>Lượt thích: 371</div>
+                                        </p>
+                                        
+                                        Người mà mình tìm đến để xin lời khuyên tình cảm ở chỗ làm thêm… thực ra lại chính là “crush” của mình!?
+Reina Saito – cô gái xinh đẹp nhất trường – và Tanaka Minato trở nên thân thiết nhờ sở thích ch...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28903">
+        <a href="/truyen/28903-bang-xep-hang-cua-toi-khien-cac-sieu-viet-gia-phat-cuong/c649062-chuong-19-con-du-cha-me-chu" title="Chương 19 - Còn Đủ Cha Mẹ Chứ?">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28903-94e210bf-0534-415d-986c-bf6b57f76e24.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 19 - Còn Đủ Cha Mẹ Chứ?"><a href="/truyen/28903-bang-xep-hang-cua-toi-khien-cac-sieu-viet-gia-phat-cuong/c649062-chuong-19-con-du-cha-me-chu" title="Chương 19 - Còn Đủ Cha Mẹ Chứ?">Chương 19 - Còn Đủ Cha Mẹ Chứ?</a></div>
+            <div class="thumb_attr volume-title">[1-50]</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28903-bang-xep-hang-cua-toi-khien-cac-sieu-viet-gia-phat-cuong" title="Bảng Xếp Hạng Của Tôi Khiến Các Siêu Việt Giả Phát Cuồng">Bảng Xếp Hạng Của Tôi Khiến Các Siêu Việt Giả Phát Cuồng</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28903">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Bảng Xếp Hạng Của Tôi Khiến Các Siêu Việt Giả Phát Cuồng
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 43.087</div>
+                                            <div>Lượt xem: 26.048</div>
+                                            <div>Lượt thích: 291</div>
+                                        </p>
+                                        
+                                        [ Bảng Xếp Hạng giữa Thiên Cung với Long Cung ][ TOP 13 chủng tộc mạnh nhất ở chiều thứ 7 ][ TOP 20 thể chất đặc biệt mạnh nhất theo chuẩn tiên gia ]ㄴ (Chủ thớt) Muốn cãi thì lấy dữ kiện trong Vạn Li...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28729">
+        <a href="/truyen/28729-gymer-co-bap-chuyen-sinh-thanh-tru-ta-su/c649060-chapter-182-ngan-the-hiep-si-orkney-3" title="Chapter 182: Ngân Thệ Hiệp Sĩ Orkney (3)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28729-53856dc3-e257-4178-85da-bec9c51c03fb.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chapter 182: Ngân Thệ Hiệp Sĩ Orkney (3)"><a href="/truyen/28729-gymer-co-bap-chuyen-sinh-thanh-tru-ta-su/c649060-chapter-182-ngan-the-hiep-si-orkney-3" title="Chapter 182: Ngân Thệ Hiệp Sĩ Orkney (3)">Chapter 182: Ngân Thệ Hiệp Sĩ Orkney (3)</a></div>
+            <div class="thumb_attr volume-title">Chương IV: Đội Điều Tra Giáo Đoàn (132 - 288)</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28729-gymer-co-bap-chuyen-sinh-thanh-tru-ta-su" title="Chuyển Sinh Thành Trừ Tà Sư Với Nỗ Lực Vô Song">Chuyển Sinh Thành Trừ Tà Sư Với Nỗ Lực Vô Song</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28729">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Chuyển Sinh Thành Trừ Tà Sư Với Nỗ Lực Vô Song
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 301.313</div>
+                                            <div>Lượt xem: 30.836</div>
+                                            <div>Lượt thích: 159</div>
+                                        </p>
+                                        
+                                        Không Huyết Thống, Không Tài Năng, Nhưng Tôi Nỗ Lực Trở Thành Trừ Tà Sư Mạnh Nhất!Đang hóng gió sau buổi tập gym, thì đột nhiên bị một anh trai xiên que vãng lai cho một vé tiễn đưa sang thế giới khác...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_20962">
+        <a href="/truyen/20962-trashlesse-oblige-18-kin-ge-sekai-no-kuzu-akuyaku-ni-tensei-shite-shimatta-ore-wa-gensaku-chishiki-no-chikara-de-doshitemo-mobu-jinsei-o-tsukami-toritai/c649013-chuong-04-he-sinh-thai" title="Chương 04 - Hệ sinh thái">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s20962-59d1442b-b77b-4809-ae8b-3995a0906f42.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 04 - Hệ sinh thái"><a href="/truyen/20962-trashlesse-oblige-18-kin-ge-sekai-no-kuzu-akuyaku-ni-tensei-shite-shimatta-ore-wa-gensaku-chishiki-no-chikara-de-doshitemo-mobu-jinsei-o-tsukami-toritai/c649013-chuong-04-he-sinh-thai" title="Chương 04 - Hệ sinh thái">Chương 04 - Hệ sinh thái</a></div>
+            <div class="thumb_attr volume-title">Vol.3 - Sự khởi đầu của câu chuyện gốc</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/20962-trashlesse-oblige-18-kin-ge-sekai-no-kuzu-akuyaku-ni-tensei-shite-shimatta-ore-wa-gensaku-chishiki-no-chikara-de-doshitemo-mobu-jinsei-o-tsukami-toritai" title="Quyết tâm không làm cặn bã! Được tái sinh thành tên phản diện thối nát trong một con game 18+, tôi muốn sống như một nhân vật quần chúng nhờ vào những kiến thức từ cốt truyện gốc">Quyết tâm không làm cặn bã! Được tái sinh thành tên phản diện thối nát trong một con game 18+, tôi muốn sống như một nhân vật quần chúng nhờ vào những kiến thức từ cốt truyện gốc</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_20962">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Quyết tâm không làm cặn bã! Được tái sinh thành tên phản diện thối nát trong một con game 18+, tôi muốn sống như một nhân vật quần chúng nhờ vào những kiến thức từ cốt truyện gốc
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 189.887</div>
+                                            <div>Lượt xem: 399.090</div>
+                                            <div>Lượt thích: 1.059</div>
+                                        </p>
+                                        
+                                        Trước khi kịp nhận ra, tôi đã ở trong thế giới của một con game 18+, đầy rẫy những cuộc đấu tranh quyền lực và ma thuật.
+Tại thế giới đó, tôi đã chiếm giữ thân xác của một nhân vật nổi tiếng được biết...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_25121">
+        <a href="/truyen/25121-nhat-duoc-ma-dao-thu-duoc-viet-boi-ngoai-than/c649012-chuong-91-nhan-thuc" title="Chương 91: Nhận thức">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s25121-f6390f00-337d-479e-be96-dde4bfbda7e4.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 91: Nhận thức"><a href="/truyen/25121-nhat-duoc-ma-dao-thu-duoc-viet-boi-ngoai-than/c649012-chuong-91-nhan-thuc" title="Chương 91: Nhận thức">Chương 91: Nhận thức</a></div>
+            <div class="thumb_attr volume-title">1-100</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/25121-nhat-duoc-ma-dao-thu-duoc-viet-boi-ngoai-than" title="Nhặt được ma đạo thư viết bởi Ngoại thần">Nhặt được ma đạo thư viết bởi Ngoại thần</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_25121">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Nhặt được ma đạo thư viết bởi Ngoại thần
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 247.057</div>
+                                            <div>Lượt xem: 106.255</div>
+                                            <div>Lượt thích: 490</div>
+                                        </p>
+                                        
+                                        Một quyển ma đạo thư được viết bởi Ngoại thần đã xuất hiện ở nhà tôi.Nhưng mà quyển ma đạo thư này thích tôi nhiều quá rồi.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_26680">
+        <a href="/truyen/26680-toi-duoc-giai-phong-khoi-kiep-no-le-nhung-chu-nhan-cu-lai-am-anh-ve-toi/c649010-vo-hinh-ghe" title="Vô Hình Ghế">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s26680-bc6de369-47cb-43b8-a40f-5faa11af6d6e.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Vô Hình Ghế"><a href="/truyen/26680-toi-duoc-giai-phong-khoi-kiep-no-le-nhung-chu-nhan-cu-lai-am-anh-ve-toi/c649010-vo-hinh-ghe" title="Vô Hình Ghế">Vô Hình Ghế</a></div>
+            <div class="thumb_attr volume-title">Minh Hoạ</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/26680-toi-duoc-giai-phong-khoi-kiep-no-le-nhung-chu-nhan-cu-lai-am-anh-ve-toi" title="Chủ Nhân, Tôi Đã Tự Do Rồi Mà?">Chủ Nhân, Tôi Đã Tự Do Rồi Mà?</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_26680">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Chủ Nhân, Tôi Đã Tự Do Rồi Mà?
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 652.975</div>
+                                            <div>Lượt xem: 987.064</div>
+                                            <div>Lượt thích: 1.706</div>
+                                        </p>
+                                        
+                                        Rion cuối cùng cũng được tự do và có thể sống theo ý mình.Nhưng ngay khi cậu tưởng mình đã thoát khỏi thân phận nô lệ, chủ nhân cũ lại cầu xin cậu ở lại.“Ta sẽ trao cho cậu tất cả. Làm ơn, hãy tiếp tụ...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28101">
+        <a href="/truyen/28101-co-nang-yandere-xuc-tu-cua-toi-ngay-cang-bien-thai/c649003-chuong-51-tai-sao-lai-can-mat-ma" title="Chương 51: Tại Sao Lại Cần Mật Mã!">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28101-41f097d1-7692-4512-bf98-0fc3fe74a103.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 51: Tại Sao Lại Cần Mật Mã!"><a href="/truyen/28101-co-nang-yandere-xuc-tu-cua-toi-ngay-cang-bien-thai/c649003-chuong-51-tai-sao-lai-can-mat-ma" title="Chương 51: Tại Sao Lại Cần Mật Mã!">Chương 51: Tại Sao Lại Cần Mật Mã!</a></div>
+            <div class="thumb_attr volume-title">Chính truyện</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28101-co-nang-yandere-xuc-tu-cua-toi-ngay-cang-bien-thai" title="Cô Nàng Yandere Xúc Tu Của Tôi Ngày Càng Biến Thái">Cô Nàng Yandere Xúc Tu Của Tôi Ngày Càng Biến Thái</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28101">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Cô Nàng Yandere Xúc Tu Của Tôi Ngày Càng Biến Thái
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 110.097</div>
+                                            <div>Lượt xem: 35.160</div>
+                                            <div>Lượt thích: 239</div>
+                                        </p>
+                                        
+                                        Trong thế giới nơi nền văn minh sụp đổ, những bức tường cao dựng đứng, Lâm Phàm đã nhặt được cô. Một vật thí nghiệm thần bí ra đời từ cuộc thí nghiệm của tập đoàn, một thiếu nữ xúc tu mang dáng vẻ con...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28423">
+        <a href="/truyen/28423-bi-vut-bo-nhu-mot-con-cho-rach-trong-the-gioi-fantasy/c649001-chuong-106-ngua-phi-1" title="Chương 106: Ngựa phi (1)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28423-b2baff9d-f986-4abb-9960-941c345fc87b.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 106: Ngựa phi (1)"><a href="/truyen/28423-bi-vut-bo-nhu-mot-con-cho-rach-trong-the-gioi-fantasy/c649001-chuong-106-ngua-phi-1" title="Chương 106: Ngựa phi (1)">Chương 106: Ngựa phi (1)</a></div>
+            <div class="thumb_attr volume-title">HAPPY END ?</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28423-bi-vut-bo-nhu-mot-con-cho-rach-trong-the-gioi-fantasy" title="Bị Vứt Bỏ Như Một Con Chó Hoang Trong Thế Giới Fantasy">Bị Vứt Bỏ Như Một Con Chó Hoang Trong Thế Giới Fantasy</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28423">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Bị Vứt Bỏ Như Một Con Chó Hoang Trong Thế Giới Fantasy
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 252.206</div>
+                                            <div>Lượt xem: 121.703</div>
+                                            <div>Lượt thích: 498</div>
+                                        </p>
+                                        
+                                        Tôi sẽ không dừng lại cho tới khi đạt được Happy End.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_27499">
+        <a href="/truyen/27499-cac-ranker-them-khat-cay-bua-cua-toi/c648997-101-isabella-vo-cam" title="101. Isabella vô cảm">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s27499-abf68ee0-09d5-4ec5-b629-832d8f5a2090.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="101. Isabella vô cảm"><a href="/truyen/27499-cac-ranker-them-khat-cay-bua-cua-toi/c648997-101-isabella-vo-cam" title="101. Isabella vô cảm">101. Isabella vô cảm</a></div>
+            <div class="thumb_attr volume-title">Web Novel (101-???)</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/27499-cac-ranker-them-khat-cay-bua-cua-toi" title="Các Ranker Thèm Khát Cây Búa Của Tôi">Các Ranker Thèm Khát Cây Búa Của Tôi</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_27499">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Các Ranker Thèm Khát Cây Búa Của Tôi
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 341.738</div>
+                                            <div>Lượt xem: 270.157</div>
+                                            <div>Lượt thích: 772</div>
+                                        </p>
+                                        
+                                        Dù có thế nào đi nữa thì mỗi người cũng chỉ được chế tạo đúng một lần thôi.Tôi không phải tài sản công cộng đâu nhé!
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_25149">
+        <a href="/truyen/25149-toi-da-tro-thanh-tro-thu-trong-tieu-thuyet-lang-man/c648995-chuong-101-hoat-dong-tinh-nguyen-2" title="Chương 101: Hoạt động tình nguyện(?) (2)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s25149-cac4a6cf-42fb-40e7-af04-8beade05f4eb.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 101: Hoạt động tình nguyện(?) (2)"><a href="/truyen/25149-toi-da-tro-thanh-tro-thu-trong-tieu-thuyet-lang-man/c648995-chuong-101-hoat-dong-tinh-nguyen-2" title="Chương 101: Hoạt động tình nguyện(?) (2)">Chương 101: Hoạt động tình nguyện(?) (2)</a></div>
+            <div class="thumb_attr volume-title">101-200</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/25149-toi-da-tro-thanh-tro-thu-trong-tieu-thuyet-lang-man" title="Tôi trở thành người đứng thứ 2 trong tiểu thuyết RoFan">Tôi trở thành người đứng thứ 2 trong tiểu thuyết RoFan</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_25149">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Tôi trở thành người đứng thứ 2 trong tiểu thuyết RoFan
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 269.477</div>
+                                            <div>Lượt xem: 177.115</div>
+                                            <div>Lượt thích: 564</div>
+                                        </p>
+                                        
+                                        Tôi chỉ được dặn là hãy đi theo một người duy nhất.Nhưng hóa ra đó là người mạnh nhất thế giới.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28924">
+        <a href="/truyen/28924-chang-hiep-si-noi-loan-bao-ve-ke-thu-cua-minh/c648988-chuong-1-loi-nguyen1" title="Chương 1: Lời nguyền(1)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28924-49138560-e00f-4479-8859-d61065f2d2f8.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 1: Lời nguyền(1)"><a href="/truyen/28924-chang-hiep-si-noi-loan-bao-ve-ke-thu-cua-minh/c648988-chuong-1-loi-nguyen1" title="Chương 1: Lời nguyền(1)">Chương 1: Lời nguyền(1)</a></div>
+            <div class="thumb_attr volume-title">WN</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28924-chang-hiep-si-noi-loan-bao-ve-ke-thu-cua-minh" title="Chàng Hiệp Sĩ Nổi Loạn Bảo Vệ Kẻ Thù Của Mình">Chàng Hiệp Sĩ Nổi Loạn Bảo Vệ Kẻ Thù Của Mình</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28924">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Chàng Hiệp Sĩ Nổi Loạn Bảo Vệ Kẻ Thù Của Mình
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 3.056</div>
+                                            <div>Lượt xem: 810</div>
+                                            <div>Lượt thích: 24</div>
+                                        </p>
+                                        
+                                        Tôi từng nghĩ mình sẽ chẳng còn ai để bảo vệ.Cho đến khi gặp em—người lẽ ra phải là kẻ thù của tôi, một người đang vụn vỡ.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_27630">
+        <a href="/truyen/27630-toi-lam-do-doc-hai-quan-trong-tieu-thuyet-romance-fantasy/c648982-chuong-118-toi-da-na-hai-phao-vao-mat-thai-tu-1" title="Chương 118. Tôi đã nã Hải pháo vào mặt Thái tử (1)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s27630-bee7609a-868d-4281-916c-7b5cf981c6c0.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 118. Tôi đã nã Hải pháo vào mặt Thái tử (1)"><a href="/truyen/27630-toi-lam-do-doc-hai-quan-trong-tieu-thuyet-romance-fantasy/c648982-chuong-118-toi-da-na-hai-phao-vao-mat-thai-tu-1" title="Chương 118. Tôi đã nã Hải pháo vào mặt Thái tử (1)">Chương 118. Tôi đã nã Hải pháo vào mặt Thái tử (1)</a></div>
+            <div class="thumb_attr volume-title">Web Novel</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/27630-toi-lam-do-doc-hai-quan-trong-tieu-thuyet-romance-fantasy" title="Tôi làm Đô đốc Hải quân trong tiểu thuyết Romance Fantasy">Tôi làm Đô đốc Hải quân trong tiểu thuyết Romance Fantasy</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_27630">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Tôi làm Đô đốc Hải quân trong tiểu thuyết Romance Fantasy
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 295.177</div>
+                                            <div>Lượt xem: 168.883</div>
+                                            <div>Lượt thích: 540</div>
+                                        </p>
+                                        
+                                        Hỏi: Tôi nên làm gì nếu thằng Thái tử bị một người phụ nữ mê hoặc và bắt đầu bán nước?Đáp: Dùng pháo hải quân bắn bay màu bọn đấy thôi.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28411">
+        <a href="/truyen/28411-di-net-cafe-thi-gap-nu-sinh-guong-mau-toi-duoc-ga-huong-sai-goi-khuyen-mai-tinh-nhan/c648965-chuong-45-cong-co-ban-ngoai-duong-phai-cong-nhan-la-cang" title="Chương 45: Cõng cô bạn ngoài đường... phải công nhận là căng">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://ln.hako.vn/img/nocover.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 45: Cõng cô bạn ngoài đường... phải công nhận là căng"><a href="/truyen/28411-di-net-cafe-thi-gap-nu-sinh-guong-mau-toi-duoc-ga-huong-sai-goi-khuyen-mai-tinh-nhan/c648965-chuong-45-cong-co-ban-ngoai-duong-phai-cong-nhan-la-cang" title="Chương 45: Cõng cô bạn ngoài đường... phải công nhận là căng">Chương 45: Cõng cô bạn ngoài đường... phải công nhận là căng</a></div>
+            <div class="thumb_attr volume-title">Hồi 2</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28411-di-net-cafe-thi-gap-nu-sinh-guong-mau-toi-duoc-ga-huong-sai-goi-khuyen-mai-tinh-nhan" title="Đi net cafe thì gặp nữ sinh gương mẫu, tôi được gạ hưởng sái gói &quot;Khuyến mãi Tình nhân&quot;">Đi net cafe thì gặp nữ sinh gương mẫu, tôi được gạ hưởng sái gói &quot;Khuyến mãi Tình nhân&quot;</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28411">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Đi net cafe thì gặp nữ sinh gương mẫu, tôi được gạ hưởng sái gói &quot;Khuyến mãi Tình nhân&quot;
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 46.936</div>
+                                            <div>Lượt xem: 24.102</div>
+                                            <div>Lượt thích: 143</div>
+                                        </p>
+                                        
+                                        “Lộ hàng kìa bà cố.”“Thích còn cứ giả vờ”-- trích nội dung chương 1 --Bên trong một căn phòng. Có một nam một nữ.Cửa phòng được khóa kín, chỉ có họ với nhau. Vậy họ sẽ làm gì?Ngủ hoặc đọc sách thôi. M...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_20758">
+        <a href="/truyen/20758-dan-chi-xinh-dep-cua-cau-lac-bo-ban-cung-dang-ngu-ho-bung-trong-phong-toi/c648964-chuong-58-hon-bao-gio-het-cam-giac-le-hoi-dang-den-rat-gan" title="Chương 58: Hơn bao giờ hết, cảm giác lễ hội đang đến rất gần...!">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s20758-bef8046a-34ed-4f52-a506-e04e9e47a976.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 58: Hơn bao giờ hết, cảm giác lễ hội đang đến rất gần...!"><a href="/truyen/20758-dan-chi-xinh-dep-cua-cau-lac-bo-ban-cung-dang-ngu-ho-bung-trong-phong-toi/c648964-chuong-58-hon-bao-gio-het-cam-giac-le-hoi-dang-den-rat-gan" title="Chương 58: Hơn bao giờ hết, cảm giác lễ hội đang đến rất gần...!">Chương 58: Hơn bao giờ hết, cảm giác lễ hội đang đến rất gần...!</a></div>
+            <div class="thumb_attr volume-title">Tập 02</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/20758-dan-chi-xinh-dep-cua-cau-lac-bo-ban-cung-dang-ngu-ho-bung-trong-phong-toi" title="Đàn chị xinh đẹp của câu lạc bộ bắn cung đang ngủ hở bụng trong phòng tôi">Đàn chị xinh đẹp của câu lạc bộ bắn cung đang ngủ hở bụng trong phòng tôi</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_20758">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Đàn chị xinh đẹp của câu lạc bộ bắn cung đang ngủ hở bụng trong phòng tôi
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 110.903</div>
+                                            <div>Lượt xem: 122.821</div>
+                                            <div>Lượt thích: 533</div>
+                                        </p>
+                                        
+                                        Amemoto Touya là một nam sinh trung học yêu thích sự bình yên. Cậu không quá nổi bật, nhưng lại tận hưởng những ngày tháng ít căng thẳng của mình.
+Một đêm nọ, khi ghé vào cửa hàng tiện lợi, Touya tình...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_24601">
+        <a href="/truyen/24601-khong-co-tien-phai-di-lam-mahou-shojo/c648960-chuong-134-cam-giac-y-lai-rat-nguy-hiem" title="Chương 134: Cảm Giác Ỷ Lại Rất Nguy Hiểm">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s24601-801a2974-42d1-472c-979e-282630b2934a.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 134: Cảm Giác Ỷ Lại Rất Nguy Hiểm"><a href="/truyen/24601-khong-co-tien-phai-di-lam-mahou-shojo/c648960-chuong-134-cam-giac-y-lai-rat-nguy-hiem" title="Chương 134: Cảm Giác Ỷ Lại Rất Nguy Hiểm">Chương 134: Cảm Giác Ỷ Lại Rất Nguy Hiểm</a></div>
+            <div class="thumb_attr volume-title">Tập 3: Tôi Muốn Trở Thành Ma Pháp Thiếu Nữ</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/24601-khong-co-tien-phai-di-lam-mahou-shojo" title="Không Có Tiền, Phải Đi Làm Ma Pháp Thiếu Nữ">Không Có Tiền, Phải Đi Làm Ma Pháp Thiếu Nữ</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_24601">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Không Có Tiền, Phải Đi Làm Ma Pháp Thiếu Nữ
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 841.024</div>
+                                            <div>Lượt xem: 229.274</div>
+                                            <div>Lượt thích: 269</div>
+                                        </p>
+                                        
+                                        Tôi tên là Lâm Vũ, nam, 26 tuổi, đã lăn lộn làm nghề tự do được 5 năm.Người ta thường nói sống là phải có ước mơ. Ước mơ của tôi đơn giản lắm: Ở biệt thự, lái xe sang, bên cạnh có mỹ nữ vây quanh. Như...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28702">
+        <a href="/truyen/28702-ten-phan-dien-bi-de-ngua-ra-lam-toi-khi-can-kiet-suc-luc-lan-nay-mai-cay-max-do-hao-cam-cua-nhan-vat-chinh-ai-ngo-lai-khien-tat-ca-moi-nguoi-do-guc/c648959-chuong-65-ke-phan-dien-boi-roi-vi-do-boi" title="Chương 65: Kẻ phản diện. Bối rối vì đồ bơi ②">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://ln.hako.vn/img/nocover.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 65: Kẻ phản diện. Bối rối vì đồ bơi ②"><a href="/truyen/28702-ten-phan-dien-bi-de-ngua-ra-lam-toi-khi-can-kiet-suc-luc-lan-nay-mai-cay-max-do-hao-cam-cua-nhan-vat-chinh-ai-ngo-lai-khien-tat-ca-moi-nguoi-do-guc/c648959-chuong-65-ke-phan-dien-boi-roi-vi-do-boi" title="Chương 65: Kẻ phản diện. Bối rối vì đồ bơi ②">Chương 65: Kẻ phản diện. Bối rối vì đồ bơi ②</a></div>
+            <div class="thumb_attr volume-title">Vol 4: Mùa hè sa ngã thành phản diện</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/28702-ten-phan-dien-bi-de-ngua-ra-lam-toi-khi-can-kiet-suc-luc-lan-nay-mai-cay-max-do-hao-cam-cua-nhan-vat-chinh-ai-ngo-lai-khien-tat-ca-moi-nguoi-do-guc" title="Tên phản diện bị đè ngửa ra làm tới khi cạn kiệt sức lực ~Lần này mải cày max độ hảo cảm của nhân vật chính, ai ngờ lại khiến tất cả mọi người đổ gục~">Tên phản diện bị đè ngửa ra làm tới khi cạn kiệt sức lực ~Lần này mải cày max độ hảo cảm của nhân vật chính, ai ngờ lại khiến tất cả mọi người đổ gục~</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_28702">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Tên phản diện bị đè ngửa ra làm tới khi cạn kiệt sức lực ~Lần này mải cày max độ hảo cảm của nhân vật chính, ai ngờ lại khiến tất cả mọi người đổ gục~
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 88.479</div>
+                                            <div>Lượt xem: 68.206</div>
+                                            <div>Lượt thích: 447</div>
+                                        </p>
+                                        
+                                        Một ngày nọ, tôi chợt nhớ ra.Rằng bản thân chính là Kasajima Yuji ――― tên phản diện trong một tựa eroge, kẻ vì đày đọa nhân vật chính mà cuối cùng nhận lấy kết cục bị nữ chính đè cưỡi lên người và đán...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                        <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_25125">
+        <a href="/truyen/25125-tro-thanh-bac-si-tam-ly-bi-cac-tho-san-am-anh/c648955-129-alice-cua-toi" title="129. Alice của tôi!!!!!!">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s25125-27377916-01e3-4e34-a01d-dafb84547c75.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="129. Alice của tôi!!!!!!"><a href="/truyen/25125-tro-thanh-bac-si-tam-ly-bi-cac-tho-san-am-anh/c648955-129-alice-cua-toi" title="129. Alice của tôi!!!!!!">129. Alice của tôi!!!!!!</a></div>
+            <div class="thumb_attr volume-title">101-200</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/25125-tro-thanh-bac-si-tam-ly-bi-cac-tho-san-am-anh" title="Trở Thành Bác Sĩ Tâm Lý Bị Các Thợ Săn Ám Ảnh">Trở Thành Bác Sĩ Tâm Lý Bị Các Thợ Săn Ám Ảnh</a></div>
+</div>
+
+                            <!-- Tooltip -->
+                            <div style="display: none">
+                                <div id="series_25125">
+                                    <div style="margin: 10px 0; width: 250px">
+                                        <p style="color: white; font-weight: bold">
+                                            Trở Thành Bác Sĩ Tâm Lý Bị Các Thợ Săn Ám Ảnh
+                                        </p>
+                                        <p>
+                                            <div>Số từ: 346.187</div>
+                                            <div>Lượt xem: 388.123</div>
+                                            <div>Lượt thích: 1.130</div>
+                                        </p>
+                                        
+                                        Tuyệt đối không được coi bệnh nhân là đối tượng yêu đương.Tôi cũng đã được dạy bảo như thế."Tôi đến rồi đây!""…….""Bác sĩ?""…….""Trả lời tôi đi."Thế nhưng, ngay từ đầu, việc có yêu hay không...Vốn dĩ...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Tooltip -->
+                                                                            </main>              
+                    <div class="pagination-footer">
+        <div class="pagination_wrap">
+            <!--<a href="" class="paging_item paging_prevnext prev  disabled ">Trước</a>-->
+            <a href="https://ln.hako.vn/danh-sach?truyendich=1&amp;sangtac=1&amp;dangtienhanh=1&amp;tamngung=1&amp;hoanthanh=1&amp;sapxep=capnhat&amp;page=1" class="paging_item paging_prevnext prev  disabled ">Đầu</a>
+            
+                        <a href="https://ln.hako.vn/danh-sach?truyendich=1&amp;sangtac=1&amp;dangtienhanh=1&amp;tamngung=1&amp;hoanthanh=1&amp;sapxep=capnhat&amp;page=1" class="paging_item page_num  current ">1</a>
+                        <a href="https://ln.hako.vn/danh-sach?truyendich=1&amp;sangtac=1&amp;dangtienhanh=1&amp;tamngung=1&amp;hoanthanh=1&amp;sapxep=capnhat&amp;page=2" class="paging_item page_num ">2</a>
+                        <a href="https://ln.hako.vn/danh-sach?truyendich=1&amp;sangtac=1&amp;dangtienhanh=1&amp;tamngung=1&amp;hoanthanh=1&amp;sapxep=capnhat&amp;page=3" class="paging_item page_num ">3</a>
+                        <a href="https://ln.hako.vn/danh-sach?truyendich=1&amp;sangtac=1&amp;dangtienhanh=1&amp;tamngung=1&amp;hoanthanh=1&amp;sapxep=capnhat&amp;page=4" class="paging_item page_num ">4</a>
+                        <a href="https://ln.hako.vn/danh-sach?truyendich=1&amp;sangtac=1&amp;dangtienhanh=1&amp;tamngung=1&amp;hoanthanh=1&amp;sapxep=capnhat&amp;page=5" class="paging_item page_num ">5</a>
+            
+            <!--<a href=" https://ln.hako.vn/danh-sach?truyendich=1&amp;sangtac=1&amp;dangtienhanh=1&amp;tamngung=1&amp;hoanthanh=1&amp;sapxep=capnhat&amp;page=2 " class="paging_item paging_prevnext next ">Tiếp</a>-->
+            <a href="https://ln.hako.vn/danh-sach?truyendich=1&amp;sangtac=1&amp;dangtienhanh=1&amp;tamngung=1&amp;hoanthanh=1&amp;sapxep=capnhat&amp;page=130" class="paging_item paging_prevnext next ">Cuối</a>
+        </div>
+    </div>
+                        </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</form>
+
+<script>
+    $(document).ready(function() {
+        $('.js-call-filters-wrapper').on('click',function () {
+            $('.filters-wrapper').toggle();
+            $('html').toggleClass('overflow-hiden');
+        });
+        $('.js-off-filters-wrapper').on('click',function () {
+            $('.filters-wrapper').hide();
+            $('html').removeClass('overflow-hiden');
+        });
+
+        tippy('.ln-tooltip', {
+            delay: 50,
+            maxWidth: 500,
+            interactive: false,
+            touch: ['hold', 1000],
+            placement: 'right',
+            ignoreAttributes: true,
+            content(ref) {
+                const selector = ref.getAttribute('data-tooltip-content');
+                const template = document.querySelector(selector);
+                return template.innerHTML;
+            },
+            onShow(instance) {
+                tippyHideAll({ exclude: instance });
+            }
+        });
+    });
+</script>
+
+
+    
+    <script src="/scripts/service-manager.js?r=6"></script>
+
+    <script src="/scripts/app.js?id=936e11140b1e2cfb5b4a72ae484a7c9c"></script>
+    <script src="https://ln.hako.vn/vendor/livewire/livewire.min.js?id=df3a17f2"   data-csrf="pijPfCgfXxrVZCUMj6UPejoopwRxUB02st2gIFZ2" data-update-uri="/livewire/update" data-navigate-once="true"></script>
+
+    
+    <script>(function(s){s.dataset.zone='9831105',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    
+            
+            <footer id="footer">
+    <div class="container">
+        <!--<span><a href="">Hako.re</a></span>-->
+        <span class="right">Liên hệ: <a href="mailto:contact@hako.vn" target="_blank" style="color: #5fff46">contact@hako.vn</a></span>
+
+        <span>© 2016 - 2026 Cổng Light Novel - Đọc Light Novel</span>
+    </div>
+</footer>    
+    <div x-data x-show="$store.toast.on" @click="$store.toast.hide()" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md fixed w-3/4 md:w-1/2 z-20 inset-x-0 bottom-10 mx-auto" role="alert" style="display: none">
+    <div class="flex">
+        <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+        <div>
+            <p class="font-bold capitalize">Chú ý</p>
+            <p class="text-sm" x-text="$store.toast.message"></p>
+        </div>
+    </div>
+</div><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a44815c4c99cdd3d',t:'MTc5MDk5MDAxNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

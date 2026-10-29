@@ -1,0 +1,1 @@
+Back 2; TapText '^Tik\.Porn' 15; Shot 'c7_tik'; Labels 'c7' | Select-Object -First 16

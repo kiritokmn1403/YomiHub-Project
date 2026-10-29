@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="vi" prefix="og: https://ogp.me/ns#">
+	<head>
+		<meta charset="UTF-8">
+				<meta name="description" content="Tình Yêu Và Tội Lỗi là bộ phim hình sự pha trộn yếu tố tâm lý và tình cảm, bắt đầu từ một vụ bắt cóc bí ẩn vô tình làm lộ ra mạng lưới tội phạm quy mô lớn.">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+				<link data-minify="1" rel="stylesheet" href="https://hotphim.org/wp-content/cache/min/1/ajax/libs/font-awesome/6.5.2/css/all.min.css?ver=1790576424"
+			referrerpolicy="no-referrer" />
+		<style>
+			.dropdown-menu {
+			display: none;
+			position: absolute;
+			z-index: 1000;
+			}
+			.dropdown-menu.show {
+			display: block;
+			}
+			.season-dropdown {
+			position: relative;
+			}
+			/* Mobile dropdown fix */
+			@media screen and (max-width: 1359px) {
+				.el-group.toggled .dropdown-menu {
+					position: static !important;
+					display: none;
+					width: 100%;
+					margin-top: 0.5rem;
+					margin-left: 0;
+					box-shadow: none;
+					border: none;
+					background-color: rgba(0, 0, 0, 0.2);
+					border-radius: 0.5rem;
+					padding: 0.5rem;
+				}
+				.el-group.toggled .dropdown-menu.show {
+					display: block;
+				}
+				.el-group.toggled .menu-item-sub {
+					grid-column: 1 / -1;
+					width: 100%;
+				}
+				.el-group.toggled .season-dropdown > a {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					width: 100%;
+				}
+				.el-group.toggled .dropdown-menu .m-col-4,
+				.el-group.toggled .dropdown-menu > div[style*="grid"] {
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					gap: 0.5rem;
+				}
+				.el-group.toggled .dropdown-item {
+					padding: 0.5rem;
+					font-size: 13px;
+					border-radius: 0.25rem;
+				}
+			}
+			/* Search suggestions styling */
+			.search-suggestions {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background: #fff;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			z-index: 1000;
+			max-height: 300px;
+			overflow-y: auto;
+			display: none;
+			}
+			.suggestion-item {
+			padding: 12px 16px;
+			cursor: pointer;
+			border-bottom: 1px solid #f0f0f0;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			transition: background-color 0.2s;
+			}
+			.suggestion-item:last-child {
+			border-bottom: none;
+			}
+			.suggestion-item:hover,
+			.suggestion-item.selected {
+			background-color: #f8f9fa;
+			}
+			.suggestion-item i {
+			color: #666;
+			width: 16px;
+			text-align: center;
+			}
+			.suggestion-item span {
+			flex: 1;
+			color: #333;
+			}
+			.suggestion-type {
+			color: #999;
+			font-size: 12px;
+			margin-left: auto;
+			}
+			.suggestion-item.loading {
+			text-align: center;
+			color: #666;
+			font-style: italic;
+			}
+			.suggestion-item.no-results {
+			text-align: center;
+			color: #999;
+			font-style: italic;
+			}
+		</style>
+		
+<!-- Tối ưu hóa công cụ tìm kiếm bởi Rank Math PRO - https://rankmath.com/ -->
+<title>Xem Phim Tình Yêu Và Tội Lỗi - Hot Phim</title>
+<link crossorigin data-rocket-preconnect href="https://www.youtube.com" rel="preconnect"><link rel="preload" data-rocket-preload as="image" href="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-thumb.webp" fetchpriority="high">
+<meta name="description" content="Tình Yêu Và Tội Lỗi là bộ phim hình sự pha trộn yếu tố tâm lý và tình cảm, bắt đầu từ một vụ bắt cóc bí ẩn vô tình làm lộ ra mạng lưới tội phạm quy mô lớn."/>
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+<link rel="canonical" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/" />
+<meta name="keywords" content="Tình Yêu Và Tội Lỗi"/>
+<meta property="og:locale" content="vi_VN" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Xem Phim Tình Yêu Và Tội Lỗi - Hot Phim" />
+<meta property="og:description" content="Tình Yêu Và Tội Lỗi là bộ phim hình sự pha trộn yếu tố tâm lý và tình cảm, bắt đầu từ một vụ bắt cóc bí ẩn vô tình làm lộ ra mạng lưới tội phạm quy mô lớn." />
+<meta property="og:url" content="https://hotphim.org/tinh-yeu-va-toi-loi-2026/" />
+<meta property="og:site_name" content="HotPhim" />
+<meta property="article:publisher" content="https://www.facebook.com/hotphimprovn" />
+<meta property="article:tag" content="Tình Yêu Và Tội Lỗi" />
+<meta property="article:section" content="Chính Kịch" />
+<meta property="og:updated_time" content="2026-08-12T15:18:01+07:00" />
+<meta property="og:image" content="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp" />
+<meta property="og:image:secure_url" content="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp" />
+<meta property="og:image:width" content="500" />
+<meta property="og:image:height" content="750" />
+<meta property="og:image:alt" content="Tình Yêu Và Tội Lỗi" />
+<meta property="og:image:type" content="image/webp" />
+<meta property="article:published_time" content="2026-07-30T10:00:03+07:00" />
+<meta property="article:modified_time" content="2026-08-12T15:18:01+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Xem Phim Tình Yêu Và Tội Lỗi - Hot Phim" />
+<meta name="twitter:description" content="Tình Yêu Và Tội Lỗi là bộ phim hình sự pha trộn yếu tố tâm lý và tình cảm, bắt đầu từ một vụ bắt cóc bí ẩn vô tình làm lộ ra mạng lưới tội phạm quy mô lớn." />
+<meta name="twitter:site" content="@hotphimprovn" />
+<meta name="twitter:creator" content="@hotphimprovn" />
+<meta name="twitter:image" content="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp" />
+<meta name="twitter:label1" content="Được viết bởi" />
+<meta name="twitter:data1" content="phim hot" />
+<meta name="twitter:label2" content="Thời gian để đọc" />
+<meta name="twitter:data2" content="1 phút" />
+<script type="application/ld+json" class="rank-math-schema-pro">{"@context":"https://schema.org","@graph":[{"@type":"Place","@id":"https://hotphim.org/#place","address":{"@type":"PostalAddress","streetAddress":"Lot B7, 19A Street, Tan Thuan EPZ, Tan Thuan Dong Ward, District 7","addressLocality":"Ho Chi Minh","addressRegion":"Ho Chi Minh","postalCode":"700000","addressCountry":"VN"}},{"@type":"Organization","@id":"https://hotphim.org/#organization","name":"HotPhim","url":"https://hotphim.org","sameAs":["https://www.facebook.com/hotphimprovn","https://twitter.com/hotphimprovn","https://www.tumblr.com/blog/hotphimprovn","hotphimprovn.blogspot.com","https://medium.com/@hotphimpro","https://sites.google.com/view/hotphimprovn","https://gravatar.com/hotphimprovn","www.pinterest.com/hotphimprovn","https://www.flickr.com/photos/203702555@N04/","https://500px.com/p/hotphimprovn"],"email":"contact@hotphim.org","address":{"@type":"PostalAddress","streetAddress":"Lot B7, 19A Street, Tan Thuan EPZ, Tan Thuan Dong Ward, District 7","addressLocality":"Ho Chi Minh","addressRegion":"Ho Chi Minh","postalCode":"700000","addressCountry":"VN"},"logo":{"@type":"ImageObject","@id":"https://hotphim.org/#logo","url":"https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1.png","contentUrl":"https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1.png","caption":"HotPhim","inLanguage":"vi","width":"512","height":"512"},"contactPoint":[{"@type":"ContactPoint","telephone":"0963866866","contactType":"customer support"}],"description":"HotPhim (HotPhimvn hay PhimMoiZ, PhimMoizz) v\u1edbi giao di\u1ec7n m\u1edbi th\u00e2n thi\u1ec7n, tr\u1ef1c quan d\u1ec5 s\u1eed d\u1ee5ng, h\u01a1n 100000+ b\u1ed9 phim HOT Full HD vietsub thuy\u1ebft minh.","legalName":"Xem Phim Fun","location":{"@id":"https://hotphim.org/#place"}},{"@type":"WebSite","@id":"https://hotphim.org/#website","url":"https://hotphim.org","name":"HotPhim","alternateName":"HotPhim.org","publisher":{"@id":"https://hotphim.org/#organization"},"inLanguage":"vi"},{"@type":"ImageObject","@id":"https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp","url":"https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp","width":"500","height":"750","caption":"T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i","inLanguage":"vi"},{"@type":"BreadcrumbList","@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#breadcrumb","itemListElement":[{"@type":"ListItem","position":"1","item":{"@id":"https://hotphim.org","name":"Home"}},{"@type":"ListItem","position":"2","item":{"@id":"https://hotphim.org/the-loai/","name":"Th\u1ec3 Lo\u1ea1i"}},{"@type":"ListItem","position":"3","item":{"@id":"https://hotphim.org/the-loai/chinh-kich/","name":"Ch\u00ednh K\u1ecbch"}},{"@type":"ListItem","position":"4","item":{"@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/","name":"T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i"}}]},{"@type":"WebPage","@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#webpage","url":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/","name":"Xem Phim T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i - Hot Phim","datePublished":"2026-07-30T10:00:03+07:00","dateModified":"2026-08-12T15:18:01+07:00","isPartOf":{"@id":"https://hotphim.org/#website"},"primaryImageOfPage":{"@id":"https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp"},"inLanguage":"vi","breadcrumb":{"@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#breadcrumb"}},{"@type":"Person","@id":"https://hotphim.org/author/hotphim/","name":"phim hot","url":"https://hotphim.org/author/hotphim/","image":{"@type":"ImageObject","@id":"https://secure.gravatar.com/avatar/57233b0616796c988fa2f367989cb3f08458175da9fa21a8b8782f1bc2c5119e?s=96&amp;d=mm&amp;r=g","url":"https://secure.gravatar.com/avatar/57233b0616796c988fa2f367989cb3f08458175da9fa21a8b8782f1bc2c5119e?s=96&amp;d=mm&amp;r=g","caption":"phim hot","inLanguage":"vi"},"worksFor":{"@id":"https://hotphim.org/#organization"}},{"@type":"Article","headline":"Phim Xem Phim T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i - Hot Phim","keywords":"T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i","datePublished":"2026-07-30T10:00:03+07:00","dateModified":"2026-08-12T15:18:01+07:00","articleSection":"Ch\u00ednh K\u1ecbch, H\u00e0nh \u0110\u1ed9ng, H\u00ecnh S\u1ef1, Phim B\u1ed9, Phim \u0110ang Chi\u00ea\u0301u, T\u00e2m L\u00fd, T\u00ecnh C\u1ea3m","author":{"@id":"https://hotphim.org/author/hotphim/","name":"phim hot"},"publisher":{"@id":"https://hotphim.org/#organization"},"description":"T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i l\u00e0 b\u1ed9 phim h\u00ecnh s\u1ef1 pha tr\u1ed9n y\u1ebfu t\u1ed1 t\u00e2m l\u00fd v\u00e0 t\u00ecnh c\u1ea3m, b\u1eaft \u0111\u1ea7u t\u1eeb m\u1ed9t v\u1ee5 b\u1eaft c\u00f3c b\u00ed \u1ea9n v\u00f4 t\u00ecnh l\u00e0m l\u1ed9 ra m\u1ea1ng l\u01b0\u1edbi t\u1ed9i ph\u1ea1m quy m\u00f4 l\u1edbn.","name":"Phim Xem Phim T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i - Hot Phim","@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#richSnippet","isPartOf":{"@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#webpage"},"image":{"@id":"https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp"},"inLanguage":"vi","mainEntityOfPage":{"@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#webpage"}}]}</script>
+<!-- /Plugin SEO WordPress Rank Math -->
+
+
+<link rel="alternate" type="application/rss+xml" title="Hot Phim &raquo; Tình Yêu Và Tội Lỗi Dòng bình luận" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/feed/" />
+<link rel="alternate" title="oNhúng (JSON)" type="application/json+oembed" href="https://hotphim.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhotphim.org%2Ftinh-yeu-va-toi-loi-2026%2F" />
+<link rel="alternate" title="oNhúng (XML)" type="text/xml+oembed" href="https://hotphim.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhotphim.org%2Ftinh-yeu-va-toi-loi-2026%2F&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+
+<link data-minify="1" rel='stylesheet' id='wpdiscuz-frontend-css-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/plugins/wpdiscuz/themes/default/style.css?ver=1790576735' media='all' />
+<style id="wpdiscuz-frontend-css-inline-css">
+ #wpdcom .wpd-blog-administrator .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-administrator .wpd-comment-author, #wpdcom .wpd-blog-administrator .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-administrator .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-comment-wrap.wpd-blog-administrator{border-left:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-administrator .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-administrator .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-administrator .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-editor .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-editor .wpd-comment-author, #wpdcom .wpd-blog-editor .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-editor .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-comment-wrap.wpd-blog-editor{border-left:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-editor .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-editor .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-editor .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-author .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-author .wpd-comment-author, #wpdcom .wpd-blog-author .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-author .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-author .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-author .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-author .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-contributor .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-contributor .wpd-comment-author, #wpdcom .wpd-blog-contributor .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-contributor .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-contributor .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-contributor .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-contributor .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-subscriber .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-subscriber .wpd-comment-author, #wpdcom .wpd-blog-subscriber .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-subscriber .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-subscriber .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom .wpd-blog-revisor .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-revisor .wpd-comment-author, #wpdcom .wpd-blog-revisor .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-revisor .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-revisor .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-revisor .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-revisor .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-post_author .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-post_author .wpd-comment-author, #wpdcom .wpd-blog-post_author .wpd-comment-author a{color:#00B38F}#wpdcom .wpd-blog-post_author .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-post_author .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-comment-wrap.wpd-blog-post_author{border-left:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-post_author .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-post_author .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-post_author .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-guest .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-guest .wpd-comment-author, #wpdcom .wpd-blog-guest .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-guest .wpd-comment-subheader{border-top:1px dashed #00B38F}#comments, #respond, .comments-area, #wpdcom{}#wpdcom .ql-editor > *{color:#777777}#wpdcom .ql-editor::before{}#wpdcom .ql-toolbar{border:1px solid #DDDDDD;border-top:none}#wpdcom .ql-container{border:1px solid #DDDDDD;border-bottom:none}#wpdcom .wpd-form-row .wpdiscuz-item input[type="text"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="email"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="url"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="color"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="date"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="datetime"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="datetime-local"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="month"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="number"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="time"], #wpdcom textarea, #wpdcom select{border:1px solid #DDDDDD;color:#777777}#wpdcom .wpd-form-row .wpdiscuz-item textarea{border:1px solid #DDDDDD}#wpdcom input::placeholder, #wpdcom textarea::placeholder, #wpdcom input::-moz-placeholder, #wpdcom textarea::-webkit-input-placeholder{}#wpdcom .wpd-comment-text{color:#777777}#wpdcom .wpd-thread-head .wpd-thread-info{border-bottom:2px solid #00B38F}#wpdcom .wpd-thread-head .wpd-thread-info.wpd-reviews-tab svg{fill:#00B38F}#wpdcom .wpd-thread-head .wpdiscuz-user-settings{border-bottom:2px solid #00B38F}#wpdcom .wpd-thread-head .wpdiscuz-user-settings:hover{color:#00B38F}#wpdcom .wpd-comment .wpd-follow-link:hover{color:#00B38F}#wpdcom .wpd-comment-status .wpd-sticky{color:#00B38F}#wpdcom .wpd-thread-filter .wpdf-active{color:#00B38F;border-bottom-color:#00B38F}#wpdcom .wpd-comment-info-bar{border:1px dashed #33c3a6;background:#e6f8f4}#wpdcom .wpd-comment-info-bar .wpd-current-view i{color:#00B38F}#wpdcom .wpd-filter-view-all:hover{background:#00B38F}#wpdcom .wpdiscuz-item .wpdiscuz-rating > label{color:#DDDDDD}#wpdcom .wpdiscuz-item .wpdiscuz-rating:not(:checked) > label:hover, .wpdiscuz-rating:not(:checked) > label:hover ~ label{}#wpdcom .wpdiscuz-item .wpdiscuz-rating > input ~ label:hover, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label{color:#FFED85}#wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpdcom .wpdiscuz-item .wpdiscuz-rating > label:hover ~ input:checked ~ label, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked + label:hover ~ label, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover ~ label, .wpd-custom-field .wcf-active-star, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label{color:#FFD700}#wpd-post-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-star{fill:#DDDDDD}#wpd-post-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-active{fill:#FFD700}#wpd-post-rating .wpd-rating-wrap .wpd-rate-starts svg .wpd-star{fill:#DDDDDD}#wpd-post-rating .wpd-rating-wrap .wpd-rate-starts:hover svg .wpd-star{fill:#FFED85}#wpd-post-rating.wpd-not-rated .wpd-rating-wrap .wpd-rate-starts svg:hover ~ svg .wpd-star{fill:#DDDDDD}.wpdiscuz-post-rating-wrap .wpd-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-star{fill:#DDDDDD}.wpdiscuz-post-rating-wrap .wpd-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-active{fill:#FFD700}#wpdcom .wpd-comment .wpd-follow-active{color:#ff7a00}#wpdcom .page-numbers{color:#555;border:#555 1px solid}#wpdcom span.current{background:#555}#wpdcom.wpd-layout-1 .wpd-new-loaded-comment > .wpd-comment-wrap > .wpd-comment-right{background:#FFFAD6}#wpdcom.wpd-layout-2 .wpd-new-loaded-comment.wpd-comment > .wpd-comment-wrap > .wpd-comment-right{background:#FFFAD6}#wpdcom.wpd-layout-2 .wpd-new-loaded-comment.wpd-comment.wpd-reply > .wpd-comment-wrap > .wpd-comment-right{background:transparent}#wpdcom.wpd-layout-2 .wpd-new-loaded-comment.wpd-comment.wpd-reply > .wpd-comment-wrap{background:#FFFAD6}#wpdcom.wpd-layout-3 .wpd-new-loaded-comment.wpd-comment > .wpd-comment-wrap > .wpd-comment-right{background:#FFFAD6}#wpdcom .wpd-follow:hover i, #wpdcom .wpd-unfollow:hover i, #wpdcom .wpd-comment .wpd-follow-active:hover i{color:#00B38F}#wpdcom .wpdiscuz-readmore{cursor:pointer;color:#00B38F}.wpd-custom-field .wcf-pasiv-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label{color:#DDDDDD}.wpd-wrapper .wpd-list-item.wpd-active{border-top:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply.wpd-unapproved-comment .wpd-comment-wrap{border-left:3px solid #FFFAD6}#wpdcom.wpd-layout-3 .wpd-comment.wpd-reply.wpd-unapproved-comment .wpd-comment-right{border-left:1px solid #FFFAD6}#wpdcom .wpd-prim-button{background-color:#07B290;color:#FFFFFF}#wpdcom .wpd_label__check i.wpdicon-on{color:#07B290;border:1px solid #83d9c8}#wpd-bubble-wrapper #wpd-bubble-all-comments-count{color:#1DB99A}#wpd-bubble-wrapper > div{background-color:#1DB99A}#wpd-bubble-wrapper > #wpd-bubble #wpd-bubble-add-message{background-color:#1DB99A}#wpd-bubble-wrapper > #wpd-bubble #wpd-bubble-add-message::before{border-left-color:#1DB99A;border-right-color:#1DB99A}#wpd-bubble-wrapper.wpd-right-corner > #wpd-bubble #wpd-bubble-add-message::before{border-left-color:#1DB99A;border-right-color:#1DB99A}.wpd-inline-icon-wrapper path.wpd-inline-icon-first{fill:#1DB99A}.wpd-inline-icon-count{background-color:#1DB99A}.wpd-inline-icon-count::before{border-right-color:#1DB99A}.wpd-inline-form-wrapper::before{border-bottom-color:#1DB99A}.wpd-inline-form-question{background-color:#1DB99A}.wpd-inline-form{background-color:#1DB99A}.wpd-last-inline-comments-wrapper{border-color:#1DB99A}.wpd-last-inline-comments-wrapper::before{border-bottom-color:#1DB99A}.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments{background:#1DB99A}.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments:hover,.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments:active,.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments:focus{background-color:#1DB99A}#wpdcom .ql-snow .ql-tooltip[data-mode="link"]::before{content:"Nhập link:"}#wpdcom .ql-snow .ql-tooltip.ql-editing a.ql-action::after{content:"Lưu"}.comments-area{width:auto}
+/*# sourceURL=wpdiscuz-frontend-css-inline-css */
+</style>
+<link data-minify="1" rel='stylesheet' id='wpdiscuz-fa-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/plugins/wpdiscuz/assets/third-party/font-awesome-5.13.0/css/fa.min.css?ver=1790576735' media='all' />
+<link rel='stylesheet' id='wpdiscuz-combo-css-css' href='https://hotphim.org/wp-content/plugins/wpdiscuz/assets/css/wpdiscuz-combo.min.css?ver=7.1.2' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-8d4d4c6271d0064f-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/8d4d4c6271d0064f.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-6399440d760ff229-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/6399440d760ff229.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-95ce0c777797e218-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/95ce0c777797e218.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-1de65235de1a0d74-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/1de65235de1a0d74.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-2f1550876c0c97ad-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/2f1550876c0c97ad.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-4c81114ec1a39e4f-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/4c81114ec1a39e4f.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-5c4826c56b72a529-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/5c4826c56b72a529.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-9ce342e1cded4676-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/9ce342e1cded4676.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-08403d1cd8f0592e-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/08403d1cd8f0592e.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-cfb18acb3accb3c3-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/cfb18acb3accb3c3.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-all.min-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/all.min.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-b7b3b81f46f2a6c5-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/b7b3b81f46f2a6c5.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-ebdfd11796228ea6-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/ebdfd11796228ea6.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-cdaee2d63e50a549-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/cdaee2d63e50a549.css?ver=1790576424' media='all' />
+<link data-minify="1" rel='stylesheet' id='movie-theme-615f52311d2b0706-css' href='https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/css/615f52311d2b0706.css?ver=1790576424' media='all' />
+<link rel='stylesheet' id='movie-theme-style-css' href='https://hotphim.org/wp-content/themes/movie-theme/style.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-style-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/style.css?ver=7.1.2' media='all' />
+<link rel='stylesheet' id='responsive-style-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/responsive.css?ver=7.1.2' media='all' />
+<link rel='stylesheet' id='rating-system-css-css' href='https://hotphim.org/wp-content/themes/movie-theme/css/rating-system.css?ver=1.0.0' media='all' />
+<script id="jquery-core-js-extra">
+var comment_ajax = {"ajax_url":"https://hotphim.org/wp-admin/admin-ajax.php","nonce":"eb759337f5","reply_nonce":"8e27fd8a4a"};
+//# sourceURL=jquery-core-js-extra
+</script>
+<script id="jquery-core-js" src="https://hotphim.org/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script data-minify="1" id="movie-theme-navigation-slider-js" src="https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/js/navigation-slider.js?ver=1790576424"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://hotphim.org/xmlrpc.php?rsd" />
+<link rel='shortlink' href='https://hotphim.org/?p=3711' />
+<link rel="icon" href="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" sizes="32x32" />
+<link rel="icon" href="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" />
+<meta name="msapplication-TileImage" content="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" />
+	<meta name="generator" content="WP Rocket 3.20.0.1" data-wpr-features="wpr_minify_js wpr_preconnect_external_domains wpr_oci wpr_minify_css wpr_preload_links wpr_desktop" /></head>
+	<body class="wp-singular post-template-default single single-post postid-3711 single-format-standard wp-theme-movie-theme">
+				<header  class="fly">
+			<div  class="header-elements ">
+				<div  class="for-mobile menu-toggle toggle">
+					<div class="icon-menu"><span></span><span></span><span></span></div>
+				</div>
+				<div  class="for-mobile search-toggle">
+					<div class="icon-search"><span></span><span></span><i class="fa-solid fa-magnifying-glass"></i></div>
+				</div>
+				<a id="logo" class="header-logo" title="Hotphim.pro" href="https://hotphim.org/">
+				<img src="https://hotphim.org/wp-content/themes/movie-theme/images/hotphim-logo.png" alt="Hotphim-favicon.png">
+				</a>
+				<div  id="search" class="search-container">
+					<div class="search-elements">
+						<div class="search-icon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</div>
+						<input id="main-search" class="search-input" placeholder="Tìm kiếm phim, diễn viên"
+							autocomplete="off">
+						<div class="search-suggestions" id="search-suggestions"></div>
+					</div>
+				</div>
+				<div  class="el-group toggle">
+					<div id="main_menu">
+						<div class="menu-item"><a title="Phim bộ" href="https://hotphim.org/the-loai/phim-bo/">Phim Bộ</a></div>
+						<div class="menu-item"><a title="Phim lẻ"  href="https://hotphim.org/the-loai/phim-le/">Phim Lẻ</a></div>
+						<div class="menu-item"><a title="Diễn viên" href="https://hotphim.org/dien-vien/">Diễn Viên</a></div>
+						
+						<!-- Thể loại -->
+						<div class="menu-item menu-item-sub">
+							<div class="season-dropdown dropdown">
+								<a href="#">Thể loại<i class="fa-solid fa-caret-down ms-2"></i></a>
+								<div x-placement="bottom-start" aria-labelledby=""
+									class="v-dropdown-menu main_menu-dropdown bg-dark mt-2 dropdown-menu"
+									data-popper-reference-hidden="false" data-popper-escaped="false"
+									data-popper-placement="bottom-start" style="position: absolute;">
+									<div class="m-col-4">
+										<a class="dropdown-item" title="Anime" href="https://hotphim.org/the-loai/anime/"><span>Anime</span></a><a class="dropdown-item" title="Chính Kịch" href="https://hotphim.org/the-loai/chinh-kich/"><span>Chính Kịch</span></a><a class="dropdown-item" title="Cổ Trang" href="https://hotphim.org/the-loai/co-trang/"><span>Cổ Trang</span></a><a class="dropdown-item" title="Gia Đình" href="https://hotphim.org/the-loai/gia-dinh/"><span>Gia Đình</span></a><a class="dropdown-item" title="Hài Hước" href="https://hotphim.org/the-loai/hai-huoc/"><span>Hài Hước</span></a><a class="dropdown-item" title="Hành Động" href="https://hotphim.org/the-loai/hanh-dong/"><span>Hành Động</span></a><a class="dropdown-item" title="Hình Sự" href="https://hotphim.org/the-loai/hinh-su/"><span>Hình Sự</span></a><a class="dropdown-item" title="Hoạt Hình TQ" href="https://hotphim.org/the-loai/hoat-hinh/"><span>Hoạt Hình TQ</span></a><a class="dropdown-item" title="Khoa Học" href="https://hotphim.org/the-loai/khoa-hoc/"><span>Khoa Học</span></a><a class="dropdown-item" title="Kinh Dị" href="https://hotphim.org/the-loai/kinh-di/"><span>Kinh Dị</span></a><a class="dropdown-item" title="Phiêu Lưu" href="https://hotphim.org/the-loai/phieu-luu/"><span>Phiêu Lưu</span></a><a class="dropdown-item" title="Phim Bộ" href="https://hotphim.org/the-loai/phim-bo/"><span>Phim Bộ</span></a><a class="dropdown-item" title="Phim Chiếu Rạp" href="https://hotphim.org/the-loai/phim-chieu-rap/"><span>Phim Chiếu Rạp</span></a><a class="dropdown-item" title="Phim Đang Chiếu" href="https://hotphim.org/the-loai/phim-dang-chieu/"><span>Phim Đang Chiếu</span></a><a class="dropdown-item" title="Phim Lẻ" href="https://hotphim.org/the-loai/phim-le/"><span>Phim Lẻ</span></a><a class="dropdown-item" title="Phim Sắp Chiếu" href="https://hotphim.org/the-loai/phim-sap-chieu/"><span>Phim Sắp Chiếu</span></a><a class="dropdown-item" title="Tâm Lý" href="https://hotphim.org/the-loai/tam-ly/"><span>Tâm Lý</span></a><a class="dropdown-item" title="Thần Thoại" href="https://hotphim.org/the-loai/than-thoai/"><span>Thần Thoại</span></a><a class="dropdown-item" title="Tình Cảm" href="https://hotphim.org/the-loai/tinh-cam/"><span>Tình Cảm</span></a><a class="dropdown-item" title="TV Show" href="https://hotphim.org/the-loai/tv-show/"><span>TV Show</span></a><a class="dropdown-item" title="Viễn Tưởng" href="https://hotphim.org/the-loai/vien-tuong/"><span>Viễn Tưởng</span></a><a class="dropdown-item" title="Võ Thuật" href="https://hotphim.org/the-loai/vo-thuat/"><span>Võ Thuật</span></a>									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Quốc gia -->
+						<div class="menu-item menu-item-sub">
+							<div class="season-dropdown dropdown">
+								<a href="#">Quốc gia<i class="fa-solid fa-caret-down ms-2"></i></a>
+								<div x-placement="bottom-start" aria-labelledby=""
+									class="v-dropdown-menu main_menu-dropdown bg-dark mt-2 dropdown-menu"
+									data-popper-reference-hidden="false" data-popper-escaped="false"
+									data-popper-placement="bottom-start" style="position: absolute; ">
+									<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;">
+										<a class="dropdown-item" href="https://hotphim.org/quoc-gia/anh/">Anh</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/au-my/">Âu Mỹ</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/brazil/">Brazil</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/canada/">Canada</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/dai-loan/">Đài Loan</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/han-quoc/">Hàn Quốc</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/hong-kong/">Hồng Kông</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/indonesia/">Indonesia</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/iran/">Iran</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/mexico/">Mexico</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/nhat-ban/">Nhật Bản</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/singapore/">Singapore</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/thai-lan/">Thái Lan</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/trung-quoc/">Trung Quốc</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/viet-nam/">Việt Nam</a>									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex-grow-1"></div>
+				</div>
+			</div>
+		</header>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+			    // Mobile menu toggle functionality
+			    const menuToggle = document.querySelector('.for-mobile.menu-toggle');
+			    const elGroup = document.querySelector('.el-group');
+			
+			    if (menuToggle && elGroup) {
+			        menuToggle.addEventListener('click', function() {
+			            // Toggle classes for menu toggle
+			            menuToggle.classList.toggle('toggled');
+			
+			            // Toggle classes for el-group
+			            elGroup.classList.toggle('toggled');
+			        });
+			    }
+			
+			    // Mobile search toggle functionality
+			    const searchToggle = document.querySelector('.for-mobile.search-toggle');
+			    const headerElements = document.querySelector('.header-elements');
+			    const searchElement = document.querySelector('#search');
+			
+			    if (searchToggle && headerElements && searchElement) {
+			        searchToggle.addEventListener('click', function() {
+			            // Toggle classes for search toggle
+			            searchToggle.classList.toggle('toggled');
+			
+			            // Toggle classes for header-elements
+			            headerElements.classList.toggle('simple');
+			
+			            // Toggle classes for search element
+			            searchElement.classList.toggle('toggled');
+			        });
+			    }
+			
+			    // Get all dropdown triggers
+			    const dropdownTriggers = document.querySelectorAll('.season-dropdown > a');
+			
+			    dropdownTriggers.forEach(function(trigger) {
+			        const dropdown = trigger.parentElement.querySelector('.dropdown-menu');
+			
+			        // Add click event to toggle dropdown
+			        trigger.addEventListener('click', function(e) {
+			            e.preventDefault();
+			
+			            // Close all other dropdowns
+			            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+			                if (menu !== dropdown) {
+			                    menu.classList.remove('show');
+			                }
+			            });
+			
+			            // Toggle current dropdown
+			            dropdown.classList.toggle('show');
+			        });
+			    });
+			
+			    // Close dropdowns when clicking outside
+			    document.addEventListener('click', function(e) {
+			        if (!e.target.closest('.season-dropdown')) {
+			            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+			                menu.classList.remove('show');
+			            });
+			        }
+			    });
+			
+			    // Close dropdowns on escape key
+			    document.addEventListener('keydown', function(e) {
+			        if (e.key === 'Escape') {
+			            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+			                menu.classList.remove('show');
+			            });
+			        }
+			    });
+			
+			    // Search functionality
+			    const searchInput = document.querySelector('#main-search');
+			    const searchIcon = document.querySelector('.search-icon');
+			
+			    if (searchInput) {
+			        // Handle keyboard navigation
+			        let selectedSuggestionIndex = -1;
+			
+			        searchInput.addEventListener('keydown', function(e) {
+			            const suggestions = document.querySelectorAll(
+			                '.suggestion-item:not(.loading):not(.no-results)');
+			
+			            if (e.key === 'ArrowDown') {
+			                e.preventDefault();
+			                selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, suggestions.length -
+			                    1);
+			                updateSelectedSuggestion(suggestions);
+			            } else if (e.key === 'ArrowUp') {
+			                e.preventDefault();
+			                selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, -1);
+			                updateSelectedSuggestion(suggestions);
+			            } else if (e.key === 'Enter') {
+			                e.preventDefault();
+			                if (selectedSuggestionIndex >= 0 && suggestions[selectedSuggestionIndex]) {
+			                    suggestions[selectedSuggestionIndex].click();
+			                } else {
+			                    performSearch();
+			                }
+			            } else if (e.key === 'Escape') {
+			                hideSuggestions();
+			                selectedSuggestionIndex = -1;
+			            }
+			        });
+			
+			        function updateSelectedSuggestion(suggestions) {
+			            suggestions.forEach((item, index) => {
+			                item.classList.toggle('selected', index === selectedSuggestionIndex);
+			            });
+			        }
+			
+			        // Handle search on icon click
+			        if (searchIcon) {
+			            searchIcon.addEventListener('click', function() {
+			                performSearch();
+			            });
+			        }
+			
+			        // Auto-suggest functionality
+			        let searchTimeout;
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			
+			        searchInput.addEventListener('input', function() {
+			            clearTimeout(searchTimeout);
+			            const query = this.value.trim();
+			
+			            if (query.length >= 2) {
+			                searchTimeout = setTimeout(() => {
+			                    fetchSearchSuggestions(query);
+			                }, 300);
+			            } else {
+			                hideSuggestions();
+			            }
+			        });
+			
+			        // Hide suggestions when clicking outside
+			        document.addEventListener('click', function(e) {
+			            if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+			                hideSuggestions();
+			            }
+			        });
+			
+			        // Show suggestions when focusing on input
+			        searchInput.addEventListener('focus', function() {
+			            const query = this.value.trim();
+			            if (query.length >= 2) {
+			                fetchSearchSuggestions(query);
+			            }
+			        });
+			    }
+			
+			    // Search function
+			    function performSearch() {
+			        const searchInput = document.querySelector('#main-search');
+			        if (searchInput) {
+			            const query = searchInput.value.trim();
+			
+			            if (query.length > 0) {
+			                hideSuggestions();
+			                // Redirect to search results page
+			                const searchUrl = 'https://hotphim.org/?s=' + encodeURIComponent(query);
+			                window.location.href = searchUrl;
+			            }
+			        }
+			    }
+			
+			    // Fetch search suggestions
+			    function fetchSearchSuggestions(query) {
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			
+			        // Show loading state
+			        suggestionsContainer.innerHTML = '<div class="suggestion-item loading">Đang tìm kiếm...</div>';
+			        suggestionsContainer.style.display = 'block';
+			
+			        // Make AJAX request to get suggestions
+			        const formData = new FormData();
+			        formData.append('action', 'search_suggestions');
+			        formData.append('query', query);
+			        formData.append('nonce', 'c05e4a0c8a');
+			
+			        fetch('https://hotphim.org/wp-admin/admin-ajax.php', {
+			                method: 'POST',
+			                body: formData
+			            })
+			            .then(response => response.json())
+			            .then(data => {
+			                if (data.success && data.data.length > 0) {
+			                    displaySuggestions(data.data);
+			                } else {
+			                    suggestionsContainer.innerHTML =
+			                        '<div class="suggestion-item no-results">Không tìm thấy gợi ý</div>';
+			                }
+			            })
+			            .catch(error => {
+			                console.error('Search suggestions error:', error);
+			                hideSuggestions();
+			            });
+			    }
+			
+			    // Display search suggestions
+			    function displaySuggestions(suggestions) {
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			        let html = '';
+			
+			        // Reset selected index
+			        selectedSuggestionIndex = -1;
+			
+			        suggestions.forEach(suggestion => {
+			            const icon = suggestion.type === 'category' ? 'fa-tags' : 'fa-film';
+			            html += `<div class="suggestion-item" data-query="${suggestion.title}" data-url="${suggestion.url}">
+			                    <i class="fa-solid ${icon}"></i>
+			                    <span>${suggestion.title}</span>
+			                    ${suggestion.type === 'category' ? '<small class="suggestion-type">Thể loại</small>' : ''}
+			                </div>`;
+			        });
+			
+			        suggestionsContainer.innerHTML = html;
+			        suggestionsContainer.style.display = 'block';
+			
+			        // Add click handlers to suggestions
+			        const suggestionItems = suggestionsContainer.querySelectorAll('.suggestion-item');
+			        suggestionItems.forEach(item => {
+			            item.addEventListener('click', function() {
+			                const query = this.getAttribute('data-query');
+			                const url = this.getAttribute('data-url');
+			
+			                if (url && url !== 'undefined') {
+			                    // Direct navigation to the item
+			                    window.location.href = url;
+			                } else {
+			                    // Perform search with the query
+			                    const searchInput = document.querySelector('#main-search');
+			                    searchInput.value = query;
+			                    performSearch();
+			                }
+			            });
+			        });
+			    }
+			
+			    // Hide suggestions
+			    function hideSuggestions() {
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			        suggestionsContainer.style.display = 'none';
+			    }
+			
+			    // js Header scroll effect - add nền background khi scroll
+			    const header = document.querySelector('header');
+			    let lastScrollTop = 0;
+			
+			    if (header) {
+			        window.addEventListener('scroll', function() {
+			            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			
+			            if (scrollTop > 50) {
+			                // Add fixed class when scrolled down
+			                header.classList.add('fixed');
+			            } else {
+			                // Remove fixed class when at top
+			                header.classList.remove('fixed');
+			            }
+			
+			            lastScrollTop = scrollTop;
+			        }, false);
+			    }
+			});
+		</script>
+	</body>
+</html><div id="app" data-post-id="3711" data-api-url="https://hotphim.org/wp-json/api/views">
+	<h1 style="position: absolute; top: -9999px; left: -9999px;">Tình Yêu Và Tội Lỗi		Sin And Love		- Hot Phim	</h1>
+	<div class="top-detail-wrap">
+		<div class="background-fade" style="background-image: url('https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-thumb.webp');"></div>
+		<div class="cover-fade">
+			<div class="cover-image" style="background-image: url('https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-thumb.webp');"></div>
+		</div>
+	</div>
+	<div id="wrapper" class="wrapper-w-slide">
+		<div class="detail-container">
+			<div class="dc-side">
+				<div class="ds-info">
+					<div class="v-thumb-l mb-3">
+						<div class="v-thumbnail">
+							<img alt="Tình Yêu Và Tội Lỗi" loading="lazy"
+								src="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster-400x600.webp">
+						</div>
+					</div>
+					<h2 class="heading-md media-name">Tình Yêu Và Tội Lỗi</h2>
+											<div class="alias-name">
+							Sin And Love						</div>
+										<div id="toggle-detail" class="btn btn-block btn-basic primary-text mb-2">
+						<span>Thông tin phim</span>
+						<i class="fa-solid fa-angle-down ms-2"></i>
+					</div>
+					<div class="detail-more" id="detail-more">
+						<div class="hl-tags">
+																						<div class="tag-classic"><span>2026</span></div>
+														<div class="tag-classic"><span>Tập 10</span></div>
+						</div>
+													<div class="hl-tags">
+																	<a class="tag-topic"
+										href="https://hotphim.org/the-loai/chinh-kich/">Chính Kịch</a>
+																	<a class="tag-topic"
+										href="https://hotphim.org/the-loai/hanh-dong/">Hành Động</a>
+																	<a class="tag-topic"
+										href="https://hotphim.org/the-loai/hinh-su/">Hình Sự</a>
+																	<a class="tag-topic"
+										href="https://hotphim.org/the-loai/phim-bo/">Phim Bộ</a>
+																	<a class="tag-topic"
+										href="https://hotphim.org/the-loai/phim-dang-chieu/">Phim Đang Chiếu</a>
+																	<a class="tag-topic"
+										href="https://hotphim.org/the-loai/tam-ly/">Tâm Lý</a>
+																	<a class="tag-topic"
+										href="https://hotphim.org/the-loai/tinh-cam/">Tình Cảm</a>
+															</div>
+												<div
+							class="status  mb-4">
+							<div class="line-center small">
+								<div class="spinner-border spinner-border-sm" role="status"></div>
+								<span>Đã kết thúc</span>
+							</div>
+						</div>
+													<div class="detail-line d-flex">
+								<div class="de-title">Thời lượng:</div>
+								<div class="de-value">26 phút/tập								</div>
+							</div>
+																			<div class="detail-line d-flex">
+								<div class="de-title">Quốc gia:</div>
+								<div class="de-value"><span>Hàn Quốc</span></div>
+							</div>
+																			<div class="detail-line d-flex">
+								<div class="de-title">Đạo diễn:</div>
+								<div class="de-value"><span>Kim Im Jin</span></div>
+							</div>
+																	</div>
+				</div>
+									<div class="child-box child-actors">
+						<div class="child-header">Diễn viên</div>
+						<div class="child-actors-list">
+																							<div class="v-item">
+									<a class="v-actor v-actor-medium" href="https://hotphim.org/actor/jung-hyun-woong/">
+										<img alt="Jung Hyun-woong"
+											src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+									</a>
+									<div class="info">
+										<h4 class="item-title lim-2"><a
+												href="https://hotphim.org/actor/jung-hyun-woong/">Jung Hyun-woong</a>
+										</h4>
+									</div>
+								</div>
+																							<div class="v-item">
+									<a class="v-actor v-actor-medium" href="https://hotphim.org/actor/jung-myeong-cheol/">
+										<img alt="Jung Myeong-cheol"
+											src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+									</a>
+									<div class="info">
+										<h4 class="item-title lim-2"><a
+												href="https://hotphim.org/actor/jung-myeong-cheol/">Jung Myeong-cheol</a>
+										</h4>
+									</div>
+								</div>
+																							<div class="v-item">
+									<a class="v-actor v-actor-medium" href="https://hotphim.org/actor/kim-hyun-seo/">
+										<img alt="Kim Hyun-seo"
+											src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+									</a>
+									<div class="info">
+										<h4 class="item-title lim-2"><a
+												href="https://hotphim.org/actor/kim-hyun-seo/">Kim Hyun-seo</a>
+										</h4>
+									</div>
+								</div>
+																							<div class="v-item">
+									<a class="v-actor v-actor-medium" href="https://hotphim.org/actor/kim-seong-hyuk/">
+										<img alt="Kim Seong-hyuk"
+											src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+									</a>
+									<div class="info">
+										<h4 class="item-title lim-2"><a
+												href="https://hotphim.org/actor/kim-seong-hyuk/">Kim Seong-hyuk</a>
+										</h4>
+									</div>
+								</div>
+													</div>
+					</div>
+												<!-- Box hiển thị top phim tháng này -->
+				<div class="child-box child-top">
+					<div class="child-header">
+						<div class="inc-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"
+								viewBox="0 0 24 25" fill="none">
+								<g clip-path="url(#clip0_137_1522)">
+									<path fill-rule="evenodd" clip-rule="evenodd"
+										d="M1.88063 16.9893C1.85433 14.5926 3.02764 11.8941 5.01236 10.0083C6.37475 8.71478 9.24978 6.77138 13.4408 7.83575L12.9199 8.87882C12.8072 9.09921 12.5893 9.25197 12.3376 9.28829L8.75391 9.81296C8.44337 9.84426 8.15161 9.98951 7.93247 10.2199C7.67577 10.4879 7.53929 10.8385 7.54805 11.2092C7.55682 11.5761 7.70708 11.9154 7.97004 12.1646L10.5758 14.6715C10.7536 14.838 10.835 15.0847 10.7937 15.3289L10.7499 15.5793C8.00009 14.1844 4.54279 15.2888 1.88063 16.9893ZM23.5748 12.1671C23.799 11.9555 23.9455 11.6675 23.988 11.3532C24.0356 10.9863 23.938 10.6244 23.7151 10.3351C23.4909 10.0459 23.1666 9.86054 22.8047 9.81421L19.2097 9.28829C18.958 9.25197 18.7401 9.09921 18.6299 8.88133L17.0221 5.66319L17.0208 5.66069C16.8869 5.39773 16.6777 5.19112 16.4198 5.06214C16.0867 4.88934 15.7085 4.85678 15.3517 4.96823C14.9935 5.07967 14.7018 5.32635 14.5277 5.66319L14.2986 6.12275C10.4356 5.00955 6.58762 5.92114 3.71885 8.64591C0.810006 11.4095 -0.591196 15.5255 0.233998 18.8876C0.310382 19.1982 0.539533 19.4473 0.841311 19.5513C0.941486 19.5863 1.04417 19.6026 1.14685 19.6026C1.35471 19.6026 1.56132 19.5325 1.72912 19.3998C3.68629 17.8521 7.69831 15.7096 10.3216 17.4977C10.3492 17.5165 10.3805 17.519 10.4093 17.5352L10.1776 18.8601C10.1275 19.1493 10.1776 19.4599 10.3216 19.7366C10.6797 20.4128 11.5225 20.672 12.2012 20.3189L15.4143 18.6547C15.6384 18.537 15.9101 18.5357 16.1343 18.6535L19.3562 20.3226C19.5703 20.4266 19.7919 20.4792 20.0098 20.4792C20.0812 20.4792 20.1513 20.4729 20.2202 20.4616C20.9778 20.3326 21.4949 19.6164 21.371 18.8601L20.7574 15.3289C20.7148 15.0835 20.795 14.838 20.9765 14.669L23.5748 12.1671Z"
+										fill="currentColor"></path>
+								</g>
+							</svg>
+						</div>
+						<span>Top phim tháng này</span>
+					</div>
+					<div class="child-content">
+						<div class="cc-top">
+																<div class="item">
+										<div class="position">1</div>
+										<div class="h-item">
+											<div class="v-thumb-m">
+												<a class="v-thumbnail" href="https://hotphim.org/phu-nhan-dai-quan-the-ky-21/">
+													<img alt="Phu Nhân Đại Quân Thế Kỷ 21"
+														src="https://hotphim.org/wp-content/uploads/2026/05/e6bb5b889cf566a8851149e472bd9a0e-400x600.jpg">
+												</a>
+											</div>
+											<div class="info">
+												<h4 class="item-title lim-2">
+													<a title="Phu Nhân Đại Quân Thế Kỷ 21"
+														href="https://hotphim.org/phu-nhan-dai-quan-the-ky-21/">Phu Nhân Đại Quân Thế Kỷ 21</a>
+												</h4>
+																									<div class="alias-title mb-2 lim-1">
+														Perfect Crown													</div>
+																								<div class="info-line">
+																																								<div class="tag-small">Phần
+																													</div>
+														<div class="tag-small">Tập
+															12														</div>
+																									</div>
+											</div>
+										</div>
+									</div>
+																<div class="item">
+										<div class="position">2</div>
+										<div class="h-item">
+											<div class="v-thumb-m">
+												<a class="v-thumbnail" href="https://hotphim.org/truc-ngoc/">
+													<img alt="Trục Ngọc"
+														src="https://hotphim.org/wp-content/uploads/2026/03/81572d43eddf1dc784f3f53f6323f46d-400x600.jpg">
+												</a>
+											</div>
+											<div class="info">
+												<h4 class="item-title lim-2">
+													<a title="Trục Ngọc"
+														href="https://hotphim.org/truc-ngoc/">Trục Ngọc</a>
+												</h4>
+																									<div class="alias-title mb-2 lim-1">
+														Pursuit Of Jade													</div>
+																								<div class="info-line">
+																																								<div class="tag-small">Phần
+																													</div>
+														<div class="tag-small">Tập
+															40														</div>
+																									</div>
+											</div>
+										</div>
+									</div>
+																<div class="item">
+										<div class="position">3</div>
+										<div class="h-item">
+											<div class="v-thumb-m">
+												<a class="v-thumbnail" href="https://hotphim.org/mua-he-nong-nhiet/">
+													<img alt="Mùa Hè Nồng Nhiệt"
+														src="https://hotphim.org/wp-content/uploads/2026/06/f9a3568b070e468019ee3bfde41b712e-400x600.jpg">
+												</a>
+											</div>
+											<div class="info">
+												<h4 class="item-title lim-2">
+													<a title="Mùa Hè Nồng Nhiệt"
+														href="https://hotphim.org/mua-he-nong-nhiet/">Mùa Hè Nồng Nhiệt</a>
+												</h4>
+																									<div class="alias-title mb-2 lim-1">
+														Never-Ending Summer													</div>
+																								<div class="info-line">
+																																								<div class="tag-small">Phần
+																													</div>
+														<div class="tag-small">Tập
+															29														</div>
+																									</div>
+											</div>
+										</div>
+									</div>
+																<div class="item">
+										<div class="position">4</div>
+										<div class="h-item">
+											<div class="v-thumb-m">
+												<a class="v-thumbnail" href="https://hotphim.org/cuoc-chien-ha-luu/">
+													<img alt="Cuộc Chiến Hạ Lưu"
+														src="https://hotphim.org/wp-content/uploads/2025/11/Banner-Cuoc-Chien-Ha-Luu-400x600.webp">
+												</a>
+											</div>
+											<div class="info">
+												<h4 class="item-title lim-2">
+													<a title="Cuộc Chiến Hạ Lưu"
+														href="https://hotphim.org/cuoc-chien-ha-luu/">Cuộc Chiến Hạ Lưu</a>
+												</h4>
+																									<div class="alias-title mb-2 lim-1">
+														The Downstream Battle													</div>
+																								<div class="info-line">
+																																								<div class="tag-small">Phần
+																													</div>
+														<div class="tag-small">Tập
+															12														</div>
+																									</div>
+											</div>
+										</div>
+									</div>
+																<div class="item">
+										<div class="position">5</div>
+										<div class="h-item">
+											<div class="v-thumb-m">
+												<a class="v-thumbnail" href="https://hotphim.org/cua-hang-sat-thu-phan-2/">
+													<img alt="Cửa Hàng Sát Thủ (Phần 2)"
+														src="https://hotphim.org/wp-content/uploads/2026/07/cua-hang-sat-thu-phan-2-thumb-2-400x600.webp">
+												</a>
+											</div>
+											<div class="info">
+												<h4 class="item-title lim-2">
+													<a title="Cửa Hàng Sát Thủ (Phần 2)"
+														href="https://hotphim.org/cua-hang-sat-thu-phan-2/">Cửa Hàng Sát Thủ (Phần 2)</a>
+												</h4>
+																									<div class="alias-title mb-2 lim-1">
+														A Shop for Killers (Season 2)													</div>
+																								<div class="info-line">
+																																								<div class="tag-small">Phần
+																													</div>
+														<div class="tag-small">Tập
+															8														</div>
+																									</div>
+											</div>
+										</div>
+									</div>
+																<div class="item">
+										<div class="position">6</div>
+										<div class="h-item">
+											<div class="v-thumb-m">
+												<a class="v-thumbnail" href="https://hotphim.org/khemjira-phai-song-sot/">
+													<img alt="Khemjira Phải Sống Sót"
+														src="https://hotphim.org/wp-content/uploads/2025/11/Banner-Khemjira-Phai-Song-Sot-400x600.webp">
+												</a>
+											</div>
+											<div class="info">
+												<h4 class="item-title lim-2">
+													<a title="Khemjira Phải Sống Sót"
+														href="https://hotphim.org/khemjira-phai-song-sot/">Khemjira Phải Sống Sót</a>
+												</h4>
+																									<div class="alias-title mb-2 lim-1">
+														Khemjira													</div>
+																								<div class="info-line">
+																																								<div class="tag-small">Phần
+																													</div>
+														<div class="tag-small">Tập
+															12														</div>
+																									</div>
+											</div>
+										</div>
+									</div>
+																<div class="item">
+										<div class="position">7</div>
+										<div class="h-item">
+											<div class="v-thumb-m">
+												<a class="v-thumbnail" href="https://hotphim.org/dracula-quy-du-thuc-tinh/">
+													<img alt="Dracula: Quỷ Dữ Thức Tỉnh"
+														src="https://hotphim.org/wp-content/uploads/2025/11/Banner-Dracula-Quy-Du-Thuc-Tinh-400x600.webp">
+												</a>
+											</div>
+											<div class="info">
+												<h4 class="item-title lim-2">
+													<a title="Dracula: Quỷ Dữ Thức Tỉnh"
+														href="https://hotphim.org/dracula-quy-du-thuc-tinh/">Dracula: Quỷ Dữ Thức Tỉnh</a>
+												</h4>
+																									<div class="alias-title mb-2 lim-1">
+														The Last Voyage Of The Demeter													</div>
+																								<div class="info-line">
+																																								<div class="tag-small">Phim lẻ</div>
+																									</div>
+											</div>
+										</div>
+									</div>
+																<div class="item">
+										<div class="position">8</div>
+										<div class="h-item">
+											<div class="v-thumb-m">
+												<a class="v-thumbnail" href="https://hotphim.org/kungfu-nu-tuc-doi-bong-nu-kung-fu/">
+													<img alt="Kungfu Nữ Túc (Đội Bóng Nữ Kung Fu)"
+														src="https://hotphim.org/wp-content/uploads/2026/08/kungfu-nu-tuc-doi-bong-nu-kung-fu-thumb-400x439.webp">
+												</a>
+											</div>
+											<div class="info">
+												<h4 class="item-title lim-2">
+													<a title="Kungfu Nữ Túc (Đội Bóng Nữ Kung Fu)"
+														href="https://hotphim.org/kungfu-nu-tuc-doi-bong-nu-kung-fu/">Kungfu Nữ Túc (Đội Bóng Nữ Kung Fu)</a>
+												</h4>
+																									<div class="alias-title mb-2 lim-1">
+														Kung Fu Soccer													</div>
+																								<div class="info-line">
+																																								<div class="tag-small">Phim lẻ</div>
+																									</div>
+											</div>
+										</div>
+									</div>
+																<div class="item">
+										<div class="position">9</div>
+										<div class="h-item">
+											<div class="v-thumb-m">
+												<a class="v-thumbnail" href="https://hotphim.org/trieu-tuyet-luc/">
+													<img alt="Triều Tuyết Lục"
+														src="https://hotphim.org/wp-content/uploads/2025/11/Anh-Trieu-Tuyet-Luc-400x600.webp">
+												</a>
+											</div>
+											<div class="info">
+												<h4 class="item-title lim-2">
+													<a title="Triều Tuyết Lục"
+														href="https://hotphim.org/trieu-tuyet-luc/">Triều Tuyết Lục</a>
+												</h4>
+																									<div class="alias-title mb-2 lim-1">
+														Coroner&#039;s Diary													</div>
+																								<div class="info-line">
+																																								<div class="tag-small">Phần
+																													</div>
+														<div class="tag-small">Tập
+															38														</div>
+																									</div>
+											</div>
+										</div>
+									</div>
+																<div class="item">
+										<div class="position">10</div>
+										<div class="h-item">
+											<div class="v-thumb-m">
+												<a class="v-thumbnail" href="https://hotphim.org/mac-ly/">
+													<img alt="Mạc Ly"
+														src="https://hotphim.org/wp-content/uploads/2026/06/089ebc9ac027d516a2885aaee749d354-400x600.jpg">
+												</a>
+											</div>
+											<div class="info">
+												<h4 class="item-title lim-2">
+													<a title="Mạc Ly"
+														href="https://hotphim.org/mac-ly/">Mạc Ly</a>
+												</h4>
+																									<div class="alias-title mb-2 lim-1">
+														The First Jasmine													</div>
+																								<div class="info-line">
+																																								<div class="tag-small">Phần
+																													</div>
+														<div class="tag-small">Tập
+															40														</div>
+																									</div>
+											</div>
+										</div>
+									</div>
+													</div>
+					</div>
+				</div>
+			</div>
+			<div class="dc-main">
+				<div class="dm-bar">
+					<div class="elements">
+						<a class="btn btn-xl btn-rounded button-play flex-shrink-0" href="1/" rel="nofollow noindex"
+							onclick="return goToWatch('https://hotphim.org/tinh-yeu-va-toi-loi-2026/1/', event);"><i class="fa-solid fa-play"></i><span>Xem
+						Ngay</span>
+						</a>
+						<div class="touch-group flex-grow-1">
+							<div class="is-left flex-grow-1">
+								<div class="item item-like ">
+									<a class="item-v">
+										<div class="inc-icon icon-16">
+											<svg xmlns="http://www.w3.org/2000/svg" width="20"
+												height="20" viewBox="0 0 20 20" fill="none">
+												<g clip-path="url(#clip0_49_76)">
+													<path
+														d="M10 18.1432L1.55692 9.82794C0.689275 8.97929 0.147406 7.85276 0.0259811 6.64517C-0.0954433 5.43759 0.211298 4.22573 0.892612 3.22133C4.99987 -2.24739 10 4.10278 10 4.10278C10 4.10278 15.0001 -2.24739 19.1074 3.22133C19.7887 4.22573 20.0954 5.43759 19.974 6.64517C19.8526 7.85276 19.3107 8.97929 18.4431 9.82794L10 18.1432Z"
+														fill="currentColor"></path>
+												</g>
+											</svg>
+										</div>
+										<span>Yêu thích</span>
+									</a>
+								</div>
+								<div class="dropdown">
+									<div>
+										<div class="item item-playlist">
+											<a class="item-v">
+												<div class="inc-icon icon-16">
+													<svg xmlns="http://www.w3.org/2000/svg"
+														width="100" height="100" viewBox="0 0 100 100" fill="none">
+														<path
+															d="M89.7273 41.6365H58.3635V10.2727C58.3635 6.81018 55.5534 4 52.0908 4H47.9092C44.4466 4 41.6365 6.81018 41.6365 10.2727V41.6365H10.2727C6.81018 41.6365 4 44.4466 4 47.9092V52.0908C4 55.5534 6.81018 58.3635 10.2727 58.3635H41.6365V89.7273C41.6365 93.1898 44.4466 96 47.9092 96H52.0908C55.5534 96 58.3635 93.1898 58.3635 89.7273V58.3635H89.7273C93.1898 58.3635 96 55.5534 96 52.0908V47.9092C96 44.4466 93.1898 41.6365 89.7273 41.6365Z"
+															fill="currentColor"></path>
+													</svg>
+												</div>
+												<span>Thêm vào</span>
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="item item-share">
+									<a class="item-v" data-share-title="Tình Yêu Và Tội Lỗi">
+										<div class="inc-icon icon-16">
+											<svg xmlns="http://www.w3.org/2000/svg" width="17"
+												height="17" viewBox="0 0 17 17" fill="none">
+												<path
+													d="M16.3628 0.651489C15.946 0.223669 15.3291 0.0642849 14.7538 0.232058L1.34002 4.13277C0.733102 4.30139 0.302926 4.78541 0.187045 5.4003C0.0686637 6.02609 0.482166 6.82049 1.02239 7.15268L5.2166 9.73051C5.64678 9.99475 6.20201 9.92848 6.55799 9.56945L11.3608 4.73676C11.6026 4.4851 12.0027 4.4851 12.2445 4.73676C12.4862 4.98003 12.4862 5.37429 12.2445 5.62595L7.43334 10.4595C7.07653 10.8177 7.00984 11.3755 7.27245 11.8084L9.83516 16.0446C10.1353 16.548 10.6522 16.8332 11.2191 16.8332C11.2858 16.8332 11.3608 16.8332 11.4275 16.8248C12.0777 16.7409 12.5946 16.2963 12.7864 15.6671L16.763 2.2705C16.9381 1.70007 16.7797 1.07931 16.3628 0.651489Z"
+													fill="currentColor"></path>
+											</svg>
+										</div>
+										<span>Chia sẻ</span>
+									</a>
+									<!-- Share Dropdown -->
+									<div class="share-dropdown" id="share-dropdown" style="display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 10px; background: #1a1a1a; border-radius: 8px; padding: 12px; min-width: 200px; width: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000;">
+										<div class="share-item" data-share="facebook" style="display: flex; align-items: center; padding: 10px; cursor: pointer; border-radius: 6px; margin-bottom: 6px; transition: background 0.2s;">
+											<svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" style="margin-right: 10px; flex-shrink: 0;">
+												<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+											</svg>
+											<span style="color: #fff; display: block; white-space: nowrap;">Facebook</span>
+										</div>
+										<div class="share-item" data-share="twitter" style="display: flex; align-items: center; padding: 10px; cursor: pointer; border-radius: 6px; margin-bottom: 6px; transition: background 0.2s;">
+											<svg width="20" height="20" viewBox="0 0 24 24" fill="#1DA1F2" style="margin-right: 10px; flex-shrink: 0;">
+												<path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+											</svg>
+											<span style="color: #fff; display: block; white-space: nowrap;">Twitter</span>
+										</div>
+										<div class="share-item" data-share="whatsapp" style="display: flex; align-items: center; padding: 10px; cursor: pointer; border-radius: 6px; margin-bottom: 6px; transition: background 0.2s;">
+											<svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366" style="margin-right: 10px; flex-shrink: 0;">
+												<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+											</svg>
+											<span style="color: #fff; display: block; white-space: nowrap;">WhatsApp</span>
+										</div>
+										<div class="share-item" data-share="telegram" style="display: flex; align-items: center; padding: 10px; cursor: pointer; border-radius: 6px; margin-bottom: 6px; transition: background 0.2s;">
+											<svg width="20" height="20" viewBox="0 0 24 24" fill="#0088cc" style="margin-right: 10px; flex-shrink: 0;">
+												<path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+											</svg>
+											<span style="color: #fff; display: block; white-space: nowrap;">Telegram</span>
+										</div>
+										<div class="share-item" data-share="copy" style="display: flex; align-items: center; padding: 10px; cursor: pointer; border-radius: 6px; transition: background 0.2s;">
+											<svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" style="margin-right: 10px; flex-shrink: 0;">
+												<path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+											</svg>
+											<span style="color: #fff; display: block; white-space: nowrap;">Sao chép liên kết</span>
+										</div>
+									</div>
+								</div>
+								<div class="item item-comment">
+									<a class="item-v" href="#comments-tab" data-bs-toggle="tab"
+										data-bs-target="#comments-tab">
+										<div class="inc-icon icon-16">
+											<svg xmlns="http://www.w3.org/2000/svg" width="21"
+												height="21" viewBox="0 0 21 21" fill="none">
+												<g clip-path="url(#clip0_281_3026)">
+													<path
+														d="M14.499 0.5H6.50109C3.19363 0.5 0.502686 3.19095 0.502686 6.4984V11.1638C0.502686 14.3596 3.01468 16.9796 6.16784 17.1532V19.9338C6.16784 20.2461 6.42244 20.5 6.73536 20.5C6.88498 20.5 7.02661 20.4407 7.13358 20.3337L7.75875 19.7085C9.40031 18.0666 11.5834 17.1622 13.9054 17.1622H14.499C17.8064 17.1622 20.4974 14.4713 20.4974 11.1638V6.4984C20.4974 3.19095 17.8064 0.5 14.499 0.5ZM6.16784 10.1641C5.4327 10.1641 4.83486 9.56625 4.83486 8.83111C4.83486 8.09597 5.4327 7.49813 6.16784 7.49813C6.90298 7.49813 7.50082 8.09597 7.50082 8.83111C7.50082 9.56625 6.90265 10.1641 6.16784 10.1641ZM10.5 10.1641C9.76488 10.1641 9.16704 9.56625 9.16704 8.83111C9.16704 8.09597 9.76488 7.49813 10.5 7.49813C11.2352 7.49813 11.833 9.56625 11.833 8.83111C11.833 9.56625 11.2348 10.1641 10.5 10.1641ZM14.8322 10.1641C14.0971 10.1641 13.4992 9.56625 13.4992 8.83111C13.4992 8.09597 14.0971 7.49813 14.8322 7.49813C15.5673 7.49813 16.1652 8.09597 16.1652 8.83111C16.1652 9.56625 15.567 10.1641 14.8322 10.1641Z"
+														fill="currentColor"></path>
+												</g>
+											</svg>
+										</div>
+										<span>Bình luận</span>
+									</a>
+								</div>
+							</div>
+							<div class="is-right">
+								<div class="v-rating">
+									<div class="ro-rating rating-popup-trigger" style="cursor: pointer;">
+										<div class="ro-icon">
+											<img src="https://hotphim.org/wp-content/themes/movie-theme/images/ro-icon.svg"
+												alt="ro-icon">
+										</div>
+										<span
+											class="point">0</span>
+										<span
+											class="a-rate">Đánh giá</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content-gap">
+					<div class="cg-body">
+						<div class="cg-tabs">
+							<div class="v-tabs mb-0 nav nav-tabs" role="tablist">
+								<a role="tab" data-tab="episodes" id="tab-episodes" aria-controls="tabpane-episodes"
+									aria-selected="true" class="nav-link active" href="#episodes">Tập phim </a>
+								<a role="tab" data-tab="gallery" id="tab-gallery" aria-controls="tabpane-gallery"
+									aria-selected="false" class="nav-link" href="#gallery">Gallery</a>
+								<a role="tab" data-tab="casts" id="tab-casts" aria-controls="tabpane-casts"
+									aria-selected="false" class="nav-link" href="#casts">Diễn viên </a>
+								<a role="tab" data-tab="suggestion" id="tab-suggestion"
+									aria-controls="tabpane-suggestion" aria-selected="false" class="nav-link"
+									href="#suggestion">Đề xuất</a>
+							</div>
+						</div>
+						<div class="tab-content">
+							<div role="tabpanel" id="tabpane-episodes" aria-labelledby="tab-episodes"
+								class="fade tab-pane active show">
+								<div class="cg-body-box is-eps">
+																		<div class="box-body">
+																					<div class="de-eps is-grid is-simple">
+																											<a class="item"
+                                                            href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/1/" rel="nofollow noindex">
+																<div class="v-thumbnail h-thumbnail">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<img alt="Tập 1" loading="lazy"
+																		src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+																</div>
+																<div class="info">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<div class="ep-sort flex-shrink-0">Tập 1</div>
+																	<div class="media-title"></div>
+																</div>
+															</a>
+																											<a class="item"
+                                                            href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/2/" rel="nofollow noindex">
+																<div class="v-thumbnail h-thumbnail">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<img alt="Tập 2" loading="lazy"
+																		src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+																</div>
+																<div class="info">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<div class="ep-sort flex-shrink-0">Tập 2</div>
+																	<div class="media-title"></div>
+																</div>
+															</a>
+																											<a class="item"
+                                                            href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/3/" rel="nofollow noindex">
+																<div class="v-thumbnail h-thumbnail">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<img alt="Tập 3" loading="lazy"
+																		src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+																</div>
+																<div class="info">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<div class="ep-sort flex-shrink-0">Tập 3</div>
+																	<div class="media-title"></div>
+																</div>
+															</a>
+																											<a class="item"
+                                                            href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/4/" rel="nofollow noindex">
+																<div class="v-thumbnail h-thumbnail">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<img alt="Tập 4" loading="lazy"
+																		src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+																</div>
+																<div class="info">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<div class="ep-sort flex-shrink-0">Tập 4</div>
+																	<div class="media-title"></div>
+																</div>
+															</a>
+																											<a class="item"
+                                                            href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/5/" rel="nofollow noindex">
+																<div class="v-thumbnail h-thumbnail">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<img alt="Tập 5" loading="lazy"
+																		src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+																</div>
+																<div class="info">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<div class="ep-sort flex-shrink-0">Tập 5</div>
+																	<div class="media-title"></div>
+																</div>
+															</a>
+																											<a class="item"
+                                                            href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/6/" rel="nofollow noindex">
+																<div class="v-thumbnail h-thumbnail">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<img alt="Tập 6" loading="lazy"
+																		src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+																</div>
+																<div class="info">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<div class="ep-sort flex-shrink-0">Tập 6</div>
+																	<div class="media-title"></div>
+																</div>
+															</a>
+																											<a class="item"
+                                                            href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/7/" rel="nofollow noindex">
+																<div class="v-thumbnail h-thumbnail">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<img alt="Tập 7" loading="lazy"
+																		src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+																</div>
+																<div class="info">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<div class="ep-sort flex-shrink-0">Tập 7</div>
+																	<div class="media-title"></div>
+																</div>
+															</a>
+																											<a class="item"
+                                                            href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/8/" rel="nofollow noindex">
+																<div class="v-thumbnail h-thumbnail">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<img alt="Tập 8" loading="lazy"
+																		src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+																</div>
+																<div class="info">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<div class="ep-sort flex-shrink-0">Tập 8</div>
+																	<div class="media-title"></div>
+																</div>
+															</a>
+																											<a class="item"
+                                                            href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/9/" rel="nofollow noindex">
+																<div class="v-thumbnail h-thumbnail">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<img alt="Tập 9" loading="lazy"
+																		src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+																</div>
+																<div class="info">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<div class="ep-sort flex-shrink-0">Tập 9</div>
+																	<div class="media-title"></div>
+																</div>
+															</a>
+																											<a class="item"
+                                                            href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/10/" rel="nofollow noindex">
+																<div class="v-thumbnail h-thumbnail">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<img alt="Tập 10" loading="lazy"
+																		src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+																</div>
+																<div class="info">
+																	<div class="play-button"><i class="fa-solid fa-play"></i></div>
+																	<div class="ep-sort flex-shrink-0">Tập 10</div>
+																	<div class="media-title"></div>
+																</div>
+															</a>
+																							</div>
+																			</div>
+								</div>
+							</div>
+							<div role="tabpanel" id="tabpane-gallery" aria-labelledby="tab-gallery"
+								class="fade tab-pane">
+								<div class="cg-body-box is-gallery">
+									<div class="box-body">
+										<div class="heading-sm mb-3">Videos</div>
+										<div class="video-gallery mb-4"><div class="video-item mb-3"><div class="ratio ratio-16x9"><iframe src="https://www.youtube.com/embed/bFz9hEB90O8" frameborder="0" allowfullscreen></iframe></div></div></div>										<div class="heading-sm mb-3">Images</div>
+										<div class="flexbin flexbin-margin" id="image-gallery"><a class="media-item" href="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp" data-fancybox="gallery"><img alt="Tình Yêu Và Tội Lỗi" src="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp" loading="lazy"></a><a class="media-item" href="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-thumb.webp" data-fancybox="gallery"><img alt="Hình ảnh gallery" src="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-thumb.webp" loading="lazy"></a></div>									</div>
+								</div>
+							</div>
+							<div role="tabpanel" id="tabpane-casts" aria-labelledby="tab-casts" class="fade tab-pane">
+								<div class="cg-body-box is-actors">
+									<div class="box-header">
+										<div class="heading-md mb-0">Diễn viên</div>
+									</div>
+									<div class="box-body">
+										<div class="de-actors">
+											<div class="item-actor"><div class="v-item"><a class="v-actor" href="https://hotphim.org/actor/jung-hyun-woong/"><img alt="Jung Hyun-woong" src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp"></a><div class="info"><h4 class="item-title"><a href="https://hotphim.org/actor/jung-hyun-woong/">Jung Hyun-woong</a></h4></div></div><div class="ro-play"></div></div><div class="item-actor"><div class="v-item"><a class="v-actor" href="https://hotphim.org/actor/jung-myeong-cheol/"><img alt="Jung Myeong-cheol" src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp"></a><div class="info"><h4 class="item-title"><a href="https://hotphim.org/actor/jung-myeong-cheol/">Jung Myeong-cheol</a></h4></div></div><div class="ro-play"></div></div><div class="item-actor"><div class="v-item"><a class="v-actor" href="https://hotphim.org/actor/kim-hyun-seo/"><img alt="Kim Hyun-seo" src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp"></a><div class="info"><h4 class="item-title"><a href="https://hotphim.org/actor/kim-hyun-seo/">Kim Hyun-seo</a></h4></div></div><div class="ro-play"></div></div><div class="item-actor"><div class="v-item"><a class="v-actor" href="https://hotphim.org/actor/kim-seong-hyuk/"><img alt="Kim Seong-hyuk" src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp"></a><div class="info"><h4 class="item-title"><a href="https://hotphim.org/actor/kim-seong-hyuk/">Kim Seong-hyuk</a></h4></div></div><div class="ro-play"></div></div>										</div>
+									</div>
+								</div>
+							</div>
+							<div role="tabpanel" id="tabpane-suggestion" aria-labelledby="tab-suggestion"
+								class="fade tab-pane">
+								<div class="cg-body-box is-suggest">
+									<div class="box-header">
+										<div class="heading-md mb-0">Có thể bạn sẽ thích</div>
+									</div>
+									<div class="box-body">
+										<div class="cards-grid-wrapper de-suggest">
+																								<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/pham-nhan-tu-tien/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>193</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Phàm Nhân Tu Tiên"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2025/11/Banner-Pham-Nhan-Tu-Tien-400x600.webp">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Phàm Nhân Tu Tiên"
+																	href="https://hotphim.org/pham-nhan-tu-tien/">
+																	Phàm Nhân Tu Tiên																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="A Record of a Mortal&#039;s Journey to Immortality"
+																	href="https://hotphim.org/pham-nhan-tu-tien/">
+																	A Record of a Mortal&#039;s Journey to Immortality																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/thieu-chu-gioi-chay-tron-phan-2/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>11</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Thiếu Chủ Giỏi Chạy Trốn (Phần 2)"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2026/09/thieu-chu-gioi-chay-tron-phan-2-thumb-400x439.webp">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Thiếu Chủ Giỏi Chạy Trốn (Phần 2)"
+																	href="https://hotphim.org/thieu-chu-gioi-chay-tron-phan-2/">
+																	Thiếu Chủ Giỏi Chạy Trốn (Phần 2)																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="The Elusive Samurai (Season 2)"
+																	href="https://hotphim.org/thieu-chu-gioi-chay-tron-phan-2/">
+																	The Elusive Samurai (Season 2)																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/muon-dam-giang-son-cho-ta-khai-pha/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>24</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Muôn Dặm Giang Sơn Chờ Ta Khai Phá"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2026/09/muon-dam-giang-son-cho-ta-khai-pha-thumb-400x439.webp">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Muôn Dặm Giang Sơn Chờ Ta Khai Phá"
+																	href="https://hotphim.org/muon-dam-giang-son-cho-ta-khai-pha/">
+																	Muôn Dặm Giang Sơn Chờ Ta Khai Phá																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="Braving The Famine With My Wife"
+																	href="https://hotphim.org/muon-dam-giang-son-cho-ta-khai-pha/">
+																	Braving The Famine With My Wife																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/hoa-hong-ruc-lua/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>24</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Hoa Hồng Rực Lửa"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2026/07/a2eaa143ce291388fcd8eb400e2d3cfb-400x600.jpg">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Hoa Hồng Rực Lửa"
+																	href="https://hotphim.org/hoa-hong-ruc-lua/">
+																	Hoa Hồng Rực Lửa																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="Burning Rose"
+																	href="https://hotphim.org/hoa-hong-ruc-lua/">
+																	Burning Rose																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/vuc-tham/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>23</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Vực Thẳm"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2026/05/3e272c9d1d0cccbc58c6327fe030af56-400x600.jpg">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Vực Thẳm"
+																	href="https://hotphim.org/vuc-tham/">
+																	Vực Thẳm																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="Crimes Of The Abyss"
+																	href="https://hotphim.org/vuc-tham/">
+																	Crimes Of The Abyss																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/con-ra-the-thong-gi-nua-phan-2/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>24</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Còn Ra Thể Thống Gì Nữa (Phần 2)"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2026/05/13a49743588595a8eb026d73bc0a6a0b-400x600.jpg">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Còn Ra Thể Thống Gì Nữa (Phần 2)"
+																	href="https://hotphim.org/con-ra-the-thong-gi-nua-phan-2/">
+																	Còn Ra Thể Thống Gì Nữa (Phần 2)																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="How Dare You! (Season 2)"
+																	href="https://hotphim.org/con-ra-the-thong-gi-nua-phan-2/">
+																	How Dare You! (Season 2)																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/anh-em-nha-tagusari/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>10</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Anh Em Nhà Tagusari"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2026/04/ddb39f0eaa08951dd45356c2c1a4dd1e-400x600.jpg">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Anh Em Nhà Tagusari"
+																	href="https://hotphim.org/anh-em-nha-tagusari/">
+																	Anh Em Nhà Tagusari																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="Tagusari Bros."
+																	href="https://hotphim.org/anh-em-nha-tagusari/">
+																	Tagusari Bros.																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/nhip-dap-tinh-yeu/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>24</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Nhịp Đập Tình Yêu"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2026/05/0a1d99c6d0072e1b2b86531b94acb953-400x600.jpg">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Nhịp Đập Tình Yêu"
+																	href="https://hotphim.org/nhip-dap-tinh-yeu/">
+																	Nhịp Đập Tình Yêu																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="MBTI Love"
+																	href="https://hotphim.org/nhip-dap-tinh-yeu/">
+																	MBTI Love																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/tien-nghich/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>160</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Tiên Nghịch"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2025/11/Phim-Tien-Nghich-400x600.webp">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Tiên Nghịch"
+																	href="https://hotphim.org/tien-nghich/">
+																	Tiên Nghịch																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="Renegade Immortal"
+																	href="https://hotphim.org/tien-nghich/">
+																	Renegade Immortal																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/cua-hang-sat-thu-phan-1/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>8</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Cửa Hàng Sát Thủ (Phần 1)"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2026/07/15dd4a2e7f2426cb3694e94127ecd7d6-400x600.jpg">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Cửa Hàng Sát Thủ (Phần 1)"
+																	href="https://hotphim.org/cua-hang-sat-thu-phan-1/">
+																	Cửa Hàng Sát Thủ (Phần 1)																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="A Shop for Killers (Season 1)"
+																	href="https://hotphim.org/cua-hang-sat-thu-phan-1/">
+																	A Shop for Killers (Season 1)																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/trong-giap-hiep-si-chuyen-sinh-bi-luu-day-tro-nen-vo-dich-nho-kien-thuc-ve-game/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>14</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Trọng Giáp Hiệp Sĩ Chuyển Sinh Bị Lưu Đày Trở Nên Vô Địch Nhờ Kiến Thức Về Game"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2026/09/732482354bbfaf0663881f84392f73df-400x600.jpg">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Trọng Giáp Hiệp Sĩ Chuyển Sinh Bị Lưu Đày Trở Nên Vô Địch Nhờ Kiến Thức Về Game"
+																	href="https://hotphim.org/trong-giap-hiep-si-chuyen-sinh-bi-luu-day-tro-nen-vo-dich-nho-kien-thuc-ve-game/">
+																	Trọng Giáp Hiệp Sĩ Chuyển Sinh Bị Lưu Đày Trở Nên Vô Địch Nhờ Kiến Thức Về Game																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="The Exiled Heavy Knight Knows How To Game The System"
+																	href="https://hotphim.org/trong-giap-hiep-si-chuyen-sinh-bi-luu-day-tro-nen-vo-dich-nho-kien-thuc-ve-game/">
+																	The Exiled Heavy Knight Knows How To Game The System																</a>
+															</h4>
+														</div>
+													</div>
+																									<div class="sw-item">
+														<a class="v-thumbnail"
+															href="https://hotphim.org/yeu-duoc-chua/">
+															<div class="pin-new m-pin-new">
+																<div class="line-center line-pd">
+																	<span></span><strong>19</strong>
+																</div>
+															</div>
+															<div>
+																<img alt="Yêu Được Chưa"
+																	loading="lazy"
+																	src="https://hotphim.org/wp-content/uploads/2026/05/4662191e6d221754a7a3d4c62e1d7742-400x600.jpg">
+															</div>
+														</a>
+														<div class="info">
+															<h4 class="item-title lim-1">
+																<a title="Yêu Được Chưa"
+																	href="https://hotphim.org/yeu-duoc-chua/">
+																	Yêu Được Chưa																</a>
+															</h4>
+															<h4 class="alias-title lim-1">
+																<a title="Let&#039;s Begin Again"
+																	href="https://hotphim.org/yeu-duoc-chua/">
+																	Let&#039;s Begin Again																</a>
+															</h4>
+														</div>
+													</div>
+																						</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="comment-area" class="child-box child-discuss">
+						<div class="child-header">
+							<div class="inc-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
+									fill="none">
+									<g clip-path="url(#clip0_281_3026)">
+										<path
+											d="M14.499 0.5H6.50109C3.19363 0.5 0.502686 3.19095 0.502686 6.4984V11.1638C0.502686 14.3596 3.01468 16.9796 6.16784 17.1532V19.9338C6.16784 20.2461 6.42244 20.5 6.73536 20.5C6.88498 20.5 7.02661 20.4407 7.13358 20.3337L7.75875 19.7085C9.40031 18.0666 11.5834 17.1622 13.9054 17.1622H14.499C17.8064 17.1622 20.4974 14.4713 20.4974 11.1638V6.4984C20.4974 3.19095 17.8064 0.5 14.499 0.5ZM6.16784 10.1641C5.4327 10.1641 4.83486 9.56625 4.83486 8.83111C4.83486 8.09597 5.4327 7.49813 6.16784 7.49813C6.90298 7.49813 7.50082 8.09597 7.50082 8.83111C7.50082 9.56625 6.90265 10.1641 6.16784 10.1641ZM10.5 10.1641C9.76488 10.1641 9.16704 9.56625 9.16704 8.83111C9.16704 8.09597 9.76488 7.49813 10.5 7.49813C11.2352 7.49813 11.833 8.09597 11.833 8.83111C11.833 9.56625 11.2348 10.1641 10.5 10.1641ZM14.8322 10.1641C14.0971 10.1641 13.4992 9.56625 13.4992 8.83111C13.4992 8.09597 14.0971 7.49813 14.8322 7.49813C15.5673 7.49813 16.1652 8.09597 16.1652 8.83111C16.1652 9.56625 15.567 10.1641 14.8322 10.1641Z"
+											fill="currentColor"></path>
+									</g>
+								</svg>
+							</div>
+							<span>Bình luận (0)</span>
+							<div class="model-tabs actor-tabs">
+								<a class="item active" data-comment-tab="comments">Bình luận</a>
+								<a class="item" data-comment-tab="reviews">Đánh giá</a>
+							</div>
+						</div>
+						<div class="child-content">
+							<div class="discuss-wrap" id="comments-tab">
+								<div class="my-area">
+									<div class="ma-user">
+										<div class="user-avatar">
+											<img alt="Guest" src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">										</div>
+										<div class="info">
+											<small>Bình luận với tên</small>
+											<span>Khách</span>
+										</div>
+									</div>
+									<form id="comment-form" class="comment-form">
+										<div class="textarea-wrap">
+											<div class="ma-input">
+												<textarea id="comment-text" name="comment"
+													class="form-control v-form-control v-form-textarea" rows="4"
+													cols="3" maxlength="1000" placeholder="Viết bình luận..."
+													required></textarea>
+												<div class="chac-left">0 / 1000</div>
+											</div>
+											<div class="line-center d-flex gap-3 ma-buttons">
+												<div class="flex-grow-1"></div>
+												<button class="btn btn-basic btn-submit" type="submit">
+													<span>Gửi</span>
+													<div class="inc-icon icon-20 ms-1">
+														<svg fill="none" height="512" viewBox="0 0 24 24" width="512"
+															xmlns="http://www.w3.org/2000/svg">
+															<path
+																d="m22.1012 10.5616-19.34831-9.43824c-.1664-.08117-.34912-.12336-.53427-.12336-.67302 0-1.21862.5456-1.21862 1.21862v.03517c0 .16352.02005.32643.05971.48507l1.85597 7.42384c.05069.2028.22214.3526.42986.3757l8.15756.9064c.2829.0314.4969.2705.4969.5552s-.214.5238-.4969.5552l-8.15756.9064c-.20772.0231-.37917.1729-.42986.3757l-1.85597 7.4238c-.03966.1587-.05971.3216-.05971.4851v.0352c0 .673.5456 1.2186 1.21862 1.2186.18515 0 .36787-.0422.53427-.1234l19.34831-9.4382c.5499-.2682.8988-.8265.8988-1.4384s-.3489-1.1702-.8988-1.4384z"
+																fill="currentColor"></path>
+														</svg>
+													</div>
+												</button>
+											</div>
+										</div>
+										<input type="hidden" name="post_id" value="3711">
+										<input type="hidden" name="action" value="submit_comment">
+										<input type="hidden" id="comment_nonce_field" name="comment_nonce_field" value="eb759337f5" /><input type="hidden" name="_wp_http_referer" value="/tinh-yeu-va-toi-loi-2026/" />									</form>
+								</div>
+								<div class="discuss-list" id="comments-list">
+									<div class="no-comments">Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</div>								</div>
+							</div>
+							<div class="discuss-wrap" id="reviews-tab" style="display: none;">
+								<div class="discuss-list">
+																			<div class="d-item py-3">
+											<div class="text-center">
+												<div class="inc-icon icon-notice mb-3">
+													<img src="https://hotphim.org/wp-content/themes/movie-theme/images/empty-box.svg"
+														alt="Không có đánh giá">
+												</div>
+												<p class="mb-0">Chưa có đánh giá nào. Hãy là người đầu tiên đánh giá phim
+													này!
+												</p>
+											</div>
+										</div>
+																	</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				
+					<div class="detail-line">
+
+						<div class="de-title d-block mb-2">Giới thiệu:</div>
+
+						<div class="description"><p><strong>Tình Yêu Và Tội Lỗi</strong> là bộ <a href="https://hotphim.org/the-loai/hinh-su/">phim hình sự</a> pha trộn yếu tố tâm lý và tình cảm, bắt đầu từ một vụ bắt cóc bí ẩn vô tình làm lộ ra mạng lưới tội phạm quy mô lớn. Cảnh sát, những kẻ buôn lậu ma túy và các điệp viên nhanh chóng bị cuốn vào cuộc truy đuổi nguy hiểm, nơi không ai dễ dàng phân biệt được đâu là đồng minh, đâu là kẻ đang âm thầm phản bội. Trong thế giới đầy cạm bẫy ấy, tình yêu và dục vọng không chỉ xuất phát từ cảm xúc mà còn trở thành công cụ để đổi lấy quyền lực, thông tin và lợi ích. Càng tiến gần đến sự thật, những người trong cuộc càng phải đối mặt với các bí mật có thể phá hủy cả sự nghiệp lẫn những mối quan hệ họ từng tin tưởng. Ai là người đứng sau vụ bắt cóc và liệu tình cảm chân thành có thể tồn tại giữa vòng xoáy tội lỗi? Hãy cùng theo dõi <strong>Tình Yêu Và Tội Lỗi</strong> trên HOTPHIM.ORG để bước vào cuộc đấu trí căng thẳng, nơi mỗi lời hứa, sự quyến rũ và lựa chọn đều có thể che giấu một âm mưu nguy hiểm.</p>
+<p>Nếu yêu thích những câu chuyện tội phạm nhiều lớp lang, bạn có thể tiếp tục với cuộc truy đuổi nghẹt thở trong <a href="https://hotphim.org/cuoc-dua-sinh-tu/"><strong>Cuộc Đua Sinh Tử</strong></a>, lần theo các bí mật phức tạp của <a href="https://hotphim.org/bach-da-am-anh/"><strong>Bạch Dạ Ám Ảnh</strong></a> hoặc khám phá tình thân giữa thế giới ngầm trong <a href="https://hotphim.org/anh-em-nha-tagusari/"><strong>Anh Em Nhà Tagusari</strong></a>. Mỗi bộ phim mang một kiểu xung đột riêng, giúp bạn dễ dàng chọn thêm câu chuyện phù hợp để nối dài cảm giác hồi hộp.</p></div>
+
+					</div>
+
+								<script>
+					// Hiển thị/ẩn tab khi click vào tab-link
+					document.addEventListener('DOMContentLoaded', function() {
+						const tabLinks = document.querySelectorAll('.v-tabs .nav-link');
+						const tabPanes = document.querySelectorAll('.tab-pane');
+
+						tabLinks.forEach(function(tabLink) {
+							tabLink.addEventListener('click', function(e) {
+								e.preventDefault();
+
+								tabLinks.forEach(link => {
+									link.classList.remove('active');
+									link.setAttribute('aria-selected', 'false');
+								});
+
+								tabPanes.forEach(pane => {
+									pane.classList.remove('active', 'show');
+								});
+
+								this.classList.add('active');
+								this.setAttribute('aria-selected', 'true');
+
+								const targetId = this.getAttribute('data-tab');
+								const targetPane = document.getElementById('tabpane-' + targetId);
+								if (targetPane) {
+									targetPane.classList.add('active', 'show');
+								}
+							});
+						});
+
+						const toggleButtons = document.querySelectorAll('.v-toggle');
+						toggleButtons.forEach(function(toggle) {
+							toggle.addEventListener('click', function() {
+								const toggleX = this.querySelector('.toggle-x');
+								const text = this.querySelector('.text');
+
+								if (toggleX.classList.contains('on')) {
+									toggleX.classList.remove('on');
+									text.textContent = 'Mở rộng';
+								} else {
+									toggleX.classList.add('on');
+									text.textContent = 'Thu gọn';
+								}
+							});
+						});
+
+						const versionTabs = document.querySelectorAll('#nav-tab-child .nav-link');
+						versionTabs.forEach(function(tab) {
+							tab.addEventListener('click', function() {
+								versionTabs.forEach(t => t.classList.remove('active'));
+								this.classList.add('active');
+							});
+						});
+					});
+				</script>
+				<!-- End -->
+				<script data-minify="1" src="https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/js/comment.js?ver=1790576735"></script>
+				<script data-minify="1" src="https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/js/rating.js?ver=1790576735"></script>
+				<script data-minify="1" src="https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/js/touch-group.js?ver=1790576735"></script>
+				<script data-minify="1" src="https://hotphim.org/wp-content/cache/min/1/wp-content/themes/movie-theme/assets/js/post-views.js?ver=1790576735"></script>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="ratingModal" role="dialog" aria-modal="true" class="fade v-modal modal-md modal" tabindex="-1"
+	style="display: none; padding-right: 16px;"
+	data-post-id="3711"
+	data-rating-nonce="5a5588fd96"
+	data-ajax-url="https://hotphim.org/wp-admin/admin-ajax.php">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<button class="btn modal-close" id="closeRatingModal">
+				<i class="fa-solid fa-times"></i>
+			</button>
+			<div class="is-header mb-2">
+				<h4 class="heading-sm text-center mb-0" id="movieTitle">Tình Yêu Và Tội Lỗi</h4>
+			</div>
+			<div class="is-body mb-5">
+				<div class="d-block text-center mb-4">
+					<div class="line-center">
+						<div class="ro-icon"></div>
+						<strong class="text-white"
+							id="currentRating" data-initial-rating="0">0</strong>
+						<span>/ 0 lượt đánh giá</span>
+					</div>
+				</div>
+				<div class="rate-emo">
+					<div class="item-v" data-rating="5">
+						<div class="inc-icon">
+							<img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-5.webp"
+								alt="5 stars">
+						</div>
+						<span>Tuyệt vời</span>
+					</div>
+					<div class="item-v" data-rating="4">
+						<div class="inc-icon">
+							<img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-4.webp"
+								alt="4 stars">
+						</div>
+						<span>Phim hay</span>
+					</div>
+					<div class="item-v" data-rating="3">
+						<div class="inc-icon">
+							<img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-3.webp"
+								alt="3 stars">
+						</div>
+						<span>Khá ổn</span>
+					</div>
+					<div class="item-v" data-rating="2">
+						<div class="inc-icon">
+							<img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-2.webp"
+								alt="2 stars">
+						</div>
+						<span>Phim chán</span>
+					</div>
+					<div class="item-v" data-rating="1">
+						<div class="inc-icon">
+							<img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-1.webp"
+								alt="1 star">
+						</div>
+						<span>Dở tệ</span>
+					</div>
+				</div>
+				<div class="rate-comment">
+					<textarea class="form-control v-form-control" rows="3" cols="3"
+						placeholder="Viết nhận xét về phim (tuỳ chọn)" id="ratingComment"></textarea>
+				</div>
+			</div>
+			<div class="is-footer gap-3">
+				<button type="button" class="btn btn-primary" id="submitRating">Gửi đánh giá</button>
+				<button type="button" class="btn btn-light px-4" id="cancelRating">Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	// Hiển thị/ẩn phần detail-more khi click vào toggle-detail
+	document.addEventListener('DOMContentLoaded', function() {
+		const toggleDetail = document.getElementById('toggle-detail');
+		const detailMore = document.getElementById('detail-more');
+
+		if (toggleDetail && detailMore) {
+			const toggleIcon = toggleDetail.querySelector('i');
+
+			// Hiển thị phần detail-more mặc định
+			detailMore.style.display = 'block';
+
+			// Thêm transition cho icon nếu tồn tại
+			if (toggleIcon) {
+				toggleIcon.style.transition = 'transform 0.3s ease';
+				toggleIcon.style.transform = 'rotate(180deg)'; // Icon xoay mặc định vì phần đang mở
+			}
+
+			toggleDetail.addEventListener('click', function() {
+				if (detailMore.style.display === 'none' || detailMore.style.display === '') {
+					detailMore.style.display = 'block';
+					if (toggleIcon) {
+						toggleIcon.style.transform = 'rotate(180deg)';
+					}
+				} else {
+					detailMore.style.display = 'none';
+					if (toggleIcon) {
+						toggleIcon.style.transform = 'rotate(0deg)';
+					}
+				}
+			});
+		}
+	});
+</script>
+<footer>
+    <div class="container">
+        <div class="footer-elements">
+            <div class="footer-icon">
+                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/footer-icon.svg" alt="Footer Icon">
+            </div>
+            <div class="side-left">
+
+                <div class="sl-brand line-center">
+                    <a class="footer-logo" href="https://hotphim.org/">
+                        <img src="https://hotphim.org/wp-content/themes/movie-theme/images/hotphim-logo.png"
+                            alt="Hotphim-favicon.png">
+                    </a>
+                    <div class="socials line-center">
+                        <a class="social-item" target="_blank" rel="noopener nofollow" href="https://x.com/hotphimprovn/" title="X"><div class="inc-icon icon-14"><img src="https://hotphim.org/wp-content/themes/movie-theme/images/x-icon.svg" alt="X"></div></a><a class="social-item" target="_blank" rel="noopener nofollow" href="https://www.facebook.com/hotphimprovn/" title="Facebook"><div class="inc-icon icon-14"><img src="https://hotphim.org/wp-content/themes/movie-theme/images/facebook-icon.svg" alt="Facebook"></div></a><a class="social-item" target="_blank" rel="noopener nofollow" href="https://www.pinterest.com/hotphimprovn/" title="Pinterest"><div class="inc-icon icon-14"><img src="https://hotphim.org/wp-content/themes/movie-theme/images/pinterest.svg" alt="Pinterest"></div></a>                    </div>
+                </div>
+
+                <div class="sl-notice mb-2">
+                    <p>
+                        Xem phim online miễn phí tốc độ cao và chất lượng Full HD tại HotPhim. Cập nhật liên tục các bộ phim bộ, phim lẻ, phim chiếu rạp, hoạt hình, phim Hàn, Trung, Âu Mỹ có phụ đề Vietsub. Giao diện thân thiện, dễ sử dụng, không quảng cáo phiền phức, mang đến trải nghiệm xem phim mượt mà trên mọi thiết bị.
+                    </p>
+                </div>
+
+                <div class="sl-menu mb-3">
+                    <a title="Giới thiệu" href="https://hotphim.org/gioi-thieu/">Giới thiệu</a><a title="Chính sách bảo mật" href="https://hotphim.org/chinh-sach-bao-mat/">Chính sách bảo mật</a><a title="Điều khoản sử dụng" href="https://hotphim.org/dieu-khoan-su-dung/">Điều khoản sử dụng</a><a title="DMCA" href="https://hotphim.org/dmca/">DMCA</a><a title="Liên hệ" href="https://hotphim.org/lien-he/">Liên hệ</a>                </div>
+
+                <div class="sl-copyright mb-3">
+                    © 2026 HotPhim
+                </div>
+
+                <div class="true">
+                    <div class="line-center">
+                        <div class="inc-icon icon-20">
+                            <img src="https://hotphim.org/wp-content/themes/movie-theme/images/vn_flag.svg" alt="Vietnam">
+                        </div>
+                        <span>Hoàng Sa &amp; Trường Sa là của Việt Nam!</span>
+                    </div>
+                </div>
+                                <div class="text-link">
+                                            <a style="color: var(--footer-bg)" href="https://tinsoikeo1.com" target="_blank" rel="dofollow noopener noreferrer">keonhacai5</a>
+                                            <a style="color: var(--footer-bg)" href="https://tylebongda.biz/" target="_blank" rel="dofollow noopener noreferrer">https://tylebongda.biz</a>
+                                            <a style="color: var(--footer-bg)" href="https://keobongdahomnay.us" target="_blank" rel="dofollow noopener noreferrer">https://keobongdahomnay.us/</a>
+                                            <a style="color: var(--footer-bg)" href="https://12betsmart.link/" target="_blank" rel="dofollow noopener noreferrer">12bet</a>
+                                            <a style="color: var(--footer-bg)" href="https://dvdtown.com/" target="_blank" rel="dofollow noopener noreferrer">แทงบอลออนไลน์</a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1790968526 -->

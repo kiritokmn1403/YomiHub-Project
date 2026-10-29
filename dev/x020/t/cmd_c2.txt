@@ -1,0 +1,1 @@
+Adb logcat -d -v time | Select-String -Pattern 'Kwiky|kwiky|flutter.*(Error|Exception)|E/flutter' | Select-Object -Last 30 | ForEach-Object { "$_".Substring(0, [Math]::Min(400, "$_".Length)) }

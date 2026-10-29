@@ -1,0 +1,43 @@
+HTTP/1.1 301 Moved Permanently
+Date: Sat, 03 Oct 2026 08:52:09 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+location: https://docln.sbs/ai-dich/2-hikaru-ga-chikyuu-ni-itakoro
+Server: cloudflare
+Set-Cookie: XSRF-TOKEN=eyJpdiI6ImUzS1hvK3VuelFYODJ2bFNLeFBibmc9PSIsInZhbHVlIjoiUVlWWVFibFZ4UnFEaXZ2Y1cyYkVxR2RGd3VHZU9KMkVoL0t3dUxZdXRzRlZrVkg5VE1nQXkrVlJsNGplOWVrN2o2b1V6cW5KdUx1NVp1THoxanVveSs5Ykx5UFJHT2J0OGM1SDZheEZXbWs4aHN0aW95R2FNdkhQSGwwOUZTdVciLCJtYWMiOiJhMzhhOWNiNWM4YjQ5YjMzOTk5YjkxZDQyMjc3MjUwODI2OTc2ZmFjNjAzZGRmODAyODZjMzkzMjI0ZDQ1NDU0IiwidGFnIjoiIn0%3D; expires=Sat, 17 Oct 2026 08:52:09 GMT; Max-Age=1209600; path=/; secure; samesite=lax
+Set-Cookie: ln_session=eyJpdiI6Ikxsc0VNRFQvTlVKUklCWlB6cnpMT2c9PSIsInZhbHVlIjoiWVNTREltYVRZanNlcUF4emhTaWM0VDlEamNyMFlyeElSa2hSWTc5QUxiWWpuN3Fnd2F4d1JMSU9sUnZnSEMwaENGekgzK1JJdk1vbWZtWWNTbWgzT3RFQ2tGZ2hCcTF0U2lVVkxvclpGSDBxaHpRVlh1ZFRYNW9xallKNzl2eDAiLCJtYWMiOiIyOGQ3MzQ0YzYyY2ZjMzE0ZTY2YjIwMTJlODNjYmI0MzZlMTZmZjZiZDJkOTk5NzJlNGM2N2Q1MjZkZjk3MzZmIiwidGFnIjoiIn0%3D; expires=Sat, 17 Oct 2026 08:52:09 GMT; Max-Age=1209600; path=/; httponly; samesite=lax
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+x-xss-protection: 1; mode=block
+cf-cache-status: DYNAMIC
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=5FIGPQCpZaPOtZ0Sc%2BM8V%2BMYD0RzIgscPAiQ2VxFvS5kgOqs1hK7ut%2Fqvo5nb9UHH2vyYwylnjAD%2F1TAw34%2F%2Fcg8dxY5CTkgwLyyyQNsBGxZtrdL33YgqOq0iLU%3D"}]}
+CF-RAY: a44ab5863e01e2f2-HKG
+alt-svc: h3=":443"; ma=86400
+
+HTTP/1.1 200 OK
+Date: Sat, 03 Oct 2026 08:52:09 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: max-age=0, must-revalidate, no-cache, no-store, private
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+expires: Fri, 01 Jan 1990 00:00:00 GMT
+pragma: no-cache
+Server: cloudflare
+Set-Cookie: XSRF-TOKEN=eyJpdiI6InR6R1dWcHZTay9WUHhuazUrQlh0QWc9PSIsInZhbHVlIjoiTUZsL3F4ZXVaY3ZPSlNoaW83WkdKTkRmdVNDR0U5MjhZamMwbmFSTmZXVzliZHdXRW54ckMvdm9jWDJtQ0tEenl0ckNSWVlTYTJLYis3azY1U0NCcWdQeHpHU2c4MFJzWncwa0haMCtnK0QyUytvT1liOVVEOTNqdUxocVJWckEiLCJtYWMiOiIxOWQxNDcwYjYxOTVjY2IwMDMyM2FhZDJkZTg5NzU3NWRlMDQ4NTc3MjMwYjk3ZjM2MWM1MGJjNWQ0NGY2ZmFmIiwidGFnIjoiIn0%3D; expires=Sat, 17 Oct 2026 08:52:09 GMT; Max-Age=1209600; path=/; secure; samesite=lax
+Set-Cookie: ln_session=eyJpdiI6IklxU1NHOXFIdHBBU2xCbWd0bHF5dWc9PSIsInZhbHVlIjoiMit6YWk5M1NTVk4vY3p0KzFBUWNLUjR0Y2JacTE0SkpsckFDenJhZ1RYVzNWSU1SOTNVU09aUHJFRVdyb1ZnaHB3UGNVcXo4VVBuakVDZVdueFkrbFRLK3pXeDk1NFNLRXI3SzBHTVZUbGVaUTFCTHRGRFVDR0pEemRxMUN5NU8iLCJtYWMiOiI0ZDRkYWNiM2JiZmI1ZmQyMjE5YmVjMmU3ODRlOTYxOTFmNWUxNWQzNmUyMTkyOWY0YTc0ZGZhMmZjZWZjNDljIiwidGFnIjoiIn0%3D; expires=Sat, 17 Oct 2026 08:52:09 GMT; Max-Age=1209600; path=/; httponly; samesite=lax
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 58
+x-xss-protection: 1; mode=block
+cf-cache-status: DYNAMIC
+vary: accept-encoding
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=pZxzLMaMhswlnH%2BLKRDDMxeygHc5R4BeYY7Yss0A%2Bf4160uik%2BAci9Cx%2FvmFO27j4MEZBBb7nWhPg3t624r7puxYXMeQdT74lyVu6RJI%2Bu6GLjXRIPrhBiP9UJU%3D"}]}
+CF-RAY: a44ab586df66e2f2-HKG
+alt-svc: h3=":443"; ma=86400
+

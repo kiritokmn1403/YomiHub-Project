@@ -1,0 +1,602 @@
+[
+  {
+    "file": "lib/repositories/chapter_repository.dart",
+    "overlay_sha256": "629f33f21b5e0a13858d748ee3bdad291778e349c0c49b5060fceb31496fdb50",
+    "android_sha256": "629f33f21b5e0a13858d748ee3bdad291778e349c0c49b5060fceb31496fdb50",
+    "android_matches": true,
+    "android_before_sha256": "3b0bc3613131f30e1e5f264ac73ca4c6f380bd12db3870236a81bd814cda05bb",
+    "windows_sha256": "629f33f21b5e0a13858d748ee3bdad291778e349c0c49b5060fceb31496fdb50",
+    "windows_matches": true,
+    "windows_before_sha256": "3b0bc3613131f30e1e5f264ac73ca4c6f380bd12db3870236a81bd814cda05bb"
+  },
+  {
+    "file": "lib/repositories/manga_repository.dart",
+    "overlay_sha256": "3409a41e5509100443a4d954fdca2e85b213e2c61022f2e2e8895ae5f0d85bd6",
+    "android_sha256": "3409a41e5509100443a4d954fdca2e85b213e2c61022f2e2e8895ae5f0d85bd6",
+    "android_matches": true,
+    "android_before_sha256": "37e5c91e7740c0e296975869fad50eb326871b719bb94780372d37b37712f0f6",
+    "windows_sha256": "3409a41e5509100443a4d954fdca2e85b213e2c61022f2e2e8895ae5f0d85bd6",
+    "windows_matches": true,
+    "windows_before_sha256": "37e5c91e7740c0e296975869fad50eb326871b719bb94780372d37b37712f0f6"
+  },
+  {
+    "file": "lib/services/extension_store_service.dart",
+    "overlay_sha256": "b0f22871196aa963ccad8dd856c3eb13b4f647f3c0680a12eba628f451526404",
+    "android_sha256": "b0f22871196aa963ccad8dd856c3eb13b4f647f3c0680a12eba628f451526404",
+    "android_matches": true,
+    "android_before_sha256": "945b0df6d17b1a2f039cd9ab526ddf1cace7084834342bd36a741c4aa174bb16",
+    "windows_sha256": "b0f22871196aa963ccad8dd856c3eb13b4f647f3c0680a12eba628f451526404",
+    "windows_matches": true,
+    "windows_before_sha256": "945b0df6d17b1a2f039cd9ab526ddf1cace7084834342bd36a741c4aa174bb16"
+  },
+  {
+    "file": "lib/services/get_chapter_pages.dart",
+    "overlay_sha256": "c93fc976910bc1985d8cd0e59e26e7b82a5da803987e3667070b6225b5bdc840",
+    "android_sha256": "c93fc976910bc1985d8cd0e59e26e7b82a5da803987e3667070b6225b5bdc840",
+    "android_matches": true,
+    "android_before_sha256": "d7755fbe8f34f2bded557a45ecaa02bb76245e6f0cde7f7e7eb24fdaecf7b6e5",
+    "windows_sha256": "c93fc976910bc1985d8cd0e59e26e7b82a5da803987e3667070b6225b5bdc840",
+    "windows_matches": true,
+    "windows_before_sha256": "d7755fbe8f34f2bded557a45ecaa02bb76245e6f0cde7f7e7eb24fdaecf7b6e5"
+  },
+  {
+    "file": "lib/services/get_html_content.dart",
+    "overlay_sha256": "fb3743ef1bf676014ebf55b5479b0dea1d3e4f88be7d7540c1ebf73056bbd18c",
+    "android_sha256": "fb3743ef1bf676014ebf55b5479b0dea1d3e4f88be7d7540c1ebf73056bbd18c",
+    "android_matches": true,
+    "android_before_sha256": "a55d4e9bf3ee965380c6a5cb8d790d0de34f6f74da81330970954ecc65ffc207",
+    "windows_sha256": "fb3743ef1bf676014ebf55b5479b0dea1d3e4f88be7d7540c1ebf73056bbd18c",
+    "windows_matches": true,
+    "windows_before_sha256": "a55d4e9bf3ee965380c6a5cb8d790d0de34f6f74da81330970954ecc65ffc207"
+  },
+  {
+    "file": "lib/services/get_video_list.dart",
+    "overlay_sha256": "760d5a9af45d3ffd0926e28579fa2c02f38998f02bebb69a93911e7631697775",
+    "android_sha256": "760d5a9af45d3ffd0926e28579fa2c02f38998f02bebb69a93911e7631697775",
+    "android_matches": true,
+    "android_before_sha256": "68ea0d37808b210295dbee8a1969ae68832c15051576f2e2b97219b4d35d299a",
+    "windows_sha256": "760d5a9af45d3ffd0926e28579fa2c02f38998f02bebb69a93911e7631697775",
+    "windows_matches": true,
+    "windows_before_sha256": "68ea0d37808b210295dbee8a1969ae68832c15051576f2e2b97219b4d35d299a"
+  },
+  {
+    "file": "lib/yomihub/app_identity.dart",
+    "overlay_sha256": "5027af34a553a75c8ecee51e57fe5fd0feb64ecb20fe2eb01208558ff95aaf5a",
+    "android_sha256": "5027af34a553a75c8ecee51e57fe5fd0feb64ecb20fe2eb01208558ff95aaf5a",
+    "android_matches": true,
+    "android_before_sha256": "1ae1264defdb572d11e31caebd251ba4756ce39d883d0a7cdc408b83801ca78c",
+    "windows_sha256": "5027af34a553a75c8ecee51e57fe5fd0feb64ecb20fe2eb01208558ff95aaf5a",
+    "windows_matches": true,
+    "windows_before_sha256": "1ae1264defdb572d11e31caebd251ba4756ce39d883d0a7cdc408b83801ca78c"
+  },
+  {
+    "file": "lib/modules/anime/anime_player_view.dart",
+    "overlay_sha256": "5c6a0b25a1315e02157f8223a5250a304c3b4de5000186a59afba4de3acf14ec",
+    "android_sha256": "5c6a0b25a1315e02157f8223a5250a304c3b4de5000186a59afba4de3acf14ec",
+    "android_matches": true,
+    "android_before_sha256": "c3499c6df9bd9278242cb6b5f045b36c8eb21610f0ccaeb0b18a962b25661b02",
+    "windows_sha256": "5c6a0b25a1315e02157f8223a5250a304c3b4de5000186a59afba4de3acf14ec",
+    "windows_matches": true,
+    "windows_before_sha256": "c3499c6df9bd9278242cb6b5f045b36c8eb21610f0ccaeb0b18a962b25661b02"
+  },
+  {
+    "file": "lib/modules/history/history_screen.dart",
+    "overlay_sha256": "4f6b3ac004ab858069f50587693d6caca87f14cbbac4554af6851e08ce2efea5",
+    "android_sha256": "4f6b3ac004ab858069f50587693d6caca87f14cbbac4554af6851e08ce2efea5",
+    "android_matches": true,
+    "android_before_sha256": "9b8cc5c84ea731e4d1b3edff28d6bc113ae8e117ccd13db0f810ddba5c72e4b5",
+    "windows_sha256": "4f6b3ac004ab858069f50587693d6caca87f14cbbac4554af6851e08ce2efea5",
+    "windows_matches": true,
+    "windows_before_sha256": "9b8cc5c84ea731e4d1b3edff28d6bc113ae8e117ccd13db0f810ddba5c72e4b5"
+  },
+  {
+    "file": "lib/modules/anime/providers/anime_player_controller_provider.dart",
+    "overlay_sha256": "86ef9d0e851ccda9ca771154b908c1bb1f03e8c5c9499c1b9dffcf925c904bf0",
+    "android_sha256": "86ef9d0e851ccda9ca771154b908c1bb1f03e8c5c9499c1b9dffcf925c904bf0",
+    "android_matches": true,
+    "android_before_sha256": "8158a5cc7e1fb639938f83b40a7bc839511893be69c7d22b4b313ea4f7b96c4d",
+    "windows_sha256": "86ef9d0e851ccda9ca771154b908c1bb1f03e8c5c9499c1b9dffcf925c904bf0",
+    "windows_matches": true,
+    "windows_before_sha256": "8158a5cc7e1fb639938f83b40a7bc839511893be69c7d22b4b313ea4f7b96c4d"
+  },
+  {
+    "file": "lib/modules/anime/utils/mpv_track_snapshot.dart",
+    "overlay_sha256": "b51efb962d61d987c1821f819e2a41349eb174646d90dd3069a18cdf8755db6a",
+    "android_sha256": "b51efb962d61d987c1821f819e2a41349eb174646d90dd3069a18cdf8755db6a",
+    "android_matches": true,
+    "android_before_sha256": "b87840f00a0d5d30611d937feb61b977893a57a3abbd2655a8d9ba568d3cbde6",
+    "windows_sha256": "b51efb962d61d987c1821f819e2a41349eb174646d90dd3069a18cdf8755db6a",
+    "windows_matches": true,
+    "windows_before_sha256": null
+  },
+  {
+    "file": "lib/modules/manga/detail/manga_detail_view.dart",
+    "overlay_sha256": "157e5c1674549ea6d04baaf0d7c8c875c2577fa2cf4c83ec92717152162322f4",
+    "android_sha256": "157e5c1674549ea6d04baaf0d7c8c875c2577fa2cf4c83ec92717152162322f4",
+    "android_matches": true,
+    "android_before_sha256": "c9e9c12362df6c78dd05a2e656f47f61ca1ce87f35840b7704205ee334e4b352",
+    "windows_sha256": "157e5c1674549ea6d04baaf0d7c8c875c2577fa2cf4c83ec92717152162322f4",
+    "windows_matches": true,
+    "windows_before_sha256": "c9e9c12362df6c78dd05a2e656f47f61ca1ce87f35840b7704205ee334e4b352"
+  },
+  {
+    "file": "lib/modules/manga/detail/providers/update_manga_detail_providers.dart",
+    "overlay_sha256": "0be8b4b1b8e143b934f64c8dfc3c5f01aebdc7aa4b17262d0ff32335e7488bea",
+    "android_sha256": "0be8b4b1b8e143b934f64c8dfc3c5f01aebdc7aa4b17262d0ff32335e7488bea",
+    "android_matches": true,
+    "android_before_sha256": "02e20cccc04d775cc59cc3e564f18957bbf58ce3f766eff699687af6fd4ac3c3",
+    "windows_sha256": "0be8b4b1b8e143b934f64c8dfc3c5f01aebdc7aa4b17262d0ff32335e7488bea",
+    "windows_matches": true,
+    "windows_before_sha256": "02e20cccc04d775cc59cc3e564f18957bbf58ce3f766eff699687af6fd4ac3c3"
+  },
+  {
+    "file": "lib/modules/manga/detail/widgets/manga_info_header.dart",
+    "overlay_sha256": "18dbb95edfa5b2d7ddf79f1233dd14c47bc5dba438d3501b384f29728aa22111",
+    "android_sha256": "18dbb95edfa5b2d7ddf79f1233dd14c47bc5dba438d3501b384f29728aa22111",
+    "android_matches": true,
+    "android_before_sha256": "7751f1aaf2da2995da0024f71239b39fa66449f7b2f10ca3615a5449d020f895",
+    "windows_sha256": "18dbb95edfa5b2d7ddf79f1233dd14c47bc5dba438d3501b384f29728aa22111",
+    "windows_matches": true,
+    "windows_before_sha256": "7751f1aaf2da2995da0024f71239b39fa66449f7b2f10ca3615a5449d020f895"
+  },
+  {
+    "file": "lib/modules/more/about/about_screen.dart",
+    "overlay_sha256": "731c0f36c34b9c21fd416cfa9a2b7488693c29294e33920805f064ff240c980e",
+    "android_sha256": "731c0f36c34b9c21fd416cfa9a2b7488693c29294e33920805f064ff240c980e",
+    "android_matches": true,
+    "android_before_sha256": "45c0bd5dc34cfc9d33839f9974ef51692ef3659867b62b582b9e4ac98e5807a3",
+    "windows_sha256": "731c0f36c34b9c21fd416cfa9a2b7488693c29294e33920805f064ff240c980e",
+    "windows_matches": true,
+    "windows_before_sha256": "45c0bd5dc34cfc9d33839f9974ef51692ef3659867b62b582b9e4ac98e5807a3"
+  },
+  {
+    "file": "lib/modules/more/about/providers/check_for_update.dart",
+    "overlay_sha256": "47264eb8f3be11a3693d6f801a1620d0fb8ce3374c400fdad4d448cd17f3b27b",
+    "android_sha256": "47264eb8f3be11a3693d6f801a1620d0fb8ce3374c400fdad4d448cd17f3b27b",
+    "android_matches": true,
+    "android_before_sha256": "78c16a4ed9e6568ca7ee5fd7ca822c258ece608ef55b32fa9b5f2863488c091e",
+    "windows_sha256": "47264eb8f3be11a3693d6f801a1620d0fb8ce3374c400fdad4d448cd17f3b27b",
+    "windows_matches": true,
+    "windows_before_sha256": "78c16a4ed9e6568ca7ee5fd7ca822c258ece608ef55b32fa9b5f2863488c091e"
+  },
+  {
+    "file": "lib/modules/more/about/providers/download_file_screen.dart",
+    "overlay_sha256": "77a55e6a98e08bb4a9a7a408cd72db60fb16add2f9c3e56164f64e22cbd59cd0",
+    "android_sha256": "77a55e6a98e08bb4a9a7a408cd72db60fb16add2f9c3e56164f64e22cbd59cd0",
+    "android_matches": true,
+    "android_before_sha256": "020cdea23f5480fc331264df10b8c4c08cca02d648d4f135ac3518c9d2246730",
+    "windows_sha256": "77a55e6a98e08bb4a9a7a408cd72db60fb16add2f9c3e56164f64e22cbd59cd0",
+    "windows_matches": true,
+    "windows_before_sha256": "020cdea23f5480fc331264df10b8c4c08cca02d648d4f135ac3518c9d2246730"
+  },
+  {
+    "file": "lib/modules/more/data_and_storage/providers/delete_source.dart",
+    "overlay_sha256": "fccc4d9c9f4c9b392acf14a166f93915528d83307c2940dbe90e7da6622f3368",
+    "android_sha256": "fccc4d9c9f4c9b392acf14a166f93915528d83307c2940dbe90e7da6622f3368",
+    "android_matches": true,
+    "android_before_sha256": "9a875af9b7aaae7d82c9ccfdc1af0ce8c3ca7133437f86eca298683447ef6be3",
+    "windows_sha256": "fccc4d9c9f4c9b392acf14a166f93915528d83307c2940dbe90e7da6622f3368",
+    "windows_matches": true,
+    "windows_before_sha256": "9a875af9b7aaae7d82c9ccfdc1af0ce8c3ca7133437f86eca298683447ef6be3"
+  },
+  {
+    "file": "lib/modules/more/data_and_storage/providers/restore.dart",
+    "overlay_sha256": "9474904b52ff21b9100aed6677d4db90340656464e041f3bca64cc83730b7e9b",
+    "android_sha256": "9474904b52ff21b9100aed6677d4db90340656464e041f3bca64cc83730b7e9b",
+    "android_matches": true,
+    "android_before_sha256": "6526ec1ac1e48f005b6efb1e22c3e3914cd3f6bb6df04c90441e7cd47c2598b6",
+    "windows_sha256": "9474904b52ff21b9100aed6677d4db90340656464e041f3bca64cc83730b7e9b",
+    "windows_matches": true,
+    "windows_before_sha256": "6526ec1ac1e48f005b6efb1e22c3e3914cd3f6bb6df04c90441e7cd47c2598b6"
+  },
+  {
+    "file": "lib/yomihub/about/github_projects.dart",
+    "overlay_sha256": "2eba5a7df26adb730dfa9296fba38b7950c5451a9a1910ac20d939ef32519ad3",
+    "android_sha256": "2eba5a7df26adb730dfa9296fba38b7950c5451a9a1910ac20d939ef32519ad3",
+    "android_matches": true,
+    "android_before_sha256": "7b8256c3a0cf9e89e547ae277c167bb93444abb1bd79f127ca918cff90a9bc68",
+    "windows_sha256": "2eba5a7df26adb730dfa9296fba38b7950c5451a9a1910ac20d939ef32519ad3",
+    "windows_matches": true,
+    "windows_before_sha256": "7b8256c3a0cf9e89e547ae277c167bb93444abb1bd79f127ca918cff90a9bc68"
+  },
+  {
+    "file": "lib/yomihub/backup/yomi_backup_extras.dart",
+    "overlay_sha256": "be9223a13cae44a5c33dd6265f064ce0dd2f7b5a200d19a05e2e20f4bfde2510",
+    "android_sha256": "be9223a13cae44a5c33dd6265f064ce0dd2f7b5a200d19a05e2e20f4bfde2510",
+    "android_matches": true,
+    "android_before_sha256": "8006e7008fab41e0a2a4749d5bacc6c800720f425f8e1826337b89f235fe272e",
+    "windows_sha256": "be9223a13cae44a5c33dd6265f064ce0dd2f7b5a200d19a05e2e20f4bfde2510",
+    "windows_matches": true,
+    "windows_before_sha256": "8006e7008fab41e0a2a4749d5bacc6c800720f425f8e1826337b89f235fe272e"
+  },
+  {
+    "file": "lib/yomihub/extensions/builtin_extensions.dart",
+    "overlay_sha256": "bb31c012ce4e448b5aa16257c941ed681d93c55868a7c9ff3ff22b14821ea680",
+    "android_sha256": "bb31c012ce4e448b5aa16257c941ed681d93c55868a7c9ff3ff22b14821ea680",
+    "android_matches": true,
+    "android_before_sha256": "6b4903db50fac88008c80107c4915e72a64a22496735ce1826122838ad7e4dcc",
+    "windows_sha256": "bb31c012ce4e448b5aa16257c941ed681d93c55868a7c9ff3ff22b14821ea680",
+    "windows_matches": true,
+    "windows_before_sha256": "6b4903db50fac88008c80107c4915e72a64a22496735ce1826122838ad7e4dcc"
+  },
+  {
+    "file": "lib/yomihub/extensions/merge_screen.dart",
+    "overlay_sha256": "808a892e453eebed480cd070da799e1454ec9d05e2a2aecc0bff07f03626c998",
+    "android_sha256": "808a892e453eebed480cd070da799e1454ec9d05e2a2aecc0bff07f03626c998",
+    "android_matches": true,
+    "android_before_sha256": "be9fcbb1cc5575c4b9452e4a13b3df587ca9e3bd0c0292f52531d429e361f1ae",
+    "windows_sha256": "808a892e453eebed480cd070da799e1454ec9d05e2a2aecc0bff07f03626c998",
+    "windows_matches": true,
+    "windows_before_sha256": "be9fcbb1cc5575c4b9452e4a13b3df587ca9e3bd0c0292f52531d429e361f1ae"
+  },
+  {
+    "file": "lib/yomihub/extensions/url_override.dart",
+    "overlay_sha256": "f7c4da3f9867cac5c4cf1cf135d875f202e0dfd621b05c927036d74d10d6faf6",
+    "android_sha256": "f7c4da3f9867cac5c4cf1cf135d875f202e0dfd621b05c927036d74d10d6faf6",
+    "android_matches": true,
+    "android_before_sha256": "c0a6e15f3229a988e222475e4778da2709e21d85e31b31147dab440988a5d2e2",
+    "windows_sha256": "f7c4da3f9867cac5c4cf1cf135d875f202e0dfd621b05c927036d74d10d6faf6",
+    "windows_matches": true,
+    "windows_before_sha256": "c0a6e15f3229a988e222475e4778da2709e21d85e31b31147dab440988a5d2e2"
+  },
+  {
+    "file": "lib/yomihub/health/health_connect_service.dart",
+    "overlay_sha256": "b24197090e15cf7bf5bb4c278ade8544a0c4987be597eb9786ede84e6301bb8d",
+    "android_sha256": "b24197090e15cf7bf5bb4c278ade8544a0c4987be597eb9786ede84e6301bb8d",
+    "android_matches": true,
+    "android_before_sha256": "45790cc7b85bef4834ae92d135d3ee6c487d9199ea29f008794601bd9287ec83",
+    "windows_sha256": "b24197090e15cf7bf5bb4c278ade8544a0c4987be597eb9786ede84e6301bb8d",
+    "windows_matches": true,
+    "windows_before_sha256": "45790cc7b85bef4834ae92d135d3ee6c487d9199ea29f008794601bd9287ec83"
+  },
+  {
+    "file": "lib/yomihub/merge/chapter_origins.dart",
+    "overlay_sha256": "d3145fcdbcf43774b0a6e5add2dde21c94fd1e68a0fb00cd8df9436aba841efb",
+    "android_sha256": "d3145fcdbcf43774b0a6e5add2dde21c94fd1e68a0fb00cd8df9436aba841efb",
+    "android_matches": true,
+    "android_before_sha256": "0943ce77db0943d5a42af4cabfdbc164c388a2abb481705a7cfaa7391ceabc3a",
+    "windows_sha256": "d3145fcdbcf43774b0a6e5add2dde21c94fd1e68a0fb00cd8df9436aba841efb",
+    "windows_matches": true,
+    "windows_before_sha256": "c35cdc62bf1f7eacc34e2b8ec33ebf8e9ee1ad86bf9d331a936682bae8257fc2"
+  },
+  {
+    "file": "lib/yomihub/merge/content_merge_screen.dart",
+    "overlay_sha256": "e7daab9b3151362b996f12ef6ab060e98d8483e8f3966e053a5f85d6e18df18b",
+    "android_sha256": "e7daab9b3151362b996f12ef6ab060e98d8483e8f3966e053a5f85d6e18df18b",
+    "android_matches": true,
+    "android_before_sha256": "1fdc68799c61f8d0493b8e0fb0cfd6715933fab8158d11eb07719316ddb3ed2f",
+    "windows_sha256": "e7daab9b3151362b996f12ef6ab060e98d8483e8f3966e053a5f85d6e18df18b",
+    "windows_matches": true,
+    "windows_before_sha256": "1fdc68799c61f8d0493b8e0fb0cfd6715933fab8158d11eb07719316ddb3ed2f"
+  },
+  {
+    "file": "lib/yomihub/merge/extension_merge_screen.dart",
+    "overlay_sha256": "15be31cde75bb5aaccf044af61abf0dba9bde2d13d8bb208e0a29d56ce942ce9",
+    "android_sha256": "15be31cde75bb5aaccf044af61abf0dba9bde2d13d8bb208e0a29d56ce942ce9",
+    "android_matches": true,
+    "android_before_sha256": "7da9477d370480afc547d356d3a4bb8c5dddf0fed57d25a901598da98ffc5d01",
+    "windows_sha256": "15be31cde75bb5aaccf044af61abf0dba9bde2d13d8bb208e0a29d56ce942ce9",
+    "windows_matches": true,
+    "windows_before_sha256": "7da9477d370480afc547d356d3a4bb8c5dddf0fed57d25a901598da98ffc5d01"
+  },
+  {
+    "file": "lib/yomihub/playbooks/play_books_screen.dart",
+    "overlay_sha256": "27eaf55b9036a9ee27ec6515ac25663be9d423cb2a2701364ecf01b99661bff4",
+    "android_sha256": "27eaf55b9036a9ee27ec6515ac25663be9d423cb2a2701364ecf01b99661bff4",
+    "android_matches": true,
+    "android_before_sha256": "d3e130dda53a50ac5da1e655b0154ea64b9bab588596ff1cbace3013af6a42ea",
+    "windows_sha256": "27eaf55b9036a9ee27ec6515ac25663be9d423cb2a2701364ecf01b99661bff4",
+    "windows_matches": true,
+    "windows_before_sha256": "d3e130dda53a50ac5da1e655b0154ea64b9bab588596ff1cbace3013af6a42ea"
+  },
+  {
+    "file": "lib/yomihub/reader/ebook_reader_screen.dart",
+    "overlay_sha256": "be39aafc00296de78005b213d4ca912980a43852455138626597ba0f75eac41b",
+    "android_sha256": "be39aafc00296de78005b213d4ca912980a43852455138626597ba0f75eac41b",
+    "android_matches": true,
+    "android_before_sha256": "d7199006d993d1afffcc1ba6a37fcdfaa1e22728e70560c93f8fbe1dc9858c27",
+    "windows_sha256": "be39aafc00296de78005b213d4ca912980a43852455138626597ba0f75eac41b",
+    "windows_matches": true,
+    "windows_before_sha256": "d7199006d993d1afffcc1ba6a37fcdfaa1e22728e70560c93f8fbe1dc9858c27"
+  },
+  {
+    "file": "lib/yomihub/update/drive_update.dart",
+    "overlay_sha256": "f13edcc8f93a9140d4fff84af58e52c8c02cd00f1fc107a057075154554eed3b",
+    "android_sha256": "f13edcc8f93a9140d4fff84af58e52c8c02cd00f1fc107a057075154554eed3b",
+    "android_matches": true,
+    "android_before_sha256": "8315875e8997672619ea4b878ee22eda911dca68ba1300805c5581b43386ef60",
+    "windows_sha256": "f13edcc8f93a9140d4fff84af58e52c8c02cd00f1fc107a057075154554eed3b",
+    "windows_matches": true,
+    "windows_before_sha256": "8315875e8997672619ea4b878ee22eda911dca68ba1300805c5581b43386ef60"
+  },
+  {
+    "file": "test/yh_039_epub_test.dart",
+    "overlay_sha256": "72e88634919653d80485e2ee42c7958ee0b178480eccccaafaf8a081bd8deaf9",
+    "android_sha256": "72e88634919653d80485e2ee42c7958ee0b178480eccccaafaf8a081bd8deaf9",
+    "android_matches": true,
+    "android_before_sha256": "9743073c40dffa08eb4a4851592fa78efd9f7cf79f5cb6d655746c2f786d542d",
+    "windows_sha256": "72e88634919653d80485e2ee42c7958ee0b178480eccccaafaf8a081bd8deaf9",
+    "windows_matches": true,
+    "windows_before_sha256": "9743073c40dffa08eb4a4851592fa78efd9f7cf79f5cb6d655746c2f786d542d"
+  },
+  {
+    "file": "test/yh_039_merge_test.dart",
+    "overlay_sha256": "453d15eea1cc82b41c6797a3550528dadd230af6df8c36995ec20b6e725af3e6",
+    "android_sha256": "453d15eea1cc82b41c6797a3550528dadd230af6df8c36995ec20b6e725af3e6",
+    "android_matches": true,
+    "android_before_sha256": "4856748f1106d316d503a513cf9d8f6a6e756b25670d5c6c0fa1e798aa122c63",
+    "windows_sha256": "453d15eea1cc82b41c6797a3550528dadd230af6df8c36995ec20b6e725af3e6",
+    "windows_matches": true,
+    "windows_before_sha256": "0538f7331f120a3bddd9d3bdc223bc054ba961c21e8b5e457b3d397bcb928b21"
+  },
+  {
+    "file": "test/yh_039_mpv_snapshot_test.dart",
+    "overlay_sha256": "7572c33d344888aa2c624a35d4b19da8ff13bf45028cb5922cfe4ff6a76c4192",
+    "android_sha256": "7572c33d344888aa2c624a35d4b19da8ff13bf45028cb5922cfe4ff6a76c4192",
+    "android_matches": true,
+    "android_before_sha256": "1e44eec3de49ef36511b80db6e74d0e42e7acf9c196115996d9ecfed1b937db1",
+    "windows_sha256": "7572c33d344888aa2c624a35d4b19da8ff13bf45028cb5922cfe4ff6a76c4192",
+    "windows_matches": true,
+    "windows_before_sha256": null
+  },
+  {
+    "file": "test/yh_039_player_test.dart",
+    "overlay_sha256": "e17aebe2019f4d36d00ca3dda17e9f464609ff024ba78af4f1f2f635728281fe",
+    "android_sha256": "e17aebe2019f4d36d00ca3dda17e9f464609ff024ba78af4f1f2f635728281fe",
+    "android_matches": true,
+    "android_before_sha256": "66d5ecfcb268c049ffe7fbd51a51f3aa08e586b2fecd4bc9048eb0a10a0a0beb",
+    "windows_sha256": "e17aebe2019f4d36d00ca3dda17e9f464609ff024ba78af4f1f2f635728281fe",
+    "windows_matches": true,
+    "windows_before_sha256": "66d5ecfcb268c049ffe7fbd51a51f3aa08e586b2fecd4bc9048eb0a10a0a0beb"
+  },
+  {
+    "file": "test/yh_039_repositories_test.dart",
+    "overlay_sha256": "bf3efc2f17b828633b700ef686772b87f8a64732dd26256ecf7aae1aedba0fb0",
+    "android_sha256": "bf3efc2f17b828633b700ef686772b87f8a64732dd26256ecf7aae1aedba0fb0",
+    "android_matches": true,
+    "android_before_sha256": "e82e3d81d78a7f81aa5cafa66ed0d3db98d2a8b97be0ac36f3d8e6e80d814d1c",
+    "windows_sha256": "bf3efc2f17b828633b700ef686772b87f8a64732dd26256ecf7aae1aedba0fb0",
+    "windows_matches": true,
+    "windows_before_sha256": "e82e3d81d78a7f81aa5cafa66ed0d3db98d2a8b97be0ac36f3d8e6e80d814d1c"
+  },
+  {
+    "file": "test/yh_039_test.dart",
+    "overlay_sha256": "704636406334d243b39d559889ff6ded52d469751f0682f2051b80efdeec15e6",
+    "android_sha256": "704636406334d243b39d559889ff6ded52d469751f0682f2051b80efdeec15e6",
+    "android_matches": true,
+    "android_before_sha256": "704636406334d243b39d559889ff6ded52d469751f0682f2051b80efdeec15e6",
+    "windows_sha256": "704636406334d243b39d559889ff6ded52d469751f0682f2051b80efdeec15e6",
+    "windows_matches": true,
+    "windows_before_sha256": "9501055f01faf139243abf5ea2ad5e64ced71c04799317eea34aafeeedf16559"
+  },
+  {
+    "file": "test/yh_repos_test.dart",
+    "overlay_sha256": "3e6a9babc5be5a14907d04c8746a623be1d86dc717cf6f7b6ef217553dc245bf",
+    "android_sha256": "3e6a9babc5be5a14907d04c8746a623be1d86dc717cf6f7b6ef217553dc245bf",
+    "android_matches": true,
+    "android_before_sha256": "04210b5ff97357f1c9761e85d918185fa73482292908a2bec0fe7190cefdfc13",
+    "windows_sha256": "3e6a9babc5be5a14907d04c8746a623be1d86dc717cf6f7b6ef217553dc245bf",
+    "windows_matches": true,
+    "windows_before_sha256": "04210b5ff97357f1c9761e85d918185fa73482292908a2bec0fe7190cefdfc13"
+  },
+  {
+    "file": "test/widgets/onboarding_back_button_test.dart",
+    "overlay_sha256": "2ef52c822c9fd159a309f72effd744704ab2d97a011c1cdb85554ee375c1df98",
+    "android_sha256": "2ef52c822c9fd159a309f72effd744704ab2d97a011c1cdb85554ee375c1df98",
+    "android_matches": true,
+    "android_before_sha256": "41bd57b25d65befc568c7d4b1754d8584e359ea6e58625f61845770e91d175e3",
+    "windows_sha256": "2ef52c822c9fd159a309f72effd744704ab2d97a011c1cdb85554ee375c1df98",
+    "windows_matches": true,
+    "windows_before_sha256": "41bd57b25d65befc568c7d4b1754d8584e359ea6e58625f61845770e91d175e3"
+  },
+  {
+    "file": "test/widgets/onboarding_screen_test.dart",
+    "overlay_sha256": "b1b715db210b61675da052b6fdee6c4235a2b0b8d850e224a70be48faa8c75b9",
+    "android_sha256": "b1b715db210b61675da052b6fdee6c4235a2b0b8d850e224a70be48faa8c75b9",
+    "android_matches": true,
+    "android_before_sha256": "acecf9530aa282f449430a0a1e267800e6664f84798bf82ec9ff5fbb3359f143",
+    "windows_sha256": "b1b715db210b61675da052b6fdee6c4235a2b0b8d850e224a70be48faa8c75b9",
+    "windows_matches": true,
+    "windows_before_sha256": "acecf9530aa282f449430a0a1e267800e6664f84798bf82ec9ff5fbb3359f143"
+  },
+  {
+    "file": "assets/yomihub_i18n/ar.json",
+    "overlay_sha256": "5bc66c2ac442f90472d59e020f4db70460ef3a59c4a5726523d162fc25a9356c",
+    "android_sha256": "5bc66c2ac442f90472d59e020f4db70460ef3a59c4a5726523d162fc25a9356c",
+    "android_matches": true,
+    "android_before_sha256": "75baa3d0ad9cbcf3a27d8e861075cee92bbe422ecf60f09f2b2a4697d3a9ee2e",
+    "windows_sha256": "5bc66c2ac442f90472d59e020f4db70460ef3a59c4a5726523d162fc25a9356c",
+    "windows_matches": true,
+    "windows_before_sha256": "75baa3d0ad9cbcf3a27d8e861075cee92bbe422ecf60f09f2b2a4697d3a9ee2e"
+  },
+  {
+    "file": "assets/yomihub_i18n/as.json",
+    "overlay_sha256": "408c110b3bc6cae3b3dfdb72e7488a5f16a2b4be962703b1a9e1357ae58f9466",
+    "android_sha256": "408c110b3bc6cae3b3dfdb72e7488a5f16a2b4be962703b1a9e1357ae58f9466",
+    "android_matches": true,
+    "android_before_sha256": "0fe659fc37e8b29d119311575b90549e8dd9f7b91c39ca93866c3416b141b177",
+    "windows_sha256": "408c110b3bc6cae3b3dfdb72e7488a5f16a2b4be962703b1a9e1357ae58f9466",
+    "windows_matches": true,
+    "windows_before_sha256": "0fe659fc37e8b29d119311575b90549e8dd9f7b91c39ca93866c3416b141b177"
+  },
+  {
+    "file": "assets/yomihub_i18n/de.json",
+    "overlay_sha256": "3a4033864f9947272764dd5bab6fe880b525cbaa9747bdaf67ec5a64c6102170",
+    "android_sha256": "3a4033864f9947272764dd5bab6fe880b525cbaa9747bdaf67ec5a64c6102170",
+    "android_matches": true,
+    "android_before_sha256": "68166e349dcbe35daa8937b592f1ed7d74b1f24092713f1c7b04fe9daaeb0284",
+    "windows_sha256": "3a4033864f9947272764dd5bab6fe880b525cbaa9747bdaf67ec5a64c6102170",
+    "windows_matches": true,
+    "windows_before_sha256": "68166e349dcbe35daa8937b592f1ed7d74b1f24092713f1c7b04fe9daaeb0284"
+  },
+  {
+    "file": "assets/yomihub_i18n/en.json",
+    "overlay_sha256": "57b60dc4cae0801250855025e6344d8250091b9c46888600907fa0a04aebb716",
+    "android_sha256": "57b60dc4cae0801250855025e6344d8250091b9c46888600907fa0a04aebb716",
+    "android_matches": true,
+    "android_before_sha256": "53441527f6714d78b9ce832f4e3a7293b651c5f55c92bf8b396c1bc15410f6d9",
+    "windows_sha256": "57b60dc4cae0801250855025e6344d8250091b9c46888600907fa0a04aebb716",
+    "windows_matches": true,
+    "windows_before_sha256": "53441527f6714d78b9ce832f4e3a7293b651c5f55c92bf8b396c1bc15410f6d9"
+  },
+  {
+    "file": "assets/yomihub_i18n/es.json",
+    "overlay_sha256": "440be0bc0566e08f2b77dc5b263feb6424256ce474a7f6211b63f6b0c4bec879",
+    "android_sha256": "440be0bc0566e08f2b77dc5b263feb6424256ce474a7f6211b63f6b0c4bec879",
+    "android_matches": true,
+    "android_before_sha256": "45620dcfca4636c7af78e6c1aa697f43903b39d10e3817a6cdc67f4239e23b5e",
+    "windows_sha256": "440be0bc0566e08f2b77dc5b263feb6424256ce474a7f6211b63f6b0c4bec879",
+    "windows_matches": true,
+    "windows_before_sha256": "45620dcfca4636c7af78e6c1aa697f43903b39d10e3817a6cdc67f4239e23b5e"
+  },
+  {
+    "file": "assets/yomihub_i18n/es_419.json",
+    "overlay_sha256": "0ac899db63de96292f5f052f741185c70d64b1049a4e1b1bf9e20cf581e9cbab",
+    "android_sha256": "0ac899db63de96292f5f052f741185c70d64b1049a4e1b1bf9e20cf581e9cbab",
+    "android_matches": true,
+    "android_before_sha256": "45620dcfca4636c7af78e6c1aa697f43903b39d10e3817a6cdc67f4239e23b5e",
+    "windows_sha256": "0ac899db63de96292f5f052f741185c70d64b1049a4e1b1bf9e20cf581e9cbab",
+    "windows_matches": true,
+    "windows_before_sha256": "45620dcfca4636c7af78e6c1aa697f43903b39d10e3817a6cdc67f4239e23b5e"
+  },
+  {
+    "file": "assets/yomihub_i18n/fr.json",
+    "overlay_sha256": "4711b23fd109542a2712fcedb177d0571d3e534d5c01eca412ae7221f7ddf826",
+    "android_sha256": "4711b23fd109542a2712fcedb177d0571d3e534d5c01eca412ae7221f7ddf826",
+    "android_matches": true,
+    "android_before_sha256": "d78a613182398d51ecfbb852ac0e4ef99d5e1cc773c30d89928dd0c1ee6805f5",
+    "windows_sha256": "4711b23fd109542a2712fcedb177d0571d3e534d5c01eca412ae7221f7ddf826",
+    "windows_matches": true,
+    "windows_before_sha256": "d78a613182398d51ecfbb852ac0e4ef99d5e1cc773c30d89928dd0c1ee6805f5"
+  },
+  {
+    "file": "assets/yomihub_i18n/hi.json",
+    "overlay_sha256": "0e175af7409ad89c1ce8fd7b019767d9d0e2b7380643d675b4f4eacff00b9e09",
+    "android_sha256": "0e175af7409ad89c1ce8fd7b019767d9d0e2b7380643d675b4f4eacff00b9e09",
+    "android_matches": true,
+    "android_before_sha256": "9f6d5e1ee75240db1b76ce33d80044fcf7aa839f10bb948142558f6bd30b78c9",
+    "windows_sha256": "0e175af7409ad89c1ce8fd7b019767d9d0e2b7380643d675b4f4eacff00b9e09",
+    "windows_matches": true,
+    "windows_before_sha256": "9f6d5e1ee75240db1b76ce33d80044fcf7aa839f10bb948142558f6bd30b78c9"
+  },
+  {
+    "file": "assets/yomihub_i18n/id.json",
+    "overlay_sha256": "db25313d75bdf28fdfb324cc68f08cf8b72c9861a060d44d07a38d2de0a0f3e2",
+    "android_sha256": "db25313d75bdf28fdfb324cc68f08cf8b72c9861a060d44d07a38d2de0a0f3e2",
+    "android_matches": true,
+    "android_before_sha256": "97174af8ce8a1f6ce0a2af7865d537a9478f6e7728b4f4512a640660e2fb060e",
+    "windows_sha256": "db25313d75bdf28fdfb324cc68f08cf8b72c9861a060d44d07a38d2de0a0f3e2",
+    "windows_matches": true,
+    "windows_before_sha256": "97174af8ce8a1f6ce0a2af7865d537a9478f6e7728b4f4512a640660e2fb060e"
+  },
+  {
+    "file": "assets/yomihub_i18n/it.json",
+    "overlay_sha256": "f33c48482a58c21b1d9bd9d71788545fb94e73c36575ae209944ee7c9cbb50ea",
+    "android_sha256": "f33c48482a58c21b1d9bd9d71788545fb94e73c36575ae209944ee7c9cbb50ea",
+    "android_matches": true,
+    "android_before_sha256": "757820d513d8360ac07016290ed13db63913c2b8df1603dee331f59a902929e3",
+    "windows_sha256": "f33c48482a58c21b1d9bd9d71788545fb94e73c36575ae209944ee7c9cbb50ea",
+    "windows_matches": true,
+    "windows_before_sha256": "757820d513d8360ac07016290ed13db63913c2b8df1603dee331f59a902929e3"
+  },
+  {
+    "file": "assets/yomihub_i18n/ja.json",
+    "overlay_sha256": "40987b5576b93a6ab4bb4712ecf7b64c41cfe7c6dbe7db40f71d690ef18d6016",
+    "android_sha256": "40987b5576b93a6ab4bb4712ecf7b64c41cfe7c6dbe7db40f71d690ef18d6016",
+    "android_matches": true,
+    "android_before_sha256": "e91009659f25d48bcea76d1ea3d1df17211fa31ced2abd429166d1da40b3762b",
+    "windows_sha256": "40987b5576b93a6ab4bb4712ecf7b64c41cfe7c6dbe7db40f71d690ef18d6016",
+    "windows_matches": true,
+    "windows_before_sha256": "e91009659f25d48bcea76d1ea3d1df17211fa31ced2abd429166d1da40b3762b"
+  },
+  {
+    "file": "assets/yomihub_i18n/ko.json",
+    "overlay_sha256": "8bbeda7a4e058be6857666037db19d3e6357fcd2c653bd49ba699f7c77b753c9",
+    "android_sha256": "8bbeda7a4e058be6857666037db19d3e6357fcd2c653bd49ba699f7c77b753c9",
+    "android_matches": true,
+    "android_before_sha256": "5b9ed8f1c3f4e3509d7984eb44e59e6b88600f027e4694a4526a20bf98a834c1",
+    "windows_sha256": "8bbeda7a4e058be6857666037db19d3e6357fcd2c653bd49ba699f7c77b753c9",
+    "windows_matches": true,
+    "windows_before_sha256": "5b9ed8f1c3f4e3509d7984eb44e59e6b88600f027e4694a4526a20bf98a834c1"
+  },
+  {
+    "file": "assets/yomihub_i18n/pt.json",
+    "overlay_sha256": "389883c67c509dd4d89cbb444bd76a49b165e62283fa45031a71d5257d8b23e4",
+    "android_sha256": "389883c67c509dd4d89cbb444bd76a49b165e62283fa45031a71d5257d8b23e4",
+    "android_matches": true,
+    "android_before_sha256": "9a7f193472fdb9327708485dea45c831f52ff0e9a3d556d6303250986e8b8e9e",
+    "windows_sha256": "389883c67c509dd4d89cbb444bd76a49b165e62283fa45031a71d5257d8b23e4",
+    "windows_matches": true,
+    "windows_before_sha256": "9a7f193472fdb9327708485dea45c831f52ff0e9a3d556d6303250986e8b8e9e"
+  },
+  {
+    "file": "assets/yomihub_i18n/pt_BR.json",
+    "overlay_sha256": "77b1a16f0e78e889253309e9d378d98b7ad57939cac2636c6791dcc6a1fc332a",
+    "android_sha256": "77b1a16f0e78e889253309e9d378d98b7ad57939cac2636c6791dcc6a1fc332a",
+    "android_matches": true,
+    "android_before_sha256": "9a7f193472fdb9327708485dea45c831f52ff0e9a3d556d6303250986e8b8e9e",
+    "windows_sha256": "77b1a16f0e78e889253309e9d378d98b7ad57939cac2636c6791dcc6a1fc332a",
+    "windows_matches": true,
+    "windows_before_sha256": "9a7f193472fdb9327708485dea45c831f52ff0e9a3d556d6303250986e8b8e9e"
+  },
+  {
+    "file": "assets/yomihub_i18n/ru.json",
+    "overlay_sha256": "0923def33282d5806634cd3f1cbea2e0be899ba0efac098e6481278b92355020",
+    "android_sha256": "0923def33282d5806634cd3f1cbea2e0be899ba0efac098e6481278b92355020",
+    "android_matches": true,
+    "android_before_sha256": "572a6087a44dbd32e2c2e198d370803b65612872df47588e7c88828b97c56cbf",
+    "windows_sha256": "0923def33282d5806634cd3f1cbea2e0be899ba0efac098e6481278b92355020",
+    "windows_matches": true,
+    "windows_before_sha256": "572a6087a44dbd32e2c2e198d370803b65612872df47588e7c88828b97c56cbf"
+  },
+  {
+    "file": "assets/yomihub_i18n/th.json",
+    "overlay_sha256": "c8176f5c287138d1d01a373df0eb81ff46b6dc507e6a8a36e8b5ad09b6d561f1",
+    "android_sha256": "c8176f5c287138d1d01a373df0eb81ff46b6dc507e6a8a36e8b5ad09b6d561f1",
+    "android_matches": true,
+    "android_before_sha256": "2a90e66408a72a693340e1164fa51fd972397ede1dd69401a6bec63f33f5af62",
+    "windows_sha256": "c8176f5c287138d1d01a373df0eb81ff46b6dc507e6a8a36e8b5ad09b6d561f1",
+    "windows_matches": true,
+    "windows_before_sha256": "2a90e66408a72a693340e1164fa51fd972397ede1dd69401a6bec63f33f5af62"
+  },
+  {
+    "file": "assets/yomihub_i18n/tr.json",
+    "overlay_sha256": "ea0f0caea8387b37935b805156fd5c251d699ada74464e423e7285016e9142e8",
+    "android_sha256": "ea0f0caea8387b37935b805156fd5c251d699ada74464e423e7285016e9142e8",
+    "android_matches": true,
+    "android_before_sha256": "f01dbae82e2fe64824610d86d81bc5cc37fd723cfc2b93d649995ab88d199840",
+    "windows_sha256": "ea0f0caea8387b37935b805156fd5c251d699ada74464e423e7285016e9142e8",
+    "windows_matches": true,
+    "windows_before_sha256": "f01dbae82e2fe64824610d86d81bc5cc37fd723cfc2b93d649995ab88d199840"
+  },
+  {
+    "file": "assets/yomihub_i18n/zh.json",
+    "overlay_sha256": "31c129105560b51e8eeb629735e4570df3293703abe726882bf187ca24cfc41c",
+    "android_sha256": "31c129105560b51e8eeb629735e4570df3293703abe726882bf187ca24cfc41c",
+    "android_matches": true,
+    "android_before_sha256": "0e4df4f015888f08a8eeea9e4ab6a1f911b21d8b70e03808141e33b2104b085d",
+    "windows_sha256": "31c129105560b51e8eeb629735e4570df3293703abe726882bf187ca24cfc41c",
+    "windows_matches": true,
+    "windows_before_sha256": "0e4df4f015888f08a8eeea9e4ab6a1f911b21d8b70e03808141e33b2104b085d"
+  },
+  {
+    "file": "pubspec.yaml",
+    "overlay_sha256": "89eb3bab0404da83c675c1c7f1e9fec173023a4ea51fa5389270ad0f963c4ded",
+    "android_sha256": "89eb3bab0404da83c675c1c7f1e9fec173023a4ea51fa5389270ad0f963c4ded",
+    "android_matches": true,
+    "android_before_sha256": "c28c697cd8eeb20cf083f55e50c0dc3964c3a51edc2c0ebb380f1f06eced6131",
+    "windows_sha256": "89eb3bab0404da83c675c1c7f1e9fec173023a4ea51fa5389270ad0f963c4ded",
+    "windows_matches": true,
+    "windows_before_sha256": "c28c697cd8eeb20cf083f55e50c0dc3964c3a51edc2c0ebb380f1f06eced6131"
+  },
+  {
+    "file": "android/app/src/main/res/values/strings.xml",
+    "overlay_sha256": "b1f106696e8da375c8b9c9ec643e851913ba3f2479dcb1c2d1b1b1b52a3ca431",
+    "android_sha256": "b1f106696e8da375c8b9c9ec643e851913ba3f2479dcb1c2d1b1b1b52a3ca431",
+    "android_matches": true,
+    "android_before_sha256": "3834c0126daa502f50e84e03cd3b67a65cdf6942866664987e80b43658c596d4",
+    "windows_sha256": "b1f106696e8da375c8b9c9ec643e851913ba3f2479dcb1c2d1b1b1b52a3ca431",
+    "windows_matches": true,
+    "windows_before_sha256": "b1f106696e8da375c8b9c9ec643e851913ba3f2479dcb1c2d1b1b1b52a3ca431"
+  }
+]

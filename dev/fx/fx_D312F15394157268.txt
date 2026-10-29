@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="vi" prefix="og: https://ogp.me/ns#">
+	<head>
+		<meta charset="UTF-8">
+				<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			referrerpolicy="no-referrer" />
+		<style>
+			.dropdown-menu {
+			display: none;
+			position: absolute;
+			z-index: 1000;
+			}
+			.dropdown-menu.show {
+			display: block;
+			}
+			.season-dropdown {
+			position: relative;
+			}
+			/* Mobile dropdown fix */
+			@media screen and (max-width: 1359px) {
+				.el-group.toggled .dropdown-menu {
+					position: static !important;
+					display: none;
+					width: 100%;
+					margin-top: 0.5rem;
+					margin-left: 0;
+					box-shadow: none;
+					border: none;
+					background-color: rgba(0, 0, 0, 0.2);
+					border-radius: 0.5rem;
+					padding: 0.5rem;
+				}
+				.el-group.toggled .dropdown-menu.show {
+					display: block;
+				}
+				.el-group.toggled .menu-item-sub {
+					grid-column: 1 / -1;
+					width: 100%;
+				}
+				.el-group.toggled .season-dropdown > a {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					width: 100%;
+				}
+				.el-group.toggled .dropdown-menu .m-col-4,
+				.el-group.toggled .dropdown-menu > div[style*="grid"] {
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					gap: 0.5rem;
+				}
+				.el-group.toggled .dropdown-item {
+					padding: 0.5rem;
+					font-size: 13px;
+					border-radius: 0.25rem;
+				}
+			}
+			/* Search suggestions styling */
+			.search-suggestions {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background: #fff;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			z-index: 1000;
+			max-height: 300px;
+			overflow-y: auto;
+			display: none;
+			}
+			.suggestion-item {
+			padding: 12px 16px;
+			cursor: pointer;
+			border-bottom: 1px solid #f0f0f0;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			transition: background-color 0.2s;
+			}
+			.suggestion-item:last-child {
+			border-bottom: none;
+			}
+			.suggestion-item:hover,
+			.suggestion-item.selected {
+			background-color: #f8f9fa;
+			}
+			.suggestion-item i {
+			color: #666;
+			width: 16px;
+			text-align: center;
+			}
+			.suggestion-item span {
+			flex: 1;
+			color: #333;
+			}
+			.suggestion-type {
+			color: #999;
+			font-size: 12px;
+			margin-left: auto;
+			}
+			.suggestion-item.loading {
+			text-align: center;
+			color: #666;
+			font-style: italic;
+			}
+			.suggestion-item.no-results {
+			text-align: center;
+			color: #999;
+			font-style: italic;
+			}
+		</style>
+		
+<!-- Tối ưu hóa công cụ tìm kiếm bởi Rank Math PRO - https://rankmath.com/ -->
+<title>Tinh Yeu - Hot Phim</title>
+<meta name="robots" content="follow, noindex"/>
+<meta property="og:locale" content="vi_VN" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Tinh Yeu - Hot Phim" />
+<meta property="og:url" content="https://hotphim.org/search/tinh+yeu/" />
+<meta property="og:site_name" content="HotPhim" />
+<meta property="article:publisher" content="https://www.facebook.com/hotphimprovn" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Tinh Yeu - Hot Phim" />
+<meta name="twitter:site" content="@hotphimprovn" />
+<script type="application/ld+json" class="rank-math-schema-pro">{"@context":"https://schema.org","@graph":[{"@type":"Place","@id":"https://hotphim.org/#place","address":{"@type":"PostalAddress","streetAddress":"Lot B7, 19A Street, Tan Thuan EPZ, Tan Thuan Dong Ward, District 7","addressLocality":"Ho Chi Minh","addressRegion":"Ho Chi Minh","postalCode":"700000","addressCountry":"VN"}},{"@type":"Organization","@id":"https://hotphim.org/#organization","name":"HotPhim","url":"https://hotphim.org","sameAs":["https://www.facebook.com/hotphimprovn","https://twitter.com/hotphimprovn","https://www.tumblr.com/blog/hotphimprovn","hotphimprovn.blogspot.com","https://medium.com/@hotphimpro","https://sites.google.com/view/hotphimprovn","https://gravatar.com/hotphimprovn","www.pinterest.com/hotphimprovn","https://www.flickr.com/photos/203702555@N04/","https://500px.com/p/hotphimprovn"],"email":"contact@hotphim.org","address":{"@type":"PostalAddress","streetAddress":"Lot B7, 19A Street, Tan Thuan EPZ, Tan Thuan Dong Ward, District 7","addressLocality":"Ho Chi Minh","addressRegion":"Ho Chi Minh","postalCode":"700000","addressCountry":"VN"},"logo":{"@type":"ImageObject","@id":"https://hotphim.org/#logo","url":"https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1.png","contentUrl":"https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1.png","caption":"HotPhim","inLanguage":"vi","width":"512","height":"512"},"contactPoint":[{"@type":"ContactPoint","telephone":"0963866866","contactType":"customer support"}],"description":"HotPhim (HotPhimvn hay PhimMoiZ, PhimMoizz) v\u1edbi giao di\u1ec7n m\u1edbi th\u00e2n thi\u1ec7n, tr\u1ef1c quan d\u1ec5 s\u1eed d\u1ee5ng, h\u01a1n 100000+ b\u1ed9 phim HOT Full HD vietsub thuy\u1ebft minh.","legalName":"Xem Phim Fun","location":{"@id":"https://hotphim.org/#place"}},{"@type":"WebSite","@id":"https://hotphim.org/#website","url":"https://hotphim.org","name":"HotPhim","alternateName":"HotPhim.org","publisher":{"@id":"https://hotphim.org/#organization"},"inLanguage":"vi"},{"@type":"BreadcrumbList","@id":"https://hotphim.org/search/tinh+yeu/#breadcrumb","itemListElement":[{"@type":"ListItem","position":"1","item":{"@id":"https://hotphim.org","name":"Home"}},{"@type":"ListItem","position":"2","item":{"@id":"/search/tinh-yeu/","name":"Results for tinh yeu"}}]},{"@type":"SearchResultsPage","@id":"https://hotphim.org/search/tinh+yeu/#webpage","url":"https://hotphim.org/search/tinh+yeu/","name":"Tinh Yeu - Hot Phim","isPartOf":{"@id":"https://hotphim.org/#website"},"inLanguage":"vi","breadcrumb":{"@id":"https://hotphim.org/search/tinh+yeu/#breadcrumb"}}]}</script>
+<!-- /Plugin SEO WordPress Rank Math -->
+
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Dòng thông tin cho Hot Phim &raquo; kết quả tìm kiếm &#8220;tinh yeu&#8221;" href="https://hotphim.org/search/tinh+yeu/feed/rss2/" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+
+<link rel='stylesheet' id='movie-theme-8d4d4c6271d0064f-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/8d4d4c6271d0064f.css?ver=1766037098' media='all' />
+<link rel='stylesheet' id='movie-theme-6399440d760ff229-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/6399440d760ff229.css?ver=1778309575' media='all' />
+<link rel='stylesheet' id='movie-theme-95ce0c777797e218-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/95ce0c777797e218.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-1de65235de1a0d74-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/1de65235de1a0d74.css?ver=1782354206' media='all' />
+<link rel='stylesheet' id='movie-theme-2f1550876c0c97ad-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/2f1550876c0c97ad.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-4c81114ec1a39e4f-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/4c81114ec1a39e4f.css?ver=1782354142' media='all' />
+<link rel='stylesheet' id='movie-theme-5c4826c56b72a529-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/5c4826c56b72a529.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-9ce342e1cded4676-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/9ce342e1cded4676.css?ver=1765978145' media='all' />
+<link rel='stylesheet' id='movie-theme-08403d1cd8f0592e-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/08403d1cd8f0592e.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-cfb18acb3accb3c3-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/cfb18acb3accb3c3.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-all.min-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/all.min.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-b7b3b81f46f2a6c5-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/b7b3b81f46f2a6c5.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-ebdfd11796228ea6-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/ebdfd11796228ea6.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-cdaee2d63e50a549-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/cdaee2d63e50a549.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-615f52311d2b0706-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/615f52311d2b0706.css?ver=1765978150' media='all' />
+<link rel='stylesheet' id='movie-theme-style-css' href='https://hotphim.org/wp-content/themes/movie-theme/style.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-style-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/style.css?ver=7.1.2' media='all' />
+<link rel='stylesheet' id='responsive-style-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/responsive.css?ver=7.1.2' media='all' />
+<link rel='stylesheet' id='rating-system-css-css' href='https://hotphim.org/wp-content/themes/movie-theme/css/rating-system.css?ver=1.0.0' media='all' />
+<script id="movie-theme-navigation-slider-js" src="https://hotphim.org/wp-content/themes/movie-theme/assets/js/navigation-slider.js?ver=1.0.0"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://hotphim.org/xmlrpc.php?rsd" />
+<link rel="icon" href="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" sizes="32x32" />
+<link rel="icon" href="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" />
+<meta name="msapplication-TileImage" content="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" />
+	</head>
+	<body class="search search-results wp-theme-movie-theme">
+				<header class="fly">
+			<div class="header-elements ">
+				<div class="for-mobile menu-toggle toggle">
+					<div class="icon-menu"><span></span><span></span><span></span></div>
+				</div>
+				<div class="for-mobile search-toggle">
+					<div class="icon-search"><span></span><span></span><i class="fa-solid fa-magnifying-glass"></i></div>
+				</div>
+				<a id="logo" class="header-logo" title="Hotphim.pro" href="https://hotphim.org/">
+				<img src="https://hotphim.org/wp-content/themes/movie-theme/images/hotphim-logo.png" alt="Hotphim-favicon.png">
+				</a>
+				<div id="search" class="search-container">
+					<div class="search-elements">
+						<div class="search-icon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</div>
+						<input id="main-search" class="search-input" placeholder="Tìm kiếm phim, diễn viên"
+							autocomplete="off">
+						<div class="search-suggestions" id="search-suggestions"></div>
+					</div>
+				</div>
+				<div class="el-group toggle">
+					<div id="main_menu">
+						<div class="menu-item"><a title="Phim bộ" href="https://hotphim.org/the-loai/phim-bo/">Phim Bộ</a></div>
+						<div class="menu-item"><a title="Phim lẻ"  href="https://hotphim.org/the-loai/phim-le/">Phim Lẻ</a></div>
+						<div class="menu-item"><a title="Diễn viên" href="https://hotphim.org/dien-vien/">Diễn Viên</a></div>
+						
+						<!-- Thể loại -->
+						<div class="menu-item menu-item-sub">
+							<div class="season-dropdown dropdown">
+								<a href="#">Thể loại<i class="fa-solid fa-caret-down ms-2"></i></a>
+								<div x-placement="bottom-start" aria-labelledby=""
+									class="v-dropdown-menu main_menu-dropdown bg-dark mt-2 dropdown-menu"
+									data-popper-reference-hidden="false" data-popper-escaped="false"
+									data-popper-placement="bottom-start" style="position: absolute;">
+									<div class="m-col-4">
+										<a class="dropdown-item" title="Anime" href="https://hotphim.org/the-loai/anime/"><span>Anime</span></a><a class="dropdown-item" title="Chính Kịch" href="https://hotphim.org/the-loai/chinh-kich/"><span>Chính Kịch</span></a><a class="dropdown-item" title="Cổ Trang" href="https://hotphim.org/the-loai/co-trang/"><span>Cổ Trang</span></a><a class="dropdown-item" title="Gia Đình" href="https://hotphim.org/the-loai/gia-dinh/"><span>Gia Đình</span></a><a class="dropdown-item" title="Hài Hước" href="https://hotphim.org/the-loai/hai-huoc/"><span>Hài Hước</span></a><a class="dropdown-item" title="Hành Động" href="https://hotphim.org/the-loai/hanh-dong/"><span>Hành Động</span></a><a class="dropdown-item" title="Hình Sự" href="https://hotphim.org/the-loai/hinh-su/"><span>Hình Sự</span></a><a class="dropdown-item" title="Hoạt Hình TQ" href="https://hotphim.org/the-loai/hoat-hinh/"><span>Hoạt Hình TQ</span></a><a class="dropdown-item" title="Khoa Học" href="https://hotphim.org/the-loai/khoa-hoc/"><span>Khoa Học</span></a><a class="dropdown-item" title="Kinh Dị" href="https://hotphim.org/the-loai/kinh-di/"><span>Kinh Dị</span></a><a class="dropdown-item" title="Phiêu Lưu" href="https://hotphim.org/the-loai/phieu-luu/"><span>Phiêu Lưu</span></a><a class="dropdown-item" title="Phim Bộ" href="https://hotphim.org/the-loai/phim-bo/"><span>Phim Bộ</span></a><a class="dropdown-item" title="Phim Chiếu Rạp" href="https://hotphim.org/the-loai/phim-chieu-rap/"><span>Phim Chiếu Rạp</span></a><a class="dropdown-item" title="Phim Đang Chiếu" href="https://hotphim.org/the-loai/phim-dang-chieu/"><span>Phim Đang Chiếu</span></a><a class="dropdown-item" title="Phim Lẻ" href="https://hotphim.org/the-loai/phim-le/"><span>Phim Lẻ</span></a><a class="dropdown-item" title="Phim Sắp Chiếu" href="https://hotphim.org/the-loai/phim-sap-chieu/"><span>Phim Sắp Chiếu</span></a><a class="dropdown-item" title="Tâm Lý" href="https://hotphim.org/the-loai/tam-ly/"><span>Tâm Lý</span></a><a class="dropdown-item" title="Thần Thoại" href="https://hotphim.org/the-loai/than-thoai/"><span>Thần Thoại</span></a><a class="dropdown-item" title="Tình Cảm" href="https://hotphim.org/the-loai/tinh-cam/"><span>Tình Cảm</span></a><a class="dropdown-item" title="TV Show" href="https://hotphim.org/the-loai/tv-show/"><span>TV Show</span></a><a class="dropdown-item" title="Viễn Tưởng" href="https://hotphim.org/the-loai/vien-tuong/"><span>Viễn Tưởng</span></a><a class="dropdown-item" title="Võ Thuật" href="https://hotphim.org/the-loai/vo-thuat/"><span>Võ Thuật</span></a>									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Quốc gia -->
+						<div class="menu-item menu-item-sub">
+							<div class="season-dropdown dropdown">
+								<a href="#">Quốc gia<i class="fa-solid fa-caret-down ms-2"></i></a>
+								<div x-placement="bottom-start" aria-labelledby=""
+									class="v-dropdown-menu main_menu-dropdown bg-dark mt-2 dropdown-menu"
+									data-popper-reference-hidden="false" data-popper-escaped="false"
+									data-popper-placement="bottom-start" style="position: absolute; ">
+									<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;">
+										<a class="dropdown-item" href="https://hotphim.org/quoc-gia/anh/">Anh</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/au-my/">Âu Mỹ</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/brazil/">Brazil</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/canada/">Canada</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/dai-loan/">Đài Loan</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/han-quoc/">Hàn Quốc</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/hong-kong/">Hồng Kông</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/indonesia/">Indonesia</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/iran/">Iran</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/mexico/">Mexico</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/nhat-ban/">Nhật Bản</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/singapore/">Singapore</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/thai-lan/">Thái Lan</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/trung-quoc/">Trung Quốc</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/viet-nam/">Việt Nam</a>									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex-grow-1"></div>
+				</div>
+			</div>
+		</header>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+			    // Mobile menu toggle functionality
+			    const menuToggle = document.querySelector('.for-mobile.menu-toggle');
+			    const elGroup = document.querySelector('.el-group');
+			
+			    if (menuToggle && elGroup) {
+			        menuToggle.addEventListener('click', function() {
+			            // Toggle classes for menu toggle
+			            menuToggle.classList.toggle('toggled');
+			
+			            // Toggle classes for el-group
+			            elGroup.classList.toggle('toggled');
+			        });
+			    }
+			
+			    // Mobile search toggle functionality
+			    const searchToggle = document.querySelector('.for-mobile.search-toggle');
+			    const headerElements = document.querySelector('.header-elements');
+			    const searchElement = document.querySelector('#search');
+			
+			    if (searchToggle && headerElements && searchElement) {
+			        searchToggle.addEventListener('click', function() {
+			            // Toggle classes for search toggle
+			            searchToggle.classList.toggle('toggled');
+			
+			            // Toggle classes for header-elements
+			            headerElements.classList.toggle('simple');
+			
+			            // Toggle classes for search element
+			            searchElement.classList.toggle('toggled');
+			        });
+			    }
+			
+			    // Get all dropdown triggers
+			    const dropdownTriggers = document.querySelectorAll('.season-dropdown > a');
+			
+			    dropdownTriggers.forEach(function(trigger) {
+			        const dropdown = trigger.parentElement.querySelector('.dropdown-menu');
+			
+			        // Add click event to toggle dropdown
+			        trigger.addEventListener('click', function(e) {
+			            e.preventDefault();
+			
+			            // Close all other dropdowns
+			            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+			                if (menu !== dropdown) {
+			                    menu.classList.remove('show');
+			                }
+			            });
+			
+			            // Toggle current dropdown
+			            dropdown.classList.toggle('show');
+			        });
+			    });
+			
+			    // Close dropdowns when clicking outside
+			    document.addEventListener('click', function(e) {
+			        if (!e.target.closest('.season-dropdown')) {
+			            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+			                menu.classList.remove('show');
+			            });
+			        }
+			    });
+			
+			    // Close dropdowns on escape key
+			    document.addEventListener('keydown', function(e) {
+			        if (e.key === 'Escape') {
+			            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+			                menu.classList.remove('show');
+			            });
+			        }
+			    });
+			
+			    // Search functionality
+			    const searchInput = document.querySelector('#main-search');
+			    const searchIcon = document.querySelector('.search-icon');
+			
+			    if (searchInput) {
+			        // Handle keyboard navigation
+			        let selectedSuggestionIndex = -1;
+			
+			        searchInput.addEventListener('keydown', function(e) {
+			            const suggestions = document.querySelectorAll(
+			                '.suggestion-item:not(.loading):not(.no-results)');
+			
+			            if (e.key === 'ArrowDown') {
+			                e.preventDefault();
+			                selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, suggestions.length -
+			                    1);
+			                updateSelectedSuggestion(suggestions);
+			            } else if (e.key === 'ArrowUp') {
+			                e.preventDefault();
+			                selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, -1);
+			                updateSelectedSuggestion(suggestions);
+			            } else if (e.key === 'Enter') {
+			                e.preventDefault();
+			                if (selectedSuggestionIndex >= 0 && suggestions[selectedSuggestionIndex]) {
+			                    suggestions[selectedSuggestionIndex].click();
+			                } else {
+			                    performSearch();
+			                }
+			            } else if (e.key === 'Escape') {
+			                hideSuggestions();
+			                selectedSuggestionIndex = -1;
+			            }
+			        });
+			
+			        function updateSelectedSuggestion(suggestions) {
+			            suggestions.forEach((item, index) => {
+			                item.classList.toggle('selected', index === selectedSuggestionIndex);
+			            });
+			        }
+			
+			        // Handle search on icon click
+			        if (searchIcon) {
+			            searchIcon.addEventListener('click', function() {
+			                performSearch();
+			            });
+			        }
+			
+			        // Auto-suggest functionality
+			        let searchTimeout;
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			
+			        searchInput.addEventListener('input', function() {
+			            clearTimeout(searchTimeout);
+			            const query = this.value.trim();
+			
+			            if (query.length >= 2) {
+			                searchTimeout = setTimeout(() => {
+			                    fetchSearchSuggestions(query);
+			                }, 300);
+			            } else {
+			                hideSuggestions();
+			            }
+			        });
+			
+			        // Hide suggestions when clicking outside
+			        document.addEventListener('click', function(e) {
+			            if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+			                hideSuggestions();
+			            }
+			        });
+			
+			        // Show suggestions when focusing on input
+			        searchInput.addEventListener('focus', function() {
+			            const query = this.value.trim();
+			            if (query.length >= 2) {
+			                fetchSearchSuggestions(query);
+			            }
+			        });
+			    }
+			
+			    // Search function
+			    function performSearch() {
+			        const searchInput = document.querySelector('#main-search');
+			        if (searchInput) {
+			            const query = searchInput.value.trim();
+			
+			            if (query.length > 0) {
+			                hideSuggestions();
+			                // Redirect to search results page
+			                const searchUrl = 'https://hotphim.org/?s=' + encodeURIComponent(query);
+			                window.location.href = searchUrl;
+			            }
+			        }
+			    }
+			
+			    // Fetch search suggestions
+			    function fetchSearchSuggestions(query) {
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			
+			        // Show loading state
+			        suggestionsContainer.innerHTML = '<div class="suggestion-item loading">Đang tìm kiếm...</div>';
+			        suggestionsContainer.style.display = 'block';
+			
+			        // Make AJAX request to get suggestions
+			        const formData = new FormData();
+			        formData.append('action', 'search_suggestions');
+			        formData.append('query', query);
+			        formData.append('nonce', '9c0845c61a');
+			
+			        fetch('https://hotphim.org/wp-admin/admin-ajax.php', {
+			                method: 'POST',
+			                body: formData
+			            })
+			            .then(response => response.json())
+			            .then(data => {
+			                if (data.success && data.data.length > 0) {
+			                    displaySuggestions(data.data);
+			                } else {
+			                    suggestionsContainer.innerHTML =
+			                        '<div class="suggestion-item no-results">Không tìm thấy gợi ý</div>';
+			                }
+			            })
+			            .catch(error => {
+			                console.error('Search suggestions error:', error);
+			                hideSuggestions();
+			            });
+			    }
+			
+			    // Display search suggestions
+			    function displaySuggestions(suggestions) {
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			        let html = '';
+			
+			        // Reset selected index
+			        selectedSuggestionIndex = -1;
+			
+			        suggestions.forEach(suggestion => {
+			            const icon = suggestion.type === 'category' ? 'fa-tags' : 'fa-film';
+			            html += `<div class="suggestion-item" data-query="${suggestion.title}" data-url="${suggestion.url}">
+			                    <i class="fa-solid ${icon}"></i>
+			                    <span>${suggestion.title}</span>
+			                    ${suggestion.type === 'category' ? '<small class="suggestion-type">Thể loại</small>' : ''}
+			                </div>`;
+			        });
+			
+			        suggestionsContainer.innerHTML = html;
+			        suggestionsContainer.style.display = 'block';
+			
+			        // Add click handlers to suggestions
+			        const suggestionItems = suggestionsContainer.querySelectorAll('.suggestion-item');
+			        suggestionItems.forEach(item => {
+			            item.addEventListener('click', function() {
+			                const query = this.getAttribute('data-query');
+			                const url = this.getAttribute('data-url');
+			
+			                if (url && url !== 'undefined') {
+			                    // Direct navigation to the item
+			                    window.location.href = url;
+			                } else {
+			                    // Perform search with the query
+			                    const searchInput = document.querySelector('#main-search');
+			                    searchInput.value = query;
+			                    performSearch();
+			                }
+			            });
+			        });
+			    }
+			
+			    // Hide suggestions
+			    function hideSuggestions() {
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			        suggestionsContainer.style.display = 'none';
+			    }
+			
+			    // js Header scroll effect - add nền background khi scroll
+			    const header = document.querySelector('header');
+			    let lastScrollTop = 0;
+			
+			    if (header) {
+			        window.addEventListener('scroll', function() {
+			            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			
+			            if (scrollTop > 50) {
+			                // Add fixed class when scrolled down
+			                header.classList.add('fixed');
+			            } else {
+			                // Remove fixed class when at top
+			                header.classList.remove('fixed');
+			            }
+			
+			            lastScrollTop = scrollTop;
+			        }, false);
+			    }
+			});
+		</script>
+	</body>
+</html>
+<div id="wrapper">
+    <h1 style="position:absolute;top:-9999px;left:-9999px"></h1>
+    <div class="fluid-gap">
+        <div class="cards-row wide">
+            <div class="row-header">
+                <div class="inc-icon text-white"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                        viewBox="0 0 40 40" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M4.1665 31.9141C4.1665 31.2237 4.72615 30.6641 5.4165 30.6641H17.2792C17.9695 30.6641 18.5292 31.2237 18.5292 31.9141C18.5292 32.6046 17.9695 33.1641 17.2792 33.1641H5.4165C4.72615 33.1641 4.1665 32.6046 4.1665 31.9141Z"
+                            fill="currentColor"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M4.1665 23.9712C4.1665 23.2809 4.72615 22.7212 5.4165 22.7212H12.8036C13.494 22.7212 14.0536 23.2809 14.0536 23.9712C14.0536 24.6615 13.494 25.2212 12.8036 25.2212H5.4165C4.72615 25.2212 4.1665 24.6615 4.1665 23.9712Z"
+                            fill="currentColor"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M4.1665 8.08594C4.1665 7.39559 4.72615 6.83594 5.4165 6.83594H35.4152C36.1055 6.83594 36.6652 7.39559 36.6652 8.08594C36.6652 8.7763 36.1055 9.33594 35.4152 9.33594H5.4165C4.72615 9.33594 4.1665 8.7763 4.1665 8.08594Z"
+                            fill="currentColor"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M4.1665 16.0288C4.1665 15.3384 4.72615 14.7788 5.4165 14.7788H17.1017C17.792 14.7788 18.3517 15.3384 18.3517 16.0288C18.3517 16.7192 17.792 17.2788 17.1017 17.2788H5.4165C4.72615 17.2788 4.1665 16.7192 4.1665 16.0288Z"
+                            fill="currentColor"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M27.5671 18.6035C24.7311 18.6035 22.4316 20.903 22.4316 23.739C22.4316 26.5748 24.7311 28.8743 27.5671 28.8743C30.403 28.8743 32.7025 26.5748 32.7025 23.739C32.7025 20.903 30.403 18.6035 27.5671 18.6035ZM19.9316 23.739C19.9316 19.5223 23.3505 16.1035 27.5671 16.1035C31.7836 16.1035 35.2025 19.5223 35.2025 23.739C35.2025 25.4808 34.6191 27.0867 33.637 28.3715L36.2981 31.0268C36.7868 31.5145 36.7876 32.306 36.3 32.7947C35.8123 33.2833 35.0208 33.2842 34.5321 32.7965L31.8146 30.0847C30.6001 30.8992 29.1391 31.3743 27.5671 31.3743C23.3505 31.3743 19.9316 27.9557 19.9316 23.739Z"
+                            fill="currentColor"></path>
+                    </svg></div>
+                <h3 class="category-name">Kết quả tìm kiếm "
+                    tinh yeu                    "
+                </h3>
+            </div>
+            <div class="row-tabs">
+                <div class="v-tabs nav nav-pills" role="tablist"><a role="tab" data-rr-ui-event-key="movies"
+                        id="react-aria-«R58usaplb»-tab-movies" aria-controls="react-aria-«R58usaplb»-tabpane-movies"
+                        aria-selected="true" class="nav-link active" tabindex="0" href="#">Phim</a><a role="tab"
+                        data-rr-ui-event-key="casts" id="react-aria-«R58usaplb»-tab-casts"
+                        aria-controls="react-aria-«R58usaplb»-tabpane-casts" aria-selected="false" tabindex="-1"
+                        class="nav-link" href="#">Diễn viên</a></div>
+            </div>
+            <div class="v-filter">
+                <div class="filter-toggle line-center toggled"><i class="fa-solid fa-filter"></i><span>Bộ lọc</span>
+                </div>
+                <div class="filter-elements ">
+                    <div class="fe-row">
+                        <div class="fe-name">Quốc gia:</div>
+                        <div class="fe-results">
+                            <div class="item active">Tất cả</div>
+                            <div class="item" data-country="viet-nam">Việt Nam</div><div class="item" data-country="trung-quoc">Trung Quốc</div><div class="item" data-country="thai-lan">Thái Lan</div><div class="item" data-country="singapore">Singapore</div><div class="item" data-country="nhat-ban">Nhật Bản</div><div class="item" data-country="mexico">Mexico</div><div class="item" data-country="iran">Iran</div><div class="item" data-country="indonesia">Indonesia</div><div class="item" data-country="hong-kong">Hồng Kông</div><div class="item" data-country="han-quoc">Hàn Quốc</div><div class="item" data-country="dai-loan">Đài Loan</div><div class="item" data-country="canada">Canada</div><div class="item" data-country="brazil">Brazil</div><div class="item" data-country="au-my">Âu Mỹ</div><div class="item" data-country="anh">Anh</div>                        </div>
+                    </div>
+                    <div class="fe-row">
+                        <div class="fe-name">Loại phim:</div>
+                        <div class="fe-results">
+                            <div class="item active">Tất cả</div>
+                            <div class="item" data-type="series">Series</div><div class="item" data-type="single">Single</div>                        </div>
+                    </div>
+
+                    <div class="fe-row">
+                        <div class="fe-name">Thể loại:</div>
+                        <div class="fe-results">
+                            <div class="item active">Tất cả</div>
+                            <div class="item" data-category="vo-thuat">Võ Thuật</div><div class="item" data-category="vien-tuong">Viễn Tưởng</div><div class="item" data-category="tv-show">TV Show</div><div class="item" data-category="tinh-cam">Tình Cảm</div><div class="item" data-category="the-loai">Thể Loại</div><div class="item" data-category="than-thoai">Thần Thoại</div><div class="item" data-category="tam-ly">Tâm Lý</div><div class="item" data-category="tai-lieu">Tài Liệu</div><div class="item" data-category="phim-sap-chieu">Phim Sắp Chiếu</div><div class="item" data-category="phim-ngan">Phim Ngắn</div><div class="item" data-category="phim-le">Phim Lẻ</div><div class="item" data-category="phim-dang-chieu">Phim Đang Chiếu</div><div class="item" data-category="phim-chieu-rap">Phim Chiếu Rạp</div><div class="item" data-category="phim-bo">Phim Bộ</div><div class="item" data-category="phieu-luu">Phiêu Lưu</div><div class="item" data-category="lich-su">Lịch Sử</div><div class="item" data-category="kinh-di">Kinh Dị</div><div class="item" data-category="khoa-hoc">Khoa Học</div><div class="item" data-category="hoat-hinh">Hoạt Hình TQ</div><div class="item" data-category="hoat-hinh-2">Hoạt Hình</div><div class="item" data-category="hinh-su">Hình Sự</div><div class="item" data-category="hanh-dong">Hành Động</div><div class="item" data-category="hai-huoc">Hài Hước</div><div class="item" data-category="gia-dinh">Gia Đình</div><div class="item" data-category="co-trang">Cổ Trang</div><div class="item" data-category="chinh-kich">Chính Kịch</div><div class="item" data-category="bi-an">Bí Ẩn</div><div class="item" data-category="anime">Anime</div>                        </div>
+                    </div>
+                    <!-- <div class="fe-row">
+                        <div class="fe-name">Phiên bản:</div>
+                        <div class="fe-results">
+                            <div class="item active">Tất cả</div>
+                            <div class="item ">Phụ đề</div>
+                            <div class="item ">Lồng tiếng</div>
+                            <div class="item ">Thuyết minh giọng Bắc</div>
+                            <div class="item ">Thuyết minh giọng Nam</div>
+                        </div>
+                    </div> -->
+                    <div class="fe-row">
+                        <div class="fe-name">Năm sản xuất:</div>
+                        <div class="fe-results release-year-filter">
+                            <div class="item active"
+                                data-release-year="all">
+                                <span class="year-name">Tất cả</span>
+                                <span class="year-count">(241)</span>
+                            </div>
+                            <div class="item" data-release-year="2026"><span class="year-name">2026</span><span class="year-count">(166)</span></div><div class="item" data-release-year="2025"><span class="year-name">2025</span><span class="year-count">(38)</span></div><div class="item" data-release-year="2024"><span class="year-name">2024</span><span class="year-count">(6)</span></div><div class="item" data-release-year="2023"><span class="year-name">2023</span><span class="year-count">(7)</span></div><div class="item" data-release-year="2022"><span class="year-name">2022</span><span class="year-count">(3)</span></div><div class="item" data-release-year="2021"><span class="year-name">2021</span><span class="year-count">(1)</span></div><div class="item" data-release-year="2020"><span class="year-name">2020</span><span class="year-count">(1)</span></div><div class="item" data-release-year="2019"><span class="year-name">2019</span><span class="year-count">(0)</span></div><div class="item" data-release-year="2018"><span class="year-name">2018</span><span class="year-count">(0)</span></div><div class="item" data-release-year="2017"><span class="year-name">2017</span><span class="year-count">(0)</span></div><div class="item" data-release-year="2016"><span class="year-name">2016</span><span class="year-count">(1)</span></div><div class="item" data-release-year="2015"><span class="year-name">2015</span><span class="year-count">(0)</span></div><div class="item" data-release-year="2014"><span class="year-name">2014</span><span class="year-count">(2)</span></div><div class="item" data-release-year="2010"><span class="year-name">2010</span><span class="year-count">(1)</span></div><div class="item" data-release-year="2008"><span class="year-name">2008</span><span class="year-count">(0)</span></div><div class="item" data-release-year="1992"><span class="year-name">1992</span><span class="year-count">(1)</span></div>                        </div>
+                    </div>
+                    <!-- <div class="fe-row">
+                        <div class="fe-name">Sắp xếp:</div>
+                        <div class="fe-results">
+                            <div class="item active">Mới nhất</div>
+                            <div class="item ">Mới cập nhật</div>
+                            <div class="item ">Điểm IMDb</div>
+                            <div class="item ">Lượt xem</div>
+                        </div>
+                    </div> -->
+                    <div class="fe-row fe-row-end">
+                        <div class="fe-name">&nbsp;</div>
+                        <div class="fe-buttons flex-grow-1">
+                            <button type="button" id="apply-filters" class="btn btn-rounded btn-primary">
+                                Lọc kết quả <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <button type="button" id="close-filter"
+                                class="btn btn-rounded btn-outline ms-2 px-4">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-content">
+                <!-- Movies Tab Content -->
+                <div role="tabpanel" id="react-aria-«R58usaplb»-tabpane-movies"
+                    aria-labelledby="react-aria-«R58usaplb»-tab-movies" class="fade tab-pane active show">
+                    <div class="cards-grid-wrapper">
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>10</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Tình Yêu Và Tội Lỗi" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-thumb-400x439.webp">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Tình Yêu Và Tội Lỗi"
+                                        href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/">
+                                        Tình Yêu Và Tội Lỗi                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="Sin And Love"
+                                        href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/">
+                                        Sin And Love                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/tinh-yeu-co-phao-hoa/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>36</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Tình Yêu Có Pháo Hoa" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/06/c2def538c0d18eeace93e7a6c358679f-400x600.jpg">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Tình Yêu Có Pháo Hoa"
+                                        href="https://hotphim.org/tinh-yeu-co-phao-hoa/">
+                                        Tình Yêu Có Pháo Hoa                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="Love Has Fireworks"
+                                        href="https://hotphim.org/tinh-yeu-co-phao-hoa/">
+                                        Love Has Fireworks                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/tinh-yeu-phan-boi/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>16</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Tình Yêu Phản Bội" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/05/93687521ef7c8ec3e2ef8800f90da089-400x600.jpg">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Tình Yêu Phản Bội"
+                                        href="https://hotphim.org/tinh-yeu-phan-boi/">
+                                        Tình Yêu Phản Bội                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="Wrong Side Of The Rainbow"
+                                        href="https://hotphim.org/tinh-yeu-phan-boi/">
+                                        Wrong Side Of The Rainbow                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/tinh-yeu-khong-co-co-tich/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>37</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Tình Yêu Không Có Cổ Tích" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/05/45bc3c41ca85315f1a483471c7a643c5-400x600.jpg">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Tình Yêu Không Có Cổ Tích"
+                                        href="https://hotphim.org/tinh-yeu-khong-co-co-tich/">
+                                        Tình Yêu Không Có Cổ Tích                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="Lady Liberty"
+                                        href="https://hotphim.org/tinh-yeu-khong-co-co-tich/">
+                                        Lady Liberty                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/tinh-yeu-nhu-tuyet-tren-dinh-thien-son/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>12</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Tình Yêu Như Tuyết Trên Đỉnh Thiên Sơn" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/05/2bb8e1c1721f5e507807a711465fbff4-400x405.jpg">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Tình Yêu Như Tuyết Trên Đỉnh Thiên Sơn"
+                                        href="https://hotphim.org/tinh-yeu-nhu-tuyet-tren-dinh-thien-son/">
+                                        Tình Yêu Như Tuyết Trên Đỉnh Thiên Sơn                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="Millennium Love"
+                                        href="https://hotphim.org/tinh-yeu-nhu-tuyet-tren-dinh-thien-son/">
+                                        Millennium Love                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/tinh-yeu-khong-ngo-toi/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>8</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Tình Yêu Không Ngờ Tới" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/02/9d898ed8b11ce9014a04524d87a3eba3-400x600.jpg">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Tình Yêu Không Ngờ Tới"
+                                        href="https://hotphim.org/tinh-yeu-khong-ngo-toi/">
+                                        Tình Yêu Không Ngờ Tới                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="Play Park"
+                                        href="https://hotphim.org/tinh-yeu-khong-ngo-toi/">
+                                        Play Park                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/tinh-yeu-bo-xit/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>12</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Tình Yêu Bọ Xít" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/04/610ef761198897ffbf87df213991bb66-400x600.jpg">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Tình Yêu Bọ Xít"
+                                        href="https://hotphim.org/tinh-yeu-bo-xit/">
+                                        Tình Yêu Bọ Xít                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="Duang With You"
+                                        href="https://hotphim.org/tinh-yeu-bo-xit/">
+                                        Duang With You                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/giao-trinh-tinh-yeu-bat-buoc/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>7</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Giáo Trình Tình Yêu Bắt Buộc" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/09/giao-trinh-tinh-yeu-bat-buoc-thumb-400x439.webp">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Giáo Trình Tình Yêu Bắt Buộc"
+                                        href="https://hotphim.org/giao-trinh-tinh-yeu-bat-buoc/">
+                                        Giáo Trình Tình Yêu Bắt Buộc                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="LOVEx3"
+                                        href="https://hotphim.org/giao-trinh-tinh-yeu-bat-buoc/">
+                                        LOVEx3                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/cu-giao-bong-tinh-yeu/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>7</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Cú Giao Bóng Tình Yêu" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/09/cu-giao-bong-tinh-yeu-thumb-400x439.webp">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Cú Giao Bóng Tình Yêu"
+                                        href="https://hotphim.org/cu-giao-bong-tinh-yeu/">
+                                        Cú Giao Bóng Tình Yêu                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="Match Point"
+                                        href="https://hotphim.org/cu-giao-bong-tinh-yeu/">
+                                        Match Point                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/thanh-tra-bi-mat-kiem-toan-tinh-yeu/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>12</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Thanh Tra Bí Mật (Kiểm Toán Tình Yêu)" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/05/fca7d44d55b98b8e056eab9b7aaa4a60-400x600.jpg">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Thanh Tra Bí Mật (Kiểm Toán Tình Yêu)"
+                                        href="https://hotphim.org/thanh-tra-bi-mat-kiem-toan-tinh-yeu/">
+                                        Thanh Tra Bí Mật (Kiểm Toán Tình Yêu)                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="Filing for Love"
+                                        href="https://hotphim.org/thanh-tra-bi-mat-kiem-toan-tinh-yeu/">
+                                        Filing for Love                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                                <div class="sw-item">
+                            <a class="v-thumbnail" href="https://hotphim.org/nhip-dap-tinh-yeu/">
+                                <div class="pin-new m-pin-new">
+                                    <div class="line-center line-pd"><span></span><strong>24</strong></div>                                                                    </div>
+                                <div>
+                                    <img alt="Nhịp Đập Tình Yêu" loading="lazy"
+                                        src="https://hotphim.org/wp-content/uploads/2026/05/0a1d99c6d0072e1b2b86531b94acb953-400x600.jpg">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <h4 class="item-title lim-1">
+                                    <a title="Nhịp Đập Tình Yêu"
+                                        href="https://hotphim.org/nhip-dap-tinh-yeu/">
+                                        Nhịp Đập Tình Yêu                                    </a>
+                                </h4>
+                                                                <h4 class="alias-title lim-1">
+                                    <a title="MBTI Love"
+                                        href="https://hotphim.org/nhip-dap-tinh-yeu/">
+                                        MBTI Love                                    </a>
+                                </h4>
+                                                            </div>
+                        </div>
+                                            </div>
+                </div>
+
+                <!-- Actors Tab Content -->
+                <div role="tabpanel" id="react-aria-«R58usaplb»-tabpane-casts"
+                    aria-labelledby="react-aria-«R58usaplb»-tab-casts" class="fade tab-pane">
+                    <div class="actors-grid-wrapper">
+                        <div class="no-results"><p>Không tìm thấy diễn viên nào.</p></div>                    </div>
+                </div>
+            </div>
+            <!-- Movies Pagination -->
+            <div class="v-pagination line-center" id="movies-pagination" style="display: flex;">
+                            </div>
+
+            <!-- Actors Pagination -->
+            <div class="v-pagination line-center" id="actors-pagination" style="display: none;">
+                            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-elements">
+            <div class="footer-icon">
+                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/footer-icon.svg" alt="Footer Icon">
+            </div>
+            <div class="side-left">
+
+                <div class="sl-brand line-center">
+                    <a class="footer-logo" href="https://hotphim.org/">
+                        <img src="https://hotphim.org/wp-content/themes/movie-theme/images/hotphim-logo.png"
+                            alt="Hotphim-favicon.png">
+                    </a>
+                    <div class="socials line-center">
+                        <a class="social-item" target="_blank" rel="noopener nofollow" href="https://x.com/hotphimprovn/" title="X"><div class="inc-icon icon-14"><img src="https://hotphim.org/wp-content/themes/movie-theme/images/x-icon.svg" alt="X"></div></a><a class="social-item" target="_blank" rel="noopener nofollow" href="https://www.facebook.com/hotphimprovn/" title="Facebook"><div class="inc-icon icon-14"><img src="https://hotphim.org/wp-content/themes/movie-theme/images/facebook-icon.svg" alt="Facebook"></div></a><a class="social-item" target="_blank" rel="noopener nofollow" href="https://www.pinterest.com/hotphimprovn/" title="Pinterest"><div class="inc-icon icon-14"><img src="https://hotphim.org/wp-content/themes/movie-theme/images/pinterest.svg" alt="Pinterest"></div></a>                    </div>
+                </div>
+
+                <div class="sl-notice mb-2">
+                    <p>
+                        Xem phim online miễn phí tốc độ cao và chất lượng Full HD tại HotPhim. Cập nhật liên tục các bộ phim bộ, phim lẻ, phim chiếu rạp, hoạt hình, phim Hàn, Trung, Âu Mỹ có phụ đề Vietsub. Giao diện thân thiện, dễ sử dụng, không quảng cáo phiền phức, mang đến trải nghiệm xem phim mượt mà trên mọi thiết bị.
+                    </p>
+                </div>
+
+                <div class="sl-menu mb-3">
+                    <a title="Giới thiệu" href="https://hotphim.org/gioi-thieu/">Giới thiệu</a><a title="Chính sách bảo mật" href="https://hotphim.org/chinh-sach-bao-mat/">Chính sách bảo mật</a><a title="Điều khoản sử dụng" href="https://hotphim.org/dieu-khoan-su-dung/">Điều khoản sử dụng</a><a title="DMCA" href="https://hotphim.org/dmca/">DMCA</a><a title="Liên hệ" href="https://hotphim.org/lien-he/">Liên hệ</a>                </div>
+
+                <div class="sl-copyright mb-3">
+                    © 2026 HotPhim
+                </div>
+
+                <div class="true">
+                    <div class="line-center">
+                        <div class="inc-icon icon-20">
+                            <img src="https://hotphim.org/wp-content/themes/movie-theme/images/vn_flag.svg" alt="Vietnam">
+                        </div>
+                        <span>Hoàng Sa &amp; Trường Sa là của Việt Nam!</span>
+                    </div>
+                </div>
+                                <div class="text-link">
+                                            <a style="color: var(--footer-bg)" href="https://tinsoikeo1.com" target="_blank" rel="dofollow noopener noreferrer">keonhacai5</a>
+                                            <a style="color: var(--footer-bg)" href="https://tylebongda.biz/" target="_blank" rel="dofollow noopener noreferrer">https://tylebongda.biz</a>
+                                            <a style="color: var(--footer-bg)" href="https://keobongdahomnay.us" target="_blank" rel="dofollow noopener noreferrer">https://keobongdahomnay.us/</a>
+                                            <a style="color: var(--footer-bg)" href="https://12betsmart.link/" target="_blank" rel="dofollow noopener noreferrer">12bet</a>
+                                            <a style="color: var(--footer-bg)" href="https://dvdtown.com/" target="_blank" rel="dofollow noopener noreferrer">แทงบอลออนไลน์</a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<style>
+/* Hide tab panes by default */
+.tab-pane {
+    display: none !important;
+}
+
+/* Show active tab pane */
+.tab-pane.active.show {
+    display: block !important;
+}
+</style>
+
+<script>
+// Helper function to parse search query from current URL
+function getCurrentSearchQuery() {
+    const currentUrl = new URL(window.location);
+    if (currentUrl.pathname.includes('/search/')) {
+        const pathParts = currentUrl.pathname.split('/search/')[1].split('/');
+        const searchQuery = pathParts[0]; // Lấy phần đầu tiên (search query)
+        return searchQuery.replace(/-/g, ' '); // Decode the search query
+    }
+    return '';
+}
+
+// Helper function to get current filters from URL
+function getCurrentFilters() {
+    const currentUrl = new URL(window.location);
+    const filters = {};
+
+    const filterKeys = ['type', 'country', 'category', 'year', 'age_rating', 'language', 'sort'];
+    filterKeys.forEach(key => {
+        if (currentUrl.searchParams.get(key)) {
+            filters[key] = currentUrl.searchParams.get(key);
+        }
+    });
+
+    // Get release year filters
+    const releaseYears = currentUrl.searchParams.getAll('release-year[]');
+    if (releaseYears.length > 0) {
+        filters.release_year = releaseYears;
+    }
+
+    return filters;
+}
+
+// Function to generate search URL with WordPress standard permalink structure
+function getSearchUrl(searchQuery, filters = {}, paged = 1) {
+    // Clean search query - convert to slug format
+    searchQuery = searchQuery.trim();
+    if (!searchQuery) {
+        return 'https://hotphim.org/search/';
+    }
+
+    // Convert to slug format (replace spaces with hyphens, remove special chars)
+    searchQuery = searchQuery.replace(/[^a-zA-Z0-9\s-]/g, '').replace(/\s+/g, '-').toLowerCase();
+
+    // Build base URL with search query - WordPress standard format
+    let baseUrl;
+    if (paged > 1) {
+        baseUrl = 'https://hotphim.org/search/' + searchQuery + '/page/' + paged + '/';
+    } else {
+        baseUrl = 'https://hotphim.org/search/' + searchQuery + '/';
+    }
+
+    // Add filter parameters as query string
+    const queryParams = [];
+
+    const filterKeys = ['type', 'country', 'category', 'year', 'age_rating', 'language', 'sort'];
+
+    filterKeys.forEach(key => {
+        if (filters[key]) {
+            queryParams.push(key + '=' + encodeURIComponent(filters[key]));
+        }
+    });
+
+    // Add release year filters
+    if (filters.release_year && Array.isArray(filters.release_year)) {
+        filters.release_year.forEach(year => {
+            queryParams.push('release-year[]=' + encodeURIComponent(year));
+        });
+    }
+
+    // Append query parameters if any
+    if (queryParams.length > 0) {
+        baseUrl += '?' + queryParams.join('&');
+    }
+
+    return baseUrl;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching functionality
+    const moviesTab = document.querySelector('[data-rr-ui-event-key="movies"]');
+    const castsTab = document.querySelector('[data-rr-ui-event-key="casts"]');
+    const moviesPane = document.getElementById('react-aria-«R58usaplb»-tabpane-movies');
+    const castsPane = document.getElementById('react-aria-«R58usaplb»-tabpane-casts');
+    const moviesPagination = document.getElementById('movies-pagination');
+    const castsPagination = document.getElementById('actors-pagination');
+
+    // Tab switching function
+    function switchTab(activeTab) {
+        // Remove active class from all tabs
+        document.querySelectorAll('.v-tabs .nav-link').forEach(tab => {
+            tab.classList.remove('active');
+            tab.setAttribute('aria-selected', 'false');
+            tab.setAttribute('tabindex', '-1');
+        });
+
+        // Hide all panes completely
+        document.querySelectorAll('.tab-pane').forEach(pane => {
+            pane.classList.remove('active', 'show');
+        });
+
+        // Hide all paginations
+        if (moviesPagination) moviesPagination.style.display = 'none';
+        if (castsPagination) castsPagination.style.display = 'none';
+
+        // Get filter elements
+        const filterToggle = document.querySelector('.filter-toggle');
+        const filterElements = document.querySelector('.filter-elements');
+
+        if (activeTab === 'movies') {
+            // Show movies tab and content
+            if (moviesTab) {
+                moviesTab.classList.add('active');
+                moviesTab.setAttribute('aria-selected', 'true');
+                moviesTab.setAttribute('tabindex', '0');
+            }
+            if (moviesPane) {
+                moviesPane.classList.add('active', 'show');
+            }
+            if (moviesPagination) {
+                moviesPagination.style.display = 'flex';
+            }
+
+            // Show filter for movies
+            if (filterToggle) {
+                filterToggle.style.display = 'flex';
+            }
+            if (filterElements) {
+                filterElements.classList.remove('show');
+            }
+        } else if (activeTab === 'casts') {
+            // Show casts tab and content
+            if (castsTab) {
+                castsTab.classList.add('active');
+                castsTab.setAttribute('aria-selected', 'true');
+                castsTab.setAttribute('tabindex', '0');
+            }
+            if (castsPane) {
+                castsPane.classList.add('active', 'show');
+            }
+            if (castsPagination) {
+                castsPagination.style.display = 'flex';
+            }
+
+            // Hide filter for actors
+            if (filterToggle) {
+                filterToggle.style.display = 'none';
+            }
+            if (filterElements) {
+                filterElements.classList.remove('show');
+            }
+        }
+    }
+
+    // Add click event listeners to tabs
+    if (moviesTab) {
+        moviesTab.addEventListener('click', function(e) {
+            e.preventDefault();
+            switchTab('movies');
+        });
+    }
+
+    if (castsTab) {
+        castsTab.addEventListener('click', function(e) {
+            e.preventDefault();
+            switchTab('casts');
+        });
+    }
+
+    // Chức năng bộ lọc
+    const filterToggle = document.querySelector('.filter-toggle');
+    const filterElements = document.querySelector('.filter-elements');
+    const closeFilter = document.getElementById('close-filter');
+    const applyFilters = document.getElementById('apply-filters');
+
+    // Bật/tắt panel bộ lọc
+    if (filterToggle && filterElements) {
+        filterToggle.addEventListener('click', function() {
+            filterElements.classList.toggle('show');
+            filterToggle.classList.toggle('toggled');
+        });
+    }
+
+    // Đóng panel bộ lọc
+    if (closeFilter && filterElements) {
+        closeFilter.addEventListener('click', function() {
+            filterElements.classList.remove('show');
+            filterToggle.classList.remove('toggled');
+        });
+    }
+
+    // Áp dụng bộ lọc
+    if (applyFilters) {
+        applyFilters.addEventListener('click', function() {
+            // Lấy search query từ URL hiện tại
+            const searchQuery = getCurrentSearchQuery();
+
+            // Lấy các bộ lọc đã chọn
+            const selectedType = document.querySelector('.fe-results .item[data-type].active');
+            const selectedCountry = document.querySelector('.fe-results .item[data-country].active');
+            const selectedCategory = document.querySelector('.fe-results .item[data-category].active');
+            const selectedYear = document.querySelector('.fe-results .item[data-year].active');
+            const selectedAgeRating = document.querySelector(
+                '.fe-results .item[data-age-rating].active');
+            const selectedLanguage = document.querySelector('.fe-results .item[data-language].active');
+
+            // Lấy các năm sản xuất đã chọn (multi-select)
+            const selectedReleaseYears = document.querySelectorAll(
+                '.release-year-filter .item[data-release-year].active:not([data-release-year="all"])'
+            );
+
+            // Tạo object filters
+            const filters = {};
+
+            if (selectedType && selectedType.dataset.type) {
+                filters.type = selectedType.dataset.type;
+            }
+            if (selectedCountry && selectedCountry.dataset.country) {
+                filters.country = selectedCountry.dataset.country;
+            }
+            if (selectedCategory && selectedCategory.dataset.category) {
+                filters.category = selectedCategory.dataset.category;
+            }
+            if (selectedYear && selectedYear.dataset.year) {
+                filters.year = selectedYear.dataset.year;
+            }
+            if (selectedAgeRating && selectedAgeRating.dataset.ageRating) {
+                filters.age_rating = selectedAgeRating.dataset.ageRating;
+            }
+            if (selectedLanguage && selectedLanguage.dataset.language) {
+                filters.language = selectedLanguage.dataset.language;
+            }
+
+            // Thêm các năm sản xuất đã chọn vào filters
+            if (selectedReleaseYears.length > 0) {
+                filters.release_year = Array.from(selectedReleaseYears).map(item => item.dataset
+                    .releaseYear);
+            }
+
+            // Tạo URL mới với WordPress standard permalink structure (luôn reset về trang 1 khi áp dụng bộ lọc)
+            const newUrl = getSearchUrl(searchQuery, filters, 1);
+
+            // Chuyển hướng với URL mới
+            window.location.href = newUrl;
+        });
+    }
+
+    // Lựa chọn item bộ lọc
+    document.querySelectorAll('.fe-results .item').forEach(function(item) {
+        item.addEventListener('click', function() {
+            const parent = this.parentElement;
+
+            // Kiểm tra xem đây có phải bộ lọc năm sản xuất (multi-select) không
+            if (parent.classList.contains('release-year-filter')) {
+                const isAllOption = this.dataset.releaseYear === 'all';
+
+                if (isAllOption) {
+                    // Nếu "Tất cả" được click, bỏ chọn tất cả options khác
+                    parent.querySelectorAll('.item').forEach(function(sibling) {
+                        sibling.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                } else {
+                    // Nếu một năm cụ thể được click
+                    const allOption = parent.querySelector('[data-release-year="all"]');
+
+                    // Xóa trạng thái active của "Tất cả"
+                    if (allOption) {
+                        allOption.classList.remove('active');
+                    }
+
+                    // Toggle item hiện tại
+                    this.classList.toggle('active');
+
+                    // Nếu không có năm nào được chọn, kích hoạt "Tất cả"
+                    const activeYears = parent.querySelectorAll(
+                        '.item[data-release-year].active:not([data-release-year="all"])');
+                    if (activeYears.length === 0 && allOption) {
+                        allOption.classList.add('active');
+                    }
+                }
+
+                // Cập nhật visual feedback
+                updateReleaseYearFilterState(parent);
+            } else {
+                // Single select cho các bộ lọc khác
+                parent.querySelectorAll('.item').forEach(function(sibling) {
+                    sibling.classList.remove('active');
+                });
+                this.classList.add('active');
+            }
+        });
+    });
+
+    // Function để cập nhật trạng thái visual của bộ lọc năm sản xuất
+    function updateReleaseYearFilterState(container) {
+        const activeYears = container.querySelectorAll(
+            '.item[data-release-year].active:not([data-release-year="all"])');
+        const allOption = container.querySelector('[data-release-year="all"]');
+
+        // Thêm visual indicator cho multi-select
+        if (activeYears.length > 0) {
+            container.classList.add('multi-selected');
+            if (allOption) {
+                allOption.classList.add('has-selections');
+            }
+        } else {
+            container.classList.remove('multi-selected');
+            if (allOption) {
+                allOption.classList.remove('has-selections');
+            }
+        }
+    }
+
+    // Khởi tạo trạng thái visual cho bộ lọc năm sản xuất khi load trang
+    const releaseYearContainer = document.querySelector('.release-year-filter');
+    if (releaseYearContainer) {
+        updateReleaseYearFilterState(releaseYearContainer);
+    }
+
+    // PAGINATION HANDLING - Support both movies and actors pagination
+    function setupPaginationHandling(containerId) {
+        const paginationContainer = document.getElementById(containerId);
+        if (paginationContainer) {
+            const pageInput = paginationContainer.querySelector('.page-current input[type="number"]');
+            const prevBtn = paginationContainer.querySelector('[data-page-btn="prev"]');
+            const nextBtn = paginationContainer.querySelector('[data-page-btn="next"]');
+
+            // Navigate to specific page
+            function navigateToPage(page) {
+                const pageNum = parseInt(page);
+                if (pageNum >= 1) {
+                    // Get current search query and filters from URL using helper functions
+                    const searchQuery = getCurrentSearchQuery();
+                    const filters = getCurrentFilters();
+
+                    // Generate new URL with page number using WordPress standard format
+                    const newUrl = getSearchUrl(searchQuery, filters, pageNum);
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Handle Previous button
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const currentPage = parseInt(pageInput.value) || 1;
+                    if (currentPage > 1) {
+                        navigateToPage(currentPage - 1);
+                    }
+                });
+            }
+
+            // Handle Next button
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const currentPage = parseInt(pageInput.value) || 1;
+                    const totalPages = parseInt(pageInput.getAttribute('max')) || 1;
+                    if (currentPage < totalPages) {
+                        navigateToPage(currentPage + 1);
+                    }
+                });
+            }
+
+            // Handle page input
+            if (pageInput) {
+                pageInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        const page = parseInt(this.value);
+                        const totalPages = parseInt(this.getAttribute('max')) || 1;
+                        if (isNaN(page) || page < 1) {
+                            this.value = 1;
+                            navigateToPage(1);
+                        } else if (page > totalPages) {
+                            this.value = totalPages;
+                            navigateToPage(totalPages);
+                        } else {
+                            navigateToPage(page);
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    // Setup pagination for both movies and actors
+    setupPaginationHandling('movies-pagination');
+    setupPaginationHandling('actors-pagination');
+});
+</script>

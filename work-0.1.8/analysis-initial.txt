@@ -1,0 +1,16 @@
+Analyzing work-0.1.8...                                         
+
+warning - Unused import: 'package:mangayomi/yomihub/ebook/mobi_to_epub.dart'. Try removing the import directive - lib\modules\library\providers\local_archive.dart:6:8 - unused_import
+warning - Unused import: 'package:mangayomi/modules/manga/home/widget/filter_widget.dart'. Try removing the import directive - lib\modules\manga\home\manga_home_screen.dart:14:8 - unused_import
+   info - 'onDownloadStartRequest' is deprecated and shouldn't be used. Use onDownloadStarting instead. Try replacing the use of the deprecated member with the replacement - lib\yomihub\browser\browser_screen.dart:443:7 - deprecated_member_use
+   info - Unnecessary use of multiple underscores. Try using '_' - lib\yomihub\cloud\cloud_backup_screen.dart:255:39 - unnecessary_underscores
+   info - Unnecessary braces in a string interpolation. Try removing the braces - lib\yomihub\cloud\cloud_backup_service.dart:145:20 - unnecessary_brace_in_string_interps
+   info - The private field _start could be 'final'. Try making the field 'final' - lib\yomihub\playbooks\play_books_screen.dart:34:15 - prefer_final_fields
+   info - Unnecessary use of multiple underscores. Try using '_' - lib\yomihub\reader\ilovepdf.dart:229:99 - unnecessary_underscores
+   info - 'cacheExtent' is deprecated and shouldn't be used. Use scrollCacheExtent instead. This feature was deprecated after v3.41.0-0.0.pre. Try replacing the use of the deprecated member with the replacement - lib\yomihub\reader\pdf_reader_screen.dart:309:29 - deprecated_member_use
+   info - Unnecessary use of multiple underscores. Try using '_' - lib\yomihub\share\share_screen.dart:197:32 - unnecessary_underscores
+   info - Don't invoke 'print' in production code. Try using a logging framework - test\yh_repos_test.dart:28:11 - avoid_print
+   info - Don't invoke 'print' in production code. Try using a logging framework - test\yh_repos_test.dart:38:9 - avoid_print
+   info - Don't invoke 'print' in production code. Try using a logging framework - test\yh_repos_test.dart:40:9 - avoid_print
+
+12 issues found. (ran in 328.9s)

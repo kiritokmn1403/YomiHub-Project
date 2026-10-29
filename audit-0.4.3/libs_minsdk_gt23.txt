@@ -1,0 +1,12 @@
+﻿com.eyedeadevelopment.fluttertts 24
+com.google.android.gms.fido 24
+com.it_nomads.fluttersecurestorage 24
+com.llfbandit.app_links 24
+com.wireguard.android.tunnel 24
+dev.fluttercommunity.plus.wakelock 24
+io.flutter.plugins.flutter_plugin_android_lifecycle 24
+io.flutter.plugins.localauth 24
+io.flutter.plugins.urllauncher 24
+ireader.source.api 26
+org.mozilla.geckoview 26
+org.torproject.jni 24

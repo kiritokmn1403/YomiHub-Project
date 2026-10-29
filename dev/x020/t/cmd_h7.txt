@@ -1,0 +1,1 @@
+Shot 'h7a'; Tap 990 1142 25; Shot 'h7'; Labels 'h7' | Select-Object -First 14 | Select-Object -Skip 7; Crash

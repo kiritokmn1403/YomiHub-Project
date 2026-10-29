@@ -1,0 +1,75 @@
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 28132, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0d4e6ef824becdab6f1635661b9d80e8'
+isolate_dso_base: 78bc84a000, vm_dso_base: 0
+isolate_instructions: 78bcfda000, vm_instructions: 0
+    #00 abs 00000078be4cdf37 virt 0000000001c83f37 _kDartSnapshotText+0x14f3f37
+    #01 abs 00000078be4cddd7 virt 0000000001c83dd7 _kDartSnapshotText+0x14f3dd7
+    #02 abs 00000078be07a1c3 virt 00000000018301c3 _kDartSnapshotText+0x10a01c3
+    #03 abs 00000078bdcb7723 virt 000000000146d723 _kDartSnapshotText+0xcdd723
+    #04 abs 00000078be1a2b93 virt 0000000001958b93 _kDartSnapshotText+0x11c8b93
+    #05 abs 00000078be5b2c13 virt 0000000001d68c13 _kDartSnapshotText+0x15d8c13
+    #06 abs 00000078bd440307 virt 0000000000bf6307 _kDartSnapshotText+0x466307
+    #07 abs 00000078bd4406db virt 0000000000bf66db _kDartSnapshotText+0x4666db
+    #08 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #09 abs 00000078bd440307 virt 0000000000bf6307 _kDartSnapshotText+0x466307
+    #10 abs 00000078bd4406db virt 0000000000bf66db _kDartSnapshotText+0x4666db
+    #11 abs 00000078bd4406db virt 0000000000bf66db _kDartSnapshotText+0x4666db
+    #12 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #13 abs 00000078bd42148b virt 0000000000bd748b _kDartSnapshotText+0x44748b
+    #14 abs 00000078bd440477 virt 0000000000bf6477 _kDartSnapshotText+0x466477
+    #15 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #16 abs 00000078bd42148b virt 0000000000bd748b _kDartSnapshotText+0x44748b
+    #17 abs 00000078bd440477 virt 0000000000bf6477 _kDartSnapshotText+0x466477
+    #18 abs 00000078bd4406db virt 0000000000bf66db _kDartSnapshotText+0x4666db
+    #19 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #20 abs 00000078bd440243 virt 0000000000bf6243 _kDartSnapshotText+0x466243
+    #21 abs 00000078bd44009b virt 0000000000bf609b _kDartSnapshotText+0x46609b
+    #22 abs 00000078bd4406db virt 0000000000bf66db _kDartSnapshotText+0x4666db
+    #23 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #24 abs 00000078bd42148b virt 0000000000bd748b _kDartSnapshotText+0x44748b
+    #25 abs 00000078bd440477 virt 0000000000bf6477 _kDartSnapshotText+0x466477
+    #26 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #27 abs 00000078bd440243 virt 0000000000bf6243 _kDartSnapshotText+0x466243
+    #28 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #29 abs 00000078bd440243 virt 0000000000bf6243 _kDartSnapshotText+0x466243
+    #30 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #31 abs 00000078bd42148b virt 0000000000bd748b _kDartSnapshotText+0x44748b
+    #32 abs 00000078bd440477 virt 0000000000bf6477 _kDartSnapshotText+0x466477
+    #33 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #34 abs 00000078bd440307 virt 0000000000bf6307 _kDartSnapshotText+0x466307
+    #35 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #36 abs 00000078bd440307 virt 0000000000bf6307 _kDartSnapshotText+0x466307
+    #37 abs 00000078bd4406db virt 0000000000bf66db _kDartSnapshotText+0x4666db
+    #38 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #39 abs 00000078bd440243 virt 0000000000bf6243 _kDartSnapshotText+0x466243
+    #40 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #41 abs 00000078bd440243 virt 0000000000bf6243 _kDartSnapshotText+0x466243
+    #42 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #43 abs 00000078bd42148b virt 0000000000bd748b _kDartSnapshotText+0x44748b
+    #44 abs 00000078bd440477 virt 0000000000bf6477 _kDartSnapshotText+0x466477
+    #45 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #46 abs 00000078bd42148b virt 0000000000bd748b _kDartSnapshotText+0x44748b
+    #47 abs 00000078bd440477 virt 0000000000bf6477 _kDartSnapshotText+0x466477
+    #48 abs 00000078be5b2e63 virt 0000000001d68e63 _kDartSnapshotText+0x15d8e63
+    #49 abs 00000078bd42148b virt 0000000000bd748b _kDartSnapshotText+0x44748b
+    #50 abs 00000078be576da7 virt 0000000001d2cda7 _kDartSnapshotText+0x159cda7
+    #51 abs 00000078be57695b virt 0000000001d2c95b _kDartSnapshotText+0x159c95b
+    #52 abs 00000078be57683f virt 0000000001d2c83f _kDartSnapshotText+0x159c83f
+    #53 abs 00000078bd1fcc0f virt 00000000009b2c0f _kDartSnapshotText+0x222c0f
+    #54 abs 00000078bd1fc583 virt 00000000009b2583 _kDartSnapshotText+0x222583
+    #55 abs 00000078bd1fc547 virt 00000000009b2547 _kDartSnapshotText+0x222547
+    #56 abs 00000078be54852b virt 0000000001cfe52b _kDartSnapshotText+0x156e52b
+    #57 abs 00000078be5482a3 virt 0000000001cfe2a3 _kDartSnapshotText+0x156e2a3
+    #58 abs 00000078bd0a49c7 virt 000000000085a9c7 _kDartSnapshotText+0xca9c7
+    #59 abs 00000078bd0a4887 virt 000000000085a887 _kDartSnapshotText+0xca887
+    #60 abs 00000078be536c27 virt 0000000001cecc27 _kDartSnapshotText+0x155cc27
+    #61 abs 00000078bcfe7c77 virt 000000000079dc77 _kDartSnapshotText+0xdc77
+    #62 abs 00000078be426ddf virt 0000000001bdcddf _kDartSnapshotText+0x144cddf
+    #63 abs 00000078be73ad03 virt 0000000001ef0d03 _kDartSnapshotText+0x1760d03
+    #64 abs 00000078bd0abb1f virt 0000000000861b1f _kDartSnapshotText+0xd1b1f
+    #65 abs 00000078bd0aba6b virt 0000000000861a6b _kDartSnapshotText+0xd1a6b
+    #66 abs 00000078bd0aba27 virt 0000000000861a27 _kDartSnapshotText+0xd1a27
+    #67 abs 00000078bd0abb4f virt 0000000000861b4f _kDartSnapshotText+0xd1b4f
+

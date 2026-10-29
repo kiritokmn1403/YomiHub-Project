@@ -1,0 +1,1 @@
+Adb devices; Adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 | Out-Null; Start-Sleep 20; Tap 848 2169 3; Tap 864 273 3; Tap 182 425 3; Adb shell input swipe 540 1500 540 600 300; Start-Sleep 1; TapText '^AVSub' 50; Shot 'k2'

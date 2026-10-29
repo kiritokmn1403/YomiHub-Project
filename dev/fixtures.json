@@ -1,0 +1,226 @@
+{
+ "GET https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c649391-ngoai-truyen-3-anh-hung-phuong-tay": {
+  "file": "fx_8C215776A75125D2.txt",
+  "status": 200
+ },
+ "GET https://api.fikfap.com/posts/1970052": {
+  "file": "fx_9153578100317DA8.txt",
+  "status": 200
+ },
+ "POST https://www.youtube.com/youtubei/v1/browse?prettyPrint=false {\"context\":{\"client\":{\"clientName\":\"WEB\",\"clientVersion\":\"2.20260930.00.00\",\"hl\":\"vi\",\"gl\":\"VN\"}},\"browseId\":\"VLRDEMeyKnYmm7ScRhnRO9nwOSNA\"}": {
+  "file": "fx_DDB6F11892732CBE.txt",
+  "status": 200
+ },
+ "GET https://ln.hako.vn/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam": {
+  "file": "fx_677D1E011B1B2258.txt",
+  "status": 200
+ },
+ "GET https://anime47.love/api/anime/filter?page=1&sort=latest": {
+  "file": "fx_4971F96B645198DB.txt",
+  "status": 200
+ },
+ "POST https://www.youtube.com/youtubei/v1/search?prettyPrint=false {\"context\":{\"client\":{\"clientName\":\"WEB\",\"clientVersion\":\"2.20260930.00.00\",\"hl\":\"vi\",\"gl\":\"VN\"}},\"query\":\"nháº¡c Viá»‡t má»›i\",\"params\":\"CAMSBAgEEAE=\"}": {
+  "file": "fx_867F755532E01385.txt",
+  "status": 200
+ },
+ "GET https://hotphim.org/tinh-yeu-va-toi-loi-2026/": {
+  "file": "fx_03DF575CA2B4AA7E.txt",
+  "status": 200
+ },
+ "GET https://hotphim.org/?s=tinh%20yeu": {
+  "file": "fx_D312F15394157268.txt",
+  "status": 200
+ },
+ "POST https://www.youtube.com/youtubei/v1/search?prettyPrint=false {\"context\":{\"client\":{\"clientName\":\"WEB\",\"clientVersion\":\"2.20260930.00.00\",\"hl\":\"vi\",\"gl\":\"VN\"}},\"query\":\"son tung\"}": {
+  "file": "fx_ABCC3087D3E92B10.txt",
+  "status": 200
+ },
+ "GET https://hotphim.org/the-loai/phim-dang-chieu/": {
+  "file": "fx_4CC29098CBD096F3.txt",
+  "status": 200
+ },
+ "POST https://www.youtube.com/youtubei/v1/player?prettyPrint=false {\"context\":{\"client\":{\"clientName\":\"ANDROID_VR\",\"clientVersion\":\"1.62.27\",\"deviceMake\":\"Oculus\",\"deviceModel\":\"Quest 3\",\"androidSdkVersion\":32,\"osName\":\"Android\",\"osVersion\":\"12L\",\"hl\":\"vi\",\"gl\":\"VN\",\"visitorData\":\"CgswYjBpQVJuSEE0dyj5soHWBjIKCgJWThIEGgAgHA%3D%3D\"}},\"videoId\":\"abPmZCZZrFA\",\"contentCheckOk\":true,\"racyCheckOk\":true}": {
+  "file": "fx_B1369C116BDC7F4B.txt",
+  "status": 200
+ },
+ "POST https://api.vtvdigital.org/live-channel/v21.0/playback/source {\"channelId\":\"1\",\"platform\":\"web\"}": {
+  "file": "fx_E111A526A6538B97.txt",
+  "status": 200
+ },
+ "GET https://phimapi.com/v1/api/tim-kiem?keyword=conan&page=1&limit=24&sort_field=modified.time&sort_type=desc": {
+  "file": "fx_B459A253BD9984E8.txt",
+  "status": 200
+ },
+ "GET https://ln.hako.vn/danh-sach?truyendich=1&sangtac=1&dangtienhanh=1&tamngung=1&hoanthanh=1&sapxep=capnhat&page=1": {
+  "file": "fx_3C9D92CB145D24FC.txt",
+  "status": 200
+ },
+ "GET https://www.pornhub.com/video/get_media?s=eyJrIjoiNTVkMzU0ZDUyYmIxNzgxNjQ0YTQ3YjI4ZTFhYzY3ZGIxYTcyODQ5M2QwYjVlZDAwOTE5NDI3NzU4MDVkYzBkOCIsInQiOjE3OTA5OTA1NTV9&v=6aaaf909bfc4d&e=0&t=p": {
+  "file": "fx_723956FFF1122AD6.txt",
+  "status": 200
+ },
+ "GET https://anime47.love/api/anime/info/10931": {
+  "file": "fx_5820B0CADC3AFAF1.txt",
+  "status": 401
+ },
+ "GET https://phimapi.com/phim/tham-tu-lung-danh-conan": {
+  "file": "fx_02A2F393B0AAF82C.txt",
+  "status": 200
+ },
+ "GET https://ln.hako.vn/tim-kiem?keywords=tensei&page=1": {
+  "file": "fx_A0A0B41E61D0620A.txt",
+  "status": 200
+ },
+ "GET https://www.pornhub.com/video?o=mv&t=w&page=1": {
+  "file": "fx_6CFCF65910578D8E.txt",
+  "status": 200
+ },
+ "POST https://www.youtube.com/youtubei/v1/search?prettyPrint=false {\"context\":{\"client\":{\"clientName\":\"WEB\",\"clientVersion\":\"2.20260930.00.00\",\"hl\":\"vi\",\"gl\":\"VN\"}},\"query\":\"nhạc Việt mới\",\"params\":\"CAMSBAgEEAE=\"}": {
+  "file": "fx_A807EE8A0428ECB1.txt",
+  "status": 200
+ },
+ "GET https://api.fikfap.com/hashtags/label/asian/posts?amount=24": {
+  "file": "fx_DC4C4E985DE86531.txt",
+  "status": 404
+ },
+ "GET https://api.fikfap.com/posts?amount=24": {
+  "file": "fx_243BB2F599724FF6.txt",
+  "status": 200
+ },
+ "GET https://ln.hako.vn/truyen/139-that-nghiep-tai-sinh": {
+  "file": "fx_66AC46018FB78CF2.txt",
+  "status": 200
+ },
+ "GET https://phimapi.com/v1/api/danh-sach/phim-bo?page=1&limit=24&sort_field=year&sort_type=desc": {
+  "file": "fx_D84F03FF65268C5E.txt",
+  "status": 200
+ },
+ "GET https://anime47.love/api/search/full/?keyword=naruto&page=1": {
+  "file": "fx_E66DB9387E0577BD.txt",
+  "status": 200
+ },
+ "GET https://www.pornhub.com/video/search?search=asian&page=1": {
+  "file": "fx_3BCF716CFE8C2AC6.txt",
+  "status": 200
+ },
+ "GET https://ln.hako.vn/truyen/139-that-nghiep-tai-sinh/c142315-chuong-2-con-at-chu-bai": {
+  "file": "fx_CAE4C426EFBB7837.txt",
+  "status": 0
+ },
+ "GET https://anime47.love/api/anime/filter?page=1&sort=views": {
+  "file": "fx_4C40C2F3A3B06C21.txt",
+  "status": 200
+ },
+ "POST https://www.youtube.com/youtubei/v1/player?prettyPrint=false {\"context\":{\"client\":{\"clientName\":\"IOS\",\"clientVersion\":\"20.10.4\",\"deviceMake\":\"Apple\",\"deviceModel\":\"iPhone16,2\",\"osName\":\"iPhone\",\"osVersion\":\"18.3.2.22D82\",\"hl\":\"vi\",\"gl\":\"VN\",\"visitorData\":\"CgswYjBpQVJuSEE0dyj5soHWBjIKCgJWThIEGgAgHA%3D%3D\"}},\"videoId\":\"abPmZCZZrFA\",\"contentCheckOk\":true,\"racyCheckOk\":true}": {
+  "file": "fx_48B1336F6F54C129.txt",
+  "status": 200
+ },
+ "POST https://www.youtube.com/youtubei/v1/next?prettyPrint=false {\"context\":{\"client\":{\"clientName\":\"WEB\",\"clientVersion\":\"2.20260930.00.00\",\"hl\":\"vi\",\"gl\":\"VN\"}},\"playlistId\":\"RDEMeyKnYmm7ScRhnRO9nwOSNA\"}": {
+  "file": "fx_2C2BBC03D75DDB50.txt",
+  "status": 200
+ },
+ "POST https://www.youtube.com/youtubei/v1/player?prettyPrint=false {\"context\":{\"client\":{\"clientName\":\"ANDROID_VR\",\"clientVersion\":\"1.62.27\",\"deviceMake\":\"Oculus\",\"deviceModel\":\"Quest 3\",\"androidSdkVersion\":32,\"osName\":\"Android\",\"osVersion\":\"12L\",\"hl\":\"vi\",\"gl\":\"VN\"}},\"videoId\":\"abPmZCZZrFA\",\"contentCheckOk\":true,\"racyCheckOk\":true}": {
+  "file": "fx_4B6BD500290B8531.txt",
+  "status": 200
+ },
+ "GET https://www.pornhub.com/video?o=cm&page=1": {
+  "file": "fx_F5DB6404FD91A8A4.txt",
+  "status": 200
+ },
+ "GET https://api.fikfap.com/search/hashtags?q=asian": {
+  "file": "fx_B8B175A67F381ECD.txt",
+  "status": 200
+ },
+ "GET https://anime47.love/api/anime/10931/episodes": {
+  "file": "fx_BC45E48D2EE25935.txt",
+  "status": 401
+ },
+ "GET https://hotphim.org/tinh-yeu-va-toi-loi-2026/1/": {
+  "file": "fx_51AA669312562D0B.txt",
+  "status": 200
+ },
+ "GET https://api.fikfap.com/posts?sort=trending&amount=24": {
+  "file": "fx_81E29039DE6800E7.txt",
+  "status": 200
+ },
+ "GET https://api.vtvdigital.org/display/v21.0/catalogs/with-channels?platform=web": {
+  "file": "fx_9653FF7EC4106A60.txt",
+  "status": 200
+ },
+ "GET https://api.fikfap.com/hashtags/label/asianhottie/posts?amount=24": {
+  "file": "fx_329924DF5DD91A4E.txt",
+  "status": 200
+ },
+ "GET https://hotphim.org/the-loai/phim-chieu-rap/": {
+  "file": "fx_3CE064DF0166A951.txt",
+  "status": 200
+ },
+ "GET https://phimapi.com/danh-sach/phim-moi-cap-nhat?page=1": {
+  "file": "fx_A27413B6653A00A5.txt",
+  "status": 200
+ },
+ "GET https://ln.hako.vn/danh-sach?truyendich=1&sangtac=1&dangtienhanh=1&tamngung=1&hoanthanh=1&sapxep=top&page=1": {
+  "file": "fx_3C9176F8C4BD1C18.txt",
+  "status": 200
+ },
+ "GET https://www.pornhub.com/view_video.php?viewkey=6aaaf909bfc4d": {
+  "file": "fx_01C1117A394ADACE.txt",
+  "status": 200
+ },
+ "GET https://api.fikfap.com/search/posts?q=asian": {
+  "file": "fx_78D4D486F63D9870.txt",
+  "status": 200
+ },
+ "GET https://hotphim.org/tinh-yeu-va-toi-loi-2026/10/": {
+  "file": "fx_ADB28827E2849CCB.txt",
+  "status": 200
+ },
+ "GET https://api.fikfap.com/hashtags/label/asian": {
+  "file": "fx_EDA7E5787FC1882E.txt",
+  "status": 404
+ },
+ "POST https://www.youtube.com/youtubei/v1/browse?prettyPrint=false {\"context\":{\"client\":{\"clientName\":\"WEB\",\"clientVersion\":\"2.20260930.00.00\",\"hl\":\"vi\",\"gl\":\"VN\"}},\"browseId\":\"FEtrending\"}": {
+  "file": "fx_F58D87F57DCB18ED.txt",
+  "status": 400
+ },
+ "GET https://animevn.net/top-anime": {
+  "file": "avn_avn_top.html",
+  "status": 200
+ },
+ "GET https://animevn.net/": {
+  "file": "avn_avn_home.html",
+  "status": 200
+ },
+ "GET https://animevn.net/anime/tien-nghich": {
+  "file": "avn_avn_detail.html",
+  "status": 200
+ },
+ "GET https://animevn.net/anime/tien-nghich/tap-134-73590": {
+  "file": "avn_avn_ep.html",
+  "status": 200
+ },
+ "GET https://animevn.net/anime/shunkashuutou-daikousha-haru-no-mai/tap-1-73587": {
+  "file": "avn_ep_h3.html",
+  "status": 200
+ },
+ "GET https://animevn.net/phim-hoan-thanh": {
+  "file": "avn_avn_done.html",
+  "status": 200
+ },
+ "GET https://animevn.net/the-loai/hanh-dong?page=2": {
+  "file": "avn_genre_p2.html",
+  "status": 200
+ },
+ "POST https://animevn.net/search/html/1 \"keyword=tien\"": {
+  "file": "avn_srch_ajax.html",
+  "status": 200
+ },
+ "GET https://docln.sbs/danh-sach?truyendich=1&sangtac=1&dangtienhanh=1&tamngung=1&hoanthanh=1&sapxep=top&page=1": {
+  "file": "docln_list.html",
+  "status": 200
+ },
+ "GET https://docln.sbs/ai-dich/2-hikaru-ga-chikyuu-ni-itakoro": {
+  "file": "docln_detail.html",
+  "status": 200
+ }
+}

@@ -1,0 +1,1 @@
+Start-Sleep 25; Shot 'i3'; Labels 'i3' | Select-Object -First 16

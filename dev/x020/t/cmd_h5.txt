@@ -1,0 +1,1 @@
+Tap 1017 137 30; Adb shell input swipe 540 700 540 2000 300; Start-Sleep 1; Adb shell input swipe 540 700 540 2000 300; Start-Sleep 2; Labels 'h5' | Select-String 'extensions|https' | Select-Object -First 30

@@ -1,0 +1,588 @@
+{
+  "source": "Urban VPN Desktop local catalog",
+  "importedAt": "2026-09-13T17:16:23.155514+00:00",
+  "sourceSHA256": "d54681fe6c512b26363d6ace72eb04fdabe845015af5a06e347d4a1a4ba1cb99",
+  "locations": [
+    {
+      "code": "ke",
+      "name": "",
+      "group": "Africa",
+      "host": "p-ke1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ng",
+      "name": "",
+      "group": "Africa",
+      "host": "p-ng1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "lk",
+      "name": "",
+      "group": "Asia",
+      "host": "p-lk1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ge",
+      "name": "",
+      "group": "Europe",
+      "host": "p-ge5.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "dz",
+      "name": "Algeria",
+      "group": "Africa",
+      "host": "p-dz1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ar",
+      "name": "Argentina",
+      "group": "South America",
+      "host": "p-ar5.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "au",
+      "name": "Australia",
+      "group": "Australia",
+      "host": "p-au23.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "at",
+      "name": "Austria",
+      "group": "Europe",
+      "host": "p-at8.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "be",
+      "name": "Belgium",
+      "group": "Europe",
+      "host": "p-be4.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "br",
+      "name": "Brazil",
+      "group": "South America",
+      "host": "p-br7.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "bg",
+      "name": "Bulgaria",
+      "group": "Europe",
+      "host": "p-bg3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ca",
+      "name": "Canada",
+      "group": "North America",
+      "host": "p-ca7.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "cl",
+      "name": "Chile",
+      "group": "South America",
+      "host": "p-cl5.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "cn",
+      "name": "China",
+      "group": "Asia",
+      "host": "p-cn1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "co",
+      "name": "Colombia",
+      "group": "South America",
+      "host": "p-co2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "cr",
+      "name": "Costa Rica",
+      "group": "Central America",
+      "host": "p-cr2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "hr",
+      "name": "Croatia",
+      "group": "Europe",
+      "host": "p-hr1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "cy",
+      "name": "Cyprus",
+      "group": "Europe",
+      "host": "p-cy1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "cz",
+      "name": "Czech Republic",
+      "group": "Europe",
+      "host": "p-cz3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "dk",
+      "name": "Denmark",
+      "group": "Europe",
+      "host": "p-dk4.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ec",
+      "name": "Ecuador",
+      "group": "South America",
+      "host": "p-ec1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "eg",
+      "name": "Egypt",
+      "group": "Africa",
+      "host": "p-eg1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ee",
+      "name": "Estonia",
+      "group": "Europe",
+      "host": "p-ee1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "fi",
+      "name": "Finland",
+      "group": "Europe",
+      "host": "p-fi1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "fr",
+      "name": "France",
+      "group": "Europe",
+      "host": "p-fr2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "de",
+      "name": "Germany",
+      "group": "Europe",
+      "host": "v-de30.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "gh",
+      "name": "Ghana",
+      "group": "Africa",
+      "host": "p-gh1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "gr",
+      "name": "Greece",
+      "group": "Europe",
+      "host": "p-gr3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "gt",
+      "name": "Guatemala",
+      "group": "Central America",
+      "host": "p-gt1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "hk",
+      "name": "Hong Kong",
+      "group": "Asia",
+      "host": "p-hk3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "hu",
+      "name": "Hungary",
+      "group": "Europe",
+      "host": "p-hu2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "in",
+      "name": "India",
+      "group": "Asia",
+      "host": "p-in10.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "id",
+      "name": "Indonesia",
+      "group": "Asia",
+      "host": "p-id3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ie",
+      "name": "Ireland",
+      "group": "Europe",
+      "host": "p-ie1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "is",
+      "name": "Island",
+      "group": "Europe",
+      "host": "p-is2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "il",
+      "name": "Israel",
+      "group": "Asia",
+      "host": "p-il2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "it",
+      "name": "Italy",
+      "group": "Europe",
+      "host": "p-it3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ci",
+      "name": "Ivory Coast",
+      "group": "Africa",
+      "host": "p-ci2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "jp",
+      "name": "Japan",
+      "group": "Asia",
+      "host": "p-jp1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "jo",
+      "name": "Jordan",
+      "group": "Asia",
+      "host": "p-jo2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "kz",
+      "name": "Kazakhstan",
+      "group": "Asia",
+      "host": "p-kz1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "kw",
+      "name": "Kuwait",
+      "group": "Asia",
+      "host": "p-kw1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "kg",
+      "name": "Kyrgyzstan",
+      "group": "Asia",
+      "host": "p-kg2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "lv",
+      "name": "Latvia",
+      "group": "Europe",
+      "host": "p-lv2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "lt",
+      "name": "Lithuania",
+      "group": "Europe",
+      "host": "p-lt1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "lu",
+      "name": "Luxembourg",
+      "group": "Europe",
+      "host": "p-lu7.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "my",
+      "name": "Malaysia",
+      "group": "Asia",
+      "host": "p-my6.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "mt",
+      "name": "Malta",
+      "group": "Europe",
+      "host": "p-mt4.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "mx",
+      "name": "Mexico",
+      "group": "North America",
+      "host": "p-mx3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "mn",
+      "name": "Mongolia",
+      "group": "Asia",
+      "host": "p-mn1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ma",
+      "name": "Morocco",
+      "group": "Africa",
+      "host": "p-ma2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "nl",
+      "name": "Netherlands",
+      "group": "Europe",
+      "host": "p-nl13.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "nz",
+      "name": "New Zealand",
+      "group": "Australia",
+      "host": "p-nz3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ni",
+      "name": "Nicaragua",
+      "group": "Central America",
+      "host": "p-ni2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "no",
+      "name": "Norway",
+      "group": "Europe",
+      "host": "p-no9.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "pk",
+      "name": "Pakistan",
+      "group": "Asia",
+      "host": "p-pk2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "pa",
+      "name": "Panama",
+      "group": "Central America",
+      "host": "p-pa2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "py",
+      "name": "Paraguay",
+      "group": "South America",
+      "host": "p-py1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "pe",
+      "name": "Peru",
+      "group": "South America",
+      "host": "p-pe2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ph",
+      "name": "Philipines",
+      "group": "Asia",
+      "host": "p-ph2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "pl",
+      "name": "Poland",
+      "group": "Europe",
+      "host": "p-pl2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "pt",
+      "name": "Portugal",
+      "group": "Europe",
+      "host": "p-pt2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "pr",
+      "name": "Puerto Rico",
+      "group": "Central America",
+      "host": "p-pr1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ro",
+      "name": "Romania",
+      "group": "Europe",
+      "host": "p-ro1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ru",
+      "name": "Russia",
+      "group": "Asia",
+      "host": "p-ru3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "sa",
+      "name": "Saudi Arabia",
+      "group": "Asia",
+      "host": "p-sa1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "sg",
+      "name": "Singapore",
+      "group": "Asia",
+      "host": "p-sg1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "sk",
+      "name": "Slovakia",
+      "group": "Europe",
+      "host": "p-sk3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "si",
+      "name": "Slovenia",
+      "group": "Europe",
+      "host": "p-si2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "za",
+      "name": "South Africa",
+      "group": "Africa",
+      "host": "p-za1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "kr",
+      "name": "South Korea",
+      "group": "Asia",
+      "host": "p-kr2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "es",
+      "name": "Spain",
+      "group": "Europe",
+      "host": "p-es3.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "se",
+      "name": "Sweden",
+      "group": "Europe",
+      "host": "p-se1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ch",
+      "name": "Switzerland",
+      "group": "Europe",
+      "host": "p-ch2.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "tw",
+      "name": "Taiwan",
+      "group": "Asia",
+      "host": "p-tw1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "th",
+      "name": "Thailand",
+      "group": "Asia",
+      "host": "p-th4.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "tr",
+      "name": "Turkey",
+      "group": "Europe",
+      "host": "p-tr4.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ua",
+      "name": "Ukraine",
+      "group": "Europe",
+      "host": "p-ua5.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "ae",
+      "name": "United Arab Emirates",
+      "group": "Asia",
+      "host": "p-ae1.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "uk",
+      "name": "United Kingdom",
+      "group": "Europe",
+      "host": "p-uk18.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "us",
+      "name": "United States",
+      "group": "US DMAs",
+      "host": "p-us51.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "uy",
+      "name": "Uruguay",
+      "group": "South America",
+      "host": "p-uy5.urban-vpn.com",
+      "port": 443
+    },
+    {
+      "code": "vn",
+      "name": "Viewtnam",
+      "group": "Asia",
+      "host": "p-vn1.urban-vpn.com",
+      "port": 443
+    }
+  ]
+}

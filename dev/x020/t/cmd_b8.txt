@@ -1,0 +1,1 @@
+Tap 1003 2169 3; Adb shell input swipe 540 1800 540 600 400; Start-Sleep 2; TapText '^Settings' 3; TapText '^Browse' 3; Adb shell input swipe 540 1900 540 300 500; Start-Sleep 2; TapText '^Show in sources' 2; Shot 'b8'; Back 2; Back 2; Tap 848 2169 3; Adb shell input swipe 540 700 540 1900 400; Start-Sleep 2; Labels 'b8' | Select-Object -First 45

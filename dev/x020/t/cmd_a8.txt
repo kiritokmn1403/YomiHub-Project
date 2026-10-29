@@ -1,0 +1,1 @@
+Back 2; Adb shell input swipe 540 1800 540 600 400; Start-Sleep 2; TapText '^Settings' 3; Adb shell input swipe 540 1800 540 300 600; Start-Sleep 2; Labels 'a8' | Select-Object -First 40; Shot 'a8'

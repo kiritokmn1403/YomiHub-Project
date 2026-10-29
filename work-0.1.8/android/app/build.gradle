@@ -1,0 +1,124 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+android {
+    namespace "com.kodjodevf.mangayomi"
+    compileSdkVersion 37
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        // YomiHub 0.1.4: Kotatsu parsers use java.time / java.util APIs newer
+        // than Android 7.
+        coreLibraryDesugaringEnabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "com.yomihub.app"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        minSdkVersion 24
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
+
+    signingConfigs {
+       release {
+           keyAlias keystoreProperties['keyAlias']
+           keyPassword keystoreProperties['keyPassword']
+           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+           storePassword keystoreProperties['storePassword']
+       }
+   }
+   buildTypes {
+       release {
+           signingConfig signingConfigs.release
+           // YomiHub: Tor and WireGuard native code reach Java fields by name
+           proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+       }
+   }
+   repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation(name: 'libmtorrentserver', ext: 'aar')
+    // YomiHub VPN section: Tor daemon + WireGuard (Cloudflare WARP)
+    implementation 'info.guardianproject:tor-android:0.4.8.22'
+    implementation 'info.guardianproject:jtorctl:0.4.5.7'
+    implementation 'com.wireguard.android:tunnel:1.0.20260102'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+    // YomiHub 0.1.4: OpenVPN engine (ics-openvpn), used for OpenVPN profiles
+    // and SoftEther / VPN Gate servers
+    // (jitpack com.github.nizwar:openvpn_library:b3941ef040 with its unused
+    // libgojni.so removed: it clashed with libmtorrentserver's gomobile lib)
+    implementation(name: 'openvpn_library', ext: 'aar')
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    // YomiHub 0.1.4: the Xray core (as in Mihon Proxy) runs as its own
+    // process from jniLibs/<abi>/libxray.so - a second gomobile AAR (libXray)
+    // can't live next to libmtorrentserver in one app.
+    // YomiHub 0.1.4: Firefox engine for the in-app browser
+    implementation 'org.mozilla.geckoview:geckoview:157.0.20260924084938'
+    // YomiHub 0.1.4: Kotatsu parsers (Kotatsu-Redo, main repo of
+    // Shebyyy/kotatsu-multi-parsers) + what the bridge needs
+    implementation('com.github.Kotatsu-Redo:kotatsu-parsers-redo:b3c0000245') {
+        exclude group: 'org.json', module: 'json'
+    }
+    implementation 'com.squareup.okhttp3:okhttp:5.3.2'
+    implementation 'org.jsoup:jsoup:1.21.2'
+    implementation 'org.nanohttpd:nanohttpd:2.3.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+}

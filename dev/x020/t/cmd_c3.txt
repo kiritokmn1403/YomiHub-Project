@@ -1,0 +1,1 @@
+Back 2; Tap 300 1840 15; Shot 'c3_tik'; Labels 'c3' | Select-Object -First 14

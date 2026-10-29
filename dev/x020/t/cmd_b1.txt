@@ -1,0 +1,1 @@
+Back 2; Back 2; Labels 'b1x' | Select-String 'Tab ' | Select-Object -First 10; Tap 877 2169 3; Labels 'b1' | Select-Object -First 30; Shot 'b1'

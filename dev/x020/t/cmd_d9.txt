@@ -1,0 +1,1 @@
+Tap 864 273 3; TapText '^Tik\.Porn' 12; Tap 270 500 14; Shot 'd9'; Labels 'd9' | Select-Object -First 30

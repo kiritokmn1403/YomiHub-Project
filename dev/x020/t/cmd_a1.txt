@@ -1,0 +1,1 @@
+Adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 | Out-Null; Start-Sleep 6; TapText '^More$' 3; Labels 'a1' | Select-Object -First 40

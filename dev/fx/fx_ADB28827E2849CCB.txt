@@ -1,0 +1,2547 @@
+<!DOCTYPE html>
+<html lang="vi" prefix="og: https://ogp.me/ns#">
+	<head>
+		<meta charset="UTF-8">
+				<meta name="description" content="Tình Yêu Và Tội Lỗi là bộ phim hình sự pha trộn yếu tố tâm lý và tình cảm, bắt đầu từ một vụ bắt cóc bí ẩn vô tình làm lộ ra mạng lưới tội phạm quy mô lớn.">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			referrerpolicy="no-referrer" />
+		<style>
+			.dropdown-menu {
+			display: none;
+			position: absolute;
+			z-index: 1000;
+			}
+			.dropdown-menu.show {
+			display: block;
+			}
+			.season-dropdown {
+			position: relative;
+			}
+			/* Mobile dropdown fix */
+			@media screen and (max-width: 1359px) {
+				.el-group.toggled .dropdown-menu {
+					position: static !important;
+					display: none;
+					width: 100%;
+					margin-top: 0.5rem;
+					margin-left: 0;
+					box-shadow: none;
+					border: none;
+					background-color: rgba(0, 0, 0, 0.2);
+					border-radius: 0.5rem;
+					padding: 0.5rem;
+				}
+				.el-group.toggled .dropdown-menu.show {
+					display: block;
+				}
+				.el-group.toggled .menu-item-sub {
+					grid-column: 1 / -1;
+					width: 100%;
+				}
+				.el-group.toggled .season-dropdown > a {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					width: 100%;
+				}
+				.el-group.toggled .dropdown-menu .m-col-4,
+				.el-group.toggled .dropdown-menu > div[style*="grid"] {
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					gap: 0.5rem;
+				}
+				.el-group.toggled .dropdown-item {
+					padding: 0.5rem;
+					font-size: 13px;
+					border-radius: 0.25rem;
+				}
+			}
+			/* Search suggestions styling */
+			.search-suggestions {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background: #fff;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			z-index: 1000;
+			max-height: 300px;
+			overflow-y: auto;
+			display: none;
+			}
+			.suggestion-item {
+			padding: 12px 16px;
+			cursor: pointer;
+			border-bottom: 1px solid #f0f0f0;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			transition: background-color 0.2s;
+			}
+			.suggestion-item:last-child {
+			border-bottom: none;
+			}
+			.suggestion-item:hover,
+			.suggestion-item.selected {
+			background-color: #f8f9fa;
+			}
+			.suggestion-item i {
+			color: #666;
+			width: 16px;
+			text-align: center;
+			}
+			.suggestion-item span {
+			flex: 1;
+			color: #333;
+			}
+			.suggestion-type {
+			color: #999;
+			font-size: 12px;
+			margin-left: auto;
+			}
+			.suggestion-item.loading {
+			text-align: center;
+			color: #666;
+			font-style: italic;
+			}
+			.suggestion-item.no-results {
+			text-align: center;
+			color: #999;
+			font-style: italic;
+			}
+		</style>
+		
+<!-- Tối ưu hóa công cụ tìm kiếm bởi Rank Math PRO - https://rankmath.com/ -->
+<title>Xem Phim Tình Yêu Và Tội Lỗi - Hot Phim</title>
+<meta name="description" content="Tình Yêu Và Tội Lỗi là bộ phim hình sự pha trộn yếu tố tâm lý và tình cảm, bắt đầu từ một vụ bắt cóc bí ẩn vô tình làm lộ ra mạng lưới tội phạm quy mô lớn."/>
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+<link rel="canonical" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/" />
+<meta name="keywords" content="Tình Yêu Và Tội Lỗi"/>
+<meta property="og:locale" content="vi_VN" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Xem Phim Tình Yêu Và Tội Lỗi - Hot Phim" />
+<meta property="og:description" content="Tình Yêu Và Tội Lỗi là bộ phim hình sự pha trộn yếu tố tâm lý và tình cảm, bắt đầu từ một vụ bắt cóc bí ẩn vô tình làm lộ ra mạng lưới tội phạm quy mô lớn." />
+<meta property="og:url" content="https://hotphim.org/tinh-yeu-va-toi-loi-2026/" />
+<meta property="og:site_name" content="HotPhim" />
+<meta property="article:publisher" content="https://www.facebook.com/hotphimprovn" />
+<meta property="article:tag" content="Tình Yêu Và Tội Lỗi" />
+<meta property="article:section" content="Chính Kịch" />
+<meta property="og:updated_time" content="2026-08-12T15:18:01+07:00" />
+<meta property="og:image" content="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp" />
+<meta property="og:image:secure_url" content="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp" />
+<meta property="og:image:width" content="500" />
+<meta property="og:image:height" content="750" />
+<meta property="og:image:alt" content="Tình Yêu Và Tội Lỗi" />
+<meta property="og:image:type" content="image/webp" />
+<meta property="article:published_time" content="2026-07-30T10:00:03+07:00" />
+<meta property="article:modified_time" content="2026-08-12T15:18:01+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Xem Phim Tình Yêu Và Tội Lỗi - Hot Phim" />
+<meta name="twitter:description" content="Tình Yêu Và Tội Lỗi là bộ phim hình sự pha trộn yếu tố tâm lý và tình cảm, bắt đầu từ một vụ bắt cóc bí ẩn vô tình làm lộ ra mạng lưới tội phạm quy mô lớn." />
+<meta name="twitter:site" content="@hotphimprovn" />
+<meta name="twitter:creator" content="@hotphimprovn" />
+<meta name="twitter:image" content="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp" />
+<meta name="twitter:label1" content="Được viết bởi" />
+<meta name="twitter:data1" content="phim hot" />
+<meta name="twitter:label2" content="Thời gian để đọc" />
+<meta name="twitter:data2" content="1 phút" />
+<script type="application/ld+json" class="rank-math-schema-pro">{"@context":"https://schema.org","@graph":[{"@type":"Place","@id":"https://hotphim.org/#place","address":{"@type":"PostalAddress","streetAddress":"Lot B7, 19A Street, Tan Thuan EPZ, Tan Thuan Dong Ward, District 7","addressLocality":"Ho Chi Minh","addressRegion":"Ho Chi Minh","postalCode":"700000","addressCountry":"VN"}},{"@type":"Organization","@id":"https://hotphim.org/#organization","name":"HotPhim","url":"https://hotphim.org","sameAs":["https://www.facebook.com/hotphimprovn","https://twitter.com/hotphimprovn","https://www.tumblr.com/blog/hotphimprovn","hotphimprovn.blogspot.com","https://medium.com/@hotphimpro","https://sites.google.com/view/hotphimprovn","https://gravatar.com/hotphimprovn","www.pinterest.com/hotphimprovn","https://www.flickr.com/photos/203702555@N04/","https://500px.com/p/hotphimprovn"],"email":"contact@hotphim.org","address":{"@type":"PostalAddress","streetAddress":"Lot B7, 19A Street, Tan Thuan EPZ, Tan Thuan Dong Ward, District 7","addressLocality":"Ho Chi Minh","addressRegion":"Ho Chi Minh","postalCode":"700000","addressCountry":"VN"},"logo":{"@type":"ImageObject","@id":"https://hotphim.org/#logo","url":"https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1.png","contentUrl":"https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1.png","caption":"HotPhim","inLanguage":"vi","width":"512","height":"512"},"contactPoint":[{"@type":"ContactPoint","telephone":"0963866866","contactType":"customer support"}],"description":"HotPhim (HotPhimvn hay PhimMoiZ, PhimMoizz) v\u1edbi giao di\u1ec7n m\u1edbi th\u00e2n thi\u1ec7n, tr\u1ef1c quan d\u1ec5 s\u1eed d\u1ee5ng, h\u01a1n 100000+ b\u1ed9 phim HOT Full HD vietsub thuy\u1ebft minh.","legalName":"Xem Phim Fun","location":{"@id":"https://hotphim.org/#place"}},{"@type":"WebSite","@id":"https://hotphim.org/#website","url":"https://hotphim.org","name":"HotPhim","alternateName":"HotPhim.org","publisher":{"@id":"https://hotphim.org/#organization"},"inLanguage":"vi"},{"@type":"ImageObject","@id":"https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp","url":"https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp","width":"500","height":"750","caption":"T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i","inLanguage":"vi"},{"@type":"BreadcrumbList","@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#breadcrumb","itemListElement":[{"@type":"ListItem","position":"1","item":{"@id":"https://hotphim.org","name":"Home"}},{"@type":"ListItem","position":"2","item":{"@id":"https://hotphim.org/the-loai/","name":"Th\u1ec3 Lo\u1ea1i"}},{"@type":"ListItem","position":"3","item":{"@id":"https://hotphim.org/the-loai/chinh-kich/","name":"Ch\u00ednh K\u1ecbch"}},{"@type":"ListItem","position":"4","item":{"@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/","name":"T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i"}}]},{"@type":"WebPage","@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#webpage","url":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/","name":"Xem Phim T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i - Hot Phim","datePublished":"2026-07-30T10:00:03+07:00","dateModified":"2026-08-12T15:18:01+07:00","isPartOf":{"@id":"https://hotphim.org/#website"},"primaryImageOfPage":{"@id":"https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp"},"inLanguage":"vi","breadcrumb":{"@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#breadcrumb"}},{"@type":"Person","@id":"https://hotphim.org/author/hotphim/","name":"phim hot","url":"https://hotphim.org/author/hotphim/","image":{"@type":"ImageObject","@id":"https://secure.gravatar.com/avatar/57233b0616796c988fa2f367989cb3f08458175da9fa21a8b8782f1bc2c5119e?s=96&amp;d=mm&amp;r=g","url":"https://secure.gravatar.com/avatar/57233b0616796c988fa2f367989cb3f08458175da9fa21a8b8782f1bc2c5119e?s=96&amp;d=mm&amp;r=g","caption":"phim hot","inLanguage":"vi"},"worksFor":{"@id":"https://hotphim.org/#organization"}},{"@type":"Article","headline":"Phim Xem Phim T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i - Hot Phim","keywords":"T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i","datePublished":"2026-07-30T10:00:03+07:00","dateModified":"2026-08-12T15:18:01+07:00","articleSection":"Ch\u00ednh K\u1ecbch, H\u00e0nh \u0110\u1ed9ng, H\u00ecnh S\u1ef1, Phim B\u1ed9, Phim \u0110ang Chi\u00ea\u0301u, T\u00e2m L\u00fd, T\u00ecnh C\u1ea3m","author":{"@id":"https://hotphim.org/author/hotphim/","name":"phim hot"},"publisher":{"@id":"https://hotphim.org/#organization"},"description":"T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i l\u00e0 b\u1ed9 phim h\u00ecnh s\u1ef1 pha tr\u1ed9n y\u1ebfu t\u1ed1 t\u00e2m l\u00fd v\u00e0 t\u00ecnh c\u1ea3m, b\u1eaft \u0111\u1ea7u t\u1eeb m\u1ed9t v\u1ee5 b\u1eaft c\u00f3c b\u00ed \u1ea9n v\u00f4 t\u00ecnh l\u00e0m l\u1ed9 ra m\u1ea1ng l\u01b0\u1edbi t\u1ed9i ph\u1ea1m quy m\u00f4 l\u1edbn.","name":"Phim Xem Phim T\u00ecnh Y\u00eau V\u00e0 T\u1ed9i L\u1ed7i - Hot Phim","@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#richSnippet","isPartOf":{"@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#webpage"},"image":{"@id":"https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp"},"inLanguage":"vi","mainEntityOfPage":{"@id":"https://hotphim.org/tinh-yeu-va-toi-loi-2026/#webpage"}}]}</script>
+<!-- /Plugin SEO WordPress Rank Math -->
+
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Hot Phim &raquo; Tình Yêu Và Tội Lỗi Dòng bình luận" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/feed/" />
+<link rel="alternate" title="oNhúng (JSON)" type="application/json+oembed" href="https://hotphim.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhotphim.org%2Ftinh-yeu-va-toi-loi-2026%2F" />
+<link rel="alternate" title="oNhúng (XML)" type="text/xml+oembed" href="https://hotphim.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhotphim.org%2Ftinh-yeu-va-toi-loi-2026%2F&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+
+<link rel='stylesheet' id='wpdiscuz-frontend-css-css' href='https://hotphim.org/wp-content/plugins/wpdiscuz/themes/default/style.css?ver=7.6.28' media='all' />
+<style id="wpdiscuz-frontend-css-inline-css">
+ #wpdcom .wpd-blog-administrator .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-administrator .wpd-comment-author, #wpdcom .wpd-blog-administrator .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-administrator .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-comment-wrap.wpd-blog-administrator{border-left:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-administrator .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-administrator .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-administrator .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-editor .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-editor .wpd-comment-author, #wpdcom .wpd-blog-editor .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-editor .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-comment-wrap.wpd-blog-editor{border-left:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-editor .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-editor .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-editor .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-author .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-author .wpd-comment-author, #wpdcom .wpd-blog-author .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-author .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-author .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-author .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-author .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-contributor .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-contributor .wpd-comment-author, #wpdcom .wpd-blog-contributor .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-contributor .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-contributor .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-contributor .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-contributor .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-subscriber .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-subscriber .wpd-comment-author, #wpdcom .wpd-blog-subscriber .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-subscriber .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-subscriber .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom .wpd-blog-revisor .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-revisor .wpd-comment-author, #wpdcom .wpd-blog-revisor .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-revisor .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-revisor .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-revisor .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-revisor .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-post_author .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-post_author .wpd-comment-author, #wpdcom .wpd-blog-post_author .wpd-comment-author a{color:#00B38F}#wpdcom .wpd-blog-post_author .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-post_author .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-comment-wrap.wpd-blog-post_author{border-left:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-post_author .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-post_author .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-post_author .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-guest .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-guest .wpd-comment-author, #wpdcom .wpd-blog-guest .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-guest .wpd-comment-subheader{border-top:1px dashed #00B38F}#comments, #respond, .comments-area, #wpdcom{}#wpdcom .ql-editor > *{color:#777777}#wpdcom .ql-editor::before{}#wpdcom .ql-toolbar{border:1px solid #DDDDDD;border-top:none}#wpdcom .ql-container{border:1px solid #DDDDDD;border-bottom:none}#wpdcom .wpd-form-row .wpdiscuz-item input[type="text"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="email"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="url"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="color"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="date"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="datetime"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="datetime-local"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="month"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="number"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="time"], #wpdcom textarea, #wpdcom select{border:1px solid #DDDDDD;color:#777777}#wpdcom .wpd-form-row .wpdiscuz-item textarea{border:1px solid #DDDDDD}#wpdcom input::placeholder, #wpdcom textarea::placeholder, #wpdcom input::-moz-placeholder, #wpdcom textarea::-webkit-input-placeholder{}#wpdcom .wpd-comment-text{color:#777777}#wpdcom .wpd-thread-head .wpd-thread-info{border-bottom:2px solid #00B38F}#wpdcom .wpd-thread-head .wpd-thread-info.wpd-reviews-tab svg{fill:#00B38F}#wpdcom .wpd-thread-head .wpdiscuz-user-settings{border-bottom:2px solid #00B38F}#wpdcom .wpd-thread-head .wpdiscuz-user-settings:hover{color:#00B38F}#wpdcom .wpd-comment .wpd-follow-link:hover{color:#00B38F}#wpdcom .wpd-comment-status .wpd-sticky{color:#00B38F}#wpdcom .wpd-thread-filter .wpdf-active{color:#00B38F;border-bottom-color:#00B38F}#wpdcom .wpd-comment-info-bar{border:1px dashed #33c3a6;background:#e6f8f4}#wpdcom .wpd-comment-info-bar .wpd-current-view i{color:#00B38F}#wpdcom .wpd-filter-view-all:hover{background:#00B38F}#wpdcom .wpdiscuz-item .wpdiscuz-rating > label{color:#DDDDDD}#wpdcom .wpdiscuz-item .wpdiscuz-rating:not(:checked) > label:hover, .wpdiscuz-rating:not(:checked) > label:hover ~ label{}#wpdcom .wpdiscuz-item .wpdiscuz-rating > input ~ label:hover, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label{color:#FFED85}#wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpdcom .wpdiscuz-item .wpdiscuz-rating > label:hover ~ input:checked ~ label, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked + label:hover ~ label, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover ~ label, .wpd-custom-field .wcf-active-star, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label{color:#FFD700}#wpd-post-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-star{fill:#DDDDDD}#wpd-post-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-active{fill:#FFD700}#wpd-post-rating .wpd-rating-wrap .wpd-rate-starts svg .wpd-star{fill:#DDDDDD}#wpd-post-rating .wpd-rating-wrap .wpd-rate-starts:hover svg .wpd-star{fill:#FFED85}#wpd-post-rating.wpd-not-rated .wpd-rating-wrap .wpd-rate-starts svg:hover ~ svg .wpd-star{fill:#DDDDDD}.wpdiscuz-post-rating-wrap .wpd-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-star{fill:#DDDDDD}.wpdiscuz-post-rating-wrap .wpd-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-active{fill:#FFD700}#wpdcom .wpd-comment .wpd-follow-active{color:#ff7a00}#wpdcom .page-numbers{color:#555;border:#555 1px solid}#wpdcom span.current{background:#555}#wpdcom.wpd-layout-1 .wpd-new-loaded-comment > .wpd-comment-wrap > .wpd-comment-right{background:#FFFAD6}#wpdcom.wpd-layout-2 .wpd-new-loaded-comment.wpd-comment > .wpd-comment-wrap > .wpd-comment-right{background:#FFFAD6}#wpdcom.wpd-layout-2 .wpd-new-loaded-comment.wpd-comment.wpd-reply > .wpd-comment-wrap > .wpd-comment-right{background:transparent}#wpdcom.wpd-layout-2 .wpd-new-loaded-comment.wpd-comment.wpd-reply > .wpd-comment-wrap{background:#FFFAD6}#wpdcom.wpd-layout-3 .wpd-new-loaded-comment.wpd-comment > .wpd-comment-wrap > .wpd-comment-right{background:#FFFAD6}#wpdcom .wpd-follow:hover i, #wpdcom .wpd-unfollow:hover i, #wpdcom .wpd-comment .wpd-follow-active:hover i{color:#00B38F}#wpdcom .wpdiscuz-readmore{cursor:pointer;color:#00B38F}.wpd-custom-field .wcf-pasiv-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label{color:#DDDDDD}.wpd-wrapper .wpd-list-item.wpd-active{border-top:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply.wpd-unapproved-comment .wpd-comment-wrap{border-left:3px solid #FFFAD6}#wpdcom.wpd-layout-3 .wpd-comment.wpd-reply.wpd-unapproved-comment .wpd-comment-right{border-left:1px solid #FFFAD6}#wpdcom .wpd-prim-button{background-color:#07B290;color:#FFFFFF}#wpdcom .wpd_label__check i.wpdicon-on{color:#07B290;border:1px solid #83d9c8}#wpd-bubble-wrapper #wpd-bubble-all-comments-count{color:#1DB99A}#wpd-bubble-wrapper > div{background-color:#1DB99A}#wpd-bubble-wrapper > #wpd-bubble #wpd-bubble-add-message{background-color:#1DB99A}#wpd-bubble-wrapper > #wpd-bubble #wpd-bubble-add-message::before{border-left-color:#1DB99A;border-right-color:#1DB99A}#wpd-bubble-wrapper.wpd-right-corner > #wpd-bubble #wpd-bubble-add-message::before{border-left-color:#1DB99A;border-right-color:#1DB99A}.wpd-inline-icon-wrapper path.wpd-inline-icon-first{fill:#1DB99A}.wpd-inline-icon-count{background-color:#1DB99A}.wpd-inline-icon-count::before{border-right-color:#1DB99A}.wpd-inline-form-wrapper::before{border-bottom-color:#1DB99A}.wpd-inline-form-question{background-color:#1DB99A}.wpd-inline-form{background-color:#1DB99A}.wpd-last-inline-comments-wrapper{border-color:#1DB99A}.wpd-last-inline-comments-wrapper::before{border-bottom-color:#1DB99A}.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments{background:#1DB99A}.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments:hover,.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments:active,.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments:focus{background-color:#1DB99A}#wpdcom .ql-snow .ql-tooltip[data-mode="link"]::before{content:"Nhập link:"}#wpdcom .ql-snow .ql-tooltip.ql-editing a.ql-action::after{content:"Lưu"}.comments-area{width:auto}
+/*# sourceURL=wpdiscuz-frontend-css-inline-css */
+</style>
+<link rel='stylesheet' id='wpdiscuz-fa-css' href='https://hotphim.org/wp-content/plugins/wpdiscuz/assets/third-party/font-awesome-5.13.0/css/fa.min.css?ver=7.6.28' media='all' />
+<link rel='stylesheet' id='wpdiscuz-combo-css-css' href='https://hotphim.org/wp-content/plugins/wpdiscuz/assets/css/wpdiscuz-combo-no_quill.min.css?ver=7.1.2' media='all' />
+<link rel='stylesheet' id='movie-theme-8d4d4c6271d0064f-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/8d4d4c6271d0064f.css?ver=1766037098' media='all' />
+<link rel='stylesheet' id='movie-theme-6399440d760ff229-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/6399440d760ff229.css?ver=1778309575' media='all' />
+<link rel='stylesheet' id='movie-theme-95ce0c777797e218-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/95ce0c777797e218.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-1de65235de1a0d74-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/1de65235de1a0d74.css?ver=1782354206' media='all' />
+<link rel='stylesheet' id='movie-theme-2f1550876c0c97ad-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/2f1550876c0c97ad.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-4c81114ec1a39e4f-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/4c81114ec1a39e4f.css?ver=1782354142' media='all' />
+<link rel='stylesheet' id='movie-theme-5c4826c56b72a529-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/5c4826c56b72a529.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-9ce342e1cded4676-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/9ce342e1cded4676.css?ver=1765978145' media='all' />
+<link rel='stylesheet' id='movie-theme-08403d1cd8f0592e-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/08403d1cd8f0592e.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-cfb18acb3accb3c3-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/cfb18acb3accb3c3.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-all.min-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/all.min.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-b7b3b81f46f2a6c5-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/b7b3b81f46f2a6c5.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-ebdfd11796228ea6-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/ebdfd11796228ea6.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-cdaee2d63e50a549-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/cdaee2d63e50a549.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-theme-615f52311d2b0706-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/615f52311d2b0706.css?ver=1765978150' media='all' />
+<link rel='stylesheet' id='movie-theme-style-css' href='https://hotphim.org/wp-content/themes/movie-theme/style.css?ver=1761992525' media='all' />
+<link rel='stylesheet' id='movie-style-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/style.css?ver=7.1.2' media='all' />
+<link rel='stylesheet' id='responsive-style-css' href='https://hotphim.org/wp-content/themes/movie-theme/assets/css/responsive.css?ver=7.1.2' media='all' />
+<link rel='stylesheet' id='rating-system-css-css' href='https://hotphim.org/wp-content/themes/movie-theme/css/rating-system.css?ver=1.0.0' media='all' />
+<script id="jquery-core-js-extra">
+var comment_ajax = {"ajax_url":"https://hotphim.org/wp-admin/admin-ajax.php","nonce":"3994abaa23","reply_nonce":"d25b4d5e3a"};
+//# sourceURL=jquery-core-js-extra
+</script>
+<script id="jquery-core-js" src="https://hotphim.org/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script id="movie-theme-navigation-slider-js" src="https://hotphim.org/wp-content/themes/movie-theme/assets/js/navigation-slider.js?ver=1.0.0"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://hotphim.org/xmlrpc.php?rsd" />
+<link rel='shortlink' href='https://hotphim.org/?p=3711' />
+<link rel="icon" href="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" sizes="32x32" />
+<link rel="icon" href="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" />
+<meta name="msapplication-TileImage" content="https://hotphim.org/wp-content/uploads/2025/12/hotphim-favicon-1-280x420.png" />
+	</head>
+	<body class="wp-singular post-template-default single single-post postid-3711 single-format-standard wp-theme-movie-theme">
+				<header class="fly">
+			<div class="header-elements ">
+				<div class="for-mobile menu-toggle toggle">
+					<div class="icon-menu"><span></span><span></span><span></span></div>
+				</div>
+				<div class="for-mobile search-toggle">
+					<div class="icon-search"><span></span><span></span><i class="fa-solid fa-magnifying-glass"></i></div>
+				</div>
+				<a id="logo" class="header-logo" title="Hotphim.pro" href="https://hotphim.org/">
+				<img src="https://hotphim.org/wp-content/themes/movie-theme/images/hotphim-logo.png" alt="Hotphim-favicon.png">
+				</a>
+				<div id="search" class="search-container">
+					<div class="search-elements">
+						<div class="search-icon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</div>
+						<input id="main-search" class="search-input" placeholder="Tìm kiếm phim, diễn viên"
+							autocomplete="off">
+						<div class="search-suggestions" id="search-suggestions"></div>
+					</div>
+				</div>
+				<div class="el-group toggle">
+					<div id="main_menu">
+						<div class="menu-item"><a title="Phim bộ" href="https://hotphim.org/the-loai/phim-bo/">Phim Bộ</a></div>
+						<div class="menu-item"><a title="Phim lẻ"  href="https://hotphim.org/the-loai/phim-le/">Phim Lẻ</a></div>
+						<div class="menu-item"><a title="Diễn viên" href="https://hotphim.org/dien-vien/">Diễn Viên</a></div>
+						
+						<!-- Thể loại -->
+						<div class="menu-item menu-item-sub">
+							<div class="season-dropdown dropdown">
+								<a href="#">Thể loại<i class="fa-solid fa-caret-down ms-2"></i></a>
+								<div x-placement="bottom-start" aria-labelledby=""
+									class="v-dropdown-menu main_menu-dropdown bg-dark mt-2 dropdown-menu"
+									data-popper-reference-hidden="false" data-popper-escaped="false"
+									data-popper-placement="bottom-start" style="position: absolute;">
+									<div class="m-col-4">
+										<a class="dropdown-item" title="Anime" href="https://hotphim.org/the-loai/anime/"><span>Anime</span></a><a class="dropdown-item" title="Chính Kịch" href="https://hotphim.org/the-loai/chinh-kich/"><span>Chính Kịch</span></a><a class="dropdown-item" title="Cổ Trang" href="https://hotphim.org/the-loai/co-trang/"><span>Cổ Trang</span></a><a class="dropdown-item" title="Gia Đình" href="https://hotphim.org/the-loai/gia-dinh/"><span>Gia Đình</span></a><a class="dropdown-item" title="Hài Hước" href="https://hotphim.org/the-loai/hai-huoc/"><span>Hài Hước</span></a><a class="dropdown-item" title="Hành Động" href="https://hotphim.org/the-loai/hanh-dong/"><span>Hành Động</span></a><a class="dropdown-item" title="Hình Sự" href="https://hotphim.org/the-loai/hinh-su/"><span>Hình Sự</span></a><a class="dropdown-item" title="Hoạt Hình TQ" href="https://hotphim.org/the-loai/hoat-hinh/"><span>Hoạt Hình TQ</span></a><a class="dropdown-item" title="Khoa Học" href="https://hotphim.org/the-loai/khoa-hoc/"><span>Khoa Học</span></a><a class="dropdown-item" title="Kinh Dị" href="https://hotphim.org/the-loai/kinh-di/"><span>Kinh Dị</span></a><a class="dropdown-item" title="Phiêu Lưu" href="https://hotphim.org/the-loai/phieu-luu/"><span>Phiêu Lưu</span></a><a class="dropdown-item" title="Phim Bộ" href="https://hotphim.org/the-loai/phim-bo/"><span>Phim Bộ</span></a><a class="dropdown-item" title="Phim Chiếu Rạp" href="https://hotphim.org/the-loai/phim-chieu-rap/"><span>Phim Chiếu Rạp</span></a><a class="dropdown-item" title="Phim Đang Chiếu" href="https://hotphim.org/the-loai/phim-dang-chieu/"><span>Phim Đang Chiếu</span></a><a class="dropdown-item" title="Phim Lẻ" href="https://hotphim.org/the-loai/phim-le/"><span>Phim Lẻ</span></a><a class="dropdown-item" title="Phim Sắp Chiếu" href="https://hotphim.org/the-loai/phim-sap-chieu/"><span>Phim Sắp Chiếu</span></a><a class="dropdown-item" title="Tâm Lý" href="https://hotphim.org/the-loai/tam-ly/"><span>Tâm Lý</span></a><a class="dropdown-item" title="Thần Thoại" href="https://hotphim.org/the-loai/than-thoai/"><span>Thần Thoại</span></a><a class="dropdown-item" title="Tình Cảm" href="https://hotphim.org/the-loai/tinh-cam/"><span>Tình Cảm</span></a><a class="dropdown-item" title="TV Show" href="https://hotphim.org/the-loai/tv-show/"><span>TV Show</span></a><a class="dropdown-item" title="Viễn Tưởng" href="https://hotphim.org/the-loai/vien-tuong/"><span>Viễn Tưởng</span></a><a class="dropdown-item" title="Võ Thuật" href="https://hotphim.org/the-loai/vo-thuat/"><span>Võ Thuật</span></a>									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Quốc gia -->
+						<div class="menu-item menu-item-sub">
+							<div class="season-dropdown dropdown">
+								<a href="#">Quốc gia<i class="fa-solid fa-caret-down ms-2"></i></a>
+								<div x-placement="bottom-start" aria-labelledby=""
+									class="v-dropdown-menu main_menu-dropdown bg-dark mt-2 dropdown-menu"
+									data-popper-reference-hidden="false" data-popper-escaped="false"
+									data-popper-placement="bottom-start" style="position: absolute; ">
+									<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;">
+										<a class="dropdown-item" href="https://hotphim.org/quoc-gia/anh/">Anh</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/au-my/">Âu Mỹ</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/brazil/">Brazil</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/canada/">Canada</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/dai-loan/">Đài Loan</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/han-quoc/">Hàn Quốc</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/hong-kong/">Hồng Kông</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/indonesia/">Indonesia</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/iran/">Iran</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/mexico/">Mexico</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/nhat-ban/">Nhật Bản</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/singapore/">Singapore</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/thai-lan/">Thái Lan</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/trung-quoc/">Trung Quốc</a><a class="dropdown-item" href="https://hotphim.org/quoc-gia/viet-nam/">Việt Nam</a>									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex-grow-1"></div>
+				</div>
+			</div>
+		</header>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+			    // Mobile menu toggle functionality
+			    const menuToggle = document.querySelector('.for-mobile.menu-toggle');
+			    const elGroup = document.querySelector('.el-group');
+			
+			    if (menuToggle && elGroup) {
+			        menuToggle.addEventListener('click', function() {
+			            // Toggle classes for menu toggle
+			            menuToggle.classList.toggle('toggled');
+			
+			            // Toggle classes for el-group
+			            elGroup.classList.toggle('toggled');
+			        });
+			    }
+			
+			    // Mobile search toggle functionality
+			    const searchToggle = document.querySelector('.for-mobile.search-toggle');
+			    const headerElements = document.querySelector('.header-elements');
+			    const searchElement = document.querySelector('#search');
+			
+			    if (searchToggle && headerElements && searchElement) {
+			        searchToggle.addEventListener('click', function() {
+			            // Toggle classes for search toggle
+			            searchToggle.classList.toggle('toggled');
+			
+			            // Toggle classes for header-elements
+			            headerElements.classList.toggle('simple');
+			
+			            // Toggle classes for search element
+			            searchElement.classList.toggle('toggled');
+			        });
+			    }
+			
+			    // Get all dropdown triggers
+			    const dropdownTriggers = document.querySelectorAll('.season-dropdown > a');
+			
+			    dropdownTriggers.forEach(function(trigger) {
+			        const dropdown = trigger.parentElement.querySelector('.dropdown-menu');
+			
+			        // Add click event to toggle dropdown
+			        trigger.addEventListener('click', function(e) {
+			            e.preventDefault();
+			
+			            // Close all other dropdowns
+			            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+			                if (menu !== dropdown) {
+			                    menu.classList.remove('show');
+			                }
+			            });
+			
+			            // Toggle current dropdown
+			            dropdown.classList.toggle('show');
+			        });
+			    });
+			
+			    // Close dropdowns when clicking outside
+			    document.addEventListener('click', function(e) {
+			        if (!e.target.closest('.season-dropdown')) {
+			            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+			                menu.classList.remove('show');
+			            });
+			        }
+			    });
+			
+			    // Close dropdowns on escape key
+			    document.addEventListener('keydown', function(e) {
+			        if (e.key === 'Escape') {
+			            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+			                menu.classList.remove('show');
+			            });
+			        }
+			    });
+			
+			    // Search functionality
+			    const searchInput = document.querySelector('#main-search');
+			    const searchIcon = document.querySelector('.search-icon');
+			
+			    if (searchInput) {
+			        // Handle keyboard navigation
+			        let selectedSuggestionIndex = -1;
+			
+			        searchInput.addEventListener('keydown', function(e) {
+			            const suggestions = document.querySelectorAll(
+			                '.suggestion-item:not(.loading):not(.no-results)');
+			
+			            if (e.key === 'ArrowDown') {
+			                e.preventDefault();
+			                selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, suggestions.length -
+			                    1);
+			                updateSelectedSuggestion(suggestions);
+			            } else if (e.key === 'ArrowUp') {
+			                e.preventDefault();
+			                selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, -1);
+			                updateSelectedSuggestion(suggestions);
+			            } else if (e.key === 'Enter') {
+			                e.preventDefault();
+			                if (selectedSuggestionIndex >= 0 && suggestions[selectedSuggestionIndex]) {
+			                    suggestions[selectedSuggestionIndex].click();
+			                } else {
+			                    performSearch();
+			                }
+			            } else if (e.key === 'Escape') {
+			                hideSuggestions();
+			                selectedSuggestionIndex = -1;
+			            }
+			        });
+			
+			        function updateSelectedSuggestion(suggestions) {
+			            suggestions.forEach((item, index) => {
+			                item.classList.toggle('selected', index === selectedSuggestionIndex);
+			            });
+			        }
+			
+			        // Handle search on icon click
+			        if (searchIcon) {
+			            searchIcon.addEventListener('click', function() {
+			                performSearch();
+			            });
+			        }
+			
+			        // Auto-suggest functionality
+			        let searchTimeout;
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			
+			        searchInput.addEventListener('input', function() {
+			            clearTimeout(searchTimeout);
+			            const query = this.value.trim();
+			
+			            if (query.length >= 2) {
+			                searchTimeout = setTimeout(() => {
+			                    fetchSearchSuggestions(query);
+			                }, 300);
+			            } else {
+			                hideSuggestions();
+			            }
+			        });
+			
+			        // Hide suggestions when clicking outside
+			        document.addEventListener('click', function(e) {
+			            if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+			                hideSuggestions();
+			            }
+			        });
+			
+			        // Show suggestions when focusing on input
+			        searchInput.addEventListener('focus', function() {
+			            const query = this.value.trim();
+			            if (query.length >= 2) {
+			                fetchSearchSuggestions(query);
+			            }
+			        });
+			    }
+			
+			    // Search function
+			    function performSearch() {
+			        const searchInput = document.querySelector('#main-search');
+			        if (searchInput) {
+			            const query = searchInput.value.trim();
+			
+			            if (query.length > 0) {
+			                hideSuggestions();
+			                // Redirect to search results page
+			                const searchUrl = 'https://hotphim.org/?s=' + encodeURIComponent(query);
+			                window.location.href = searchUrl;
+			            }
+			        }
+			    }
+			
+			    // Fetch search suggestions
+			    function fetchSearchSuggestions(query) {
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			
+			        // Show loading state
+			        suggestionsContainer.innerHTML = '<div class="suggestion-item loading">Đang tìm kiếm...</div>';
+			        suggestionsContainer.style.display = 'block';
+			
+			        // Make AJAX request to get suggestions
+			        const formData = new FormData();
+			        formData.append('action', 'search_suggestions');
+			        formData.append('query', query);
+			        formData.append('nonce', '9c0845c61a');
+			
+			        fetch('https://hotphim.org/wp-admin/admin-ajax.php', {
+			                method: 'POST',
+			                body: formData
+			            })
+			            .then(response => response.json())
+			            .then(data => {
+			                if (data.success && data.data.length > 0) {
+			                    displaySuggestions(data.data);
+			                } else {
+			                    suggestionsContainer.innerHTML =
+			                        '<div class="suggestion-item no-results">Không tìm thấy gợi ý</div>';
+			                }
+			            })
+			            .catch(error => {
+			                console.error('Search suggestions error:', error);
+			                hideSuggestions();
+			            });
+			    }
+			
+			    // Display search suggestions
+			    function displaySuggestions(suggestions) {
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			        let html = '';
+			
+			        // Reset selected index
+			        selectedSuggestionIndex = -1;
+			
+			        suggestions.forEach(suggestion => {
+			            const icon = suggestion.type === 'category' ? 'fa-tags' : 'fa-film';
+			            html += `<div class="suggestion-item" data-query="${suggestion.title}" data-url="${suggestion.url}">
+			                    <i class="fa-solid ${icon}"></i>
+			                    <span>${suggestion.title}</span>
+			                    ${suggestion.type === 'category' ? '<small class="suggestion-type">Thể loại</small>' : ''}
+			                </div>`;
+			        });
+			
+			        suggestionsContainer.innerHTML = html;
+			        suggestionsContainer.style.display = 'block';
+			
+			        // Add click handlers to suggestions
+			        const suggestionItems = suggestionsContainer.querySelectorAll('.suggestion-item');
+			        suggestionItems.forEach(item => {
+			            item.addEventListener('click', function() {
+			                const query = this.getAttribute('data-query');
+			                const url = this.getAttribute('data-url');
+			
+			                if (url && url !== 'undefined') {
+			                    // Direct navigation to the item
+			                    window.location.href = url;
+			                } else {
+			                    // Perform search with the query
+			                    const searchInput = document.querySelector('#main-search');
+			                    searchInput.value = query;
+			                    performSearch();
+			                }
+			            });
+			        });
+			    }
+			
+			    // Hide suggestions
+			    function hideSuggestions() {
+			        const suggestionsContainer = document.querySelector('#search-suggestions');
+			        suggestionsContainer.style.display = 'none';
+			    }
+			
+			    // js Header scroll effect - add nền background khi scroll
+			    const header = document.querySelector('header');
+			    let lastScrollTop = 0;
+			
+			    if (header) {
+			        window.addEventListener('scroll', function() {
+			            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			
+			            if (scrollTop > 50) {
+			                // Add fixed class when scrolled down
+			                header.classList.add('fixed');
+			            } else {
+			                // Remove fixed class when at top
+			                header.classList.remove('fixed');
+			            }
+			
+			            lastScrollTop = scrollTop;
+			        }, false);
+			    }
+			});
+		</script>
+	</body>
+</html><!-- HLS.js and Art Player JS -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/artplayer@latest/dist/artplayer.js"></script>
+
+
+<body class="base-load">
+    <div id="body-load">
+        <div class="bl-logo"><img alt="logo_hdonline.png" src="https://hotphim.org/wp-content/themes/movie-theme/images/hotphim-logo.png">
+            <div class="text-h1 text-center">Xem Phim Miễn Phí Cực Nhanh, Chất Lượng Cao Và Cập Nhật Liên Tục</div>
+        </div>
+    </div>
+    <div id="app">
+        <div id="wrapper" class="makeup wrapper-watch">
+            <div class="player-ratio">
+                <div class="ratio ratio-16x9">
+                    <div id="artplayer-container" style="width: 100%; height: 100%;"></div>
+                </div>
+                <div class="line-center player-control">
+                    <div class="line-center control-items">
+                        <div class="item item-like ">
+                            <div class="inc-icon icon-12"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 20 20" fill="none">
+                                    <g clip-path="url(#clip0_49_76)">
+                                        <path
+                                            d="M10 18.1432L1.55692 9.82794C0.689275 8.97929 0.147406 7.85276 0.0259811 6.64517C-0.0954433 5.43759 0.211298 4.22573 0.892612 3.22133C4.99987 -2.24739 10 4.10278 10 4.10278C10 4.10278 15.0001 -2.24739 19.1074 3.22133C19.7887 4.22573 20.0954 5.43759 19.974 6.64517C19.8526 7.85276 19.3107 8.97929 18.4431 9.82794L10 18.1432Z"
+                                            fill="currentColor"></path>
+                                    </g>
+                                </svg></div><span>Yêu thích</span>
+                        </div>
+                        <div class="dropdown">
+                            <div>
+                                <div class="item-playlist">
+                                    <div class="item">
+                                        <div class="inc-icon icon-12"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="100" height="100" viewBox="0 0 100 100" fill="none">
+                                                <path
+                                                    d="M89.7273 41.6365H58.3635V10.2727C58.3635 6.81018 55.5534 4 52.0908 4H47.9092C44.4466 4 41.6365 6.81018 41.6365 10.2727V41.6365H10.2727C6.81018 41.6365 4 44.4466 4 47.9092V52.0908C4 55.5534 6.81018 58.3635 10.2727 58.3635H41.6365V89.7273C41.6365 93.1898 44.4466 96 47.9092 96H52.0908C55.5534 96 58.3635 93.1898 58.3635 89.7273V58.3635H89.7273C93.1898 58.3635 96 55.5534 96 52.0908V47.9092C96 44.4466 93.1898 41.6365 89.7273 41.6365Z"
+                                                    fill="currentColor"></path>
+                                            </svg></div><span>Thêm vào</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-auto toggle-basic-label is-on"><span>Chuyển tập</span>
+                            <div class="toggle-basic is-on"></div>
+                        </div>
+                        <!-- <div class="item item-focus toggle-basic-label "><span>Rạp phim</span>
+                                <div class="toggle-basic"></div>
+                            </div> -->
+                        <div class="item item-share">
+                            <div class="inc-icon icon-12"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                    viewBox="0 0 17 17" fill="none">
+                                    <path
+                                        d="M16.3628 0.651489C15.946 0.223669 15.3291 0.0642849 14.7538 0.232058L1.34002 4.13277C0.733102 4.30139 0.302926 4.78541 0.187045 5.4003C0.0686637 6.02609 0.482166 6.82049 1.02239 7.15268L5.2166 9.73051C5.64678 9.99475 6.20201 9.92848 6.55799 9.56945L11.3608 4.73676C11.6026 4.4851 12.0027 4.4851 12.2445 4.73676C12.4862 4.98003 12.4862 5.37429 12.2445 5.62595L7.43334 10.4595C7.07653 10.8177 7.00984 11.3755 7.27245 11.8084L9.83516 16.0446C10.1353 16.548 10.6522 16.8332 11.2191 16.8332C11.2858 16.8332 11.3608 16.8332 11.4275 16.8248C12.0777 16.7409 12.5946 16.2963 12.7864 15.6671L16.763 2.2705C16.9381 1.70007 16.7797 1.07931 16.3628 0.651489Z"
+                                        fill="currentColor"></path>
+                                </svg></div><span>Chia sẻ</span>
+                        </div>
+                        <div class="flex-grow-1"></div>
+                        <div class="item item-report"><i class="fa-solid fa-flag"></i><span>Báo lỗi</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="watch-container">
+            <div class="wc-main">
+                <div class="wm-info">
+                    <div class="v-thumb-l">
+                        <div class="v-thumbnail"><img
+                                alt="Xem Phim                                              Tình Yêu Và Tội Lỗi Vietsub HD Online - Rophim"
+                                loading="lazy" src="https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-thumb.webp">
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h2 class="heading-sm media-name"><a title="Tình Yêu Và Tội Lỗi"
+                                href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/">Tình Yêu Và Tội Lỗi</a>
+                        </h2>
+                        <div class="alias-name">Sin And Love</div>
+                        <div class="detail-more">
+                            <div class="hl-tags">
+                                <div class="tag-model"><span
+                                        class="last"><strong></strong></span></div>
+                                <div class="tag-classic"><span>2026</span></div>
+                                <div class="tag-classic"><span>Phần </span>
+                                </div>
+                                <div class="tag-classic"><span>Tập
+                                        10</span>
+                                </div>
+                            </div>
+                            <div class="hl-tags">
+                                                                                                <a class="tag-topic"
+                                    href="https://hotphim.org/the-loai/chinh-kich/">Chính Kịch</a>
+                                                                <a class="tag-topic"
+                                    href="https://hotphim.org/the-loai/hanh-dong/">Hành Động</a>
+                                                                <a class="tag-topic"
+                                    href="https://hotphim.org/the-loai/hinh-su/">Hình Sự</a>
+                                                                <a class="tag-topic"
+                                    href="https://hotphim.org/the-loai/phim-bo/">Phim Bộ</a>
+                                                                <a class="tag-topic"
+                                    href="https://hotphim.org/the-loai/phim-dang-chieu/">Phim Đang Chiếu</a>
+                                                                <a class="tag-topic"
+                                    href="https://hotphim.org/the-loai/tam-ly/">Tâm Lý</a>
+                                                                <a class="tag-topic"
+                                    href="https://hotphim.org/the-loai/tinh-cam/">Tình Cảm</a>
+                                                                                            </div>
+                            <div class="status on-going ">
+                                <div class="line-center small">
+                                    <div class="spinner-border spinner-border-sm" role="status"></div><span>Đã
+                                        chiếu:
+                                        10                                        /
+                                        10 tập</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desc-line">
+                        <div class="description lim-3">Tình Yêu Và Tội Lỗi là bộ phim hình sự pha trộn yếu tố tâm lý và tình cảm, bắt đầu từ một vụ bắt cóc bí ẩn vô tình làm lộ ra mạng lưới tội phạm quy mô lớn. Cảnh sát, những kẻ buôn lậu ma túy và các...</div><a
+                            class="text-primary" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/">Thông tin phim <i
+                                class="fa-solid fa-angle-right small me-2"></i></a>
+                    </div>
+                </div>
+                <div id="episodes-list" class="wm-episodes">
+                    <div class="cg-body-box is-eps">
+                        <!-- <div class="schedule-eps mt-0">
+                                <div class="item">
+                                    <div class="inc-icon"><img src="/images/alarm.gif"></div>
+                                    <div><strong>Tập 11</strong> sẽ phát sóng<strong> 08:00 ngày 09-09-2025</strong>.
+                                        Các bạn nhớ đón xem nhé 😚</div>
+                                </div>
+                            </div> -->
+                        <div class="box-header">
+                            <div class="season-dropdown dropdown">
+                                <div class="line-center"><i class="fa-solid fa-bars-staggered text-primary"></i>Phần
+                                    1<i class="fa-solid fa-caret-down"></i></div>
+                            </div>
+                            <div class="nav nav-pills v-tabs v-tabs-min tab-trans mb-0" id="nav-tab-child"
+                                role="tablist"><button class="nav-link active" type="button" role="tab">
+                                    <div class="inc-icon icon-12"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                            height="16" viewBox="0 0 16 16" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M15.3333 4.6665C15.3333 4.13584 15.1227 3.62717 14.7473 3.2525C14.3727 2.87717 13.864 2.6665 13.3333 2.6665C10.7787 2.6665 5.22132 2.6665 2.66666 2.6665C2.13599 2.6665 1.62732 2.87717 1.25266 3.2525C0.877322 3.62717 0.666656 4.13584 0.666656 4.6665V11.3332C0.666656 11.8638 0.877322 12.3725 1.25266 12.7472C1.62732 13.1225 2.13599 13.3332 2.66666 13.3332H13.3333C13.864 13.3332 14.3727 13.1225 14.7473 12.7472C15.1227 12.3725 15.3333 11.8638 15.3333 11.3332V4.6665ZM14 4.6665V11.3332C14 11.5098 13.93 11.6798 13.8047 11.8045C13.68 11.9298 13.51 11.9998 13.3333 11.9998H2.66666C2.48999 11.9998 2.31999 11.9298 2.19532 11.8045C2.06999 11.6798 1.99999 11.5098 1.99999 11.3332V4.6665C1.99999 4.48984 2.06999 4.31984 2.19532 4.19517C2.31999 4.06984 2.48999 3.99984 2.66666 3.99984H13.3333C13.51 3.99984 13.68 4.06984 13.8047 4.19517C13.93 4.31984 14 4.48984 14 4.6665ZM3.99999 10.6665H5.33332C5.70132 10.6665 5.99999 10.3678 5.99999 9.99984C5.99999 9.63184 5.70132 9.33317 5.33332 9.33317H3.99999C3.63199 9.33317 3.33332 9.63184 3.33332 9.99984C3.33332 10.3678 3.63199 10.6665 3.99999 10.6665ZM7.99999 10.6665H12C12.368 10.6665 12.6667 10.3678 12.6667 9.99984C12.6667 9.63184 12.368 9.33317 12 9.33317H7.99999C7.63199 9.33317 7.33332 9.63184 7.33332 9.99984C7.33332 10.3678 7.63199 10.6665 7.99999 10.6665ZM11.3333 7.99984H12C12.368 7.99984 12.6667 7.70117 12.6667 7.33317C12.6667 6.96517 12.368 6.6665 12 6.6665H11.3333C10.9653 6.6665 10.6667 6.96517 10.6667 7.33317C10.6667 7.70117 10.9653 7.99984 11.3333 7.99984ZM3.99999 7.99984H8.66666C9.03466 7.99984 9.33332 7.70117 9.33332 7.33317C9.33332 6.96517 9.03466 6.6665 8.66666 6.6665H3.99999C3.63199 6.6665 3.33332 6.96517 3.33332 7.33317C3.33332 7.70117 3.63199 7.99984 3.99999 7.99984Z"
+                                                fill="currentcolor"></path>
+                                        </svg></div><span>Phụ đề</span>
+                                </button><button class="nav-link " type="button" role="tab">
+                                    <div class="inc-icon icon-12"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                            height="16" viewBox="0 0 16 16" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M15.3333 4.6665C15.3333 4.13584 15.1227 3.62717 14.7473 3.2525C14.3727 2.87717 13.864 2.6665 13.3333 2.6665C10.7787 2.6665 5.22132 2.6665 2.66666 2.6665C2.13599 2.6665 1.62732 2.87717 1.25266 3.2525C0.877322 3.62717 0.666656 4.13584 0.666656 4.6665V11.3332C0.666656 11.8638 0.877322 12.3725 1.25266 12.7472C1.62732 13.1225 2.13599 13.3332 2.66666 13.3332H13.3333C13.864 13.3332 14.3727 13.1225 14.7473 12.7472C15.1227 12.3725 15.3333 11.8638 15.3333 11.3332V4.6665ZM14 4.6665V11.3332C14 11.5098 13.93 11.6798 13.8047 11.8045C13.68 11.9298 13.51 11.9998 13.3333 11.9998H2.66666C2.48999 11.9998 2.31999 11.9298 2.19532 11.8045C2.06999 11.6798 1.99999 11.5098 1.99999 11.3332V4.6665C1.99999 4.48984 2.06999 4.31984 2.19532 4.19517C2.31999 4.06984 2.48999 3.99984 2.66666 3.99984H13.3333C13.51 3.99984 13.68 4.06984 13.8047 4.19517C13.93 4.31984 14 4.48984 14 4.6665ZM3.99999 10.6665H5.33332C5.70132 10.6665 5.99999 10.3678 5.99999 9.99984C5.99999 9.63184 5.70132 9.33317 5.33332 9.33317H3.99999C3.63199 9.33317 3.33332 9.63184 3.33332 9.99984C3.33332 10.3678 3.63199 10.6665 3.99999 10.6665ZM7.99999 10.6665H12C12.368 10.6665 12.6667 10.3678 12.6667 9.99984C12.6667 9.63184 12.368 9.33317 12 9.33317H7.99999C7.63199 9.33317 7.33332 9.63184 7.33332 9.99984C7.33332 10.3678 7.63199 10.6665 7.99999 10.6665ZM11.3333 7.99984H12C12.368 7.99984 12.6667 7.70117 12.6667 7.33317C12.6667 6.96517 12.368 6.6665 12 6.6665H11.3333C10.9653 6.6665 10.6667 6.96517 10.6667 7.33317C10.6667 7.70117 10.9653 7.99984 11.3333 7.99984ZM3.99999 7.99984H8.66666C9.03466 7.99984 9.33332 7.70117 9.33332 7.33317C9.33332 6.96517 9.03466 6.6665 8.66666 6.6665H3.99999C3.63199 6.6665 3.33332 6.96517 3.33332 7.33317C3.33332 7.70117 3.63199 7.99984 3.99999 7.99984Z"
+                                                fill="currentcolor"></path>
+                                        </svg></div><span>Thuyết minh giọng Nam</span>
+                                </button></div>
+                            <div class="flex-grow-1"></div>
+                            <div class="v-toggle v-toggle-min line-center">
+                                <div class="text">Rút gọn</div>
+                                <div class="toggle-x on"><span></span></div>
+                            </div>
+                        </div>
+                        <!-- Nội dung danh sách tập phim -->
+<div class="box-body">
+        <!-- Phim bộ - Hiển thị danh sách tập -->
+    <div class="de-eps is-grid is-simple">
+                <a class="item" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/1/" rel="nofollow noindex">
+            <div class="v-thumbnail h-thumbnail">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <img alt="Tập 1" loading="lazy" src="https://static.nutscdn.com/vpreview/096d4a923eac49f5ccfac4a22afceb74/thumb/t-6.jpg">
+            </div>
+            <div class="info">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <div class="ep-sort flex-shrink-0">Tập 1</div>
+                <div class="media-title"></div>
+            </div>
+        </a>
+                <a class="item" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/2/" rel="nofollow noindex">
+            <div class="v-thumbnail h-thumbnail">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <img alt="Tập 2" loading="lazy" src="https://static.nutscdn.com/vpreview/096d4a923eac49f5ccfac4a22afceb74/thumb/t-6.jpg">
+            </div>
+            <div class="info">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <div class="ep-sort flex-shrink-0">Tập 2</div>
+                <div class="media-title"></div>
+            </div>
+        </a>
+                <a class="item" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/3/" rel="nofollow noindex">
+            <div class="v-thumbnail h-thumbnail">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <img alt="Tập 3" loading="lazy" src="https://static.nutscdn.com/vpreview/096d4a923eac49f5ccfac4a22afceb74/thumb/t-6.jpg">
+            </div>
+            <div class="info">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <div class="ep-sort flex-shrink-0">Tập 3</div>
+                <div class="media-title"></div>
+            </div>
+        </a>
+                <a class="item" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/4/" rel="nofollow noindex">
+            <div class="v-thumbnail h-thumbnail">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <img alt="Tập 4" loading="lazy" src="https://static.nutscdn.com/vpreview/096d4a923eac49f5ccfac4a22afceb74/thumb/t-6.jpg">
+            </div>
+            <div class="info">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <div class="ep-sort flex-shrink-0">Tập 4</div>
+                <div class="media-title"></div>
+            </div>
+        </a>
+                <a class="item" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/5/" rel="nofollow noindex">
+            <div class="v-thumbnail h-thumbnail">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <img alt="Tập 5" loading="lazy" src="https://static.nutscdn.com/vpreview/096d4a923eac49f5ccfac4a22afceb74/thumb/t-6.jpg">
+            </div>
+            <div class="info">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <div class="ep-sort flex-shrink-0">Tập 5</div>
+                <div class="media-title"></div>
+            </div>
+        </a>
+                <a class="item" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/6/" rel="nofollow noindex">
+            <div class="v-thumbnail h-thumbnail">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <img alt="Tập 6" loading="lazy" src="https://static.nutscdn.com/vpreview/096d4a923eac49f5ccfac4a22afceb74/thumb/t-6.jpg">
+            </div>
+            <div class="info">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <div class="ep-sort flex-shrink-0">Tập 6</div>
+                <div class="media-title"></div>
+            </div>
+        </a>
+                <a class="item" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/7/" rel="nofollow noindex">
+            <div class="v-thumbnail h-thumbnail">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <img alt="Tập 7" loading="lazy" src="https://static.nutscdn.com/vpreview/096d4a923eac49f5ccfac4a22afceb74/thumb/t-6.jpg">
+            </div>
+            <div class="info">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <div class="ep-sort flex-shrink-0">Tập 7</div>
+                <div class="media-title"></div>
+            </div>
+        </a>
+                <a class="item" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/8/" rel="nofollow noindex">
+            <div class="v-thumbnail h-thumbnail">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <img alt="Tập 8" loading="lazy" src="https://static.nutscdn.com/vpreview/096d4a923eac49f5ccfac4a22afceb74/thumb/t-6.jpg">
+            </div>
+            <div class="info">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <div class="ep-sort flex-shrink-0">Tập 8</div>
+                <div class="media-title"></div>
+            </div>
+        </a>
+                <a class="item" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/9/" rel="nofollow noindex">
+            <div class="v-thumbnail h-thumbnail">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <img alt="Tập 9" loading="lazy" src="https://static.nutscdn.com/vpreview/096d4a923eac49f5ccfac4a22afceb74/thumb/t-6.jpg">
+            </div>
+            <div class="info">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <div class="ep-sort flex-shrink-0">Tập 9</div>
+                <div class="media-title"></div>
+            </div>
+        </a>
+                <a class="item" href="https://hotphim.org/tinh-yeu-va-toi-loi-2026/10/" rel="nofollow noindex">
+            <div class="v-thumbnail h-thumbnail">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <img alt="Tập 10" loading="lazy" src="https://static.nutscdn.com/vpreview/096d4a923eac49f5ccfac4a22afceb74/thumb/t-6.jpg">
+            </div>
+            <div class="info">
+                <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                <div class="ep-sort flex-shrink-0">Tập 10</div>
+                <div class="media-title"></div>
+            </div>
+        </a>
+            </div>
+    </div>
+                    </div>
+                </div>
+
+                <!-- Phần Bình luận -->
+                <div id="comment-area" class="child-box child-discuss">
+                    <div class="child-header">
+                        <div class="inc-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
+                                fill="none">
+                                <g clip-path="url(#clip0_281_3026)">
+                                    <path
+                                        d="M14.499 0.5H6.50109C3.19363 0.5 0.502686 3.19095 0.502686 6.4984V11.1638C0.502686 14.3596 3.01468 16.9796 6.16784 17.1532V19.9338C6.16784 20.2461 6.42244 20.5 6.73536 20.5C6.88498 20.5 7.02661 20.4407 7.13358 20.3337L7.75875 19.7085C9.40031 18.0666 11.5834 17.1622 13.9054 17.1622H14.499C17.8064 17.1622 20.4974 14.4713 20.4974 11.1638V6.4984C20.4974 3.19095 17.8064 0.5 14.499 0.5ZM6.16784 10.1641C5.4327 10.1641 4.83486 9.56625 4.83486 8.83111C4.83486 8.09597 5.4327 7.49813 6.16784 7.49813C6.90298 7.49813 7.50082 8.09597 7.50082 8.83111C7.50082 9.56625 6.90265 10.1641 6.16784 10.1641ZM10.5 10.1641C9.76488 10.1641 9.16704 9.56625 9.16704 8.83111C9.16704 8.09597 9.76488 7.49813 10.5 7.49813C11.2352 7.49813 11.833 8.09597 11.833 8.83111C11.833 9.56625 11.2348 10.1641 10.5 10.1641ZM14.8322 10.1641C14.0971 10.1641 13.4992 9.56625 13.4992 8.83111C13.4992 8.09597 14.0971 7.49813 14.8322 7.49813C15.5673 7.49813 16.1652 8.09597 16.1652 8.83111C16.1652 9.56625 15.567 10.1641 14.8322 10.1641Z"
+                                        fill="currentColor"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <span>Bình luận (0)</span>
+                        <div class="model-tabs actor-tabs">
+                            <a class="item active" data-comment-tab="comments">Bình luận</a>
+                            <a class="item" data-comment-tab="reviews">Đánh giá</a>
+                        </div>
+                    </div>
+                    <div class="child-content">
+                        <!-- Tab Bình luận -->
+                        <div class="discuss-wrap" id="comments-tab">
+                            <!-- Form bình luận -->
+                            <div class="my-area">
+                                <div class="ma-user">
+                                    <div class="user-avatar">
+                                        <img alt="Guest" src="/images/avatars/pack6/06.jpg">                                    </div>
+                                    <div class="info">
+                                        <small>Bình luận với tên</small>
+                                        <span>Khách</span>
+                                    </div>
+                                </div>
+                                <form id="comment-form" class="comment-form">
+                                    <div class="textarea-wrap">
+                                        <div class="ma-input">
+                                            <textarea id="comment-text" name="comment"
+                                                class="form-control v-form-control v-form-textarea" rows="4" cols="3"
+                                                maxlength="1000" placeholder="Viết bình luận..." required></textarea>
+                                            <div class="chac-left">0 / 1000</div>
+                                        </div>
+                                        <div class="line-center d-flex gap-3 ma-buttons">
+                                            <div class="v-toggle v-toggle-min line-center">
+                                                <div id="spoil-toggle" class="toggle-x off">
+                                                    <span></span>
+                                                </div>
+                                                <div class="text">Tiết lộ?</div>
+                                            </div>
+                                            <div class="flex-grow-1"></div>
+                                            <button class="btn btn-basic btn-submit" type="submit">
+                                                <span>Gửi</span>
+                                                <div class="inc-icon icon-20 ms-1">
+                                                    <svg fill="none" height="512" viewBox="0 0 24 24" width="512"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="m22.1012 10.5616-19.34831-9.43824c-.1664-.08117-.34912-.12336-.53427-.12336-.67302 0-1.21862.5456-1.21862 1.21862v.03517c0 .16352.02005.32643.05971.48507l1.85597 7.42384c.05069.2028.22214.3526.42986.3757l8.15756.9064c.2829.0314.4969.2705.4969.5552s-.214.5238-.4969.5552l-8.15756.9064c-.20772.0231-.37917.1729-.42986.3757l-1.85597 7.4238c-.03966.1587-.05971.3216-.05971.4851v.0352c0 .673.5456 1.2186 1.21862 1.2186.18515 0 .36787-.0422.53427-.1234l19.34831-9.4382c.5499-.2682.8988-.8265.8988-1.4384s-.3489-1.1702-.8988-1.4384z"
+                                                            fill="currentColor"></path>
+                                                    </svg>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="post_id" value="3711">
+                                    <input type="hidden" name="action" value="submit_comment">
+                                    <input type="hidden" id="comment_nonce_field" name="comment_nonce_field" value="3994abaa23" /><input type="hidden" name="_wp_http_referer" value="/tinh-yeu-va-toi-loi-2026/10/" />                                </form>
+                            </div>
+
+                            <!-- Danh sách bình luận -->
+                            <div class="discuss-list" id="comments-list">
+                                <div class="no-comments">Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</div>                            </div>
+                        </div>
+
+                        <!-- Tab Đánh giá -->
+                        <div class="discuss-wrap" id="reviews-tab" style="display: none;">
+                            <div class="discuss-list">
+                                                                <div class="d-item py-3">
+                                    <div class="text-center">
+                                        <div class="inc-icon icon-notice mb-3">
+                                            <img src="https://hotphim.org/wp-content/themes/movie-theme/images/empty-box.svg"
+                                                alt="Không có đánh giá">
+                                        </div>
+                                        <p class="mb-0">Chưa có đánh giá nào. Hãy là người đầu tiên đánh giá phim
+                                            này!</p>
+                                    </div>
+                                </div>
+                                                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wc-side">
+                <div class="ws-rate">
+                    <div class="line-center gap-3 wsr-left"><a class="item-v item-rate">
+                            <div class="inc-icon icon-20"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                    viewBox="0 0 32 32" fill="none">
+                                    <path
+                                        d="M30.36 14.63C30.94 14.06 31.15 13.23 30.9 12.45C30.65 11.67 29.99 11.12 29.18 11L21.46 9.88C21.46 9.88 21.38 9.85 21.37 9.81L17.92 2.81C17.56 2.08 16.83 1.62 16.01 1.62C15.19 1.62 14.46 2.07 14.1 2.81L10.65 9.81C10.65 9.81 10.6 9.87 10.55 9.88L2.83001 11C2.02001 11.12 1.37001 11.67 1.11001 12.45C0.860006 13.23 1.06001 14.06 1.65001 14.63L7.24001 20.08C7.24001 20.08 7.28001 20.15 7.28001 20.19L5.96001 27.88C5.82001 28.68 6.15001 29.48 6.81001 29.96C7.47001 30.44 8.33001 30.5 9.05001 30.12L15.96 26.49C15.96 26.49 16.04 26.47 16.08 26.49L22.99 30.12C23.3 30.29 23.64 30.37 23.98 30.37C24.42 30.37 24.86 30.23 25.23 29.96C25.89 29.48 26.21 28.68 26.08 27.88L24.76 20.19C24.76 20.19 24.76 20.11 24.8 20.08L30.39 14.63H30.36Z"
+                                        fill="currentColor"></path>
+                                </svg></div><span>Đánh giá</span>
+                        </a>
+                        <div class="v-line"></div>
+                        <a class="item-v" href="#comments-tab" data-bs-toggle="tab" data-bs-target="#comments-tab">
+                            <div class="inc-icon icon-16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
+                                    fill="none">
+                                    <g clip-path="url(#clip0_281_3026)">
+                                        <path
+                                            d="M14.499 0.5H6.50109C3.19363 0.5 0.502686 3.19095 0.502686 6.4984V11.1638C0.502686 14.3596 3.01468 16.9796 6.16784 17.1532V19.9338C6.16784 20.2461 6.42244 20.5 6.73536 20.5C6.88498 20.5 7.02661 20.4407 7.13358 20.3337L7.75875 19.7085C9.40031 18.0666 11.5834 17.1622 13.9054 17.1622H14.499C17.8064 17.1622 20.4974 14.4713 20.4974 11.1638V6.4984C20.4974 3.19095 17.8064 0.5 14.499 0.5ZM6.16784 10.1641C5.4327 10.1641 4.83486 9.56625 4.83486 8.83111C4.83486 8.09597 5.4327 7.49813 6.16784 7.49813C6.90298 7.49813 7.50082 8.09597 7.50082 8.83111C7.50082 9.56625 6.90265 10.1641 6.16784 10.1641ZM10.5 10.1641C9.76488 10.1641 9.16704 9.56625 9.16704 8.83111C9.16704 8.09597 9.76488 7.49813 10.5 7.49813C11.2352 7.49813 11.833 9.56625 11.833 8.83111C11.833 9.56625 11.2348 10.1641 10.5 10.1641ZM14.8322 10.1641C14.0971 10.1641 13.4992 9.56625 13.4992 8.83111C13.4992 8.09597 14.0971 7.49813 14.8322 7.49813C15.5673 7.49813 16.1652 8.09597 16.1652 8.83111C16.1652 9.56625 15.567 10.1641 14.8322 10.1641Z"
+                                            fill="currentColor"></path>
+                                    </g>
+                                </svg>
+                            </div><span>Bình luận</span>
+                        </a>
+                    </div>
+                    <div class="v-rating">
+                        <div class="ro-rating rating-popup-trigger" style="cursor: pointer;">
+                            <div class="ro-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/ro-icon.svg"
+                                    alt="ro-icon">
+                            </div>
+                            <span class="point">0</span>
+                            <span
+                                class="a-rate">Đánh giá</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ws-actors">
+                    <div class="child-box child-actors">
+                        <div class="child-header">Diễn viên</div>
+                        <div class="child-actors-list">
+                                                        <div class="v-item">
+                                <a class="v-actor v-actor-medium" href="https://hotphim.org/actor/jung-hyun-woong/">
+                                    <img alt="Jung Hyun-woong"
+                                        src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+                                </a>
+                                <div class="info">
+                                    <h4 class="item-title lim-2">
+                                        <a
+                                            href="https://hotphim.org/actor/jung-hyun-woong/">Jung Hyun-woong</a>
+                                    </h4>
+                                </div>
+                            </div>
+                                                        <div class="v-item">
+                                <a class="v-actor v-actor-medium" href="https://hotphim.org/actor/jung-myeong-cheol/">
+                                    <img alt="Jung Myeong-cheol"
+                                        src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+                                </a>
+                                <div class="info">
+                                    <h4 class="item-title lim-2">
+                                        <a
+                                            href="https://hotphim.org/actor/jung-myeong-cheol/">Jung Myeong-cheol</a>
+                                    </h4>
+                                </div>
+                            </div>
+                                                        <div class="v-item">
+                                <a class="v-actor v-actor-medium" href="https://hotphim.org/actor/kim-hyun-seo/">
+                                    <img alt="Kim Hyun-seo"
+                                        src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+                                </a>
+                                <div class="info">
+                                    <h4 class="item-title lim-2">
+                                        <a
+                                            href="https://hotphim.org/actor/kim-hyun-seo/">Kim Hyun-seo</a>
+                                    </h4>
+                                </div>
+                            </div>
+                                                        <div class="v-item">
+                                <a class="v-actor v-actor-medium" href="https://hotphim.org/actor/kim-seong-hyuk/">
+                                    <img alt="Kim Seong-hyuk"
+                                        src="https://hotphim.org/wp-content/themes/movie-theme/images/no_image.webp">
+                                </a>
+                                <div class="info">
+                                    <h4 class="item-title lim-2">
+                                        <a
+                                            href="https://hotphim.org/actor/kim-seong-hyuk/">Kim Seong-hyuk</a>
+                                    </h4>
+                                </div>
+                            </div>
+                                                    </div>
+                    </div>
+                </div>
+                <div class="ws-top">
+                    <div class="child-box child-suggest">
+                        <div class="child-header"><span>Đề xuất cho bạn</span></div>
+                        <div class="child-content">
+                            <div class="cc-top">
+                                                                                                <div class="item">
+                                    <div class="h-item">
+                                        <div class="v-thumb-m">
+                                            <a class="v-thumbnail" href="https://hotphim.org/anh-sang-thien-thu-2025/">
+                                                <img alt="Ánh Sáng Thiên Thư"
+                                                    src="https://hotphim.org/wp-content/uploads/2025/12/Banner-Anh-Sang-Thien-Thu-400x600.webp">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <h4 class="item-title lim-2">
+                                                <a title="Ánh Sáng Thiên Thư"
+                                                    href="https://hotphim.org/anh-sang-thien-thu-2025/">
+                                                    Ánh Sáng Thiên Thư                                                </a>
+                                            </h4>
+                                            <div class="alias-title mb-2 lim-1">
+                                                Treasure At Dawn</div>
+                                            <div class="info-line">
+                                                <div class="tag-small">
+                                                    <strong>T</strong>
+                                                </div>
+                                                <div class="tag-small">
+                                                    Đã kết thúc</div>
+                                                                                                                                                <div class="tag-small">
+                                                    Tập 30</div>
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="item">
+                                    <div class="h-item">
+                                        <div class="v-thumb-m">
+                                            <a class="v-thumbnail" href="https://hotphim.org/dai-hong-thuy/">
+                                                <img alt="Đại Hồng Thủy"
+                                                    src="https://hotphim.org/wp-content/uploads/2026/01/39d85c93c45712f22c49dc7b520bce6f-400x600.jpg">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <h4 class="item-title lim-2">
+                                                <a title="Đại Hồng Thủy"
+                                                    href="https://hotphim.org/dai-hong-thuy/">
+                                                    Đại Hồng Thủy                                                </a>
+                                            </h4>
+                                            <div class="alias-title mb-2 lim-1">
+                                                The Great Flood</div>
+                                            <div class="info-line">
+                                                <div class="tag-small">
+                                                    <strong>T</strong>
+                                                </div>
+                                                <div class="tag-small">
+                                                    Đã kết thúc</div>
+                                                                                                                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="item">
+                                    <div class="h-item">
+                                        <div class="v-thumb-m">
+                                            <a class="v-thumbnail" href="https://hotphim.org/the-gioi-em-va-toi/">
+                                                <img alt="Thế Giới Em Và Tôi"
+                                                    src="https://hotphim.org/wp-content/uploads/2026/06/5550efbb49cb839af1d56ec050851185-400x600.jpg">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <h4 class="item-title lim-2">
+                                                <a title="Thế Giới Em Và Tôi"
+                                                    href="https://hotphim.org/the-gioi-em-va-toi/">
+                                                    Thế Giới Em Và Tôi                                                </a>
+                                            </h4>
+                                            <div class="alias-title mb-2 lim-1">
+                                                The Two Faces Of Thatri</div>
+                                            <div class="info-line">
+                                                <div class="tag-small">
+                                                    <strong>T</strong>
+                                                </div>
+                                                <div class="tag-small">
+                                                    Đang chiếu</div>
+                                                                                                                                                <div class="tag-small">
+                                                    Tập 14</div>
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="item">
+                                    <div class="h-item">
+                                        <div class="v-thumb-m">
+                                            <a class="v-thumbnail" href="https://hotphim.org/thu-thach-than-tuong/">
+                                                <img alt="Thử Thách Thần Tượng"
+                                                    src="https://hotphim.org/wp-content/uploads/2026/04/65a22ab2e96e79bfedf8ae96d955f72a-400x600.jpg">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <h4 class="item-title lim-2">
+                                                <a title="Thử Thách Thần Tượng"
+                                                    href="https://hotphim.org/thu-thach-than-tuong/">
+                                                    Thử Thách Thần Tượng                                                </a>
+                                            </h4>
+                                            <div class="alias-title mb-2 lim-1">
+                                                Running Man</div>
+                                            <div class="info-line">
+                                                <div class="tag-small">
+                                                    <strong>T</strong>
+                                                </div>
+                                                <div class="tag-small">
+                                                    Đang chiếu</div>
+                                                                                                                                                <div class="tag-small">
+                                                    Tập 648</div>
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="item">
+                                    <div class="h-item">
+                                        <div class="v-thumb-m">
+                                            <a class="v-thumbnail" href="https://hotphim.org/luc-do-toi-da-chuyen-sinh-thanh-slime-phan-4/">
+                                                <img alt="Lúc Đó Tôi Đã Chuyển Sinh Thành Slime (Phần 4)"
+                                                    src="https://hotphim.org/wp-content/uploads/2026/09/26f4b114b4e3d0ac0bba2f6687131a3c-400x600.jpg">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <h4 class="item-title lim-2">
+                                                <a title="Lúc Đó Tôi Đã Chuyển Sinh Thành Slime (Phần 4)"
+                                                    href="https://hotphim.org/luc-do-toi-da-chuyen-sinh-thanh-slime-phan-4/">
+                                                    Lúc Đó Tôi Đã Chuyển Sinh Thành Slime (Phần 4)                                                </a>
+                                            </h4>
+                                            <div class="alias-title mb-2 lim-1">
+                                                That Time I Got Reincarnated As A Slime (Season 4)</div>
+                                            <div class="info-line">
+                                                <div class="tag-small">
+                                                    <strong>T</strong>
+                                                </div>
+                                                <div class="tag-small">
+                                                    Đã kết thúc</div>
+                                                                                                                                                <div class="tag-small">
+                                                    Tập 24</div>
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="item">
+                                    <div class="h-item">
+                                        <div class="v-thumb-m">
+                                            <a class="v-thumbnail" href="https://hotphim.org/thieu-chu-gioi-chay-tron-phan-2/">
+                                                <img alt="Thiếu Chủ Giỏi Chạy Trốn (Phần 2)"
+                                                    src="https://hotphim.org/wp-content/uploads/2026/09/thieu-chu-gioi-chay-tron-phan-2-thumb-400x439.webp">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <h4 class="item-title lim-2">
+                                                <a title="Thiếu Chủ Giỏi Chạy Trốn (Phần 2)"
+                                                    href="https://hotphim.org/thieu-chu-gioi-chay-tron-phan-2/">
+                                                    Thiếu Chủ Giỏi Chạy Trốn (Phần 2)                                                </a>
+                                            </h4>
+                                            <div class="alias-title mb-2 lim-1">
+                                                The Elusive Samurai (Season 2)</div>
+                                            <div class="info-line">
+                                                <div class="tag-small">
+                                                    <strong>T</strong>
+                                                </div>
+                                                <div class="tag-small">
+                                                    Đang chiếu</div>
+                                                                                                                                                <div class="tag-small">
+                                                    Tập 11</div>
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer>
+    <div class="container">
+        <div class="footer-elements">
+            <div class="footer-icon">
+                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/footer-icon.svg" alt="Footer Icon">
+            </div>
+            <div class="side-left">
+
+                <div class="sl-brand line-center">
+                    <a class="footer-logo" href="https://hotphim.org/">
+                        <img src="https://hotphim.org/wp-content/themes/movie-theme/images/hotphim-logo.png"
+                            alt="Hotphim-favicon.png">
+                    </a>
+                    <div class="socials line-center">
+                        <a class="social-item" target="_blank" rel="noopener nofollow" href="https://x.com/hotphimprovn/" title="X"><div class="inc-icon icon-14"><img src="https://hotphim.org/wp-content/themes/movie-theme/images/x-icon.svg" alt="X"></div></a><a class="social-item" target="_blank" rel="noopener nofollow" href="https://www.facebook.com/hotphimprovn/" title="Facebook"><div class="inc-icon icon-14"><img src="https://hotphim.org/wp-content/themes/movie-theme/images/facebook-icon.svg" alt="Facebook"></div></a><a class="social-item" target="_blank" rel="noopener nofollow" href="https://www.pinterest.com/hotphimprovn/" title="Pinterest"><div class="inc-icon icon-14"><img src="https://hotphim.org/wp-content/themes/movie-theme/images/pinterest.svg" alt="Pinterest"></div></a>                    </div>
+                </div>
+
+                <div class="sl-notice mb-2">
+                    <p>
+                        Xem phim online miễn phí tốc độ cao và chất lượng Full HD tại HotPhim. Cập nhật liên tục các bộ phim bộ, phim lẻ, phim chiếu rạp, hoạt hình, phim Hàn, Trung, Âu Mỹ có phụ đề Vietsub. Giao diện thân thiện, dễ sử dụng, không quảng cáo phiền phức, mang đến trải nghiệm xem phim mượt mà trên mọi thiết bị.
+                    </p>
+                </div>
+
+                <div class="sl-menu mb-3">
+                    <a title="Giới thiệu" href="https://hotphim.org/gioi-thieu/">Giới thiệu</a><a title="Chính sách bảo mật" href="https://hotphim.org/chinh-sach-bao-mat/">Chính sách bảo mật</a><a title="Điều khoản sử dụng" href="https://hotphim.org/dieu-khoan-su-dung/">Điều khoản sử dụng</a><a title="DMCA" href="https://hotphim.org/dmca/">DMCA</a><a title="Liên hệ" href="https://hotphim.org/lien-he/">Liên hệ</a>                </div>
+
+                <div class="sl-copyright mb-3">
+                    © 2026 HotPhim
+                </div>
+
+                <div class="true">
+                    <div class="line-center">
+                        <div class="inc-icon icon-20">
+                            <img src="https://hotphim.org/wp-content/themes/movie-theme/images/vn_flag.svg" alt="Vietnam">
+                        </div>
+                        <span>Hoàng Sa &amp; Trường Sa là của Việt Nam!</span>
+                    </div>
+                </div>
+                                <div class="text-link">
+                                            <a style="color: var(--footer-bg)" href="https://tinsoikeo1.com" target="_blank" rel="dofollow noopener noreferrer">keonhacai5</a>
+                                            <a style="color: var(--footer-bg)" href="https://tylebongda.biz/" target="_blank" rel="dofollow noopener noreferrer">https://tylebongda.biz</a>
+                                            <a style="color: var(--footer-bg)" href="https://keobongdahomnay.us" target="_blank" rel="dofollow noopener noreferrer">https://keobongdahomnay.us/</a>
+                                            <a style="color: var(--footer-bg)" href="https://12betsmart.link/" target="_blank" rel="dofollow noopener noreferrer">12bet</a>
+                                            <a style="color: var(--footer-bg)" href="https://dvdtown.com/" target="_blank" rel="dofollow noopener noreferrer">แทงบอลออนไลน์</a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</footer>    <style>
+    :root {
+        --watch-control-height: 65px;
+    }
+
+    body.base-load #wrapper.wrapper-watch {
+        padding-top: 0 !important;
+        padding-bottom: 0;
+        min-height: 0;
+    }
+
+    .wrapper-watch .player-ratio {
+        width: min(100%, calc((100dvh - var(--watch-control-height)) * 16 / 9));
+        width: min(100%, calc((100vh - var(--watch-control-height)) * 16 / 9));
+        max-width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        border-radius: .75rem;
+        overflow: hidden;
+        box-shadow: var(--shadow-large);
+        background-color: #08080A;
+    }
+
+    .wrapper-watch .player-ratio .ratio.ratio-16x9 {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        max-height: calc(100dvh - var(--watch-control-height));
+        max-height: calc(100vh - var(--watch-control-height));
+        min-height: 0;
+        padding-top: 0 !important;
+        background-color: #08080A;
+    }
+
+    .wrapper-watch .player-ratio .ratio.ratio-16x9::before {
+        display: none;
+    }
+
+    .wrapper-watch .player-ratio .ratio.ratio-16x9 > * {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .wrapper-watch .player-ratio .player-control {
+        width: 100%;
+        height: var(--watch-control-height);
+        flex-shrink: 0;
+        border-radius: 0;
+    }
+
+    .wrapper-watch #artplayer-container,
+    .wrapper-watch #artplayer-container .artplayer-app {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .art-bottom .art-progress .art-control-progress .art-control-progress-inner .art-progress-played {
+        background-color: #3556B6;
+    }
+
+    .art-control-volume .art-volume-panel {
+        position: relative;
+    }
+    </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+                // Debug: Log video source
+        const videoSource = 'https://v7.kkphimplayer7.com/20260807/uNk6sG3D/index.m3u8';
+        const isM3U8 = true;
+        console.log('[ArtPlayer] Video source:', videoSource);
+        console.log('[ArtPlayer] Is M3U8:', isM3U8);
+
+        // Helper function để hiển thị thông báo an toàn
+        function showNotice(art, message) {
+            try {
+                if (art && typeof art.notice === 'object' && typeof art.notice.show === 'function') {
+                    art.notice.show(message);
+                } else if (art && typeof art.template === 'function') {
+                    // Fallback: hiển thị thông báo trực tiếp trên player
+                    const container = document.getElementById('artplayer-container');
+                    if (container) {
+                        const noticeDiv = document.createElement('div');
+                        noticeDiv.style.cssText =
+                            'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); color: #fff; padding: 20px; border-radius: 8px; z-index: 10000; text-align: center; max-width: 80%;';
+                        noticeDiv.textContent = message;
+                        container.appendChild(noticeDiv);
+                        setTimeout(() => {
+                            if (noticeDiv.parentNode) {
+                                noticeDiv.remove();
+                            }
+                        }, 5000);
+                    }
+                } else {
+                    console.error('[ArtPlayer] Notice:', message);
+                }
+            } catch (e) {
+                console.error('[ArtPlayer] Error showing notice:', e, message);
+            }
+        }
+
+        // Initialize Art Player with HLS support
+        const art = new Artplayer({
+            container: '#artplayer-container',
+            url: videoSource,
+            type: isM3U8 ? 'm3u8' : 'video',
+            poster: 'https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp',
+            title: 'Tình Yêu Và Tội Lỗi - Tập10',
+            volume: 0.8,
+            isLive: false,
+            muted: false,
+            autoplay: false,
+            pip: true,
+            autoSize: false,
+            autoMini: true,
+            screenshot: true,
+            setting: true,
+            loop: false,
+            flip: true,
+            playbackRate: true,
+            aspectRatio: true,
+            fullscreen: true,
+            fullscreenWeb: true,
+            subtitleOffset: true,
+            miniProgressBar: true,
+            mutex: true,
+            backdrop: true,
+            playsInline: true,
+            autoPlayback: true,
+            airplay: true,
+            theme: '#fff',
+            lang: 'vi',
+            moreVideoAttr: {
+                // Bỏ crossOrigin để tránh lỗi CORS trên domain thật
+                playsInline: true,
+                'webkit-playsinline': 'true'
+            },
+            // quality: [{
+            //     default: true,
+            //     html: 'Auto',
+            //     url: 'https://v7.kkphimplayer7.com/20260807/uNk6sG3D/index.m3u8'
+            // }],
+            thumbnails: {
+                url: 'https://hotphim.org/wp-content/uploads/2026/07/tinh-yeu-va-toi-loi-poster.webp',
+                number: 60,
+                column: 10
+            },
+            subtitle: {
+                url: '',
+                type: 'vtt',
+                style: {
+                    color: '#fff',
+                    fontSize: '14px'
+                }
+            },
+            highlight: [{
+                time: 0,
+                text: 'Start'
+            }],
+            plugins: [
+                // Add plugins if needed
+            ],
+            icons: {
+                loading: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>',
+                state: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,3 19,12 5,21"></polygon></svg>',
+                indicator: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,3 19,12 5,21"></polygon></svg>'
+            },
+
+            // Custom type for m3u8 HLS support
+            customType: {
+                m3u8: function(video, url, art) {
+                    try {
+                        console.log('[HLS] Initializing with URL:', url);
+
+                        // Dùng HLS.js trực tiếp để tránh delay từ native HLS fallback
+                        // Native HLS thường có vấn đề với CORS và các stream, nên bỏ qua
+                        if (window.Hls && window.Hls.isSupported()) {
+                            console.log('[HLS] Using HLS.js directly for better compatibility');
+                            initHlsJs(video, url, art);
+                        }
+                        // Chỉ dùng native HLS cho Safari/iOS nếu không có HLS.js
+                        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                            console.log('[HLS] Using native HLS support (Safari/iOS - no HLS.js)');
+                            video.src = url;
+
+                            video.addEventListener('error', function(e) {
+                                console.error('[HLS Native] Video error:', e);
+                                const error = video.error;
+                                if (error) {
+                                    console.error('[HLS Native] Error code:', error.code);
+                                    showNotice(art, 'Lỗi phát video. Vui lòng thử lại.');
+                                }
+                            }, {
+                                once: true
+                            });
+                        } else {
+                            console.error('[HLS] Browser does not support HLS');
+                            showNotice(art,
+                                'Trình duyệt không hỗ trợ HLS. Vui lòng sử dụng trình duyệt khác.'
+                            );
+                        }
+
+                        // Hàm khởi tạo HLS.js - tối ưu để load nhanh hơn
+                        function initHlsJs(video, url, art) {
+                            try {
+                                const hls = new Hls({
+                                    enableWorker: true,
+                                    lowLatencyMode: false,
+                                    // Giảm buffer để load nhanh hơn
+                                    backBufferLength: 30,
+                                    maxBufferLength: 10,
+                                    maxMaxBufferLength: 30,
+                                    maxBufferSize: 30 * 1000 * 1000, // 30MB
+                                    maxBufferHole: 0.3,
+                                    highBufferWatchdogPeriod: 2,
+                                    nudgeOffset: 0.1,
+                                    nudgeMaxRetry: 2, // Giảm retry
+                                    // Tăng timeout để tránh fail quá nhanh
+                                    maxFragLoadingTimeOut: 30000,
+                                    maxLoadingDelay: 2,
+                                    minAutoBitrate: 0,
+                                    // Tối ưu start level để load nhanh
+                                    startLevel: -1, // Auto
+                                    // Xử lý CORS
+                                    xhrSetup: function(xhr, url) {
+                                        xhr.withCredentials = false;
+                                    }
+                                });
+
+                                hls.loadSource(url);
+                                hls.attachMedia(video);
+
+                                // Xử lý sự kiện & lỗi
+                                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                                    console.log('[HLS] Manifest parsed. Levels:', hls
+                                        .levels);
+                                });
+
+                                let networkRetryCount = 0;
+                                let mediaRetryCount = 0;
+                                const maxNetworkRetries = 2; // Giảm số lần retry
+                                const maxMediaRetries = 1; // Giới hạn media error retry
+
+                                hls.on(Hls.Events.ERROR, (event, data) => {
+                                    // Chỉ log lỗi fatal để giảm spam console
+                                    if (data.fatal) {
+                                        console.warn('[HLS] Fatal error:', data.type, data
+                                            .details);
+
+                                        switch (data.type) {
+                                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                                if (networkRetryCount < maxNetworkRetries) {
+                                                    networkRetryCount++;
+                                                    console.log(
+                                                        '[HLS] Network error, retrying... (' +
+                                                        networkRetryCount + '/' +
+                                                        maxNetworkRetries + ')');
+                                                    hls.startLoad();
+                                                } else {
+                                                    console.error(
+                                                        '[HLS] Network error: Max retries reached'
+                                                    );
+                                                    hls.destroy();
+                                                    showNotice(art,
+                                                        'Lỗi kết nối. Vui lòng thử lại sau.'
+                                                    );
+                                                }
+                                                break;
+                                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                                if (mediaRetryCount < maxMediaRetries) {
+                                                    mediaRetryCount++;
+                                                    console.log(
+                                                        '[HLS] Media error, attempting recovery... (' +
+                                                        mediaRetryCount + '/' +
+                                                        maxMediaRetries + ')');
+                                                    hls.recoverMediaError();
+                                                } else {
+                                                    console.error(
+                                                        '[HLS] Media error: Max retries reached'
+                                                    );
+                                                    // Nếu là bufferAppendError, có thể là codec issue - không retry nữa
+                                                    if (data.details ===
+                                                        'bufferAppendError') {
+                                                        hls.destroy();
+                                                        showNotice(art,
+                                                            'Lỗi phát video. Vui lòng thử lại sau.'
+                                                        );
+                                                    } else {
+                                                        hls.recoverMediaError();
+                                                    }
+                                                }
+                                                break;
+                                            default:
+                                                console.error('[HLS] Fatal error:', data
+                                                    .type);
+                                                hls.destroy();
+                                                showNotice(art,
+                                                    'Lỗi phát video. Vui lòng thử lại.');
+                                                break;
+                                        }
+                                    }
+                                });
+
+                                // Dọn dẹp khi huỷ player
+                                art.on('destroy', () => {
+                                    if (hls) {
+                                        hls.destroy();
+                                    }
+                                });
+                            } catch (hlsError) {
+                                console.error('[HLS.js] Initialization error:', hlsError);
+                                showNotice(art, 'Lỗi khởi tạo player. Vui lòng thử lại.');
+                            }
+                        }
+                    } catch (error) {
+                        console.error('[HLS] Exception:', error);
+                        showNotice(art, 'Lỗi khởi tạo player. Vui lòng thử lại.');
+                    }
+                }
+            }
+        });
+
+        // Handle player events
+        art.on('ready', () => {
+            console.log('[ArtPlayer] Ready');
+            if (typeof art.resize === 'function') {
+                art.resize();
+            }
+        });
+
+        art.on('play', () => {
+            console.log('[ArtPlayer] Playing');
+        });
+
+        art.on('pause', () => {
+            console.log('[ArtPlayer] Paused');
+        });
+
+        art.on('error', (error) => {
+            console.error('[ArtPlayer] Error:', error);
+            showNotice(art, 'Lỗi phát video. Vui lòng thử lại hoặc liên hệ quản trị viên.');
+        });
+
+        // Xử lý lỗi video element - chỉ xử lý nếu không phải HLS (vì HLS đã có xử lý riêng)
+        if (!isM3U8) {
+            const videoElement = art.video;
+            if (videoElement) {
+                videoElement.addEventListener('error', function(e) {
+                    console.error('[Video Element] Error:', e);
+                    const error = videoElement.error;
+                    if (error) {
+                        console.error('[Video Element] Error code:', error.code);
+                        console.error('[Video Element] Error message:', error.message);
+                        console.error('[Video Element] Video source:', videoElement.src);
+
+                        let errorMsg = 'Lỗi phát video. ';
+                        switch (error.code) {
+                            case 1: // MEDIA_ERR_ABORTED
+                                errorMsg += 'Video bị hủy.';
+                                break;
+                            case 2: // MEDIA_ERR_NETWORK
+                                errorMsg += 'Lỗi kết nối mạng. Vui lòng kiểm tra kết nối.';
+                                break;
+                            case 3: // MEDIA_ERR_DECODE
+                                errorMsg += 'Lỗi giải mã video.';
+                                break;
+                            case 4: // MEDIA_ERR_SRC_NOT_SUPPORTED
+                                errorMsg += 'Định dạng video không được hỗ trợ.';
+                                break;
+                            default:
+                                errorMsg += 'Vui lòng thử lại.';
+                        }
+
+                        showNotice(art, errorMsg);
+                    }
+                });
+            }
+        }
+            });
+    </script>
+
+    <!-- Modal đánh giá phim -->
+    <div id="ratingModal" role="dialog" aria-modal="true" class="fade v-modal modal-md modal" tabindex="-1"
+        style="display: none; padding-right: 16px;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button class="btn modal-close" id="closeRatingModal">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+                <div class="is-header mb-2">
+                    <h4 class="heading-sm text-center mb-0" id="movieTitle">Tình Yêu Và Tội Lỗi                    </h4>
+                </div>
+                <div class="is-body mb-5">
+                    <div class="d-block text-center mb-4">
+                        <div class="line-center">
+                            <div class="ro-icon"></div>
+                            <strong class="text-white" id="currentRating">9.0</strong>
+                            <span>/ 0 lượt đánh giá</span>
+                        </div>
+                    </div>
+                    <div class="rate-emo">
+                        <div class="item-v" data-rating="5">
+                            <div class="inc-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-5.webp"
+                                    alt="5 stars">
+                            </div>
+                            <span>Tuyệt vời</span>
+                        </div>
+                        <div class="item-v" data-rating="4">
+                            <div class="inc-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-4.webp"
+                                    alt="4 stars">
+                            </div>
+                            <span>Phim hay</span>
+                        </div>
+                        <div class="item-v" data-rating="3">
+                            <div class="inc-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-3.webp"
+                                    alt="3 stars">
+                            </div>
+                            <span>Khá ổn</span>
+                        </div>
+                        <div class="item-v" data-rating="2">
+                            <div class="inc-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-2.webp"
+                                    alt="2 stars">
+                            </div>
+                            <span>Phim chán</span>
+                        </div>
+                        <div class="item-v" data-rating="1">
+                            <div class="inc-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-1.webp"
+                                    alt="1 star">
+                            </div>
+                            <span>Dở tệ</span>
+                        </div>
+                    </div>
+                    <div class="rate-comment">
+                        <textarea class="form-control v-form-control" rows="3" cols="3"
+                            placeholder="Viết nhận xét về phim (tuỳ chọn)" id="ratingComment"></textarea>
+                    </div>
+                </div>
+                <div class="is-footer gap-3">
+                    <button type="button" class="btn btn-primary" id="submitRating">Gửi đánh giá</button>
+                    <button type="button" class="btn btn-light px-4" id="cancelRating">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Chức năng tab bình luận
+        const commentTabs = document.querySelectorAll('#comment-area .model-tabs .item');
+        const commentTabPanes = document.querySelectorAll('#comment-area .discuss-wrap');
+
+        commentTabs.forEach(function(tab) {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Xóa class active khỏi tất cả tab
+                commentTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                // Ẩn tất cả tab pane
+                commentTabPanes.forEach(pane => {
+                    pane.style.display = 'none';
+                });
+
+                // Hiển thị tab pane được chọn
+                const targetTab = this.getAttribute('data-comment-tab');
+                const targetPane = document.getElementById(targetTab + '-tab');
+                if (targetPane) {
+                    targetPane.style.display = 'block';
+                }
+            });
+        });
+
+        // Chức năng form bình luận
+        const commentForm = document.getElementById('comment-form');
+        const commentText = document.getElementById('comment-text');
+        const commentCounter = document.querySelector('.chac-left');
+        const commentsList = document.getElementById('comments-list');
+
+        // Đếm ký tự
+        if (commentText && commentCounter) {
+            commentText.addEventListener('input', function() {
+                const length = this.value.length;
+                commentCounter.textContent = length + ' / 1000';
+
+                if (length > 1000) {
+                    commentCounter.style.color = '#ff6b6b';
+                } else if (length > 800) {
+                    commentCounter.style.color = '#ffa726';
+                } else {
+                    commentCounter.style.color = '#888';
+                }
+            });
+        }
+
+        // Gửi form bình luận
+        if (commentForm) {
+            commentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const submitBtn = this.querySelector('.btn-submit');
+                const originalText = submitBtn.querySelector('span').textContent;
+
+                // Vô hiệu hóa nút gửi
+                submitBtn.disabled = true;
+                submitBtn.querySelector('span').textContent = 'Đang gửi...';
+
+                // Gửi request AJAX
+                fetch(comment_ajax.ajax_url, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Xóa form
+                            commentText.value = '';
+                            commentCounter.textContent = '0 / 1000';
+
+                            // Thêm bình luận mới vào danh sách
+                            addCommentToList(data.data);
+
+                            // Hiển thị thông báo thành công
+                            showMessage('Bình luận đã được gửi thành công!', 'success');
+
+                            // Xóa thông báo không có bình luận nếu có
+                            const noComments = commentsList.querySelector('.no-comments');
+                            if (noComments) {
+                                noComments.remove();
+                            }
+                        } else {
+                            showMessage(data.data || 'Có lỗi xảy ra khi gửi bình luận',
+                                'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showMessage('Có lỗi xảy ra khi gửi bình luận', 'error');
+                    })
+                    .finally(() => {
+                        // Kích hoạt lại nút gửi
+                        submitBtn.disabled = false;
+                        submitBtn.querySelector('span').textContent = originalText;
+                    });
+            });
+        }
+
+        // Function thêm bình luận mới vào danh sách
+        function addCommentToList(commentData) {
+            // Chỉ thêm nếu là bình luận cấp cao (parent_id = 0)
+            if (commentData.parent_id && commentData.parent_id != 0) {
+                return; // Bỏ qua phản hồi, chúng sẽ được xử lý bởi addReplyToList
+            }
+
+            const commentHTML = `
+                    <div class="d-item" id="cm-${commentData.comment_id}">
+                        <div class="user-avatar">
+                            <img src="${commentData.author_avatar}" alt="${commentData.comment_author}">
+                        </div>
+                        <div class="info">
+                            <div class="comment-header">
+                                <div class="user-name line-center gr-free">
+                                    <span>${commentData.comment_author} <i class="fa-solid fa-infinity text-primary ms-2"></i></span>
+                                </div>
+                                <div class="ch-logs">
+                                    <div class="c-time">${commentData.comment_date}</div>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <span>${commentData.comment_content}</span>
+                            </div>
+                            <div class="comment-bottom line-center d-flex">
+                                <div class="group-react line-center">
+                                    <div class="item item-up line-center">
+                                        <i class="fa-solid fa-circle-up"></i>
+                                    </div>
+                                    <div class="item item-down line-center">
+                                        <i class="fa-solid fa-circle-down"></i>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-xs btn-basic btn-comment btn-reply" data-comment-id="${commentData.comment_id}">
+                                    <i class="fa-solid fa-reply"></i>
+                                    <span>Trả lời</span>
+                                </button>
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-xs btn-basic btn-menu">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                        <span>Thêm</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Reply Form (Hidden by default) -->
+                            <div class="reply-form-container" id="reply-form-${commentData.comment_id}" style="display: none;">
+                                <div class="my-area my-area-sub reply-active">
+                                    <div class="textarea-wrap">
+                                        <div class="ma-input">
+                                            <textarea name="reply_comment" class="form-control v-form-control v-form-textarea reply-textarea"
+                                                rows="4" cols="3" maxlength="1000" placeholder="Viết bình luận" required></textarea>
+                                            <div class="chac-left reply-counter">0 / 1000</div>
+                                        </div>
+                                        <div class="line-center d-flex gap-3 ma-buttons">
+                                            <div class="v-toggle v-toggle-min line-center">
+                                                <div id="spoil-toggle" class="toggle-x off">
+                                                    <span></span>
+                                                </div>
+                                                <div class="text">Tiết lộ?</div>
+                                            </div>
+                                            <div class="flex-grow-1"></div>
+                                            <button class="btn btn-basic btn-submit-reply" type="button">
+                                                <span>Gửi</span>
+                                                <div class="inc-icon icon-20 ms-1">
+                                                    <svg fill="none" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="m22.1012 10.5616-19.34831-9.43824c-.1664-.08117-.34912-.12336-.53427-.12336-.67302 0-1.21862.5456-1.21862 1.21862v.03517c0 .16352.02005.32643.05971.48507l1.85597 7.42384c.05069.2028.22214.3526.42986.3757l8.15756.9064c.2829.0314.4969.2705.4969.5552s-.214.5238-.4969.5552l-8.15756.9064c-.20772.0231-.37917.1729-.42986.3757l-1.85597 7.4238c-.03966.1587-.05971.3216-.05971.4851v.0352c0 .673.5456 1.2186 1.21862 1.2186.18515 0 .36787-.0422.53427-.1234l19.34831-9.4382c.5499-.2682.8988-.8265.8988-1.4384s-.3489-1.1702-.8988-1.4384z" fill="currentColor"></path>
+                                                    </svg>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="post_id" value="${commentData.post_id || '3711'}">
+                                    <input type="hidden" name="parent_id" value="${commentData.comment_id}">
+                                    <input type="hidden" name="action" value="submit_reply">
+                                    <input type="hidden" name="reply_nonce_field" value="${comment_ajax.reply_nonce}">
+                                </div>
+                            </div>
+
+                            <!-- Replies Container -->
+                            <div class="replies-wrap" id="replies-${commentData.comment_id}">
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+            // Thêm vào đầu danh sách bình luận
+            commentsList.insertAdjacentHTML('afterbegin', commentHTML);
+        }
+
+        // Chức năng trả lời - sử dụng event delegation cho nội dung động
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.btn-reply')) {
+                const button = e.target.closest('.btn-reply');
+                const commentId = button.getAttribute('data-comment-id');
+
+                // Tìm form trả lời của bình luận cha
+                let replyForm = document.getElementById('reply-form-' + commentId);
+
+                // Nếu không tìm thấy, có thể là trả lời cho phản hồi, tìm bình luận cha
+                if (!replyForm) {
+                    // Tìm bình luận cha bằng cách duyệt cây DOM
+                    const replyItem = button.closest('.d-item');
+                    const repliesContainer = replyItem.closest('.replies');
+                    if (repliesContainer) {
+                        const parentComment = repliesContainer.closest('.d-item');
+                        const parentCommentId = parentComment.id.replace('cm-', '');
+                        replyForm = document.getElementById('reply-form-' + parentCommentId);
+                    }
+                }
+
+                if (replyForm) {
+                    // Ẩn tất cả form trả lời khác
+                    document.querySelectorAll('.reply-form-container').forEach(form => {
+                        if (form.id !== replyForm.id) {
+                            form.style.display = 'none';
+                        }
+                    });
+
+                    // Toggle form trả lời hiện tại
+                    if (replyForm.style.display === 'none' || replyForm.style.display === '') {
+                        replyForm.style.display = 'block';
+                        const textarea = replyForm.querySelector('.reply-textarea');
+                        if (textarea) {
+                            textarea.focus();
+                        }
+                    } else {
+                        replyForm.style.display = 'none';
+                    }
+                }
+            }
+        });
+
+        // Đếm ký tự form trả lời
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('reply-textarea')) {
+                const length = e.target.value.length;
+                const counter = e.target.parentNode.querySelector('.reply-counter');
+                if (counter) {
+                    counter.textContent = length + ' / 1000';
+
+                    if (length > 1000) {
+                        counter.style.color = '#ff6b6b';
+                    } else if (length > 800) {
+                        counter.style.color = '#ffa726';
+                    } else {
+                        counter.style.color = '#888';
+                    }
+                }
+            }
+        });
+
+        // Gửi form trả lời
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.btn-submit-reply')) {
+                e.preventDefault();
+
+                const button = e.target.closest('.btn-submit-reply');
+                const replyContainer = button.closest('.reply-form-container');
+                const textarea = replyContainer.querySelector('.reply-textarea');
+                const parentId = replyContainer.id.replace('reply-form-', '');
+
+                // Tạo dữ liệu form
+                const formData = new FormData();
+                formData.append('reply_comment', textarea.value);
+                formData.append('post_id', replyContainer.querySelector('input[name="post_id"]')
+                    .value);
+                formData.append('parent_id', parentId);
+                formData.append('action', 'submit_reply');
+                formData.append('reply_nonce_field', replyContainer.querySelector(
+                    'input[name="reply_nonce_field"]').value);
+
+                const originalText = button.querySelector('span').textContent;
+
+                // Vô hiệu hóa nút gửi
+                button.disabled = true;
+                button.querySelector('span').textContent = 'Đang gửi...';
+
+                // Gửi request AJAX
+                fetch(comment_ajax.ajax_url, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Xóa form
+                            textarea.value = '';
+                            replyContainer.querySelector('.reply-counter').textContent =
+                                '0 / 1000';
+
+                            // Ẩn form trả lời
+                            replyContainer.style.display = 'none';
+
+                            // Thêm phản hồi mới vào container phản hồi
+                            addReplyToList(data.data, parentId);
+
+                            // Hiển thị thông báo thành công
+                            showMessage('Trả lời đã được gửi thành công!', 'success');
+                        } else {
+                            showMessage(data.data || 'Có lỗi xảy ra khi gửi trả lời', 'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showMessage('Có lỗi xảy ra khi gửi trả lời', 'error');
+                    })
+                    .finally(() => {
+                        // Kích hoạt lại nút gửi
+                        button.disabled = false;
+                        button.querySelector('span').textContent = originalText;
+                    });
+            }
+        });
+
+        // Function thêm phản hồi mới vào danh sách
+        function addReplyToList(replyData, parentId) {
+            const repliesWrap = document.getElementById('replies-' + parentId);
+            if (!repliesWrap) return;
+
+            // Kiểm tra container phản hồi có tồn tại không, nếu không thì tạo
+            let repliesContainer = repliesWrap.querySelector('.replies');
+            if (!repliesContainer) {
+                // Tạo cấu trúc phản hồi
+                const repliesToggle = repliesWrap.querySelector('.replies-toggle');
+                if (repliesToggle) {
+                    // Cập nhật số lượng
+                    const currentCount = parseInt(repliesToggle.textContent.match(/\d+/)[0]) || 0;
+                    repliesToggle.innerHTML =
+                        `<i class="fa-solid fa-angle-up me-1"></i>${currentCount + 1} bình luận`;
+                } else {
+                    // Tạo toggle nếu chưa có
+                    repliesWrap.innerHTML = `
+                            <a class="text-primary replies-toggle">
+                                <i class="fa-solid fa-angle-up me-1"></i>1 bình luận
+                            </a>
+                            <div class="replies"></div>
+                        `;
+                }
+                repliesContainer = repliesWrap.querySelector('.replies');
+            } else {
+                // Cập nhật số lượng
+                const repliesToggle = repliesWrap.querySelector('.replies-toggle');
+                if (repliesToggle) {
+                    const currentCount = parseInt(repliesToggle.textContent.match(/\d+/)[0]) || 0;
+                    repliesToggle.innerHTML =
+                        `<i class="fa-solid fa-angle-up me-1"></i>${currentCount + 1} bình luận`;
+                }
+            }
+
+            const replyHTML = `
+                    <div class="d-item" id="cm-${replyData.comment_id}">
+                        <div class="user-avatar">
+                            <img src="${replyData.author_avatar}" alt="${replyData.comment_author}">
+                        </div>
+                        <div class="info">
+                            <div class="comment-header">
+                                <div class="user-name line-center gr-free">
+                                    <span>${replyData.comment_author} <i class="fa-solid fa-infinity text-primary ms-2"></i></span>
+                                </div>
+                                <div class="ch-logs">
+                                    <div class="c-time">${replyData.comment_date}</div>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <span class="rep-sub">@${replyData.comment_author}</span>
+                                <span>${replyData.comment_content}</span>
+                            </div>
+                            <div class="comment-bottom line-center d-flex">
+                                <div class="group-react line-center">
+                                    <div class="item item-up line-center">
+                                        <i class="fa-solid fa-circle-up"></i>
+                                    </div>
+                                    <div class="item item-down line-center">
+                                        <i class="fa-solid fa-circle-down"></i>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-xs btn-basic btn-comment btn-reply" data-comment-id="${parentId}">
+                                    <i class="fa-solid fa-reply"></i>
+                                    <span>Trả lời</span>
+                                </button>
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-xs btn-basic btn-menu">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                        <span>Thêm</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+            // Thêm phản hồi vào container
+            repliesContainer.insertAdjacentHTML('beforeend', replyHTML);
+        }
+
+        // Chức năng toggle phản hồi
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.replies-toggle')) {
+                e.preventDefault();
+
+                const toggle = e.target.closest('.replies-toggle');
+                const repliesWrap = toggle.closest('.replies-wrap');
+                const repliesContainer = repliesWrap.querySelector('.replies');
+                const icon = toggle.querySelector('i');
+
+                if (repliesContainer) {
+                    if (repliesContainer.style.display === 'none' || repliesContainer.style
+                        .display === '') {
+                        repliesContainer.style.display = 'block';
+                        icon.className = 'fa-solid fa-angle-up me-1';
+                    } else {
+                        repliesContainer.style.display = 'none';
+                        icon.className = 'fa-solid fa-angle-down me-1';
+                    }
+                }
+            }
+        });
+
+        // Function hiển thị thông báo
+        function showMessage(message, type) {
+            // Xóa thông báo hiện có
+            const existingMessages = document.querySelectorAll('.comment-message');
+            existingMessages.forEach(msg => msg.remove());
+
+            // Tạo element thông báo
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `comment-message ${type}`;
+            messageDiv.style.cssText = `
+                    padding: 10px 15px;
+                    margin: 10px 0;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    ${type === 'success' ? 'background: #1a4a1a; color: #6bff6b; border: 1px solid #2a6a2a;' : 'background: #4a1a1a; color: #ff6b6b; border: 1px solid #6a2a2a;'}
+                `;
+            messageDiv.textContent = message;
+
+            // Chèn trước danh sách bình luận
+            commentsList.parentNode.insertBefore(messageDiv, commentsList);
+
+            // Tự động xóa sau 3 giây
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.remove();
+                }
+            }, 3000);
+        }
+
+        // Modal đánh giá phim
+        const ratingModal = document.getElementById('ratingModal');
+        const ratingTrigger = document.querySelector('.item-rate');
+        const closeModal = document.getElementById('closeRatingModal');
+        const cancelRating = document.getElementById('cancelRating');
+        const submitRating = document.getElementById('submitRating');
+        const ratingItems = document.querySelectorAll('.rate-emo .item-v');
+        const ratingComment = document.getElementById('ratingComment');
+        const currentRatingDisplay = document.getElementById('currentRating');
+
+        let selectedRating = 0;
+
+        // Mở modal khi click vào đánh giá
+        if (ratingTrigger) {
+            ratingTrigger.addEventListener('click', function() {
+                ratingModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                ratingModal.classList.add('show');
+            });
+        }
+
+        // Function đóng modal
+        function closeModalFunc() {
+            ratingModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            ratingModal.classList.remove('show');
+            selectedRating = 0;
+            ratingComment.value = '';
+            updateRatingDisplay();
+        }
+
+        if (closeModal) closeModal.addEventListener('click', closeModalFunc);
+        if (cancelRating) cancelRating.addEventListener('click', closeModalFunc);
+
+        // Đóng modal khi click bên ngoài
+        if (ratingModal) {
+            ratingModal.addEventListener('click', function(e) {
+                if (e.target === ratingModal) {
+                    closeModalFunc();
+                }
+            });
+        }
+
+        // Xử lý chọn đánh giá
+        if (ratingItems.length > 0) {
+            ratingItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    selectedRating = parseInt(this.dataset.rating);
+                    updateRatingDisplay();
+                    highlightSelectedRating();
+                });
+            });
+        }
+
+        // Cập nhật hiển thị đánh giá
+        function updateRatingDisplay() {
+            if (selectedRating > 0) {
+                currentRatingDisplay.textContent = selectedRating + '.0';
+            } else {
+                currentRatingDisplay.textContent = '9.0';
+            }
+        }
+
+        // Highlight đánh giá được chọn
+        function highlightSelectedRating() {
+            ratingItems.forEach(item => {
+                item.classList.remove('active');
+                if (parseInt(item.dataset.rating) === selectedRating) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Gửi đánh giá
+        if (submitRating) {
+            submitRating.addEventListener('click', function() {
+                if (selectedRating === 0) {
+                    alert('Vui lòng chọn đánh giá trước khi gửi!');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('action', 'submit_movie_rating');
+                formData.append('post_id', '3711');
+                formData.append('rating', selectedRating);
+                formData.append('comment', ratingComment.value);
+                formData.append('rating_nonce',
+                    'd22c294854');
+
+                // Vô hiệu hóa nút gửi
+                submitRating.disabled = true;
+                submitRating.textContent = 'Đang gửi...';
+
+                fetch('https://hotphim.org/wp-admin/admin-ajax.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Cập nhật hiển thị đánh giá
+                            const ratingDisplay = document.querySelector('.ro-rating .point');
+                            const ratingCount = document.querySelector('.ro-rating .a-rate');
+                            const modalRating = document.getElementById('currentRating');
+                            const modalCount = document.querySelector('#currentRating')
+                                .nextElementSibling;
+
+                            if (ratingDisplay) ratingDisplay.textContent = data.data.avg_rating;
+                            if (ratingCount) ratingCount.textContent = data.data.rating_count +
+                                ' đánh giá';
+                            if (modalRating) modalRating.textContent = data.data.avg_rating;
+                            if (modalCount) modalCount.textContent = '/ ' + data.data
+                                .rating_count + ' lượt đánh giá';
+
+                            // Hiển thị thông báo thành công
+                            alert('Cảm ơn bạn đã đánh giá phim!');
+
+                            // Đóng modal
+                            closeModalFunc();
+
+                            // Cập nhật tab đánh giá nếu đang hiển thị
+                            updateReviewsTab();
+                        } else {
+                            alert('Có lỗi xảy ra: ' + (data.data || 'Không thể gửi đánh giá'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi gửi đánh giá');
+                    })
+                    .finally(() => {
+                        // Kích hoạt lại nút gửi
+                        submitRating.disabled = false;
+                        submitRating.textContent = 'Gửi đánh giá';
+                    });
+            });
+        }
+
+        // Function cập nhật tab đánh giá
+        function updateReviewsTab() {
+            const reviewsTab = document.getElementById('reviews-tab');
+            if (reviewsTab && reviewsTab.style.display !== 'none') {
+                // Reload trang để hiển thị đánh giá mới
+                location.reload();
+            }
+        }
+    });
+
+    // Tải thêm chức năng bình luận
+    jQuery(document).ready(function($) {
+        $(document).on('click', '.load-more-btn', function(e) {
+            e.preventDefault();
+
+            var $btn = $(this);
+            var $btnText = $btn.find('.btn-text');
+            var $loadingText = $btn.find('.loading-text');
+            var postId = $btn.data('post-id');
+            var offset = $btn.data('offset');
+            var isLoading = $btn.data('loading');
+
+            // Ngăn chặn nhiều lần nhấp chuột
+            if (isLoading) {
+                return;
+            }
+
+            // Đặt trạng thái tải
+            $btn.data('loading', true);
+            $btnText.hide();
+            $loadingText.show();
+
+            // AJAX request
+            $.ajax({
+                url: comment_ajax.ajax_url,
+                type: 'POST',
+                data: {
+                    action: 'load_more_comments',
+                    post_id: postId,
+                    offset: offset,
+                    nonce: comment_ajax.nonce
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Chèn bình luận mới trước nút tải thêm
+                        $btn.closest('.more').before(response.data.html);
+
+                        // Cập nhật độ lệch
+                        $btn.data('offset', response.data.next_offset);
+
+                        // Ẩn nút tải thêm nếu không còn bình luận nào nữa
+                        if (!response.data.has_more) {
+                            $btn.closest('.more').hide();
+                        }
+                    } else {
+                        console.error('Error loading comments:', response.data);
+                        alert('Có lỗi xảy ra khi tải bình luận. Vui lòng thử lại.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error);
+                    alert('Có lỗi xảy ra khi tải bình luận. Vui lòng thử lại.');
+                },
+                complete: function() {
+                    // Đặt lại trạng thái tải
+                    $btn.data('loading', false);
+                    $btnText.show();
+                    $loadingText.hide();
+                }
+            });
+        });
+    });
+    </script>
+
+    <!-- Modal đánh giá phim -->
+    <div id="ratingModal" role="dialog" aria-modal="true" class="fade v-modal modal-md modal" tabindex="-1"
+        style="display: none; padding-right: 16px;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button class="btn modal-close" id="closeRatingModal">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+                <div class="is-header mb-2">
+                    <h4 class="heading-sm text-center mb-0" id="movieTitle">Tình Yêu Và Tội Lỗi                    </h4>
+                </div>
+                <div class="is-body mb-5">
+                    <div class="d-block text-center mb-4">
+                        <div class="line-center">
+                            <div class="ro-icon"></div>
+                            <strong class="text-white"
+                                id="currentRating">0</strong>
+                            <span>/ 0 lượt đánh giá</span>
+                        </div>
+                    </div>
+                    <div class="rate-emo">
+                        <div class="item-v" data-rating="5">
+                            <div class="inc-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-5.webp"
+                                    alt="5 stars">
+                            </div>
+                            <span>Tuyệt vời</span>
+                        </div>
+                        <div class="item-v" data-rating="4">
+                            <div class="inc-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-4.webp"
+                                    alt="4 stars">
+                            </div>
+                            <span>Phim hay</span>
+                        </div>
+                        <div class="item-v" data-rating="3">
+                            <div class="inc-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-3.webp"
+                                    alt="3 stars">
+                            </div>
+                            <span>Khá ổn</span>
+                        </div>
+                        <div class="item-v" data-rating="2">
+                            <div class="inc-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-2.webp"
+                                    alt="2 stars">
+                            </div>
+                            <span>Phim chán</span>
+                        </div>
+                        <div class="item-v" data-rating="1">
+                            <div class="inc-icon">
+                                <img src="https://hotphim.org/wp-content/themes/movie-theme/images/rate-1.webp"
+                                    alt="1 star">
+                            </div>
+                            <span>Dở tệ</span>
+                        </div>
+                    </div>
+                    <div class="rate-comment">
+                        <textarea class="form-control v-form-control" rows="3" cols="3"
+                            placeholder="Viết nhận xét về phim (tuỳ chọn)" id="ratingComment"></textarea>
+                    </div>
+                </div>
+                <div class="is-footer gap-3">
+                    <button type="button" class="btn btn-primary" id="submitRating">Gửi đánh giá</button>
+                    <button type="button" class="btn btn-light px-4" id="cancelRating">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ratingModal = document.getElementById('ratingModal');
+        const ratingTrigger = document.querySelector('.rating-popup-trigger');
+        const closeModal = document.getElementById('closeRatingModal');
+        const cancelRating = document.getElementById('cancelRating');
+        const submitRating = document.getElementById('submitRating');
+        const ratingItems = document.querySelectorAll('.rate-emo .item-v');
+        const ratingComment = document.getElementById('ratingComment');
+        const currentRatingDisplay = document.getElementById('currentRating');
+        const movieTitle = document.getElementById('movieTitle');
+
+        let selectedRating = 0;
+
+        // Mở modal khi click vào đánh giá
+        if (ratingTrigger) {
+            ratingTrigger.addEventListener('click', function() {
+                ratingModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                ratingModal.classList.add('show');
+            });
+        }
+
+        // Function đóng modal
+        function closeModalFunc() {
+            ratingModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            ratingModal.classList.remove('show');
+            selectedRating = 0;
+            if (ratingComment) ratingComment.value = '';
+            updateRatingDisplay();
+        }
+
+        if (closeModal) closeModal.addEventListener('click', closeModalFunc);
+        if (cancelRating) cancelRating.addEventListener('click', closeModalFunc);
+
+        // Đóng modal khi click bên ngoài
+        if (ratingModal) {
+            ratingModal.addEventListener('click', function(e) {
+                if (e.target === ratingModal) {
+                    closeModalFunc();
+                }
+            });
+        }
+
+        // Xử lý chọn đánh giá
+        ratingItems.forEach(item => {
+            item.addEventListener('click', function() {
+                selectedRating = parseInt(this.dataset.rating);
+                updateRatingDisplay();
+                highlightSelectedRating();
+            });
+        });
+
+        // Cập nhật hiển thị đánh giá
+        function updateRatingDisplay() {
+            if (currentRatingDisplay) {
+                if (selectedRating > 0) {
+                    currentRatingDisplay.textContent = selectedRating + '.0';
+                } else {
+                    currentRatingDisplay.textContent =
+                        '0';
+                }
+            }
+        }
+
+        // Highlight đánh giá được chọn
+        function highlightSelectedRating() {
+            ratingItems.forEach(item => {
+                item.classList.remove('active');
+                if (parseInt(item.dataset.rating) === selectedRating) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Gửi đánh giá
+        if (submitRating) {
+            submitRating.addEventListener('click', function() {
+                if (selectedRating === 0) {
+                    alert('Vui lòng chọn đánh giá trước khi gửi!');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('action', 'submit_movie_rating');
+                formData.append('post_id', '3711');
+                formData.append('rating', selectedRating);
+                formData.append('comment', ratingComment ? ratingComment.value : '');
+                formData.append('rating_nonce',
+                    'd22c294854');
+
+                // Vô hiệu hóa nút gửi
+                submitRating.disabled = true;
+                submitRating.textContent = 'Đang gửi...';
+
+                fetch('https://hotphim.org/wp-admin/admin-ajax.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Cập nhật hiển thị đánh giá
+                            const ratingDisplay = document.querySelector('.ro-rating .point');
+                            const ratingCount = document.querySelector('.ro-rating .a-rate');
+                            const modalRating = document.getElementById('currentRating');
+                            const modalCount = document.querySelector('#currentRating')
+                                .nextElementSibling;
+
+                            if (ratingDisplay) ratingDisplay.textContent = data.data.avg_rating;
+                            if (ratingCount) ratingCount.textContent = data.data.rating_count +
+                                ' đánh giá';
+                            if (modalRating) modalRating.textContent = data.data.avg_rating;
+                            if (modalCount) modalCount.textContent = '/ ' + data.data
+                                .rating_count + ' lượt đánh giá';
+
+                            // Hiển thị thông báo thành công
+                            alert('Cảm ơn bạn đã đánh giá phim!');
+
+                            // Đóng modal
+                            closeModalFunc();
+                        } else {
+                            alert('Có lỗi xảy ra: ' + (data.data || 'Không thể gửi đánh giá'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi gửi đánh giá');
+                    })
+                    .finally(() => {
+                        // Kích hoạt lại nút gửi
+                        submitRating.disabled = false;
+                        submitRating.textContent = 'Gửi đánh giá';
+                    });
+            });
+        }
+    });
+    </script>
+
+</body>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me -->

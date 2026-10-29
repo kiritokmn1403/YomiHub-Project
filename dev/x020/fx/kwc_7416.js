@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunk_platform_client=globalThis.webpackChunk_platform_client||[]).push([[7416],{87416(e,a,l){l.r(a),l.d(a,{default:()=>s});var t=l(70443),c=l(53596);const s=()=>{const e=(0,c.useNavigate)();return(0,t.useEffect)((()=>{e(`/${location.search}`,{replace:!0})}),[]),null}}}]);

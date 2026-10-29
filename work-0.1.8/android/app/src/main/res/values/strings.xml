@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YomiHub</string>
+    <!-- YomiHub 0.1.5: launcher shortcuts (long-press the app icon) -->
+    <string name="sc_comic">Comic</string>
+    <string name="sc_film">Film &amp; Movie</string>
+    <string name="sc_novel">Novel</string>
+    <string name="sc_downloads">Tải xuống</string>
+    <string name="sc_browser">Trình duyệt</string>
+    <string name="sc_comic_long">Thư viện Comic</string>
+    <string name="sc_film_long">Thư viện Film &amp; Movie</string>
+    <string name="sc_novel_long">Thư viện Novel</string>
+    <string name="sc_downloads_long">Hàng đợi tải xuống</string>
+    <string name="sc_browser_long">Trình duyệt trong YomiHub</string>
+</resources>

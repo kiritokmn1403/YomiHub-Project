@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb18030"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title></title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://www.hentaicity.com/stp/css/dart/fluidplayer.min.css" type="text/css" media="screen">
+<script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+<style>
+     html { overflow: hidden;  }
+    body{padding:0;margin:0; overflow: hidden;}
+    .playerz{z-index:1;width:100%;height:100%;}
+    .playerz .play{width:100%;height:100%;}
+    
+</style>
+</head>
+<body>
+<div class="playerz">
+    <div class="play">
+    <video id="video-id" controls preload="auto">
+        <source src="" type='application/x-mpegURL' />
+    </video>
+    </div>
+</div>
+<script>
+    var myFP = fluidPlayer(
+        'video-id',    {
+            "modules": {
+                configureHls: (options) => ({
+                    maxMaxBufferLength: 30,
+                    startLevel: 4
+                })
+                    },
+            "layoutControls": {
+                "miniPlayer": {
+                    "enabled": false,
+                },
+                "controlBar": {
+                    "autoHideTimeout": 3,
+                    "animated": true,
+                    "autoHide": true
+                },
+                "htmlOnPauseBlock": {
+                    "html": null,
+                    "height": null,
+                    "width": null
+                },
+                "timelinePreview": {
+                    "file": "",
+                    "type": "VTT"
+                },
+                "autoPlay": false,
+                "mute": false,
+                "allowTheatre": true,
+                "playPauseAnimation": true,
+                "playbackRateEnabled": true,
+                "allowDownload": false,
+                "preload": "auto",
+                "playButtonShowing": true,
+                "fillToContainer": true,
+                "subtitlesEnabled": false,
+                "posterImageSize": "cover",
+                "posterImage": "",
+                "title": ""
+            }
+        });
+</script>
+</body>
+</html>

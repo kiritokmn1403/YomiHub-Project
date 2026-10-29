@@ -1,0 +1,1 @@
+Back 2; Tap 1034 273 3; Tap 194 425 3; Labels 'j2' | Select-Object -First 30

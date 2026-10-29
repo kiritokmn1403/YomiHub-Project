@@ -1,0 +1,7 @@
+===== rophim.js
+### latest => list=24 next=true first={"name":"Lan Hương Như Cố","imageUrl":"https://phimimg.com/uploads/movies/20260912/lan-huong-nhu-co-poster.webp","link":"lan-huong-nhu-co"}
+### popular => list=24 next=true first={"name":"Kỷ Niệm 10 Năm Phim Goblin (Hoàn Tất (4/4))","imageUrl":"https://phimimg.com/uploads/movies/20260706/ky-niem-10-nam-phim-goblin-poster.webp","link":"ky-niem-10-nam-phim-goblin"}
+### search conan => list=24 next=true first={"name":"Thám Tử Lừng Danh Conan (Tập 1214)","imageUrl":"https://phimimg.com/upload/vod/20240310-1/025424cf62248b9a7b54279ef5416e26.jpg","link":"tham-tu-lung-danh-conan"}
+### detail $first ERROR HTTP 599 – https://phimapi.com/phim/tham-tu-lung-danh-conan
+### videos $firstEp ERROR Cannot read properties of undefined (reading '0')
+===== hotphim.js

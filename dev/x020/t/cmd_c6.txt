@@ -1,0 +1,1 @@
+Back 2; Start-Sleep 1; Labels 'c6a' | Select-Object -First 3; Tap 300 682 14; Shot 'c6_tik'; Labels 'c6' | Select-Object -First 16

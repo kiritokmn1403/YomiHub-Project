@@ -1,0 +1,67 @@
+# YomiHub-Project – .gitignore (0.4.4, 29/10/2026)
+
+# ── Secrets: never commit ──
+*.jks
+*.keystore
+*.p12
+*.pfx
+keystore-password.txt
+key.properties
+**/key.properties
+**/*cookie*.txt
+**/cookies.json
+.env
+
+# ── Scraped site data (contains cookies / third-party pages) ──
+/fetch/
+
+# ── Build outputs, installers, logs, job queues ──
+/output/
+/logs/
+/jobs/
+**/build/
+**/.dart_tool/
+**/.gradle/
+**/.kotlin/
+**/ephemeral/
+*.apk
+*.aab
+*.exe
+*.dll
+*.so
+*.zip
+*.tgz
+*.tar
+*.gz
+*.7z
+*.bundle
+*.appx
+*.appxbundle
+*.msix
+*.cer
+*.mp4
+*.log
+
+# ── QA evidence, screenshots, pre-change copies (kept on the build PC) ──
+/test/
+/Screenshot/
+audit-*/before/
+audit-0.4.3/compat23/
+audit-*/**/*.png
+audit-*/**/*.jpg
+audit-*/**/*.jpeg
+audit-*/**/*.webp
+audit-*/**/*.xml
+audit-*/**/*.mp4
+audit-*/**/*.jar
+audit-0.3.9/test-tools/
+
+# ── Large prebuilt upstream binaries for iOS/macOS (not YomiHub targets, >40 MB) ──
+**/ios/Frameworks/
+**/macos/Frameworks/
+*.dylib
+
+# ── Needed to build the app: keep despite the binary rules above ──
+!**/jniLibs/**/*.so
+!**/assets/mangayomi_mpv.zip
+!**/res/raw/*.mp4

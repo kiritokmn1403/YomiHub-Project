@@ -1,0 +1,195 @@
+[
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://aidoku-community.github.io/sources/index.min.json",
+    "status": 200,
+    "final_url": "https://aidoku-community.github.io/sources/index.min.json",
+    "bytes": 34263,
+    "format": "dict",
+    "entries": 2,
+    "seconds": 1.22
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://raw.githubusercontent.com/Kareadita/tach-extension/repo/index.min.json",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/Kareadita/tach-extension/repo/index.min.json",
+    "bytes": 407,
+    "format": "list",
+    "entries": 1,
+    "seconds": 1.22
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repov2/index.min.json",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repov2/index.min.json",
+    "bytes": 34673,
+    "format": "list",
+    "entries": 145,
+    "seconds": 1.05
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/index.json",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/index.json",
+    "bytes": 199001,
+    "format": "list",
+    "entries": 327,
+    "seconds": 1.72
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/anime_index.json",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/anime_index.json",
+    "bytes": 36696,
+    "format": "list",
+    "entries": 64,
+    "seconds": 1.05
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/novel_index.json",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/novel_index.json",
+    "bytes": 5264,
+    "format": "list",
+    "entries": 9,
+    "seconds": 0.7
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://raw.githubusercontent.com/LNReader/lnreader-plugins/plugins/v3.0.0/.dist/plugins.min.json",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/LNReader/lnreader-plugins/plugins/v3.0.0/.dist/plugins.min.json",
+    "bytes": 121188,
+    "format": "list",
+    "entries": 322,
+    "seconds": 1.06
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://raw.githubusercontent.com/yuzono/anime-repo/repo/index.min.json",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/yuzono/anime-repo/repo/index.min.json",
+    "bytes": 79504,
+    "format": "list",
+    "entries": 250,
+    "seconds": 0.91
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://raw.githubusercontent.com/gato404/kegareta-sauces/main/index.json",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/gato404/kegareta-sauces/main/index.json",
+    "bytes": 161698,
+    "format": "list",
+    "entries": 272,
+    "seconds": 1.08
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://raw.githubusercontent.com/FelipeGFA/extensoes/repo/index.min.json",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/FelipeGFA/extensoes/repo/index.min.json",
+    "bytes": 786,
+    "format": "list",
+    "entries": 2,
+    "seconds": 0.58
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.pb",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.pb",
+    "bytes": 110573,
+    "format": "protobuf (transport only)",
+    "seconds": 1.44
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://github.com/Shebyyy/kotatsu-multi-parsers",
+    "status": 200,
+    "final_url": "https://github.com/Shebyyy/kotatsu-multi-parsers",
+    "bytes": 245932,
+    "seconds": 1.73
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://github.com/IReaderorg/IReader-extensions",
+    "status": 200,
+    "final_url": "https://github.com/IReaderorg/IReader-extensions",
+    "bytes": 421485,
+    "seconds": 1.95
+  },
+  {
+    "kind": "repo",
+    "name": "extension repository",
+    "url": "https://p.codekk.com/detail/Android/IReaderorg/IReader-extensions",
+    "status": 200,
+    "final_url": "https://p.codekk.com/detail/Android/IReaderorg/IReader-extensions",
+    "bytes": 22132,
+    "seconds": 10.28
+  },
+  {
+    "kind": "drive",
+    "name": "updates",
+    "url": "https://drive.google.com/embeddedfolderview?id=16PCPorl1Ae9nmKMMWAC3Oz1rp_w9tH__",
+    "status": 200,
+    "final_url": "https://drive.google.com/embeddedfolderview?id=16PCPorl1Ae9nmKMMWAC3Oz1rp_w9tH__",
+    "bytes": 2155,
+    "entries": 1,
+    "seconds": 1.52
+  },
+  {
+    "kind": "upstream",
+    "name": "aniyomiorg/aniyomi",
+    "url": "https://api.github.com/repos/aniyomiorg/aniyomi",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/aniyomiorg/aniyomi",
+    "bytes": 6293,
+    "default_branch": "main",
+    "pushed_at": "2026-09-14T18:30:24Z",
+    "archived": false,
+    "seconds": 0.98
+  },
+  {
+    "kind": "upstream",
+    "name": "Seguaz/Nekoyomi",
+    "url": "https://api.github.com/repos/Seguaz/Nekoyomi",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/Seguaz/Nekoyomi",
+    "bytes": 5157,
+    "default_branch": "main",
+    "pushed_at": "2026-09-11T21:30:50Z",
+    "archived": false,
+    "seconds": 0.48
+  },
+  {
+    "kind": "upstream",
+    "name": "kodjodevf/mangayomi",
+    "url": "https://api.github.com/repos/kodjodevf/mangayomi",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/kodjodevf/mangayomi",
+    "bytes": 5492,
+    "default_branch": "main",
+    "pushed_at": "2026-10-25T01:07:46Z",
+    "archived": false,
+    "seconds": 0.48
+  }
+]

@@ -1,0 +1,1 @@
+TapText '^VPN service' 4; Labels 'd6' | Select-Object -First 30; Adb shell input swipe 540 1800 540 400 400; Start-Sleep 2; Labels 'd6b' | Select-String 'WARP|WireGuard|preset|có sẵn|built' ; Shot 'd6'

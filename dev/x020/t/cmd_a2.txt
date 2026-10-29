@@ -1,0 +1,1 @@
+Tap 1012 2169 3; TapText '^Settings' 3; Labels 'a2' | Select-Object -First 50; Shot 'a2'

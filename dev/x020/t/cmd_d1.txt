@@ -1,0 +1,1 @@
+Back 2; TapText '^FapReel' 6; TapText '^Short$' 12; Shot 'd1_short'; Labels 'd1' | Select-Object -First 20; Crash

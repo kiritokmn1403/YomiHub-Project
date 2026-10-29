@@ -1,0 +1,34 @@
+HTTP/1.1 200 OK
+Date: Wed, 07 Oct 2026 14:04:37 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+server: cloudflare
+set-cookie: tpn_rcmsid=recomm_6ac6517583b7b5.49800617; path=/
+set-cookie: tpn_rcmsid=recomm_6ac65175938029.52956860; path=/
+set-cookie: tpn_rcmsid=recomm_6ac651759bbe14.40307195; path=/
+set-cookie: tpn_rcmsid=recomm_6ac651759d9dd9.95927588; path=/
+set-cookie: tpn_rcmsid=recomm_6ac65175ad3f36.80603424; path=/
+set-cookie: tpn_rcmsid=recomm_6ac65175ba50b5.15163203; path=/
+set-cookie: tpn_rcmsid=recomm_6ac65175c67ac3.59404739; path=/
+set-cookie: tpn_rcmsid=recomm_6ac65175d12441.80125337; path=/
+cache-control: no-cache, private
+x-robots-tag: noindex
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 239
+access-control-allow-origin: https://tik.porn
+access-control-allow-credentials: true
+webserver: d
+vary: Accept-Encoding,User-Agent
+x-frame-options: SAMEORIGIN
+referrer-policy: strict-origin-when-cross-origin
+permissions-policy: geolocation=(self), microphone=()
+content-security-policy: font-src 'self'
+cf-cache-status: DYNAMIC
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Strict-Transport-Security: max-age=15552000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=JNHDfWYwlV7fS7Urr%2Bzpv8TYWY6gYAyz6rmI2B7nVLP0SQ8aBGf9wtpQwlchIZgvyc4APgSgSJRJHR5cJYUxQzzOfZ5%2B4jguKc5ws7e8P7iSJV064bRx8kpnyhsoYLhSf64HUa2mKWd9ze70"}]}
+Content-Encoding: gzip
+CF-RAY: a46d74bdaa13f8ff-SIN
+

@@ -1,0 +1,20 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Wed, 07 Oct 2026 14:30:29 GMT
+Content-Type: application/javascript; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Robots-Tag: noindex, nofollow, noarchive, noimageindex
+Vary: Origin
+Access-Control-Allow-Origin: *
+Content-Security-Policy: frame-ancestors https://cambuilder.com https://*.cambuilder.com
+Set-Cookie: smeid=7e209761-c91e-4fca-8496-49d0a9951179G0801791383429; path=/; expires=Tue, 07 Oct 2036 02:30:29 GMT; domain=kwiky.com; samesite=lax
+Set-Cookie: smtid=5b7f1562-1ab3-43c2-a4dd-b3e1aa61aaa8G0801791383429; path=/; expires=Tue, 07 Oct 2036 02:30:29 GMT; domain=kwiky.com; samesite=lax
+Set-Cookie: smvid=5a5d1345-197b-4373-932d-2731e04ff9d3G0801791383429; path=/; domain=kwiky.com; samesite=none; secure
+Set-Cookie: consent=eyJjb29raWUiOiJwZW5kaW5nIiwicGVyc29uYWxpemUiOiJ0cnVlIn0=; path=/; expires=Fri, 29 Sep 2056 14:30:29 GMT; httponly
+smrid: 91101641445925254339112037221130-1791383429-8875659948606149
+X-Response-Time: 7ms
+Platform-Cache-Status: MISS
+Kwiky-Platform-Endpoint: 200:0.013:-:kwikymart22.fciis.net
+Content-Encoding: gzip
+

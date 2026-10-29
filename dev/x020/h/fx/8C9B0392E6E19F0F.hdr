@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Wed, 07 Oct 2026 14:30:52 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Robots-Tag: noindex, nofollow, noarchive, noimageindex
+Vary: Origin
+Access-Control-Allow-Origin: *
+Content-Security-Policy: frame-ancestors https://cambuilder.com https://*.cambuilder.com
+smrid: 84392305576114020148025130467501-1791383452-7210175289110297
+Cache-Control: max-age=17 , stale-if-error=60 , stale-while-revalidate=1800
+X-Response-Time: 91ms
+Platform-Cache-Status: MISS
+Kwiky-Platform-Endpoint: 200:0.099:-:kwikymart1.fciis.net
+Content-Encoding: gzip
+

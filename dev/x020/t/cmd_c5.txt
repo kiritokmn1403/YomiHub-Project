@@ -1,0 +1,1 @@
+Tap 300 1756 15; Shot 'c5_tik'; Labels 'c5' | Select-Object -First 16; Back 3; Tap 300 937 15; Shot 'c5_fapreel'; Labels 'c5b' | Select-Object -First 16

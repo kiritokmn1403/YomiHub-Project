@@ -1,0 +1,86 @@
+--------- beginning of main
+10-26 09:00:15.298   421   421 D AndroidRuntime: >>>>>> START com.android.internal.os.ZygoteInit uid 0 <<<<<<
+10-26 09:00:15.328   421   421 I AndroidRuntime: Using default boot image
+10-26 09:00:15.328   421   421 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:00:41.027   986   986 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-26 09:00:58.197  1008  1008 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-26 09:01:15.985  1633  1633 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-26 09:04:06.631  3817  3817 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:04:06.636  3817  3817 I AndroidRuntime: Using default boot image
+10-26 09:04:06.636  3817  3817 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:04:06.785  3817  3817 D AndroidRuntime: Calling main entry com.android.commands.monkey.Monkey
+10-26 09:04:06.900  3817  3817 I AndroidRuntime: VM exiting with result code 0.
+10-26 09:04:08.098  3830  3854 I flutter : [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+10-26 09:04:08.851  3872  3872 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:04:08.855  3872  3872 I AndroidRuntime: Using default boot image
+10-26 09:04:08.855  3872  3872 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:04:09.246  3872  3872 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:04:10.263  3830  3830 I flutter : IsarCore using libmdbx: v0.13.8-temp-upstream-fix
+10-26 09:04:10.305  3872  3872 D AndroidRuntime: Shutting down VM
+10-26 09:04:14.247  3830  3830 I flutter : [LocalLibraryScanner] _scanDirectory start: name=local, path=/storage/emulated/0/YomiHub/local, platform=android, platformVersion=CE2A.260420.019, configuredFolders=1
+10-26 09:04:14.247  3830  3830 I flutter : [LocalLibraryScanner] configured local folders: name=local, path=/storage/emulated/0/YomiHub/local
+10-26 09:04:14.252  3830  3830 I flutter : [LocalLibraryScanner] _scanDirectory directory probe [initial]: path=/storage/emulated/0/YomiHub/local, absolutePath=/storage/emulated/0/YomiHub/local, normalizedPath=/storage/emulated/0/YomiHub/local, parent=/storage/emulated/0/YomiHub, exists=false, parentExists=false, statType=notFound, statMode=---------, modified=1970-01-01T00:00:00.000Z
+10-26 09:04:21.901  3958  3958 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:04:21.905  3958  3958 I AndroidRuntime: Using default boot image
+10-26 09:04:21.905  3958  3958 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:04:21.992  3958  3958 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:04:23.190  3958  3958 D AndroidRuntime: Shutting down VM
+10-26 09:04:35.186  4088  4088 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:04:35.196  4088  4088 I AndroidRuntime: Using default boot image
+10-26 09:04:35.196  4088  4088 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:04:35.401  4088  4088 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:04:36.561  4088  4088 D AndroidRuntime: Shutting down VM
+10-26 09:04:49.189  5154  5154 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:04:49.193  5154  5154 I AndroidRuntime: Using default boot image
+10-26 09:04:49.193  5154  5154 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:04:49.282  5154  5154 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:04:50.369  5154  5154 D AndroidRuntime: Shutting down VM
+10-26 09:05:01.884  5189  5189 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:05:01.889  5189  5189 I AndroidRuntime: Using default boot image
+10-26 09:05:01.890  5189  5189 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:05:01.978  5189  5189 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:05:03.082  5189  5189 D AndroidRuntime: Shutting down VM
+10-26 09:05:15.516  5221  5221 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:05:15.521  5221  5221 I AndroidRuntime: Using default boot image
+10-26 09:05:15.521  5221  5221 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:05:15.610  5221  5221 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:05:16.696  5221  5221 D AndroidRuntime: Shutting down VM
+10-26 09:05:29.297  5301  5301 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:05:29.301  5301  5301 I AndroidRuntime: Using default boot image
+10-26 09:05:29.301  5301  5301 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:05:29.396  5301  5301 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:05:31.776  5301  5301 D AndroidRuntime: Shutting down VM
+10-26 09:05:43.887  5348  5348 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:05:43.892  5348  5348 I AndroidRuntime: Using default boot image
+10-26 09:05:43.892  5348  5348 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:05:43.991  5348  5348 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:05:45.206  5348  5348 D AndroidRuntime: Shutting down VM
+10-26 09:05:59.253  5438  5438 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:05:59.257  5438  5438 I AndroidRuntime: Using default boot image
+10-26 09:05:59.257  5438  5438 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:05:59.345  5438  5438 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:06:00.409  5438  5438 D AndroidRuntime: Shutting down VM
+10-26 09:06:29.095  5504  5504 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:06:29.098  5504  5504 I AndroidRuntime: Using default boot image
+10-26 09:06:29.098  5504  5504 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:06:29.225  5504  5504 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:06:30.990  5504  5504 D AndroidRuntime: Shutting down VM
+10-26 09:06:42.070  3830  3830 I flutter : VideoOutput.Resize
+10-26 09:06:42.071  3830  3830 I flutter : {rect: {top: 0, left: 0, width: 1, height: 1}, wid: 15814, handle: 135007029547104, id: 0}
+10-26 09:06:42.587  5556  5556 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:06:42.594  5556  5556 I AndroidRuntime: Using default boot image
+10-26 09:06:42.594  5556  5556 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:06:43.048  5556  5556 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:06:44.283  3830  3830 I flutter : VideoOutput.Resize
+10-26 09:06:44.284  3830  3830 I flutter : {rect: {top: 0, left: 0, width: 640, height: 360}, wid: 16006, handle: 135007029547104, id: 0}
+10-26 09:06:45.274  5556  5556 D AndroidRuntime: Shutting down VM
+10-26 09:07:01.024  5613  5613 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:07:01.029  5613  5613 I AndroidRuntime: Using default boot image
+10-26 09:07:01.029  5613  5613 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:07:01.254  5613  5613 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:07:02.504  5613  5613 D AndroidRuntime: Shutting down VM
+10-26 09:07:26.406  5649  5649 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-26 09:07:26.424  5649  5649 I AndroidRuntime: Using default boot image
+10-26 09:07:26.425  5649  5649 I AndroidRuntime: Leaving lock profiling enabled
+10-26 09:07:26.636  5649  5649 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-26 09:07:29.636  5649  5649 D AndroidRuntime: Shutting down VM

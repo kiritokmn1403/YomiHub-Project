@@ -1,0 +1,3 @@
+m2k3a.json https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/index.json
+kodj.json https://kodjodevf.github.io/mangayomi-extensions/index.json
+kodj2.json https://raw.githubusercontent.com/kodjodevf/mangayomi-extensions/main/index.json

@@ -1,0 +1,421 @@
+--------- beginning of main
+10-25 22:53:22.201  3852  3852 I libprocessgroup: Created cgroup /sys/fs/cgroup/apps/uid_10235
+10-25 22:53:22.202  3852  3852 I libprocessgroup: Created cgroup /sys/fs/cgroup/apps/uid_10235/pid_3852
+10-25 22:53:22.204  3852  3852 I Zygote  : Process 3852 created for com.yomihub.app
+10-25 22:53:22.204  3852  3852 I com.yomihub.app: Using generational CollectorTypeCMC GC.
+10-25 22:53:22.205  3852  3852 W com.yomihub.app: Unexpected CPU variant for x86: x86_64.
+10-25 22:53:22.205  3852  3852 W com.yomihub.app: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, pantherlake, default
+10-25 22:53:22.251  3852  3852 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-25 22:53:22.274  3852  3852 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-25 22:53:22.274  3852  3852 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-25 22:53:22.291  3852  3852 D nativeloader: Configuring clns-9 for other apk /data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/lib/x86_64:/data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.yomihub.app
+10-25 22:53:22.367  3852  3852 V GraphicsEnvironment: Currently set values for:
+10-25 22:53:22.367  3852  3852 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-25 22:53:22.367  3852  3852 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-25 22:53:22.367  3852  3852 V GraphicsEnvironment: com.yomihub.app is not listed in per-application setting
+10-25 22:53:22.367  3852  3852 V GraphicsEnvironment: No special selections for ANGLE, returning default driver choice
+10-25 22:53:22.406  3852  3852 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+--------- beginning of system
+10-25 22:53:22.662  3852  3872 I DisplayManager: Choreographer implicitly registered for the refresh rate.
+10-25 22:53:22.697  3852  3852 D DesktopExperienceFlags: Toggle override initialized to: false
+10-25 22:53:22.736  3852  3872 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv1_CM_emulation.so
+10-25 22:53:22.737  3852  3872 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv2_emulation.so
+10-25 22:53:22.738  3852  3852 D CompatChangeReporter: Compat change id reported: 377864165; UID 10235; state: ENABLED
+10-25 22:53:22.742  3852  3872 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+10-25 22:53:22.747  3852  3872 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-25 22:53:24.236  3852  3876 D nativeloader: Load /data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/lib/x86_64/libflutter.so using class loader ns clns-9 (caller=/data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/base.apk!classes3.dex): ok
+10-25 22:53:24.883  3852  3905 D skia    : [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+10-25 22:53:24.994  3852  3852 W com.yomihub.app: type=1400 audit(0.0:30): avc:  denied  { read } for  name="max_map_count" dev="proc" ino=20458 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:proc_max_map_count:s0 tclass=file permissive=0 app=com.yomihub.app
+10-25 22:53:25.019  3852  3910 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+10-25 22:53:25.088  3852  3910 I flutter : [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+10-25 22:53:25.090  3852  3911 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+10-25 22:53:25.366  3852  3852 I TextToSpeech: Sucessfully bound to com.google.android.tts
+10-25 22:53:25.768  3852  3852 D nativeloader: Load /data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/lib/x86_64/libdartjni.so using class loader ns clns-9 (caller=/data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/base.apk!classes3.dex): ok
+10-25 22:53:26.333  3852  3852 D nativeloader: Load /data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/lib/x86_64/libmpv.so using class loader ns clns-9 (caller=/data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/base.apk!classes3.dex): ok
+10-25 22:53:26.333  3852  3852 I media_kit: package:media_kit_libs_android_video attached.
+10-25 22:53:26.375  3852  3852 D nativeloader: Load /data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/lib/x86_64/libmediakitandroidhelper.so using class loader ns clns-9 (caller=/data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/base.apk!classes3.dex): ok
+10-25 22:53:26.389  3852  3852 D media_kit: google
+10-25 22:53:26.389  3852  3852 D media_kit: emu64xa
+10-25 22:53:26.389  3852  3852 D media_kit: google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.019/15611780:user/release-keys
+10-25 22:53:26.389  3852  3852 D media_kit: ranchu
+10-25 22:53:26.389  3852  3852 D media_kit: sdk_gphone64_x86_64
+10-25 22:53:26.389  3852  3852 D media_kit: Google
+10-25 22:53:26.389  3852  3852 D media_kit: sdk_gphone64_x86_64
+10-25 22:53:26.389  3852  3852 I media_kit: Saved application context.
+10-25 22:53:26.445  3852  3852 D nativeloader: Load /data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/lib/x86_64/libopvpnutil.so using class loader ns clns-9 (caller=/data/app/~~I8HYU_GOFVMvpuF67NucJA==/com.yomihub.app-f9Ql_F9Wl8n6SB1hsKuNWA==/base.apk!classes3.dex): ok
+10-25 22:53:26.473  3852  3852 W HWUI    : Unknown dataspace 0
+10-25 22:53:26.486  3852  3929 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+10-25 22:53:28.282  3852  3852 I Choreographer: Skipped 107 frames!  The application may be doing too much work on its main thread.
+10-25 22:53:28.282  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@fa01cb5
+10-25 22:53:28.296  3852  3852 I WindowExtensionsImpl: Initializing Window Extensions, vendor API level=10, activity embedding enabled=true
+10-25 22:53:28.299  3852  3852 W UiContextUtils: Requested context is a non-UI Context. Creating a UI-Context with display: 0. Context: Context=android.app.Application@299d914, of which baseContext=android.app.ContextImpl@e95a184
+10-25 22:53:28.302  3852  3852 D VRI[MainActivity]: WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+10-25 22:53:28.310  3852  3852 I Surface : Creating surface for consumer unnamed-3852-0 with slotExpansion=1 for 64 slots
+10-25 22:53:28.311  3852  3852 I Surface : Creating surface for consumer VRI[MainActivity]#0(BLAST Consumer)0 with slotExpansion=1 for 64 slots
+10-25 22:53:28.403  3852  3852 I Surface : Creating surface for consumer unnamed-3852-1 with slotExpansion=1 for 64 slots
+10-25 22:53:28.403  3852  3852 I Surface : Creating surface for consumer 4fd11ee SurfaceView[com.yomihub.app/com.kodjodevf.mangayomi.MainActivity]#1(BLAST Consumer)1 with slotExpansion=1 for 64 slots
+10-25 22:53:29.223  3852  3935 I HWUI    : Using FreeType backend (prop=Auto)
+10-25 22:53:29.293  3852  3852 I flutter : IsarCore using libmdbx: v0.13.8-temp-upstream-fix
+10-25 22:53:29.351  3852  3852 I Choreographer: Skipped 62 frames!  The application may be doing too much work on its main thread.
+10-25 22:53:29.353  3852  3852 D WindowLayoutComponentImpl: Register WindowLayoutInfoListener on Context=com.kodjodevf.mangayomi.MainActivity@10d9d1c, of which baseContext=android.app.ContextImpl@7511720
+10-25 22:53:29.380  3852  3939 D ProfileInstaller: Installing profile for com.yomihub.app
+10-25 22:53:29.426  3852  3852 W isarworker: type=1400 audit(0.0:31): avc:  denied  { getattr } for  path="/mnt/vm" dev="tmpfs" ino=1 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:vm_data_file:s0 tclass=dir permissive=0 app=com.yomihub.app
+10-25 22:53:29.426  3852  3852 W isarworker: type=1400 audit(0.0:32): avc:  denied  { getattr } for  path="/metadata" dev="vdd1" ino=2 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:metadata_file:s0 tclass=dir permissive=0 app=com.yomihub.app
+10-25 22:53:29.426  3852  3852 W isarworker: type=1400 audit(0.0:33): avc:  denied  { getattr } for  path="/system_dlkm" dev="dm-4" ino=38 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:system_dlkm_file:s0 tclass=dir permissive=0 app=com.yomihub.app
+10-25 22:53:29.426  3852  3852 W isarworker: type=1400 audit(0.0:34): avc:  denied  { getattr } for  path="/linkerconfig" dev="tmpfs" ino=2 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:linkerconfig_file:s0 tclass=dir permissive=0 app=com.yomihub.app
+10-25 22:53:29.426  3852  3852 W isarworker: type=1400 audit(0.0:35): avc:  denied  { getattr } for  path="/linkerconfig" dev="tmpfs" ino=2 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:linkerconfig_file:s0 tclass=dir permissive=0 app=com.yomihub.app
+10-25 22:53:30.381  3852  3852 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-25 22:53:32.103  3852  3852 I Choreographer: Skipped 35 frames!  The application may be doing too much work on its main thread.
+10-25 22:53:32.129  3852  3852 I flutter : [LocalLibraryScanner] _scanDirectory start: name=local, path=/storage/emulated/0/YomiHub/local, platform=android, platformVersion=CE2A.260420.019, configuredFolders=1
+10-25 22:53:32.129  3852  3852 I flutter : [LocalLibraryScanner] configured local folders: name=local, path=/storage/emulated/0/YomiHub/local
+10-25 22:53:32.191  3852  3852 I flutter : [LocalLibraryScanner] _scanDirectory directory probe [initial]: path=/storage/emulated/0/YomiHub/local, absolutePath=/storage/emulated/0/YomiHub/local, normalizedPath=/storage/emulated/0/YomiHub/local, parent=/storage/emulated/0/YomiHub, exists=false, parentExists=false, statType=notFound, statMode=---------, modified=1970-01-01T00:00:00.000Z
+10-25 22:53:32.789  3852  3864 I TextToSpeech: Connected to TTS engine
+10-25 22:53:33.148  3852  3967 I TextToSpeech: Setting up the connection to TTS engine...
+10-25 22:53:54.164  3852  3852 D ViewRootImpl: Skipping stats log for color mode
+10-25 22:53:54.192  3852  3852 I Surface : Creating surface for consumer unnamed-3852-2 with slotExpansion=1 for 64 slots
+10-25 22:53:54.193  3852  3852 I Surface : Creating surface for consumer VRI[MainActivity]#2(BLAST Consumer)2 with slotExpansion=1 for 64 slots
+10-25 22:53:54.196  3852  3872 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+10-25 22:53:54.197  3852  3852 I Surface : Creating surface for consumer unnamed-3852-3 with slotExpansion=1 for 64 slots
+10-25 22:53:54.198  3852  3852 I Surface : Creating surface for consumer 4fd11ee SurfaceView[com.yomihub.app/com.kodjodevf.mangayomi.MainActivity]#3(BLAST Consumer)3 with slotExpansion=1 for 64 slots
+10-25 22:53:54.201  3852  3872 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-25 22:53:54.656  3852  3852 D InsetsController: hide(ime())
+10-25 22:53:54.657  3852  3852 I ImeTracker: com.yomihub.app:7c3d8329: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-25 22:54:39.445  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): androidx.activity.OnBackPressedDispatcher$Api34Impl$createOnBackAnimationCallback$1@c6c2e7d
+10-25 22:56:36.483  3852  3852 I ImeTracker: com.yomihub.app:ef31d481: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+10-25 22:56:36.491  3852  3852 D InsetsController: show(ime())
+10-25 22:56:36.491  3852  3852 D InsetsController: Setting requestedVisibleTypes to 511 (was 503)
+10-25 22:56:36.536  3852  3852 I ImeTracker: com.yomihub.app:cf41c9ba: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+10-25 22:56:36.536  3852  3852 D InsetsController: show(ime())
+10-25 22:56:36.536  3852  3852 I ImeTracker: com.yomihub.app:cf41c9ba: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+10-25 22:56:36.638  3852  3852 I AssistStructure: Flattened final assist data: 420 bytes, containing 1 windows, 3 views
+10-25 22:56:37.546  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@635c208
+10-25 22:56:39.157  3852  3852 D VRI[MainActivity]: WindowInsets changed: ime:[0,0,0,883] 
+10-25 22:56:39.168  3852  3852 W InteractionJankMonitor: Initializing without READ_DEVICE_CONFIG permission. enabled=false, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=com.yomihub.app
+10-25 22:56:39.515  3852  3852 I ImeTracker: com.yomihub.app:ef31d481: onShown
+10-25 22:57:10.450  3852  3852 I ImeTracker: com.yomihub.app:fa95c734: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+10-25 22:57:10.451  3852  3852 D InsetsController: hide(ime())
+10-25 22:57:10.451  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): androidx.activity.OnBackPressedDispatcher$Api34Impl$createOnBackAnimationCallback$1@c6c2e7d
+10-25 22:57:10.451  3852  3852 D InsetsController: Setting requestedVisibleTypes to 503 (was 511)
+10-25 22:57:10.453  3852  3852 D CompatChangeReporter: Compat change id reported: 395521150; UID 10235; state: ENABLED
+10-25 22:57:10.455  3852  3852 D VRI[MainActivity]: WindowInsets changed: ime:null 
+10-25 22:57:10.736  3852  3852 I ImeTracker: system_server:4b261cdc: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+10-25 22:57:58.205  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@fa01cb5
+10-25 22:58:22.582  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): androidx.activity.OnBackPressedDispatcher$Api34Impl$createOnBackAnimationCallback$1@c6c2e7d
+10-25 22:58:47.484  3852  3852 D FilePickerUtils: Custom file types are [mp4, mov, avi, flv, wmv, mpeg, mkv]. The mime types were detected as [video/mp4, video/quicktime, video/avi, video/x-flv, video/x-ms-wmv, video/mpeg, video/x-matroska].
+10-25 22:58:48.299  3852  3852 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-25 22:58:49.888  3852  3852 I AutofillManager: onInvisibleForAutofill(): expiringResponse
+10-25 22:58:49.891  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@fa01cb5
+10-25 22:58:49.954  3852  5010 I com.yomihub.app: Explicit concurrent mark compact GC freed 2457KB AllocSpace bytes, 3(60KB) LOS objects, 24% free, 3430KB/4573KB, paused 225us,2.920ms total 30.052ms
+10-25 22:58:49.954  3852  3858 I com.yomihub.app: WaitForGcToComplete blocked CollectorTransition on Explicit for 23.003ms
+10-25 22:58:49.980  3852  5011 I com.yomihub.app: Explicit concurrent mark compact GC freed 192KB AllocSpace bytes, 0(0B) LOS objects, 24% free, 3334KB/4445KB, paused 109us,6.579ms total 24.466ms
+10-25 22:58:50.009  3852  5010 I com.yomihub.app: Explicit concurrent mark compact GC freed 204KB AllocSpace bytes, 0(0B) LOS objects, 24% free, 3290KB/4386KB, paused 243us,1.051ms total 26.704ms
+10-25 22:59:05.122  3852  3852 D ViewRootImpl: Skipping stats log for color mode
+10-25 22:59:05.125  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): androidx.activity.OnBackPressedDispatcher$Api34Impl$createOnBackAnimationCallback$1@c6c2e7d
+10-25 22:59:05.136  3852  3852 I Surface : Creating surface for consumer unnamed-3852-4 with slotExpansion=1 for 64 slots
+10-25 22:59:05.137  3852  3852 I Surface : Creating surface for consumer VRI[MainActivity]#4(BLAST Consumer)4 with slotExpansion=1 for 64 slots
+10-25 22:59:05.156  3852  3852 I Surface : Creating surface for consumer unnamed-3852-5 with slotExpansion=1 for 64 slots
+10-25 22:59:05.157  3852  3852 I Surface : Creating surface for consumer 4fd11ee SurfaceView[com.yomihub.app/com.kodjodevf.mangayomi.MainActivity]#5(BLAST Consumer)5 with slotExpansion=1 for 64 slots
+10-25 22:59:05.446  3852  3852 D InsetsController: hide(ime())
+10-25 22:59:05.446  3852  3852 I ImeTracker: com.yomihub.app:d50ba04c: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-25 22:59:06.327  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@fa01cb5
+10-25 22:59:06.714  3852  3852 W com.yomihub.app: type=1400 audit(0.0:41): avc:  denied  { search } for  name="/" dev="cgroup2" ino=1 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:cgroup_v2:s0 tclass=dir permissive=0 app=com.yomihub.app
+10-25 22:59:06.714  3852  3852 W com.yomihub.app: type=1400 audit(0.0:42): avc:  denied  { search } for  name="/" dev="cgroup2" ino=1 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:cgroup_v2:s0 tclass=dir permissive=0 app=com.yomihub.app
+10-25 22:59:06.786  3852  3852 W com.yomihub.app: type=1400 audit(0.0:43): avc:  denied  { search } for  name="/" dev="cgroup" ino=1 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:cgroup:s0 tclass=dir permissive=0 app=com.yomihub.app
+10-25 22:59:19.174  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): androidx.activity.OnBackPressedDispatcher$Api34Impl$createOnBackAnimationCallback$1@c6c2e7d
+10-25 22:59:47.227  3852  3852 D InsetsController: Setting requestedVisibleTypes to 496 (was 503)
+10-25 22:59:47.229  3852  3852 D VRI[MainActivity]: WindowInsets changed: statusBars:null navigationBars:null 
+10-25 22:59:50.786  3852  3852 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-25 22:59:50.979  3852  3852 I AutofillManager: onInvisibleForAutofill(): expiringResponse
+10-25 22:59:50.980  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@fa01cb5
+10-25 22:59:51.396  3852  5166 I com.yomihub.app: Explicit concurrent mark compact GC freed 1021KB AllocSpace bytes, 3(60KB) LOS objects, 24% free, 3306KB/4408KB, paused 70us,403us total 410.256ms
+10-25 22:59:51.397  3852  3858 I com.yomihub.app: WaitForGcToComplete blocked CollectorTransition on Explicit for 147.153ms
+10-25 22:59:51.482  3852  5170 I com.yomihub.app: Explicit concurrent mark compact GC freed 144KB AllocSpace bytes, 0(0B) LOS objects, 24% free, 3290KB/4386KB, paused 59us,651us total 84.189ms
+10-25 22:59:51.493  3852  5166 I com.yomihub.app: Explicit concurrent mark compact GC freed 128KB AllocSpace bytes, 0(0B) LOS objects, 24% free, 3290KB/4386KB, paused 125us,393us total 10.768ms
+10-25 23:00:04.128  3852  3852 D ViewRootImpl: Skipping stats log for color mode
+10-25 23:00:04.129  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): androidx.activity.OnBackPressedDispatcher$Api34Impl$createOnBackAnimationCallback$1@c6c2e7d
+10-25 23:00:04.143  3852  3852 I Surface : Creating surface for consumer unnamed-3852-6 with slotExpansion=1 for 64 slots
+10-25 23:00:04.144  3852  3852 I Surface : Creating surface for consumer VRI[MainActivity]#6(BLAST Consumer)6 with slotExpansion=1 for 64 slots
+10-25 23:00:04.147  3852  3852 I Surface : Creating surface for consumer unnamed-3852-7 with slotExpansion=1 for 64 slots
+10-25 23:00:04.147  3852  3852 I Surface : Creating surface for consumer 4fd11ee SurfaceView[com.yomihub.app/com.kodjodevf.mangayomi.MainActivity]#7(BLAST Consumer)7 with slotExpansion=1 for 64 slots
+10-25 23:00:04.872  3852  3852 I VideoOutputManager: com.alexmercerind.media_kit_video.VideoOutputManager.create: 133396861837216
+10-25 23:00:04.872  3852  3852 I VideoOutput: onSurfaceAvailable
+10-25 23:00:04.872  3852  3852 I Surface : Creating surface for consumer unnamed-3852-8 with slotExpansion=1 for 64 slots
+10-25 23:00:04.878  3852  3852 I Surface : Creating surface for consumer ImageReader-1x1f22m7-3852-0 with slotExpansion=1 for 64 slots
+10-25 23:00:04.878  3852  3852 I VideoOutput: newGlobalRef: object = Surface(name=null mNativeObject=133391224283360)/@0x3a4ab02
+10-25 23:00:04.879  3852  3852 I flutter : VideoOutput.Resize
+10-25 23:00:04.879  3852  3852 I flutter : {rect: {top: 0, left: 0, width: 1, height: 1}, wid: 15014, handle: 133396861837216, id: 0}
+10-25 23:00:06.354  3852  5198 I MediaCodec: Retry enabled for HDCP failure
+10-25 23:00:06.476  3852  5198 I ApexCodecsLazy: ApexCodecs loaded
+10-25 23:00:06.477  3852  5198 I Codec2Client: Available Codec2 services: "default" "software" "__ApexCodecs__"
+10-25 23:00:06.480  3852  5198 W com.yomihub.app: Failed to query component store for system resources: 6
+10-25 23:00:06.506  3852  5233 D CCodec  : allocate(c2.goldfish.h264.decoder)
+10-25 23:00:06.509  3852  5233 I CCodec  : setting up 'default' as default (vendor) store
+10-25 23:00:06.525  3852  5233 I CCodec  : Created component [c2.goldfish.h264.decoder] for [c2.goldfish.h264.decoder]
+10-25 23:00:06.537  3852  5233 D CCodecConfig: read media type: video/avc
+10-25 23:00:06.538  3852  5233 D ReflectedParamUpdater: ignored struct field coded.color-format.locations
+10-25 23:00:06.539  3852  5233 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.max-count.values
+10-25 23:00:06.539  3852  5233 D ReflectedParamUpdater: extent() != 1 for single value type: output.subscribed-indices.values
+10-25 23:00:06.539  3852  5233 D ReflectedParamUpdater: extent() != 1 for single value type: input.buffers.allocator-ids.values
+10-25 23:00:06.539  3852  5233 D ReflectedParamUpdater: extent() != 1 for single value type: output.buffers.allocator-ids.values
+10-25 23:00:06.539  3852  5233 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.allocator-ids.values
+10-25 23:00:06.539  3852  5233 D ReflectedParamUpdater: extent() != 1 for single value type: output.buffers.pool-ids.values
+10-25 23:00:06.539  3852  5233 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.pool-ids.values
+10-25 23:00:06.539  3852  5233 D CCodecConfig: ignoring local param raw.size (0xd2001800) as it is already supported
+10-25 23:00:06.540  3852  5233 D CCodecConfig: ignoring local param default.color (0x5200180b) as it is already supported
+10-25 23:00:06.540  3852  5233 D ReflectedParamUpdater: ignored struct field raw.hdr-static-info.mastering
+10-25 23:00:06.540  3852  5233 I CCodecConfig: query failed after returning 14 values (BAD_INDEX)
+10-25 23:00:06.541  3852  5233 D CCodecConfig: c2 config diff is Dict {
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 coded.pl.level = 20496
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 coded.pl.profile = 20481
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 coded.vui.color.matrix = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 coded.vui.color.primaries = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 coded.vui.color.range = 2
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 coded.vui.color.transfer = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 default.color.matrix = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 default.color.primaries = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 default.color.range = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 default.color.transfer = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 input.buffers.max-size.value = 6291456
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 input.delay.value = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   Buffer input.hdr10-plus-info.value = {
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   }
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   string input.media-type.value = "video/avc"
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 output.delay.value = 8
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   Buffer output.hdr10-plus-info.value = {
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   }
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   string output.media-type.value = "video/raw"
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 raw.color.matrix = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 raw.color.primaries = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 raw.color.range = 2
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 raw.color.transfer = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 raw.max-size.height = 240
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 raw.max-size.width = 320
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 raw.pixel-format.value = 35
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::i32 raw.rotation.flip = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::i32 raw.rotation.value = 0
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2::u32 raw.sar.height = 1
+10-25 23:00:06.541  3852  5233 D CCodecConfig:   c2:
+10-25 23:00:06.541  3852  5233 W ColorUtils: expected specified color aspects (2:0:0:0)
+10-25 23:00:06.604  3852  5198 I MediaCodec: media_quality service unavailable, skipping updatePictureProfile
+10-25 23:00:06.604  3852  5233 D CCodec  : [c2.goldfish.h264.decoder] buffers are bound to CCodec for this session
+10-25 23:00:06.605  3852  5233 D CCodec  : Client requested ByteBuffer mode decoder w/o color format set: using default planar color format
+10-25 23:00:06.605  3852  5233 D CCodecConfig: no c2 equivalents for csd-1
+10-25 23:00:06.605  3852  5233 D CCodecConfig: no c2 equivalents for flags
+10-25 23:00:06.605  3852  5233 D CCodecConfig: c2 config diff is   c2::u32 raw.size.height = 360
+10-25 23:00:06.605  3852  5233 D CCodecConfig:   c2::u32 raw.size.width = 640
+10-25 23:00:06.606  3852  5233 W ColorUtils: expected specified color aspects (2:0:0:0)
+10-25 23:00:06.606  3852  5233 D CCodec  : encoding statistics level = 0
+10-25 23:00:06.606  3852  5233 D CCodec  : setup formats input: AMessage(what = 0x00000000) = {
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t height = 360
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t level = 65536
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t max-input-size = 6291456
+10-25 23:00:06.606  3852  5233 D CCodec  :   string mime = "video/avc"
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t profile = 65536
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t width = 640
+10-25 23:00:06.606  3852  5233 D CCodec  :   Rect crop(0, 0, 639, 359)
+10-25 23:00:06.606  3852  5233 D CCodec  : }
+10-25 23:00:06.606  3852  5233 D CCodec  : setup formats output: AMessage(what = 0x00000000) = {
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t android._color-format = 2135033992
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t android._video-scaling = 1
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t rotation-degrees = 0
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t color-standard = 0
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t color-range = 2
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t color-transfer = 0
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t sar-height = 1
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t sar-width = 1
+10-25 23:00:06.606  3852  5233 D CCodec  :   Rect crop(0, 0, 639, 359)
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t width = 640
+10-25 23:00:06.606  3852  5233 D CCodec  :   Buffer hdr10-plus-info = {
+10-25 23:00:06.606  3852  5233 D CCodec  :   }
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t height = 360
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t max-height = 240
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t max-width = 320
+10-25 23:00:06.606  3852  5233 D CCodec  :   string mime = "video/raw"
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t android._dataspace = 268435456
+10-25 23:00:06.606  3852  5233 D CCodec  :   int32_t color-format = 19
+10-25 23:00:06.606  3852  5233 D CCodec  : }
+10-25 23:00:06.607  3852  5233 I CCodecConfig: query failed after returning 14 values (BAD_INDEX)
+10-25 23:00:06.607  3852  5233 D CCodecConfig: c2 config diff is   c2::u32 raw.max-size.height = 360
+10-25 23:00:06.607  3852  5233 D CCodecConfig:   c2::u32 raw.max-size.width = 640
+10-25 23:00:06.607  3852  5233 W ColorUtils: expected specified color aspects (2:0:0:0)
+10-25 23:00:06.607  3852  5233 E com.yomihub.app: Failed to query component interface for required system resources: 6
+10-25 23:00:06.652  3852  5233 D C2Store : Using DMABUF Heaps
+10-25 23:00:06.652  3852  5233 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] Created input block pool with allocatorID 16 => poolID 17 - OK (0)
+10-25 23:00:06.653  3852  5233 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] Configured output block pool ids 1 => OK
+10-25 23:00:06.751  3852  5223 W com.yomihub.app: AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+10-25 23:00:06.943  3852  5223 I CCodecConfig: query failed after returning 14 values (BAD_INDEX)
+10-25 23:00:06.983  3852  5233 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] flushed work; ignored.
+10-25 23:00:06.983  3852  5233 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] Discard frames from previous generation.
+10-25 23:00:07.030  3852  5223 I CCodecConfig: query failed after returning 14 values (BAD_INDEX)
+10-25 23:00:07.032  3852  3862 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] Ignoring stale input buffer done callback: last flush index = 3, frameIndex = 2
+10-25 23:00:07.032  3852  5233 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] Discard frames from previous generation.
+10-25 23:00:07.193  3852  3852 I Choreographer: Skipped 32 frames!  The application may be doing too much work on its main thread.
+10-25 23:00:07.591  3852  5233 D CCodecConfig: c2 config diff is   c2::u32 raw.crop.height = 360
+10-25 23:00:07.591  3852  5233 D CCodecConfig:   c2::u32 raw.crop.left = 0
+10-25 23:00:07.591  3852  5233 D CCodecConfig:   c2::u32 raw.crop.top = 0
+10-25 23:00:07.591  3852  5233 D CCodecConfig:   c2::u32 raw.crop.width = 640
+10-25 23:00:07.591  3852  5233 W ColorUtils: expected specified color aspects (2:0:0:0)
+10-25 23:00:07.592  3852  5233 D CCodecBuffers: [c2.goldfish.h264.decoder#869:2D-BB-Output] updating image-data
+10-25 23:00:07.592  3852  5233 D CCodecBuffers: [c2.goldfish.h264.decoder#869:2D-BB-Output] updating stride = 640, width: 640, height: 360
+10-25 23:00:07.592  3852  5233 D CCodecBuffers: [c2.goldfish.h264.decoder#869:2D-BB-Output] updating vstride = 360
+10-25 23:00:07.643  3852  3852 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-25 23:00:07.721  3852  3963 I HWUI    : Davey! duration=717ms; Flags=0, FrameTimelineVsyncId=25749, IntendedVsync=605450791848, Vsync=605984125128, InputEventId=0, HandleInputStart=605989246989, AnimationStart=605989249682, PerformTraversalsStart=605989454270, DrawStart=605989548460, FrameDeadline=605550786298, FrameStartTime=605989089507, FrameInterval=16666665, WorkloadTarget=16666666, AnimationTime=605984125128, SyncQueued=605989597444, SyncStart=606012361210, IssueDrawCommandsStart=606012572185, SwapBuffers=606178244843, FrameCompleted=606191113599, DequeueBufferDuration=6125, QueueBufferDuration=3267278, GpuCompleted=606191013221, SwapBuffersCompleted=606191113599, DisplayPresentTime=0, CommandSubmissionCompleted=606178244843, 
+10-25 23:00:07.913  3852  3852 I AutofillManager: onInvisibleForAutofill(): expiringResponse
+10-25 23:00:07.913  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@fa01cb5
+10-25 23:00:07.982  3852  3852 I VideoOutputManager: com.alexmercerind.media_kit_video.VideoOutputManager.setSurfaceSize: 133396861837216 640 360
+10-25 23:00:07.982  3852  3852 I VideoOutput: onSurfaceAvailable
+10-25 23:00:07.982  3852  3852 I Surface : Creating surface for consumer unnamed-3852-9 with slotExpansion=1 for 64 slots
+10-25 23:00:07.982  3852  3852 I Surface : Creating surface for consumer ImageReader-640x360f22m7-3852-1 with slotExpansion=1 for 64 slots
+10-25 23:00:07.982  3852  3852 I VideoOutput: newGlobalRef: object = Surface(name=null mNativeObject=133391225153504)/@0x7974a61
+10-25 23:00:07.983  3852  3852 I flutter : VideoOutput.Resize
+10-25 23:00:07.983  3852  3852 I flutter : {rect: {top: 0, left: 0, width: 640, height: 360}, wid: 13550, handle: 133396861837216, id: 0}
+10-25 23:00:07.989  3852  5223 I CCodecConfig: query failed after returning 14 values (BAD_INDEX)
+10-25 23:00:08.094  3852  5223 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] MediaCodec discarded an unknown buffer
+10-25 23:00:08.094  3852  5223 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] MediaCodec discarded an unknown buffer
+10-25 23:00:08.094  3852  5223 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] MediaCodec discarded an unknown buffer
+10-25 23:00:08.094  3852  5223 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] MediaCodec discarded an unknown buffer
+10-25 23:00:08.098  3852  5241 D CCodec  : hold CodecLooper(1) until release
+10-25 23:00:08.103  3852  5242 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+10-25 23:00:08.125  3852  5242 E GFXSTREAM: [egl.cpp(1722)] tid 5242: error 0x3004 (EGL_BAD_ATTRIBUTE)
+10-25 23:00:08.206  3852  5242 I Surface : Creating surface for consumer unnamed-3852-10 with slotExpansion=1 for 64 slots
+10-25 23:00:08.207  3852  3852 I MediaCodec: Retry enabled for HDCP failure
+10-25 23:00:08.209  3852  3852 W com.yomihub.app: Failed to query component store for system resources: 6
+10-25 23:00:08.213  3852  5245 D CCodec  : allocate(c2.goldfish.h264.decoder)
+10-25 23:00:08.217  3852  5245 I CCodec  : setting up 'default' as default (vendor) store
+10-25 23:00:08.218  3852  5245 W com.yomihub.app: AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+10-25 23:00:08.218  3852  5245 I CCodec  : Created component [c2.goldfish.h264.decoder] for [c2.goldfish.h264.decoder]
+10-25 23:00:08.218  3852  5245 D CCodecConfig: read media type: video/avc
+10-25 23:00:08.218  3852  5245 D ReflectedParamUpdater: ignored struct field coded.color-format.locations
+10-25 23:00:08.218  3852  5245 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.max-count.values
+10-25 23:00:08.219  3852  5245 D ReflectedParamUpdater: extent() != 1 for single value type: output.subscribed-indices.values
+10-25 23:00:08.219  3852  5245 D ReflectedParamUpdater: extent() != 1 for single value type: input.buffers.allocator-ids.values
+10-25 23:00:08.219  3852  5245 D ReflectedParamUpdater: extent() != 1 for single value type: output.buffers.allocator-ids.values
+10-25 23:00:08.219  3852  5245 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.allocator-ids.values
+10-25 23:00:08.219  3852  5245 D ReflectedParamUpdater: extent() != 1 for single value type: output.buffers.pool-ids.values
+10-25 23:00:08.219  3852  5245 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.pool-ids.values
+10-25 23:00:08.219  3852  5245 D CCodecConfig: ignoring local param raw.size (0xd2001800) as it is already supported
+10-25 23:00:08.219  3852  5245 D CCodecConfig: ignoring local param default.color (0x5200180b) as it is already supported
+10-25 23:00:08.219  3852  5245 D ReflectedParamUpdater: ignored struct field raw.hdr-static-info.mastering
+10-25 23:00:08.219  3852  5245 I CCodecConfig: query failed after returning 14 values (BAD_INDEX)
+10-25 23:00:08.219  3852  5245 D CCodecConfig: c2 config diff is Dict {
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 coded.pl.level = 20496
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 coded.pl.profile = 20481
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 coded.vui.color.matrix = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 coded.vui.color.primaries = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 coded.vui.color.range = 2
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 coded.vui.color.transfer = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 default.color.matrix = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 default.color.primaries = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 default.color.range = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 default.color.transfer = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 input.buffers.max-size.value = 6291456
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 input.delay.value = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   Buffer input.hdr10-plus-info.value = {
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   }
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   string input.media-type.value = "video/avc"
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 output.delay.value = 8
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   Buffer output.hdr10-plus-info.value = {
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   }
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   string output.media-type.value = "video/raw"
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 raw.color.matrix = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 raw.color.primaries = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 raw.color.range = 2
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 raw.color.transfer = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 raw.max-size.height = 240
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 raw.max-size.width = 320
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 raw.pixel-format.value = 35
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::i32 raw.rotation.flip = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::i32 raw.rotation.value = 0
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2::u32 raw.sar.height = 1
+10-25 23:00:08.219  3852  5245 D CCodecConfig:   c2:
+10-25 23:00:08.219  3852  5245 W ColorUtils: expected specified color aspects (2:0:0:0)
+10-25 23:00:08.220  3852  3852 I Surface : Creating surface for consumer ImageReader-16x16f22u256m5-3852-0 with slotExpansion=1 for 64 slots
+10-25 23:00:08.220  3852  3852 I MediaCodec: media_quality service unavailable, skipping updatePictureProfile
+10-25 23:00:08.220  3852  5244 D SurfaceUtils: connecting to surface 0x7951908ca4b0, reason connectToSurface
+10-25 23:00:08.220  3852  5244 I MediaCodec: [c2.goldfish.h264.decoder] setting surface generation to 3944449
+10-25 23:00:08.220  3852  5244 D SurfaceUtils: disconnecting from surface 0x7951908ca4b0, reason connectToSurface(reconnect)
+10-25 23:00:08.220  3852  5244 D SurfaceUtils: connecting to surface 0x7951908ca4a0, reason connectToSurface(reconnect-with-listener)
+10-25 23:00:08.233  3852  5245 D CCodec  : [c2.goldfish.h264.decoder] buffers are bound to CCodec for this session
+10-25 23:00:08.233  3852  5245 D CCodecConfig: no c2 equivalents for csd-1
+10-25 23:00:08.233  3852  5245 D CCodecConfig: no c2 equivalents for native-window
+10-25 23:00:08.233  3852  5245 D CCodecConfig: no c2 equivalents for native-window-generation
+10-25 23:00:08.233  3852  5245 D CCodecConfig: no c2 equivalents for flags
+10-25 23:00:08.233  3852  5245 D CCodecConfig: config failed => CORRUPTED
+10-25 23:00:08.233  3852  5245 D CCodecConfig: c2 config diff is   c2::u32 raw.size.height = 360
+10-25 23:00:08.233  3852  5245 D CCodecConfig:   c2::u32 raw.size.width = 640
+10-25 23:00:08.233  3852  5245 D CCodec  : encoding statistics level = 0
+10-25 23:00:08.233  3852  5245 D CCodec  : setup formats input: AMessage(what = 0x00000000) = {
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t height = 360
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t level = 65536
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t max-input-size = 6291456
+10-25 23:00:08.233  3852  5245 D CCodec  :   string mime = "video/avc"
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t profile = 65536
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t width = 640
+10-25 23:00:08.233  3852  5245 D CCodec  :   Rect crop(0, 0, 639, 359)
+10-25 23:00:08.233  3852  5245 D CCodec  : }
+10-25 23:00:08.233  3852  5245 D CCodec  : setup formats output: AMessage(what = 0x00000000) = {
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t android._color-format = 2135033992
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t android._video-scaling = 1
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t rotation-degrees = 0
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t color-standard = 4
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t color-range = 2
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t color-transfer = 3
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t sar-height = 1
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t sar-width = 1
+10-25 23:00:08.233  3852  5245 D CCodec  :   Rect crop(0, 0, 639, 359)
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t width = 640
+10-25 23:00:08.233  3852  5245 D CCodec  :   Buffer hdr10-plus-info = {
+10-25 23:00:08.233  3852  5245 D CCodec  :   }
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t height = 360
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t max-height = 240
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t max-width = 320
+10-25 23:00:08.233  3852  5245 D CCodec  :   string mime = "video/raw"
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t android._dataspace = 259
+10-25 23:00:08.233  3852  5245 D CCodec  :   int32_t color-format = 2130708361
+10-25 23:00:08.233  3852  5245 D CCodec  : }
+10-25 23:00:08.233  3852  5245 I CCodecConfig: query failed after returning 14 values (BAD_INDEX)
+10-25 23:00:08.233  3852  5245 D CCodecConfig: c2 config diff is   c2::u32 raw.max-size.height = 360
+10-25 23:00:08.233  3852  5245 D CCodecConfig:   c2::u32 raw.max-size.width = 640
+10-25 23:00:08.233  3852  5245 E com.yomihub.app: Failed to query component interface for required system resources: 6
+10-25 23:00:08.234  3852  5245 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] Created input block pool with allocatorID 16 => poolID 18 - OK (0)
+10-25 23:00:08.234  3852  5245 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] Query output surface allocator returned 0 params => BAD_INDEX (6)
+10-25 23:00:08.235  3852  5245 D Codec2Client: GraphicBufferAllocator created
+10-25 23:00:08.235  3852  5245 I CCodecBufferChannel: [c2.goldfish.h264.decoder#869] Created output block pool with allocatorID 18 => poolID 17 - OK
+10-25 23:00:08.235  3852  5245 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] Configured output block pool ids 17 => OK
+10-25 23:00:08.235  3852  5245 D Codec2Client: setOutputSurface -- failed to set consumer usage (6/BAD_INDEX)
+10-25 23:00:08.236  3852  5245 D LegacyGraphicsTracker: new surface in configuration: maxDequeueRequested(0), maxDequeueCommitted(3)
+10-25 23:00:08.236  3852  5245 D LegacyGraphicsTracker: new surface configured with id:16544214024202 gen:3944449 maxDequeue:3
+10-25 23:00:08.236  3852  5245 D LegacyGraphicsTracker: maxDequeueCount committed to IGBP: 12
+10-25 23:00:08.236  3852  5245 D LegacyGraphicsTracker: Cache size 0 -> 0: maybe_cleared(0), dequeued(0)
+10-25 23:00:08.236  3852  5245 D LegacyGraphicsTracker: maxDqueueCount change 3 -> 12: pending: 0
+10-25 23:00:08.236  3852  5245 D Codec2Client: setOutputSurface -- generation=3944449 consumer usage=0x900
+10-25 23:00:08.240  3852  5244 W com.yomihub.app: AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+10-25 23:00:08.258  3852  4019 D CCodecBufferChannel: [c2.goldfish.h264.decoder#869] Ignoring stale input buffer done callback: last flush index = 0, frameIndex = 0
+10-25 23:00:08.403  3852  5166 I com.yomihub.app: Explicit concurrent mark compact GC freed 296KB AllocSpace bytes, 0(0B) LOS objects, 24% free, 3514KB/4685KB, paused 140us,2.847ms total 131.501ms
+10-25 23:00:08.473  3852  5170 I com.yomihub.app: Explicit concurrent mark compact GC freed 160KB AllocSpace bytes, 0(0B) LOS objects, 24% free, 3482KB/4642KB, paused 110us,798us total 68.336ms
+10-25 23:00:13.667  3852  5236 D AidlBufferPool: bufferpool2 0x7952e08d1158 : 5(31457280 size) total buffers - 0(0 size) used buffers - 9/14 (recycle/alloc) - 5/14 (fetch/transfer)
+10-25 23:00:13.667  3852  5236 D AidlBufferPool: bufferpool2 0x7952e08ebad8 : 0(0 size) total buffers - 0(0 size) used buffers - 18/23 (recycle/alloc) - 5/11 (fetch/transfer)
+10-25 23:00:13.667  3852  5236 D AidlBufferPoolAcc: evictor expired: 2, evicted: 2
+10-25 23:00:22.066  3852  3852 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): androidx.activity.OnBackPressedDispatcher$Api34Impl$createOnBackAnimationCallback$1@c6c2e7d
+10-25 23:00:22.088  3852  3852 I Surface : Creating surface for consumer unnamed-3852-11 with slotExpansion=1 for 64 slots
+10-25 23:00:22.091  3852  3852 I Surface : Creating surface for consumer VRI[MainActivity]#8(BLAST Consumer)8 with slotExpansion=1 for 64 slots
+10-25 23:00:22.094  3852  3852 I Surface : Creating surface for consumer unnamed-3852-12 with slotExpansion=1 for 64 slots
+10-25 23:00:22.095  3852  3852 I Surface : Creating surface for consumer 4fd11ee SurfaceView[com.yomihub.app/com.kodjodevf.mangayomi.MainActivity]#9(BLAST Consumer)9 with slotExpansion=1 for 64 slots
+10-25 23:00:22.160  3852  3910 E ConsumerBase: [ImageReader-1x1f22m7-3852-0] abandonLocked: ConsumerBase is abandoned!
+10-25 23:00:22.813  3852  3852 D InsetsController: hide(ime())
+10-25 23:00:22.813  3852  3852 I ImeTracker: com.yomihub.app:bd6dbf42: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-25 23:00:39.791  3852  3852 D InsetsController: hide(ime())
+10-25 23:00:39.791  3852  3852 I ImeTracker: com.yomihub.app:5c48aac3: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-25 23:25:58.120  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 155 to 100
+10-26 00:00:04.586  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 205 to 100
+10-26 00:34:06.284  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 204 to 100
+10-26 01:08:11.697  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 205 to 100
+10-26 01:42:33.794  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 206 to 100
+10-26 02:17:29.411  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 209 to 100
+10-26 02:51:29.302  3852  3858 I com.yomihub.app: Background young concurrent mark compact GC freed 3456KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 3538KB/6964KB, paused 219us,1.338ms total 135.044ms
+10-26 02:51:29.316  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 204 to 100
+10-26 03:25:29.774  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 204 to 100
+10-26 03:59:53.797  3852  3858 I com.yomihub.app: Background young concurrent mark compact GC freed 3488KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 3538KB/6964KB, paused 75us,1.665ms total 107.240ms
+10-26 03:59:53.797  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 207 to 100
+10-26 04:34:20.416  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 206 to 100
+10-26 05:08:23.546  3852  3858 W com.yomihub.app: Reducing the number of considered missed Gc histogram windows from 205 to 100

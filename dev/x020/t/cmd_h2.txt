@@ -1,0 +1,1 @@
+Adb shell input keyevent 3; Adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 | Out-Null; Start-Sleep 4; Labels 'h2a' | Select-Object -First 4; Tap 1003 2169 3; Adb shell input swipe 540 1800 540 600 400; Start-Sleep 2; TapText '^Settings$' 3; TapText '^Browse$' 3; TapText '^Extensions Repo' 5; Labels 'h2' | Select-Object -First 45

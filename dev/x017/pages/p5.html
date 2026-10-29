@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en"><head>
+	<meta charset="UTF-8">
+    <title>Aniyomi App Extensions Repo Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<meta name="color-scheme" content="dark">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="EverythingMoe">
+    <meta name="apple-mobile-web-app-title" content="EverythingMoe">
+    <meta property="og:title" content="Aniyomi App Extensions Repo Guide">
+    <meta property="og:image" content="/icons/aniyomi.png">
+    <meta property="og:type" content="website">
+	<meta name="theme-color" content="#0f0f0f">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="stylesheet" type="text/css" href="/static/fonts/fontload.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.min.css">
+    <script type="text/javascript" src="/static/info.min.js" defer></script>
+    <script type="text/javascript" src="/static/menu.min.js" defer></script>
+    <meta name="description" content="Quick guide to help you get set up with Aniyomi and related apps extensions.">
+    <meta property="og:description" content="Quick guide to help you get set up with Aniyomi and related apps extensions.">
+    <style>
+    .addtag{
+        display:inline;
+    }
+    .applist a {
+        font-size: 18px;
+    }
+    .applist{
+        margin-bottom: 5px;
+    }
+    .repo-btn {
+        display: inline-block;
+        background-color: #3375b9;
+        padding: 5px 15px;
+        border-radius: 15px;
+        color: white;
+        margin: -5px 0 5px;
+    }
+    </style>
+</head>
+
+<body style="background-color:#0f0f0f">
+    <div id="header">
+        <div id="mainmenubtn" onclick="sideMenu()"><i class="mdil mdil-menu"></i></div>
+        <div id="main-logo"><a href="/"><img src="/static/android-icon-48x48.png" alt="logo"> EverythingMoe</a></div>
+        <div id="editmenubtn" onclick="editMenu()"><i class="mdil mdil-pencil"></i></div>
+    </div>
+    <div id="header-replace"></div>
+    <div id="side-menu"></div>
+    <div id="base-content">
+        <div id="content-single-wide">
+            <div class="path-top"><i class="mdil mdil-home"></i> <a href="/">home</a> / <a href="/post/">articles</a> / aniyomirepo</div>
+            <div id="article-base" role="main">
+<h1 style="text-align:center;color:white;line-height:1em;border-bottom:1px solid #373737;padding-bottom:20px;">Aniyomi Extensions Repo Guide</h1>
+<br>
+<h2>Compatible Apps</h2>
+<div class="about-gray">All of these apps are compatible with the extensions :</div>
+<div class="applist">
+- <a href="/s/aniyomi"><img src="/icons/aniyomi.png"> Aniyomi</a> - Mihon fork + Anime support<br>
+- <a href="/s/awery"><img src="/icons/awery.png"> Awery</a> - Dantotsu fork<br>
+- <a href="/s/dartotsu"><img src="/icons/dartotsu.png"> Dartotsu</a> - Dantotsu fork<br>
+- <a href="/s/anymex"><img src="/icons/anymex.png"> AnymeX</a> - Aniyomi compatible cross platform app<br>
+</div>
+<br>
+<h2>Extensions</h2>
+<div class="about-gray"><span style="color:#ffa3a3">Using an extension is leeching off a website</span>, similar to using an adblocker. You aren't contributing anything to the site while still using their bandwidth for free. Site developer has no reason to support what you are doing. Don't complain to the developer if the extension breaks, they are probably the ones who broke it. Send your complaints to extension maintainer instead. These repositories will be responsible for maintaining the extension. To install the repositories click 'Add repository' or copy paste the link to the app.</div>
+<div class="about-gray">- <a target="_blank" href="https://github.com/yuzono/anime-extensions">Yuzono <img src="/icons/github.png"></a></div>
+<a class="repo-btn" href="aniyomi://add-repo?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyuzono%2Fanime-repo%2Frepo%2Findex.min.json">Add repository</a>
+<br>
+<div class="code-block">https://raw.githubusercontent.com/yuzono/anime-repo/repo/index.min.json</div>
+<br><br>
+<div class="about-gray">- <a target="_blank" href="https://github.com/salmanbappi/extensions-repo">salmanbappi <img src="/icons/github.png"></a></div>
+<a class="repo-btn" href="aniyomi://add-repo?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsalmanbappi%2Fextensions-repo%2Fmain%2Findex.min.json">Add repository</a>
+<br>
+<div class="code-block">https://raw.githubusercontent.com/salmanbappi/extensions-repo/main/index.min.json</div>
+<br><br>
+Other repo : <br>
+- <a href="https://github.com/Secozzi/aniyomi-extensions">Secozzi <img src="/icons/github.png"></a></a><br>
+- <a href="https://codeberg.org/hollow/aniyomi-extensions-fr">hollow (FR) <img src="/icons/codeberg.png"></a><br>
+- <a href="https://github.com/Claudemirovsky/cursedyomi-extensions">Claudemirovsky (PT, TR) <img src="/icons/github.png"></a>
+<br><br>
+<h2>Selecting Extension</h2>
+        <div class="about-gray">After adding the repo you can view and select list of extensions inside the app. You can pick anything you like. Quality of the extensions heavily relies on what website it scrapes from (target website). You should experiment with each options. There are a few tings to consider :</div>
+        <div class="indent2">- The availability of the extension depends on the target website, which mean if target website is down, blocked, or banned your access. The extension will stop working.</div>
+        <div class="indent2">- The content of the extension is exactly the same as that on the target website, including all the good and the bad.</div>
+        <div class="indent2">- Most of the extension for unpopular sites are rarely maintained and often broken.</div>
+<br>
+<h2>Other Repository Guide</h2>
+<div class="indent2">
+    - <a href="https://wotaku.wiki/guides/ext/mihon" target="_blank"><img src="/icons/wotaku.png"> Wotaku guide</a></div>
+            </div>
+            <div id="comment-cont"></div>
+        </div>
+    </div>
+    <div class="small-footer">
+        <div id="foot-cont">EverythingMoe.com<div class="foot-right-text">Socials</div>
+            <div id="foot-flex">
+                <a href="/post/info.html" class="foot-links">About</a>
+                <a href="/post/info.html#disclaimer" class="foot-links">Disclaimer</a>
+                <a href="/changelog" class="foot-links">Changelog</a>
+                <div class="foot-socials"><a href="https://discord.gg/GuueaDgKdS" target="_blank"><img src="/icons/discord.png" alt=""></a> <a href="https://www.reddit.com/r/everythingmoe/" target="_blank"><img src="/icons/reddit.png" alt=""></a> <a href="https://bsky.app/profile/everythingmoe.com" target="_blank"><img src="/icons/bsky.png" alt=""></a></div>
+            </div>
+        </div>
+    </div>
+    <div id="editmenu">
+        <a href="/contribute#add" class="item-menu" style="border-top:none"><i class="mdil mdil-plus-box"></i> Add missing</a>
+        <a href="/contribute#info" class="item-menu"><i class="mdil mdil-message"></i> Site opinion</a>
+        <a href="/contribute#remove" class="item-menu"><i class="mdil mdil-alert"></i> Report item</a>
+        <a href="/contribute#edit" class="item-menu"><i class="mdil mdil-pencil"></i> Correction</a>
+    </div>
+</body>

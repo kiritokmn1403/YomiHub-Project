@@ -1,0 +1,1 @@
+TapText '^AirDrop' 4; Adb shell input swipe 540 1800 540 400 500; Start-Sleep 2; Labels 'a3' | Select-Object -First 50; Shot 'a3'

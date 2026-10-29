@@ -1,0 +1,1 @@
+Tap 182 273 6; Labels 'f2' | Select-Object -First 45

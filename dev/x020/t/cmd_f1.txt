@@ -1,0 +1,1 @@
+Back 2; Back 2; Tap 393 273 3; Tap 540 425 6; Labels 'f1' | Select-Object -First 40

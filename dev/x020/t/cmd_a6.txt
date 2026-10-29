@@ -1,0 +1,1 @@
+TapText '^Receive via Bluetooth' 8; Labels 'a6' | Select-Object -First 12; Shot 'a6'; Crash; Adb logcat -d -v time | Select-String 'Bluetooth|yh-bt|btState' | Select-Object -Last 15 | ForEach-Object { "$_" }

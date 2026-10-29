@@ -1,0 +1,5 @@
+Get-Process qemu-system-x86_64,emulator -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+& 'D:\Claude A.I\dev\x021\an.ps1'
+"=== BUILD ==="
+Remove-Item 'D:\yh\build\mangayomi\build\m_extension_server' -Recurse -Force -ErrorAction SilentlyContinue
+& 'D:\Claude A.I\dev\x021\bx.ps1'

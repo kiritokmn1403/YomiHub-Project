@@ -1,0 +1,1200 @@
+{
+  "Feature Check": [
+    {
+      "row": 1,
+      "cells": {
+        "A": "Android GitHub Project: YomiHub - Feature Check - Kiểm Tra Tính Năng"
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A": "STT",
+        "B": "Requirements to be fulfilled, checks",
+        "C": "Yêu Cầu Cần Thực Hiện, Kiểm Tra"
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A": "1",
+        "B": "Check for updates and new features, optimize the code, and integrate these new features and updates into the application, covering the items and projects listed in the \"Project GitHub\" sheet.",
+        "C": "Kiểm tra cập nhật, tính năng mới, đồng thời tiến hành tối ưu hoá code rồi bổ sung vào ứng dụng các tính năng mới, các cập nhật mới các hạng mục, các project có trong sheet Project GitHub."
+      }
+    },
+    {
+      "row": 4,
+      "cells": {
+        "A": "2",
+        "B": "Upgrade the application by optimizing all code—incorporating new updates, addressing new requirements from GitHub projects, and implementing the modifications listed in the \"YomiHub Update\" sheet—and then integrate these changes directly into the application (please note that all requirements in the sheet are mandatory).",
+        "C": "Nâng cấp ứng dụng, bắt buộc tối ưu hoá tất cả các đoạn code với 1 vài cập nhật mới, yêu cầu mới của các project Github và các yêu cầu sửa đổi được đưa ra trong sheet YomiHub Update, sau đó tích hợp thẳng vào ứng dụng (lưu ý toàn bộ yêu cầu trong sheet YomiHub Update là bắt buộc)"
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A": "3",
+        "B": "Read the application's activity log file and fix the errors recorded in it.",
+        "C": "Đọc file nhật ký hoạt động của ứng dụng và khắc phục lỗi ghi trong đó."
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "A": "4",
+        "B": "Verify the stable operation of the extensions created from the websites listed in the \"Website Extension\" sheet, paying particular attention to the settings associated with each extension; for extensions linked to multiple URLs, ensure they are optimized for all of those URLs.",
+        "C": "Kiểm tra hoạt động ổn định của các extension được tạo từ các website trong sheet Website Extension, đặc biệt đối chiếu các cài đặt liên quan tới các extension đó; đối với các extension có nhiều URL thì phải tối ưu cho tất cả các URL đó."
+      }
+    },
+    {
+      "row": 7,
+      "cells": {
+        "A": "5",
+        "B": "Verify the compatibility, consistency, and design language of the user interface across the Android and Windows application versions.",
+        "C": "Kiểm tra tính tương thích, độ đồng nhất, ngôn ngữ thiết kế của bộ giao diện giữa các phiên bản ứng dụng Android và Windows."
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "A": "6",
+        "B": "Compatibility with other libraries—specifically addressing synchronization issues with the extension repositories of GitHub projects such as Aniyomi, Nekoyomi, Kotatsu, IReader, Aidoku and LNReader.",
+        "C": "Khả năng đồng bộ với các thư viện khác, đặc biệt là lỗi không đồng bộ Extension Repo của các project GitHub trên, đặc biệt là Aniyomi, Nekoyomi, Kotatsu, Ireader, Aidoku và LNReader"
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A": "7",
+        "B": "Compatibility of available extension repositories with the application; use the extension repositories provided in the \"Extension Repo\" sheet for verification.",
+        "C": "Khả năng tương thích của các Extension Repo có sẵn với ứng dụng; sử dụng các extension repo được cung cấp sẵn trong sheet Extension Repo để kiểm chứng."
+      }
+    },
+    {
+      "row": 10,
+      "cells": {
+        "A": "8",
+        "B": "Stable and complete download functionality for extensions; compatibility and stable, full functionality of filters with extensions.",
+        "C": "Khả năng tải xuống ổn định, đầy đủ của các Extension; Khả năng tương thích và hoạt động ổn định, đầy đủ của bộ lọc với các Extension"
+      }
+    },
+    {
+      "row": 11,
+      "cells": {
+        "A": "9",
+        "B": "Compatibility and technical error checks for the interface; testing of features and stability for Liquid Glass.",
+        "C": "Khả năng tương thích, check lỗi kỹ thuật của bộ giao diện; Kiểm tra các tính năng, độ ổn định của Liquid Glass"
+      }
+    },
+    {
+      "row": 12,
+      "cells": {
+        "A": "10",
+        "B": "Compatibility of extensions with the application.",
+        "C": "Khả năng tương thích của các extension với ứng dụng."
+      }
+    },
+    {
+      "row": 13,
+      "cells": {
+        "A": "11",
+        "B": "Stability of Mangayomi Extension Server, Mangayomi ApkBridge, and MiHon Extension Server.",
+        "C": "Độ ổn định của tính năng Mangayomi Extension Server, Mangayomi ApkBridge, MiHon Extension Server."
+      }
+    },
+    {
+      "row": 14,
+      "cells": {
+        "A": "12",
+        "B": "Browser stability and updates based on the Chromium and Firefox engines.",
+        "C": "Mức độ ổn định của trình duyệt, cập nhật dựa trên nhân Chromium và Firefox."
+      }
+    },
+    {
+      "row": 15,
+      "cells": {
+        "A": "13",
+        "B": "Functionality, stability, and feature updates for VPN, DNS, and AdBlock are available in the GitHub project repository.",
+        "C": "Khả năng hoạt động, tính ổn định và cập nhật các tính năng VPN & DNS, AdBlock có trong mục Project GitHub."
+      }
+    },
+    {
+      "row": 16,
+      "cells": {
+        "A": "14",
+        "B": "Check for errors preventing chapters and images from loading in Novel and Comic extensions, and test the infinite scrolling feature for Comic and Novel extensions.",
+        "C": "Kiểm tra lỗi không load được chương và không load được hình của các extension Novel và Comic, kiểm tra tính năng cuộn vô hạn của các extension Comic và Novel."
+      }
+    },
+    {
+      "row": 17,
+      "cells": {
+        "A": "15",
+        "B": "Check for playback errors and test the server-switching feature for available Anime and movie sources; verify the playback functionality of the Anime47 extension (account: [REDACTED], password: [REDACTED]).",
+        "C": "Kiểm tra lỗi không xem được phim, kiểm tra tính năng đổi server của các nguồn Anime, Film & Movie có sẵn; kiểm tra khả năng xem phim của tiện ích Anime47 (tài khoản: [REDACTED] , mật khẩu: [REDACTED])."
+      }
+    },
+    {
+      "row": 18,
+      "cells": {
+        "A": "16",
+        "B": "Stability and error checking for ebook and PDF reading features.",
+        "C": "Độ ổn định, check lỗi các tính năng đọc file ebook và PDF"
+      }
+    },
+    {
+      "row": 19,
+      "cells": {
+        "A": "17",
+        "B": "Check stability and test the Picture-in-Picture (PiP) feature; verify PiP functionality for extensions listed in the \"Website Extension\" sheet.",
+        "C": "Độ ổn định, check lỗi tính năng Picture-in-Picture (PiP); Kiểm tra tính năng PiP đối với các extension trong sheet Website Extension."
+      }
+    },
+    {
+      "row": 20,
+      "cells": {
+        "A": "18",
+        "B": "Stability improvements and feature updates for the Web Scanner.",
+        "C": "Độ ổn định, cập nhật bộ tính năng Web Scanner."
+      }
+    },
+    {
+      "row": 21,
+      "cells": {
+        "A": "19",
+        "B": "Test and debug the URL/domain change and forced URL/domain change features for the application's extension; verify whether the extension functions correctly after the URL or domain has been changed or forced to change.",
+        "C": "Kiểm tra, check lỗi tính năng đổi URL, tên miền và cưỡng chế đổi URL, tên miền của ứng dụng đối với extension; check xem sau khi đổi tên miền hoặc cưỡng chế đổi tên miền thì tiện ích có hoạt động bình thường không."
+      }
+    },
+    {
+      "row": 22,
+      "cells": {
+        "A": "20",
+        "B": "Align and standardize the language and layout of the Windows and Android application interfaces.",
+        "C": "Đối chiếu và thống nhất ngôn ngữ, cách bố trí của bộ giao diện ứng dụng bản Windows và Android."
+      }
+    },
+    {
+      "row": 23,
+      "cells": {
+        "A": "21",
+        "B": "Test the stability and check for errors regarding the Cloudflare and Cloudflare Bypass features.",
+        "C": "Kiểm tra độ ổn định, check lỗi của tính năng Cloudflare và Cloudflare Bypass."
+      }
+    },
+    {
+      "row": 24,
+      "cells": {
+        "A": "22",
+        "B": "Test the \"Check for Update\" feature using the following link: https://drive.google.com/drive/folders/16PCPorl1Ae9nmKMMWAC3Oz1rp_w9tH__?usp=sharing",
+        "C": "Kiểm tra tính năng Check For Update, đối với đường dẫn https://drive.google.com/drive/folders/16PCPorl1Ae9nmKMMWAC3Oz1rp_w9tH__?usp=sharing"
+      }
+    },
+    {
+      "row": 25,
+      "cells": {
+        "A": "23",
+        "B": "Upon opening the app, scan for Extension Repo information from the websites listed in the \"Website Scan - Extension Repo\" sheet; when the user accesses the Extension Repo section, the app should automatically suggest the Extension Repos found on those websites, while omitting any that are already present.",
+        "C": "Khi mở ứng dụng, hãy quét thông tin về các Extension Repo trên các website có trong sheet Website Scan - Extension Repo , khi người dùng vào mục Extension Repo thì sẽ tự động gợi ý các Extension Repo có sẵn trên các website đó, nếu Extension Repo đó đã có sẵn thì thôi không hiển thị nữa."
+      }
+    },
+    {
+      "row": 26,
+      "cells": {
+        "A": "24",
+        "B": "Verified stability and implemented fixes and feature modifications for the \"Local Folders\" section within \"Downloads,\" enabling the addition of multiple distinct local folders.",
+        "C": "Kiểm tra độ ổn định và tiến hành vá lỗi, sửa đổi tính năng Thư mục cục bộ nằm trong mục Tải Xuống, cho phép thêm nhiều thư mục cục bộ khác nhau."
+      }
+    },
+    {
+      "row": 27,
+      "cells": {
+        "A": "25",
+        "B": "Review and optimize the app's loading interface; redesign the logo within the loading screen to a rounded shape; add an animation effect for the transition from the app logo screen to the loading interface—specifically, a transformation from a square to a circle—while maintaining the 5-second duration for the loading screen.",
+        "C": "Kiểm tra, tối ưu hóa bộ giao diện loading khi mở ứng dụng, thiết kế logo trong giao diện loading thành logo bo tròn, thêm hiệu ứng animation giữa lúc chuyển từ màn hình logo ứng dụng sang giao diện loading, cụ thể là hiệu ứng từ hình vuông bo lại thành hình tròn, vẫn giữ thời gian giao diện loading dài 5 giây."
+      }
+    },
+    {
+      "row": 28,
+      "cells": {
+        "A": "26",
+        "B": "Test the functionality and stability of AirDrop and Quick Share, including file transfer capabilities between devices—specifically phone-to-phone, phone-to-computer, and computer-to-computer transfers.",
+        "C": "Kiểm tra khả năng hoạt động, độ ổn định của tính năng AirDrop & Quicksharing, bao gồm khả năng chuyển file giữa các thiết bị với nhau, khả năng chuyển file giữa điện thoại với điện thoại, điện thoại với máy tính và giữa máy tính với máy tính."
+      }
+    },
+    {
+      "row": 29,
+      "cells": {
+        "A": "27",
+        "B": "Test the functionality and stability of the tracker feature within the application.",
+        "C": "Kiểm tra khả năng hoạt động, độ ổn định của tính năng trình theo dõi (tracker) trong ứng dụng."
+      }
+    },
+    {
+      "row": 30,
+      "cells": {
+        "A": "28",
+        "B": "Test the Short Video and Short Video Scroll features.",
+        "C": "Kiểm tra tính năng Short Video & Video Short Scroll."
+      }
+    },
+    {
+      "row": 31,
+      "cells": {
+        "A": "29",
+        "B": "Review and translate in-app text into all languages ​​supported by the application.",
+        "C": "Kiểm tra và biên dịch các văn bản trong ứng dụng sang mọi ngôn ngữ mà ứng dụng này hỗ trợ."
+      }
+    },
+    {
+      "row": 32,
+      "cells": {
+        "A": "30",
+        "B": "Review, rewrite, and optimize code to ensure efficient operation and compliance with requirements, while also optimizing application size, processing speed, and smoothness.",
+        "C": "Kiểm tra, viết lại, tối ưu hóa code để hoạt động hiệu quả, đúng yêu cầu; đồng thời tối ưu hóa dung lượng, tốc độ xử lý, độ mượt của ứng dụng."
+      }
+    },
+    {
+      "row": 33,
+      "cells": {
+        "A": "31",
+        "B": "Test the app's image translation features.",
+        "C": "Kiểm tra bộ tính năng Image Translation của ứng dụng."
+      }
+    },
+    {
+      "row": 34,
+      "cells": {
+        "A": "32",
+        "B": "Check the application for any text segments that have not yet been translated into other languages, and translate them.",
+        "C": "Kiểm tra xem có đoạn văn bản nào trong ứng dụng chưa tiến hành phiên dịch ra các ngôn ngữ khác thì tiến hành phiên dịch."
+      }
+    },
+    {
+      "row": 35,
+      "cells": {
+        "A": "33",
+        "B": "Check the list of open-source projects on GitHub and compare it with the list of GitHub projects already in use; add any projects that are missing.",
+        "C": "Kiểm tra danh sách dự án mã nguồn mở trong Project GitHub, đối chiếu với danh sách Dự Án GitHub đã sử dụng, dự án nào chưa được thêm vào thì hãy bổ sung vào."
+      }
+    },
+    {
+      "row": 36,
+      "cells": {
+        "A": "34",
+        "B": "Verify the application logging functionality; errors encountered during usage must be recorded in the Application Log. This applies particularly—but is not limited—to the following scenarios: extension fails to load content; CloudFlare resolution fails; CloudFlare resolution succeeds but the extension still fails to load the application; download failure; video fails to load; video fails to exit; video player fails to save the correct playback position; filter scanning feature malfunctions; unable to access device Wi-Fi settings; unable to load content within the utility, etc.",
+        "C": "Kiểm tra bộ tính năng ghi lỗi vào Nhật Ký Ứng Dụng; bắt buộc phải ghi vào Nhật Ký Ứng Dụng các lỗi phát sinh trong quá trình sử dụng ứng dụng, đặc biệt nhưng không giới hạn ở các tính năng: Extension không load được nội dung, Giải CloudFlare thất bại, Giải CloudFlare thành công nhưng extension vẫn không load được ứng dụng, Tải xuống không thành công, Video không tải được, Video không thoát được, Trình phát video không lưu đúng vị trí đã xem, Tính năng quét bộ lọc không hoạt động, Không thể truy cập vào cài đặt Wifi thiết bị, Không thể tải nội dung trong tiện ích,..."
+      }
+    },
+    {
+      "row": 37,
+      "cells": {
+        "A": "35",
+        "B": "Check the integrated utility feature set.",
+        "C": "Kiểm tra bộ tính năng hợp nhất tiện ích."
+      }
+    },
+    {
+      "row": 38,
+      "cells": {
+        "A": "36",
+        "B": "Check and update the language and NSFW settings for the extensions listed in the \"Website Extension\" sheet.",
+        "C": "Kiểm tra và cập nhật lại các cài đặt ngôn ngữ và NSFW của các Extension trong sheet Website Extension."
+      }
+    },
+    {
+      "row": 39,
+      "cells": {
+        "A": "37",
+        "B": "Verify the stable operation of the Health Connect feature set integrated into the application.",
+        "C": "Kiểm tra hoạt động ổn định của bộ tính năng Health Connect tích hợp trong ứng dụng."
+      }
+    },
+    {
+      "row": 40,
+      "cells": {
+        "A": "38",
+        "B": "Verify stable performance and review the user interface against the \"Google Play Books Screenshot\" sheet for the Google Play Books feature set integrated into the application.",
+        "C": "Kiểm tra hoạt động ổn định và check lại bộ giao diện dựa trên sheet Google Play Books Screenshot của bộ tính năng Google Play Books tích hợp trong ứng dụng."
+      }
+    },
+    {
+      "row": 41,
+      "cells": {
+        "A": "39",
+        "B": "Check the overall performance of the application for any issues such as lag or stuttering—paying particular attention to the updates listed in the \"YomiHub Update\" and \"Feature Check\" sheets—and resolve any problems found. Please record a video of the testing process.",
+        "C": "Kiểm tra hoạt động tổng thể của ứng dụng xem có lỗi giật lag nào không, đặc biệt là các cập nhật của ứng dụng nêu ra trong sheet YomiHub Update và sheet Feature Check; nếu có hãy khắc phục; Yêu cầu quay video lại quá trình kiểm tra."
+      }
+    }
+  ],
+  "Feature Check - Short": [
+    {
+      "row": 1,
+      "cells": {
+        "A": "Android GitHub Project: YomiHub - Feature Check - Kiểm Tra Tính Năng"
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A": "Nhóm hạng mục / Category",
+        "B": "Yêu cầu tóm gọn (Tiếng Việt)",
+        "C": "Consolidated Requirements (English)"
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A": "1. Tối ưu mã nguồn & Hiệu năng",
+        "B": "Kiểm tra cập nhật, viết lại và tối ưu hóa toàn diện mã nguồn để giảm dung lượng, tăng tốc độ xử lý, khắc phục triệt để tình trạng giật lag; tích hợp bắt buộc các tính năng, yêu cầu và sửa đổi từ các sheet \"Project GitHub\" và \"YomiHub Update\".",
+        "C": "Review, rewrite, and optimize all code to minimize app size, enhance processing speed, and eliminate lag/stutter; integrate all mandatory features, requirements, and modifications from the \"Project GitHub\" and \"YomiHub Update\" sheets."
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A": "(Code Optimization & Performance)"
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "A": "2. Nhật ký & Khắc phục lỗi hệ thống",
+        "B": "Đọc tệp nhật ký hoạt động (activity log) của ứng dụng và xử lý dứt điểm các lỗi phát sinh được ghi nhận.",
+        "C": "Read the application's activity log file and resolve all recorded errors."
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "A": "(Activity Logs & Bug Fixing)"
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A": "3. Giao diện & Trải nghiệm (UI/UX)",
+        "B": "Chuẩn hóa, đồng nhất ngôn ngữ thiết kế và bố cục giữa hai phiên bản Android và Windows; kiểm tra độ ổn định và sửa lỗi kỹ thuật của giao diện Liquid Glass; tối ưu màn hình loading 5 giây với logo bo tròn cùng hiệu ứng chuyển động (animation) biến đổi từ hình vuông sang hình tròn.",
+        "C": "Standardize design language and layout consistency between Android and Windows versions; test stability and fix technical issues for the Liquid Glass interface; optimize the 5-second loading screen with a rounded logo and square-to-circle transition animation."
+      }
+    },
+    {
+      "row": 11,
+      "cells": {
+        "A": "(UI/UX & Design Consistency)"
+      }
+    },
+    {
+      "row": 12,
+      "cells": {
+        "A": "4. Kho Extension & Đồng bộ máy chủ",
+        "B": "Đảm bảo tính tương thích của các Extension Repo với ứng dụng; sửa lỗi đồng bộ repo từ các dự án (Aniyomi, Nekoyomi, Kotatsu, IReader, Aidoku, LNReader); duy trì tính ổn định của Mangayomi Extension Server, Mangayomi ApkBridge và MiHon Extension Server; tự động quét và gợi ý repo từ các trang trong sheet \"Website Scan - Extension Repo\" khi khởi động ứng dụng (bỏ qua nếu đã có).",
+        "C": "Ensure full compatibility between available Extension Repos and the app; resolve repo synchronization issues with external projects (Aniyomi, Nekoyomi, Kotatsu, IReader, Aidoku, LNReader); maintain stability for Mangayomi Extension Server, Mangayomi ApkBridge, and MiHon Extension Server; automatically scan and suggest Extension Repos from sites in the \"Website Scan - Extension Repo\" sheet upon startup (omitting existing ones)."
+      }
+    },
+    {
+      "row": 14,
+      "cells": {
+        "A": "(Extension Repos & Server Sync)"
+      }
+    },
+    {
+      "row": 15,
+      "cells": {
+        "A": "5. Quản lý, Cài đặt & Tải Extension",
+        "B": "Đảm bảo tính năng tải xuống ổn định, đầy đủ và bộ lọc tương thích tốt với extension; kiểm tra, cập nhật cài đặt ngôn ngữ và NSFW cho các tiện ích từ sheet \"Website Extension\"; kiểm tra và sửa lỗi tính năng đổi URL / tên miền (bao gồm cả cưỡng chế đổi) để tiện ích hoạt động bình thường sau khi đổi.",
+        "C": "Verify stable and full download functionality and filter compatibility for extensions; check and update language and NSFW settings for extensions in the \"Website Extension\" sheet; test and debug standard/forced URL and domain change features to ensure extensions function correctly post-change."
+      }
+    },
+    {
+      "row": 17,
+      "cells": {
+        "A": "(Extension Management & Settings)"
+      }
+    },
+    {
+      "row": 18,
+      "cells": {
+        "A": "6. Trình đọc & Trình phát Đa phương tiện",
+        "B": "Khắc phục lỗi không tải được chương/ảnh và kiểm tra cuộn vô hạn cho Comic và Novel; kiểm tra độ ổn định trình đọc file eBook và PDF; kiểm tra phát video, đổi máy chủ cho nguồn Anime, Phim/Movie (bao gồm kiểm tra tiện ích Anime47 bằng tài khoản: [REDACTED] / [REDACTED]); kiểm tra chế độ Picture-in-Picture (PiP) và tính năng lướt Video ngắn (Short Video / Scroll).",
+        "C": "Fix chapter/image loading errors and test infinite scrolling for Comic and Novel extensions; verify eBook and PDF reader stability and bug fixes; test video playback and server-switching for Anime/Movies (including Anime47 extension using credentials: [REDACTED] / [REDACTED]); test Picture-in-Picture (PiP) and Short Video / Short Video Scroll features."
+      }
+    },
+    {
+      "row": 20,
+      "cells": {
+        "A": "(Reader & Media Playback)"
+      }
+    },
+    {
+      "row": 21,
+      "cells": {
+        "A": "7. Công cụ tích hợp, Mạng & Kết nối",
+        "B": "Kiểm tra và cập nhật: Trình duyệt lõi Chromium & Firefox, tính năng VPN, DNS, AdBlock từ repo GitHub, Web Scanner, Cloudflare & Cloudflare Bypass; kiểm tra tính năng \"Check For Update\" qua liên kết Google Drive; cho phép thêm nhiều thư mục cục bộ (Local Folders) trong mục Tải xuống; kiểm tra truyền tệp AirDrop & Quick Share giữa các thiết bị (Điện thoại ↔ Điện thoại, Điện thoại ↔ Máy tính, Máy tính ↔ Máy tính); kiểm tra trình theo dõi (Tracker), dịch ảnh (Image Translation) và bản địa hóa/biên dịch toàn bộ văn bản trong ứng dụng.",
+        "C": "Check and update: Chromium & Firefox browser engines, VPN/DNS/AdBlock features from GitHub repo, Web Scanner, Cloudflare & Cloudflare Bypass; test \"Check For Update\" via the Google Drive link; allow adding multiple distinct Local Folders under Downloads; test AirDrop & Quick Share file transfers (phone-to-phone, phone-to-PC, PC-to-PC); test Tracker, Image Translation, and localize all in-app text into supported languages."
+      }
+    },
+    {
+      "row": 23,
+      "cells": {
+        "A": "(Built-in Tools, Network & Connectivity)"
+      }
+    }
+  ],
+  "YomiHub Update": [
+    {
+      "row": 1,
+      "cells": {
+        "A": "Android GitHub Project: YomiHub Update"
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A": "Đọc file nhật ký hoạt động của ứng dụng và khắc phục lỗi và các cảnh báo ghi trong đó; tối ưu code để ứng dụng chạy mượt hơn."
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A": "Tính năng Hợp nhất các bộ truyện tranh, tiểu thuyết, phim ảnh đang bị lỗi, rất lag và đôi khi không hoạt động gây treo ứng dụng,  hãy quét các project Aniyomi, Nekoyomi, Mangayomi, tham khảo va tối ưu hóa code để sửa lại."
+      }
+    },
+    {
+      "row": 4,
+      "cells": {
+        "A": "Điều chỉnh lại giao diện sau khi hợp nhất của các bộ theo hướng dẫn ở trong sheet Merge, hãy tiến hành thử nghiệm bằng các extension ở trong các extension repo được cung cấp sẵn trong sheet Extension Repo."
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A": "Trong tính năng Hợp nhất tiện ích, người dùng có thêm cài đặt tự chọn các tiện ích để hợp nhất với nhau; đưa toàn bộ tính năng này vào cài đặt Hợp Nhất Tiện Ích."
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "A": "Ứng dụng rất hay bị treo, lag, bị văng trong quá trình sử dụng, hãy sửa lại lỗi này."
+      }
+    },
+    {
+      "row": 7,
+      "cells": {
+        "A": "Kiểm tra xem còn project GitHub nào chưa bổ sung vào mục Dự Án GitHub đã sử dụng thì bổ sung vào."
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "A": "Lỗi không lưu lại vị trí video đã xem trước đó để lần sau vào xem tiếp bắt đầu xem ngay từ vị trí đó vẫn chưa khắc phục được, hãy quét các project Aniyomi, Nekoyomi, Mangayomi để khắc phục lỗi này."
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A": "Xem và sửa lại tính năng Kiểm tra cập nhật."
+      }
+    },
+    {
+      "row": 10,
+      "cells": {
+        "A": "Xem và sửa lại các mục trong Website Extension."
+      }
+    },
+    {
+      "row": 11,
+      "cells": {
+        "A": "Trong mục Truyện Tranh, Phim & Điện Ảnh, Tiểu Thuyết, thay thế toàn bộ mục Mặc Định thành mục Lịch Sử Đọc đối với Truyện Tranh & Tiểu Thuyết, Lịch Sử Xem đối với mục Phim & Điện Ảnh; lấy thông tin từ mục Lịch Sử trong phần Cài Đặt; các mục lịch sử đọc, lịch sử xem có thiết kế giao diện dạng lưới tương tự với các mục danh mục khác của từng hạng mục truyện, phim, tiểu thuyết trong ứng dụng.."
+      }
+    }
+  ],
+  "Website Extension": [
+    {
+      "row": 1,
+      "cells": {
+        "A": "Android GitHub Project: YomiHub Website Extension"
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A": "I",
+        "B": "Film & Movie",
+        "D": "Ngôn Ngữ",
+        "E": "NSFW (18+)"
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A": "1",
+        "B": "Anime47",
+        "C": "https://anime47.best/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 4,
+      "cells": {
+        "A": "2",
+        "B": "AnimeVn.Net",
+        "C": "https://animevn.net/the-loai/anime ",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A": "3",
+        "B": "VTV Go",
+        "C": "https://vtvgo.vn/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "C": "https://cache.vtvgo.vn/",
+        "E": "False"
+      }
+    },
+    {
+      "row": 7,
+      "cells": {
+        "C": "https://vtvgo.vn/channel/1",
+        "E": "False"
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "A": "4",
+        "B": "Rổ Phim",
+        "C": "https://www.rophimhd.com/phimhay",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A": "5",
+        "B": "HotPhim",
+        "C": "https://hotphim.org/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 10,
+      "cells": {
+        "A": "6",
+        "B": "AVSub – AnimeVietsub",
+        "C": "https://animevietsub.nl/ ",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 11,
+      "cells": {
+        "A": "7",
+        "B": "HayChill",
+        "C": "https://phimhaychill.org/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 12,
+      "cells": {
+        "A": "8",
+        "B": "XemPhimGi",
+        "C": "https://xemphimgi.com/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 13,
+      "cells": {
+        "A": "9",
+        "B": "NextPhim",
+        "C": "https://nextphim.net/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 14,
+      "cells": {
+        "A": "10",
+        "B": "Vfilm",
+        "C": "http://vfilm.vn/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 15,
+      "cells": {
+        "A": "11",
+        "B": "Phimmoi",
+        "C": "https://phimmoii.mom/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 16,
+      "cells": {
+        "C": "https://phimmoii.mom/categories/phim-bo/"
+      }
+    },
+    {
+      "row": 17,
+      "cells": {
+        "C": "https://messiahelartista.com/"
+      }
+    },
+    {
+      "row": 18,
+      "cells": {
+        "C": "https://phimmois.sh/"
+      }
+    },
+    {
+      "row": 19,
+      "cells": {
+        "A": "12",
+        "B": "PornHub",
+        "C": "https://www.pornhub.com/ ",
+        "D": "Tất Cả",
+        "E": "True"
+      }
+    },
+    {
+      "row": 20,
+      "cells": {
+        "C": "https://www.pornhub.com/shorties",
+        "D": "Tất Cả"
+      }
+    },
+    {
+      "row": 21,
+      "cells": {
+        "A": "13",
+        "B": "FikFap",
+        "C": "https://fikfap.com/",
+        "D": "Tất Cả",
+        "E": "True"
+      }
+    },
+    {
+      "row": 22,
+      "cells": {
+        "A": "14",
+        "B": "Tik.Porn",
+        "C": "https://tik.porn/",
+        "D": "Tất Cả",
+        "E": "True"
+      }
+    },
+    {
+      "row": 23,
+      "cells": {
+        "A": "15",
+        "B": "Kwiky",
+        "C": "https://kwiky.com/cams?AFNO=2-162764.38182",
+        "D": "Tất Cả",
+        "E": "True"
+      }
+    },
+    {
+      "row": 24,
+      "cells": {
+        "A": "16",
+        "B": "xFree",
+        "C": "https://www.xfree.com/",
+        "D": "Tất Cả",
+        "E": "True"
+      }
+    },
+    {
+      "row": 25,
+      "cells": {
+        "A": "17",
+        "B": "FapReel",
+        "C": "https://fapreel.com/",
+        "D": "Tất Cả",
+        "E": "True"
+      }
+    },
+    {
+      "row": 26,
+      "cells": {
+        "A": "18",
+        "B": "SexVietTop",
+        "C": "https://top1sexvn.com/",
+        "D": "Tiếng Việt",
+        "E": "True"
+      }
+    },
+    {
+      "row": 27,
+      "cells": {
+        "A": "19",
+        "B": "Xôi Lạc",
+        "C": "https://xoilacxxi.cc/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 28,
+      "cells": {
+        "C": "https://xoilacvb.cc/"
+      }
+    },
+    {
+      "row": 29,
+      "cells": {
+        "C": "https://xoilac32.org/"
+      }
+    },
+    {
+      "row": 30,
+      "cells": {
+        "A": "20",
+        "B": "MotPhim",
+        "C": "https://motphimc.my/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 31,
+      "cells": {
+        "C": "https://motphim.website/"
+      }
+    },
+    {
+      "row": 32,
+      "cells": {
+        "C": "https://motchill10.io/phim-bo"
+      }
+    },
+    {
+      "row": 33,
+      "cells": {
+        "C": "https://motchill10.io/quoc-gia/viet-nam"
+      }
+    },
+    {
+      "row": 34,
+      "cells": {
+        "A": "21",
+        "B": "HiHiPhim",
+        "C": "https://hihiphim.com/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 35,
+      "cells": {
+        "A": "22",
+        "B": "PhimMoiHD",
+        "C": "https://phimmoihd.online/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 36,
+      "cells": {
+        "E": "False"
+      }
+    },
+    {
+      "row": 37,
+      "cells": {
+        "A": "II",
+        "B": "Comic"
+      }
+    },
+    {
+      "row": 38,
+      "cells": {
+        "A": "1",
+        "B": "CBHentai",
+        "C": "https://hentaicube.xyz",
+        "D": "Tiếng Việt",
+        "E": "True"
+      }
+    },
+    {
+      "row": 39,
+      "cells": {
+        "C": "https://2tencb.pro/"
+      }
+    },
+    {
+      "row": 40,
+      "cells": {
+        "A": "2",
+        "B": "Dâm Cô Nương",
+        "C": "https://damconuong.pet",
+        "D": "Tiếng Việt",
+        "E": "True"
+      }
+    },
+    {
+      "row": 41,
+      "cells": {
+        "C": "https://damconuong.name"
+      }
+    },
+    {
+      "row": 42,
+      "cells": {
+        "A": "3",
+        "B": "SayHentai",
+        "C": "https://sayhentai.cx",
+        "D": "Tiếng Việt",
+        "E": "True"
+      }
+    },
+    {
+      "row": 43,
+      "cells": {
+        "C": "https://sayhentais.com/"
+      }
+    },
+    {
+      "row": 44,
+      "cells": {
+        "C": "https://sayhentaii.art"
+      }
+    },
+    {
+      "row": 45,
+      "cells": {
+        "E": "False"
+      }
+    },
+    {
+      "row": 46,
+      "cells": {
+        "A": "III",
+        "B": "Novel"
+      }
+    },
+    {
+      "row": 47,
+      "cells": {
+        "A": "1",
+        "B": "Ln.Hako.Vn (Hako)",
+        "C": "https://ln.hako.vn/",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    },
+    {
+      "row": 48,
+      "cells": {
+        "C": "docln.net",
+        "D": "Tiếng Việt"
+      }
+    },
+    {
+      "row": 49,
+      "cells": {
+        "C": "https://docln.sbs/",
+        "D": "Tiếng Việt"
+      }
+    },
+    {
+      "row": 50,
+      "cells": {
+        "A": "2",
+        "B": "Sonako",
+        "C": "https://sonako.fandom.com/vi/wiki/Sonako_Light_Novel ",
+        "D": "Tiếng Việt",
+        "E": "False"
+      }
+    }
+  ],
+  "Extension Repo": [
+    {
+      "row": 1,
+      "cells": {
+        "A": "Android GitHub Project: YomiHub Extension Repo"
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A": "https://aidoku-community.github.io/sources/index.min.json"
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A": "https://raw.githubusercontent.com/Kareadita/tach-extension/repo/index.min.json"
+      }
+    },
+    {
+      "row": 4,
+      "cells": {
+        "A": "https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repov2/index.min.json"
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/index.json"
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "A": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/anime_index.json"
+      }
+    },
+    {
+      "row": 7,
+      "cells": {
+        "A": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/novel_index.json"
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "A": "https://raw.githubusercontent.com/LNReader/lnreader-plugins/plugins/v3.0.0/.dist/plugins.min.json"
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A": "https://raw.githubusercontent.com/yuzono/anime-repo/repo/index.min.json"
+      }
+    },
+    {
+      "row": 10,
+      "cells": {
+        "A": "https://raw.githubusercontent.com/gato404/kegareta-sauces/main/index.json"
+      }
+    },
+    {
+      "row": 11,
+      "cells": {
+        "A": "https://raw.githubusercontent.com/FelipeGFA/extensoes/repo/index.min.json"
+      }
+    },
+    {
+      "row": 12,
+      "cells": {
+        "A": "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.pb"
+      }
+    },
+    {
+      "row": 13,
+      "cells": {
+        "A": "https://github.com/Shebyyy/kotatsu-multi-parsers"
+      }
+    },
+    {
+      "row": 14,
+      "cells": {
+        "A": "https://github.com/IReaderorg/IReader-extensions"
+      }
+    },
+    {
+      "row": 15,
+      "cells": {
+        "A": "https://p.codekk.com/detail/Android/IReaderorg/IReader-extensions"
+      }
+    }
+  ],
+  "Website Scan - Extension Repo": [
+    {
+      "row": 1,
+      "cells": {
+        "A": "Android GitHub Project: YomiHub Website Scan"
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A": "Wotaku",
+        "B": "https://wotaku.wiki/"
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A": "Miyomi",
+        "B": "https://miyomi.app/"
+      }
+    },
+    {
+      "row": 4,
+      "cells": {
+        "A": "Tachiyomi & Mihon community",
+        "B": "https://bio.link/iitachiyomi?fbclid=IwY2xjawI-ZexleHRuA2FlbQIxMQABHQ_OphBCu4WT8gu0Dp_hQUJspYQWdSoxiAJF2vsgScbbAfHol1-t5NeLTA_aem_IlFYUXoTSXZB2Jm0JD7AEw"
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A": "MIYOMI",
+        "B": "https://mikkiio.github.io/repos/"
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "A": "Tachiyomi",
+        "B": "https://tachiyomitips.com/tachiyomi-extension-repo/#:~:text=We%20tested%20the%20latest%20Keiyoushi%20repository%20setup%20on,each%20step%20on%20multiple%20devices%20to%20ensure%20accuracy."
+      }
+    },
+    {
+      "row": 7,
+      "cells": {
+        "A": "Tachiyomi Extensions",
+        "B": "https://observeroftime.frama.io/tachiyomi-extensions/"
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "A": "EverythingMoe",
+        "B": "https://everythingmoe.com/post/aniyomirepo.html"
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A": "Mihon & Aniyomi Extensions",
+        "B": "https://x.noz.one/"
+      }
+    },
+    {
+      "row": 10,
+      "cells": {
+        "A": "Kotatsu Multi Parsers",
+        "B": "https://github.com/Shebyyy/kotatsu-multi-parsers "
+      }
+    },
+    {
+      "row": 11,
+      "cells": {
+        "A": "LNReader",
+        "B": "https://www.lnreader.app/plugins"
+      }
+    },
+    {
+      "row": 12,
+      "cells": {
+        "A": "IReader Extension",
+        "B": "https://github.com/IReaderorg/IReader-extensions"
+      }
+    },
+    {
+      "row": 13,
+      "cells": {
+        "A": "codeKK",
+        "B": "https://p.codekk.com/detail/Android/IReaderorg/IReader-extensions"
+      }
+    }
+  ],
+  "Tracker": [
+    {
+      "row": 1,
+      "cells": {
+        "A": "Android GitHub Project: YomiHub Tracker"
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A": "Anilist",
+        "B": "https://github.com/AniList"
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A": "Kitsu",
+        "B": "https://github.com/mralanbourne/kitsutracker-stremio-v2"
+      }
+    },
+    {
+      "row": 4,
+      "cells": {
+        "A": "MyAnimeList",
+        "B": "https://github.com/MALSync/MALSync"
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A": "Simkl",
+        "B": "https://api.simkl.org/"
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "A": "Trakt",
+        "B": "https://github.com/trakt"
+      }
+    },
+    {
+      "row": 7,
+      "cells": {
+        "A": "MangaUpdates",
+        "B": "https://github.com/jckli/mangaupdates-bot"
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "B": "https://github.com/rheactdev/MangaupdatesTracker"
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A": "Shikimori",
+        "B": "https://publicapi.dev/shikimori-api"
+      }
+    },
+    {
+      "row": 10,
+      "cells": {
+        "A": "Bangumi",
+        "B": "https://github.com/sean1832/bangumi-tracker"
+      }
+    },
+    {
+      "row": 11,
+      "cells": {
+        "B": "https://clawhub.ai/mountlynx/skills/bangumi-trackr"
+      }
+    },
+    {
+      "row": 12,
+      "cells": {
+        "B": "https://skywork.ai/skillhub/bangumi-tracker/"
+      }
+    }
+  ],
+  "Google Play Books Screenshot": [],
+  "Merge": []
+}

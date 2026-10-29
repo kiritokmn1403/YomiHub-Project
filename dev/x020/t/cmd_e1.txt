@@ -1,0 +1,1 @@
+Tap 886 1573 4; Labels 'e1' | Select-Object -First 15; Shot 'e1'; Back 2

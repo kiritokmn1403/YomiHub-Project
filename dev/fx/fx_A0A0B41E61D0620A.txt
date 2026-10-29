@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="vi" class="light">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Tìm kiếm - Cổng Light Novel - Đọc Light Novel</title>
+
+    <meta name="description" content="Đọc Light Novel online, bình luận Light Novel. Thư viện Light Novel Tiếng Việt lớn nhất, chất lượng cao, cập nhật liên tục, nhiều chức năng hỗ trợ việc đọc truyện dễ dàng.">
+    <meta name="theme-color" content="#000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="rLmdO3tmkzxROPvPh5eKlo4ZLvw8MJWaIEkhb7ej">
+    <meta name="logged-in" content="0">
+    <meta property="fb:app_id" content="1864643850436909">
+
+    <link rel="canonical" href="https://ln.hako.vn/tim-kiem">
+    <meta property="og:image" content="https://ln.hako.vn/img/nocover.jpg">
+    
+    <link rel="preconnect" href="https://www.google-analytics.com">
+
+    <link rel="shortcut icon" href="/img/favicon-2026-2x.png?v=1">
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon.png?v=3">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png?v=3">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png?v=3">
+
+    <link rel="stylesheet" href="/css/interface.css?id=49911c2745139837fadade9e19b06330">
+    <link rel="stylesheet" href="/css/tailwind.css?id=18fa3bafb2c09381f87f77e7b554fa31">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" crossorigin="anonymous" />
+        
+    <script src="/scripts/plugins.js?id=b612d946b32459430eed3066ed15adf2"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34864968-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+      gtag('config', 'UA-34864968-3');
+    </script>
+</head>
+
+<body>
+	    <div id="page-top"></div>
+    <div data-scrollto="#page-top" class="backtoTop"><i class="fas fa-angle-double-up"></i></div>
+    <div id="navbar" class="headroom">
+        <div class="container">
+            <div id="sidenav-icon" class="none-xl">
+                <div class="sidenav-icon-content">
+                    <span class="sidenav-icon_white"></span>
+                    <span class="sidenav-icon_white"></span>
+                    <span class="sidenav-icon_white"></span>
+                </div>
+                <ul class="navbar-menu none hidden-block at-mobile unstyle">   
+                    <div class="navbar-search block none-m in-navbar-menu">
+                        <form class="" action="/tim-kiem" method="get">
+                            <input class="search-input" type="text" placeholder="Tối thiểu 2 kí tự" name="keywords" value="">
+                            <button class="search-submit" type="submit" value="Tìm kiếm"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>               
+
+                    <li><a class="nav-menu_item" href="/sang-tac"><span class="">Sáng tác</span></a></li>
+                                        <li><a class="nav-menu_item" href="https://ln.hako.vn/ai-dich"><span class="">AI dịch</span></a></li>
+                                        <li><a class="nav-menu_item" href="/xuat-ban"><span class="">Xuất bản</span></a></li>
+                    <li><a class="nav-menu_item" href="/thao-luan"><span class="">Thảo luận</span></a></li>
+                    <li><a class="nav-menu_item" href="/danh-sach"><span class="">Danh sách</span></a></li>
+                    
+                    <li class="nav-has-submenu">
+                        <a class="nav-menu_item">
+                            <span class="">Thông tin</span>
+                            <i class="fas fa-chevron-down dropdown-icon" style="float: right; margin-top: 6px"></i>
+                        </a>
+
+                        <ul class="nav-submenu list-unstyled none">
+                            <li><a href="/thao-luan/368-huong-dan-dang-truyen"><span>Đăng truyện</span></a></li>
+                            <li><a href="/thao-luan/2-gioi-thieu-cong-light-novel"><span>Giới thiệu</span></a></li>
+                            <li><a href="/thao-luan/1-mo-trang-thao-luan-gop-y-va-bao-loi"><span>Góp ý - Báo lỗi</span></a></li>
+                            <li><a href="/privacy-policy"><span>Chính sách bảo mật</span></a></li>
+                            <li><a href="/tos"><span>Điều khoản sử dụng</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="navbar-logo-wrapper">
+                <a href="/" class="navbar-logo" style="background-image: url('/img/logo-tet-2026-2x.png')" title="Trang chủ"></a>
+            </div>
+             
+            <div id="navbar-user" class="guest">						
+                <a class="login-link" href="/login">Đăng nhập</a>
+				<div id="guest-menu">
+					<div class="icon">
+						<span class="white-point"></span>
+						<span class="white-point"></span>
+						<span class="white-point"></span>
+					</div>
+					<ul class="nav-submenu hidden-block unstyled none">
+						<li>
+							<div class="nightmode-toggle li-inner">
+                                <span><i class="fas fa-moon"></i>Nền tối</span>
+								<div class="toggle-icon">
+									<i class="fa fa-toggle-off"></i>
+								</div>
+							</div>
+						</li>
+                        <li>
+                            <a class="li-inner" href="/lich-su-doc"><i class="fas fa-history"></i><span>Lịch sử</span></a>
+                        </li>
+					</ul>
+				</div>
+			</div>
+                        <div class="navbar-mainblock">
+                <div class="navbar-search none block-m">
+                    <form class="" action="/tim-kiem" method="get">
+                        <input class="search-input" type="text" placeholder="Tối thiểu 2 kí tự" name="keywords" value="">
+                        <button class="search-submit" type="submit" value="Tìm kiếm"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>          
+                <ul class="navbar-menu at-navbar none d-xl-block unstyled">               
+                    <li><a class="nav-menu_item" href="/sang-tac"><i class="fas fa-pen-nib menu-icon"></i><span class="">Sáng tác</span></a></li>
+
+                                        <li><a class="nav-menu_item" href="https://ln.hako.vn/ai-dich"><i class="fas fa-book menu-icon"></i><span class="">AI dịch</span></a></li>
+                                        
+                    <li><a class="nav-menu_item" href="/xuat-ban"><i class="fas fa-calendar menu-icon"></i><span class="">Xuất bản</span></a></li>
+                    
+                    <li><a class="nav-menu_item" href="/thao-luan"><i class="fas fa-users menu-icon"></i><span class="">Thảo luận</span></a></li>
+                    
+                    <li><a class="nav-menu_item" href="/danh-sach"><i class="fas fa-th-list menu-icon"></i><span class="">Danh sách</span></a></li>
+                    
+                    <li class="nav-has-submenu">
+                        <a class="nav-menu_item">
+                            <i class="fas fa-question menu-icon"></i><span class="">Thông tin</span>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                            <i class="fas fa-chevron-right dropdown-icon"></i>
+                        </a>
+
+                        <ul class="nav-submenu hidden-block unstyled none">
+                            <li><a href="/thao-luan/368-huong-dan-dang-truyen"><span>Đăng truyện</span></a></li>
+                            <li><a href="/thao-luan/2-gioi-thieu-cong-light-novel"><span>Giới thiệu</span></a></li>
+                            <li><a href="/thao-luan/1-mo-trang-thao-luan-gop-y-va-bao-loi"><span>Góp ý - Báo lỗi</span></a></li>
+                            <li><a href="/privacy-policy"><span>Chính sách bảo mật</span></a></li>
+                            <li><a href="/tos"><span>Điều khoản sử dụng</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!--<section id="nav-search"></section>-->
+        </div>
+    </div>
+        <div class="page-top-group ">
+                <a href="/">
+                        <div class="index-background d-none d-lg-block" style="background-image: url('/images/banners/2026/summer/ld.png')"></div>
+            <div class="index-background d-lg-none" style="background-image: url('/images/banners/2026/summer/lm.png'); background-size: cover"></div>
+                    </a>
+            </div>
+        
+    <div x-data="{ open: Cookies.get('globalwarning3') === undefined ? true : false }">
+    <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4" x-show="open" style="display: none">
+        <div class="flex">
+            <div class="shrink-0">
+                <button x-on:click="open = false; Cookies.set('globalwarning3', false, { expires: 0.5 })" type="button" class="inline-flex rounded-md bg-yellow-50 p-1.5 text-yellow-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 focus:ring-offset-yellow-50">
+                    <span class="sr-only">Dismiss</span>
+                    <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                    <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="ml-3 font-bold">
+                <p class="text-sm text-yellow-700">
+                    Nếu không thể <a class="font-medium text-blue-700" href="/thao-luan/2898-ten-mien-da-bi-chan">truy cập trang web</a> xin vui lòng sử dụng DNS 
+                    <a class="font-medium text-blue-700" href="https://www.google.com/search?q=c%C3%A1ch+c%C3%A0i+dns+1.1.1.1" target="_blank">1.1.1.1</a> hoặc <a class="font-medium text-blue-700" href="https://docln.sbs" target="_blank">docln.sbs</a>
+                    
+                </p>
+                <p class="text-sm text-green-700">
+                    Các truyện có đơn vị sở hữu bản quyền sẽ bị xóa, nếu cố tình vi phạm sẽ bị khóa tài khoản. Xin báo cáo truyện bản quyền tại <a href="/thao-luan/2789-bao-cao-truyen-vi-pham" class="font-medium text-blue-700" target="_blank">đây</a>
+                </p>
+                <p class="text-sm text-purple-700">
+                    Bị đứt 4 tuyến cáp quang biển nên kết nối sẽ chậm, nhất là vào giờ cao điểm.
+                </p
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+	<style>
+    #footer {
+        display: none;
+    }
+</style>
+<main id="mainpart" class="search-page">
+    <header class="page-title">
+        <div class="page-name_wrapper">
+            <div class="container">
+                <span class="page-name"><i class="fas fa-circle"></i>Tìm kiếm</span>
+            </div>
+        </div>   
+    </header>
+
+    <div class="search-form_wrapper">
+        <div class="container">
+            <form class="search-form clear" action="tim-kiem" method="get">
+                <div class="row">
+                    <input id="search-page-input" class="search-form in col-8 col-md-10 col-lg-10" type="text" placeholder="Tối thiểu 2 kí tự" name="keywords" size="40" value="tensei"> 
+                    <input id="search-go" class="search-go_form search-form submit col-4 col-md-2 col-lg-2" type="submit" value="Tìm kiếm">
+                </div>
+                <a class="search-advance_toggle" href="tim-kiem-nang-cao" style="margin-top: 10px;"><i class="fas fa-filter"></i> Tìm kiếm nâng cao</a>
+            </form> 
+        </div>    
+    </div>
+
+    <div class="container">  
+        <section class="basic-section has-pagination">
+            <main class="sect-body">
+                <div class="row">
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2 type-convert ">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_28293">
+        <a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c649391-ngoai-truyen-3-anh-hung-phuong-tay" title="Ngoại truyện 3: Anh hùng phương Tây">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s28293-f7927c7d-9ee4-435f-8e0f-2c766654e8da.webp"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Ngoại truyện 3: Anh hùng phương Tây"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam/c649391-ngoai-truyen-3-anh-hung-phuong-tay" title="Ngoại truyện 3: Anh hùng phương Tây">Ngoại truyện 3: Anh hùng phương Tây</a></div>
+            <div class="thumb_attr volume-title">Tập 4</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/ai-dich/28293-chuyen-sinh-thanh-high-elf-nhung-toi-da-chan-cuoc-song-an-nhan-sau-120-nam" title="Tensei shite High Elf ni Narimashita ga, Slow Life wa 120-nen de Akimashita">Tensei shite High Elf ni Narimashita ga, Slow Life wa 120-nen de Akimashita</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_23541">
+        <a href="/truyen/23541-tensei-shite-inaka-de-slowlife-wo-okuritai/c364086-chuong-294-vay-tay-chao" title="Chương 294: Vẫy Tay Chào">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s23541-e58722d1-73ef-42c6-a8e3-b3f77f9bae1a.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 294: Vẫy Tay Chào"><a href="/truyen/23541-tensei-shite-inaka-de-slowlife-wo-okuritai/c364086-chuong-294-vay-tay-chao" title="Chương 294: Vẫy Tay Chào">Chương 294: Vẫy Tay Chào</a></div>
+            <div class="thumb_attr volume-title">Volume 9</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/23541-tensei-shite-inaka-de-slowlife-wo-okuritai" title="Tensei Shite Inaka de Slowlife wo Okuritai">Tensei Shite Inaka de Slowlife wo Okuritai</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_447">
+        <a href="/truyen/447-tensei-shitara-doragon-no-tamago-datta-saikyo-igai-mezasane-e/c352445-chuong-781-tien-hoa-cuoi-cung" title="Chương 781 - Tiến hóa cuối cùng">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s447-f0a304f0-7ce4-4255-ad00-7b8a701614b6-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 781 - Tiến hóa cuối cùng"><a href="/truyen/447-tensei-shitara-doragon-no-tamago-datta-saikyo-igai-mezasane-e/c352445-chuong-781-tien-hoa-cuoi-cung" title="Chương 781 - Tiến hóa cuối cùng">Chương 781 - Tiến hóa cuối cùng</a></div>
+            <div class="thumb_attr volume-title">Quyển 17</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/447-tensei-shitara-doragon-no-tamago-datta-saikyo-igai-mezasane-e" title="Tensei shitara doragon no tamago datta ~ saikyō igai mezasane ~e ~">Tensei shitara doragon no tamago datta ~ saikyō igai mezasane ~e ~</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2 type-convert ">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_14068">
+        <a href="/ai-dich/14068-tensei-oujo-to-tensai-reijou-no-mahou-kakumei/c318567-minh-hoa" title="Minh hoạ">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s14068-04f9c424-3887-43f8-a1be-99c0fc21e5bb.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Minh hoạ"><a href="/ai-dich/14068-tensei-oujo-to-tensai-reijou-no-mahou-kakumei/c318567-minh-hoa" title="Minh hoạ">Minh hoạ</a></div>
+            <div class="thumb_attr volume-title">Quyển 12</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/ai-dich/14068-tensei-oujo-to-tensai-reijou-no-mahou-kakumei" title="Tensei Oujo to Tensai Reijou no Mahou Kakumei">Tensei Oujo to Tensai Reijou no Mahou Kakumei</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_21152">
+        <a href="/truyen/21152-tensei-nanajou-de-hajimeru-isekai-raifu-bannnou-maryoku-ga-areba-kizoku-shakai-mo-yoyuu-de-ikirareru-to-kiitanodesuga/c274515-chuong-21-mut-oai-huong" title="Chương 21: Mứt oải hương">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s21152-f904cfaf-b62b-47cb-8301-fe73e448ea0a.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 21: Mứt oải hương"><a href="/truyen/21152-tensei-nanajou-de-hajimeru-isekai-raifu-bannnou-maryoku-ga-areba-kizoku-shakai-mo-yoyuu-de-ikirareru-to-kiitanodesuga/c274515-chuong-21-mut-oai-huong" title="Chương 21: Mứt oải hương">Chương 21: Mứt oải hương</a></div>
+            <div class="thumb_attr volume-title">Tập 01</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/21152-tensei-nanajou-de-hajimeru-isekai-raifu-bannnou-maryoku-ga-areba-kizoku-shakai-mo-yoyuu-de-ikirareru-to-kiitanodesuga" title="Tensei nanajou de hajimeru isekai raifu ~bannnou maryoku ga areba kizoku shakai mo yoyuu de ikirareru to kiitanodesuga!?~">Tensei nanajou de hajimeru isekai raifu ~bannnou maryoku ga areba kizoku shakai mo yoyuu de ikirareru to kiitanodesuga!?~</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_19530">
+        <a href="/truyen/19530-tensei-shite-inaka-de-slowlife-wo-okuritai/c247257-chuong-101-dung-chan-va-choi-keo-go-jenga" title="Chương 101: Dừng chân và chơi Kéo gỗ (Jenga)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s19530-d194fe06-eec7-42c0-9706-de769dbb68cc.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 101: Dừng chân và chơi Kéo gỗ (Jenga)"><a href="/truyen/19530-tensei-shite-inaka-de-slowlife-wo-okuritai/c247257-chuong-101-dung-chan-va-choi-keo-go-jenga" title="Chương 101: Dừng chân và chơi Kéo gỗ (Jenga)">Chương 101: Dừng chân và chơi Kéo gỗ (Jenga)</a></div>
+            <div class="thumb_attr volume-title">Tiến tới Kagura</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/19530-tensei-shite-inaka-de-slowlife-wo-okuritai" title="Tensei Shite Inaka de Slowlife wo Okuritai">Tensei Shite Inaka de Slowlife wo Okuritai</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_787">
+        <a href="/truyen/787-tensei-shitara-kendeshita/c241307-ham-nguc-duoi-bien-phan-15" title="Hầm Ngục Dưới Biển (Phần 15)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s787-8ae84f4f-4cc8-4acd-914d-72682df9e28e-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Hầm Ngục Dưới Biển (Phần 15)"><a href="/truyen/787-tensei-shitara-kendeshita/c241307-ham-nguc-duoi-bien-phan-15" title="Hầm Ngục Dưới Biển (Phần 15)">Hầm Ngục Dưới Biển (Phần 15)</a></div>
+            <div class="thumb_attr volume-title">Ngoại Truyện</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/787-tensei-shitara-kendeshita" title="Tensei Shitara Kendeshita">Tensei Shitara Kendeshita</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_14089">
+        <a href="/truyen/14089-tensei-oujo-to-tensai-reijou-no-mahou-kakumei/c188245-chuong-11-tieu-thu-nha-cong-tuoc-bi-tram-cam" title="Chương 11: Tiểu thư nhà Công tước bị trầm cảm">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s14089-54be8eaa-2ee1-4bc2-ae49-3f423e6deaa5-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 11: Tiểu thư nhà Công tước bị trầm cảm"><a href="/truyen/14089-tensei-oujo-to-tensai-reijou-no-mahou-kakumei/c188245-chuong-11-tieu-thu-nha-cong-tuoc-bi-tram-cam" title="Chương 11: Tiểu thư nhà Công tước bị trầm cảm">Chương 11: Tiểu thư nhà Công tước bị trầm cảm</a></div>
+            <div class="thumb_attr volume-title">Web Novel Tập 01</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/14089-tensei-oujo-to-tensai-reijou-no-mahou-kakumei" title="Tensei Oujo To Tensai Reijou No Mahou Kakumei">Tensei Oujo To Tensai Reijou No Mahou Kakumei</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_19441">
+        <a href="/truyen/19441-tensei-kizoku-no-isekai-boukenroku-jichou-wo-shiranai-kamigami-no-shito/c145600-chuong-1-dang-ki-lam-mao-hiem-gia" title="Chương 1 - Đăng kí làm mạo hiểm giả">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s19441-c3c34c8b-51b3-410e-abc8-bf353ba354a9.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 1 - Đăng kí làm mạo hiểm giả"><a href="/truyen/19441-tensei-kizoku-no-isekai-boukenroku-jichou-wo-shiranai-kamigami-no-shito/c145600-chuong-1-dang-ki-lam-mao-hiem-gia" title="Chương 1 - Đăng kí làm mạo hiểm giả">Chương 1 - Đăng kí làm mạo hiểm giả</a></div>
+            <div class="thumb_attr volume-title">Tập 02 - Tuổi thơ</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/19441-tensei-kizoku-no-isekai-boukenroku-jichou-wo-shiranai-kamigami-no-shito" title="Tensei Kizoku no Isekai Boukenroku~ Jichou wo Shiranai Kamigami no Shito~">Tensei Kizoku no Isekai Boukenroku~ Jichou wo Shiranai Kamigami no Shito~</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_17937">
+        <a href="/truyen/17937-tensei-shitara-dai-nana-ouji-dattanode-kimamani-majutsu-o-kiwamemasu/c136600-chapter-16-toi-thu-ma-thuat-hac-am-va-khi" title="Chapter 16 - Tôi thử ma thuật hắc ám và 『Khí』">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s17937-a6bfcfc8-7e24-4808-942d-ea72fcf037c6.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chapter 16 - Tôi thử ma thuật hắc ám và 『Khí』"><a href="/truyen/17937-tensei-shitara-dai-nana-ouji-dattanode-kimamani-majutsu-o-kiwamemasu/c136600-chapter-16-toi-thu-ma-thuat-hac-am-va-khi" title="Chapter 16 - Tôi thử ma thuật hắc ám và 『Khí』">Chapter 16 - Tôi thử ma thuật hắc ám và 『Khí』</a></div>
+            <div class="thumb_attr volume-title">Web Novel - Vol 1</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/17937-tensei-shitara-dai-nana-ouji-dattanode-kimamani-majutsu-o-kiwamemasu" title="Tensei Shitara dai Nana Ouji dattanode - Kimamani Majutsu o Kiwamemasu">Tensei Shitara dai Nana Ouji dattanode - Kimamani Majutsu o Kiwamemasu</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_15210">
+        <a href="/truyen/15210-tensei-saki-wa-jisaku-shousetsu-no-akuyaku-shoukoushaku-deshita-danzai-saretakunai-node-tekitai-kara-dekiai-ni-monogatari-wo-kakikaemasu/c133674-chuong-93-tia-sang-le-loi-tu-khu-o-chuot-toi-tam" title="Chương 93: Tia sáng le lói từ khu ổ chuột tối tăm">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s15210-722aae34-2d53-436d-909e-1aad1831e7e1-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 93: Tia sáng le lói từ khu ổ chuột tối tăm"><a href="/truyen/15210-tensei-saki-wa-jisaku-shousetsu-no-akuyaku-shoukoushaku-deshita-danzai-saretakunai-node-tekitai-kara-dekiai-ni-monogatari-wo-kakikaemasu/c133674-chuong-93-tia-sang-le-loi-tu-khu-o-chuot-toi-tam" title="Chương 93: Tia sáng le lói từ khu ổ chuột tối tăm">Chương 93: Tia sáng le lói từ khu ổ chuột tối tăm</a></div>
+            <div class="thumb_attr volume-title">Web novel</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/15210-tensei-saki-wa-jisaku-shousetsu-no-akuyaku-shoukoushaku-deshita-danzai-saretakunai-node-tekitai-kara-dekiai-ni-monogatari-wo-kakikaemasu" title="Tensei-saki wa jisaku shousetsu no akuyaku shoukoushaku deshita. Danzai saretakunai node tekitai kara dekiai ni monogatari wo kakikaemasu.">Tensei-saki wa jisaku shousetsu no akuyaku shoukoushaku deshita. Danzai saretakunai node tekitai kara dekiai ni monogatari wo kakikaemasu.</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_13712">
+        <a href="/truyen/13712-tensei-shitara-kozakana-datta-kedo-ryuu-ni-nareru-rashii-node-ganbarimasu-utate-ko-ryuu/c108993-chuong-09-can-thu" title="Chương 09 - cắn thử">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s13712-45753c49-2820-4f3a-9cdc-9426946818fa-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 09 - cắn thử"><a href="/truyen/13712-tensei-shitara-kozakana-datta-kedo-ryuu-ni-nareru-rashii-node-ganbarimasu-utate-ko-ryuu/c108993-chuong-09-can-thu" title="Chương 09 - cắn thử">Chương 09 - cắn thử</a></div>
+            <div class="thumb_attr volume-title">Quyển 01</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/13712-tensei-shitara-kozakana-datta-kedo-ryuu-ni-nareru-rashii-node-ganbarimasu-utate-ko-ryuu" title="Tensei Shitara Kozakana datta kedo Ryuu ni Nareru Rashii node Ganbarimasu Utate ko ryuu">Tensei Shitara Kozakana datta kedo Ryuu ni Nareru Rashii node Ganbarimasu Utate ko ryuu</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_12880">
+        <a href="/truyen/12880-tensei-shitara-kozakana-datta-kedo-ryuu-ni-nareru-rashii-node-ganbarimasu/c108967-chuong-8-phuc-hoi" title="Chương 8: Phục Hồi!">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s12880-fd509f98-2721-4261-801e-35750cb6a490-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 8: Phục Hồi!"><a href="/truyen/12880-tensei-shitara-kozakana-datta-kedo-ryuu-ni-nareru-rashii-node-ganbarimasu/c108967-chuong-8-phuc-hoi" title="Chương 8: Phục Hồi!">Chương 8: Phục Hồi!</a></div>
+            <div class="thumb_attr volume-title">Tập 01: Trong Dòng Sông</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/12880-tensei-shitara-kozakana-datta-kedo-ryuu-ni-nareru-rashii-node-ganbarimasu" title="Tensei shitara Kozakana datta kedo Ryuu ni nareru rashii node Ganbarimasu">Tensei shitara Kozakana datta kedo Ryuu ni nareru rashii node Ganbarimasu</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_6951">
+        <a href="/truyen/6951-tensei-shite-inaka-de-slowlife-wo-okuritai/c94990-chuong-052-tren-duong" title="Chương 052: Trên đường">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s6951-18b4ed9c-d9cf-44c8-b48b-3f9da21ec23f-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 052: Trên đường"><a href="/truyen/6951-tensei-shite-inaka-de-slowlife-wo-okuritai/c94990-chuong-052-tren-duong" title="Chương 052: Trên đường">Chương 052: Trên đường</a></div>
+            <div class="thumb_attr volume-title">Tập 03 Tôi muốn được sống chậm ở thôn quê khi chuyển sinh - Cuộc gặp giao lưu quý tộc ở Vương Đô [chương 052-082]</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/6951-tensei-shite-inaka-de-slowlife-wo-okuritai" title="Tensei Shite Inaka de Slowlife wo Okuritai">Tensei Shite Inaka de Slowlife wo Okuritai</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_5596">
+        <a href="/truyen/5596-tensei-shitara-slime-datta-ken-ngoai-truyen/c87895-chuong-225-giao-lo-chieu-tuong" title="Chương 225: Giao lộ chiếu tướng">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i2.hako.vip/ln/series/covers/s5596-b6d08783-067b-449e-8a85-984339f757ee.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 225: Giao lộ chiếu tướng"><a href="/truyen/5596-tensei-shitara-slime-datta-ken-ngoai-truyen/c87895-chuong-225-giao-lo-chieu-tuong" title="Chương 225: Giao lộ chiếu tướng">Chương 225: Giao lộ chiếu tướng</a></div>
+            <div class="thumb_attr volume-title">Hồi: Thiên Ma Đại Chiến</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/5596-tensei-shitara-slime-datta-ken-ngoai-truyen" title="Tensei Shitara Slime Datta Ken">Tensei Shitara Slime Datta Ken</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_7715">
+        <a href="/truyen/7715-tensei-oujo-to-tensai-reijou-no-mahou-kakumei/c84904-vol-4" title="Vol 4">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s7715-71f9112e-90d9-4884-b453-9c68254f9290-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Vol 4"><a href="/truyen/7715-tensei-oujo-to-tensai-reijou-no-mahou-kakumei/c84904-vol-4" title="Vol 4">Vol 4</a></div>
+            <div class="thumb_attr volume-title">Minh Họa</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/7715-tensei-oujo-to-tensai-reijou-no-mahou-kakumei" title="Tensei Oujo To Tensai Reijou No Mahou Kakumei">Tensei Oujo To Tensai Reijou No Mahou Kakumei</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_9750">
+        <a href="/truyen/9750-tensei-shoujo-no-rirekisho/c84876-arc-nong-thon-phap-su-da-den" title="Arc Nông thôn ⑦ Pháp sư đã đến">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s9750-e48eef72-d647-4ae3-b2ae-631b1cdcc9d8-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Arc Nông thôn ⑦ Pháp sư đã đến"><a href="/truyen/9750-tensei-shoujo-no-rirekisho/c84876-arc-nong-thon-phap-su-da-den" title="Arc Nông thôn ⑦ Pháp sư đã đến">Arc Nông thôn ⑦ Pháp sư đã đến</a></div>
+            <div class="thumb_attr volume-title">WN</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/9750-tensei-shoujo-no-rirekisho" title="Tensei Shoujo no Rirekisho">Tensei Shoujo no Rirekisho</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_9561">
+        <a href="/truyen/9561-tensei-muhai-no-isekai-kenja-game-no-job-de-tanoshii-second-life/c81873-chuong-11" title="Chương 11">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s9561-87b5ff3f-d294-41bb-afb7-91f89ddfcff2-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 11"><a href="/truyen/9561-tensei-muhai-no-isekai-kenja-game-no-job-de-tanoshii-second-life/c81873-chuong-11" title="Chương 11">Chương 11</a></div>
+            <div class="thumb_attr volume-title">Vol 1</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/9561-tensei-muhai-no-isekai-kenja-game-no-job-de-tanoshii-second-life" title="Tensei Muhai no Isekai Kenja: Game no Job de Tanoshii Second Life">Tensei Muhai no Isekai Kenja: Game no Job de Tanoshii Second Life</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_9261">
+        <a href="/truyen/9261-tensei-maou-no-dai-gosan/c81170-chuong-13-cuoc-hop-hoang-gia-tiep" title="Chương 1.3: Cuộc họp hoàng gia (tiếp)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s9261-0e72694a-6b0c-44ba-8884-0f9ab853cbe8-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 1.3: Cuộc họp hoàng gia (tiếp)"><a href="/truyen/9261-tensei-maou-no-dai-gosan/c81170-chuong-13-cuoc-hop-hoang-gia-tiep" title="Chương 1.3: Cuộc họp hoàng gia (tiếp)">Chương 1.3: Cuộc họp hoàng gia (tiếp)</a></div>
+            <div class="thumb_attr volume-title">Tập 01</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/9261-tensei-maou-no-dai-gosan" title="Tensei Maou no Dai Gosan">Tensei Maou no Dai Gosan</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2 type-convert ">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_8076">
+        <a href="/ai-dich/8076-tensei-oujo-to-tensai-reijou-no-mahou-kakumei/c79447-pdf-illustrations" title="PDF &amp; Illustrations">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s8076-fc8c261f-6593-46cb-8ac5-e7f0d755e18a-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="PDF &amp; Illustrations"><a href="/ai-dich/8076-tensei-oujo-to-tensai-reijou-no-mahou-kakumei/c79447-pdf-illustrations" title="PDF &amp; Illustrations">PDF &amp; Illustrations</a></div>
+            <div class="thumb_attr volume-title">Tập 03</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/ai-dich/8076-tensei-oujo-to-tensai-reijou-no-mahou-kakumei" title="Tensei Oujo to Tensai Reijou no Mahou Kakumei">Tensei Oujo to Tensai Reijou no Mahou Kakumei</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_6338">
+        <a href="/truyen/6338-tensei-shitara-ken-deshita-verln/c70036-chuong-4-phan-2" title="Chương 4 (Phần 2)">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s6338-2dddf3b0-6021-4122-89ae-36240b945a17-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 4 (Phần 2)"><a href="/truyen/6338-tensei-shitara-ken-deshita-verln/c70036-chuong-4-phan-2" title="Chương 4 (Phần 2)">Chương 4 (Phần 2)</a></div>
+            <div class="thumb_attr volume-title">Tập 01</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/6338-tensei-shitara-ken-deshita-verln" title="Tensei Shitara Ken Deshita (Ver.LN)">Tensei Shitara Ken Deshita (Ver.LN)</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_6698">
+        <a href="/truyen/6698-tensei-shitara-slime-datta-ken-ngoai-chuong/c64866-geld-va-cong-viec" title="Geld và công việc">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s6698-c9617ad3-bad4-4f86-98e8-d05d63d1437d-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Geld và công việc"><a href="/truyen/6698-tensei-shitara-slime-datta-ken-ngoai-chuong/c64866-geld-va-cong-viec" title="Geld và công việc">Geld và công việc</a></div>
+            <div class="thumb_attr volume-title">Volume 8.5</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/6698-tensei-shitara-slime-datta-ken-ngoai-chuong" title="Tensei Shitara Slime datta ken (Ngoại chương)">Tensei Shitara Slime datta ken (Ngoại chương)</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_424">
+        <a href="/truyen/424-tensei-shitara-slime-datta-ken/c60468-chuong-214-trong-the-gioi-kin" title="Chương 214: Trong thế giới kín">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s424-f8ee7ddd-d0d0-4f67-bb13-33667bbeb90d-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 214: Trong thế giới kín"><a href="/truyen/424-tensei-shitara-slime-datta-ken/c60468-chuong-214-trong-the-gioi-kin" title="Chương 214: Trong thế giới kín">Chương 214: Trong thế giới kín</a></div>
+            <div class="thumb_attr volume-title">⁂ ARC ⁂ Thiên Ma Đại Chiến</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/424-tensei-shitara-slime-datta-ken" title="Tensei Shitara Slime datta ken">Tensei Shitara Slime datta ken</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2 type-convert ">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_6223">
+        <a href="/ai-dich/6223-tensei-shitara-slime-datta-kenln/c59030-chuong-06" title="Chương kết">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s6223-7c142f66-21a4-4268-825c-696f5697682a-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương kết"><a href="/ai-dich/6223-tensei-shitara-slime-datta-kenln/c59030-chuong-06" title="Chương kết">Chương kết</a></div>
+            <div class="thumb_attr volume-title">Tập 03</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/ai-dich/6223-tensei-shitara-slime-datta-kenln" title="Tensei Shitara Slime datta ken(LN)">Tensei Shitara Slime datta ken(LN)</a></div>
+</div>
+                                    <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
+    <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_4869">
+        <a href="/truyen/4869-tensei-kenja-no-isekai-raifu-daini-no-shokugyo-wo-ete-sekai-saikyou-ni-narimashita/c58396-chuong-04-thieu-tien" title="Chương 04: Thiếu tiền">
+            <div class="a6-ratio">                                  
+                <div class="content img-in-ratio lazyload" data-bg="https://i.hako.vip/lightnovel/covers/s4869-b48460dd-8b88-4642-95bb-46ab73a886cc-m.jpg"></div>
+            </div>
+        </a>
+        <div class="thumb-detail">                                      
+            <div class="thumb_attr chapter-title" title="Chương 04: Thiếu tiền"><a href="/truyen/4869-tensei-kenja-no-isekai-raifu-daini-no-shokugyo-wo-ete-sekai-saikyou-ni-narimashita/c58396-chuong-04-thieu-tien" title="Chương 04: Thiếu tiền">Chương 04: Thiếu tiền</a></div>
+            <div class="thumb_attr volume-title">Web Novel</div>
+        </div>
+    </div>
+    <div class="thumb_attr series-title"><a href="/truyen/4869-tensei-kenja-no-isekai-raifu-daini-no-shokugyo-wo-ete-sekai-saikyou-ni-narimashita" title="Tensei Kenja no Isekai Raifu ~Daini no Shokugyo wo Ete, Sekai Saikyou ni Narimashita~">Tensei Kenja no Isekai Raifu ~Daini no Shokugyo wo Ete, Sekai Saikyou ni Narimashita~</a></div>
+</div>
+                                </div>
+            </main>
+
+            <div class="pagination-footer">
+        <div class="pagination_wrap">
+            <!--<a href="" class="paging_item paging_prevnext prev  disabled ">Trước</a>-->
+            <a href="https://ln.hako.vn/tim-kiem?query=tensei&amp;keywords=tensei&amp;page=1" class="paging_item paging_prevnext prev  disabled ">Đầu</a>
+            
+                        <a href="https://ln.hako.vn/tim-kiem?query=tensei&amp;keywords=tensei&amp;page=1" class="paging_item page_num  current ">1</a>
+                        <a href="https://ln.hako.vn/tim-kiem?query=tensei&amp;keywords=tensei&amp;page=2" class="paging_item page_num ">2</a>
+                        <a href="https://ln.hako.vn/tim-kiem?query=tensei&amp;keywords=tensei&amp;page=3" class="paging_item page_num ">3</a>
+                        <a href="https://ln.hako.vn/tim-kiem?query=tensei&amp;keywords=tensei&amp;page=4" class="paging_item page_num ">4</a>
+                        <a href="https://ln.hako.vn/tim-kiem?query=tensei&amp;keywords=tensei&amp;page=5" class="paging_item page_num ">5</a>
+            
+            <!--<a href=" https://ln.hako.vn/tim-kiem?query=tensei&amp;keywords=tensei&amp;page=2 " class="paging_item paging_prevnext next ">Tiếp</a>-->
+            <a href="https://ln.hako.vn/tim-kiem?query=tensei&amp;keywords=tensei&amp;page=11" class="paging_item paging_prevnext next ">Cuối</a>
+        </div>
+    </div>
+            </section>
+    </div>
+</main>
+
+<script>
+    $(document).ready(function() {
+        tippy('.tooltip', {
+            delay: 50,
+            maxWidth: 500,
+            interactive: true,
+            content(ref) {
+                const selector = ref.getAttribute('data-tooltip-content');
+                const template = document.querySelector(selector);
+                return template.innerHTML;
+            }
+        });
+
+        $('form.search-form').submit(function (event) {
+            if ($('#search-page-input').val().trim().length < 2) {
+                alert('Từ khóa phải có ít nhất 2 kí tự')
+                return false;
+            }
+        });
+    });
+</script>
+
+    
+    <script src="/scripts/service-manager.js?r=6"></script>
+
+    <script src="/scripts/app.js?id=936e11140b1e2cfb5b4a72ae484a7c9c"></script>
+    <script src="https://ln.hako.vn/vendor/livewire/livewire.min.js?id=df3a17f2"   data-csrf="rLmdO3tmkzxROPvPh5eKlo4ZLvw8MJWaIEkhb7ej" data-update-uri="/livewire/update" data-navigate-once="true"></script>
+
+    
+    <script>(function(s){s.dataset.zone='9831105',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    
+            
+            <footer id="footer">
+    <div class="container">
+        <!--<span><a href="">Hako.re</a></span>-->
+        <span class="right">Liên hệ: <a href="mailto:contact@hako.vn" target="_blank" style="color: #5fff46">contact@hako.vn</a></span>
+
+        <span>© 2016 - 2026 Cổng Light Novel - Đọc Light Novel</span>
+    </div>
+</footer>    
+    <div x-data x-show="$store.toast.on" @click="$store.toast.hide()" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md fixed w-3/4 md:w-1/2 z-20 inset-x-0 bottom-10 mx-auto" role="alert" style="display: none">
+    <div class="flex">
+        <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+        <div>
+            <p class="font-bold capitalize">Chú ý</p>
+            <p class="text-sm" x-text="$store.toast.message"></p>
+        </div>
+    </div>
+</div><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a44822eaeb4b5dee',t:'MTc5MDk5MDU1Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

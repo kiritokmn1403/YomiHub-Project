@@ -1,0 +1,655 @@
+[07/10/2026 13:54:48][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 13:54:50][INFO] Refreshed MAL token!
+[07/10/2026 14:27:29][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 14:27:31][INFO] Refreshed MAL token!
+[07/10/2026 14:27:38][WARNING] Image/network load failed: Bad state: Failed to load https://www.google.com/s2/favicons?sz=64&domain=doctruyen3qui15.pro.
+[07/10/2026 14:29:43][WARNING] Image/network load failed: Bad state: Failed to load https://hentaicb.help/wp-content/uploads/2021/07/Asobare-Dear-Sex-Friend.jpg.
+[07/10/2026 17:01:52][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 17:01:54][INFO] Refreshed MAL token!
+[07/10/2026 17:05:49][WARNING] Image/network load failed: Bad state: Failed to load https://pix-cdn77.phncdn.com/c6251/videos/202609/12/62018865/original/01a0964e-a680-7507-8862-cbceabf478bb.jpg/plain/rs:fit:320:180?hash=X1ptk2-uN_sW1PiyT2O1rJlPH_k=&validto=1791348872.
+[07/10/2026 17:06:57][WARNING] Image/network load failed: Bad state: Failed to load https://hentaicb.help/wp-content/uploads/2021/07/Asobare-Dear-Sex-Friend.jpg.
+[07/10/2026 18:24:49][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 18:24:51][INFO] Refreshed MAL token!
+[07/10/2026 18:25:51][WARNING] Image/network load failed: Bad state: Failed to load https://www.google.com/s2/favicons?sz=64&domain=hentaicube.xyz.
+[07/10/2026 18:26:09][ERROR] Extension "Jellyfin (1)" (all) getPopular 1: Select library in the extension settings. 
+
+
+statusCode: 500
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be162c37 virt 0000000001f32c37 _kDartSnapshotText+0x17a2c37
+    #01 abs 00000078be163847 virt 0000000001f33847 _kDartSnapshotText+0x17a3847
+<asynchronous suspension>
+    #02 abs 00000078be02d41f virt 0000000001dfd41f _kDartSnapshotText+0x166d41f
+<asynchronous suspension>
+    #03 abs 00000078be01066f virt 0000000001de066f _kDartSnapshotText+0x165066f
+<asynchronous suspension>
+    #04 abs 00000078be00e287 virt 0000000001dde287 _kDartSnapshotText+0x164e287
+<asynchronous suspension>
+    #05 abs 00000078bcc1ee04 virt 00000000009eee04 _kDartSnapshotText+0x25ee04
+<asynchronous suspension>
+    #06 abs 00000078bcc1eddc virt 00000000009eeddc _kDartSnapshotText+0x25eddc
+<asynchronous suspension>
+
+[07/10/2026 18:26:10][ERROR] Extension "Jellyfin (1)" (all) getPopular 1: Select library in the extension settings. 
+
+
+statusCode: 500
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be162c37 virt 0000000001f32c37 _kDartSnapshotText+0x17a2c37
+    #01 abs 00000078be163847 virt 0000000001f33847 _kDartSnapshotText+0x17a3847
+<asynchronous suspension>
+    #02 abs 00000078be02d41f virt 0000000001dfd41f _kDartSnapshotText+0x166d41f
+<asynchronous suspension>
+    #03 abs 00000078be01066f virt 0000000001de066f _kDartSnapshotText+0x165066f
+<asynchronous suspension>
+    #04 abs 00000078be00e287 virt 0000000001dde287 _kDartSnapshotText+0x164e287
+<asynchronous suspension>
+    #05 abs 00000078bcc1ee04 virt 00000000009eee04 _kDartSnapshotText+0x25ee04
+<asynchronous suspension>
+    #06 abs 00000078bcc1eddc virt 00000000009eeddc _kDartSnapshotText+0x25eddc
+<asynchronous suspension>
+
+[07/10/2026 18:26:16][WARNING] Suggestions: Xvideos: TimeoutException after 0:00:30.000000: Future not completed
+[07/10/2026 18:26:16][ERROR] Extension "Google Drive" (all) getPopular 1: Enter drive path(s) in extension settings. 
+
+
+statusCode: 500
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be162c37 virt 0000000001f32c37 _kDartSnapshotText+0x17a2c37
+    #01 abs 00000078be163847 virt 0000000001f33847 _kDartSnapshotText+0x17a3847
+<asynchronous suspension>
+    #02 abs 00000078be02d41f virt 0000000001dfd41f _kDartSnapshotText+0x166d41f
+<asynchronous suspension>
+    #03 abs 00000078be01066f virt 0000000001de066f _kDartSnapshotText+0x165066f
+<asynchronous suspension>
+    #04 abs 00000078be00e287 virt 0000000001dde287 _kDartSnapshotText+0x164e287
+<asynchronous suspension>
+    #05 abs 00000078be127954 virt 0000000001ef7954 _kDartSnapshotText+0x1767954
+<asynchronous suspension>
+    #06 abs 00000078be00d653 virt 0000000001ddd653 _kDartSnapshotText+0x164d653
+<asynchronous suspension>
+    #07 abs 00000078bdf3b560 virt 0000000001d0b560 _kDartSnapshotText+0x157b560
+<asynchronous suspension>
+    #08 abs 00000078be00cab7 virt 0000000001ddcab7 _kDartSnapshotText+0x164cab7
+<asynchronous suspension>
+    #09 abs 00000078be00c43b virt 0000000001ddc43b _kDartSnapshotText+0x164c43b
+<asynchronous suspension>
+
+[07/10/2026 18:26:16][WARNING] Suggestions: Google Drive: Enter drive path(s) in extension settings. 
+
+
+statusCode: 500
+[07/10/2026 18:26:16][ERROR] Extension "Jellyfin (1)" (all) getPopular 1: Select library in extension settings 
+
+
+statusCode: 500
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be162c37 virt 0000000001f32c37 _kDartSnapshotText+0x17a2c37
+    #01 abs 00000078be163847 virt 0000000001f33847 _kDartSnapshotText+0x17a3847
+<asynchronous suspension>
+    #02 abs 00000078be02d41f virt 0000000001dfd41f _kDartSnapshotText+0x166d41f
+<asynchronous suspension>
+    #03 abs 00000078be01066f virt 0000000001de066f _kDartSnapshotText+0x165066f
+<asynchronous suspension>
+    #04 abs 00000078be00e287 virt 0000000001dde287 _kDartSnapshotText+0x164e287
+<asynchronous suspension>
+    #05 abs 00000078bcc1ee04 virt 00000000009eee04 _kDartSnapshotText+0x25ee04
+<asynchronous suspension>
+    #06 abs 00000078bcc1eddc virt 00000000009eeddc _kDartSnapshotText+0x25eddc
+<asynchronous suspension>
+
+[07/10/2026 18:26:19][ERROR] Extension "Jellyfin (1)" (all) getPopular 1: Select library in extension settings 
+
+
+statusCode: 500
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be162c37 virt 0000000001f32c37 _kDartSnapshotText+0x17a2c37
+    #01 abs 00000078be163847 virt 0000000001f33847 _kDartSnapshotText+0x17a3847
+<asynchronous suspension>
+    #02 abs 00000078be02d41f virt 0000000001dfd41f _kDartSnapshotText+0x166d41f
+<asynchronous suspension>
+    #03 abs 00000078be01066f virt 0000000001de066f _kDartSnapshotText+0x165066f
+<asynchronous suspension>
+    #04 abs 00000078be00e287 virt 0000000001dde287 _kDartSnapshotText+0x164e287
+<asynchronous suspension>
+    #05 abs 00000078bcc1ee04 virt 00000000009eee04 _kDartSnapshotText+0x25ee04
+<asynchronous suspension>
+    #06 abs 00000078bcc1eddc virt 00000000009eeddc _kDartSnapshotText+0x25eddc
+<asynchronous suspension>
+
+[07/10/2026 18:26:20][ERROR] Extension "Jellyfin (2)" (all) getPopular 1: Select library in extension settings 
+
+
+statusCode: 500
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be162c37 virt 0000000001f32c37 _kDartSnapshotText+0x17a2c37
+    #01 abs 00000078be163847 virt 0000000001f33847 _kDartSnapshotText+0x17a3847
+<asynchronous suspension>
+    #02 abs 00000078be02d41f virt 0000000001dfd41f _kDartSnapshotText+0x166d41f
+<asynchronous suspension>
+    #03 abs 00000078be01066f virt 0000000001de066f _kDartSnapshotText+0x165066f
+<asynchronous suspension>
+    #04 abs 00000078be00e287 virt 0000000001dde287 _kDartSnapshotText+0x164e287
+<asynchronous suspension>
+    #05 abs 00000078bcc1ee04 virt 00000000009eee04 _kDartSnapshotText+0x25ee04
+<asynchronous suspension>
+    #06 abs 00000078bcc1eddc virt 00000000009eeddc _kDartSnapshotText+0x25eddc
+<asynchronous suspension>
+
+[07/10/2026 18:26:57][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: Error: AVSub không trả về danh sách (HTTP 200, 896023 byte). Thử mở WebView của tiện ích, hoặc đổi Tên miền trong cài đặt.
+    at checked (<eval>:146:61)
+    at getPopular (<eval>:193:47)
+
+
+[07/10/2026 18:27:04][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: Error: AVSub không trả về danh sách (HTTP 200, 896023 byte). Thử mở WebView của tiện ích, hoặc đổi Tên miền trong cài đặt.
+    at checked (<eval>:146:61)
+    at getPopular (<eval>:193:47)
+
+
+[07/10/2026 18:28:53][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:28:54][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:28:54][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:28:54][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:28:55][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:28:55][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:28:56][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:28:56][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:29:02][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:29:03][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:29:04][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:29:04][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:29:04][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 18:29:05][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: type 'List<dynamic>' is not a subtype of type 'String' of '<optimized out>'
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 25690, tid: 536042422552, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: '0380cb3d90f16dd7726823b1e286dffc'
+isolate_dso_base: 78bc230000, vm_dso_base: 0
+isolate_instructions: 78bc9c0000, vm_instructions: 0
+    #00 abs 00000078be18ddd7 virt 0000000001f5ddd7 _kDartSnapshotText+0x17cddd7
+    #01 abs 00000078be197a33 virt 0000000001f67a33 _kDartSnapshotText+0x17d7a33
+    #02 abs 00000078bcdb0c3f virt 0000000000b80c3f _kDartSnapshotText+0x3f0c3f
+    #03 abs 00000078bde0a627 virt 0000000001bda627 _kDartSnapshotText+0x144a627
+    #04 abs 00000078bdddb48b virt 0000000001bab48b _kDartSnapshotText+0x141b48b
+    #05 abs 00000078be164aaf virt 0000000001f34aaf _kDartSnapshotText+0x17a4aaf
+<asynchronous suspension>
+    #06 abs 00000078be134df3 virt 0000000001f04df3 _kDartSnapshotText+0x1774df3
+<asynchronous suspension>
+    #07 abs 00000078be1348cb virt 0000000001f048cb _kDartSnapshotText+0x17748cb
+<asynchronous suspension>
+    #08 abs 00000078be13467b virt 0000000001f0467b _kDartSnapshotText+0x177467b
+<asynchronous suspension>
+    #09 abs 00000078be158a5b virt 0000000001f28a5b _kDartSnapshotText+0x1798a5b
+<asynchronous suspension>
+    #10 abs 00000078be120e8b virt 0000000001ef0e8b _kDartSnapshotText+0x1760e8b
+<asynchronous suspension>
+    #11 abs 00000078be121297 virt 0000000001ef1297 _kDartSnapshotText+0x1761297
+<asynchronous suspension>
+    #12 abs 00000078bd737388 virt 0000000001507388 _kDartSnapshotText+0xd77388
+<asynchronous suspension>
+    #13 abs 00000078bd737298 virt 0000000001507298 _kDartSnapshotText+0xd77298
+<asynchronous suspension>
+
+
+[07/10/2026 20:32:52][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 20:32:54][INFO] Refreshed MAL token!
+[07/10/2026 20:34:02][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 20:34:04][INFO] Refreshed MAL token!
+[07/10/2026 20:34:19][WARNING] Image/network load failed: Bad state: Failed to load https://www.google.com/s2/favicons?sz=64&domain=hentaicube.xyz.

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_atg_quickies_client=self.webpackChunk_atg_quickies_client||[]).push([[265],{26265(e){e.exports=JSON.parse('{"localization":"med lokalisering","report_content":"Rapportera innehåll","contact_support":"Kontakta supporten"}')}}]);

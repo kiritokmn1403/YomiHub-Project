@@ -1,0 +1,50 @@
+[
+  {
+    "name": ".github",
+    "path": ".github",
+    "sha": "7b454a4a2a139f7cb00c0c4b6ee9979d725f61e6",
+    "size": 0,
+    "url": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/contents/.github?ref=main",
+    "html_url": "https://github.com/Shebyyy/kotatsu-multi-parsers/tree/main/.github",
+    "git_url": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/git/trees/7b454a4a2a139f7cb00c0c4b6ee9979d725f61e6",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/contents/.github?ref=main",
+      "git": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/git/trees/7b454a4a2a139f7cb00c0c4b6ee9979d725f61e6",
+      "html": "https://github.com/Shebyyy/kotatsu-multi-parsers/tree/main/.github"
+    }
+  },
+  {
+    "name": "README.md",
+    "path": "README.md",
+    "sha": "c0f7d7b5906c0c91119a2e7887cbd2c16ae73262",
+    "size": 1369,
+    "url": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/contents/README.md?ref=main",
+    "html_url": "https://github.com/Shebyyy/kotatsu-multi-parsers/blob/main/README.md",
+    "git_url": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/git/blobs/c0f7d7b5906c0c91119a2e7887cbd2c16ae73262",
+    "download_url": "https://raw.githubusercontent.com/Shebyyy/kotatsu-multi-parsers/main/README.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/contents/README.md?ref=main",
+      "git": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/git/blobs/c0f7d7b5906c0c91119a2e7887cbd2c16ae73262",
+      "html": "https://github.com/Shebyyy/kotatsu-multi-parsers/blob/main/README.md"
+    }
+  },
+  {
+    "name": "index",
+    "path": "index",
+    "sha": "5685a28e423f387ad50def895041ee6a9865a95f",
+    "size": 0,
+    "url": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/contents/index?ref=main",
+    "html_url": "https://github.com/Shebyyy/kotatsu-multi-parsers/tree/main/index",
+    "git_url": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/git/trees/5685a28e423f387ad50def895041ee6a9865a95f",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/contents/index?ref=main",
+      "git": "https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/git/trees/5685a28e423f387ad50def895041ee6a9865a95f",
+      "html": "https://github.com/Shebyyy/kotatsu-multi-parsers/tree/main/index"
+    }
+  }
+]

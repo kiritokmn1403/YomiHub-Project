@@ -1,0 +1,10 @@
+
+#### I. Ảnh bìa thư viện trên Windows (28/10/2026 22:00–22:40, theo yêu cầu "Sửa phần ảnh bìa thư viện trên Windows")
+
+- Kiểm tra lại: tab "00 - Tất Cả" hiện ảnh bìa bình thường; các thẻ trắng nằm ở tab "Lịch Sử Đọc" và một số mục có máy chủ ảnh hỏng. Từ Windows (DNS 8.8.8.8 + `curl --resolve`): `i.hinhgg.com` trả **521** (máy chủ gốc Cloudflare ngừng), `hentaicb.help/wp-content/uploads/…` đóng kết nối TLS ngay (`schannel: server closed abruptly`) dù trang chủ trả 200 → ảnh bị máy chủ chặn/ngừng, không phải do DNS nhà mạng hay ứng dụng. Sửa nhận định ở mục H ("trình tải ảnh không dùng DoH") — trình tải ảnh đã có thử lại qua HTTP khác và DNS-over-HTTPS (`custom_extended_image_provider.dart`, `_getResponse`).
+- **Lỗi 1 (đã sửa):** tab "Lịch Sử Đọc/Xem" ở lưới thu gọn không hiện tên truyện — `CoverViewWidget` chỉ vẽ `bottomTextWidget` ở lưới thoải mái, còn `history_screen.dart` chỉ truyền tên qua tham số đó. Sửa `lib/modules/history/history_screen.dart`: ở lưới thu gọn thêm `BottomTextWidget` vào trong thẻ, chuyển nhãn tập/giờ lên trên để không đè tên.
+- **Lỗi 2 (đã sửa):** ảnh bìa không tải được (máy chủ hỏng) để lại thẻ trống. Sửa `lib/modules/widgets/cover_view_widget.dart`: nền giữ chỗ (biểu tượng `image_not_supported_outlined` trên màu `surfaceContainerHighest`) nằm dưới lớp Material trong suốt; ảnh tải được vẽ đè lên → không ảnh hưởng ảnh bình thường (kiểm tra tab "00 - Tất Cả").
+- Kiểm thử: `dart analyze` (19 tệp) 0 lỗi; `flutter test` 27/27 đạt; Windows portable dựng 22:30 — ảnh `qa/w114_history_tab.png` (tên + nền giữ chỗ hiện đủ), tab "00 - Tất Cả" ảnh bìa bình thường.
+- Chưa làm: tải ảnh từ máy chủ chặn kết nối không phải trình duyệt (`hentaicb.help/wp-content`) — cần tải qua WebView; ghi nhận cho bản sau.
+- Bản cũ trước sửa: `audit-0.4.3/before/covers/`.
+- Dựng lại toàn bộ sau sửa: Windows 22:30, APK 22:49, TV 23:22, pack 23:38. Lần pack này `Setup.exe` mới không chuyển được vào `output/0.4.3` (`Move-Item` IOException vì cửa sổ `Setup.exe` cũ còn mở từ lần cài thử) → đã đóng tiến trình, chuyển tệp (23:23:44, 145.015.808 byte) và tính lại `SHA256SUMS-0.4.3.txt` (23:40, 10 tệp).

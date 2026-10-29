@@ -1,0 +1,101 @@
+[
+  {
+    "language": "as",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "de",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "ar",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "en",
+    "added": 175,
+    "errors": []
+  },
+  {
+    "language": "es_419",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "es",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "fr",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "hi",
+    "added": 201,
+    "errors": [
+      {
+        "key": "Giới hạn lành mạnh: {p0} phút/ngày",
+        "error": "placeholder mismatch"
+      },
+      {
+        "key": "{p0} nguồn ({p1}) • {p2} chương/tập",
+        "error": "placeholder mismatch"
+      }
+    ]
+  },
+  {
+    "language": "id",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "it",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "ko",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "ja",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "pt_BR",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "pt",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "ru",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "th",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "tr",
+    "added": 203,
+    "errors": []
+  },
+  {
+    "language": "zh",
+    "added": 203,
+    "errors": []
+  }
+]

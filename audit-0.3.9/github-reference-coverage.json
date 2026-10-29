@@ -1,0 +1,2347 @@
+[
+  {
+    "row": 4,
+    "url": "https://github.com/Aidoku/Aidoku",
+    "listed_in_about": true
+  },
+  {
+    "row": 5,
+    "url": "https://github.com/komikku-app/anikku",
+    "listed_in_about": true
+  },
+  {
+    "row": 6,
+    "url": "https://github.com/aniyomiorg/aniyomi",
+    "listed_in_about": true
+  },
+  {
+    "row": 7,
+    "url": "https://github.com/KotatsuApp",
+    "listed_in_about": true
+  },
+  {
+    "row": 8,
+    "url": "https://github.com/Shebyyy/kotatsu-multi-parsers",
+    "listed_in_about": true
+  },
+  {
+    "row": 9,
+    "url": "https://github.com/dazedcat19/FMD2",
+    "listed_in_about": true
+  },
+  {
+    "row": 10,
+    "url": "https://github.com/kodjodevf/mangayomi",
+    "listed_in_about": true
+  },
+  {
+    "row": 11,
+    "url": "https://github.com/kodjodevf/M-Extension-Server",
+    "listed_in_about": true
+  },
+  {
+    "row": 12,
+    "url": "https://github.com/Schnitzel5/ApkBridge",
+    "listed_in_about": true
+  },
+  {
+    "row": 13,
+    "url": "https://github.com/Schnitzel5/mangayomi-custom-buttons",
+    "listed_in_about": true
+  },
+  {
+    "row": 14,
+    "url": "https://miyomi.app/software/mihon",
+    "listed_in_about": true
+  },
+  {
+    "row": 15,
+    "url": "https://github.com/wen-shion/mihon-proxy",
+    "listed_in_about": true
+  },
+  {
+    "row": 16,
+    "url": "https://github.com/Seguaz/Nekoyomi",
+    "listed_in_about": true
+  },
+  {
+    "row": 17,
+    "url": "https://github.com/tachimanga",
+    "listed_in_about": true
+  },
+  {
+    "row": 18,
+    "url": "https://github.com/meesam4687/zenbu",
+    "listed_in_about": true
+  },
+  {
+    "row": 19,
+    "url": "https://github.com/LNReader/lnreader",
+    "listed_in_about": true
+  },
+  {
+    "row": 20,
+    "url": "https://github.com/Darkrai9x/vbook-extensions",
+    "listed_in_about": true
+  },
+  {
+    "row": 21,
+    "url": "https://github.com/duongden/vbook/",
+    "listed_in_about": true
+  },
+  {
+    "row": 22,
+    "url": "https://github.com/TheLox95/Google-Play-Books-Desktop",
+    "listed_in_about": true
+  },
+  {
+    "row": 23,
+    "url": "https://github.com/SanHsien/openshelf",
+    "listed_in_about": false
+  },
+  {
+    "row": 24,
+    "url": "https://github.com/seanpm2001/Stop-reading-from-Google-Books",
+    "listed_in_about": false
+  },
+  {
+    "row": 25,
+    "url": "https://github.com/t27/highlights-convert",
+    "listed_in_about": false
+  },
+  {
+    "row": 26,
+    "url": "https://github.com/TwoSolutions/ABC",
+    "listed_in_about": false
+  },
+  {
+    "row": 27,
+    "url": "https://github.com/topics/google-play-books",
+    "listed_in_about": false
+  },
+  {
+    "row": 28,
+    "url": "https://github.com/murazor97dicaprio/google-play-books",
+    "listed_in_about": false
+  },
+  {
+    "row": 29,
+    "url": "https://github.com/Brandon123b/Playbook-Analytics",
+    "listed_in_about": false
+  },
+  {
+    "row": 30,
+    "url": "https://github.com/yukik8/yomirin",
+    "listed_in_about": false
+  },
+  {
+    "row": 31,
+    "url": "https://github.com/smokehost24k/google-play-books",
+    "listed_in_about": false
+  },
+  {
+    "row": 32,
+    "url": "https://github.com/crxssed7/play-books-frankenstein",
+    "listed_in_about": false
+  },
+  {
+    "row": 33,
+    "url": "https://github.com/1905/google-play-books-downloader",
+    "listed_in_about": false
+  },
+  {
+    "row": 34,
+    "url": "https://github.com/Ray1979ANYWAY/FewType",
+    "listed_in_about": false
+  },
+  {
+    "row": 35,
+    "url": "https://github.com/xLexip/Adaptive-Theme",
+    "listed_in_about": false
+  },
+  {
+    "row": 36,
+    "url": "https://github.com/laduygaga/playbook-android-reader",
+    "listed_in_about": false
+  },
+  {
+    "row": 37,
+    "url": "https://github.com/bradlegge/google-playbook",
+    "listed_in_about": false
+  },
+  {
+    "row": 38,
+    "url": "https://github.com/liyasthomas/books",
+    "listed_in_about": false
+  },
+  {
+    "row": 39,
+    "url": "https://developers.google.com/books?hl=vi",
+    "listed_in_about": false
+  },
+  {
+    "row": 40,
+    "url": "https://github.com/devnoname120/google-play-book-downloader",
+    "listed_in_about": false
+  },
+  {
+    "row": 41,
+    "url": "https://github.com/IReaderorg/Ireader",
+    "listed_in_about": true
+  },
+  {
+    "row": 42,
+    "url": "https://github.com/tachiyomiorg",
+    "listed_in_about": true
+  },
+  {
+    "row": 44,
+    "url": "https://github.com/adblockplus",
+    "listed_in_about": true
+  },
+  {
+    "row": 45,
+    "url": "https://github.com/gorhill/uBlock",
+    "listed_in_about": true
+  },
+  {
+    "row": 46,
+    "url": "https://github.com/uBlock-LLC/uBlock",
+    "listed_in_about": true
+  },
+  {
+    "row": 47,
+    "url": "https://gist.github.com/DerFichtl/af462414df838ff397603f8bf9db24e3",
+    "listed_in_about": true
+  },
+  {
+    "row": 48,
+    "url": "https://github.com/AdguardTeam",
+    "listed_in_about": true
+  },
+  {
+    "row": 50,
+    "url": "https://github.com/torproject",
+    "listed_in_about": true
+  },
+  {
+    "row": 51,
+    "url": "https://github.com/jeremy-jr-benthum/onion-browser-button/releases",
+    "listed_in_about": true
+  },
+  {
+    "row": 52,
+    "url": "https://github.com/topics/cloudflare-warp",
+    "listed_in_about": true
+  },
+  {
+    "row": 53,
+    "url": "https://github.com/hola",
+    "listed_in_about": true
+  },
+  {
+    "row": 54,
+    "url": "https://github.com/OpenVPN",
+    "listed_in_about": true
+  },
+  {
+    "row": 55,
+    "url": "https://github.com/WireGuard",
+    "listed_in_about": true
+  },
+  {
+    "row": 56,
+    "url": "https://github.com/SoftEtherVPN/SoftEtherVPN/",
+    "listed_in_about": true
+  },
+  {
+    "row": 57,
+    "url": "https://github.com/AdguardTeam/AdGuardVPNForWindows",
+    "listed_in_about": true
+  },
+  {
+    "row": 58,
+    "url": "https://github.com/DanTheSanjiFan/urbanvpn",
+    "listed_in_about": true
+  },
+  {
+    "row": 59,
+    "url": "https://github.com/doxdk/UrbanVPN/blob/main/README.md",
+    "listed_in_about": true
+  },
+  {
+    "row": 60,
+    "url": "https://github.com/VulcanoSoftware/urbanvpn/releases",
+    "listed_in_about": true
+  },
+  {
+    "row": 61,
+    "url": "https://github.com/jamie950315/Urban-Proxy",
+    "listed_in_about": true
+  },
+  {
+    "row": 62,
+    "url": "https://github.com/topics/urban-vpn",
+    "listed_in_about": true
+  },
+  {
+    "row": 64,
+    "url": "https://github.com/huythai1602/Pure_tuber_app",
+    "listed_in_about": true
+  },
+  {
+    "row": 65,
+    "url": "https://github.com/PureTuber",
+    "listed_in_about": true
+  },
+  {
+    "row": 66,
+    "url": "https://github.com/TeamNewPipe/NewPipe",
+    "listed_in_about": true
+  },
+  {
+    "row": 67,
+    "url": "https://github.com/dexter9code/vancedTube",
+    "listed_in_about": true
+  },
+  {
+    "row": 68,
+    "url": "https://github.com/laynz28/ytvancedx",
+    "listed_in_about": true
+  },
+  {
+    "row": 69,
+    "url": "https://www.youtube.com/",
+    "listed_in_about": true
+  },
+  {
+    "row": 71,
+    "url": "https://github.com/Sigil-Ebook/Sigil",
+    "listed_in_about": true
+  },
+  {
+    "row": 72,
+    "url": "https://github.com/kovidgoyal/calibre",
+    "listed_in_about": true
+  },
+  {
+    "row": 73,
+    "url": "https://github.com/FBReader",
+    "listed_in_about": true
+  },
+  {
+    "row": 75,
+    "url": "https://github.com/chromium/chromium",
+    "listed_in_about": true
+  },
+  {
+    "row": 76,
+    "url": "https://github.com/mozilla-firefox/firefox",
+    "listed_in_about": true
+  },
+  {
+    "row": 77,
+    "url": "https://github.com/coccoc",
+    "listed_in_about": true
+  },
+  {
+    "row": 78,
+    "url": "https://github.com/fingerprintjs/fingerprintjs",
+    "listed_in_about": true
+  },
+  {
+    "row": 79,
+    "url": "https://github.com/eisman/fingerprintjs2",
+    "listed_in_about": true
+  },
+  {
+    "row": 80,
+    "url": "https://github.com/niespodd/browser-fingerprinting",
+    "listed_in_about": true
+  },
+  {
+    "row": 81,
+    "url": "https://eisman.github.io/fingerprintjs2/",
+    "listed_in_about": true
+  },
+  {
+    "row": 83,
+    "url": "https://github.com/cloudflare",
+    "listed_in_about": true
+  },
+  {
+    "row": 84,
+    "url": "https://github.com/VeNoMouS/cloudscraper",
+    "listed_in_about": true
+  },
+  {
+    "row": 85,
+    "url": "https://github.com/CloakHQ/CloakBrowser",
+    "listed_in_about": true
+  },
+  {
+    "row": 87,
+    "url": "https://github.com/foxitsoftware",
+    "listed_in_about": true
+  },
+  {
+    "row": 88,
+    "url": "https://github.com/PDF24",
+    "listed_in_about": true
+  },
+  {
+    "row": 89,
+    "url": "https://github.com/ilovepdf",
+    "listed_in_about": true
+  },
+  {
+    "row": 91,
+    "url": "https://gist.github.com/silasmariusz/74cdbd298672c1f6d96f4551c0bd8209",
+    "listed_in_about": true
+  },
+  {
+    "row": 92,
+    "url": "https://gist.github.com/silasmariusz/74cdbd298672c1f6d96f4551c0bd8209",
+    "listed_in_about": true
+  },
+  {
+    "row": 94,
+    "url": "https://github.com/seemoo-lab/opendrop",
+    "listed_in_about": true
+  },
+  {
+    "row": 95,
+    "url": "https://github.com/ihexxa/quickshare",
+    "listed_in_about": true
+  },
+  {
+    "row": 96,
+    "url": "https://github.com/Martichou/rquickshare",
+    "listed_in_about": true
+  },
+  {
+    "row": 97,
+    "url": "https://github.com/videolan/vlc",
+    "listed_in_about": true
+  },
+  {
+    "row": 98,
+    "url": "https://github.com/microg",
+    "listed_in_about": true
+  },
+  {
+    "row": 99,
+    "url": "https://github.com/ReVanced/revanced-manager/",
+    "listed_in_about": true
+  },
+  {
+    "row": 100,
+    "url": "https://github.com/netsynx/NetSetMan",
+    "listed_in_about": true
+  },
+  {
+    "row": 101,
+    "url": "https://github.com/nayuki/QR-Code-generator",
+    "listed_in_about": true
+  },
+  {
+    "row": 102,
+    "url": "https://gist.github.com/qt-kaneko/d5969bae8c31b306408038581297dd33",
+    "listed_in_about": true
+  },
+  {
+    "row": 103,
+    "url": "https://github.com/riteshkumar072/ShortStream",
+    "listed_in_about": true
+  },
+  {
+    "row": 104,
+    "url": "https://github.com/dkaoster/scrolly-video",
+    "listed_in_about": true
+  },
+  {
+    "row": 105,
+    "url": "https://gist.github.com/codegenixdev/413d2e995f8f536edc00a8ad62c9049b",
+    "listed_in_about": true
+  },
+  {
+    "row": 106,
+    "url": "https://adncwy.github.io/video-scroller/",
+    "listed_in_about": true
+  },
+  {
+    "row": 107,
+    "url": "https://github.com/Tyson3101/Auto-Youtube-Shorts-Scroller/",
+    "listed_in_about": true
+  },
+  {
+    "row": 108,
+    "url": "https://github.com/KHAJAMOINUDDINKHADRI/Video-Scrolling",
+    "listed_in_about": true
+  },
+  {
+    "row": 109,
+    "url": "https://gist.github.com/Rochdy/aeadab548fb657cb1e90c3b5b1b30038",
+    "listed_in_about": true
+  },
+  {
+    "row": 110,
+    "url": "https://github.com/umair-hashmii/VideoShorts",
+    "listed_in_about": true
+  },
+  {
+    "row": 111,
+    "url": "https://github.com/librespeed/speedtest",
+    "listed_in_about": true
+  },
+  {
+    "row": 112,
+    "url": "https://github.com/aandrew-me/ytDownloader",
+    "listed_in_about": true
+  },
+  {
+    "row": 113,
+    "url": "https://github.com/ChiefInnovator/videodownloader",
+    "listed_in_about": false
+  },
+  {
+    "row": 114,
+    "url": "https://github.com/jely2002/youtube-dl-gui",
+    "listed_in_about": true
+  },
+  {
+    "row": 115,
+    "url": "https://github.com/hanyin111/Vdown",
+    "listed_in_about": true
+  },
+  {
+    "row": 116,
+    "url": "https://github.com/averygan/reclip",
+    "listed_in_about": true
+  },
+  {
+    "row": 117,
+    "url": "https://github.com/mhogomchungu/media-downloader",
+    "listed_in_about": true
+  },
+  {
+    "row": 118,
+    "url": "https://github.com/Unrud/video-downloader",
+    "listed_in_about": true
+  },
+  {
+    "row": 119,
+    "url": "https://github.com/runtimerevolution/hybrid-to-native",
+    "listed_in_about": true
+  },
+  {
+    "row": 120,
+    "url": "https://www.hybridclr.cn/en/docs/intro",
+    "listed_in_about": true
+  },
+  {
+    "row": 121,
+    "url": "https://github.com/focus-creative-games/hybridclr",
+    "listed_in_about": true
+  },
+  {
+    "row": 122,
+    "url": "https://docs.github.com/en/actions/reference/runners/github-hosted-runners",
+    "listed_in_about": false
+  },
+  {
+    "row": 123,
+    "url": "https://blogs.windows.com/windowsexperience/2026/10/07/building-windows-for-hybrid-intelligence/",
+    "listed_in_about": false
+  },
+  {
+    "row": 124,
+    "url": "https://vgodsoe.github.io/ryzen-ai-documentation/hybrid_oga.html",
+    "listed_in_about": false
+  },
+  {
+    "row": 125,
+    "url": "https://github.com/runtimerevolution/hybrid-to-native/blob/main/README.md",
+    "listed_in_about": false
+  },
+  {
+    "row": 126,
+    "url": "https://github.com/namdpran8/Setu",
+    "listed_in_about": true
+  },
+  {
+    "row": 127,
+    "url": "https://github.com/microsoft/onnxruntime",
+    "listed_in_about": true
+  },
+  {
+    "row": 128,
+    "url": "https://github.com/phi-media-lab/apu-hybrid-runtime-Phi",
+    "listed_in_about": true
+  },
+  {
+    "row": 130,
+    "url": "https://github.com/archisvaze/liquid-glass",
+    "listed_in_about": true
+  },
+  {
+    "row": 131,
+    "url": "https://github.com/rdev/liquid-glass-react",
+    "listed_in_about": true
+  },
+  {
+    "row": 132,
+    "url": "https://dashersw.github.io/liquid-glass-js/",
+    "listed_in_about": true
+  },
+  {
+    "row": 133,
+    "url": "https://gist.github.com/leiniaozl229/fd6909f33aca60a03dc947a9225fbaf4",
+    "listed_in_about": true
+  },
+  {
+    "row": 135,
+    "url": "https://github.com/topics/web-scanner",
+    "listed_in_about": true
+  },
+  {
+    "row": 136,
+    "url": "https://github.com/topics/website-vulnerability-scanner",
+    "listed_in_about": true
+  },
+  {
+    "row": 137,
+    "url": "https://waymapscanner.github.io/",
+    "listed_in_about": true
+  },
+  {
+    "row": 138,
+    "url": "https://github.com/cixtor/sitecheck",
+    "listed_in_about": true
+  },
+  {
+    "row": 140,
+    "url": "https://github.com/topics/image-to-image-translation",
+    "listed_in_about": true
+  },
+  {
+    "row": 141,
+    "url": "https://github.com/topics/image-translation",
+    "listed_in_about": true
+  },
+  {
+    "row": 142,
+    "url": "https://github.com/phillipi/pix2pix",
+    "listed_in_about": true
+  },
+  {
+    "row": 143,
+    "url": "https://github.com/Utkarsh87",
+    "listed_in_about": true
+  },
+  {
+    "row": 144,
+    "url": "https://github.com/fei-aiart/chan",
+    "listed_in_about": true
+  },
+  {
+    "row": 145,
+    "url": "https://atikul-islam-sajib.github.io/pix2pix-deploy/",
+    "listed_in_about": true
+  },
+  {
+    "row": 147,
+    "url": "https://github.com/We5ter/Scanners-Box",
+    "listed_in_about": true
+  },
+  {
+    "row": 148,
+    "url": "https://github.com/ankit0183/Wifi-Hacking",
+    "listed_in_about": true
+  },
+  {
+    "row": 149,
+    "url": "https://github.com/koutto/pi-pwnbox-rogueap#wifi-hacking-cheatsheets--mind-map",
+    "listed_in_about": false
+  },
+  {
+    "row": 150,
+    "url": "https://github.com/3xploitGuy/lazyaircrack",
+    "listed_in_about": true
+  },
+  {
+    "row": 151,
+    "url": "https://github.com/ricardojoserf/wifi-pentesting-guide",
+    "listed_in_about": true
+  },
+  {
+    "row": 152,
+    "url": "https://github.com/akashblackhat/wifi-hacking.py",
+    "listed_in_about": false
+  },
+  {
+    "row": 153,
+    "url": "https://github.com/trevatk/Wifi-Cracker",
+    "listed_in_about": true
+  },
+  {
+    "row": 154,
+    "url": "https://github.com/blackhillsinfosec/WifiForge",
+    "listed_in_about": true
+  },
+  {
+    "row": 156,
+    "url": "https://github.com/LibreOffice",
+    "listed_in_about": true
+  },
+  {
+    "row": 157,
+    "url": "https://github.com/orgs/LibreOffice/repositories",
+    "listed_in_about": false
+  },
+  {
+    "row": 158,
+    "url": "https://github.com/topics/libreoffice",
+    "listed_in_about": false
+  },
+  {
+    "row": 159,
+    "url": "https://github.com/gurecn/LibreOffice-android",
+    "listed_in_about": true
+  },
+  {
+    "row": 160,
+    "url": "https://github.com/LibreOffice/core",
+    "listed_in_about": true
+  },
+  {
+    "row": 161,
+    "url": "https://github.com/apache/openoffice",
+    "listed_in_about": true
+  },
+  {
+    "row": 162,
+    "url": "https://www.git.openoffice.org/",
+    "listed_in_about": false
+  },
+  {
+    "row": 163,
+    "url": "https://github.com/apache/openoffice-docs",
+    "listed_in_about": true
+  },
+  {
+    "row": 164,
+    "url": "https://github.com/topics/openoffice",
+    "listed_in_about": false
+  },
+  {
+    "row": 165,
+    "url": "https://github.com/topics/excel-functions",
+    "listed_in_about": false
+  },
+  {
+    "row": 166,
+    "url": "https://fsprojects.github.io/ExcelFinancialFunctions/",
+    "listed_in_about": true
+  },
+  {
+    "row": 167,
+    "url": "https://support.microsoft.com/vi-vn/excel/excel-functions-by-category",
+    "listed_in_about": false
+  },
+  {
+    "row": 168,
+    "url": "https://excel.net.vn/danh-sach-cac-ham-trong-excel/",
+    "listed_in_about": false
+  },
+  {
+    "row": 169,
+    "url": "https://support.microsoft.com/vi-vn/excel/excel-functions-alphabetical",
+    "listed_in_about": false
+  },
+  {
+    "row": 170,
+    "url": "https://1drv.ms/x/c/78d8476b55038486/ESRkXZpwfgtJk4FZFERr05UBu1SYcWfn5RJxoSmLmmaPSw?e=s2fFfN&nav=MTVfezZBRTU3MDkwLTEyMEEtNEY4Qi1BMTEyLTRGQzY5QkU3QTI0M30",
+    "listed_in_about": false
+  },
+  {
+    "row": 171,
+    "url": "https://blog.hocexcel.online/cac-ham-trong-excel-va-cac-vi-du-minh-hoa.html",
+    "listed_in_about": false
+  },
+  {
+    "row": 172,
+    "url": "https://itgo.vn/cac-ham-trong-excel",
+    "listed_in_about": false
+  },
+  {
+    "row": 173,
+    "url": "https://exceljet.net/functions#:~:text=Complete%20reference%20for%20400%2B%20built-in%20Excel%20functions%2C%20each,1000%2B%20Formulas%2C%20101%20Functions%2C%20and%20New%20Excel%20Functions.",
+    "listed_in_about": false
+  },
+  {
+    "row": 174,
+    "url": "https://www.ketoan.vn/kien-thuc-excel/cac-ham-trong-excel/",
+    "listed_in_about": false
+  },
+  {
+    "row": 175,
+    "url": "https://excelx.com/formulas-functions/",
+    "listed_in_about": false
+  },
+  {
+    "row": 176,
+    "url": "https://github.com/MatrixFun/AutoXL",
+    "listed_in_about": true
+  },
+  {
+    "row": 177,
+    "url": "https://github.com/topics/google-sheets",
+    "listed_in_about": true
+  },
+  {
+    "row": 178,
+    "url": "https://github.com/Google-Slides",
+    "listed_in_about": false
+  },
+  {
+    "row": 179,
+    "url": "https://github.com/topics/google-docs",
+    "listed_in_about": true
+  },
+  {
+    "row": 180,
+    "url": "https://github.com/ONLYOFFICE",
+    "listed_in_about": true
+  },
+  {
+    "row": 181,
+    "url": "https://www.onlyoffice.com/",
+    "listed_in_about": true
+  },
+  {
+    "row": 182,
+    "url": "https://github.com/wps-office-bizflow-pro",
+    "listed_in_about": true
+  },
+  {
+    "row": 183,
+    "url": "https://github.com/Hona-Cao/FlyPPTTimer",
+    "listed_in_about": false
+  },
+  {
+    "row": 184,
+    "url": "https://github.com/LanyuanXiaoyao-Studio/utools-recent-projects",
+    "listed_in_about": false
+  },
+  {
+    "row": 185,
+    "url": "https://github.com/b2git/WPS-0DAY-20230809",
+    "listed_in_about": false
+  },
+  {
+    "row": 186,
+    "url": "https://github.com/linhut/document-ai-assistant",
+    "listed_in_about": false
+  },
+  {
+    "row": 187,
+    "url": "https://github.com/wachin/wps-office-all-mui-win-language",
+    "listed_in_about": false
+  },
+  {
+    "row": 188,
+    "url": "https://github.com/linhut/gongwen-skill",
+    "listed_in_about": false
+  },
+  {
+    "row": 189,
+    "url": "https://github.com/lewis-hui1202/WPS-AI",
+    "listed_in_about": false
+  },
+  {
+    "row": 190,
+    "url": "https://github.com/houbb/iexcel",
+    "listed_in_about": false
+  },
+  {
+    "row": 191,
+    "url": "https://github.com/chairc/wps-invite",
+    "listed_in_about": false
+  },
+  {
+    "row": 192,
+    "url": "https://github.com/yaoysyao/Auto_checkin_release",
+    "listed_in_about": false
+  },
+  {
+    "row": 193,
+    "url": "https://github.com/Xiao-rx/wps-mcp-server",
+    "listed_in_about": true
+  },
+  {
+    "row": 194,
+    "url": "https://github.com/Streamesymbolize/WPS-Office-2026-Setup-Guide",
+    "listed_in_about": false
+  },
+  {
+    "row": 195,
+    "url": "https://github.com/sueccku/dsh-plugin-wps-office-next",
+    "listed_in_about": false
+  },
+  {
+    "row": 196,
+    "url": "https://github.com/fengyec2/custom-seewo-splash-screen",
+    "listed_in_about": false
+  },
+  {
+    "row": 197,
+    "url": "https://github.com/zacksleo/wps-alfred-workflow",
+    "listed_in_about": false
+  },
+  {
+    "row": 198,
+    "url": "https://github.com/okazaki112/Jsa-vibcoding-skill",
+    "listed_in_about": false
+  },
+  {
+    "row": 199,
+    "url": "https://github.com/Bwkyd/wps-skills",
+    "listed_in_about": true
+  },
+  {
+    "row": 200,
+    "url": "https://github.com/PlasmaShaper/WPS-Office-Pro-Setup",
+    "listed_in_about": false
+  },
+  {
+    "row": 201,
+    "url": "https://github.com/eiixy/wps-weboffice",
+    "listed_in_about": false
+  },
+  {
+    "row": 202,
+    "url": "https://github.com/Jolly-J/CharFloat",
+    "listed_in_about": false
+  },
+  {
+    "row": 203,
+    "url": "https://github.com/CreatureFiremanPatch/WPS-Office-Pro-Setup",
+    "listed_in_about": false
+  },
+  {
+    "row": 204,
+    "url": "https://github.com/openSUSE-zh/wps-office-installer",
+    "listed_in_about": false
+  },
+  {
+    "row": 205,
+    "url": "https://github.com/wachin/wps-office-12-language-packs",
+    "listed_in_about": false
+  },
+  {
+    "row": 206,
+    "url": "https://github.com/SnakeSel/WPS-Linux-Russian-MUI",
+    "listed_in_about": false
+  },
+  {
+    "row": 207,
+    "url": "https://github.com/listary/Listary.FileAppPlugin.WPS",
+    "listed_in_about": false
+  },
+  {
+    "row": 208,
+    "url": "https://github.com/tranhoangnam712/wps-bug-ubuntu-fonts",
+    "listed_in_about": false
+  },
+  {
+    "row": 209,
+    "url": "https://github.com/zdzZDZ123/zotero-obsidian-codex-word-wps-workflow",
+    "listed_in_about": false
+  },
+  {
+    "row": 210,
+    "url": "https://github.com/JohnnyYwQ/wps-skills-py",
+    "listed_in_about": false
+  },
+  {
+    "row": 211,
+    "url": "https://github.com/GoranTopic/Fidecomiso-LatinTrust",
+    "listed_in_about": false
+  },
+  {
+    "row": 212,
+    "url": "https://github.com/TonyV2Intl/Office-backup-utilities",
+    "listed_in_about": false
+  },
+  {
+    "row": 213,
+    "url": "https://github.com/thenw-123/CO-WPSppt",
+    "listed_in_about": false
+  },
+  {
+    "row": 214,
+    "url": "https://github.com/osmanonurkoc/wps-office-turkish",
+    "listed_in_about": false
+  },
+  {
+    "row": 215,
+    "url": "https://github.com/topics/wps-office",
+    "listed_in_about": true
+  },
+  {
+    "row": 216,
+    "url": "https://github.com/transpect/docx2tex",
+    "listed_in_about": true
+  },
+  {
+    "row": 217,
+    "url": "https://github.com/wiris/html-integrations",
+    "listed_in_about": true
+  },
+  {
+    "row": 218,
+    "url": "https://github.com/transpect/mathtype-extension",
+    "listed_in_about": false
+  },
+  {
+    "row": 219,
+    "url": "https://github.com/wiris/moodle-filter_wiris",
+    "listed_in_about": false
+  },
+  {
+    "row": 220,
+    "url": "https://github.com/wiris/moodle-tinymce_tiny_mce_wiris",
+    "listed_in_about": false
+  },
+  {
+    "row": 221,
+    "url": "https://github.com/ll2010650-coder/mathmodel-pro",
+    "listed_in_about": false
+  },
+  {
+    "row": 222,
+    "url": "https://github.com/wiris/moodle-atto_wiris",
+    "listed_in_about": false
+  },
+  {
+    "row": 223,
+    "url": "https://github.com/aminya/AcuteMSWord",
+    "listed_in_about": false
+  },
+  {
+    "row": 224,
+    "url": "https://github.com/HuangCongQing/LaTeX",
+    "listed_in_about": false
+  },
+  {
+    "row": 225,
+    "url": "https://github.com/emblemtaleshadow/mathtype-pro",
+    "listed_in_about": false
+  },
+  {
+    "row": 226,
+    "url": "https://github.com/wiris/wiris-moodle-docker",
+    "listed_in_about": false
+  },
+  {
+    "row": 227,
+    "url": "https://github.com/wiris",
+    "listed_in_about": true
+  },
+  {
+    "row": 228,
+    "url": "https://github.com/Jack251970/Math-Editor",
+    "listed_in_about": false
+  },
+  {
+    "row": 229,
+    "url": "https://github.com/Nick12-hub/Inserting-Math-Formulas-In-MS-Office",
+    "listed_in_about": false
+  },
+  {
+    "row": 230,
+    "url": "https://github.com/xiao0xiao0/word-mathtype-native-equations",
+    "listed_in_about": false
+  },
+  {
+    "row": 231,
+    "url": "https://github.com/TLE-11/nsfc-md2docx",
+    "listed_in_about": false
+  },
+  {
+    "row": 232,
+    "url": "https://github.com/YYK-beep/word-omml-mathtype",
+    "listed_in_about": false
+  },
+  {
+    "row": 233,
+    "url": "https://github.com/yeshen246800-source/YYGPT-mathtype-copy",
+    "listed_in_about": false
+  },
+  {
+    "row": 234,
+    "url": "https://github.com/goldfish-x/formula-flow",
+    "listed_in_about": false
+  },
+  {
+    "row": 235,
+    "url": "https://softvn.vn/huong-dan-mathtype/",
+    "listed_in_about": false
+  },
+  {
+    "row": 236,
+    "url": "https://github.com/loLollipop/FormulaSnip",
+    "listed_in_about": false
+  },
+  {
+    "row": 237,
+    "url": "https://github.com/zxl19/MathType-Cheatsheet",
+    "listed_in_about": false
+  },
+  {
+    "row": 238,
+    "url": "https://github.com/felimet/mathtype-for-word",
+    "listed_in_about": false
+  },
+  {
+    "row": 239,
+    "url": "https://poi.apache.org/",
+    "listed_in_about": false
+  },
+  {
+    "row": 240,
+    "url": "https://github.com/TomRoush/PdfBox-Android",
+    "listed_in_about": false
+  },
+  {
+    "row": 241,
+    "url": "https://tika.apache.org/",
+    "listed_in_about": false
+  },
+  {
+    "row": 242,
+    "url": "https://github.com/youichi-uda/droiddoc",
+    "listed_in_about": false
+  },
+  {
+    "row": 243,
+    "url": "https://stackoverflow.com/questions/4854947/android-microsoft-office-library-doc-docx-xls-ppt-etc",
+    "listed_in_about": false
+  },
+  {
+    "row": 244,
+    "url": "https://github.com/opendocument-app/OpenDocument.droid",
+    "listed_in_about": false
+  },
+  {
+    "row": 245,
+    "url": "https://github.com/Asutosh11/DocumentReader",
+    "listed_in_about": false
+  },
+  {
+    "row": 246,
+    "url": "https://github.com/Victor2018/DocViewer",
+    "listed_in_about": false
+  },
+  {
+    "row": 247,
+    "url": "https://github.com/sabir-aspose/Aspose.Words-for-Android",
+    "listed_in_about": false
+  },
+  {
+    "row": 248,
+    "url": "https://github.com/fuweiwei/AndroidPoiWord",
+    "listed_in_about": false
+  },
+  {
+    "row": 249,
+    "url": "https://github.com/wordpress-mobile/WordPress-Android",
+    "listed_in_about": false
+  },
+  {
+    "row": 250,
+    "url": "https://github.com/ashille/Aspose_Words_Android",
+    "listed_in_about": false
+  },
+  {
+    "row": 251,
+    "url": "https://github.com/lxx328/android-excel",
+    "listed_in_about": false
+  },
+  {
+    "row": 252,
+    "url": "https://elirehema.github.io/worksheet/",
+    "listed_in_about": false
+  },
+  {
+    "row": 253,
+    "url": "https://shreyashkore.github.io/kexcel/",
+    "listed_in_about": false
+  },
+  {
+    "row": 254,
+    "url": "https://blog.csdn.net/gitblog_00500/article/details/142156578",
+    "listed_in_about": false
+  },
+  {
+    "row": 255,
+    "url": "https://blog.csdn.net/gitblog_00797/article/details/142242607",
+    "listed_in_about": false
+  },
+  {
+    "row": 256,
+    "url": "https://gist.github.com/mwshubham/ff700c997a06c2a8a84966f7f0d6f4c3",
+    "listed_in_about": false
+  },
+  {
+    "row": 257,
+    "url": "https://github.com/yangxiaoge/AndroidExcelReadWrite",
+    "listed_in_about": false
+  },
+  {
+    "row": 258,
+    "url": "https://github.com/September26/ExcelView",
+    "listed_in_about": false
+  },
+  {
+    "row": 259,
+    "url": "https://github.com/vkatz/AndroidXLSViewer",
+    "listed_in_about": false
+  },
+  {
+    "row": 260,
+    "url": "https://github.com/Srihitha18798/ExcelReader",
+    "listed_in_about": false
+  },
+  {
+    "row": 261,
+    "url": "https://github.com/reallin/Android_Excel",
+    "listed_in_about": false
+  },
+  {
+    "row": 262,
+    "url": "https://github.com/zjtone/Android-Office",
+    "listed_in_about": false
+  },
+  {
+    "row": 263,
+    "url": "https://github.com/topics/android-excel",
+    "listed_in_about": false
+  },
+  {
+    "row": 264,
+    "url": "https://github.com/Crustack/android-translations-converter-plugin",
+    "listed_in_about": false
+  },
+  {
+    "row": 265,
+    "url": "https://github.com/ma-amin/MyExcel",
+    "listed_in_about": false
+  },
+  {
+    "row": 266,
+    "url": "https://github.com/zhouchaoyuan/excelPanel",
+    "listed_in_about": false
+  },
+  {
+    "row": 267,
+    "url": "https://github.com/elirehema/worksheet",
+    "listed_in_about": false
+  },
+  {
+    "row": 268,
+    "url": "https://github.com/youichi-uda/droidslide",
+    "listed_in_about": false
+  },
+  {
+    "row": 269,
+    "url": "https://github.com/itsrts/pptviewer-android",
+    "listed_in_about": false
+  },
+  {
+    "row": 270,
+    "url": "https://y1uda.gumroad.com/l/droidslide",
+    "listed_in_about": false
+  },
+  {
+    "row": 271,
+    "url": "https://products.aspose.com/slides/android-java/",
+    "listed_in_about": false
+  },
+  {
+    "row": 272,
+    "url": "https://github.com/ideepu/PPT-Controller",
+    "listed_in_about": false
+  },
+  {
+    "row": 273,
+    "url": "https://github.com/zjtone/Android-Offic",
+    "listed_in_about": false
+  },
+  {
+    "row": 274,
+    "url": "https://github.com/ooxml-tools",
+    "listed_in_about": false
+  },
+  {
+    "row": 275,
+    "url": "https://github.com/dotnet/Open-XML-SDK",
+    "listed_in_about": false
+  },
+  {
+    "row": 276,
+    "url": "https://github.com/pterror/ooxml",
+    "listed_in_about": false
+  },
+  {
+    "row": 277,
+    "url": "https://scuderia-fe.github.io/ooxml-tools/",
+    "listed_in_about": false
+  },
+  {
+    "row": 278,
+    "url": "https://ooxml-tools.github.io/toolbox/",
+    "listed_in_about": false
+  },
+  {
+    "row": 279,
+    "url": "https://github.com/ooxml-tools/toolbox",
+    "listed_in_about": false
+  },
+  {
+    "row": 280,
+    "url": "https://ooxml.org/",
+    "listed_in_about": false
+  },
+  {
+    "row": 281,
+    "url": "https://ooxml.silurus.dev/",
+    "listed_in_about": false
+  },
+  {
+    "row": 282,
+    "url": "https://github.com/yukiyokotani/office-open-xml-viewer",
+    "listed_in_about": false
+  },
+  {
+    "row": 283,
+    "url": "https://openooxml.com/",
+    "listed_in_about": false
+  },
+  {
+    "row": 284,
+    "url": "https://github.com/openooxml/betteroffice",
+    "listed_in_about": false
+  },
+  {
+    "row": 285,
+    "url": "https://ojadeveloper.github.io/ooxml-excel-editor/",
+    "listed_in_about": false
+  },
+  {
+    "row": 286,
+    "url": "https://pterror.github.io/ooxml/",
+    "listed_in_about": false
+  },
+  {
+    "row": 287,
+    "url": "https://github.com/jdum/odfdo",
+    "listed_in_about": false
+  },
+  {
+    "row": 288,
+    "url": "https://github.com/fiduswriter/fiduswriter",
+    "listed_in_about": false
+  },
+  {
+    "row": 289,
+    "url": "https://github.com/oldrev/maltreport",
+    "listed_in_about": false
+  },
+  {
+    "row": 290,
+    "url": "https://github.com/corbindavenport/peek",
+    "listed_in_about": false
+  },
+  {
+    "row": 291,
+    "url": "https://github.com/miachm/SODS",
+    "listed_in_about": false
+  },
+  {
+    "row": 292,
+    "url": "https://github.com/westonganger/rodf",
+    "listed_in_about": false
+  },
+  {
+    "row": 293,
+    "url": "https://github.com/jferard/fastods",
+    "listed_in_about": false
+  },
+  {
+    "row": 294,
+    "url": "https://github.com/opendocument-app/OpenDocument.core",
+    "listed_in_about": false
+  },
+  {
+    "row": 295,
+    "url": "https://github.com/GitHubNewbie0/odf-kit",
+    "listed_in_about": false
+  },
+  {
+    "row": 296,
+    "url": "https://github.com/connium/simple-odf",
+    "listed_in_about": false
+  },
+  {
+    "row": 297,
+    "url": "https://github.com/gitbra/pwic",
+    "listed_in_about": false
+  },
+  {
+    "row": 298,
+    "url": "https://github.com/mmulqueen/odswriter",
+    "listed_in_about": false
+  },
+  {
+    "row": 299,
+    "url": "https://github.com/fwilhe2/rechenbrett",
+    "listed_in_about": false
+  },
+  {
+    "row": 300,
+    "url": "https://github.com/CasualOffice/opencalc",
+    "listed_in_about": false
+  },
+  {
+    "row": 301,
+    "url": "https://github.com/nbeguier/opendocument-security",
+    "listed_in_about": false
+  },
+  {
+    "row": 302,
+    "url": "https://github.com/seichter/odp2md",
+    "listed_in_about": false
+  },
+  {
+    "row": 303,
+    "url": "https://github.com/ma-laforge/ElectricalDiagrams",
+    "listed_in_about": false
+  },
+  {
+    "row": 304,
+    "url": "https://github.com/jze/ods-reader",
+    "listed_in_about": false
+  },
+  {
+    "row": 305,
+    "url": "https://github.com/thom4parisot/asciidoctor-converter-opendocument",
+    "listed_in_about": false
+  },
+  {
+    "row": 306,
+    "url": "https://github.com/devlup-labs/iitj_family_tree",
+    "listed_in_about": false
+  },
+  {
+    "row": 307,
+    "url": "https://github.com/mattkerlogue/tidyods",
+    "listed_in_about": false
+  },
+  {
+    "row": 308,
+    "url": "https://www.oasis-open.org/tc-opendocument/",
+    "listed_in_about": true
+  },
+  {
+    "row": 309,
+    "url": "https://github.com/topics/opendocument",
+    "listed_in_about": true
+  },
+  {
+    "row": 310,
+    "url": "https://github.com/storytold/gridcraft",
+    "listed_in_about": true
+  },
+  {
+    "row": 311,
+    "url": "https://github.com/storytold/wordcraft",
+    "listed_in_about": true
+  },
+  {
+    "row": 312,
+    "url": "https://github.com/deckcraft-app/deckcraft",
+    "listed_in_about": true
+  },
+  {
+    "row": 313,
+    "url": "https://learn.microsoft.com/en-us/answers/questions/1852367/how-to-install-microsoft-visual-basic-for-applicat",
+    "listed_in_about": false
+  },
+  {
+    "row": 314,
+    "url": "https://www.techbloat.com/how-to-enable-macros-in-excel-for-office-365.html",
+    "listed_in_about": false
+  },
+  {
+    "row": 315,
+    "url": "https://www.supportyourtech.com/excel/how-to-add-vba-to-excel-a-step-by-step-guide-for-beginners/",
+    "listed_in_about": false
+  },
+  {
+    "row": 316,
+    "url": "https://support.microsoft.com/vi-vn/excel/work-with-vba-macros-in-excel-for-the-web",
+    "listed_in_about": false
+  },
+  {
+    "row": 317,
+    "url": "https://gitiho.com/blog/huong-dan-mo-vba-trong-excel-va-tim-hieu-cac-cua-so-lam-viec-trong-vba-7166.html",
+    "listed_in_about": false
+  },
+  {
+    "row": 318,
+    "url": "https://github.com/hlydecker/vba-macros",
+    "listed_in_about": true
+  },
+  {
+    "row": 319,
+    "url": "https://github.com/NetOfficeFw/vbamc",
+    "listed_in_about": true
+  },
+  {
+    "row": 320,
+    "url": "https://allenmattson.github.io/VBA/",
+    "listed_in_about": false
+  },
+  {
+    "row": 321,
+    "url": "https://github.com/AllenMattson/VBA",
+    "listed_in_about": false
+  },
+  {
+    "row": 322,
+    "url": "https://www.wps.com/academy/how-to-download-vba-support-library-for-wps-office-a-detailed-guide-quick-tutorials-1878140/",
+    "listed_in_about": false
+  },
+  {
+    "row": 323,
+    "url": "https://code.visualstudio.com/docs/other/office",
+    "listed_in_about": false
+  },
+  {
+    "row": 324,
+    "url": "https://github.com/microsoft/vscode",
+    "listed_in_about": true
+  },
+  {
+    "row": 325,
+    "url": "https://github.com/TrevorStyler/M365-Office-Macros",
+    "listed_in_about": false
+  },
+  {
+    "row": 326,
+    "url": "https://github.com/ThiagoMaria-SecurityIT/Microsoft_Office_Automation_VBA",
+    "listed_in_about": false
+  },
+  {
+    "row": 327,
+    "url": "https://github.com/VBA-tools/VBA-Web",
+    "listed_in_about": true
+  },
+  {
+    "row": 328,
+    "url": "https://idafchev.github.io/blog/office365_amsi_bypass/",
+    "listed_in_about": false
+  },
+  {
+    "row": 329,
+    "url": "https://bettersolutions.com/vba/ribbon/office-ribbonx-editor.htm",
+    "listed_in_about": false
+  },
+  {
+    "row": 330,
+    "url": "https://github.com/fernandreu/office-ribbonx-editor/releases/tag/v1.9.0",
+    "listed_in_about": false
+  },
+  {
+    "row": 331,
+    "url": "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.7-windows-x64-installer",
+    "listed_in_about": false
+  },
+  {
+    "row": 332,
+    "url": "https://gist.github.com/bran921007/5d229d8f5b9981a20c72a821f99400b7",
+    "listed_in_about": false
+  },
+  {
+    "row": 333,
+    "url": "https://stackoverflow.com/questions/36024342/how-to-put-excel-vba-into-git",
+    "listed_in_about": false
+  },
+  {
+    "row": 334,
+    "url": "https://pnp.github.io/cli-microsoft365/sample-scripts/introduction/",
+    "listed_in_about": false
+  },
+  {
+    "row": 335,
+    "url": "https://github.com/evanw/esbuild",
+    "listed_in_about": false
+  },
+  {
+    "row": 336,
+    "url": "https://esbuild.github.io/content-types/#ts-vs-tsx",
+    "listed_in_about": false
+  },
+  {
+    "row": 337,
+    "url": "https://github.com/pnp/cli-microsoft365",
+    "listed_in_about": false
+  },
+  {
+    "row": 338,
+    "url": "https://github.com/David-Brewin/PowerpointToPDF",
+    "listed_in_about": false
+  },
+  {
+    "row": 339,
+    "url": "https://github.com/nilostolte/MicroVBA-PowerPoint",
+    "listed_in_about": false
+  },
+  {
+    "row": 340,
+    "url": "https://learn.microsoft.com/en-us/office/vba/library-reference/concepts/getting-started-with-vba-in-office",
+    "listed_in_about": false
+  },
+  {
+    "row": 341,
+    "url": "https://github.com/HypertextAssassin0273/Unique_PowerPoint_Presentations",
+    "listed_in_about": true
+  },
+  {
+    "row": 342,
+    "url": "https://hypertextassassin0273.github.io/mini-projects/2020-08-22-ppt-slides/",
+    "listed_in_about": false
+  },
+  {
+    "row": 343,
+    "url": "https://github.com/HypertextAssassin0273",
+    "listed_in_about": true
+  },
+  {
+    "row": 344,
+    "url": "https://gitbrent.github.io/PptxGenJS/",
+    "listed_in_about": false
+  },
+  {
+    "row": 345,
+    "url": "https://github.com/gitbrent/PptxGenJS/",
+    "listed_in_about": true
+  },
+  {
+    "row": 346,
+    "url": "https://hugohe3.github.io/ppt-master-examples/",
+    "listed_in_about": false
+  },
+  {
+    "row": 347,
+    "url": "https://github.com/hugohe3/ppt-master",
+    "listed_in_about": true
+  },
+  {
+    "row": 348,
+    "url": "https://gist.github.com/pcmoritz/4b0e1be7f2dfcc4e51e2ace50426f67d",
+    "listed_in_about": false
+  },
+  {
+    "row": 349,
+    "url": "https://github.com/icebird1998/scientific-illustrator",
+    "listed_in_about": false
+  },
+  {
+    "row": 350,
+    "url": "https://github.com/topics/powerpoint-automation",
+    "listed_in_about": false
+  },
+  {
+    "row": 351,
+    "url": "https://github.com/maxonthegit/PPspliT",
+    "listed_in_about": false
+  },
+  {
+    "row": 352,
+    "url": "https://github.com/iappyx/Instrumenta",
+    "listed_in_about": false
+  },
+  {
+    "row": 353,
+    "url": "https://github.com/singerla/pptx-automizer",
+    "listed_in_about": true
+  },
+  {
+    "row": 354,
+    "url": "https://github.com/leonid20000/odin-slides",
+    "listed_in_about": false
+  },
+  {
+    "row": 355,
+    "url": "https://github.com/rodrigolourencofarinha/ProDeck",
+    "listed_in_about": false
+  },
+  {
+    "row": 356,
+    "url": "https://github.com/siril9/presentation-skill",
+    "listed_in_about": false
+  },
+  {
+    "row": 357,
+    "url": "https://github.com/sbroenne/mcp-server-powerpoint",
+    "listed_in_about": true
+  },
+  {
+    "row": 358,
+    "url": "https://github.com/mrigankad/SlideArchitect",
+    "listed_in_about": false
+  },
+  {
+    "row": 359,
+    "url": "https://gist.github.com/whoiscarlo/4c2b19f0ff4489c7e1a25720e0c5b964",
+    "listed_in_about": false
+  },
+  {
+    "row": 360,
+    "url": "https://github.com/BramAlkema/pptx-animation-skill",
+    "listed_in_about": false
+  },
+  {
+    "row": 361,
+    "url": "https://github.com/ELY-Open-Source/ElyOffice/",
+    "listed_in_about": true
+  },
+  {
+    "row": 362,
+    "url": "https://genoffice.ai/",
+    "listed_in_about": true
+  },
+  {
+    "row": 363,
+    "url": "https://github.com/genspark-ai/genoffice",
+    "listed_in_about": true
+  },
+  {
+    "row": 364,
+    "url": "https://github.com/iOfficeAI/OfficeCLI/wiki/word-table",
+    "listed_in_about": true
+  },
+  {
+    "row": 365,
+    "url": "https://github.com/RUCKBReasoning/TableLLM",
+    "listed_in_about": true
+  },
+  {
+    "row": 366,
+    "url": "https://github.com/insightsengineering/rtables.officer",
+    "listed_in_about": true
+  },
+  {
+    "row": 367,
+    "url": "https://github.com/OfficeDev/office-scripts-docs/blob/main/docs/resources/samples/table-samples.md",
+    "listed_in_about": false
+  },
+  {
+    "row": 368,
+    "url": "https://github.com/Lewis4564/office-table-design",
+    "listed_in_about": false
+  },
+  {
+    "row": 371,
+    "url": "https://github.com/rclone/rclone",
+    "listed_in_about": true
+  },
+  {
+    "row": 372,
+    "url": "https://github.com/googleworkspace",
+    "listed_in_about": true
+  },
+  {
+    "row": 373,
+    "url": "https://github.com/benweet/stackedit",
+    "listed_in_about": true
+  },
+  {
+    "row": 374,
+    "url": "https://github.com/odeke-em/drive",
+    "listed_in_about": true
+  },
+  {
+    "row": 375,
+    "url": "https://github.com/astrada/google-drive-ocamlfuse",
+    "listed_in_about": true
+  },
+  {
+    "row": 376,
+    "url": "https://github.com/wkentaro/gdown",
+    "listed_in_about": true
+  },
+  {
+    "row": 377,
+    "url": "https://github.com/iterate-ch/cyberduck",
+    "listed_in_about": true
+  },
+  {
+    "row": 378,
+    "url": "https://github.com/GAM-team/GAM",
+    "listed_in_about": true
+  },
+  {
+    "row": 379,
+    "url": "https://github.com/sabeechen/hassio-google-drive-backup",
+    "listed_in_about": true
+  },
+  {
+    "row": 380,
+    "url": "https://github.com/taylorwilsdon/google_workspace_mcp",
+    "listed_in_about": true
+  },
+  {
+    "row": 381,
+    "url": "https://github.com/alexkim205/G-Desktop-Suite",
+    "listed_in_about": true
+  },
+  {
+    "row": 382,
+    "url": "https://github.com/abraunegg/onedrive",
+    "listed_in_about": true
+  },
+  {
+    "row": 383,
+    "url": "https://github.com/xiaochun-z/driftsync",
+    "listed_in_about": true
+  },
+  {
+    "row": 384,
+    "url": "https://gist.github.com/plembo/ff6839d9593ec8afca0ba97d890cce58",
+    "listed_in_about": false
+  },
+  {
+    "row": 385,
+    "url": "https://www.ayudo.ai/app-integrations/github-microsoft-onedrive",
+    "listed_in_about": false
+  },
+  {
+    "row": 386,
+    "url": "https://github.com/gzxu/onedrive-sync-client",
+    "listed_in_about": true
+  },
+  {
+    "row": 387,
+    "url": "https://github.com/ggobbe/onedrive-sync",
+    "listed_in_about": true
+  },
+  {
+    "row": 388,
+    "url": "https://github.com/NicKoehler/mediafire_bulk_downloader",
+    "listed_in_about": true
+  },
+  {
+    "row": 389,
+    "url": "https://github.com/NicKoehler/mediafire_rs",
+    "listed_in_about": true
+  },
+  {
+    "row": 390,
+    "url": "https://github.com/u0feff/MediaFireDownloader",
+    "listed_in_about": true
+  },
+  {
+    "row": 391,
+    "url": "https://github.com/sacms/File-Host",
+    "listed_in_about": false
+  },
+  {
+    "row": 392,
+    "url": "https://github.com/bayy420-999/mediafire-dl-async",
+    "listed_in_about": false
+  },
+  {
+    "row": 393,
+    "url": "https://github.com/mehmoodkhanzafarkhel-56/mediafire_folder_downloader",
+    "listed_in_about": false
+  },
+  {
+    "row": 394,
+    "url": "https://github.com/dheison0/mdl",
+    "listed_in_about": false
+  },
+  {
+    "row": 395,
+    "url": "https://github.com/Hexadecinull/MediaFolderPro",
+    "listed_in_about": false
+  },
+  {
+    "row": 396,
+    "url": "https://github.com/Adolfbeaming31/OpenDownloader",
+    "listed_in_about": false
+  },
+  {
+    "row": 397,
+    "url": "https://github.com/retired64/mediafire_py",
+    "listed_in_about": false
+  },
+  {
+    "row": 398,
+    "url": "https://github.com/GonnAnalytics/mediafire-folder-downloader",
+    "listed_in_about": false
+  },
+  {
+    "row": 399,
+    "url": "https://github.com/joaozacchello08/mediafire-url-parser",
+    "listed_in_about": false
+  },
+  {
+    "row": 400,
+    "url": "https://github.com/juvenal-yescas/mediafire-dl",
+    "listed_in_about": false
+  },
+  {
+    "row": 401,
+    "url": "https://freefilesync.org/",
+    "listed_in_about": true
+  },
+  {
+    "row": 402,
+    "url": "https://github.com/harsimrans/DropboxSyncer",
+    "listed_in_about": true
+  },
+  {
+    "row": 403,
+    "url": "https://ndy40.github.io/cairn/docs/sync/",
+    "listed_in_about": false
+  },
+  {
+    "row": 404,
+    "url": "https://gist.github.com/patrickng/5158985",
+    "listed_in_about": false
+  },
+  {
+    "row": 405,
+    "url": "https://github.com/maximebf/dboxsync",
+    "listed_in_about": true
+  },
+  {
+    "row": 409,
+    "url": "https://github.com/Srinija/SwiftCamScanner",
+    "listed_in_about": true
+  },
+  {
+    "row": 410,
+    "url": "https://github.com/sourabhkhemka/DocumentScanner",
+    "listed_in_about": true
+  },
+  {
+    "row": 411,
+    "url": "https://github.com/ankitshaw/Document-Scanner-and-OCR",
+    "listed_in_about": true
+  },
+  {
+    "row": 412,
+    "url": "https://github.com/garg-lucifer/AndroidDocumentFilter",
+    "listed_in_about": true
+  },
+  {
+    "row": 413,
+    "url": "https://github.com/techno-disaster/InvoiceMate",
+    "listed_in_about": true
+  },
+  {
+    "row": 414,
+    "url": "https://github.com/devsebastian/WonderScan",
+    "listed_in_about": true
+  },
+  {
+    "row": 415,
+    "url": "https://github.com/ankityddv/DocScan-iOS",
+    "listed_in_about": true
+  },
+  {
+    "row": 416,
+    "url": "https://github.com/AndroidWithRossyn/Scanny-Document-Scanner-CamScanner",
+    "listed_in_about": true
+  },
+  {
+    "row": 417,
+    "url": "https://github.com/viveksb007/camScannerWatermarkRemoverAndroid",
+    "listed_in_about": true
+  },
+  {
+    "row": 418,
+    "url": "https://github.com/farimarwat/Document-Scanner",
+    "listed_in_about": false
+  },
+  {
+    "row": 419,
+    "url": "https://github.com/ArashNasrEsfahani/Python-Document-Scanner-OpenCV",
+    "listed_in_about": false
+  },
+  {
+    "row": 420,
+    "url": "https://github.com/Fireboltz/aasaan",
+    "listed_in_about": false
+  },
+  {
+    "row": 421,
+    "url": "https://github.com/Gauravv97/LNotes-Linked-Notes",
+    "listed_in_about": false
+  },
+  {
+    "row": 422,
+    "url": "https://github.com/lxsfful/SimpleScanner",
+    "listed_in_about": true
+  },
+  {
+    "row": 423,
+    "url": "https://github.com/HannaSkief/SimpleCamScanner",
+    "listed_in_about": true
+  },
+  {
+    "row": 424,
+    "url": "https://github.com/nimadorostkar/CamScanner",
+    "listed_in_about": false
+  },
+  {
+    "row": 425,
+    "url": "https://github.com/crabfeather/CSMarkRemover",
+    "listed_in_about": true
+  },
+  {
+    "row": 426,
+    "url": "https://github.com/CS-CamScanner/camscanner",
+    "listed_in_about": false
+  },
+  {
+    "row": 427,
+    "url": "https://github.com/hasanfirnas/PDF_Magic-Color_filter",
+    "listed_in_about": true
+  },
+  {
+    "row": 430,
+    "url": "https://github.com/google-gemini",
+    "listed_in_about": true
+  },
+  {
+    "row": 431,
+    "url": "https://deepmind.google/models/gemini/",
+    "listed_in_about": true
+  },
+  {
+    "row": 432,
+    "url": "https://github.blog/changelog/2026-10-13-gemini-4-argon-in-github-copilot/",
+    "listed_in_about": false
+  },
+  {
+    "row": 433,
+    "url": "https://gemini.google.com/app",
+    "listed_in_about": false
+  },
+  {
+    "row": 434,
+    "url": "https://github.com/google-gemini/gemini-cli",
+    "listed_in_about": true
+  },
+  {
+    "row": 435,
+    "url": "https://github.com/features/copilot",
+    "listed_in_about": true
+  },
+  {
+    "row": 436,
+    "url": "https://copilot.com/chat?fromcode=cmmlf487uwy&es=Click&redirfrom=userTypeCookie&redirfrom=cosmicRingCookie",
+    "listed_in_about": false
+  },
+  {
+    "row": 437,
+    "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/control-review-sources-copilot-chat",
+    "listed_in_about": false
+  },
+  {
+    "row": 438,
+    "url": "https://github.com/topics/chatgpt",
+    "listed_in_about": true
+  },
+  {
+    "row": 439,
+    "url": "https://github.com/NousResearch/hermes-agent",
+    "listed_in_about": true
+  },
+  {
+    "row": 440,
+    "url": "https://github.com/f/prompts.chat",
+    "listed_in_about": false
+  },
+  {
+    "row": 441,
+    "url": "https://github.com/topics/chatgpt-api",
+    "listed_in_about": true
+  },
+  {
+    "row": 442,
+    "url": "https://abdur75648.github.io/ChatGPT-API-Python/",
+    "listed_in_about": false
+  },
+  {
+    "row": 443,
+    "url": "https://chatgpt.com/",
+    "listed_in_about": false
+  },
+  {
+    "row": 444,
+    "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+    "listed_in_about": true
+  },
+  {
+    "row": 445,
+    "url": "https://github.com/deepseek-ai",
+    "listed_in_about": true
+  },
+  {
+    "row": 446,
+    "url": "https://www.deepseek.com/en/harness/",
+    "listed_in_about": false
+  },
+  {
+    "row": 447,
+    "url": "https://github.com/sums001/Deepseek-API",
+    "listed_in_about": false
+  },
+  {
+    "row": 448,
+    "url": "https://chat.deepseek.com/",
+    "listed_in_about": false
+  },
+  {
+    "row": 449,
+    "url": "https://deepseek-ai.xin/vi/blog/deepseek-excel-data-guide/",
+    "listed_in_about": false
+  },
+  {
+    "row": 450,
+    "url": "https://github.com/xai-org/grok-build",
+    "listed_in_about": true
+  },
+  {
+    "row": 451,
+    "url": "https://github.com/xai-org/grok-1",
+    "listed_in_about": true
+  },
+  {
+    "row": 452,
+    "url": "https://x.ai/open-source",
+    "listed_in_about": false
+  },
+  {
+    "row": 453,
+    "url": "https://github.blog/changelog/2026-08-14-grok-4-6-is-now-available-in-github-copilot/",
+    "listed_in_about": false
+  },
+  {
+    "row": 454,
+    "url": "https://grok.com/connectors",
+    "listed_in_about": false
+  },
+  {
+    "row": 455,
+    "url": "https://github.com/anthropics/claude-code",
+    "listed_in_about": true
+  },
+  {
+    "row": 456,
+    "url": "https://github.com/anthropics/",
+    "listed_in_about": true
+  },
+  {
+    "row": 457,
+    "url": "https://buildwire.ai/blog/the-5-best-github-repos-for-claude-code/",
+    "listed_in_about": false
+  },
+  {
+    "row": 458,
+    "url": "https://claude.ai/new",
+    "listed_in_about": false
+  },
+  {
+    "row": 459,
+    "url": "https://github.blog/changelog/2026-09-22-claude-opus-5-5-is-now-available-in-github-copilot/",
+    "listed_in_about": false
+  },
+  {
+    "row": 460,
+    "url": "https://github.com/openhay-ai",
+    "listed_in_about": true
+  },
+  {
+    "row": 461,
+    "url": "https://github.com/openhay-ai/openhay",
+    "listed_in_about": true
+  },
+  {
+    "row": 464,
+    "url": "https://github.com/Shrey113/Android-Dex",
+    "listed_in_about": true
+  },
+  {
+    "row": 465,
+    "url": "https://techydruid.com/android-dex-desktop-mode/",
+    "listed_in_about": false
+  },
+  {
+    "row": 466,
+    "url": "https://github.com/Dylanmurzello/zed-android-port",
+    "listed_in_about": false
+  },
+  {
+    "row": 467,
+    "url": "https://github.com/dotnetdreamer/open-android-dex",
+    "listed_in_about": true
+  },
+  {
+    "row": 468,
+    "url": "https://github.com/maze-mei/DX-Manager",
+    "listed_in_about": true
+  },
+  {
+    "row": 469,
+    "url": "https://github.com/supermarsx/magisk-samsung-dex-standalone-mode",
+    "listed_in_about": true
+  },
+  {
+    "row": 470,
+    "url": "https://github.com/sumdher/VSCode-on-Android",
+    "listed_in_about": true
+  },
+  {
+    "row": 471,
+    "url": "https://github.com/dotnetdreamer/awesome-samsung-dex",
+    "listed_in_about": true
+  },
+  {
+    "row": 472,
+    "url": "https://github.com/nudou350/Xreal-tools",
+    "listed_in_about": false
+  },
+  {
+    "row": 473,
+    "url": "https://github.com/yongtingzhengcn-web/dex-for-mac",
+    "listed_in_about": true
+  },
+  {
+    "row": 474,
+    "url": "https://github.com/gabdevele/DexOnLinux",
+    "listed_in_about": true
+  },
+  {
+    "row": 475,
+    "url": "https://github.com/yukkerike/dex_feature_enabler",
+    "listed_in_about": false
+  },
+  {
+    "row": 476,
+    "url": "https://github.com/yazanj082/momiji",
+    "listed_in_about": false
+  },
+  {
+    "row": 477,
+    "url": "https://github.com/gysosin/droidpier",
+    "listed_in_about": false
+  },
+  {
+    "row": 478,
+    "url": "https://github.com/ctech1313/Enter2Send",
+    "listed_in_about": false
+  },
+  {
+    "row": 479,
+    "url": "https://github.com/super-magistro/DeXtop-mode",
+    "listed_in_about": false
+  },
+  {
+    "row": 480,
+    "url": "https://github.com/Misael-art/android-dex",
+    "listed_in_about": false
+  },
+  {
+    "row": 481,
+    "url": "https://github.com/Aquino1M/SamsungDexbyAquino",
+    "listed_in_about": true
+  },
+  {
+    "row": 482,
+    "url": "https://github.com/JzviaginPhoneConnect/phone-connect",
+    "listed_in_about": true
+  },
+  {
+    "row": 483,
+    "url": "https://github.com/luceat-lux-vestra/crossinput",
+    "listed_in_about": true
+  },
+  {
+    "row": 484,
+    "url": "https://github.com/Keremerk/MyDeX",
+    "listed_in_about": false
+  },
+  {
+    "row": 485,
+    "url": "https://shrey113.github.io/Android-Dex/",
+    "listed_in_about": false
+  },
+  {
+    "row": 486,
+    "url": "https://github.com/KaliRootSuperUser/android-dex",
+    "listed_in_about": false
+  },
+  {
+    "row": 487,
+    "url": "https://github.com/blworld/Shrey113-Android-Dex",
+    "listed_in_about": true
+  },
+  {
+    "row": 488,
+    "url": "https://github.com/KaliRootSuperUser/android-dex",
+    "listed_in_about": false
+  },
+  {
+    "row": 489,
+    "url": "https://github.com/Gyoonus/deoptfuscator",
+    "listed_in_about": false
+  },
+  {
+    "row": 490,
+    "url": "https://techydruid.com/android-dex-desktop-mode/",
+    "listed_in_about": false
+  },
+  {
+    "row": 491,
+    "url": "https://github.com/maxwell-nc/AndroidDexEncrypt",
+    "listed_in_about": false
+  },
+  {
+    "row": 492,
+    "url": "https://github.com/VincentTung/LoadDex",
+    "listed_in_about": false
+  },
+  {
+    "row": 493,
+    "url": "https://github.com/poping520/libdex-ts",
+    "listed_in_about": false
+  },
+  {
+    "row": 494,
+    "url": "https://github.com/TangXiaoLv/Android-Easy-MultiDex",
+    "listed_in_about": true
+  },
+  {
+    "row": 495,
+    "url": "https://github.com/Shrey113/Adb-Device-Manager-2",
+    "listed_in_about": true
+  }
+]

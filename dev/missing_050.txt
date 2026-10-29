@@ -1,0 +1,1 @@
+{"key":"GET https://ln.hako.vn/truyen/139-that-nghiep-tai-sinh","method":"GET","url":"https://ln.hako.vn/truyen/139-that-nghiep-tai-sinh","bodyText":null,"headers":{"Referer":"https://ln.hako.vn/","User-Agent":"Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36"}}

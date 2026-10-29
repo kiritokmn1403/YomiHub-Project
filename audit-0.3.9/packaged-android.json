@@ -1,0 +1,17 @@
+[
+  {
+    "file": "YomiHub-0.3.9-armeabi-v7a.apk",
+    "bytes": 167093825,
+    "sha256": "5390736b76507a85afa521b5fbea88bfc6aeb9d04dcdc4143fc3e4e1223b71d4"
+  },
+  {
+    "file": "YomiHub-0.3.9-arm64-v8a.apk",
+    "bytes": 171324081,
+    "sha256": "45083e3d6d6287adfef016354fd222079e15bb33ea8658f5faf06fef4248d5b8"
+  },
+  {
+    "file": "YomiHub-0.3.9-x86_64.apk",
+    "bytes": 176547817,
+    "sha256": "f68243fa903599ab10f46ba4a04188314b2d5ec0411c1baa2b5c0f2d4ec98a96"
+  }
+]

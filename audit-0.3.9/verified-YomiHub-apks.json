@@ -1,0 +1,29 @@
+[
+  {
+    "file": "YomiHub-0.3.9-armeabi-v7a.apk",
+    "version": "0.3.9",
+    "code": 1031,
+    "label": "YomiHub",
+    "signatureValid": true,
+    "sameSignerAs038": true,
+    "signerSha256": "2c746646c4258a091acb5bcc0ce60821ec6e8f79f1f81656ff7f54cd202b0198"
+  },
+  {
+    "file": "YomiHub-0.3.9-arm64-v8a.apk",
+    "version": "0.3.9",
+    "code": 2031,
+    "label": "YomiHub",
+    "signatureValid": true,
+    "sameSignerAs038": true,
+    "signerSha256": "2c746646c4258a091acb5bcc0ce60821ec6e8f79f1f81656ff7f54cd202b0198"
+  },
+  {
+    "file": "YomiHub-0.3.9-x86_64.apk",
+    "version": "0.3.9",
+    "code": 4031,
+    "label": "YomiHub",
+    "signatureValid": true,
+    "sameSignerAs038": true,
+    "signerSha256": "2c746646c4258a091acb5bcc0ce60821ec6e8f79f1f81656ff7f54cd202b0198"
+  }
+]

@@ -1,0 +1,4 @@
+kt_commits.json https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/commits?per_page=5
+kt_tree.json https://api.github.com/repos/Kotatsu-Redo/kotatsu-parsers-redo/git/trees/HEAD?recursive=1
+kmp.json https://api.github.com/repos/Shebyyy/kotatsu-multi-parsers/contents
+ir_idx.json https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repov2/index.min.json

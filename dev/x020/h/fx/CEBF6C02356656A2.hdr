@@ -1,0 +1,14 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Wed, 07 Oct 2026 14:31:20 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Set-Cookie: fr_geo=n; expires=Wed, 07 Oct 2026 20:31:20 GMT; Max-Age=21600; path=/; secure; SameSite=Lax
+Cache-Control: no-store
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+X-XSS-Protection: 1; mode=block
+Content-Encoding: gzip
+

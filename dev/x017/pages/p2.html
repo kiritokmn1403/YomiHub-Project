@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We've Moved! | Miyomi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 800px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+    
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #fdbb2d;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+    
+    .highlight {
+      color: #fdbb2d;
+      font-weight: bold;
+    }
+    
+    .new-website {
+      font-size: 1.4rem;
+      margin: 30px 0;
+      padding: 15px;
+      background-color: rgba(253, 187, 45, 0.2);
+      border-radius: 10px;
+      border-left: 4px solid #fdbb2d;
+    }
+    
+    .countdown {
+      font-size: 1.1rem;
+      margin: 20px 0;
+      color: #fdbb2d;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: #fdbb2d;
+      color: #1a2a6c;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(253, 187, 45, 0.4);
+    }
+    
+    .btn:hover {
+      background-color: #ffcc4d;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(253, 187, 45, 0.6);
+    }
+    
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .feature {
+      flex: 1;
+      min-width: 200px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    
+    .feature h3 {
+      margin-bottom: 10px;
+      color: #fdbb2d;
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+      
+      .new-website {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">MIYOMI</div>
+    <h1>We've Moved to a New Home!</h1>
+    
+    <p>Thank you for visiting our repository listing page. We're excited to announce that we've completely redesigned and improved our website with a better user experience and more features.</p>
+    
+    <div class="new-website">
+      Our new website is available at:<br>
+      <span class="highlight">https://miyomi.pages.dev/</span>
+    </div>
+    
+    <p>You'll be automatically redirected in <span id="countdown" class="countdown">10</span> seconds.</p>
+    
+    <div class="features">
+      <div class="feature">
+        <h3>🎯 Improved Design</h3>
+        <p>Cleaner interface with better organization</p>
+      </div>
+      <div class="feature">
+        <h3>⚡ Faster Loading</h3>
+        <p>Optimized performance for quicker access</p>
+      </div>
+      <div class="feature">
+        <h3>📱 Mobile Friendly</h3>
+        <p>Enhanced experience on all devices</p>
+      </div>
+    </div>
+    
+    <a href="https://miyomi.pages.dev/" class="btn">Go to New Website Now</a>
+  </div>
+
+  <script>
+    // Countdown and redirect functionality
+    let countdown = 10;
+    const countdownElement = document.getElementById('countdown');
+    
+    const countdownInterval = setInterval(() => {
+      countdown--;
+      countdownElement.textContent = countdown;
+      
+      if (countdown <= 0) {
+        clearInterval(countdownInterval);
+        window.location.href = "https://miyomi.pages.dev/";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

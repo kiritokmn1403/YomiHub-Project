@@ -1,0 +1,1 @@
+TapText '^WireGuard' 3; Labels 'd7' | Select-String 'WARP|WireGuard|profile|conf' | Select-Object -First 12

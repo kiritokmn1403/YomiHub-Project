@@ -1,0 +1,1 @@
+Tap 194 425 3; TapText '^XCOMIC' 20; Shot 'h8'; Labels 'h8' | Select-Object -First 16; Crash

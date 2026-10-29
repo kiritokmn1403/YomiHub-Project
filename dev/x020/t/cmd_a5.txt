@@ -1,0 +1,1 @@
+TapText '^Allow$' 6; Labels 'a5' | Select-Object -First 25; Shot 'a5'; Crash

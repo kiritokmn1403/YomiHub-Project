@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path path="Android/data/com.yomihub.app/" name="files_root" />
+    <external-path path="." name="external_storage_root" />
+    <!-- YomiHub: AirDrop & Quicksharing / PDF reader share app files -->
+    <cache-path path="." name="yh_cache" />
+    <files-path path="." name="yh_files" />
+    <external-files-path path="." name="yh_ext_files" />
+    <external-cache-path path="." name="yh_ext_cache" />
+</paths>

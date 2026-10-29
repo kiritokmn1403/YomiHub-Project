@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="comic"
+        android:enabled="true"
+        android:icon="@drawable/ic_sc_comic"
+        android:shortcutShortLabel="@string/sc_comic"
+        android:shortcutLongLabel="@string/sc_comic_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.yomihub.app"
+            android:targetClass="com.kodjodevf.mangayomi.MainActivity"
+            android:data="yomihub://open?route=%2FMangaLibrary" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="film"
+        android:enabled="true"
+        android:icon="@drawable/ic_sc_film"
+        android:shortcutShortLabel="@string/sc_film"
+        android:shortcutLongLabel="@string/sc_film_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.yomihub.app"
+            android:targetClass="com.kodjodevf.mangayomi.MainActivity"
+            android:data="yomihub://open?route=%2FAnimeLibrary" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="novel"
+        android:enabled="true"
+        android:icon="@drawable/ic_sc_novel"
+        android:shortcutShortLabel="@string/sc_novel"
+        android:shortcutLongLabel="@string/sc_novel_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.yomihub.app"
+            android:targetClass="com.kodjodevf.mangayomi.MainActivity"
+            android:data="yomihub://open?route=%2FNovelLibrary" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="downloads"
+        android:enabled="true"
+        android:icon="@drawable/ic_sc_downloads"
+        android:shortcutShortLabel="@string/sc_downloads"
+        android:shortcutLongLabel="@string/sc_downloads_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.yomihub.app"
+            android:targetClass="com.kodjodevf.mangayomi.MainActivity"
+            android:data="yomihub://open?route=%2FdownloadQueue" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="browser"
+        android:enabled="true"
+        android:icon="@drawable/ic_sc_browser"
+        android:shortcutShortLabel="@string/sc_browser"
+        android:shortcutLongLabel="@string/sc_browser_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.yomihub.app"
+            android:targetClass="com.kodjodevf.mangayomi.MainActivity"
+            android:data="yomihub://open?route=%2Fbrowser" />
+    </shortcut>
+</shortcuts>

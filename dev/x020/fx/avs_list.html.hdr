@@ -1,0 +1,21 @@
+HTTP/1.1 200 OK
+Date: Wed, 07 Oct 2026 13:49:11 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Server: cloudflare
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Set-Cookie: PHPSESSID=207accfddae385723a4df15b7b1f24e5; expires=Wed, 07 Oct 2026 21:49:11 GMT; Max-Age=28800; path=/; HttpOnly; SameSite=Lax
+Set-Cookie: tokenb387cb992551b0ddc4acaf23ae7f6193=bdbcef34fd2ecc58b856c49b5b51ab86; expires=Wed, 07 Oct 2026 14:49:11 GMT; Max-Age=3600
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate
+Pragma: no-cache
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=jPNdpMp5mOj6yJ3Qbm0KRdTQ7LAYh4gMbBkv3dHBUqEAmDfsGuUtZOkYk8Hef9Qc9dXTdxK3IkTOo9taJXdKnBTRwutPDGPzLwu7uoxz9q%2BRfUlp87vdEZ8AlEloR8UPDipALmpPQ6iGlvvymQ%3D%3D"}]}
+cf-cache-status: DYNAMIC
+vary: accept-encoding
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+Speculation-Rules: "/cdn-cgi/speculation"
+CF-RAY: a46d5e23ce5f3f9e-SIN
+alt-svc: h3=":443"; ma=86400
+

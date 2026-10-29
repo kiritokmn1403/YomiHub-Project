@@ -1,0 +1,1 @@
+Adb shell input swipe 540 1900 540 300 500; Start-Sleep 2; Labels 'b3' | Select-Object -First 40

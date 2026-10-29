@@ -1,0 +1,172 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+def yhMinSdk = 23
+
+android {
+    namespace "com.kodjodevf.mangayomi"
+    compileSdkVersion 37
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        // YomiHub 0.1.4: Kotatsu parsers use java.time / java.util APIs newer
+        // than Android 7.
+        coreLibraryDesugaringEnabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "com.yomihub.app"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        // YomiHub 0.4.3: Android 6.0 (API 23). Kept in a variable because the
+        // Flutter tool rewrites literal values below its default (24).
+        minSdkVersion yhMinSdk
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging true
+            // YomiHub 0.4.3: jniLibs/<abi>/libflutter.so is the engine library
+            // patched to also load libyhcompat.so (Android 6.0 / API 23).
+            // The app's own copy must win over the one from the engine AAR.
+            pickFirsts += ['**/libflutter.so']
+        }
+    }
+
+    signingConfigs {
+       release {
+           keyAlias keystoreProperties['keyAlias']
+           keyPassword keystoreProperties['keyPassword']
+           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+           storePassword keystoreProperties['storePassword']
+       }
+   }
+   buildTypes {
+       release {
+           signingConfig signingConfigs.release
+           // YomiHub: Tor and WireGuard native code reach Java fields by name
+           proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+       }
+   }
+   repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+// YomiHub 0.4.3: Android 6.0 (API 23). The Flutter embedding of this Flutter
+// version calls a few API 24 methods without a version check
+// (Configuration.getLocales, Context.getDataDir, EditorInfo.hintLocales,
+// AccessibilityNodeInfo.setDrawingOrder). libs/flutter_embedding_release-yh23.jar
+// is the same embedding with those calls guarded (sources in
+// audit-0.4.3/compat23/embedding) and replaces the original.
+configurations.all {
+    exclude group: 'io.flutter', module: 'flutter_embedding_release'
+}
+
+dependencies {
+    implementation files('libs/flutter_embedding_release-yh23.jar')
+    // transitive dependencies of the original flutter_embedding_release POM
+    implementation 'androidx.lifecycle:lifecycle-common:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.7.0'
+    implementation 'androidx.fragment:fragment:1.7.1'
+    implementation 'androidx.annotation:annotation:1.8.1'
+    implementation 'androidx.tracing:tracing:1.2.0'
+    implementation 'androidx.core:core:1.13.1'
+    implementation 'androidx.window:window-java:1.2.0'
+    implementation 'com.getkeepsafe.relinker:relinker:1.4.5'
+    implementation 'androidx.exifinterface:exifinterface:1.4.1'
+    implementation(name: 'libmtorrentserver', ext: 'aar')
+    // YomiHub VPN section: Tor daemon + WireGuard (Cloudflare WARP)
+    implementation 'info.guardianproject:tor-android:0.4.8.22'
+    implementation 'info.guardianproject:jtorctl:0.4.5.7'
+    implementation 'com.wireguard.android:tunnel:1.0.20260102'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+    // YomiHub 0.1.4: OpenVPN engine (ics-openvpn), used for OpenVPN profiles
+    // and SoftEther / VPN Gate servers
+    // (jitpack com.github.nizwar:openvpn_library:b3941ef040 with its unused
+    // libgojni.so removed: it clashed with libmtorrentserver's gomobile lib)
+    implementation(name: 'openvpn_library', ext: 'aar')
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    // YomiHub 0.1.4: the Xray core (as in Mihon Proxy) runs as its own
+    // process from jniLibs/<abi>/libxray.so - a second gomobile AAR (libXray)
+    // can't live next to libmtorrentserver in one app.
+    // YomiHub 0.1.4: Firefox engine for the in-app browser
+    implementation 'org.mozilla.geckoview:geckoview:157.0.20260924084938'
+    // YomiHub 0.1.4: Kotatsu parsers (Kotatsu-Redo, main repo of
+    // Shebyyy/kotatsu-multi-parsers) + what the bridge needs
+    implementation('com.github.Kotatsu-Redo:kotatsu-parsers-redo:b3c0000245') {
+        exclude group: 'org.json', module: 'json'
+    }
+    implementation 'com.squareup.okhttp3:okhttp:5.3.2'
+    implementation 'org.jsoup:jsoup:1.21.2'
+    implementation 'org.nanohttpd:nanohttpd:2.3.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2'
+    // YomiHub 0.1.9: "Dịch ảnh" (comic page translation) – text recognition
+    // by ML Kit through Google Play services (models are not in the APK)
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:19.0.1'
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition-japanese:16.0.1'
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition-chinese:16.0.1'
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.1'
+    // YomiHub 0.1.9: IReader's source API (Ktor + Ksoup + kotlinx) so IReader
+    // extension APKs (IReaderorg/IReader-extensions) can be loaded in-app
+    implementation('io.github.ireaderorg:source-api:1.5.1') {
+        exclude group: 'io.ktor', module: 'ktor-client-darwin'
+    }
+    // YomiHub 0.2.1: libraries Mihon provides to extension APKs at run time
+    // (keiyoushi `libs.bundles.common` is compileOnly). Without them e.g.
+    // "Manga Million" failed with NoClassDefFoundError
+    // kotlinx/serialization/protobuf/ProtoNumber (logs 07/10/2026).
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.9.0'
+    implementation 'app.cash.quickjs:quickjs-android:0.9.2'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+}

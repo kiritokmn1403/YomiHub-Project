@@ -1,0 +1,19 @@
+HTTP/1.1 403 Forbidden
+Date: Wed, 07 Oct 2026 16:12:16 GMT
+Content-Type: text/html;charset=utf8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Server: cloudflare
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Set-Cookie: 55f99729a8cd7a03552c9fbe847f39df=2934d49abacc48b2d8edccd1eedcf081; expires=Wed, 07-Oct-26 18:12:16 GMT; path=/;
+Set-Cookie: server_name_session=08240fe3b8fdbcf190934ec3be786e7c; Max-Age=86400; httponly; path=/
+Cache-Control: no-store
+cf-cache-status: DYNAMIC
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+Speculation-Rules: "/cdn-cgi/speculation"
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=bY4UtHz%2F9%2BefGPxQA2lC8YfevlZwEBTSMaPMaO42L%2F29gmQDGxROm8LIB6Q84m7McBqYSkqYGKfUs%2BR3e9nvn%2F30AgGipu18liJCFlG2MN88D%2F9eo8qFUuoWPF4zSRHQFnmIvN%2BgnwjxRtBtTg%3D%3D"}]}
+Content-Encoding: gzip
+CF-RAY: a46e2fbcabd0d661-SIN
+alt-svc: h3=":443"; ma=86400
+

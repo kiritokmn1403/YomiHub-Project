@@ -1,0 +1,4411 @@
+{
+  "sha": "4ce0a480eeb01847a750c44f3c1a9c1fb513f089",
+  "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/trees/4ce0a480eeb01847a750c44f3c1a9c1fb513f089",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d42fa0c240e4d055768d7f2eba00b5d9b116789b",
+      "size": 97,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d42fa0c240e4d055768d7f2eba00b5d9b116789b"
+    },
+    {
+      "path": "apk",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "655e01de8a1274adc905122b6be6cbe7c52fced5",
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/trees/655e01de8a1274adc905122b6be6cbe7c52fced5"
+    },
+    {
+      "path": "apk/ireader-ar-armtl-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0cc301b5fbcc75b9f084827dff80f90951145c74",
+      "size": 33750,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0cc301b5fbcc75b9f084827dff80f90951145c74"
+    },
+    {
+      "path": "apk/ireader-ar-armtl-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ebeb683dd7cf8ef5205e66a76ab597503af9cb0",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0ebeb683dd7cf8ef5205e66a76ab597503af9cb0"
+    },
+    {
+      "path": "apk/ireader-ar-arnovel-v2.5.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0bd13d345b7b632cac8287aa7e947d2fe43d505",
+      "size": 33752,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d0bd13d345b7b632cac8287aa7e947d2fe43d505"
+    },
+    {
+      "path": "apk/ireader-ar-arnovel-v2.5.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb3b1dc8915624fc1d47b652d69c83bc2761c669",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/eb3b1dc8915624fc1d47b652d69c83bc2761c669"
+    },
+    {
+      "path": "apk/ireader-ar-azorafly-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "877e0def545668c4d717cd20bb5ae019f0aac01f",
+      "size": 29657,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/877e0def545668c4d717cd20bb5ae019f0aac01f"
+    },
+    {
+      "path": "apk/ireader-ar-azorafly-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9b593afdacea0d816a8aa2e44902a2d3efc41e1",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d9b593afdacea0d816a8aa2e44902a2d3efc41e1"
+    },
+    {
+      "path": "apk/ireader-ar-golden-v2.3.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fc406cb0f1c3a9f7dc30a04d644939b6f30e9ec",
+      "size": 33751,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7fc406cb0f1c3a9f7dc30a04d644939b6f30e9ec"
+    },
+    {
+      "path": "apk/ireader-ar-golden-v2.3.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cab6dce73e9cc4e7bea1e7b302548004a04b6e71",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/cab6dce73e9cc4e7bea1e7b302548004a04b6e71"
+    },
+    {
+      "path": "apk/ireader-ar-hizomanga-v2.5.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af8b07c43dadecbcb96476a15d7104a2cf52f988",
+      "size": 33754,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/af8b07c43dadecbcb96476a15d7104a2cf52f988"
+    },
+    {
+      "path": "apk/ireader-ar-hizomanga-v2.5.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ba8cf40c1c1fd1d40974df007d7e604a036a8ce",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8ba8cf40c1c1fd1d40974df007d7e604a036a8ce"
+    },
+    {
+      "path": "apk/ireader-ar-kolnovel-v2.4.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4a1b81e7b466eb31f0cf2cbeae821b904f9f604",
+      "size": 29657,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c4a1b81e7b466eb31f0cf2cbeae821b904f9f604"
+    },
+    {
+      "path": "apk/ireader-ar-kolnovel-v2.4.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4a085a897cc35d97b3629f4d8c1c63f3816c667",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c4a085a897cc35d97b3629f4d8c1c63f3816c667"
+    },
+    {
+      "path": "apk/ireader-ar-markazriwayat-v2.6.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e12176d0c5ae62bb07c6f0749c6b189bb18fd083",
+      "size": 25566,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e12176d0c5ae62bb07c6f0749c6b189bb18fd083"
+    },
+    {
+      "path": "apk/ireader-ar-markazriwayat-v2.6.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e3e333f6573438eeff02603b88285e7915dbd28",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8e3e333f6573438eeff02603b88285e7915dbd28"
+    },
+    {
+      "path": "apk/ireader-ar-mknov-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b575df60b96454d6148b1f8d64a13f38d659d09",
+      "size": 148438,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9b575df60b96454d6148b1f8d64a13f38d659d09"
+    },
+    {
+      "path": "apk/ireader-ar-mknov-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a5cf9816e42476bcfc3a496d02dbb7413dd642d",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3a5cf9816e42476bcfc3a496d02dbb7413dd642d"
+    },
+    {
+      "path": "apk/ireader-ar-mtlarabic-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e96ad0fc1859f49f2206a89645c6096e1b2c4a32",
+      "size": 33754,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e96ad0fc1859f49f2206a89645c6096e1b2c4a32"
+    },
+    {
+      "path": "apk/ireader-ar-mtlarabic-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee995fc56eb85df08eddddf88c47098cda1fd938",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ee995fc56eb85df08eddddf88c47098cda1fd938"
+    },
+    {
+      "path": "apk/ireader-ar-novel4up-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c20486fd6235ddd032d9f565e111dd386f4cc8f",
+      "size": 33692,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0c20486fd6235ddd032d9f565e111dd386f4cc8f"
+    },
+    {
+      "path": "apk/ireader-ar-novel4up-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7fdc65004984b7cf7601da3dc2686b577c0c00c",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f7fdc65004984b7cf7601da3dc2686b577c0c00c"
+    },
+    {
+      "path": "apk/ireader-ar-novelarab-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92d445c569e2233aca047570c5fedda49394fb89",
+      "size": 29658,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/92d445c569e2233aca047570c5fedda49394fb89"
+    },
+    {
+      "path": "apk/ireader-ar-novelarab-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1b3fe0d4ac15be18e74a763425c6cfa285b72f2",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b1b3fe0d4ac15be18e74a763425c6cfa285b72f2"
+    },
+    {
+      "path": "apk/ireader-ar-novelparadise-v2.6.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51740797a9d52432dcaca418069e805f6bdc79a0",
+      "size": 21470,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/51740797a9d52432dcaca418069e805f6bdc79a0"
+    },
+    {
+      "path": "apk/ireader-ar-novelparadise-v2.6.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0e0186c05568529bd17bee4648169d006fa8d8c",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f0e0186c05568529bd17bee4648169d006fa8d8c"
+    },
+    {
+      "path": "apk/ireader-ar-realmnovel-v2.5.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5edf9ed385ac87ad35f6fc4553d5784593ef6633",
+      "size": 25563,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5edf9ed385ac87ad35f6fc4553d5784593ef6633"
+    },
+    {
+      "path": "apk/ireader-ar-realmnovel-v2.5.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d21afe306b1f2e682c5d56161b4fc3da6fa8069f",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d21afe306b1f2e682c5d56161b4fc3da6fa8069f"
+    },
+    {
+      "path": "apk/ireader-ar-rewayahfans-v2.5.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a25a8468a4b414e417e6570491f4c7a56ec07b8",
+      "size": 21468,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7a25a8468a4b414e417e6570491f4c7a56ec07b8"
+    },
+    {
+      "path": "apk/ireader-ar-rewayahfans-v2.5.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce4a0541adb35d13b8412b5e99049d8a480b44a3",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ce4a0541adb35d13b8412b5e99049d8a480b44a3"
+    },
+    {
+      "path": "apk/ireader-ar-rewayatclub-v2.3.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7af62d741e44a108582eb0146eff6b88347d066e",
+      "size": 29660,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7af62d741e44a108582eb0146eff6b88347d066e"
+    },
+    {
+      "path": "apk/ireader-ar-rewayatclub-v2.3.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95a298ce8b6f6a367a75a6a3218a19fe5ecd7c68",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/95a298ce8b6f6a367a75a6a3218a19fe5ecd7c68"
+    },
+    {
+      "path": "apk/ireader-ar-rewayatfans-v2.3.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a26b16b7a7abe3d677a8f2bc30f737483191526",
+      "size": 21468,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7a26b16b7a7abe3d677a8f2bc30f737483191526"
+    },
+    {
+      "path": "apk/ireader-ar-rewayatfans-v2.3.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54aef355c185394610b2b47f24c848064861e9bd",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/54aef355c185394610b2b47f24c848064861e9bd"
+    },
+    {
+      "path": "apk/ireader-ar-riwyat-v2.12.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03c91cf685ecf2535dcc178764559f2c5a8780bc",
+      "size": 29655,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/03c91cf685ecf2535dcc178764559f2c5a8780bc"
+    },
+    {
+      "path": "apk/ireader-ar-riwyat-v2.12.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a062ea02e4474e6c5745d9da89adcbaac691562",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3a062ea02e4474e6c5745d9da89adcbaac691562"
+    },
+    {
+      "path": "apk/ireader-ar-seanovel-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f58be074eda3bd6d69b4fb8a55225a54bfa5f561",
+      "size": 33753,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f58be074eda3bd6d69b4fb8a55225a54bfa5f561"
+    },
+    {
+      "path": "apk/ireader-ar-seanovel-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "333f97f49cb98aaa9748bcd7f0c9c006ead422c8",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/333f97f49cb98aaa9748bcd7f0c9c006ead422c8"
+    },
+    {
+      "path": "apk/ireader-ar-sunovels-v2.3.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4506494b922a90f25ca91b040160d159aba7f82c",
+      "size": 29657,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4506494b922a90f25ca91b040160d159aba7f82c"
+    },
+    {
+      "path": "apk/ireader-ar-sunovels-v2.3.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdc7c5b7ae1b7ff223eb85f291915cb2c4628b0e",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/cdc7c5b7ae1b7ff223eb85f291915cb2c4628b0e"
+    },
+    {
+      "path": "apk/ireader-en-allnovel-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4dce9ce6dff5008e92b38f0a3699f8150f2c6ef4",
+      "size": 25561,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4dce9ce6dff5008e92b38f0a3699f8150f2c6ef4"
+    },
+    {
+      "path": "apk/ireader-en-allnovel-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "719850a458fd4c476613c2032da25cbedc92a8eb",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/719850a458fd4c476613c2032da25cbedc92a8eb"
+    },
+    {
+      "path": "apk/ireader-en-allnovelfull-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b13a1fc85fe1377abd4a771fd2b0e136b97ca61",
+      "size": 25565,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3b13a1fc85fe1377abd4a771fd2b0e136b97ca61"
+    },
+    {
+      "path": "apk/ireader-en-allnovelfull-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0aed81bd249e52f91c72a71b5f2b396a0fdf08cc",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0aed81bd249e52f91c72a71b5f2b396a0fdf08cc"
+    },
+    {
+      "path": "apk/ireader-en-allnovelfull-v2.3.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f87c385f7d4987563be222c541cfabe813851c45",
+      "size": 21469,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f87c385f7d4987563be222c541cfabe813851c45"
+    },
+    {
+      "path": "apk/ireader-en-allnovelfull-v2.3.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d02fa81506257f27aaa69c6f04a99271841f1149",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d02fa81506257f27aaa69c6f04a99271841f1149"
+    },
+    {
+      "path": "apk/ireader-en-aquamanga-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98fc2204c6987d7d6c66f5a4f1aade9f7904d028",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/98fc2204c6987d7d6c66f5a4f1aade9f7904d028"
+    },
+    {
+      "path": "apk/ireader-en-aquamanga-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdd26757c18379ecf6aa626869255749e6a854ee",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/cdd26757c18379ecf6aa626869255749e6a854ee"
+    },
+    {
+      "path": "apk/ireader-en-archiveofourown-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a40caacc8642c812e9f43eafee3fd3f851e4e197",
+      "size": 25556,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a40caacc8642c812e9f43eafee3fd3f851e4e197"
+    },
+    {
+      "path": "apk/ireader-en-archiveofourown-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10aaa3bc9f2fbcf227aecced4c272a80919def11",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/10aaa3bc9f2fbcf227aecced4c272a80919def11"
+    },
+    {
+      "path": "apk/ireader-en-beautymanga-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8920dd4777d978a558cb160900bd2210f142888",
+      "size": 33695,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b8920dd4777d978a558cb160900bd2210f142888"
+    },
+    {
+      "path": "apk/ireader-en-beautymanga-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bbf913795511f80bb5d6bfb6e9d0ff5be2c3011",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1bbf913795511f80bb5d6bfb6e9d0ff5be2c3011"
+    },
+    {
+      "path": "apk/ireader-en-bonnovel-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "109a118d6aa90fe464ad23422f1422f4732aa70a",
+      "size": 33692,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/109a118d6aa90fe464ad23422f1422f4732aa70a"
+    },
+    {
+      "path": "apk/ireader-en-bonnovel-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25cdbb741da06477cc6caca54eb7dac4852e3b5d",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/25cdbb741da06477cc6caca54eb7dac4852e3b5d"
+    },
+    {
+      "path": "apk/ireader-en-boxnovel-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7988cb673245fac803795f3215a90671ab5735e4",
+      "size": 25561,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7988cb673245fac803795f3215a90671ab5735e4"
+    },
+    {
+      "path": "apk/ireader-en-boxnovel-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b26e2ef2c1601027ec1f5f01aa9214394fcb983b",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b26e2ef2c1601027ec1f5f01aa9214394fcb983b"
+    },
+    {
+      "path": "apk/ireader-en-clicknovel-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8edd936aedf207e7520cd22e6a61508468d3e23e",
+      "size": 33694,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8edd936aedf207e7520cd22e6a61508468d3e23e"
+    },
+    {
+      "path": "apk/ireader-en-clicknovel-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa4b8db5e1f0b0bef0a127e12b9a33f1e5e14aec",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/aa4b8db5e1f0b0bef0a127e12b9a33f1e5e14aec"
+    },
+    {
+      "path": "apk/ireader-en-coffeemanga-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e71ab2bb58ec2b7a702fc68b851451f4e0d7b84",
+      "size": 33695,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4e71ab2bb58ec2b7a702fc68b851451f4e0d7b84"
+    },
+    {
+      "path": "apk/ireader-en-coffeemanga-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f85df5b509db306ddb13edaab2945f5cc04019ed",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f85df5b509db306ddb13edaab2945f5cc04019ed"
+    },
+    {
+      "path": "apk/ireader-en-coolnovel-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11069e760fc98ac5dc425bce3e501ea5a3f67b36",
+      "size": 17370,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/11069e760fc98ac5dc425bce3e501ea5a3f67b36"
+    },
+    {
+      "path": "apk/ireader-en-coolnovel-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d4c0e5e9e55d7b06a7023a1b5fa8200544a3ced",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7d4c0e5e9e55d7b06a7023a1b5fa8200544a3ced"
+    },
+    {
+      "path": "apk/ireader-en-cratenovel-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd07de97ba4a0645061f05336798fdee1b06d34e",
+      "size": 33694,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fd07de97ba4a0645061f05336798fdee1b06d34e"
+    },
+    {
+      "path": "apk/ireader-en-cratenovel-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e08a3f465cab376dba0439be7dd17d7d467cc63c",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e08a3f465cab376dba0439be7dd17d7d467cc63c"
+    },
+    {
+      "path": "apk/ireader-en-fanmtl-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e09ad55489ac8d6e1531d2136646722b97ced4fc",
+      "size": 21463,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e09ad55489ac8d6e1531d2136646722b97ced4fc"
+    },
+    {
+      "path": "apk/ireader-en-fanmtl-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "97d78e4b9fcb7f1cf5cb20114059b300c7823ac7",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/97d78e4b9fcb7f1cf5cb20114059b300c7823ac7"
+    },
+    {
+      "path": "apk/ireader-en-fanmtl-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33a08288d8848c847ce5aa8f50ca8d62312fdb34",
+      "size": 50135,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/33a08288d8848c847ce5aa8f50ca8d62312fdb34"
+    },
+    {
+      "path": "apk/ireader-en-fanmtl-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f51199595e572d593a58f312831a4924d2fdbfd9",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f51199595e572d593a58f312831a4924d2fdbfd9"
+    },
+    {
+      "path": "apk/ireader-en-fantasyworldonline-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed83d80b26fb6a442b735e7d7d06891ad67328ed",
+      "size": 33702,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ed83d80b26fb6a442b735e7d7d06891ad67328ed"
+    },
+    {
+      "path": "apk/ireader-en-fantasyworldonline-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89426fbe010a42a23c36b0464ab31427350a2eb4",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/89426fbe010a42a23c36b0464ab31427350a2eb4"
+    },
+    {
+      "path": "apk/ireader-en-fenrir-v2.11.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58a9abaf8e6cfc5b69163087303b5e5feac0ad77",
+      "size": 33751,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/58a9abaf8e6cfc5b69163087303b5e5feac0ad77"
+    },
+    {
+      "path": "apk/ireader-en-fenrir-v2.11.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9878eb055f89385a898d9d0aca9768133c48226",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f9878eb055f89385a898d9d0aca9768133c48226"
+    },
+    {
+      "path": "apk/ireader-en-fenrirrealm-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20bf22c4e7c7c2f3a51ba7bbb1c9f4424b9d6e39",
+      "size": 25564,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/20bf22c4e7c7c2f3a51ba7bbb1c9f4424b9d6e39"
+    },
+    {
+      "path": "apk/ireader-en-fenrirrealm-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e138e3a0f1e5792bfd646e1290ae8c08a5b2eb7c",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e138e3a0f1e5792bfd646e1290ae8c08a5b2eb7c"
+    },
+    {
+      "path": "apk/ireader-en-fenrirtranslations-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5959b765784b77b769355693196b32e4e8c0ea7",
+      "size": 33702,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c5959b765784b77b769355693196b32e4e8c0ea7"
+    },
+    {
+      "path": "apk/ireader-en-fenrirtranslations-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f43c88bec79e68a8c2bbbfbb5eb8e1d9fd63b032",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f43c88bec79e68a8c2bbbfbb5eb8e1d9fd63b032"
+    },
+    {
+      "path": "apk/ireader-en-fictionzone-v2.3.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d475f953a43f6c24243385bf626513b92626116d",
+      "size": 29660,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d475f953a43f6c24243385bf626513b92626116d"
+    },
+    {
+      "path": "apk/ireader-en-fictionzone-v2.3.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b63aa25e9feec31bdcc67d5f5d06b107a0fdfd87",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b63aa25e9feec31bdcc67d5f5d06b107a0fdfd87"
+    },
+    {
+      "path": "apk/ireader-en-firstkissnovel-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f0dc5ff4f8a72cec19e658d8d8e83ba4a16fe82",
+      "size": 33698,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7f0dc5ff4f8a72cec19e658d8d8e83ba4a16fe82"
+    },
+    {
+      "path": "apk/ireader-en-firstkissnovel-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15c37da83d010788d921301e3829fe44e69caa9d",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/15c37da83d010788d921301e3829fe44e69caa9d"
+    },
+    {
+      "path": "apk/ireader-en-freefullnovel-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00f2e9dad879da1ef7923e5996741a2c03c41abf",
+      "size": 33697,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/00f2e9dad879da1ef7923e5996741a2c03c41abf"
+    },
+    {
+      "path": "apk/ireader-en-freefullnovel-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a632ac9ade676d583aadee7eb6ecae40cb4dcf58",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a632ac9ade676d583aadee7eb6ecae40cb4dcf58"
+    },
+    {
+      "path": "apk/ireader-en-freemanga-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f27530f18aa340f4202498fd02b621e20691c77",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0f27530f18aa340f4202498fd02b621e20691c77"
+    },
+    {
+      "path": "apk/ireader-en-freemanga-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1564e57b68851f66866c69dae4327fa7b11a9c0a",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1564e57b68851f66866c69dae4327fa7b11a9c0a"
+    },
+    {
+      "path": "apk/ireader-en-freenovel-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2dfa10093578c9279178985a7eb935a61f884744",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2dfa10093578c9279178985a7eb935a61f884744"
+    },
+    {
+      "path": "apk/ireader-en-freenovel-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "889123404312f7598dad26e6f135e811914faf5f",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/889123404312f7598dad26e6f135e811914faf5f"
+    },
+    {
+      "path": "apk/ireader-en-freewebnovel-v2.17.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "941c39f141ca79a28a5af41e7f1701ad0e3eb673",
+      "size": 33757,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/941c39f141ca79a28a5af41e7f1701ad0e3eb673"
+    },
+    {
+      "path": "apk/ireader-en-freewebnovel-v2.17.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "233f324247c36963d93c79e0bbeb1505ac671428",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/233f324247c36963d93c79e0bbeb1505ac671428"
+    },
+    {
+      "path": "apk/ireader-en-genesisstudio-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "079ae91ee7bc042c868077a2954dc945d131c054",
+      "size": 29661,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/079ae91ee7bc042c868077a2954dc945d131c054"
+    },
+    {
+      "path": "apk/ireader-en-genesisstudio-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a28e6d07be07c8698ec7121695da273a7394827",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3a28e6d07be07c8698ec7121695da273a7394827"
+    },
+    {
+      "path": "apk/ireader-en-harimanga-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9ef48f44a9b79ef20af3eb97cf47db6e3a7434e",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d9ef48f44a9b79ef20af3eb97cf47db6e3a7434e"
+    },
+    {
+      "path": "apk/ireader-en-harimanga-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47e0b23de6b2575a471161a3d8a9276937d6f4c4",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/47e0b23de6b2575a471161a3d8a9276937d6f4c4"
+    },
+    {
+      "path": "apk/ireader-en-isekaiscan-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7412f4dcc2da5ac1fc8bf7369f221773538bca49",
+      "size": 33694,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7412f4dcc2da5ac1fc8bf7369f221773538bca49"
+    },
+    {
+      "path": "apk/ireader-en-isekaiscan-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d0275b4f890e3bdddc665b62628e9d8f1b7785b",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2d0275b4f890e3bdddc665b62628e9d8f1b7785b"
+    },
+    {
+      "path": "apk/ireader-en-isekaiscaneu-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc6540d1d9854f26ddbd7658eef8302b396b7402",
+      "size": 33696,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/dc6540d1d9854f26ddbd7658eef8302b396b7402"
+    },
+    {
+      "path": "apk/ireader-en-isekaiscaneu-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45400dc6b946f65f23664513ad9eaa0e43fc0aec",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/45400dc6b946f65f23664513ad9eaa0e43fc0aec"
+    },
+    {
+      "path": "apk/ireader-en-kingmanga-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba54a9fe655f52e903bf1d70f63153ea154f8dc4",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ba54a9fe655f52e903bf1d70f63153ea154f8dc4"
+    },
+    {
+      "path": "apk/ireader-en-kingmanga-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea626eb63739430552ce90f3a84f0d444bdd250b",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ea626eb63739430552ce90f3a84f0d444bdd250b"
+    },
+    {
+      "path": "apk/ireader-en-kissmanga-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af39a3f8f365cc486cdadbc7346d4b0ec88ad442",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/af39a3f8f365cc486cdadbc7346d4b0ec88ad442"
+    },
+    {
+      "path": "apk/ireader-en-kissmanga-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b312b7770f413797bc1ca1d0542f47403ccd0000",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b312b7770f413797bc1ca1d0542f47403ccd0000"
+    },
+    {
+      "path": "apk/ireader-en-leafstudio-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed76bc9005069ec1b14fbb355b29932ce2b96bb3",
+      "size": 25563,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ed76bc9005069ec1b14fbb355b29932ce2b96bb3"
+    },
+    {
+      "path": "apk/ireader-en-leafstudio-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04bcbc84680bd6d41aa332be74cc56fea179b2c6",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/04bcbc84680bd6d41aa332be74cc56fea179b2c6"
+    },
+    {
+      "path": "apk/ireader-en-lightnovelheaven-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b5f5186c8058077f8b57d91e44e6291637d1957",
+      "size": 33700,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8b5f5186c8058077f8b57d91e44e6291637d1957"
+    },
+    {
+      "path": "apk/ireader-en-lightnovelheaven-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14731a03a0aa72ff0eb41be8e480f6b12808ff5c",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/14731a03a0aa72ff0eb41be8e480f6b12808ff5c"
+    },
+    {
+      "path": "apk/ireader-en-lightnovelsme-v2.6.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b04fc97170a5c3505b8157406215195cc667c378",
+      "size": 54236,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b04fc97170a5c3505b8157406215195cc667c378"
+    },
+    {
+      "path": "apk/ireader-en-lightnovelsme-v2.6.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b1f68342b3434bf4c69915bc9cd8a9921e2e09c",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3b1f68342b3434bf4c69915bc9cd8a9921e2e09c"
+    },
+    {
+      "path": "apk/ireader-en-lnmtl-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79d59fb7e9a8e71d1aec0b7b70ab1ce04d4abe3b",
+      "size": 41942,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/79d59fb7e9a8e71d1aec0b7b70ab1ce04d4abe3b"
+    },
+    {
+      "path": "apk/ireader-en-lnmtl-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ceb1ed0b142b598afaf21059cee99f8cd98d028",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8ceb1ed0b142b598afaf21059cee99f8cd98d028"
+    },
+    {
+      "path": "apk/ireader-en-ltnovel-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0bb6670af4fa53c72cd500455b8caafed4243b42",
+      "size": 21464,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0bb6670af4fa53c72cd500455b8caafed4243b42"
+    },
+    {
+      "path": "apk/ireader-en-ltnovel-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23ca9a4e6cd90473b886e8566469651c781e290e",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/23ca9a4e6cd90473b886e8566469651c781e290e"
+    },
+    {
+      "path": "apk/ireader-en-lunarletters-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60e56865b2763e4c3e7d65fe338c0ed3aebb95fa",
+      "size": 33696,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/60e56865b2763e4c3e7d65fe338c0ed3aebb95fa"
+    },
+    {
+      "path": "apk/ireader-en-lunarletters-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae9535c0dad6d9d1b7e4b452d76ae13b4accec05",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ae9535c0dad6d9d1b7e4b452d76ae13b4accec05"
+    },
+    {
+      "path": "apk/ireader-en-mangaread-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37e902c4a52ddc3466dcb6c407f16f4a61820f69",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/37e902c4a52ddc3466dcb6c407f16f4a61820f69"
+    },
+    {
+      "path": "apk/ireader-en-mangaread-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "868b51aac50ed76ea5ba67c770c913eda27f7b4a",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/868b51aac50ed76ea5ba67c770c913eda27f7b4a"
+    },
+    {
+      "path": "apk/ireader-en-mangarockteam-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "deeafbc6a9e9c467bcdea8f571d4723121acecbb",
+      "size": 33697,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/deeafbc6a9e9c467bcdea8f571d4723121acecbb"
+    },
+    {
+      "path": "apk/ireader-en-mangarockteam-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d424f4dae46c8300a4588b357ea78abd4657e0e",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5d424f4dae46c8300a4588b357ea78abd4657e0e"
+    },
+    {
+      "path": "apk/ireader-en-mangarosie-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ea59ddf811a2aac0abbaab558dbedfebf6e361f",
+      "size": 33694,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6ea59ddf811a2aac0abbaab558dbedfebf6e361f"
+    },
+    {
+      "path": "apk/ireader-en-mangarosie-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48d70648a884448ac982e6b453245b3a402d6359",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/48d70648a884448ac982e6b453245b3a402d6359"
+    },
+    {
+      "path": "apk/ireader-en-mangatx-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a78de610652fa1714e4cc60590e16319cae6634f",
+      "size": 33691,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a78de610652fa1714e4cc60590e16319cae6634f"
+    },
+    {
+      "path": "apk/ireader-en-mangatx-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e409f54d13b45f4d82c6962282afd2d2f0163a9e",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e409f54d13b45f4d82c6962282afd2d2f0163a9e"
+    },
+    {
+      "path": "apk/ireader-en-mangaweebs-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3afd0e2fcf4e531ae1164e3e27164743e8f67e5e",
+      "size": 33694,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3afd0e2fcf4e531ae1164e3e27164743e8f67e5e"
+    },
+    {
+      "path": "apk/ireader-en-mangaweebs-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19cea79f4f5fe7a4d7d27ffc8869bc83624e0b5d",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/19cea79f4f5fe7a4d7d27ffc8869bc83624e0b5d"
+    },
+    {
+      "path": "apk/ireader-en-manhwachilllove-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e44e9045d0bd285839b787810c0bfced61c1e850",
+      "size": 33699,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e44e9045d0bd285839b787810c0bfced61c1e850"
+    },
+    {
+      "path": "apk/ireader-en-manhwachilllove-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e35fb37ced8c5f1efb68aa9aa31281c4d7649ed",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6e35fb37ced8c5f1efb68aa9aa31281c4d7649ed"
+    },
+    {
+      "path": "apk/ireader-en-mixednovelnet-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "689895f074f5dfd3939d03d30139873f590651fa",
+      "size": 33697,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/689895f074f5dfd3939d03d30139873f590651fa"
+    },
+    {
+      "path": "apk/ireader-en-mixednovelnet-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "394686e2c6b1cdab282bfe8cf69c814a2dc2b864",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/394686e2c6b1cdab282bfe8cf69c814a2dc2b864"
+    },
+    {
+      "path": "apk/ireader-en-mtlnovelclub-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8d475fb659fbdffb74fcf870ff4cbe1b0d03f22",
+      "size": 33696,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b8d475fb659fbdffb74fcf870ff4cbe1b0d03f22"
+    },
+    {
+      "path": "apk/ireader-en-mtlnovelclub-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03aab99dffd96f8d4e481e8a17da8b31b718ae23",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/03aab99dffd96f8d4e481e8a17da8b31b718ae23"
+    },
+    {
+      "path": "apk/ireader-en-mtlnovelen-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfa0ac7d29ebb3993e2836b57221c5f6c335d893",
+      "size": 33755,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/bfa0ac7d29ebb3993e2836b57221c5f6c335d893"
+    },
+    {
+      "path": "apk/ireader-en-mtlnovelen-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8aaa3d05a095468cffc0392c7270b7f17c9284b8",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8aaa3d05a095468cffc0392c7270b7f17c9284b8"
+    },
+    {
+      "path": "apk/ireader-en-mvlempyr-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e7b4ec1d69cda0ce78d8d9d7184c03aa008530e",
+      "size": 29657,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7e7b4ec1d69cda0ce78d8d9d7184c03aa008530e"
+    },
+    {
+      "path": "apk/ireader-en-mvlempyr-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f75c8490a2f139020380efa50510f34f7ec7d62e",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f75c8490a2f139020380efa50510f34f7ec7d62e"
+    },
+    {
+      "path": "apk/ireader-en-myboxnovel-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8368d8855c17d53e059a799b0e5f57a05963b277",
+      "size": 33694,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8368d8855c17d53e059a799b0e5f57a05963b277"
+    },
+    {
+      "path": "apk/ireader-en-myboxnovel-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1de7b38aac61980f3b088a9e3b538bddaab24421",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1de7b38aac61980f3b088a9e3b538bddaab24421"
+    },
+    {
+      "path": "apk/ireader-en-mysticalseries-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec65002d48c923e05783d921d1b5a6778d2883b4",
+      "size": 33698,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ec65002d48c923e05783d921d1b5a6778d2883b4"
+    },
+    {
+      "path": "apk/ireader-en-mysticalseries-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53b3ea53f0b23e447a961e011e81c739ddc96e29",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/53b3ea53f0b23e447a961e011e81c739ddc96e29"
+    },
+    {
+      "path": "apk/ireader-en-neosekaitranslations-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec78debb33b7a943937c351c7810711c081688a3",
+      "size": 33765,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ec78debb33b7a943937c351c7810711c081688a3"
+    },
+    {
+      "path": "apk/ireader-en-neosekaitranslations-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "956b24cfc82b320bf18fbcffe09b858efdadde6b",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/956b24cfc82b320bf18fbcffe09b858efdadde6b"
+    },
+    {
+      "path": "apk/ireader-en-newnovelorg-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc3ee77cf02b43f97442169f40e68e35e96165c1",
+      "size": 33695,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/dc3ee77cf02b43f97442169f40e68e35e96165c1"
+    },
+    {
+      "path": "apk/ireader-en-newnovelorg-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea80dfee8699b3470e07b316572d1c703221a7f5",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ea80dfee8699b3470e07b316572d1c703221a7f5"
+    },
+    {
+      "path": "apk/ireader-en-noobchan-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "188c59e67c6fc41ccc12b6358e50560f3e7405e9",
+      "size": 33692,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/188c59e67c6fc41ccc12b6358e50560f3e7405e9"
+    },
+    {
+      "path": "apk/ireader-en-noobchan-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eccd05b7990b457d2942ff6afbf9f64728b7ec8c",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/eccd05b7990b457d2942ff6afbf9f64728b7ec8c"
+    },
+    {
+      "path": "apk/ireader-en-novelbin-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd249b78b3226734c29b84849a2f09ce4fbb7f68",
+      "size": 25561,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fd249b78b3226734c29b84849a2f09ce4fbb7f68"
+    },
+    {
+      "path": "apk/ireader-en-novelbin-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dea535fe1eec7ef1edad063123ff28fc10282578",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/dea535fe1eec7ef1edad063123ff28fc10282578"
+    },
+    {
+      "path": "apk/ireader-en-novelfire-v2.11.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8144f14798550250c0a221f13250ec22465fa7f0",
+      "size": 21466,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8144f14798550250c0a221f13250ec22465fa7f0"
+    },
+    {
+      "path": "apk/ireader-en-novelfire-v2.11.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "881a6690914902d670a5ebc3d29d40b9d0ffa0b1",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/881a6690914902d670a5ebc3d29d40b9d0ffa0b1"
+    },
+    {
+      "path": "apk/ireader-en-novelfull-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ccb94074f5d003679cc7a5568739b95c493c7fda",
+      "size": 25562,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ccb94074f5d003679cc7a5568739b95c493c7fda"
+    },
+    {
+      "path": "apk/ireader-en-novelfull-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "445915fbc7cecba9f4b5c1e99c2fbeb24538058d",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/445915fbc7cecba9f4b5c1e99c2fbeb24538058d"
+    },
+    {
+      "path": "apk/ireader-en-novelfull-v2.9.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71a11f5a88276670908c9437a4a550e3e1138d9b",
+      "size": 33754,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/71a11f5a88276670908c9437a4a550e3e1138d9b"
+    },
+    {
+      "path": "apk/ireader-en-novelfull-v2.9.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "daf05c6c908aa6d082f7f0cd3e87e412e7cc8d27",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/daf05c6c908aa6d082f7f0cd3e87e412e7cc8d27"
+    },
+    {
+      "path": "apk/ireader-en-novelhall-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a2958da7bc8a70752cae2699bed2ce5e6af386e",
+      "size": 25562,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4a2958da7bc8a70752cae2699bed2ce5e6af386e"
+    },
+    {
+      "path": "apk/ireader-en-novelhall-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c5c4e96f5c72a7c94922bc70f0fdd876e9ee4bf",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8c5c4e96f5c72a7c94922bc70f0fdd876e9ee4bf"
+    },
+    {
+      "path": "apk/ireader-en-novelight-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1535ba7ad08dc7aefa6aab36231a5e38b570104c",
+      "size": 29658,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1535ba7ad08dc7aefa6aab36231a5e38b570104c"
+    },
+    {
+      "path": "apk/ireader-en-novelight-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46d21b3f53aec082bae90d184975944c4dd9055b",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/46d21b3f53aec082bae90d184975944c4dd9055b"
+    },
+    {
+      "path": "apk/ireader-en-novelmt-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ea65469a87536b8b9a2e6b432439f24ff81f9cd",
+      "size": 21463,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4ea65469a87536b8b9a2e6b432439f24ff81f9cd"
+    },
+    {
+      "path": "apk/ireader-en-novelmt-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d31fc48d8f33eb94955b0ad1c5658f5e5e44467f",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d31fc48d8f33eb94955b0ad1c5658f5e5e44467f"
+    },
+    {
+      "path": "apk/ireader-en-novelmultiverse-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e131265289a4155aa0640b40d0c1faebbc2e3ac",
+      "size": 33699,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3e131265289a4155aa0640b40d0c1faebbc2e3ac"
+    },
+    {
+      "path": "apk/ireader-en-novelmultiverse-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ee0ba525004230b01d14d0ef3b6f6599398e729",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9ee0ba525004230b01d14d0ef3b6f6599398e729"
+    },
+    {
+      "path": "apk/ireader-en-novelonline-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4dac370532c274d1a37a94144790326248d76f67",
+      "size": 17372,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4dac370532c274d1a37a94144790326248d76f67"
+    },
+    {
+      "path": "apk/ireader-en-novelonline-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd08aa5827365dc2a435e20e2a3a61d8d024c81c",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/bd08aa5827365dc2a435e20e2a3a61d8d024c81c"
+    },
+    {
+      "path": "apk/ireader-en-novelshub-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e917ab285fe7dbaf02ede10773ed6a3bdd03458f",
+      "size": 33754,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e917ab285fe7dbaf02ede10773ed6a3bdd03458f"
+    },
+    {
+      "path": "apk/ireader-en-novelshub-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ea75d3c9bbdd0aad3b26d2e49f236b498ebc611",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8ea75d3c9bbdd0aad3b26d2e49f236b498ebc611"
+    },
+    {
+      "path": "apk/ireader-en-novelsonline-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de995040d0bc9ae9ae955443dd9b9105599b8758",
+      "size": 25565,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/de995040d0bc9ae9ae955443dd9b9105599b8758"
+    },
+    {
+      "path": "apk/ireader-en-novelsonline-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89f8ce71a84e7401a5fae2d3353ae1f8050846b3",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/89f8ce71a84e7401a5fae2d3353ae1f8050846b3"
+    },
+    {
+      "path": "apk/ireader-en-noveltop1net-v2.3.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22105b551dc775e606f1f4f816fdde5a08470e57",
+      "size": 21469,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/22105b551dc775e606f1f4f816fdde5a08470e57"
+    },
+    {
+      "path": "apk/ireader-en-noveltop1net-v2.3.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "977c4714051097c7e0c32bb5ee91e7744eea9ecb",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/977c4714051097c7e0c32bb5ee91e7744eea9ecb"
+    },
+    {
+      "path": "apk/ireader-en-noveltranslate-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cce7bf51ca35801f843449b8dbf4a3743ff977d5",
+      "size": 33698,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/cce7bf51ca35801f843449b8dbf4a3743ff977d5"
+    },
+    {
+      "path": "apk/ireader-en-noveltranslate-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0e4995c50d73b698ed32f6578c267705daa37b6",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a0e4995c50d73b698ed32f6578c267705daa37b6"
+    },
+    {
+      "path": "apk/ireader-en-novelupdates-v2.4.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df276d8d72f3b06c5cad342f8809473d2dd8417e",
+      "size": 21469,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/df276d8d72f3b06c5cad342f8809473d2dd8417e"
+    },
+    {
+      "path": "apk/ireader-en-novelupdates-v2.4.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ec692ca12c293bee7fb2fde37191af374df1046",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4ec692ca12c293bee7fb2fde37191af374df1046"
+    },
+    {
+      "path": "apk/ireader-en-onekissnovel-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af50a56bc36f3f5f3dcf44a0dc58d4f9058408e7",
+      "size": 33696,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/af50a56bc36f3f5f3dcf44a0dc58d4f9058408e7"
+    },
+    {
+      "path": "apk/ireader-en-onekissnovel-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "031ce2d6c03aa7438ed64a6a93531aba210583f7",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/031ce2d6c03aa7438ed64a6a93531aba210583f7"
+    },
+    {
+      "path": "apk/ireader-en-pawread-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c0ce0bf8f4374aa2a013cf0d587b87f7e63f9fb",
+      "size": 21464,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1c0ce0bf8f4374aa2a013cf0d587b87f7e63f9fb"
+    },
+    {
+      "path": "apk/ireader-en-pawread-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea314130f3281800a244d1e34510299bdb31eac3",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ea314130f3281800a244d1e34510299bdb31eac3"
+    },
+    {
+      "path": "apk/ireader-en-pianmanga-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8a30069eca06edc0dcb2a3a8ea3d92db4249223",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f8a30069eca06edc0dcb2a3a8ea3d92db4249223"
+    },
+    {
+      "path": "apk/ireader-en-pianmanga-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f4455fc13cc7a5b3a98f864a4feb304db75aca5",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9f4455fc13cc7a5b3a98f864a4feb304db75aca5"
+    },
+    {
+      "path": "apk/ireader-en-randomnovel-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "142439e2339d8623a597be75bf2ca60fc2ef5357",
+      "size": 33695,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/142439e2339d8623a597be75bf2ca60fc2ef5357"
+    },
+    {
+      "path": "apk/ireader-en-randomnovel-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ecf8dbb95301b8384ae6809840921045ccb11fe4",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ecf8dbb95301b8384ae6809840921045ccb11fe4"
+    },
+    {
+      "path": "apk/ireader-en-ranobes-v2.9.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8fffb240c7a9d436affcd3b5bb49b161c6fca81",
+      "size": 37848,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e8fffb240c7a9d436affcd3b5bb49b161c6fca81"
+    },
+    {
+      "path": "apk/ireader-en-ranobes-v2.9.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e36cc50517f04fd43f413d4ad7f5573cc79c53a",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1e36cc50517f04fd43f413d4ad7f5573cc79c53a"
+    },
+    {
+      "path": "apk/ireader-en-readnovelfull-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f40a3bf4318146250a583ffac0e39f1e6057976e",
+      "size": 25566,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f40a3bf4318146250a583ffac0e39f1e6057976e"
+    },
+    {
+      "path": "apk/ireader-en-readnovelfull-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39049e8768cbd861c3b1266f8c0c2b745b590d10",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/39049e8768cbd861c3b1266f8c0c2b745b590d10"
+    },
+    {
+      "path": "apk/ireader-en-readwebnovels-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f1572f8642c9cb37044beb94eed83dc033adcc2",
+      "size": 33697,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6f1572f8642c9cb37044beb94eed83dc033adcc2"
+    },
+    {
+      "path": "apk/ireader-en-readwebnovels-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3edc41577cb9fe9d860b03fa9625c90eb16c18e8",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3edc41577cb9fe9d860b03fa9625c90eb16c18e8"
+    },
+    {
+      "path": "apk/ireader-en-readwn-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ebc2caf039397d10298b8069fceb0d6094586b62",
+      "size": 21463,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ebc2caf039397d10298b8069fceb0d6094586b62"
+    },
+    {
+      "path": "apk/ireader-en-readwn-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f49240eeb5d7babc8ade14ca06dd737a4796e9e",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6f49240eeb5d7babc8ade14ca06dd737a4796e9e"
+    },
+    {
+      "path": "apk/ireader-en-royalroad-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0bf9feaa39aedebc87d86a0bfbb39a294064f9c8",
+      "size": 17370,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0bf9feaa39aedebc87d86a0bfbb39a294064f9c8"
+    },
+    {
+      "path": "apk/ireader-en-royalroad-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "657c232aa35e995bf067721d550196404bd7ec1d",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/657c232aa35e995bf067721d550196404bd7ec1d"
+    },
+    {
+      "path": "apk/ireader-en-scribblehub-v2.4.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bcf62da7eb089137d51e0b12025c0ff123e2e0f",
+      "size": 21468,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8bcf62da7eb089137d51e0b12025c0ff123e2e0f"
+    },
+    {
+      "path": "apk/ireader-en-scribblehub-v2.4.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bedda8ff84f89af86737544eddd188cccb3211b",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1bedda8ff84f89af86737544eddd188cccb3211b"
+    },
+    {
+      "path": "apk/ireader-en-sleepytranslations-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e5d221ea3663641398572728e229f1a3f47a668",
+      "size": 33702,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2e5d221ea3663641398572728e229f1a3f47a668"
+    },
+    {
+      "path": "apk/ireader-en-sleepytranslations-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "943d7fb2c7470d41c11cd19e5e1bf74e081d18c6",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/943d7fb2c7470d41c11cd19e5e1bf74e081d18c6"
+    },
+    {
+      "path": "apk/ireader-en-sonicmtl-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d32c6d5fcad0f289c0a424c661c0495c3ed8fb7",
+      "size": 33692,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0d32c6d5fcad0f289c0a424c661c0495c3ed8fb7"
+    },
+    {
+      "path": "apk/ireader-en-sonicmtl-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07f4441c389b7d576e9ac3ead8c7ff7f49ad0cf0",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/07f4441c389b7d576e9ac3ead8c7ff7f49ad0cf0"
+    },
+    {
+      "path": "apk/ireader-en-storyseedling-v2.3.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68880e83c1ab5052c3604c5f369639c5503e5d01",
+      "size": 33758,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/68880e83c1ab5052c3604c5f369639c5503e5d01"
+    },
+    {
+      "path": "apk/ireader-en-storyseedling-v2.3.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "16a5c94965af21ca1ea134745043547c61450536",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/16a5c94965af21ca1ea134745043547c61450536"
+    },
+    {
+      "path": "apk/ireader-en-toonily-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2182b933a9ec7d99b4035fc8c6e34aaa33da5d3a",
+      "size": 33691,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2182b933a9ec7d99b4035fc8c6e34aaa33da5d3a"
+    },
+    {
+      "path": "apk/ireader-en-toonily-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db7c6b6f1928fda40c40bde6f3705c846bb2e181",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/db7c6b6f1928fda40c40bde6f3705c846bb2e181"
+    },
+    {
+      "path": "apk/ireader-en-usefulnovel-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8e6737a61eaa912b03064a87106359c3a557cb8",
+      "size": 33695,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a8e6737a61eaa912b03064a87106359c3a557cb8"
+    },
+    {
+      "path": "apk/ireader-en-usefulnovel-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ddb1ea9a0f79af31bf965969c8c7771ea17de506",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ddb1ea9a0f79af31bf965969c8c7771ea17de506"
+    },
+    {
+      "path": "apk/ireader-en-webnovel-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67d5a61257183d9410f856445f55fd7daedf3cc3",
+      "size": 25561,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/67d5a61257183d9410f856445f55fd7daedf3cc3"
+    },
+    {
+      "path": "apk/ireader-en-webnovel-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb033056f3af12e1600d57aa255e72c67d0c856d",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/cb033056f3af12e1600d57aa255e72c67d0c856d"
+    },
+    {
+      "path": "apk/ireader-en-webnovelcom-v2.8.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2680e0289362b9a625398a59619f75ed4356baa3",
+      "size": 29660,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2680e0289362b9a625398a59619f75ed4356baa3"
+    },
+    {
+      "path": "apk/ireader-en-webnovelcom-v2.8.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "319da990ff9cb889fc4198f4cb164e1eb6d09c1a",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/319da990ff9cb889fc4198f4cb164e1eb6d09c1a"
+    },
+    {
+      "path": "apk/ireader-en-webnovellover-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe0f6f18aa6f0f5417a3647546a4fb88784e7a60",
+      "size": 33696,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fe0f6f18aa6f0f5417a3647546a4fb88784e7a60"
+    },
+    {
+      "path": "apk/ireader-en-webnovellover-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8813237084ed50a3904ff80633a7f96d0479ae3",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b8813237084ed50a3904ff80633a7f96d0479ae3"
+    },
+    {
+      "path": "apk/ireader-en-webnovelsite-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "983c02827e3032d0072112898f8f97d2a42fdd92",
+      "size": 21469,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/983c02827e3032d0072112898f8f97d2a42fdd92"
+    },
+    {
+      "path": "apk/ireader-en-webnovelsite-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a73452c2e6b5d93186eb32a58a07da592fd20d2b",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a73452c2e6b5d93186eb32a58a07da592fd20d2b"
+    },
+    {
+      "path": "apk/ireader-en-wnmtl-v2.6.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7720360d35a9c236a9bbacbaff6f3cf6aaf1db8",
+      "size": 46038,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f7720360d35a9c236a9bbacbaff6f3cf6aaf1db8"
+    },
+    {
+      "path": "apk/ireader-en-wnmtl-v2.6.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e485abefbbbb4c6294f92f4ac9c835800184f99",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8e485abefbbbb4c6294f92f4ac9c835800184f99"
+    },
+    {
+      "path": "apk/ireader-en-wuxiabox-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e919c86a857db1fb868d38c96b39eb6378187fc9",
+      "size": 21465,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e919c86a857db1fb868d38c96b39eb6378187fc9"
+    },
+    {
+      "path": "apk/ireader-en-wuxiabox-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26bb645b0903a144f4548eef5cca0c0b12f5ab8e",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/26bb645b0903a144f4548eef5cca0c0b12f5ab8e"
+    },
+    {
+      "path": "apk/ireader-en-wuxiaclick-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3699173e76a821e7af851b3cc471ad8d55da1123",
+      "size": 25563,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3699173e76a821e7af851b3cc471ad8d55da1123"
+    },
+    {
+      "path": "apk/ireader-en-wuxiaclick-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2471837c982cafeeb7403eacac6b780f0b6e93a4",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2471837c982cafeeb7403eacac6b780f0b6e93a4"
+    },
+    {
+      "path": "apk/ireader-en-wuxiafox-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ee129c1cb7acb2f53a5067e5c5ca374a3d0e7a7",
+      "size": 21465,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2ee129c1cb7acb2f53a5067e5c5ca374a3d0e7a7"
+    },
+    {
+      "path": "apk/ireader-en-wuxiafox-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2977d2221b7c7fa379d694240f4b5b08d2c5fb4",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a2977d2221b7c7fa379d694240f4b5b08d2c5fb4"
+    },
+    {
+      "path": "apk/ireader-en-wuxiaspot-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2863f6d2f082c2c068d1797b2d4895a68ab67c54",
+      "size": 21466,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2863f6d2f082c2c068d1797b2d4895a68ab67c54"
+    },
+    {
+      "path": "apk/ireader-en-wuxiaspot-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21bb23a01000f33e174664d7e70f08d4a71f080d",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/21bb23a01000f33e174664d7e70f08d4a71f080d"
+    },
+    {
+      "path": "apk/ireader-en-wuxiav-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a71b9e69543d8d0132485e54b5c3700bed99029",
+      "size": 21463,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2a71b9e69543d8d0132485e54b5c3700bed99029"
+    },
+    {
+      "path": "apk/ireader-en-wuxiav-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31e976a2741f9f84a5f54158c1280183809c6b3f",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/31e976a2741f9f84a5f54158c1280183809c6b3f"
+    },
+    {
+      "path": "apk/ireader-en-wuxiaworld-v2.4.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e4b85dbdaaed0048c8e2cababeba1b4628ddd46",
+      "size": 33755,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1e4b85dbdaaed0048c8e2cababeba1b4628ddd46"
+    },
+    {
+      "path": "apk/ireader-en-wuxiaworld-v2.4.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "863b2125aa333d304a585493d895db2e888f0ecf",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/863b2125aa333d304a585493d895db2e888f0ecf"
+    },
+    {
+      "path": "apk/ireader-en-wuxiaworldsite-v2.11.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a59b042beb411f5fa584b68e082a777d84565db8",
+      "size": 29663,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a59b042beb411f5fa584b68e082a777d84565db8"
+    },
+    {
+      "path": "apk/ireader-en-wuxiaworldsite-v2.11.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77cd11c6e5c370ebc7bf967721f3014d5cefd7ec",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/77cd11c6e5c370ebc7bf967721f3014d5cefd7ec"
+    },
+    {
+      "path": "apk/ireader-en-wuxiaworldsiteco-v1.0.8.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0dee0635f32442c62c6f380da7c0403b3be50007",
+      "size": 29665,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0dee0635f32442c62c6f380da7c0403b3be50007"
+    },
+    {
+      "path": "apk/ireader-en-wuxiaworldsiteco-v1.0.8.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28b2894a6a7bfee78f6522ae3bbaf6cfceb4fadc",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/28b2894a6a7bfee78f6522ae3bbaf6cfceb4fadc"
+    },
+    {
+      "path": "apk/ireader-en-zetrotranslation-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7de67af64ae1df506ddc96836a235aeca701590d",
+      "size": 33700,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7de67af64ae1df506ddc96836a235aeca701590d"
+    },
+    {
+      "path": "apk/ireader-en-zetrotranslation-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d5795f6660534c45464a71e7fcd33388b72def8",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5d5795f6660534c45464a71e7fcd33388b72def8"
+    },
+    {
+      "path": "apk/ireader-en-zinmanga-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "266653a77f6049001f400a4774af23460efbf575",
+      "size": 33692,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/266653a77f6049001f400a4774af23460efbf575"
+    },
+    {
+      "path": "apk/ireader-en-zinmanga-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11827438d2bcec1f95804f41f9ae864ff828c6cb",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/11827438d2bcec1f95804f41f9ae864ff828c6cb"
+    },
+    {
+      "path": "apk/ireader-en-zinnovel-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f2467ef5a3ad67fd6bdddd9925bf2e39a1fc09b",
+      "size": 33692,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0f2467ef5a3ad67fd6bdddd9925bf2e39a1fc09b"
+    },
+    {
+      "path": "apk/ireader-en-zinnovel-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6251a3bc2a24dd58c1240847501f87ad9f4f17a5",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6251a3bc2a24dd58c1240847501f87ad9f4f17a5"
+    },
+    {
+      "path": "apk/ireader-es-mtlnoveles-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b467a4ee94bee21c2074ad0a4b784ed171ea546",
+      "size": 33755,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2b467a4ee94bee21c2074ad0a4b784ed171ea546"
+    },
+    {
+      "path": "apk/ireader-es-mtlnoveles-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87a44fba702424291b5220b95359c3b7efb76d9e",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/87a44fba702424291b5220b95359c3b7efb76d9e"
+    },
+    {
+      "path": "apk/ireader-fr-chireads-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e006a2635cd8a8d7850a469450432156b39d559e",
+      "size": 17369,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e006a2635cd8a8d7850a469450432156b39d559e"
+    },
+    {
+      "path": "apk/ireader-fr-chireads-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cb87eaafd8052995452452fd77ededd3e954850",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4cb87eaafd8052995452452fd77ededd3e954850"
+    },
+    {
+      "path": "apk/ireader-fr-lnmtlfr-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6190d7796ff6faf7fc0a41095fdd66ff4ab67729",
+      "size": 33691,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6190d7796ff6faf7fc0a41095fdd66ff4ab67729"
+    },
+    {
+      "path": "apk/ireader-fr-lnmtlfr-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b1fd38f1cfb78cbe82e0cdc6b9dbd1107c8c594",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2b1fd38f1cfb78cbe82e0cdc6b9dbd1107c8c594"
+    },
+    {
+      "path": "apk/ireader-fr-massnovel-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b634c23e01cd5ae4627925b15d0868208c0339e",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8b634c23e01cd5ae4627925b15d0868208c0339e"
+    },
+    {
+      "path": "apk/ireader-fr-massnovel-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ab85322e5f4d48c222dc718c13ae931308962e7",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4ab85322e5f4d48c222dc718c13ae931308962e7"
+    },
+    {
+      "path": "apk/ireader-fr-mtlnovelfr-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ce50ceff04f8aaf1195edf26e45badef1530cfb",
+      "size": 33755,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6ce50ceff04f8aaf1195edf26e45badef1530cfb"
+    },
+    {
+      "path": "apk/ireader-fr-mtlnovelfr-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ab22e80f94c913274239bff00ffa45b3cb28ec5",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9ab22e80f94c913274239bff00ffa45b3cb28ec5"
+    },
+    {
+      "path": "apk/ireader-fr-noveldeglace-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9bed0788d761b538ab431f81e5e28d4528972942",
+      "size": 17373,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9bed0788d761b538ab431f81e5e28d4528972942"
+    },
+    {
+      "path": "apk/ireader-fr-noveldeglace-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0282f2a9781dd496a04a18452d7097c354b1f20e",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0282f2a9781dd496a04a18452d7097c354b1f20e"
+    },
+    {
+      "path": "apk/ireader-in-indowebnovel-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4037dee5c9df93b2e3f6d7e8ecef8ff9a072566",
+      "size": 17373,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d4037dee5c9df93b2e3f6d7e8ecef8ff9a072566"
+    },
+    {
+      "path": "apk/ireader-in-indowebnovel-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c50238b2a3acc8ef1e997b8892a4cf467e86dc64",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c50238b2a3acc8ef1e997b8892a4cf467e86dc64"
+    },
+    {
+      "path": "apk/ireader-in-meionovel-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "360436eb88b02e20738d7e89e2033b9f860e6a7f",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/360436eb88b02e20738d7e89e2033b9f860e6a7f"
+    },
+    {
+      "path": "apk/ireader-in-meionovel-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53d47a506270cd8be1534407cb88da85aba51bff",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/53d47a506270cd8be1534407cb88da85aba51bff"
+    },
+    {
+      "path": "apk/ireader-in-morenovel-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6811a33aa99516e6d3258090edce58848202ef4a",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6811a33aa99516e6d3258090edce58848202ef4a"
+    },
+    {
+      "path": "apk/ireader-in-morenovel-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7eb1573fdf6857d60e2a1fd0117d8c3b1752070c",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7eb1573fdf6857d60e2a1fd0117d8c3b1752070c"
+    },
+    {
+      "path": "apk/ireader-in-mtlnovelin-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9146800f827f561704d94b9fcbc620f9debc0f02",
+      "size": 33755,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9146800f827f561704d94b9fcbc620f9debc0f02"
+    },
+    {
+      "path": "apk/ireader-in-mtlnovelin-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e767f8c24a5b5066342cd578115e20c80eb7d41a",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e767f8c24a5b5066342cd578115e20c80eb7d41a"
+    },
+    {
+      "path": "apk/ireader-in-wbnovel-v2.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be1c01a29abc187fc221d3b57cb87ff2e12b185d",
+      "size": 17368,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/be1c01a29abc187fc221d3b57cb87ff2e12b185d"
+    },
+    {
+      "path": "apk/ireader-in-wbnovel-v2.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac49f3661db77a9c9643d8a6c348cce94c6bd2c2",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ac49f3661db77a9c9643d8a6c348cce94c6bd2c2"
+    },
+    {
+      "path": "apk/ireader-jp-syosetu-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29e1383ce5ceb3a661dc2b38f16569044036d6b3",
+      "size": 25560,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/29e1383ce5ceb3a661dc2b38f16569044036d6b3"
+    },
+    {
+      "path": "apk/ireader-jp-syosetu-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2812c5bf8fce4bf7733721d0fd1ce9ee47cf712a",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2812c5bf8fce4bf7733721d0fd1ce9ee47cf712a"
+    },
+    {
+      "path": "apk/ireader-multi-foxaholic-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05a52c8a76326df7b529160a624056c56fad6a6a",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/05a52c8a76326df7b529160a624056c56fad6a6a"
+    },
+    {
+      "path": "apk/ireader-multi-foxaholic-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77422b67c3f46f1918dc2fae88e81245fdfaca7e",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/77422b67c3f46f1918dc2fae88e81245fdfaca7e"
+    },
+    {
+      "path": "apk/ireader-pt-tsundoku-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "949325c31f67c58cb993f326ee724e0f6e9fab52",
+      "size": 21465,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/949325c31f67c58cb993f326ee724e0f6e9fab52"
+    },
+    {
+      "path": "apk/ireader-pt-tsundoku-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b61f1e10e983767b3fa26bd48ae120957fc4ba24",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b61f1e10e983767b3fa26bd48ae120957fc4ba24"
+    },
+    {
+      "path": "apk/ireader-ru-bestmanga-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67dee57ec38f663a5f599fe3d300b8cc42da5aa5",
+      "size": 33693,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/67dee57ec38f663a5f599fe3d300b8cc42da5aa5"
+    },
+    {
+      "path": "apk/ireader-ru-bestmanga-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ecaccfca83e2628ed6ce745c4b9cb44b2db00b73",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ecaccfca83e2628ed6ce745c4b9cb44b2db00b73"
+    },
+    {
+      "path": "apk/ireader-ru-jaomix-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e1d9ccf32e75c1a03e96eeb0383601d4853adb2",
+      "size": 25559,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7e1d9ccf32e75c1a03e96eeb0383601d4853adb2"
+    },
+    {
+      "path": "apk/ireader-ru-jaomix-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4798b117c346c65a4c534ae5d6a114006f37c7cf",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4798b117c346c65a4c534ae5d6a114006f37c7cf"
+    },
+    {
+      "path": "apk/ireader-ru-neobook-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7190c9f4444910081f48a0340a250f8f9fa4b603",
+      "size": 25560,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7190c9f4444910081f48a0340a250f8f9fa4b603"
+    },
+    {
+      "path": "apk/ireader-ru-neobook-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ef7d08f2e1d3e73f348d491d36c635cf5dc663f",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2ef7d08f2e1d3e73f348d491d36c635cf5dc663f"
+    },
+    {
+      "path": "apk/ireader-ru-ranobes-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2d93095c7e8c768321b43c7c545ea6518f8bebe",
+      "size": 25560,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a2d93095c7e8c768321b43c7c545ea6518f8bebe"
+    },
+    {
+      "path": "apk/ireader-ru-ranobes-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d51f92c84c5d551322bc3c2b65ee775a17b79e2",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0d51f92c84c5d551322bc3c2b65ee775a17b79e2"
+    },
+    {
+      "path": "apk/ireader-ru-zelluloza-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa18b8d728e9890d5be146a6f5fd0f080a6ea380",
+      "size": 25562,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/aa18b8d728e9890d5be146a6f5fd0f080a6ea380"
+    },
+    {
+      "path": "apk/ireader-ru-zelluloza-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9fbfc486bb14515f67b4af8ffff06a915504bf1c",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9fbfc486bb14515f67b4af8ffff06a915504bf1c"
+    },
+    {
+      "path": "apk/ireader-tu-novebo-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74703aac0aa493c0494a2106671f5ec5d6bd1ab8",
+      "size": 25559,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/74703aac0aa493c0494a2106671f5ec5d6bd1ab8"
+    },
+    {
+      "path": "apk/ireader-tu-novebo-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "115a3bf4925abee2de978c3843f88b79d8734dfe",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/115a3bf4925abee2de978c3843f88b79d8734dfe"
+    },
+    {
+      "path": "apk/ireader-tu-novelgecesi-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3bbf532e8a7354b8b9ec07a22f4c1246fbf8394",
+      "size": 17372,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f3bbf532e8a7354b8b9ec07a22f4c1246fbf8394"
+    },
+    {
+      "path": "apk/ireader-tu-novelgecesi-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "520d9b5556d11decf01f89c38f2ee436accdd608",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/520d9b5556d11decf01f89c38f2ee436accdd608"
+    },
+    {
+      "path": "apk/ireader-tu-turkcelightnovels-v1.2.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f53a6d75e7b626b978d60c285777e85247b36ad",
+      "size": 33701,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9f53a6d75e7b626b978d60c285777e85247b36ad"
+    },
+    {
+      "path": "apk/ireader-tu-turkcelightnovels-v1.2.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12dc04ea61fb9529d8b5b8e649524b42235a2c8f",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/12dc04ea61fb9529d8b5b8e649524b42235a2c8f"
+    },
+    {
+      "path": "apk/ireader-uk-uaranobeclub-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e7742c4106ed5c5995f1c25c7e8d425b9286397",
+      "size": 25565,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7e7742c4106ed5c5995f1c25c7e8d425b9286397"
+    },
+    {
+      "path": "apk/ireader-uk-uaranobeclub-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48a4d3fe13c4d5ba681e3f84aaca14df10b9cf3b",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/48a4d3fe13c4d5ba681e3f84aaca14df10b9cf3b"
+    },
+    {
+      "path": "apk/ireader-zh-ixdzs8-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c1864d93091218ff4a110e06a43e8f468cc1f02",
+      "size": 29655,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2c1864d93091218ff4a110e06a43e8f468cc1f02"
+    },
+    {
+      "path": "apk/ireader-zh-ixdzs8-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d25f8abdf4b2f854d96bed965e70e777d2eb038",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9d25f8abdf4b2f854d96bed965e70e777d2eb038"
+    },
+    {
+      "path": "apk/ireader-zh-novel543-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "396d296d3601814cb96d1d8cef81979817fa6f3b",
+      "size": 25561,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/396d296d3601814cb96d1d8cef81979817fa6f3b"
+    },
+    {
+      "path": "apk/ireader-zh-novel543-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "782c9ceeb69f44b4f4b7bdc4145f39550f589bc9",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/782c9ceeb69f44b4f4b7bdc4145f39550f589bc9"
+    },
+    {
+      "path": "apk/ireader-zh-quanben-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bbe2f229ed42ce90c037d9498288a1d69219c05",
+      "size": 25560,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6bbe2f229ed42ce90c037d9498288a1d69219c05"
+    },
+    {
+      "path": "apk/ireader-zh-quanben-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cfd701924bf8e2e724e26f55f6a696364c67f69",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4cfd701924bf8e2e724e26f55f6a696364c67f69"
+    },
+    {
+      "path": "apk/ireader-zh-shu69-v2.1.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65bb783ea9715f2305d02caccf1200acced58722",
+      "size": 25558,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/65bb783ea9715f2305d02caccf1200acced58722"
+    },
+    {
+      "path": "apk/ireader-zh-shu69-v2.1.apk.idsig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09c273488df1b380b69ef949f708374346c86820",
+      "size": 5638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/09c273488df1b380b69ef949f708374346c86820"
+    },
+    {
+      "path": "icon",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e85b00e0015371e570c898e1b4a689ddaec99e00",
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/trees/e85b00e0015371e570c898e1b4a689ddaec99e00"
+    },
+    {
+      "path": "icon/ireader-ar-armtl-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11b0d415a996865af1592698b803583b36f9b53e",
+      "size": 23544,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/11b0d415a996865af1592698b803583b36f9b53e"
+    },
+    {
+      "path": "icon/ireader-ar-arnovel-v2.5.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b721e43af770f5031eba699180d50230b472034a",
+      "size": 83279,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b721e43af770f5031eba699180d50230b472034a"
+    },
+    {
+      "path": "icon/ireader-ar-azorafly-v2.1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68820ff562b1b3ed7f58361fc8b90f07deb6a662",
+      "size": 18446,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/68820ff562b1b3ed7f58361fc8b90f07deb6a662"
+    },
+    {
+      "path": "icon/ireader-ar-golden-v2.3.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19b08572a6aa1718beabffe563817308a5fb816c",
+      "size": 20128,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/19b08572a6aa1718beabffe563817308a5fb816c"
+    },
+    {
+      "path": "icon/ireader-ar-hizomanga-v2.5.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b936ddb49b484d649967e1451b3affa3eebef2c1",
+      "size": 22789,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b936ddb49b484d649967e1451b3affa3eebef2c1"
+    },
+    {
+      "path": "icon/ireader-ar-kolnovel-v2.4.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6c6311b5c07676aef980f4e92fb194472c0c9f4",
+      "size": 25255,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a6c6311b5c07676aef980f4e92fb194472c0c9f4"
+    },
+    {
+      "path": "icon/ireader-ar-markazriwayat-v2.6.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10526fd025c918044ce3346239a66ff73530447e",
+      "size": 38659,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/10526fd025c918044ce3346239a66ff73530447e"
+    },
+    {
+      "path": "icon/ireader-ar-mknov-v2.1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79a687ff66b86a7f938940eabc84d763a175123c",
+      "size": 6925,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/79a687ff66b86a7f938940eabc84d763a175123c"
+    },
+    {
+      "path": "icon/ireader-ar-mtlarabic-v2.1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "880b00935867ad83434c99dc6b899765d9255f6b",
+      "size": 13247,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/880b00935867ad83434c99dc6b899765d9255f6b"
+    },
+    {
+      "path": "icon/ireader-ar-novel4up-v1.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb1eca0ab825229af21a84546be08d903665794a",
+      "size": 47725,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fb1eca0ab825229af21a84546be08d903665794a"
+    },
+    {
+      "path": "icon/ireader-ar-novelarab-v2.1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd51ab51c5f393794b4bd4af0aeb8de151989bb9",
+      "size": 12504,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fd51ab51c5f393794b4bd4af0aeb8de151989bb9"
+    },
+    {
+      "path": "icon/ireader-ar-novelparadise-v2.6.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ace7f7fa45b757b8323bbf436ad6a75be360bf4",
+      "size": 42015,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1ace7f7fa45b757b8323bbf436ad6a75be360bf4"
+    },
+    {
+      "path": "icon/ireader-ar-realmnovel-v2.5.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd51ab51c5f393794b4bd4af0aeb8de151989bb9",
+      "size": 12504,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fd51ab51c5f393794b4bd4af0aeb8de151989bb9"
+    },
+    {
+      "path": "icon/ireader-ar-rewayahfans-v2.5.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "748d56a6547ad184472e95eec0d369474a2cc356",
+      "size": 21738,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/748d56a6547ad184472e95eec0d369474a2cc356"
+    },
+    {
+      "path": "icon/ireader-ar-rewayatfans-v2.3.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07603de8d58aad0bab9e927e0af365290b3ae61f",
+      "size": 41808,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/07603de8d58aad0bab9e927e0af365290b3ae61f"
+    },
+    {
+      "path": "icon/ireader-ar-riwyat-v2.12.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1302ccbe279c6e58671037a5139f5673b50ac2c8",
+      "size": 37653,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1302ccbe279c6e58671037a5139f5673b50ac2c8"
+    },
+    {
+      "path": "icon/ireader-ar-sunovels-v2.3.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f990f6bd2af51edbb11500fc6696139ff9c14247",
+      "size": 33896,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f990f6bd2af51edbb11500fc6696139ff9c14247"
+    },
+    {
+      "path": "icon/ireader-cn-aixdzs-v2.3.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db5f667279ce20c764c359a42f514ed8ea3e4445",
+      "size": 24705,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/db5f667279ce20c764c359a42f514ed8ea3e4445"
+    },
+    {
+      "path": "icon/ireader-cn-sexinsex-v2.3.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "155ce4e9341dcafb76fa57a688555b8cf3240424",
+      "size": 33065,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/155ce4e9341dcafb76fa57a688555b8cf3240424"
+    },
+    {
+      "path": "icon/ireader-en-allnovelfull-v2.3.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66712e162791807d24200eab2e4cca4029e672ab",
+      "size": 26418,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/66712e162791807d24200eab2e4cca4029e672ab"
+    },
+    {
+      "path": "icon/ireader-en-clicknovel-v1.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2e1c5722aa39ef9b672dcd8b9a974298cb03d25",
+      "size": 67211,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f2e1c5722aa39ef9b672dcd8b9a974298cb03d25"
+    },
+    {
+      "path": "icon/ireader-en-coolnovel-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cdd2d128a26e3000d661fe128ff3d374a5863ab",
+      "size": 15231,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3cdd2d128a26e3000d661fe128ff3d374a5863ab"
+    },
+    {
+      "path": "icon/ireader-en-fanmtl-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "900f1d7f43b50defdbaf308a35b999f26961d7ce",
+      "size": 25133,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/900f1d7f43b50defdbaf308a35b999f26961d7ce"
+    },
+    {
+      "path": "icon/ireader-en-fenrir-v2.11.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cbd152af913249da8a7c0fa6a833eba4057b0025",
+      "size": 11430,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/cbd152af913249da8a7c0fa6a833eba4057b0025"
+    },
+    {
+      "path": "icon/ireader-en-firstkissnovel-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d79e154af2dc7ec318d899af5ff90bedcf7e42e8",
+      "size": 51249,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d79e154af2dc7ec318d899af5ff90bedcf7e42e8"
+    },
+    {
+      "path": "icon/ireader-en-freenovel-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5d1b3012dc679c899940822f897db91434bdd88",
+      "size": 84899,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d5d1b3012dc679c899940822f897db91434bdd88"
+    },
+    {
+      "path": "icon/ireader-en-freewebnovel-v2.17.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3c6bca3d432c71cd640bb9751aa46d3a6223545",
+      "size": 30512,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e3c6bca3d432c71cd640bb9751aa46d3a6223545"
+    },
+    {
+      "path": "icon/ireader-en-lightnovelheaven-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "493802ab2cdf8bb2f20bce4b1481f560d2675e65",
+      "size": 75297,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/493802ab2cdf8bb2f20bce4b1481f560d2675e65"
+    },
+    {
+      "path": "icon/ireader-en-lightnovelpub-v2.4.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4eaebc790263a14684244286df026d5c17ca5b9",
+      "size": 26263,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c4eaebc790263a14684244286df026d5c17ca5b9"
+    },
+    {
+      "path": "icon/ireader-en-lightnovelreader-v2.5.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9de1d0de0c07d7e37ad38a3cfb2b6b87e7a08771",
+      "size": 21988,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9de1d0de0c07d7e37ad38a3cfb2b6b87e7a08771"
+    },
+    {
+      "path": "icon/ireader-en-lnmtl-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5677db855010a675b263589bfe7c7ef5e37a99a1",
+      "size": 16667,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5677db855010a675b263589bfe7c7ef5e37a99a1"
+    },
+    {
+      "path": "icon/ireader-en-ltnovel-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48e05671f991fc015f95243707490ce296483b63",
+      "size": 74556,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/48e05671f991fc015f95243707490ce296483b63"
+    },
+    {
+      "path": "icon/ireader-en-lunarletters-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd20625464b9a3357005fb6834b7081ab3d86cbe",
+      "size": 111890,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/cd20625464b9a3357005fb6834b7081ab3d86cbe"
+    },
+    {
+      "path": "icon/ireader-en-mtlnation-v2.10.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f86c3951d30be2a37d2eac34ffd6b13ae9625092",
+      "size": 25108,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f86c3951d30be2a37d2eac34ffd6b13ae9625092"
+    },
+    {
+      "path": "icon/ireader-en-mtlnovelclub-v1.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8cc36f741333809e005511e86a88a79f2c494ed3",
+      "size": 102900,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8cc36f741333809e005511e86a88a79f2c494ed3"
+    },
+    {
+      "path": "icon/ireader-en-mtlnovelen-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9dc51865831fafb356c8333e6870f15c40e6727",
+      "size": 34312,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e9dc51865831fafb356c8333e6870f15c40e6727"
+    },
+    {
+      "path": "icon/ireader-en-mysticalseries-v1.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a4e26115db3fafe9b1339f0b11a789ac9fbef1e",
+      "size": 82698,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7a4e26115db3fafe9b1339f0b11a789ac9fbef1e"
+    },
+    {
+      "path": "icon/ireader-en-neosekaitranslations-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ae731dd4f831ded61f868311115540d7e2ef950",
+      "size": 61900,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5ae731dd4f831ded61f868311115540d7e2ef950"
+    },
+    {
+      "path": "icon/ireader-en-novelbin-v2.1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c92e369980147469b34c99cf49a35ea14852119b",
+      "size": 14664,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c92e369980147469b34c99cf49a35ea14852119b"
+    },
+    {
+      "path": "icon/ireader-en-novelbuddy-v2.11.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "794d6e15aa5669d6b855f52871c2cb3cec35f091",
+      "size": 842,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/794d6e15aa5669d6b855f52871c2cb3cec35f091"
+    },
+    {
+      "path": "icon/ireader-en-novelfire-v2.11.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77d3ee8eb4e8668ea07a8d370059e0bbddfebfff",
+      "size": 1367,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/77d3ee8eb4e8668ea07a8d370059e0bbddfebfff"
+    },
+    {
+      "path": "icon/ireader-en-novelfull-v2.9.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdd408684972c769d2a0139844845eb52251a201",
+      "size": 28667,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/cdd408684972c769d2a0139844845eb52251a201"
+    },
+    {
+      "path": "icon/ireader-en-novelfullme-v2.3.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb66ed17761b49c2c6b3fc0bdaa1c1e13b11ef7a",
+      "size": 16256,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/eb66ed17761b49c2c6b3fc0bdaa1c1e13b11ef7a"
+    },
+    {
+      "path": "icon/ireader-en-novelhall-v2.1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f1baeeade65aa2abd0f04c62f4cc48d6db675d7",
+      "size": 16738,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8f1baeeade65aa2abd0f04c62f4cc48d6db675d7"
+    },
+    {
+      "path": "icon/ireader-en-novelmt-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ad5493f58569e14ecb799bac4d94a604ce639c9",
+      "size": 72012,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0ad5493f58569e14ecb799bac4d94a604ce639c9"
+    },
+    {
+      "path": "icon/ireader-en-novelmultiverse-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc2f107f3323fceb36ac31caddb22e6f21ad3c6d",
+      "size": 88148,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/bc2f107f3323fceb36ac31caddb22e6f21ad3c6d"
+    },
+    {
+      "path": "icon/ireader-en-novelsemperor-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8e83620f443832c1c9c4d569c80dae599f1f7af",
+      "size": 10764,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a8e83620f443832c1c9c4d569c80dae599f1f7af"
+    },
+    {
+      "path": "icon/ireader-en-novelshub-v2.1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d85acfe04739839d52a9ff130771ec4822c22e73",
+      "size": 21198,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d85acfe04739839d52a9ff130771ec4822c22e73"
+    },
+    {
+      "path": "icon/ireader-en-noveltop1net-v2.3.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ede7660c8076760bc0a01c0924e2bff7ad1644c",
+      "size": 17000,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1ede7660c8076760bc0a01c0924e2bff7ad1644c"
+    },
+    {
+      "path": "icon/ireader-en-noveltranslate-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a4e47c14bdd5416a722d8791e7fba33e3566003",
+      "size": 75065,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3a4e47c14bdd5416a722d8791e7fba33e3566003"
+    },
+    {
+      "path": "icon/ireader-en-novelupdates-v2.4.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72bd1b885a2017d3b006b27d5f9698b77c2d9c2f",
+      "size": 24362,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/72bd1b885a2017d3b006b27d5f9698b77c2d9c2f"
+    },
+    {
+      "path": "icon/ireader-en-pandanovel-v2.5.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ea7f5014efd362b23a7d7fcf2799e5df97fa2bd",
+      "size": 22307,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2ea7f5014efd362b23a7d7fcf2799e5df97fa2bd"
+    },
+    {
+      "path": "icon/ireader-en-pawread-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ef2e954d994109bb03957f27b390ed1c800c709",
+      "size": 17128,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2ef2e954d994109bb03957f27b390ed1c800c709"
+    },
+    {
+      "path": "icon/ireader-en-ranobes-v2.9.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6347330693aa44c0f810e3f0da5594bcf43a0674",
+      "size": 11886,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6347330693aa44c0f810e3f0da5594bcf43a0674"
+    },
+    {
+      "path": "icon/ireader-en-readmtl-v2.3.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4bb3414ed1b8eeb4902270f4922680c681ba297e",
+      "size": 13926,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4bb3414ed1b8eeb4902270f4922680c681ba297e"
+    },
+    {
+      "path": "icon/ireader-en-readwebnovels-v1.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4db8a00505fd7c73b0a393b5dbb4b2b5d3abf36b",
+      "size": 129008,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4db8a00505fd7c73b0a393b5dbb4b2b5d3abf36b"
+    },
+    {
+      "path": "icon/ireader-en-readwn-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45bf7dca46a4dc25a88e57fd418e859fb7df6fb8",
+      "size": 26444,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/45bf7dca46a4dc25a88e57fd418e859fb7df6fb8"
+    },
+    {
+      "path": "icon/ireader-en-royalroad-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36be41d7757cd43a6570912c4e72921b36ce01b6",
+      "size": 17327,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/36be41d7757cd43a6570912c4e72921b36ce01b6"
+    },
+    {
+      "path": "icon/ireader-en-scribblehub-v2.4.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02df4b44066d302613d2caedf7b8c8734b09e7f6",
+      "size": 18449,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/02df4b44066d302613d2caedf7b8c8734b09e7f6"
+    },
+    {
+      "path": "icon/ireader-en-sleepytranslations-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f11255973a76410dc30923865baf83268d9a677e",
+      "size": 162940,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f11255973a76410dc30923865baf83268d9a677e"
+    },
+    {
+      "path": "icon/ireader-en-webnovelcom-v2.8.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c93e231e387dded9c4b585aa1ec60b35ca53d666",
+      "size": 25333,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c93e231e387dded9c4b585aa1ec60b35ca53d666"
+    },
+    {
+      "path": "icon/ireader-en-webnovellover-v1.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bbb4953f63dbf0218b6beb970dae0afabeffcf8",
+      "size": 23448,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6bbb4953f63dbf0218b6beb970dae0afabeffcf8"
+    },
+    {
+      "path": "icon/ireader-en-webnovelsite-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa3cbeb8a213e0eacf2548ecd5d92750779517a7",
+      "size": 13781,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/aa3cbeb8a213e0eacf2548ecd5d92750779517a7"
+    },
+    {
+      "path": "icon/ireader-en-wnmtl-v2.6.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d0b3f60c3c65f1bb8494e93630b637bbcdcf1a2",
+      "size": 16064,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2d0b3f60c3c65f1bb8494e93630b637bbcdcf1a2"
+    },
+    {
+      "path": "icon/ireader-en-wuxiaworld-v2.4.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb9e14ff6698e842d94f456582002b469e298d6c",
+      "size": 20717,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/eb9e14ff6698e842d94f456582002b469e298d6c"
+    },
+    {
+      "path": "icon/ireader-en-wuxiaworldsite-v2.11.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e99b20c35ea8a3c8b2102bd7f16ea7e1cc3c25eb",
+      "size": 41355,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e99b20c35ea8a3c8b2102bd7f16ea7e1cc3c25eb"
+    },
+    {
+      "path": "icon/ireader-en-wuxiaworldsiteco-v1.0.8.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "975171297022234e4a542a6457128e6cde44d9f3",
+      "size": 40174,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/975171297022234e4a542a6457128e6cde44d9f3"
+    },
+    {
+      "path": "icon/ireader-en-zinnovel-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8cc36f741333809e005511e86a88a79f2c494ed3",
+      "size": 102900,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8cc36f741333809e005511e86a88a79f2c494ed3"
+    },
+    {
+      "path": "icon/ireader-es-mtlnoveles-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9dc51865831fafb356c8333e6870f15c40e6727",
+      "size": 34312,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e9dc51865831fafb356c8333e6870f15c40e6727"
+    },
+    {
+      "path": "icon/ireader-fr-chireads-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c646bf9c04ff7d9d8bfe3b244f4d219de7a94ffe",
+      "size": 46760,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c646bf9c04ff7d9d8bfe3b244f4d219de7a94ffe"
+    },
+    {
+      "path": "icon/ireader-fr-mtlnovelfr-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9dc51865831fafb356c8333e6870f15c40e6727",
+      "size": 34312,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e9dc51865831fafb356c8333e6870f15c40e6727"
+    },
+    {
+      "path": "icon/ireader-fr-noveldeglace-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69241a10451a34a436a999e389615ef1962ae06",
+      "size": 374883,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e69241a10451a34a436a999e389615ef1962ae06"
+    },
+    {
+      "path": "icon/ireader-in-indowebnovel-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc70ece8beb9b446d0ec0e4338f871b41f8b575f",
+      "size": 19158,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/cc70ece8beb9b446d0ec0e4338f871b41f8b575f"
+    },
+    {
+      "path": "icon/ireader-in-meionovel-v1.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5cece64cce9820272b0f8fba624a031da10e83ea",
+      "size": 101801,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5cece64cce9820272b0f8fba624a031da10e83ea"
+    },
+    {
+      "path": "icon/ireader-in-morenovel-v1.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4391979c13d62b78b4ac2c498cbb383ad636b34",
+      "size": 90837,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b4391979c13d62b78b4ac2c498cbb383ad636b34"
+    },
+    {
+      "path": "icon/ireader-in-mtlnovelin-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9dc51865831fafb356c8333e6870f15c40e6727",
+      "size": 34312,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e9dc51865831fafb356c8333e6870f15c40e6727"
+    },
+    {
+      "path": "icon/ireader-in-wbnovel-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5b864f2b8829df4f89917adf2d4b69b6b281680",
+      "size": 24186,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c5b864f2b8829df4f89917adf2d4b69b6b281680"
+    },
+    {
+      "path": "icon/ireader-ru-ranobes-v2.1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89c88785fee4dc20a004ba5daac422e2b78658ae",
+      "size": 14528,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/89c88785fee4dc20a004ba5daac422e2b78658ae"
+    },
+    {
+      "path": "icon/ireader-tu-epiknovel-v2.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a875e7eadb7f45fe035ae33820c8b3dcdeef287",
+      "size": 91546,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8a875e7eadb7f45fe035ae33820c8b3dcdeef287"
+    },
+    {
+      "path": "icon/ireader-tu-novebo-v2.1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e178ef4a65bd9fcce9dabccc3fde83af0a5b4f1f",
+      "size": 6230,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e178ef4a65bd9fcce9dabccc3fde83af0a5b4f1f"
+    },
+    {
+      "path": "icon/ireader-tu-novelgecesi-v2.1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7efb9b071e82b764095a6522ffb330d1710428ca",
+      "size": 218286,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7efb9b071e82b764095a6522ffb330d1710428ca"
+    },
+    {
+      "path": "icon/ireader-tu-turkcelightnovels-v1.2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a875e7eadb7f45fe035ae33820c8b3dcdeef287",
+      "size": 91546,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8a875e7eadb7f45fe035ae33820c8b3dcdeef287"
+    },
+    {
+      "path": "index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05071f03c5b043263dcf30b367c7795d9d03b52e",
+      "size": 43916,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/05071f03c5b043263dcf30b367c7795d9d03b52e"
+    },
+    {
+      "path": "index.min.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e3467a3230424a7a1adc250fcf7e2b28946c880",
+      "size": 34117,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8e3467a3230424a7a1adc250fcf7e2b28946c880"
+    },
+    {
+      "path": "jar",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a83e3abc2ce12649cbfb95701961b8d50a9e8c2e",
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/trees/a83e3abc2ce12649cbfb95701961b8d50a9e8c2e"
+    },
+    {
+      "path": "jar/ireader-ar-armtl-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b1faf104a483fe66625d24c3919a7629962595c",
+      "size": 34115,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3b1faf104a483fe66625d24c3919a7629962595c"
+    },
+    {
+      "path": "jar/ireader-ar-arnovel-v2.5.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c2e08060db672785e1c31c8e2d36b5578aedf39",
+      "size": 35714,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/7c2e08060db672785e1c31c8e2d36b5578aedf39"
+    },
+    {
+      "path": "jar/ireader-ar-azorafly-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a166025045f06b119075a1efb4f1c46cf00e30f2",
+      "size": 29577,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a166025045f06b119075a1efb4f1c46cf00e30f2"
+    },
+    {
+      "path": "jar/ireader-ar-golden-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ab2fc87d6101569a74e04992231bc4f86b91e10",
+      "size": 34911,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4ab2fc87d6101569a74e04992231bc4f86b91e10"
+    },
+    {
+      "path": "jar/ireader-ar-hizomanga-v2.5.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b3d7de7f454205a243f0b9fd3e959b8637e667b",
+      "size": 38567,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8b3d7de7f454205a243f0b9fd3e959b8637e667b"
+    },
+    {
+      "path": "jar/ireader-ar-kolnovel-v2.4.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74b6da35aa8b12f0493c142997caaf7047f9ef6f",
+      "size": 21095,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/74b6da35aa8b12f0493c142997caaf7047f9ef6f"
+    },
+    {
+      "path": "jar/ireader-ar-markazriwayat-v2.6.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2de02456061edcbe4baff0073d83cbbea6f73986",
+      "size": 22657,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2de02456061edcbe4baff0073d83cbbea6f73986"
+    },
+    {
+      "path": "jar/ireader-ar-mknov-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ebea0dfcb75d5a80ec14868f8b9956b297bad4d",
+      "size": 107072,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/6ebea0dfcb75d5a80ec14868f8b9956b297bad4d"
+    },
+    {
+      "path": "jar/ireader-ar-mtlarabic-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32d3e5386aca321529ca003feaeceaa2d3cb6335",
+      "size": 42000,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/32d3e5386aca321529ca003feaeceaa2d3cb6335"
+    },
+    {
+      "path": "jar/ireader-ar-novel4up-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5689e74f184345a6f93303f888e48fb95dea7fac",
+      "size": 33084,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5689e74f184345a6f93303f888e48fb95dea7fac"
+    },
+    {
+      "path": "jar/ireader-ar-novelarab-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "013b36f3969352021021095f1155da782e10c94e",
+      "size": 22650,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/013b36f3969352021021095f1155da782e10c94e"
+    },
+    {
+      "path": "jar/ireader-ar-novelparadise-v2.6.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5328add236daa76311d7c887b2dcb2b01463da5a",
+      "size": 13110,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5328add236daa76311d7c887b2dcb2b01463da5a"
+    },
+    {
+      "path": "jar/ireader-ar-realmnovel-v2.5.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7df78bc09bca17ec83be33c18c927eb9eb181ef",
+      "size": 16076,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a7df78bc09bca17ec83be33c18c927eb9eb181ef"
+    },
+    {
+      "path": "jar/ireader-ar-rewayahfans-v2.5.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ae5db3b8a0b9cb40c80f8dfa9fb4e42e93d3591",
+      "size": 11184,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4ae5db3b8a0b9cb40c80f8dfa9fb4e42e93d3591"
+    },
+    {
+      "path": "jar/ireader-ar-rewayatclub-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea34b23fedb3f6764b36d8d3f82933652c6b5373",
+      "size": 23944,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ea34b23fedb3f6764b36d8d3f82933652c6b5373"
+    },
+    {
+      "path": "jar/ireader-ar-rewayatfans-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "310d3edafb40954bef639e1a3ec057778fc84a8f",
+      "size": 11952,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/310d3edafb40954bef639e1a3ec057778fc84a8f"
+    },
+    {
+      "path": "jar/ireader-ar-riwyat-v2.12.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "562b1cc48a0483f5f29fa969628063a9864e9a95",
+      "size": 32779,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/562b1cc48a0483f5f29fa969628063a9864e9a95"
+    },
+    {
+      "path": "jar/ireader-ar-seanovel-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70951b244f3ab0f0511917c2e69fac8197b29cd2",
+      "size": 30321,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/70951b244f3ab0f0511917c2e69fac8197b29cd2"
+    },
+    {
+      "path": "jar/ireader-ar-sunovels-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f899f943697ed802017a97d8eacaeb2cd98f209b",
+      "size": 27670,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f899f943697ed802017a97d8eacaeb2cd98f209b"
+    },
+    {
+      "path": "jar/ireader-cn-aixdzs-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2e836cf2514e659c00f9981bf8b623be7f9e603",
+      "size": 23244,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b2e836cf2514e659c00f9981bf8b623be7f9e603"
+    },
+    {
+      "path": "jar/ireader-cn-sexinsex-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d21cca61ad6f8c68b018775fffe55cbe0eff958a",
+      "size": 20238,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d21cca61ad6f8c68b018775fffe55cbe0eff958a"
+    },
+    {
+      "path": "jar/ireader-en-allnovel-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3085bd080713571c5d4614e08341ac7c56b89831",
+      "size": 18802,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3085bd080713571c5d4614e08341ac7c56b89831"
+    },
+    {
+      "path": "jar/ireader-en-allnovelfull-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4e3142de78270ae42f9869c1d516aa1b523bd67",
+      "size": 18856,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b4e3142de78270ae42f9869c1d516aa1b523bd67"
+    },
+    {
+      "path": "jar/ireader-en-allnovelfull-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1efa0bb0a5be60fea4469c8c3e1e2efe0b575e78",
+      "size": 9448,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1efa0bb0a5be60fea4469c8c3e1e2efe0b575e78"
+    },
+    {
+      "path": "jar/ireader-en-aquamanga-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc3e6170337050bdc5efb77e7a45944d27391730",
+      "size": 33098,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/dc3e6170337050bdc5efb77e7a45944d27391730"
+    },
+    {
+      "path": "jar/ireader-en-archiveofourown-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b00418ce10c2e50f90fcd1d363fc63f682564ccf",
+      "size": 21265,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b00418ce10c2e50f90fcd1d363fc63f682564ccf"
+    },
+    {
+      "path": "jar/ireader-en-beautymanga-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9192feaf901305b2e3af6feb019cfbbc4a53cc5f",
+      "size": 33090,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9192feaf901305b2e3af6feb019cfbbc4a53cc5f"
+    },
+    {
+      "path": "jar/ireader-en-bonnovel-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e1d844543f7a15c7fb9e7682df82712efa79bdd",
+      "size": 33027,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3e1d844543f7a15c7fb9e7682df82712efa79bdd"
+    },
+    {
+      "path": "jar/ireader-en-boxnovel-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76abf77ef2b2a826eb42a2a97c073f8cb7c058c4",
+      "size": 18780,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/76abf77ef2b2a826eb42a2a97c073f8cb7c058c4"
+    },
+    {
+      "path": "jar/ireader-en-chrysanthemumgarden-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cd690c418445379002fb8dcf922685aee8bad78",
+      "size": 19218,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4cd690c418445379002fb8dcf922685aee8bad78"
+    },
+    {
+      "path": "jar/ireader-en-clicknovel-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da5026165c2570d63d058bcc6357a9c548cc3820",
+      "size": 33068,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/da5026165c2570d63d058bcc6357a9c548cc3820"
+    },
+    {
+      "path": "jar/ireader-en-coffeemanga-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90037e9cbf770074a7b5a5066923e3512978471f",
+      "size": 33153,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/90037e9cbf770074a7b5a5066923e3512978471f"
+    },
+    {
+      "path": "jar/ireader-en-coolnovel-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55b65839f58d83dbeb8790d0cc2d49da353396c6",
+      "size": 7549,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/55b65839f58d83dbeb8790d0cc2d49da353396c6"
+    },
+    {
+      "path": "jar/ireader-en-cratenovel-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "686a7a7278775c1f767509553e49cea40a76a42c",
+      "size": 33068,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/686a7a7278775c1f767509553e49cea40a76a42c"
+    },
+    {
+      "path": "jar/ireader-en-crimsonscrolls-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8acb05735e2cdda8e44dc2a90750f3d906bb93d9",
+      "size": 23008,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8acb05735e2cdda8e44dc2a90750f3d906bb93d9"
+    },
+    {
+      "path": "jar/ireader-en-divinedaolibrary-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f90bad2815e93d25ceb2902c0210dcf00edaecd8",
+      "size": 19885,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f90bad2815e93d25ceb2902c0210dcf00edaecd8"
+    },
+    {
+      "path": "jar/ireader-en-dreambigtl-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a5a9dde95c37afcf008f17fd415a905227bac83",
+      "size": 10638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3a5a9dde95c37afcf008f17fd415a905227bac83"
+    },
+    {
+      "path": "jar/ireader-en-fanmtl-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3673dbedef41855b40ace2a4980ef5abb80c1f2",
+      "size": 14668,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d3673dbedef41855b40ace2a4980ef5abb80c1f2"
+    },
+    {
+      "path": "jar/ireader-en-fanmtl-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2eb170bcb1697045a6381b84349c1ffc2ec7cd66",
+      "size": 96723,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2eb170bcb1697045a6381b84349c1ffc2ec7cd66"
+    },
+    {
+      "path": "jar/ireader-en-fantasyworldonline-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ddc48b601667ad81a2249f0d5595366f918af2a1",
+      "size": 33359,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ddc48b601667ad81a2249f0d5595366f918af2a1"
+    },
+    {
+      "path": "jar/ireader-en-fenrir-v2.11.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2e3dd23242c6f796b1033a50a3808bef4523774",
+      "size": 46185,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e2e3dd23242c6f796b1033a50a3808bef4523774"
+    },
+    {
+      "path": "jar/ireader-en-fenrirrealm-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9dc6398e653ed4dbc07c42066f2aed4fef358470",
+      "size": 20256,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9dc6398e653ed4dbc07c42066f2aed4fef358470"
+    },
+    {
+      "path": "jar/ireader-en-fenrirtranslations-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "692da2a60f32cb53249aaeeea58d00d7c36fa705",
+      "size": 33283,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/692da2a60f32cb53249aaeeea58d00d7c36fa705"
+    },
+    {
+      "path": "jar/ireader-en-fictionzone-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55e6b6c785d691c2bbc61c65b038eac6d84b863b",
+      "size": 23408,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/55e6b6c785d691c2bbc61c65b038eac6d84b863b"
+    },
+    {
+      "path": "jar/ireader-en-firstkissnovel-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4e63959aa6bc73b4aa56c79f5563a7cd954bf6c",
+      "size": 33222,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d4e63959aa6bc73b4aa56c79f5563a7cd954bf6c"
+    },
+    {
+      "path": "jar/ireader-en-freefullnovel-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "781a9ad9fef79b9e7b4974515a1f65b0a86e83cd",
+      "size": 33180,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/781a9ad9fef79b9e7b4974515a1f65b0a86e83cd"
+    },
+    {
+      "path": "jar/ireader-en-freemanga-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "797f22c20e4d1cad46289c0eeb3ea52aeaf494dd",
+      "size": 33035,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/797f22c20e4d1cad46289c0eeb3ea52aeaf494dd"
+    },
+    {
+      "path": "jar/ireader-en-freenovel-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c67b5bf99c8ec607a913032f5fdcd6ba80cd0053",
+      "size": 33050,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c67b5bf99c8ec607a913032f5fdcd6ba80cd0053"
+    },
+    {
+      "path": "jar/ireader-en-freewebnovel-v2.17.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa1147bf592cbcfc687edc6c226e0365c5241ece",
+      "size": 34802,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fa1147bf592cbcfc687edc6c226e0365c5241ece"
+    },
+    {
+      "path": "jar/ireader-en-genesisstudio-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ab988cd66645224d42a243bb6b368420ab11b47",
+      "size": 26678,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8ab988cd66645224d42a243bb6b368420ab11b47"
+    },
+    {
+      "path": "jar/ireader-en-harimanga-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2aad7fa2830e45062a5f303e4d88cfe5a46fd5f0",
+      "size": 33089,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2aad7fa2830e45062a5f303e4d88cfe5a46fd5f0"
+    },
+    {
+      "path": "jar/ireader-en-isekaiscan-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "413f658070c6cc7353d24028b514309e55ba80c6",
+      "size": 33114,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/413f658070c6cc7353d24028b514309e55ba80c6"
+    },
+    {
+      "path": "jar/ireader-en-isekaiscaneu-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b88f938610a9caaa81ef638ecc409a83077cbd08",
+      "size": 33167,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b88f938610a9caaa81ef638ecc409a83077cbd08"
+    },
+    {
+      "path": "jar/ireader-en-kdtnovels-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98f2fc53e4522ddc7f21ff29716a32b504b17e89",
+      "size": 15581,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/98f2fc53e4522ddc7f21ff29716a32b504b17e89"
+    },
+    {
+      "path": "jar/ireader-en-kingmanga-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "878ed41ba2d84d0ce330757bf1582ad13963f786",
+      "size": 33094,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/878ed41ba2d84d0ce330757bf1582ad13963f786"
+    },
+    {
+      "path": "jar/ireader-en-kissmanga-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "694635c86ab6a7e212f263f8edd3663808623138",
+      "size": 33067,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/694635c86ab6a7e212f263f8edd3663808623138"
+    },
+    {
+      "path": "jar/ireader-en-leafstudio-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "547695e57ed1a8e94557694e53c7c7803d748d08",
+      "size": 17170,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/547695e57ed1a8e94557694e53c7c7803d748d08"
+    },
+    {
+      "path": "jar/ireader-en-libread-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "16a858522968c8c7a0cfcc954b1d0578067e1eed",
+      "size": 18783,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/16a858522968c8c7a0cfcc954b1d0578067e1eed"
+    },
+    {
+      "path": "jar/ireader-en-libread-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2473862f16257ef79cb4b0abd05e2a9ea9f377e1",
+      "size": 15619,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2473862f16257ef79cb4b0abd05e2a9ea9f377e1"
+    },
+    {
+      "path": "jar/ireader-en-lightnovelheaven-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b7a2557a4bf76a555e57ec48b098358443ea4c29",
+      "size": 33301,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b7a2557a4bf76a555e57ec48b098358443ea4c29"
+    },
+    {
+      "path": "jar/ireader-en-lightnovelpub-v2.4.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b904759b188cd90f55e918b80af75301f713c983",
+      "size": 23765,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b904759b188cd90f55e918b80af75301f713c983"
+    },
+    {
+      "path": "jar/ireader-en-lightnovelreader-v2.5.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f4f8f66a2754a7cbe12e234b2ae143b8cda612c",
+      "size": 13221,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1f4f8f66a2754a7cbe12e234b2ae143b8cda612c"
+    },
+    {
+      "path": "jar/ireader-en-lightnovelsme-v2.6.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e7a1025cc3553fdb5b97e4c7017f974f1ae246f",
+      "size": 85564,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5e7a1025cc3553fdb5b97e4c7017f974f1ae246f"
+    },
+    {
+      "path": "jar/ireader-en-lnmtl-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "749191afdca59f8cca8f8509fb077dc7c6c8bbc7",
+      "size": 47269,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/749191afdca59f8cca8f8509fb077dc7c6c8bbc7"
+    },
+    {
+      "path": "jar/ireader-en-ltnovel-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adb319a5f04b51b9290814bc1ccc4464953b3dbe",
+      "size": 14723,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/adb319a5f04b51b9290814bc1ccc4464953b3dbe"
+    },
+    {
+      "path": "jar/ireader-en-lunarletters-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d946a5b7cda9cb62ee04b3ccc0db93f28dd6b989",
+      "size": 33135,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d946a5b7cda9cb62ee04b3ccc0db93f28dd6b989"
+    },
+    {
+      "path": "jar/ireader-en-mangaread-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17a486cefe10aa83faf62ffd841bdf5f7f4c15c6",
+      "size": 33044,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/17a486cefe10aa83faf62ffd841bdf5f7f4c15c6"
+    },
+    {
+      "path": "jar/ireader-en-mangarockteam-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fca736fe4afab9d72526e664daf9cd6289eb7df9",
+      "size": 33193,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fca736fe4afab9d72526e664daf9cd6289eb7df9"
+    },
+    {
+      "path": "jar/ireader-en-mangarosie-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "275ea94b4dfd4edef82df87afda41ee2b8cfda91",
+      "size": 33057,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/275ea94b4dfd4edef82df87afda41ee2b8cfda91"
+    },
+    {
+      "path": "jar/ireader-en-mangatx-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e29ebeeed51c435644b5db920878a7f9ead94b4d",
+      "size": 33003,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e29ebeeed51c435644b5db920878a7f9ead94b4d"
+    },
+    {
+      "path": "jar/ireader-en-mangaweebs-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba78449b7521b434f7d0e84ace13566a8db95c71",
+      "size": 33113,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ba78449b7521b434f7d0e84ace13566a8db95c71"
+    },
+    {
+      "path": "jar/ireader-en-manhwachilllove-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "633f1e68d8781f3e09f659dd0810a60407ec466b",
+      "size": 33229,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/633f1e68d8781f3e09f659dd0810a60407ec466b"
+    },
+    {
+      "path": "jar/ireader-en-mixednovelnet-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0734b2960ee7207cdf654373edde1724e4fb6db",
+      "size": 33199,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d0734b2960ee7207cdf654373edde1724e4fb6db"
+    },
+    {
+      "path": "jar/ireader-en-mtlnation-v2.10.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50d317a4b4f4284e9150dd98c393370f95937bd5",
+      "size": 17482,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/50d317a4b4f4284e9150dd98c393370f95937bd5"
+    },
+    {
+      "path": "jar/ireader-en-mtlnovelclub-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c21b24c348b588db9677b2960416a0e7855d9af2",
+      "size": 33120,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c21b24c348b588db9677b2960416a0e7855d9af2"
+    },
+    {
+      "path": "jar/ireader-en-mtlnovelen-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "947688e9a1b1ea693cdfd348cae73068c6e4d34e",
+      "size": 42246,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/947688e9a1b1ea693cdfd348cae73068c6e4d34e"
+    },
+    {
+      "path": "jar/ireader-en-mvlempyr-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b0a4fa074464532386a049414575a5168e30186",
+      "size": 26842,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9b0a4fa074464532386a049414575a5168e30186"
+    },
+    {
+      "path": "jar/ireader-en-myboxnovel-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "974c28352858f42cce37633e18ab1172c6d1e170",
+      "size": 33114,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/974c28352858f42cce37633e18ab1172c6d1e170"
+    },
+    {
+      "path": "jar/ireader-en-mydramanovel-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cdd96d3c532d6edc59a229eb51e6dd2b2eb8b4b",
+      "size": 6598,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2cdd96d3c532d6edc59a229eb51e6dd2b2eb8b4b"
+    },
+    {
+      "path": "jar/ireader-en-mysticalseries-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0c7117b6923f979e922cc25dc80588b1ef6be67",
+      "size": 33203,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f0c7117b6923f979e922cc25dc80588b1ef6be67"
+    },
+    {
+      "path": "jar/ireader-en-neosekaitranslations-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f92826f43403774c3a8fe12508209c71a18e65e",
+      "size": 33610,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1f92826f43403774c3a8fe12508209c71a18e65e"
+    },
+    {
+      "path": "jar/ireader-en-newnovelorg-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1c766342e7f98484cb5608bf0faa276c77201b3",
+      "size": 33142,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b1c766342e7f98484cb5608bf0faa276c77201b3"
+    },
+    {
+      "path": "jar/ireader-en-noobchan-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "117bb2cf73b5bd733e843f8ff53a12545965b0ee",
+      "size": 33033,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/117bb2cf73b5bd733e843f8ff53a12545965b0ee"
+    },
+    {
+      "path": "jar/ireader-en-novelbin-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e677b5bd057f23f52141592825c997658dfc90fc",
+      "size": 18755,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e677b5bd057f23f52141592825c997658dfc90fc"
+    },
+    {
+      "path": "jar/ireader-en-novelbuddy-v2.11.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e3ac8446657d8300a26e5b1eb917851dfbbad75",
+      "size": 13582,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5e3ac8446657d8300a26e5b1eb917851dfbbad75"
+    },
+    {
+      "path": "jar/ireader-en-novelfire-v2.11.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17166cba740b9eb29307aa4e095fabfbf44e3b15",
+      "size": 13723,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/17166cba740b9eb29307aa4e095fabfbf44e3b15"
+    },
+    {
+      "path": "jar/ireader-en-novelfull-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1cf0c33b6fdce99d713a99a76b3de8a75b61114",
+      "size": 18779,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e1cf0c33b6fdce99d713a99a76b3de8a75b61114"
+    },
+    {
+      "path": "jar/ireader-en-novelfull-v2.9.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4263aa536b2be718cc3965cf2d08aba290e8b32c",
+      "size": 35789,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4263aa536b2be718cc3965cf2d08aba290e8b32c"
+    },
+    {
+      "path": "jar/ireader-en-novelfullme-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69e19dfa340d81ee6e4b0ddcb0699bd9305a7ba5",
+      "size": 11158,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/69e19dfa340d81ee6e4b0ddcb0699bd9305a7ba5"
+    },
+    {
+      "path": "jar/ireader-en-novelhall-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb8d782125f795e6facb85efeab5b86a9e4c9917",
+      "size": 16649,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fb8d782125f795e6facb85efeab5b86a9e4c9917"
+    },
+    {
+      "path": "jar/ireader-en-novelight-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd490ddabc62ca8107a4a2a5a2ebae4069e05618",
+      "size": 24152,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/dd490ddabc62ca8107a4a2a5a2ebae4069e05618"
+    },
+    {
+      "path": "jar/ireader-en-novelmt-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b0573dd16be596317367238c483ce5c9f91b823",
+      "size": 14586,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8b0573dd16be596317367238c483ce5c9f91b823"
+    },
+    {
+      "path": "jar/ireader-en-novelmultiverse-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a62a489b11ef66c0d7ba458af237c73b737034d9",
+      "size": 33230,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a62a489b11ef66c0d7ba458af237c73b737034d9"
+    },
+    {
+      "path": "jar/ireader-en-novelonline-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "430b02d3cf5a8560b375b9263a1f740a952f4bd6",
+      "size": 8609,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/430b02d3cf5a8560b375b9263a1f740a952f4bd6"
+    },
+    {
+      "path": "jar/ireader-en-novelsemperor-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7186b5046d4d553a61ba8551bab112b124c3004",
+      "size": 7354,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a7186b5046d4d553a61ba8551bab112b124c3004"
+    },
+    {
+      "path": "jar/ireader-en-novelshub-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56156986dc60be8dab17765a71e31b271da8f135",
+      "size": 32638,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/56156986dc60be8dab17765a71e31b271da8f135"
+    },
+    {
+      "path": "jar/ireader-en-novelsonline-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3471fcc05c4bdb83fc5a7cc3c2ec187ceacbe6ff",
+      "size": 18927,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3471fcc05c4bdb83fc5a7cc3c2ec187ceacbe6ff"
+    },
+    {
+      "path": "jar/ireader-en-noveltop1net-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d003a5c0fb745f8d1edcce04d5791208a91cdb3",
+      "size": 11847,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/1d003a5c0fb745f8d1edcce04d5791208a91cdb3"
+    },
+    {
+      "path": "jar/ireader-en-noveltranslate-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad1b8ab3a46874664660feb9297bacdf06bb6ebc",
+      "size": 33206,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ad1b8ab3a46874664660feb9297bacdf06bb6ebc"
+    },
+    {
+      "path": "jar/ireader-en-novelupdates-v2.4.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "873cf465b0cb7c90eeadebb6a219f400aa77d5a2",
+      "size": 12075,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/873cf465b0cb7c90eeadebb6a219f400aa77d5a2"
+    },
+    {
+      "path": "jar/ireader-en-onekissnovel-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56f220bfb7b6ed3eb0c3e6b0d8d3ff73068fbdd3",
+      "size": 33164,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/56f220bfb7b6ed3eb0c3e6b0d8d3ff73068fbdd3"
+    },
+    {
+      "path": "jar/ireader-en-pandanovel-v2.5.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a30c3e3d999068a765cf3a595792955c5e326aee",
+      "size": 36957,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a30c3e3d999068a765cf3a595792955c5e326aee"
+    },
+    {
+      "path": "jar/ireader-en-pawread-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7773a386824a94d4544ac81e83fda664f44c164",
+      "size": 11256,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c7773a386824a94d4544ac81e83fda664f44c164"
+    },
+    {
+      "path": "jar/ireader-en-pianmanga-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab1bbc3f8cc2bd902b6ecbdc8b0cf4d02c1c8260",
+      "size": 33062,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ab1bbc3f8cc2bd902b6ecbdc8b0cf4d02c1c8260"
+    },
+    {
+      "path": "jar/ireader-en-rainofsnow-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b91c7206ade84755915f4b7cb16bc66305d80056",
+      "size": 7088,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/b91c7206ade84755915f4b7cb16bc66305d80056"
+    },
+    {
+      "path": "jar/ireader-en-randomnovel-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b6f2b0b3f3b2996c6412be0f74052ded88d37f5",
+      "size": 33126,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3b6f2b0b3f3b2996c6412be0f74052ded88d37f5"
+    },
+    {
+      "path": "jar/ireader-en-ranobes-v2.9.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72059f51442071b024930dd58ea0fc227b61eadc",
+      "size": 44595,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/72059f51442071b024930dd58ea0fc227b61eadc"
+    },
+    {
+      "path": "jar/ireader-en-readfrom-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4f71fbe66347a785670570b8bad32597c23370a",
+      "size": 17438,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d4f71fbe66347a785670570b8bad32597c23370a"
+    },
+    {
+      "path": "jar/ireader-en-readmtl-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d42a4a3f19e82c5176de6efb7cd5339d35bf9be",
+      "size": 32969,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2d42a4a3f19e82c5176de6efb7cd5339d35bf9be"
+    },
+    {
+      "path": "jar/ireader-en-readmtl-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7567111cc88ee7a74ba28ce50bd2739a1dc77dc",
+      "size": 28976,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c7567111cc88ee7a74ba28ce50bd2739a1dc77dc"
+    },
+    {
+      "path": "jar/ireader-en-readnovelfull-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d95e5b38a975d5c0572ebdb8925b9289ce999bd7",
+      "size": 18719,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d95e5b38a975d5c0572ebdb8925b9289ce999bd7"
+    },
+    {
+      "path": "jar/ireader-en-readwebnovels-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4855234ff5382a43d1e0795445b9662bf5156686",
+      "size": 33183,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4855234ff5382a43d1e0795445b9662bf5156686"
+    },
+    {
+      "path": "jar/ireader-en-readwn-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d10b62c2792c4ac03e5678335e494252e44c268",
+      "size": 14547,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8d10b62c2792c4ac03e5678335e494252e44c268"
+    },
+    {
+      "path": "jar/ireader-en-reaperscans-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6b6e9788353c6ae55946c5bcb7619a56a996d4a",
+      "size": 18039,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a6b6e9788353c6ae55946c5bcb7619a56a996d4a"
+    },
+    {
+      "path": "jar/ireader-en-royalroad-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "afa9a1d77850b84292563d1a4ab9899aafb671ac",
+      "size": 9445,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/afa9a1d77850b84292563d1a4ab9899aafb671ac"
+    },
+    {
+      "path": "jar/ireader-en-scribblehub-v2.4.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d99ee2a0ad83a52fec8214ee1640cfc15a9ad220",
+      "size": 9955,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d99ee2a0ad83a52fec8214ee1640cfc15a9ad220"
+    },
+    {
+      "path": "jar/ireader-en-sleepytranslations-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1bb892be3ef8e309079162bc8ddcdfc6d817cbc",
+      "size": 33297,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a1bb892be3ef8e309079162bc8ddcdfc6d817cbc"
+    },
+    {
+      "path": "jar/ireader-en-sonicmtl-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4d4989f2dc4d953aa0f733b341246288f09085c",
+      "size": 33016,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e4d4989f2dc4d953aa0f733b341246288f09085c"
+    },
+    {
+      "path": "jar/ireader-en-storyseedling-v2.3.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0815c4e2d858140139e6d2472edaa7305c05d38",
+      "size": 29003,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e0815c4e2d858140139e6d2472edaa7305c05d38"
+    },
+    {
+      "path": "jar/ireader-en-toonily-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19a2a1dd9410f702f12d1fe8e93c11375175f498",
+      "size": 32993,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/19a2a1dd9410f702f12d1fe8e93c11375175f498"
+    },
+    {
+      "path": "jar/ireader-en-usefulnovel-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "866ef8c0a2d799caed1e9817b2c307876a9e06eb",
+      "size": 33128,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/866ef8c0a2d799caed1e9817b2c307876a9e06eb"
+    },
+    {
+      "path": "jar/ireader-en-webnovel-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24f546487f45a85f34e7be42f3b5d6f6add0ea41",
+      "size": 18297,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/24f546487f45a85f34e7be42f3b5d6f6add0ea41"
+    },
+    {
+      "path": "jar/ireader-en-webnovelcom-v2.8.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a022835f94f6929f44651e1a430726a44002166",
+      "size": 30391,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/0a022835f94f6929f44651e1a430726a44002166"
+    },
+    {
+      "path": "jar/ireader-en-webnovellover-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c41a8e2b1b60cfdb9c86a4c131b89ed47122ca3c",
+      "size": 33170,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c41a8e2b1b60cfdb9c86a4c131b89ed47122ca3c"
+    },
+    {
+      "path": "jar/ireader-en-webnovelsite-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "114b220498cccc381ae21258dafd235d141d6530",
+      "size": 10220,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/114b220498cccc381ae21258dafd235d141d6530"
+    },
+    {
+      "path": "jar/ireader-en-wnmtl-v2.6.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9abbac107c091bd8ccbc4b739013f088bc401b60",
+      "size": 70846,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/9abbac107c091bd8ccbc4b739013f088bc401b60"
+    },
+    {
+      "path": "jar/ireader-en-wuxiabox-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9e52bda6a2e6569f3a0a32fe722a486acd9e8f6",
+      "size": 14691,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d9e52bda6a2e6569f3a0a32fe722a486acd9e8f6"
+    },
+    {
+      "path": "jar/ireader-en-wuxiaclick-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aad47cab395f8279e2709e56880fc8d3c699825b",
+      "size": 23729,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/aad47cab395f8279e2709e56880fc8d3c699825b"
+    },
+    {
+      "path": "jar/ireader-en-wuxiafox-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc18574ca38afaaccf9bbee3acd2d916f3197080",
+      "size": 14706,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fc18574ca38afaaccf9bbee3acd2d916f3197080"
+    },
+    {
+      "path": "jar/ireader-en-wuxiaspot-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1f68ecace0e54610d042f092d695a7f195130fc",
+      "size": 14736,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f1f68ecace0e54610d042f092d695a7f195130fc"
+    },
+    {
+      "path": "jar/ireader-en-wuxiav-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca8bde52dbd65130368ba3aebe6312e2546043cd",
+      "size": 14671,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/ca8bde52dbd65130368ba3aebe6312e2546043cd"
+    },
+    {
+      "path": "jar/ireader-en-wuxiaworld-v2.4.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f75d5fc746f227c2f2afbc6d38779ca008317201",
+      "size": 32799,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f75d5fc746f227c2f2afbc6d38779ca008317201"
+    },
+    {
+      "path": "jar/ireader-en-wuxiaworldsite-v2.11.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e4aed4b32bf106754005be3bc572484e6480f8a",
+      "size": 30460,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4e4aed4b32bf106754005be3bc572484e6480f8a"
+    },
+    {
+      "path": "jar/ireader-en-wuxiaworldsiteco-v1.0.8.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dcad4e4eeefbf1bf1d81ee52739408627d030715",
+      "size": 27796,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/dcad4e4eeefbf1bf1d81ee52739408627d030715"
+    },
+    {
+      "path": "jar/ireader-en-zetrotranslation-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7e86f38469ef802f27e5667aebdc42c1b499041",
+      "size": 33270,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e7e86f38469ef802f27e5667aebdc42c1b499041"
+    },
+    {
+      "path": "jar/ireader-en-zinmanga-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2bd0a67681e1096b9e8f04d32352133ecdc2ab47",
+      "size": 33031,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2bd0a67681e1096b9e8f04d32352133ecdc2ab47"
+    },
+    {
+      "path": "jar/ireader-en-zinnovel-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31f2775290c7f4b28054c650a904de78c58339bc",
+      "size": 33012,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/31f2775290c7f4b28054c650a904de78c58339bc"
+    },
+    {
+      "path": "jar/ireader-es-mtlnoveles-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5822d98a52d7fe2b5ad98836b50a50d7a4cde5a4",
+      "size": 42196,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5822d98a52d7fe2b5ad98836b50a50d7a4cde5a4"
+    },
+    {
+      "path": "jar/ireader-fr-chireads-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3d45ec9fc07647b67cf253abbbe3dd7b8bdd1a4",
+      "size": 9007,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e3d45ec9fc07647b67cf253abbbe3dd7b8bdd1a4"
+    },
+    {
+      "path": "jar/ireader-fr-lnmtlfr-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "911a710ed9d212e568b5fccd6f2d3c63322e33cb",
+      "size": 32982,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/911a710ed9d212e568b5fccd6f2d3c63322e33cb"
+    },
+    {
+      "path": "jar/ireader-fr-massnovel-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "660760ad226ba2feb915749a880d970d194817e0",
+      "size": 33079,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/660760ad226ba2feb915749a880d970d194817e0"
+    },
+    {
+      "path": "jar/ireader-fr-mtlnovelfr-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61f273a275f669518b6a1f61376895e0e07fb8f2",
+      "size": 43696,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/61f273a275f669518b6a1f61376895e0e07fb8f2"
+    },
+    {
+      "path": "jar/ireader-fr-noveldeglace-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e44b3161eb4fbe7fc6e1e25c68895465b0fd6994",
+      "size": 9286,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e44b3161eb4fbe7fc6e1e25c68895465b0fd6994"
+    },
+    {
+      "path": "jar/ireader-in-indowebnovel-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86b462620ae2a34e25a515304bfda5d3cf08ed96",
+      "size": 6508,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/86b462620ae2a34e25a515304bfda5d3cf08ed96"
+    },
+    {
+      "path": "jar/ireader-in-meionovel-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91dd77a5ea0dbfb702c569a6842306fc8c09e3cb",
+      "size": 33014,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/91dd77a5ea0dbfb702c569a6842306fc8c09e3cb"
+    },
+    {
+      "path": "jar/ireader-in-morenovel-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07d3d21d21497427c86c3c17bafdf8a05a757dec",
+      "size": 33042,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/07d3d21d21497427c86c3c17bafdf8a05a757dec"
+    },
+    {
+      "path": "jar/ireader-in-mtlnovelin-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90dd9f85a228fe00cae7e57f9d0ffd952a909365",
+      "size": 43626,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/90dd9f85a228fe00cae7e57f9d0ffd952a909365"
+    },
+    {
+      "path": "jar/ireader-in-wbnovel-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e54a07fa7221f8d2119518bf90b0281a0424cc03",
+      "size": 8326,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e54a07fa7221f8d2119518bf90b0281a0424cc03"
+    },
+    {
+      "path": "jar/ireader-jp-kakuyomu-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4681897f73089524c90020942c9dfe557733a113",
+      "size": 20472,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4681897f73089524c90020942c9dfe557733a113"
+    },
+    {
+      "path": "jar/ireader-jp-syosetu-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7802ea15dd7e4d07180ad4ba0e6f6c96c36fa7f",
+      "size": 19171,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/c7802ea15dd7e4d07180ad4ba0e6f6c96c36fa7f"
+    },
+    {
+      "path": "jar/ireader-kr-agitoon-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2903ed214cb0298eb18bf4033bc54a7a96200ee7",
+      "size": 23713,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2903ed214cb0298eb18bf4033bc54a7a96200ee7"
+    },
+    {
+      "path": "jar/ireader-multi-foxaholic-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b2abab47c0bad626c3d354409b0b983c40e8f63",
+      "size": 33075,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3b2abab47c0bad626c3d354409b0b983c40e8f63"
+    },
+    {
+      "path": "jar/ireader-pt-novelmania-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91279ea112d06f3e8f0d49b6aa41f9842783ae8c",
+      "size": 18186,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/91279ea112d06f3e8f0d49b6aa41f9842783ae8c"
+    },
+    {
+      "path": "jar/ireader-pt-tsundoku-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91fa241ac9a612c084526774593d6e521e3420a3",
+      "size": 10988,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/91fa241ac9a612c084526774593d6e521e3420a3"
+    },
+    {
+      "path": "jar/ireader-ru-bestmanga-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9f833e7592d74a8bfaee6caf36c5d98c88c072c",
+      "size": 33046,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f9f833e7592d74a8bfaee6caf36c5d98c88c072c"
+    },
+    {
+      "path": "jar/ireader-ru-jaomix-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a378823c90db7a8050a806259eee7a3070d7772",
+      "size": 17346,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/8a378823c90db7a8050a806259eee7a3070d7772"
+    },
+    {
+      "path": "jar/ireader-ru-neobook-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1dda5e01f5cb1dea9207376e039b8c14f76ed6b",
+      "size": 19124,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/f1dda5e01f5cb1dea9207376e039b8c14f76ed6b"
+    },
+    {
+      "path": "jar/ireader-ru-novelovh-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa1804e43202aa26fab22f64d1ccf0d46a4f3c58",
+      "size": 17759,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fa1804e43202aa26fab22f64d1ccf0d46a4f3c58"
+    },
+    {
+      "path": "jar/ireader-ru-ranobes-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2301424e490198d7bdece9a39aded5d4648e8d6c",
+      "size": 20725,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2301424e490198d7bdece9a39aded5d4648e8d6c"
+    },
+    {
+      "path": "jar/ireader-ru-renovels-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb6b87b4ba95852799568ea6886e437230ddaefe",
+      "size": 17651,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/cb6b87b4ba95852799568ea6886e437230ddaefe"
+    },
+    {
+      "path": "jar/ireader-ru-zelluloza-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb012b4ca35d6456c22a7a674d4c5ddac561bf13",
+      "size": 16759,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/bb012b4ca35d6456c22a7a674d4c5ddac561bf13"
+    },
+    {
+      "path": "jar/ireader-tu-epiknovel-v2.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d65a8d750005bd4ce98faf77199b2ee1f61ff99",
+      "size": 8115,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3d65a8d750005bd4ce98faf77199b2ee1f61ff99"
+    },
+    {
+      "path": "jar/ireader-tu-novebo-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92c62748f56fbc79d322a3d81d2646e27dc5f8ab",
+      "size": 21119,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/92c62748f56fbc79d322a3d81d2646e27dc5f8ab"
+    },
+    {
+      "path": "jar/ireader-tu-novelgecesi-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12b1ffa3a0bb65051ee825184d36434da4849a3d",
+      "size": 8876,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/12b1ffa3a0bb65051ee825184d36434da4849a3d"
+    },
+    {
+      "path": "jar/ireader-tu-turkcelightnovels-v1.2.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "594dd23a718bef6f801205c3a68d258bd8b06c53",
+      "size": 33310,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/594dd23a718bef6f801205c3a68d258bd8b06c53"
+    },
+    {
+      "path": "jar/ireader-uk-bakainua-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5447d14224bd08f73f7e1ed368a222001669bac0",
+      "size": 20613,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/5447d14224bd08f73f7e1ed368a222001669bac0"
+    },
+    {
+      "path": "jar/ireader-uk-uaranobeclub-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c05acb1f5ea753346f530c3139c20e48f9c9da9",
+      "size": 18115,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/3c05acb1f5ea753346f530c3139c20e48f9c9da9"
+    },
+    {
+      "path": "jar/ireader-vi-truyenfull-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50b6c05b322cbb8635fde339071a34436beab412",
+      "size": 18911,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/50b6c05b322cbb8635fde339071a34436beab412"
+    },
+    {
+      "path": "jar/ireader-zh-ixdzs8-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa239c6122208064b105ca5319e2028bd9e5c423",
+      "size": 19911,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/fa239c6122208064b105ca5319e2028bd9e5c423"
+    },
+    {
+      "path": "jar/ireader-zh-novel543-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "785fa62a2cfd89039310886176852691809a1476",
+      "size": 18440,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/785fa62a2cfd89039310886176852691809a1476"
+    },
+    {
+      "path": "jar/ireader-zh-quanben-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8a511639630159c2f676e07236b4ddf30c048f4",
+      "size": 20135,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/e8a511639630159c2f676e07236b4ddf30c048f4"
+    },
+    {
+      "path": "jar/ireader-zh-shu69-v2.1.jar",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a805ef6b9d0d95820665e21ad9436a3442f183ed",
+      "size": 19760,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/a805ef6b9d0d95820665e21ad9436a3442f183ed"
+    },
+    {
+      "path": "js",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "998ad98c0a017f66cfae23b33dff155e974d01db",
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/trees/998ad98c0a017f66cfae23b33dff155e974d01db"
+    },
+    {
+      "path": "js/731.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d86f4e5dc2b267695cc9f11e2ed8b478de7fa0d",
+      "size": 343,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/2d86f4e5dc2b267695cc9f11e2ed8b478de7fa0d"
+    },
+    {
+      "path": "js/731.js.map",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e7f7dba74c8467fd390bcf95ce5bc150e5a6a47",
+      "size": 420,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/4e7f7dba74c8467fd390bcf95ce5bc150e5a6a47"
+    },
+    {
+      "path": "js/js-index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acff2fd264b37dea0a457993f8a1e225eed48870",
+      "size": 16842,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/acff2fd264b37dea0a457993f8a1e225eed48870"
+    },
+    {
+      "path": "js/js-index.min.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "940831919f5cabb0b51317c14d04b2b93069b0d5",
+      "size": 16688,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/940831919f5cabb0b51317c14d04b2b93069b0d5"
+    },
+    {
+      "path": "js/sources-bundle.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d020ef785876966f29edcfcaa56cba97539f1d30",
+      "size": 1658884,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/d020ef785876966f29edcfcaa56cba97539f1d30"
+    },
+    {
+      "path": "js/sources-bundle.js.map",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "baef87d9ceab0446ab391a8e3c0543de7bfea109",
+      "size": 1413357,
+      "url": "https://api.github.com/repos/IReaderorg/IReader-extensions/git/blobs/baef87d9ceab0446ab391a8e3c0543de7bfea109"
+    }
+  ],
+  "truncated": false
+}

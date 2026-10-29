@@ -1,0 +1,1 @@
+Back 1; Back 1; Adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 | Out-Null; Start-Sleep 5; Tap 848 2169 3; Tap 864 273 3; Labels 'b5' | Select-Object -First 50; Shot 'b5'

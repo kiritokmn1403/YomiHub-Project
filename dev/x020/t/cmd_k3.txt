@@ -1,0 +1,1 @@
+Tap 270 1300 20; Shot 'k3a'; Adb shell input swipe 540 1800 540 900 300; Start-Sleep 2; Labels 'k3' | Select-String 'Tập|episodes' | Select-Object -First 6

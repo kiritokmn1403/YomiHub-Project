@@ -1,0 +1,1717 @@
+[04/10/2026 10:46:33][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 10:46:36][ERROR] fetchSourcesList: filtering sources failed: ClientException with SocketException: Failed host lookup: 'github.com' (OS Error: No address associated with hostname, errno = 7), uri=https://github.com/keiyoushi/extensions/raw/repo/index.pb
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 5485, tid: 125427236175928, name 2.ui
+os: android arch: x64 comp: yes sim: no
+build_id: 'ffeef064a3580f36641b6c1a152bca53'
+isolate_dso_base: 720fe20ad000, vm_dso_base: 0
+isolate_instructions: 720fe27dd000, vm_instructions: 0
+    #00 abs 0000720fe3f500eb virt 0000000001ea30eb _kDartSnapshotText+0x17730eb
+<asynchronous suspension>
+    #01 abs 0000720fe3f4c6f4 virt 0000000001e9f6f4 _kDartSnapshotText+0x176f6f4
+<asynchronous suspension>
+    #02 abs 0000720fe3f4c421 virt 0000000001e9f421 _kDartSnapshotText+0x176f421
+<asynchronous suspension>
+    #03 abs 0000720fe3f60184 virt 0000000001eb3184 _kDartSnapshotText+0x1783184
+<asynchronous suspension>
+    #04 abs 0000720fe3dec06c virt 0000000001d3f06c _kDartSnapshotText+0x160f06c
+<asynchronous suspension>
+    #05 abs 0000720fe3debbb5 virt 0000000001d3ebb5 _kDartSnapshotText+0x160ebb5
+<asynchronous suspension>
+    #06 abs 0000720fe2a94ac4 virt 00000000009e7ac4 _kDartSnapshotText+0x2b7ac4
+<asynchronous suspension>
+    #07 abs 0000720fe2a94a94 virt 00000000009e7a94 _kDartSnapshotText+0x2b7a94
+<asynchronous suspension>
+
+[04/10/2026 10:46:36][ERROR] fetchSourcesList: filtering sources failed: ClientException with SocketException: Failed host lookup: 'raw.githubusercontent.com' (OS Error: No address associated with hostname, errno = 7), uri=https://raw.githubusercontent.com/yuzono/anime-repo/repo/index.min.json
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 5485, tid: 125427236175928, name 2.ui
+os: android arch: x64 comp: yes sim: no
+build_id: 'ffeef064a3580f36641b6c1a152bca53'
+isolate_dso_base: 720fe20ad000, vm_dso_base: 0
+isolate_instructions: 720fe27dd000, vm_instructions: 0
+    #00 abs 0000720fe3f500eb virt 0000000001ea30eb _kDartSnapshotText+0x17730eb
+<asynchronous suspension>
+    #01 abs 0000720fe3f4c6f4 virt 0000000001e9f6f4 _kDartSnapshotText+0x176f6f4
+<asynchronous suspension>
+    #02 abs 0000720fe3f4c421 virt 0000000001e9f421 _kDartSnapshotText+0x176f421
+<asynchronous suspension>
+    #03 abs 0000720fe3f60184 virt 0000000001eb3184 _kDartSnapshotText+0x1783184
+<asynchronous suspension>
+    #04 abs 0000720fe3dec06c virt 0000000001d3f06c _kDartSnapshotText+0x160f06c
+<asynchronous suspension>
+    #05 abs 0000720fe3debbb5 virt 0000000001d3ebb5 _kDartSnapshotText+0x160ebb5
+<asynchronous suspension>
+    #06 abs 0000720fe2a94ac4 virt 00000000009e7ac4 _kDartSnapshotText+0x2b7ac4
+<asynchronous suspension>
+    #07 abs 0000720fe2a94a94 virt 00000000009e7a94 _kDartSnapshotText+0x2b7a94
+<asynchronous suspension>
+
+[04/10/2026 10:46:43][INFO] Starting Manga library update...
+[04/10/2026 10:46:43][INFO] Manga library is empty. Nothing to update.
+[04/10/2026 11:06:45][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 11:06:48][ERROR] fetchSourcesList: filtering sources failed: ClientException with SocketException: Failed host lookup: 'github.com' (OS Error: No address associated with hostname, errno = 7), uri=https://github.com/keiyoushi/extensions/raw/repo/index.pb
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 6992, tid: 125427236175928, name 1.ui
+os: android arch: x64 comp: yes sim: no
+build_id: 'ffeef064a3580f36641b6c1a152bca53'
+isolate_dso_base: 720fe5077000, vm_dso_base: 0
+isolate_instructions: 720fe57a7000, vm_instructions: 0
+    #00 abs 0000720fe6f1a0eb virt 0000000001ea30eb _kDartSnapshotText+0x17730eb
+<asynchronous suspension>
+    #01 abs 0000720fe6f166f4 virt 0000000001e9f6f4 _kDartSnapshotText+0x176f6f4
+<asynchronous suspension>
+    #02 abs 0000720fe6f16421 virt 0000000001e9f421 _kDartSnapshotText+0x176f421
+<asynchronous suspension>
+    #03 abs 0000720fe6f2a184 virt 0000000001eb3184 _kDartSnapshotText+0x1783184
+<asynchronous suspension>
+    #04 abs 0000720fe6db606c virt 0000000001d3f06c _kDartSnapshotText+0x160f06c
+<asynchronous suspension>
+    #05 abs 0000720fe6db5bb5 virt 0000000001d3ebb5 _kDartSnapshotText+0x160ebb5
+<asynchronous suspension>
+    #06 abs 0000720fe5a5eac4 virt 00000000009e7ac4 _kDartSnapshotText+0x2b7ac4
+<asynchronous suspension>
+    #07 abs 0000720fe5a5ea94 virt 00000000009e7a94 _kDartSnapshotText+0x2b7a94
+<asynchronous suspension>
+
+[04/10/2026 11:06:48][ERROR] fetchSourcesList: filtering sources failed: ClientException with SocketException: Failed host lookup: 'raw.githubusercontent.com' (OS Error: No address associated with hostname, errno = 7), uri=https://raw.githubusercontent.com/yuzono/anime-repo/repo/index.min.json
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 6992, tid: 125427236175928, name 1.ui
+os: android arch: x64 comp: yes sim: no
+build_id: 'ffeef064a3580f36641b6c1a152bca53'
+isolate_dso_base: 720fe5077000, vm_dso_base: 0
+isolate_instructions: 720fe57a7000, vm_instructions: 0
+    #00 abs 0000720fe6f1a0eb virt 0000000001ea30eb _kDartSnapshotText+0x17730eb
+<asynchronous suspension>
+    #01 abs 0000720fe6f166f4 virt 0000000001e9f6f4 _kDartSnapshotText+0x176f6f4
+<asynchronous suspension>
+    #02 abs 0000720fe6f16421 virt 0000000001e9f421 _kDartSnapshotText+0x176f421
+<asynchronous suspension>
+    #03 abs 0000720fe6f2a184 virt 0000000001eb3184 _kDartSnapshotText+0x1783184
+<asynchronous suspension>
+    #04 abs 0000720fe6db606c virt 0000000001d3f06c _kDartSnapshotText+0x160f06c
+<asynchronous suspension>
+    #05 abs 0000720fe6db5bb5 virt 0000000001d3ebb5 _kDartSnapshotText+0x160ebb5
+<asynchronous suspension>
+    #06 abs 0000720fe5a5eac4 virt 00000000009e7ac4 _kDartSnapshotText+0x2b7ac4
+<asynchronous suspension>
+    #07 abs 0000720fe5a5ea94 virt 00000000009e7a94 _kDartSnapshotText+0x2b7a94
+<asynchronous suspension>
+
+[04/10/2026 11:10:26][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 11:19:06][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 11:21:37][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 11:22:33][WARNING] ChapterRecognition: no number detected in "Xem video" (manga: "Lỡ cho bạn thân làm tình vì ế lâu năm..")
+[04/10/2026 11:23:57][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 11:54:07][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 11:54:38][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 12:06:36][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 12:08:03][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 12:11:43][WARNING] ChapterRecognition: no number detected in "Xem video" (manga: "Lỡ cho bạn thân làm tình vì ế lâu năm..")
+[04/10/2026 12:12:16][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 14:11:21][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 14:11:23][ERROR] fetchSourcesList: filtering sources failed: ClientException with SocketException: Failed host lookup: 'raw.githubusercontent.com' (OS Error: No address associated with hostname, errno = 7), uri=https://raw.githubusercontent.com/yuzono/anime-repo/repo/index.min.json
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 3124, tid: 124653758840888, name 1.ui
+os: android arch: x64 comp: yes sim: no
+build_id: 'fadbf7d813a074859d4bfabc715b8dc3'
+isolate_dso_base: 715bd14d8000, vm_dso_base: 0
+isolate_instructions: 715bd1c48000, vm_instructions: 0
+    #00 abs 0000715bd34cc7db virt 0000000001ff47db _kDartSnapshotText+0x18847db
+<asynchronous suspension>
+    #01 abs 0000715bd34bab4c virt 0000000001fe2b4c _kDartSnapshotText+0x1872b4c
+<asynchronous suspension>
+    #02 abs 0000715bd34ba879 virt 0000000001fe2879 _kDartSnapshotText+0x1872879
+<asynchronous suspension>
+    #03 abs 0000715bd34cee0c virt 0000000001ff6e0c _kDartSnapshotText+0x1886e0c
+<asynchronous suspension>
+    #04 abs 0000715bd3343a14 virt 0000000001e6ba14 _kDartSnapshotText+0x16fba14
+<asynchronous suspension>
+    #05 abs 0000715bd334355d virt 0000000001e6b55d _kDartSnapshotText+0x16fb55d
+<asynchronous suspension>
+    #06 abs 0000715bd1edb75c virt 0000000000a0375c _kDartSnapshotText+0x29375c
+<asynchronous suspension>
+    #07 abs 0000715bd1edb72c virt 0000000000a0372c _kDartSnapshotText+0x29372c
+<asynchronous suspension>
+
+[04/10/2026 14:11:23][ERROR] fetchSourcesList: filtering sources failed: ClientException with SocketException: Failed host lookup: 'github.com' (OS Error: No address associated with hostname, errno = 7), uri=https://github.com/keiyoushi/extensions/raw/repo/index.pb
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 3124, tid: 124653758840888, name 1.ui
+os: android arch: x64 comp: yes sim: no
+build_id: 'fadbf7d813a074859d4bfabc715b8dc3'
+isolate_dso_base: 715bd14d8000, vm_dso_base: 0
+isolate_instructions: 715bd1c48000, vm_instructions: 0
+    #00 abs 0000715bd34cc7db virt 0000000001ff47db _kDartSnapshotText+0x18847db
+<asynchronous suspension>
+    #01 abs 0000715bd34bab4c virt 0000000001fe2b4c _kDartSnapshotText+0x1872b4c
+<asynchronous suspension>
+    #02 abs 0000715bd34ba879 virt 0000000001fe2879 _kDartSnapshotText+0x1872879
+<asynchronous suspension>
+    #03 abs 0000715bd34cee0c virt 0000000001ff6e0c _kDartSnapshotText+0x1886e0c
+<asynchronous suspension>
+    #04 abs 0000715bd3343a14 virt 0000000001e6ba14 _kDartSnapshotText+0x16fba14
+<asynchronous suspension>
+    #05 abs 0000715bd334355d virt 0000000001e6b55d _kDartSnapshotText+0x16fb55d
+<asynchronous suspension>
+    #06 abs 0000715bd1edb75c virt 0000000000a0375c _kDartSnapshotText+0x29375c
+<asynchronous suspension>
+    #07 abs 0000715bd1edb72c virt 0000000000a0372c _kDartSnapshotText+0x29372c
+<asynchronous suspension>
+
+[04/10/2026 14:12:07][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 14:12:59][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 14:16:02][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 14:19:00][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 14:28:06][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 14:33:10][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 14:34:35][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 14:37:43][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 14:42:47][ERROR] FlutterError: Bad state: Failed to load https://3.bp.blogspot.com/-coc62nTZN9M/WO2v-JFMCuI/AAAAAAAAKBE/Kb8JLmHVElw/w215/series_259.jpg.
+
+[04/10/2026 15:00:03][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 15:00:31][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 15:26:13][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 15:26:54][ERROR] FlutterError: type 'Null' is not a subtype of type '(Source?, bool)' in type cast
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 3420, tid: 130073386635320, name 1.ui
+os: android arch: x64 comp: yes sim: no
+build_id: '60c1bff3abfb0477a35db86121ee5afc'
+isolate_dso_base: 7649324b9000, vm_dso_base: 0
+isolate_instructions: 764932c29000, vm_instructions: 0
+    #00 abs 0000764933107e90 virt 0000000000c4ee90 _kDartSnapshotText+0x4dee90
+    #01 abs 0000764933dfa499 virt 0000000001941499 _kDartSnapshotText+0x11d1499
+    #02 abs 0000764933bd781e virt 000000000171e81e _kDartSnapshotText+0xfae81e
+    #03 abs 00007649341b8ebb virt 0000000001cffebb _kDartSnapshotText+0x158febb
+    #04 abs 0000764934348f4a virt 0000000001e8ff4a _kDartSnapshotText+0x171ff4a
+    #05 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #06 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #07 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #08 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #09 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #10 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #11 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #12 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #13 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #14 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #15 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #16 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #17 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #18 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #19 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #20 abs 00007649330eaa5a virt 0000000000c31a5a _kDartSnapshotText+0x4c1a5a
+    #21 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #22 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #23 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #24 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #25 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #26 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #27 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #28 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #29 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #30 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #31 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #32 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #33 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #34 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #35 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #36 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #37 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #38 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #39 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #40 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #41 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #42 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #43 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #44 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #45 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #46 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #47 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #48 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #49 abs 000076493428fe10 virt 0000000001dd6e10 _kDartSnapshotText+0x1666e10
+    #50 abs 000076493428f9a0 virt 0000000001dd69a0 _kDartSnapshotText+0x16669a0
+    #51 abs 000076493428f882 virt 0000000001dd6882 _kDartSnapshotText+0x1666882
+    #52 abs 0000764932e6147f virt 00000000009a847f _kDartSnapshotText+0x23847f
+    #53 abs 0000764932e60e08 virt 00000000009a7e08 _kDartSnapshotText+0x237e08
+    #54 abs 0000764932e60dd9 virt 00000000009a7dd9 _kDartSnapshotText+0x237dd9
+    #55 abs 0000764934269645 virt 0000000001db0645 _kDartSnapshotText+0x1640645
+    #56 abs 000076493426938a virt 0000000001db038a _kDartSnapshotText+0x164038a
+    #57 abs 0000764932d0f416 virt 0000000000856416 _kDartSnapshotText+0xe6416
+    #58 abs 0000764932d0f2dd virt 00000000008562dd _kDartSnapshotText+0xe62dd
+    #59 abs 0000764934252683 virt 0000000001d99683 _kDartSnapshotText+0x1629683
+    #60 abs 0000764932c40f44 virt 0000000000787f44 _kDartSnapshotText+0x17f44
+    #61 abs 00007649341c2386 virt 0000000001d09386 _kDartSnapshotText+0x1599386
+    #62 abs 00007649344a0b4f virt 0000000001fe7b4f _kDartSnapshotText+0x1877b4f
+    #63 abs 0000764932c533d8 virt 000000000079a3d8 _kDartSnapshotText+0x2a3d8
+    #64 abs 0000764932c53327 virt 000000000079a327 _kDartSnapshotText+0x2a327
+    #65 abs 0000764932c532ed virt 000000000079a2ed _kDartSnapshotText+0x2a2ed
+    #66 abs 0000764932c53736 virt 000000000079a736 _kDartSnapshotText+0x2a736
+
+[04/10/2026 15:26:55][ERROR] FlutterError: type 'Null' is not a subtype of type '(Source?, bool)' in type cast
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 3420, tid: 130073386635320, name 1.ui
+os: android arch: x64 comp: yes sim: no
+build_id: '60c1bff3abfb0477a35db86121ee5afc'
+isolate_dso_base: 7649324b9000, vm_dso_base: 0
+isolate_instructions: 764932c29000, vm_instructions: 0
+    #00 abs 0000764933107e90 virt 0000000000c4ee90 _kDartSnapshotText+0x4dee90
+    #01 abs 0000764933dfa499 virt 0000000001941499 _kDartSnapshotText+0x11d1499
+    #02 abs 0000764933bd781e virt 000000000171e81e _kDartSnapshotText+0xfae81e
+    #03 abs 00007649341b8ebb virt 0000000001cffebb _kDartSnapshotText+0x158febb
+    #04 abs 0000764934348f4a virt 0000000001e8ff4a _kDartSnapshotText+0x171ff4a
+    #05 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #06 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #07 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #08 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #09 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #10 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #11 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #12 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #13 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #14 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #15 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #16 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #17 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #18 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #19 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #20 abs 00007649330eaa5a virt 0000000000c31a5a _kDartSnapshotText+0x4c1a5a
+    #21 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #22 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #23 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #24 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #25 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #26 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #27 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #28 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #29 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #30 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #31 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #32 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #33 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #34 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #35 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #36 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #37 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #38 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #39 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #40 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #41 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #42 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #43 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #44 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #45 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #46 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #47 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #48 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #49 abs 000076493428fe10 virt 0000000001dd6e10 _kDartSnapshotText+0x1666e10
+    #50 abs 000076493428f9a0 virt 0000000001dd69a0 _kDartSnapshotText+0x16669a0
+    #51 abs 000076493428f882 virt 0000000001dd6882 _kDartSnapshotText+0x1666882
+    #52 abs 0000764932e6147f virt 00000000009a847f _kDartSnapshotText+0x23847f
+    #53 abs 0000764932e60e08 virt 00000000009a7e08 _kDartSnapshotText+0x237e08
+    #54 abs 0000764932e60dd9 virt 00000000009a7dd9 _kDartSnapshotText+0x237dd9
+    #55 abs 0000764934269645 virt 0000000001db0645 _kDartSnapshotText+0x1640645
+    #56 abs 000076493426938a virt 0000000001db038a _kDartSnapshotText+0x164038a
+    #57 abs 0000764932d0f416 virt 0000000000856416 _kDartSnapshotText+0xe6416
+    #58 abs 0000764932d0f2dd virt 00000000008562dd _kDartSnapshotText+0xe62dd
+    #59 abs 0000764934252683 virt 0000000001d99683 _kDartSnapshotText+0x1629683
+    #60 abs 0000764932c40f44 virt 0000000000787f44 _kDartSnapshotText+0x17f44
+    #61 abs 00007649341c2386 virt 0000000001d09386 _kDartSnapshotText+0x1599386
+    #62 abs 00007649344a0b4f virt 0000000001fe7b4f _kDartSnapshotText+0x1877b4f
+    #63 abs 0000764932c533d8 virt 000000000079a3d8 _kDartSnapshotText+0x2a3d8
+    #64 abs 0000764932c53327 virt 000000000079a327 _kDartSnapshotText+0x2a327
+    #65 abs 0000764932c532ed virt 000000000079a2ed _kDartSnapshotText+0x2a2ed
+    #66 abs 0000764932c53736 virt 000000000079a736 _kDartSnapshotText+0x2a736
+
+[04/10/2026 15:28:12][ERROR] FlutterError: type 'Null' is not a subtype of type '(Source?, bool)' in type cast
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 3420, tid: 130073386635320, name 1.ui
+os: android arch: x64 comp: yes sim: no
+build_id: '60c1bff3abfb0477a35db86121ee5afc'
+isolate_dso_base: 7649324b9000, vm_dso_base: 0
+isolate_instructions: 764932c29000, vm_instructions: 0
+    #00 abs 0000764933107e90 virt 0000000000c4ee90 _kDartSnapshotText+0x4dee90
+    #01 abs 0000764933dfa499 virt 0000000001941499 _kDartSnapshotText+0x11d1499
+    #02 abs 0000764933bd781e virt 000000000171e81e _kDartSnapshotText+0xfae81e
+    #03 abs 00007649341b8ebb virt 0000000001cffebb _kDartSnapshotText+0x158febb
+    #04 abs 0000764934348f4a virt 0000000001e8ff4a _kDartSnapshotText+0x171ff4a
+    #05 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #06 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #07 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #08 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #09 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #10 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #11 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #12 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #13 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #14 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #15 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #16 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #17 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #18 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #19 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #20 abs 00007649330eaa5a virt 0000000000c31a5a _kDartSnapshotText+0x4c1a5a
+    #21 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #22 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #23 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #24 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #25 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #26 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #27 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #28 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #29 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #30 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #31 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #32 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #33 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #34 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #35 abs 00007649330eac4a virt 0000000000c31c4a _kDartSnapshotText+0x4c1c4a
+    #36 abs 00007649330eb01a virt 0000000000c3201a _kDartSnapshotText+0x4c201a
+    #37 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #38 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #39 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #40 abs 00007649330eab8c virt 0000000000c31b8c _kDartSnapshotText+0x4c1b8c
+    #41 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #42 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #43 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #44 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #45 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #46 abs 00007649330eadb1 virt 0000000000c31db1 _kDartSnapshotText+0x4c1db1
+    #47 abs 00007649343491f8 virt 0000000001e901f8 _kDartSnapshotText+0x17201f8
+    #48 abs 0000764933262e64 virt 0000000000da9e64 _kDartSnapshotText+0x639e64
+    #49 abs 000076493428fe10 virt 0000000001dd6e10 _kDartSnapshotText+0x1666e10
+    #50 abs 000076493428f9a0 virt 0000000001dd69a0 _kDartSnapshotText+0x16669a0
+    #51 abs 000076493428f882 virt 0000000001dd6882 _kDartSnapshotText+0x1666882
+    #52 abs 0000764932e6147f virt 00000000009a847f _kDartSnapshotText+0x23847f
+    #53 abs 0000764932e60e08 virt 00000000009a7e08 _kDartSnapshotText+0x237e08
+    #54 abs 0000764932e60dd9 virt 00000000009a7dd9 _kDartSnapshotText+0x237dd9
+    #55 abs 0000764934269645 virt 0000000001db0645 _kDartSnapshotText+0x1640645
+    #56 abs 000076493426938a virt 0000000001db038a _kDartSnapshotText+0x164038a
+    #57 abs 0000764932d0f416 virt 0000000000856416 _kDartSnapshotText+0xe6416
+    #58 abs 0000764932d0f2dd virt 00000000008562dd _kDartSnapshotText+0xe62dd
+    #59 abs 0000764934252683 virt 0000000001d99683 _kDartSnapshotText+0x1629683
+    #60 abs 0000764932c40f44 virt 0000000000787f44 _kDartSnapshotText+0x17f44
+    #61 abs 00007649341c2386 virt 0000000001d09386 _kDartSnapshotText+0x1599386
+    #62 abs 00007649344a0b4f virt 0000000001fe7b4f _kDartSnapshotText+0x1877b4f
+    #63 abs 0000764932c533d8 virt 000000000079a3d8 _kDartSnapshotText+0x2a3d8
+    #64 abs 0000764932c53327 virt 000000000079a327 _kDartSnapshotText+0x2a327
+    #65 abs 0000764932c532ed virt 000000000079a2ed _kDartSnapshotText+0x2a2ed
+    #66 abs 0000764932c53736 virt 000000000079a736 _kDartSnapshotText+0x2a736
+
+[04/10/2026 16:03:15][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 16:07:45][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 16:08:03][INFO] Starting Novel library update...
+[04/10/2026 16:08:03][INFO] Novel library is empty. Nothing to update.
+[04/10/2026 16:08:16][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 18:47:09][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 18:49:35][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 18:50:39][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 18:51:45][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 18:52:56][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 18:54:45][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 18:55:08][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 18:56:02][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 19:07:50][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 19:26:33][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 19:28:24][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 19:30:52][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 19:32:18][INFO] 
+
+Logger initialized
+
+
+[04/10/2026 19:32:43][WARNING] ChapterRecognition: no number detected in "[Ქართული] Vol 1 Unnamed" (manga: "Na Honjaman Level-Up")
+[04/10/2026 19:32:43][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Prólogo " (manga: "Na Honjaman Level-Up")
+[04/10/2026 19:32:43][WARNING] ChapterRecognition: no number detected in "[हिन्दी] prologue " (manga: "Na Honjaman Level-Up")
+[05/10/2026 00:34:33][INFO] 
+
+Logger initialized
+
+
+[05/10/2026 00:45:00][INFO] 
+
+Logger initialized
+
+
+[05/10/2026 00:46:20][WARNING] ChapterRecognition: no number detected in "Kotatsu Manga" (manga: "Kotatsu Manga")
+[05/10/2026 01:02:44][ERROR] FlutterError: Bad state: Failed to load https://3.bp.blogspot.com/-coc62nTZN9M/WO2v-JFMCuI/AAAAAAAAKBE/Kb8JLmHVElw/w215/series_259.jpg.
+
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 1 - Thời thơ ấu – Minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Mở đầu" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Chuyện bên lề: Sau vụ đó và nghi thức của nhà Boreas" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Chuyện ngắn: Sức mạnh của cơ bắp" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 3 - Giai đoạn vị thành niên - Nhà thám hiểm – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 3 - Giai đoạn vị thành niên - Nhà thám hiểm – Chapter đặc biệt: Bản đồ thế giới" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 4 - Giai đoạn vị thành niên - Du hành vượt biển – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 4 - Giai đoạn vị thành niên - Du hành vượt biển – Chuyện bên lề - Qua Đường - Chapter phụ" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 5 - Giai đoạn vị thành niên - Đoàn tụ – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 5 - Giai đoạn vị thành niên - Đoàn tụ – Chuyện bên lề - Sự trở về của Roxy" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 6 - Giai đoạn vị thành niên - Hồi hương – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 6 - Giai đoạn vị thành niên - Hồi hương – Chuyện bên lề - Hai người gặp nhau" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 7 - Giai đoạn thanh thiếu niên - Nhập học – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 8 - Giai đoạn thanh thiếu niên - Học sinh Đặc Biệt – Chuyện bên lề: Chó Điên nhập môn" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 11 - Giai đoạn thanh thiếu niên - Em gái – Chuyện bên lề - Nghiên cứu hình nhân & Quan hệ Chủ - Tớ" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 11 - Giai đoạn thanh thiếu niên - Em gái – Chuyện bên lề - Nanh Sắc" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 13 - Giai đoạn thanh thiếu niên - Mê Cung – Chuyện bên lề - Kiếm của Chó Điên, Nặng hay Sắc?" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 14 - Giai đoạn thanh niên - Thường ngày – Chuyện bên lề - Sự ra đời của một Tân Kiếm Vương" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 14 - Giai đoạn thanh niên - Thường ngày – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 15 - Giai đoạn thanh niên - Triệu hồi – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 16 - Giai đoạn thanh niên - Nhân Thần – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 17 - Giai đoạn thanh niên - Vương quốc – Chuyện bên lề: Hội nữ giới" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 17 - Giai đoạn thanh niên - Vương quốc – Chuyện bên lề: Hắc Lang Kiếm Vương" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 17 - Giai đoạn thanh niên - Vương quốc – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 18 - Giai đoạn thanh niên - Vương quốc Asura – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 19 - Giai đoạn thanh niên - Cấp dưới – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 20 - Giai đoạn thanh niên - Zanoba – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 21 - Giai đoạn thanh niên - Cliff – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 21 - Giai đoạn thanh niên - Cliff – Chuyện bên lề: Cuồng Cẩu và Miko" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 22 - Giai đoạn thanh niên - Tổ chức – Chuyện bên lề: Chúng con đã kết hôn" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:03:30][WARNING] ChapterRecognition: no number detected in "Volume 22 - Giai đoạn thanh niên - Tổ chức – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[05/10/2026 01:43:28][INFO] 
+
+Logger initialized
+
+
+[06/10/2026 06:20:40][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 06:21:27][WARNING] Download index: 1 on disk, +1, -0
+[06/10/2026 06:21:59][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 06:23:39][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 06:25:01][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 06:26:21][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 06:28:26][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 06:29:35][ERROR] FlutterError: type 'Null' is not a subtype of type '(Source?, bool)' in type cast
+#0      RouterNotifier._genericRoute.<anonymous closure> (package:mangayomi/router/router.dart:382)
+#1      _CustomNavigatorState._buildPageForGoRoute.<anonymous closure> (package:go_router/src/builder.dart:270)
+#2      Builder.build (package:flutter/src/widgets/basic.dart:8301)
+#3      StatelessElement.build (package:flutter/src/widgets/framework.dart:5902)
+#4      ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5830)
+#5      Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#6      StatelessElement.update (package:flutter/src/widgets/framework.dart:5908)
+#7      Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#8      SingleChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7135)
+#9      Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#10     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#11     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#12     StatelessElement.update (package:flutter/src/widgets/framework.dart:5908)
+#13     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#14     SingleChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7135)
+#15     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#16     SingleChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7135)
+#17     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#18     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#19     StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995)
+#20     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#21     StatefulElement.update (package:flutter/src/widgets/framework.dart:6020)
+#22     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#23     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#24     StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995)
+#25     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#26     StatefulElement.update (package:flutter/src/widgets/framework.dart:6020)
+#27     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#28     SingleChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7135)
+#29     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#30     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#31     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#32     ProxyElement.update (package:flutter/src/widgets/framework.dart:6162)
+#33     _InheritedNotifierElement.update (package:flutter/src/widgets/inherited_notifier.dart:108)
+#34     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#35     SingleChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7135)
+#36     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#37     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#38     StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995)
+#39     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#40     StatefulElement.update (package:flutter/src/widgets/framework.dart:6020)
+#41     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#42     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#43     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#44     ProxyElement.update (package:flutter/src/widgets/framework.dart:6162)
+#45     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#46     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#47     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#48     ProxyElement.update (package:flutter/src/widgets/framework.dart:6162)
+#49     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#50     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#51     StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995)
+#52     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#53     StatefulElement.update (package:flutter/src/widgets/framework.dart:6020)
+#54     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#55     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#56     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#57     StatelessElement.update (package:flutter/src/widgets/framework.dart:5908)
+#58     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#59     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#60     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#61     StatelessElement.update (package:flutter/src/widgets/framework.dart:5908)
+#62     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#63     SingleChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7135)
+#64     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#65     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#66     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#67     ProxyElement.update (package:flutter/src/widgets/framework.dart:6162)
+#68     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#69     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#70     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#71     ProxyElement.update (package:flutter/src/widgets/framework.dart:6162)
+#72     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#73     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#74     StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995)
+#75     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#76     StatefulElement.update (package:flutter/src/widgets/framework.dart:6020)
+#77     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#78     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#79     StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995)
+#80     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#81     StatefulElement.update (package:flutter/src/widgets/framework.dart:6020)
+#82     Element.updateChild (package:flutter/src/widgets/framework.dart:4050)
+#83     ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854)
+#84     StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995)
+#85     Element.rebuild (package:flutter/src/widgets/framework.dart:5542)
+#86     BuildScope._tryRebuild (package:flutter/src/widgets/framework.dart:2763)
+#87     BuildScope._flushDirtyElements (package:flutter/src/widgets/framework.dart:2820)
+#88     BuildOwner.buildScope (package:flutter/src/widgets/framework.dart:3124)
+#89     WidgetsBinding.drawFrame (package:flutter/src/widgets/binding.dart:1571)
+#90     RendererBinding._handlePersistentFrameCallback (package:flutter/src/rendering/binding.dart:558)
+#91     SchedulerBinding._invokeFrameCallback (package:flutter/src/scheduler/binding.dart:1430)
+#92     SchedulerBinding.handleDrawFrame (package:flutter/src/scheduler/binding.dart:1345)
+#93     SchedulerBinding._handleDrawFrame (package:flutter/src/scheduler/binding.dart:1198)
+#94     _rootRun (dart:async/zone_root.dart:35)
+#95     _CustomZone.run (dart:async/zone.dart:810)
+#96     _CustomZone.runGuarded (dart:async/zone.dart:702)
+#97     _invoke (dart:ui/hooks.dart:443)
+#98     PlatformDispatcher._drawFrame (dart:ui/platform_dispatcher.dart:450)
+#99     _drawFrame (dart:ui/hooks.dart:413)
+
+[06/10/2026 07:30:15][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 07:42:43][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 07:45:45][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 07:48:39][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 07:49:58][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 07:51:11][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 07:52:16][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 08:34:15][WARNING] 
+
+Logger initialized
+
+
+[06/10/2026 09:17:21][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 06:50:06][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 06:53:12][WARNING] Image/network load failed: Bad state: Failed to load https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repov2/icon/ireader-en-allnovel-v2.1.png.
+[07/10/2026 06:53:12][WARNING] Image/network load failed: Bad state: Failed to load https://docln.sbs/img/favicon.png.
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Sky Pride Art Contest with ARC E-books as prizes!" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Reminder- I am on vacation this week" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Epilogue III- Two Birds of a Feather" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Epilogue II- Talented Siblings on Parallel Paths" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Epilogue I- Filial Piety, Reconsidered" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "My book is being pirated on Amazon (Update- Publishers are on it)" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Epilogue II- Soft Rice is the Tastiest" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Epilogue I- The King of Hell and his Book Carrying Servant" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Vol 3. Epilogue" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Just wanted to say thank you" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Tax Evasion In The Fantasy World [April Fools Chapter]" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Alright, this momentum is crazy. We gotta keep it going. More chaps coming this weekend" (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:56:26][WARNING] ChapterRecognition: no number detected in "Front page of Rising Stars in Six Days! So have evidence of my dark history..." (manga: "Sky Pride [Vol. 1 Stubbing October 17. Read Now!]")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Bônus: Ainda não são casados" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Pixiv Bonus Chapter: Not Married Yet" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Volume 9 Extras" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Extras" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Mãe Demônio: Meu filho é tão fofo, que não consigo me controlar!" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Demon Mother: My Son Is So Cute, I Just Can’t Help Myself!" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Liberdade pelas sombras" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Freedom From the Shadows" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Sucessor" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Successor" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] On the Path That Leads You Home" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] No caminho que te  leva pra casa." (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Laughing With You in the Days Ahead" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Rindo com você nos dias a frente." (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Memorias" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Memories" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Para o  Futuro..." (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] To the Future" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Huge Explosion" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Grande explosão" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Ambos pais e filho" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Both Parent and Child" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] The End of Darkness" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] O fim da escuridão" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Employment" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Empregado" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Happy Birthday" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Feliz aniversário" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Motivo de Preocupação" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Cause For Worry" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Execution" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Execução" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Uma nova vida" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] A New Life" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Indo pra casa" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Going Home" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Familia" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Family" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Bonus: New Demon Wife Lorem-Chan - Rain" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Volume 8 Extras" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Suporte" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Support" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Wait" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Espere..." (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Tchau Tchau" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Bye Bye" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Are you okay" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Você Está Bem" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Algum Dia" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Someday" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Mamãe" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Mama" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Despertar " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Awakening" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Semelhanças " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Similarities" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Um abismo profundo em um escuro oceano " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Bottom of the Dark Dark Sea" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Once In A Lifetime" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Uma vez na vida " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Antagonistic Relationship" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Relação antagônica " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Vamos pra casa" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Let's Go Home" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Charge" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Comando " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Preparações para guerra! " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] War Preparations" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] The Best Way" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] A melhor maneira " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Sósia " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Dopplegänger" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Aviso de contra-ataque " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Counterattack signal" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Hatred" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Ódio " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Volume 7 Extras" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Amor" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Love" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Explosive Heat" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Calor explosivo " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Out Of Time" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)]  Fora do Tempo" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Detonation" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Detonação " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Firestarter" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Incendiário" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Um Demônio Digno " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] A Worthy Demon" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Strenuous" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Extenuante" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Julgamento " (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Judgment" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Inquiry" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Inquérito" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Preparação" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Preparation" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Sementes da Ansiedade" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Seeds of Anxiety" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Omen" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Presságio" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Expansão" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Expansion" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Novatos" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Newcomers" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Dessa vez" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] This Time" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Price of Demonization" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Preço da demonização" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Primeiro calor" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] First Heat" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Na chuva" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] In The Rain" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Presente do papai" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Papa's Present" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Cortador de unhas" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Nail Clippers" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Promoção" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Promotion" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Connection" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Conexão" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Terapia do Go-kun" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Go-kun Therapy" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Seguindo em frente" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Going Forward" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Cicatrizes" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Scars" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Combat End" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Fim da luta" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Deepening" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Aprofundando" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Chance Encounter" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Encontro por acaso" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Absolute Despair" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Desespero absoluto" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Bad Luck" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Má sorte" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Demon Stone" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Pedra demoníaca" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Yoake Island" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Ilha Yoake" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Começo das atividades" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Start of Activities" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Relationships and Reciprocation" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Relacionamentos e reciprocidade" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Velhas amigas" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Old Friends" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] A New Start" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Um novo começo" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Vidas diferentes para lidar" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Different Lives to Lead" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Suit Order" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Pedido de roupas" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Walking Alone" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Caminhando sozinha" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Entrevista simulada" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Mock Interview" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Walking Together" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Caminhando juntos" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Uninhabited Island Returns" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] O retorno da ilha inabitada" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Flight Practice" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Treino de voo" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Ida e volta" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Round Trip" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Lizette's Dream" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Sonho de Lizette" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Expanding" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Expandindo" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Talento excepcional" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Exceptional Talent" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] A procura de novas roupas" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] For Want of New Clothes" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Bela Adormecida" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Sleeping Beauty" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] A Certain Winter's Day" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Um certo dia de inverno" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Toward Living and Laughing Together" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Vivendo e rindo juntos" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Until the Day He Comes Home" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Até o dia que ele voltar para casa" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Determinação" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Determination" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] What They Found" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] O que eles encontraram" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Until Now and From Now On" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Até agora e de agora em diante" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] O tempo não tarda para nenhum homem" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Time Tarrieth No Man" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Não importa se você é humano ou demônio" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Whether You're Human or Demon" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Início do combate" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Combat Start" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Expectativas e frustrações" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Expectations and Disappointment" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Somewhere Always" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Sempre em algum lugar" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Intent" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Intenção" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] First Time Running Errands" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Primeira vez dando recados" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Do seu lado" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] By Your Side" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Razão de viver" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Reason to Live" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] This is a Rescue Plan!" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Esse é um plano de resgate!" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Vindo da ilha inabitada" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] From the Uninhabited Island" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Em um dia tempestuoso" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] On a Stormy Day" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Massagem" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Massage" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Reconciliação" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Reconciliation" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Proof of Growth" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Prova de crescimento" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Together in the Bath" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Juntos no banho" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Strong" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Forte" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Combinação" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Combination Trick" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] New Trick" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Novo truque" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] It's Been Ages!" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Faz eras!" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] A Trip in the Summer" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Uma viagem no verão" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Retornando a vida normal" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] A Return to Everyday Life" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Olás, despedidas, o futuro, e então" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Hellos, Goodbyes, the Future, and then" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Saudação" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Greeting" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Chamas da exterminação" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Flame of Extermination" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Confronto" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Clash" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Impasse" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Stalemate" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] 『Side Story』Brand New" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] História parelela - Novinho em folha" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Poison" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Veneno" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] União" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Partida" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Plano de resgate" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Coisas que não são fáceis de dizer" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Lorem e Eriza" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] A casa da Eriza" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Bloco E" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Se apresentando" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Uma pessoa estranha" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] O caminho até "mães amigas"" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Check-up de rotina" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Seu primeiro desenho" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Brincando na praia" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] O instinto de Gospel" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Já faz um bom tempo~" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Os hábitos noturnos de um demônio" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Passeando na chuva" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Chi-chan" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Volume 3 Extras" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Dia de folga da Teresa" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Hora de ver um médico" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Continuar o sonho" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Após seus esforços" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] A ponte entre humanos e demônios" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] As asas da esperança" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Turbulência" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] A necessidade de estar em alerta máximo" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Catt" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Seus veraddeiros motivos" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Valentine" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Um broto de esperança" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Missão abortada?" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] As regras dos peixes" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Uma cliente humana" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Colher gigante" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Inquieto" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Dor feliz" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Español (Laos)] pasadizo" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Festa do Pijama" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[English] Sleepover" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] A GERENTE" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Español (Laos)] Como todo Inicio" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Español (Laos)] Reinicio" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 06:59:46][WARNING] ChapterRecognition: no number detected in "[Español (Laos)] Vacaciones" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya")
+[07/10/2026 07:41:52][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 07:42:39][WARNING] ChapterRecognition: no number detected in "[Русский] Эпилог" (manga: "Sono Bisque Doll wa Koi o Suru")
+[07/10/2026 07:42:39][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Epílogo" (manga: "Sono Bisque Doll wa Koi o Suru")
+[07/10/2026 07:42:39][WARNING] ChapterRecognition: no number detected in "[Español (Laos)] Epílogo" (manga: "Sono Bisque Doll wa Koi o Suru")
+[07/10/2026 07:42:39][WARNING] ChapterRecognition: no number detected in "[Русский] Конец." (manga: "Sono Bisque Doll wa Koi o Suru")
+[07/10/2026 08:28:56][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 08:29:44][WARNING] ChapterRecognition: no number detected in "[Русский] Конец." (manga: "Sono Bisque Doll wa Koi o Suru")
+[07/10/2026 08:29:44][WARNING] ChapterRecognition: no number detected in "[Español (Laos)] Epílogo" (manga: "Sono Bisque Doll wa Koi o Suru")
+[07/10/2026 08:29:44][WARNING] ChapterRecognition: no number detected in "[Português (Brasil)] Epílogo" (manga: "Sono Bisque Doll wa Koi o Suru")
+[07/10/2026 08:29:44][WARNING] ChapterRecognition: no number detected in "[Русский] Эпилог" (manga: "Sono Bisque Doll wa Koi o Suru")
+[07/10/2026 08:32:19][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 08:37:23][WARNING] ChapterRecognition: no number detected in "TINH HÀ SAY HI TẬP 12: Chung Kết 1 - 8 SÂN KHẤU SOLO, 2 TIẾT MỤC NHÓM kết hợp chất liệu dân gian" (manga: "TINH HÀ SAY HI TẬP 12: Chung Kết 1 - 8 SÂN KHẤU SOLO, 2 TIẾT MỤC NHÓM kết hợp chất liệu dân gian")
+[07/10/2026 08:37:41][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:37:44][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:37:47][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:37:50][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:37:50][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:37:56][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:37:56][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:01][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:02][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:12][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:13][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:17][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:19][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:19][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:25][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:25][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:31][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:31][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:36][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:43][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:38:48][WARNING] Audio missing, re-adding external track Âm thanh 148kbps m4a
+[07/10/2026 08:57:26][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 08:58:09][WARNING] ChapterRecognition: no number detected in "[NHẠC CHẾ] SAO ĐỎ ĐẠI CHIẾN - PHẦN 2 | VÊ VÊ | OFFICIAL MV" (manga: "[NHẠC CHẾ] SAO ĐỎ ĐẠI CHIẾN - PHẦN 2 | VÊ VÊ | OFFICIAL MV")
+[07/10/2026 08:58:27][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:58:29][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:58:32][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:58:34][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:58:34][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:58:40][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:58:41][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:58:47][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:58:47][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:58:52][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:58:59][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 08:59:04][WARNING] Audio missing, re-adding external track Tiếng Việt gốc 131kbps m4a
+[07/10/2026 09:11:50][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 09:12:34][WARNING] ChapterRecognition: no number detected in "Ca Sĩ Mặt Nạ - The Masked Singer Vietnam 2026 Tập 1: Chính thức khai màn cuộc chiến giấu mặt cân não" (manga: "Ca Sĩ Mặt Nạ - The Masked Singer Vietnam 2026 Tập 1: Chính thức khai màn cuộc chiến giấu mặt cân não")
+[07/10/2026 09:12:52][WARNING] Audio missing, re-adding external track Âm thanh 141kbps m4a
+[07/10/2026 09:12:56][WARNING] Audio missing, re-adding external track Âm thanh 141kbps m4a
+[07/10/2026 09:13:02][WARNING] Audio missing, re-adding external track Âm thanh 141kbps m4a
+[07/10/2026 12:16:03][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 22:17:35][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 22:19:05][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 22:24:25][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 22:44:24][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 22:58:23][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 22:58:54][ERROR] Extension "Kwiky (18+)" (all) getPopular 1: Error: Kwiky: phản hồi lạ – {"message":"Unauthorized"}
+    at feed (<eval>:157:45)
+
+
+[07/10/2026 23:01:25][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 23:09:04][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 23:11:04][ERROR] Extension "AVSub – AnimeVietsub" (vi) getPopular 1: Error: AVSub không trả về danh sách (HTTP 403, 320 byte). Thử mở WebView của tiện ích, hoặc đổi Tên miền trong cài đặt.
+    at checked (<eval>:179:61)
+    at getPopular (<eval>:242:47)
+
+
+[07/10/2026 23:17:46][WARNING] Image/network load failed: Bad state: Failed to load https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repov2/icon/ireader-en-allnovel-v2.1.png.
+[07/10/2026 23:17:47][WARNING] Image/network load failed: Bad state: Failed to load https://3.bp.blogspot.com/-coc62nTZN9M/WO2v-JFMCuI/AAAAAAAAKBE/Kb8JLmHVElw/w215/series_259.jpg.
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 1 - Thời thơ ấu – Minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Mở đầu" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Chuyện bên lề: Sau vụ đó và nghi thức của nhà Boreas" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Chuyện ngắn: Sức mạnh của cơ bắp" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 3 - Giai đoạn vị thành niên - Nhà thám hiểm – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 3 - Giai đoạn vị thành niên - Nhà thám hiểm – Chapter đặc biệt: Bản đồ thế giới" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 4 - Giai đoạn vị thành niên - Du hành vượt biển – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 4 - Giai đoạn vị thành niên - Du hành vượt biển – Chuyện bên lề - Qua Đường - Chapter phụ" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 5 - Giai đoạn vị thành niên - Đoàn tụ – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 5 - Giai đoạn vị thành niên - Đoàn tụ – Chuyện bên lề - Sự trở về của Roxy" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 6 - Giai đoạn vị thành niên - Hồi hương – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 6 - Giai đoạn vị thành niên - Hồi hương – Chuyện bên lề - Hai người gặp nhau" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 7 - Giai đoạn thanh thiếu niên - Nhập học – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 8 - Giai đoạn thanh thiếu niên - Học sinh Đặc Biệt – Chuyện bên lề: Chó Điên nhập môn" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 11 - Giai đoạn thanh thiếu niên - Em gái – Chuyện bên lề - Nghiên cứu hình nhân & Quan hệ Chủ - Tớ" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 11 - Giai đoạn thanh thiếu niên - Em gái – Chuyện bên lề - Nanh Sắc" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 13 - Giai đoạn thanh thiếu niên - Mê Cung – Chuyện bên lề - Kiếm của Chó Điên, Nặng hay Sắc?" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 14 - Giai đoạn thanh niên - Thường ngày – Chuyện bên lề - Sự ra đời của một Tân Kiếm Vương" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 14 - Giai đoạn thanh niên - Thường ngày – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 15 - Giai đoạn thanh niên - Triệu hồi – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 16 - Giai đoạn thanh niên - Nhân Thần – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 17 - Giai đoạn thanh niên - Vương quốc – Chuyện bên lề: Hội nữ giới" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 17 - Giai đoạn thanh niên - Vương quốc – Chuyện bên lề: Hắc Lang Kiếm Vương" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 17 - Giai đoạn thanh niên - Vương quốc – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 18 - Giai đoạn thanh niên - Vương quốc Asura – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 19 - Giai đoạn thanh niên - Cấp dưới – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 20 - Giai đoạn thanh niên - Zanoba – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 21 - Giai đoạn thanh niên - Cliff – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 21 - Giai đoạn thanh niên - Cliff – Chuyện bên lề: Cuồng Cẩu và Miko" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 22 - Giai đoạn thanh niên - Tổ chức – Chuyện bên lề: Chúng con đã kết hôn" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:18:07][WARNING] ChapterRecognition: no number detected in "Volume 22 - Giai đoạn thanh niên - Tổ chức – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[07/10/2026 23:25:21][WARNING] 
+
+Logger initialized
+
+
+[07/10/2026 23:28:29][WARNING] ChapterRecognition: no number detected in "[AnimeVsub] Tập SP" (manga: "Thám Tử Lừng Danh Conan")
+[07/10/2026 23:38:43][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 04:04:31][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 08:55:12][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 08:56:54][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 08:57:33][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 09:02:55][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 09:19:24][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 09:22:05][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 09:23:38][WARNING] Image/network load failed: Bad state: Failed to load https://raw.githubusercontent.com/gato404/kegareta-sauces/bbranchNamee/dart/manga/multisrc/madara/src/mangatopsite/icon.png.
+[08/10/2026 09:23:38][WARNING] Image/network load failed: Bad state: Failed to load https://bato.to/amsta/img/btoto/logo-batoto.png?v0.
+[08/10/2026 09:23:38][WARNING] Image/network load failed: Bad state: Failed to load https://www.google.com/s2/favicons?sz=64&domain=manytoon.club.
+[08/10/2026 09:24:57][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 09:25:47][ERROR] Extension "Manga Million" (af) getPopular 1: canceled due to java.lang.ExceptionInInitializerError 
+
+
+statusCode: 500
+#0      hasError (package:mangayomi/eval/mihon/service.dart:455)
+#1      MihonExtensionService.getPopular (package:mangayomi/eval/mihon/service.dart:69)
+<asynchronous suspension>
+#2      GetIsolateService._get.<anonymous closure> (package:mangayomi/services/isolate_service.dart:280)
+<asynchronous suspension>
+#3      withExtensionService (package:mangayomi/eval/lib.dart:69)
+<asynchronous suspension>
+#4      GetIsolateService.get (package:mangayomi/services/isolate_service.dart:219)
+<asynchronous suspension>
+#5      ElementWithFuture.handleFuture.<anonymous closure>.<anonymous closure> (package:riverpod/src/core/element.dart:220)
+<asynchronous suspension>
+#6      ElementWithFuture.handleFuture.<anonymous closure>.<anonymous closure> (package:riverpod/src/core/element.dart:225)
+<asynchronous suspension>
+
+[08/10/2026 09:26:05][ERROR] Extension "Manga Million" (af) getPopular 1: canceled due to java.lang.NoClassDefFoundError: p1 
+
+
+statusCode: 500
+#0      hasError (package:mangayomi/eval/mihon/service.dart:455)
+#1      MihonExtensionService.getPopular (package:mangayomi/eval/mihon/service.dart:69)
+<asynchronous suspension>
+#2      GetIsolateService._get.<anonymous closure> (package:mangayomi/services/isolate_service.dart:280)
+<asynchronous suspension>
+#3      withExtensionService (package:mangayomi/eval/lib.dart:69)
+<asynchronous suspension>
+#4      GetIsolateService.get (package:mangayomi/services/isolate_service.dart:219)
+<asynchronous suspension>
+#5      Future.timeout.<anonymous closure> (dart:async/future_impl.dart:1061)
+<asynchronous suspension>
+#6      YomiFilterRefresh._load (package:mangayomi/yomihub/filters/filter_refresh.dart:90)
+<asynchronous suspension>
+#7      YomiFilterRefresh.load.<anonymous closure> (package:mangayomi/yomihub/filters/filter_refresh.dart:66)
+<asynchronous suspension>
+#8      _MangaHomeScreenState.initState.<anonymous closure> (package:mangayomi/modules/manga/home/manga_home_screen.dart:157)
+<asynchronous suspension>
+
+[08/10/2026 09:42:18][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 09:44:15][WARNING] Image/network load failed: Bad state: Failed to load https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repov2/icon/ireader-en-allnovel-v2.1.png.
+[08/10/2026 09:44:17][WARNING] Image/network load failed: Bad state: Failed to load https://3.bp.blogspot.com/-coc62nTZN9M/WO2v-JFMCuI/AAAAAAAAKBE/Kb8JLmHVElw/w215/series_259.jpg.
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 1 - Thời thơ ấu – Minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Mở đầu" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Chuyện bên lề: Sau vụ đó và nghi thức của nhà Boreas" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 2 - Giai đoạn vị thành niên - Gia sư tại nhà – Chuyện ngắn: Sức mạnh của cơ bắp" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 3 - Giai đoạn vị thành niên - Nhà thám hiểm – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 3 - Giai đoạn vị thành niên - Nhà thám hiểm – Chapter đặc biệt: Bản đồ thế giới" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 4 - Giai đoạn vị thành niên - Du hành vượt biển – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 4 - Giai đoạn vị thành niên - Du hành vượt biển – Chuyện bên lề - Qua Đường - Chapter phụ" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 5 - Giai đoạn vị thành niên - Đoàn tụ – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 5 - Giai đoạn vị thành niên - Đoàn tụ – Chuyện bên lề - Sự trở về của Roxy" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 6 - Giai đoạn vị thành niên - Hồi hương – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 6 - Giai đoạn vị thành niên - Hồi hương – Chuyện bên lề - Hai người gặp nhau" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 7 - Giai đoạn thanh thiếu niên - Nhập học – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 8 - Giai đoạn thanh thiếu niên - Học sinh Đặc Biệt – Chuyện bên lề: Chó Điên nhập môn" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 11 - Giai đoạn thanh thiếu niên - Em gái – Chuyện bên lề - Nghiên cứu hình nhân & Quan hệ Chủ - Tớ" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 11 - Giai đoạn thanh thiếu niên - Em gái – Chuyện bên lề - Nanh Sắc" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 13 - Giai đoạn thanh thiếu niên - Mê Cung – Chuyện bên lề - Kiếm của Chó Điên, Nặng hay Sắc?" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 14 - Giai đoạn thanh niên - Thường ngày – Chuyện bên lề - Sự ra đời của một Tân Kiếm Vương" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 14 - Giai đoạn thanh niên - Thường ngày – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 15 - Giai đoạn thanh niên - Triệu hồi – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 16 - Giai đoạn thanh niên - Nhân Thần – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 17 - Giai đoạn thanh niên - Vương quốc – Chuyện bên lề: Hội nữ giới" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 17 - Giai đoạn thanh niên - Vương quốc – Chuyện bên lề: Hắc Lang Kiếm Vương" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 17 - Giai đoạn thanh niên - Vương quốc – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 18 - Giai đoạn thanh niên - Vương quốc Asura – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 19 - Giai đoạn thanh niên - Cấp dưới – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 20 - Giai đoạn thanh niên - Zanoba – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 21 - Giai đoạn thanh niên - Cliff – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 21 - Giai đoạn thanh niên - Cliff – Chuyện bên lề: Cuồng Cẩu và Miko" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 22 - Giai đoạn thanh niên - Tổ chức – Chuyện bên lề: Chúng con đã kết hôn" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:44:42][WARNING] ChapterRecognition: no number detected in "Volume 22 - Giai đoạn thanh niên - Tổ chức – Hình minh họa" (manga: "Mushoku Tensei - Isekai Ittara Honki Dasu")
+[08/10/2026 09:49:04][WARNING] 
+
+Logger initialized
+
+
+                                                                                                                                                       [08/10/2026 11:04:01][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 13:08:53][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 13:15:22][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 13:20:14][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 13:22:13][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 13:22:33][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 13:22:48][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 13:22:56][INFO] [Hiệu năng] Hệ thống báo thiếu bộ nhớ – đã giải phóng 0 MB ảnh đệm
+[08/10/2026 13:23:13][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 13:23:32][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 13:24:00][WARNING] 
+
+Logger initialized
+
+
+[08/10/2026 13:24:06][INFO] ChapterRecognition: no number detected in "[Русский] Конец." (manga: "Sono Bisque Doll wa Koi o Suru") – chapters of this series keep their source order
+[08/10/2026 13:24:14][INFO] ChapterRecognition: no number detected in "[Ქართული] Vol 1 Unnamed" (manga: "Na Honjaman Level-Up") – chapters of this series keep their source order
+[08/10/2026 13:25:01][INFO] [Hiệu năng] Hệ thống báo thiếu bộ nhớ – đã giải phóng 0 MB ảnh đệm
+[08/10/2026 13:25:22][INFO] ChapterRecognition: no number detected in "[Español (Laos)] Vacaciones" (manga: "Musuko ga Kawaikute Shikataganai Mazoku no Hahaoya") – chapters of this series keep their source order
+[08/10/2026 13:25:24][ERROR] FlutterError: Bad state: No ProviderScope found
+#0      ProviderScope.containerOf (package:flutter_riverpod/src/core/provider_scope.dart:105)
+#1      ConsumerStatefulElement.read (package:flutter_riverpod/src/core/consumer.dart:512)
+#2      _MangaChapterPageGalleryState._handlePageNavigation (package:mangayomi/modules/manga/reader/reader_view.dart:993)
+#3      _MangaChapterPageGalleryState.build.<anonymous closure> (package:mangayomi/modules/manga/reader/reader_view.dart:619)
+#4      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:362)
+#5      TapGestureRecognizer.handleTapUp (package:flutter/src/gestures/tap.dart:758)
+#6      BaseTapGestureRecognizer._checkUp (package:flutter/src/gestures/tap.dart:383)
+#7      BaseTapGestureRecognizer.acceptGesture (package:flutter/src/gestures/tap.dart:353)
+#8      GestureArenaManager.sweep (package:flutter/src/gestures/arena.dart:173)
+#9      GestureArenaManager.release (package:flutter/src/gestures/arena.dart:219)
+#10     DoubleTapGestureRecognizer._reset (package:flutter/src/gestures/multitap.dart:323)
+#11     DoubleTapGestureRecognizer.dispose (package:flutter/src/gestures/multitap.dart:308)
+#12     RawGestureDetectorState.dispose (package:flutter/src/widgets/gesture_detector.dart:1529)
+#13     StatefulElement.unmount (package:flutter/src/widgets/framework.dart:6043)
+#14     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2119)
+#15     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#16     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#17     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#18     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#19     _LayoutBuilderElement.visitChildren (package:flutter/src/widgets/layout_builder.dart:159)
+#20     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#21     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#22     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#23     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#24     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#25     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#26     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#27     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#28     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#29     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#30     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#31     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#32     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#33     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#34     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#35     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#36     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#37     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#38     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#39     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#40     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#41     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#42     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#43     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#44     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#45     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#46     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#47     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#48     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#49     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#50     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#51     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#52     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#53     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#54     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#55     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#56     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#57     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#58     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#59     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#60     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#61     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#62     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#63     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#64     List.forEach (dart:core-patch/growable_array.dart:428)
+#65     SliverMultiBoxAdaptorElement.visitChildren (package:flutter/src/widgets/sliver.dart:1285)
+#66     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#67     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#68     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#69     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#70     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#71     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#72     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#73     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#74     MultiChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7236)
+#75     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#76     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#77     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#78     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#79     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#80     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#81     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#82     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#83     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#84     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#85     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#86     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#87     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#88     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#89     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#90     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#91     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#92     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#93     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#94     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#95     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#96     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#97     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#98     _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#99     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#100    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#101    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#102    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#103    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#104    _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#105    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#106    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#107    _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#108    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#109    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#110    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#111    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#112    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#113    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#114    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#115    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#116    _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#117    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#118    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#119    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#120    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#121    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#122    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#123    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#124    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#125    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#126    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#127    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#128    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#129    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#130    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#131    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#132    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#133    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#134    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#135    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#136    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#137    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#138    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#139    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#140    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#141    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#142    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#143    _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#144    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#145    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#146    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#147    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#148    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#149    _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#150    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#151    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#152    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#153    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#154    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#155    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#156    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#157    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#158    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#159    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#160    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#161    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#162    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#163    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#164    MultiChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7236)
+#165    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#166    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#167    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#168    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#169    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#170    _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#171    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#172    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#173    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#174    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#175    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#176    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#177    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#178    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#179    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#180    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#181    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#182    _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#183    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#184    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#185    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#186    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#187    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#188    _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#189    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#190    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#191    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#192    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#193    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#194    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#195    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#196    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#197    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#198    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#199    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#200    _RawViewElement.visitChildren (package:flutter/src/widgets/view.dart:581)
+#201    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#202    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#203    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#204    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#205    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#206    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#207    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#208    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#209    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#210    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#211    _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#212    ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#213    _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#214    ListIterable.forEach (dart:_internal/iterable.dart:49)
+#215    _InactiveElements._unmountAll (package:flutter/src/widgets/framework.dart:2128)
+#216    BuildOwner.lockState (package:flutter/src/widgets/framework.dart:3033)
+#217    BuildOwner.finalizeTree (package:flutter/src/widgets/framework.dart:3357)
+#218    WidgetsBinding.drawFrame (package:flutter/src/widgets/binding.dart:1578)
+#219    RendererBinding._handlePersistentFrameCallback (package:flutter/src/rendering/binding.dart:558)
+#220    SchedulerBinding._invokeFrameCallback (package:flutter/src/scheduler/binding.dart:1430)
+#221    SchedulerBinding.handleDrawFrame (package:flutter/src/scheduler/binding.dart:1345)
+#222    SchedulerBinding._handleDrawFrame (package:flutter/src/scheduler/binding.dart:1198)
+#223    _rootRun (dart:async/zone_root.dart:35)
+#224    _CustomZone.run (dart:async/zone.dart:810)
+#225    _CustomZone.runGuarded (dart:async/zone.dart:702)
+#226    _invoke (dart:ui/hooks.dart:443)
+#227    PlatformDispatcher._drawFrame (dart:ui/platform_dispatcher.dart:450)
+#228    _drawFrame (dart:ui/hooks.dart:413)
+
+[08/10/2026 13:25:24][ERROR] [Báo cáo lỗi] FlutterError @ /mangaReaderView: Bad state: No ProviderScope found
+#0      ProviderScope.containerOf (package:flutter_riverpod/src/core/provider_scope.dart:105)
+#1      ConsumerStatefulElement.read (package:flutter_riverpod/src/core/consumer.dart:512)
+#2      _MangaChapterPageGalleryState._handlePageNavigation (package:mangayomi/modules/manga/reader/reader_view.dart:993)
+#3      _MangaChapterPageGalleryState.build.<anonymous closure> (package:mangayomi/modules/manga/reader/reader_view.dart:619)
+#4      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:362)
+#5      TapGestureRecognizer.handleTapUp (package:flutter/src/gestures/tap.dart:758)
+#6      BaseTapGestureRecognizer._checkUp (package:flutter/src/gestures/tap.dart:383)
+#7      BaseTapGestureRecognizer.acceptGesture (package:flutter/src/gestures/tap.dart:353)
+#8      GestureArenaManager.sweep (package:flutter/src/gestures/arena.dart:173)
+#9      GestureArenaManager.release (package:flutter/src/gestures/arena.dart:219)
+#10     DoubleTapGestureRecognizer._reset (package:flutter/src/gestures/multitap.dart:323)
+#11     DoubleTapGestureRecognizer.dispose (package:flutter/src/gestures/multitap.dart:308)
+#12     RawGestureDetectorState.dispose (package:flutter/src/widgets/gesture_detector.dart:1529)
+#13     StatefulElement.unmount (package:flutter/src/widgets/framework.dart:6043)
+#14     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2119)
+#15     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#16     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#17     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#18     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#19     _LayoutBuilderElement.visitChildren (package:flutter/src/widgets/layout_builder.dart:159)
+#20     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+#21     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117)
+#22     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884)
+#23     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115)
+... 206 more frames

@@ -1,0 +1,1 @@
+Back 2; Back 2; TapText '^Pornhub' 6; TapText '^Short$' 20; Shot 'd2_ph'; Crash

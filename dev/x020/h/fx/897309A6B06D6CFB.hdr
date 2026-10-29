@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+Date: Wed, 07 Oct 2026 14:17:56 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+content-security-policy: style-src 'self' fonts.googleapis.com accounts.google.com 'unsafe-inline'; font-src 'self' fonts.gstatic.com data:; img-src 'self' * data: * blob: *; frame-src 'self' www.google.com accounts.google.com mc.yandex.ru mc.yandex.com www.dscgirls.live *.ageverif.com *.magsrv.com; media-src 'self' * blob: *; connect-src 'self' *; default-src 'self' *.tik.porn; script-src 'self' blob: * 'unsafe-inline' 'unsafe-eval'
+referrer-policy: strict-origin-when-cross-origin
+permissions-policy: geolocation=(self)
+x-frame-options: SAMEORIGIN
+x-content-type-options: nosniff
+x-dns-prefetch-control: on
+strict-transport-security: max-age=15552000; includeSubDomains; preload
+Cache-Control: private, max-age=3600, must-revalidate
+vary: Accept-Encoding
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+haproxy: d
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=huAhKmINDoLPiO6wtXuplZ%2Fk1p3rUriSOyF0TE5I6fVsXIO4c7TuoDyc1LEPbOu120%2BbjnVbbyY7dIFZ%2FlmbkYSxBUv8w58vHY%2FBl14v7cneA0fu1RaUa6F2TMd6Kkm5FOLYk%2Fg4"}]}
+cf-cache-status: MISS
+content-encoding: gzip
+Server: cloudflare
+CF-RAY: a46d883e78a09c56-SIN
+

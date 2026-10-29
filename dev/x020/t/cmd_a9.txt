@@ -1,0 +1,1 @@
+TapText '^Google Play Books' 3; Labels 'a9' | Select-String 'Play Books|Tab ' | Select-Object -First 12; TapText '^Ad blocking' 4; Shot 'a9_adblock'; Labels 'a9b' | Select-Object -First 30; Crash
