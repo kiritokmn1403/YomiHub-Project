@@ -37,5 +37,11 @@ void main() {
       expect(int.parse(m[3]!), 3);
       expect(TelegramProvider.partRe.hasMatch('YomiHub_2026-10-30.backup'), isFalse);
     });
+
+    test('Telegram: "connected" only with both bot token and chat id', () {
+      expect((TelegramProvider()..config = {'ok': '1'}).isConnected, isFalse);
+      expect((TelegramProvider()..config = {'ok': '1', 'token': ' ', 'chat_id': '1'}).isConnected, isFalse);
+      expect((TelegramProvider()..config = {'ok': '1', 'token': '1:a', 'chat_id': '-100'}).isConnected, isTrue);
+    });
   });
 }

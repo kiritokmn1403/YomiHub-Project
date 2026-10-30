@@ -901,8 +901,13 @@ class TelegramProvider extends CloudProvider {
   @override
   String get help =>
       tr('Tạo bot bằng @BotFather để lấy token. Nhắn /start cho bot, rồi lấy Chat ID của bạn (ví dụ qua @userinfobot). Hỗ trợ tự động sao lưu và khôi phục trực tiếp qua Telegram.');
+  // 0.4.5 (thử tải lên thật trên Xiaomi 15T, 30/10 14:25): màn hình ghi
+  // "Đã kết nối" nhưng cấu hình đã lưu chỉ còn cờ `ok` – không có Bot token /
+  // Chat ID. Mọi lần tự sao lưu đều thất bại ("Nhập đủ Bot token và Chat
+  // ID") trong khi người dùng tưởng đang sao lưu. Chỉ coi là đã kết nối khi
+  // có đủ cả hai; nếu thiếu, màn hình hiện "Chưa kết nối" và nút Kết nối.
   @override
-  bool get isConnected => config['ok'] == '1';
+  bool get isConnected => config['ok'] == '1' && _token.isNotEmpty && _chat.isNotEmpty;
 
   String get _token => (config['token'] ?? '').trim();
   String get _chat => (config['chat_id'] ?? '').trim();

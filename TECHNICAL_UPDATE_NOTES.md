@@ -1033,3 +1033,18 @@ Các mục không liệt kê giữ trạng thái của 0.4.4.
 4. Cầu nối Tor Android.
 5. Thử tải lên/khôi phục Telegram thật.
 6. Tính năng bên trong bản Windows chưa kiểm thử được.
+
+#### K. Thử sao lưu Telegram thật (30/10/2026 14:23–15:13, người dùng đồng ý)
+
+- Trên Xiaomi 15T: Sao lưu đám mây › Telegram (bot) đang ghi "**Đã kết nối**". Bấm "Tải bản sao lưu mới lên" (14:25, video `p045_telegram_upload.mp4`).
+- Kết quả: báo lỗi `Exception: Nhập đủ Bot token và Chat ID.`; Nhật ký có `[ERROR] [Đồng bộ đám mây] …` (`phone_logs_tg2.txt`).
+- **Nguyên nhân gốc lỗi sao lưu Telegram của người dùng:**
+  - Cấu hình đã lưu chỉ còn cờ `ok=1`, không có `token`/`chat_id`.
+  - `isConnected` chỉ xét cờ `ok`, nên giao diện báo đã kết nối.
+  - Mọi lần tự động sao lưu đều thất bại mà người dùng không biết.
+  - Không xác định được vì sao token biến mất: kho bảo mật chỉ còn khoá `ok`, và tên trường không đổi từ 0.1.x.
+- Sửa: `TelegramProvider.isConnected` = `ok == '1'` **và** có đủ Bot token + Chat ID. Test `yh_045` "connected only with both bot token and chat id".
+- Kiểm tra lại (15:13, `p83_tg_status_fixed.png`, `p045_telegram_status.mp4`): Telegram hiện "**Chưa kết nối**" kèm nút Kết nối.
+- Lần dựng này gặp lại lỗi Gradle `minifyReleaseWithR8 … desugar_jdk_libs_configuration-2.1.5-desugar.json` (như 0.4.4). Đã xoá thư mục transform hỏng, dựng lại mất 924 s.
+- **Còn lại cho người dùng:** nhập lại Bot token (@BotFather) và Chat ID trong Sao lưu đám mây › Telegram › Kết nối. App sẽ kiểm tra `getMe` + `getChat`, sau đó bấm "Tải bản sao lưu mới lên" (25 MB → 2 phần).
+- Chỉ APK `YomiHub-0.4.5-arm64-v8a.apk` được dựng lại với bản sửa này (15:05). Các APK khác, APK TV và gói Windows dựng lúc 13:10–13:50 vẫn hiển thị sai trạng thái "Đã kết nối" khi thiếu token; chức năng sao lưu khác không đổi. `SHA256SUMS-0.4.5.txt` đã cập nhật.
