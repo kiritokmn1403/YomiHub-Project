@@ -1133,3 +1133,25 @@ Kết quả kiểm tra:
 **Tor trên máy ảo, lần chạy cuối** (`-gpu host`, 20:16–20:18):
 - Chọn Snowflake trước rồi bật Tor. Sau ~30 s có `{"IsTor":true,"IP":"192.42.116.92"}`.
 - Dòng chẩn đoán `[VPN] Tor: UseBridges=…` và "Tor dùng cầu nối … (theo cài đặt)" là mức INFO. Mức này chỉ ghi vào `logs.txt` khi bật "Ghi nhật ký chi tiết" (từ 0.2.3). Chế độ Tự động ghi WARNING nên luôn có trong nhật ký.
+
+- Bản dựng cuối 30/10/2026 20:20–21:01 (APK 3 ABI, TV 3 ABI, Windows 3 gói) gồm mọi sửa đổi K, L, M. GitHub: commit `b60f67e`, tag `v0.4.5`.
+
+#### N. Phát hành GitHub Release v0.4.5 (30/10/2026 21:10–, theo yêu cầu "Cách 2")
+
+- Trang phát hành: https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.4.5 – tag `v0.4.5` (`b60f67e`), tiêu đề "YomiHub 0.4.5 (0.4.5+37)", đánh dấu **Latest**, mô tả là changelog `YomiHub-0.4.5-changelog.md` (thêm mục "Tệp tải về").
+- Cách làm: Chrome của người dùng (tiện ích Claude in Chrome, đã đăng nhập GitHub).
+  - Công cụ tải tệp của tiện ích chỉ nhận ≤ 10 MB mỗi lần, nên 10 tệp lớn (145–284 MB) được cắt thành 202 mảnh 9,8 MB (`split -b 9800000`, thư mục tạm `output/_chunks`), kiểm tra tổng kích thước khớp từng tệp gốc.
+  - Các mảnh được đưa vào một ô chọn tệp phụ trong trang, ghép lại thành `File` trong trình duyệt rồi gán vào ô "Attach binaries" của GitHub.
+  - GitHub tải lên tuần tự từng tệp (trạng thái `is-uploading` của `file-attachment`), nên mỗi tệp được ghép và đính kèm sau khi tệp trước xong.
+- Sự cố:
+  - Lần đầu, máy mất kết nối giữa chừng (Chrome và liên kết máy cùng ngắt); bản nháp đã lưu giữ được Setup.exe, x64.zip, full.zip.
+  - 4 tệp nhỏ (`Install-YomiHub.ps1`, changelog, `RootCA.cer`, `TECHNICAL_UPDATE_NOTES.md`) báo "Upload failed" trong bản nháp → xoá và tải lại.
+- **Kiểm tra sau khi phát hành:** tải lại cả 10 tệp lớn từ trang Release (máy chủ đám mây của phiên) và so SHA-256 với `SHA256SUMS-0.4.5.txt`: **10/10 khớp**. Đủ 16 tệp: 6 APK (3 điện thoại, 3 TV), 4 gói Windows, changelog, SHA256SUMS, RootCA.cer, Install-YomiHub.bat/.ps1, TECHNICAL_UPDATE_NOTES.md.
+- Đã xoá thư mục tạm `output/_chunks` (~1,9 GB) sau khi xác minh (người dùng cấp quyền xoá).
+
+**Còn mở sau 0.4.5:**
+1. Cửa sổ trắng trên máy Windows này (G) – lỗi trình hiển thị Flutter của máy, cần thử driver/máy khác; tính năng bên trong bản Windows chưa kiểm thử được.
+2. Khung hình chậm khi quay lại từ trang con (C4) – đã thêm tên màn hình vào log để khoanh vùng.
+3. Chạm đầu tiên đôi khi bị bỏ qua (2/≈60 lần).
+4. Luồng Tor "Tự động" chưa chạy hết trên mạng thật sự chặn Tor; obfs4 công khai không kết nối được trên mạng thử (Snowflake, meek hoạt động).
+5. Telegram: người dùng cần nhập lại Bot token và Chat ID rồi thử tải lên.
