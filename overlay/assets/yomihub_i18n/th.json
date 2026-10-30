@@ -1404,5 +1404,15 @@
   "Vượt Cloudflare bằng WebView": "ผ่าน Cloudflare ด้วย WebView",
   "{p0} tệp – thư mục \"Booru\" trong thư mục tải xuống của ứng dụng": "{p0} ไฟล์ – โฟลเดอร์ \"Booru\" ในโฟลเดอร์ดาวน์โหลดของแอป",
   "{p0} không phản hồi kịp (có thể đang chờ xác minh Cloudflare). Thử lại hoặc bấm \"Vượt Cloudflare bằng WebView\".": "{p0} ไม่ตอบสนองทันเวลา (อาจกำลังรอการตรวจสอบ Cloudflare) ลองใหม่หรือแตะ \"ผ่าน Cloudflare ด้วย WebView\"",
-  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, ส่งไปยังแอปอื่น"
+  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, ส่งไปยังแอปอื่น",
+  "Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.": "บอทไม่ได้รับอนุญาตให้โพสต์ในแชทนี้ – เลิกบล็อกบอท / ให้สิทธิ์โพสต์ในช่อง",
+  "Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.": "โทเค็นบอทไม่ถูกต้องหรือถูกเพิกถอน – ขอโทเค็นใหม่จาก @BotFather",
+  "Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong \"VPN & DNS\" rồi thử lại.": "เชื่อมต่อ api.telegram.org ไม่ได้ (มักถูกผู้ให้บริการบล็อก): เปิด Cloudflare WARP / Tor / Proxy ใน \"VPN & DNS\" แล้วลองอีกครั้ง",
+  "Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.": "ไม่พบ Chat ID – ส่ง /start ให้บอท (หรือเพิ่มบอทในกลุ่ม/ช่อง) และตรวจสอบ Chat ID",
+  "Nhập API key": "ใส่คีย์ API",
+  "Nhập đủ Bot token và Chat ID.": "กรอกโทเค็นบอทและ Chat ID ให้ครบ",
+  "Telegram giới hạn tần suất – thử lại sau ít phút.": "Telegram จำกัดความถี่ – ลองอีกครั้งในอีกไม่กี่นาที",
+  "Tệp vượt giới hạn của Telegram Bot API.": "ไฟล์เกินขีดจำกัดของ Telegram Bot API",
+  "không nhận được file_id": "ไม่ได้รับ file_id",
+  "tệp tải về không đủ dung lượng": "ไฟล์ที่ดาวน์โหลดไม่สมบูรณ์"
 }

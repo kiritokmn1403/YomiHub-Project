@@ -45,6 +45,7 @@ class _YomiSplashState extends State<YomiSplash> with TickerProviderStateMixin {
   static const _c3 = Color(0xFFFF6B9A); // pink
   late final AnimationController _c;
   bool _removed = YomiSplash._shown;
+  final GlobalKey _childKey = GlobalKey(debugLabel: 'yomi-app');
 
   @override
   void initState() {
@@ -83,11 +84,17 @@ class _YomiSplashState extends State<YomiSplash> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    if (_removed) return widget.child;
+    // 0.4.5: the tree keeps the same shape before and after the splash ends.
+    // 0.4.4 returned `widget.child` alone once the animation finished, so the
+    // whole app (library grid, 41 category tabs, providers) was unmounted and
+    // built again from zero at the 5 s mark – a second slow frame right after
+    // start (logs 2.txt 30/10 09:10:59 "Khung hình chậm: dựng 421ms, vẽ
+    // 434ms") and the library scroll/tab state was lost.
     return Stack(
       fit: StackFit.expand,
       children: [
-        widget.child,
+        KeyedSubtree(key: _childKey, child: widget.child),
+        if (!_removed)
         RepaintBoundary(
           child: AnimatedBuilder(
             animation: _c,

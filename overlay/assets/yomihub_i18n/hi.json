@@ -1404,5 +1404,15 @@
   "Vượt Cloudflare bằng WebView": "WebView से Cloudflare पार करें",
   "{p0} tệp – thư mục \"Booru\" trong thư mục tải xuống của ứng dụng": "{p0} फ़ाइलें – ऐप के डाउनलोड फ़ोल्डर में \"Booru\" फ़ोल्डर",
   "{p0} không phản hồi kịp (có thể đang chờ xác minh Cloudflare). Thử lại hoặc bấm \"Vượt Cloudflare bằng WebView\".": "{p0} ने समय पर जवाब नहीं दिया (शायद Cloudflare जाँच की प्रतीक्षा है)। फिर कोशिश करें या \"WebView से Cloudflare पार करें\" दबाएँ।",
-  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, दूसरे ऐप को भेजें"
+  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, दूसरे ऐप को भेजें",
+  "Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.": "बॉट को इस चैट में पोस्ट करने की अनुमति नहीं है – बॉट को अनब्लॉक करें / चैनल में पोस्ट करने की अनुमति दें।",
+  "Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.": "बॉट टोकन गलत है या रद्द कर दिया गया है – @BotFather से टोकन फिर से लें।",
+  "Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong \"VPN & DNS\" rồi thử lại.": "api.telegram.org से कनेक्ट नहीं हो सका (अक्सर नेटवर्क प्रदाता द्वारा ब्लॉक): \"VPN & DNS\" में Cloudflare WARP / Tor / Proxy चालू करें और फिर से प्रयास करें।",
+  "Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.": "Chat ID नहीं मिला – बॉट को /start भेजें (या बॉट को समूह/चैनल में जोड़ें) और Chat ID जाँचें।",
+  "Nhập API key": "API कुंजी दर्ज करें",
+  "Nhập đủ Bot token và Chat ID.": "बॉट टोकन और Chat ID दोनों दर्ज करें।",
+  "Telegram giới hạn tần suất – thử lại sau ít phút.": "Telegram दर सीमा – कुछ मिनट बाद फिर से प्रयास करें।",
+  "Tệp vượt giới hạn của Telegram Bot API.": "फ़ाइल Telegram Bot API की सीमा से बड़ी है।",
+  "không nhận được file_id": "file_id प्राप्त नहीं हुआ",
+  "tệp tải về không đủ dung lượng": "डाउनलोड की गई फ़ाइल अधूरी है"
 }

@@ -1,5 +1,6 @@
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/utils/log/logger.dart';
+import 'package:mangayomi/services/http/m_client.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -867,6 +868,23 @@ class MediaFireProvider extends CloudProvider {
 // ───────────────────────────── Telegram ─────────────────────────────
 
 class TelegramProvider extends CloudProvider {
+  // 0.4.5 (sheet "YomiHub Update": "Kiểm tra lỗi của tính năng sao lưu bằng
+  // Telegram"). Faults found in the 0.4.4 code:
+  //  1. Bot API limits: sendDocument accepts ≤ 50 MB and getFile only serves
+  //     files ≤ 20 MB, so any backup > 20 MB uploaded but could never be
+  //     restored ("file is too big"), > 50 MB failed outright (HTTP 413).
+  //     -> backups are sent in parts of 19 MB and joined again on restore.
+  //  2. api.telegram.org is blocked by Vietnamese ISPs: a plain http.Client
+  //     ignored "VPN & DNS" (Tor / proxy / DoH). -> MClient (same routing as
+  //     the extensions); network errors explain that a VPN is needed.
+  //  3. Error texts contained the request URL, i.e. the bot token, and were
+  //     written to the application log. -> token is masked everywhere.
+  //  4. Token / chat id were not trimmed (pasted with spaces/newlines) and the
+  //     chat id was never checked: "chat not found" only showed up at the
+  //     first backup. -> completeAuth checks getMe + getChat.
+  //  5. No timeouts: a stalled upload hung the backup forever.
+  static const partSize = 19 * 1024 * 1024;
+
   @override
   String get id => 'telegram';
   @override
@@ -886,13 +904,83 @@ class TelegramProvider extends CloudProvider {
   @override
   bool get isConnected => config['ok'] == '1';
 
+  String get _token => (config['token'] ?? '').trim();
+  String get _chat => (config['chat_id'] ?? '').trim();
+  String _api(String method) => 'https://api.telegram.org/bot$_token/$method';
+
+  http.Client get _tg => MClient.init(reqcopyWith: {'useDartHttpClient': true});
+
+  /// Removes the bot token from any text that may reach the UI or the log.
+  String _mask(Object e) => maskToken('$e', _token);
+
+  static String maskToken(String t, String token) {
+    if (token.isNotEmpty) t = t.replaceAll(token, '<token>');
+    return t.replaceAll(RegExp(r'bot\d+:[A-Za-z0-9_-]{20,}'), 'bot<token>');
+  }
+
+  /// `backup.yomihub.part02of05` – parts sort by name and carry their count.
+  static String partName(String file, int index, int count) =>
+      '$file.part${(index + 1).toString().padLeft(2, '0')}of${count.toString().padLeft(2, '0')}';
+
+  Never _fail(String what, Object e) {
+    final msg = _mask(e);
+    final l = msg.toLowerCase();
+    final net = e is SocketException ||
+        e is TimeoutException ||
+        e is http.ClientException ||
+        l.contains('connection') ||
+        l.contains('handshake') ||
+        l.contains('failed host lookup');
+    throw Exception(net
+        ? '$what: $msg – ${tr('Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong "VPN & DNS" rồi thử lại.')}'
+        : '$what: $msg');
+  }
+
+  Map<String, dynamic> _tgJson(http.Response r, String what) {
+    Map<String, dynamic>? d;
+    try {
+      d = jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>;
+    } catch (_) {}
+    if (r.statusCode == 200 && d?['ok'] == true) return d!;
+    final desc = d?['description']?.toString() ?? 'HTTP ${r.statusCode}';
+    var hint = '';
+    final l = desc.toLowerCase();
+    if (r.statusCode == 401 || l.contains('unauthorized')) {
+      hint = tr('Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.');
+    } else if (l.contains('chat not found')) {
+      hint = tr('Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.');
+    } else if (l.contains('bot was blocked') || l.contains('forbidden')) {
+      hint = tr('Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.');
+    } else if (r.statusCode == 413 || l.contains('too big') || l.contains('too large')) {
+      hint = tr('Tệp vượt giới hạn của Telegram Bot API.');
+    } else if (r.statusCode == 429) {
+      hint = tr('Telegram giới hạn tần suất – thử lại sau ít phút.');
+    }
+    throw Exception('$what: ${_mask(desc)}${hint.isEmpty ? '' : ' – $hint'}');
+  }
+
   @override
   Future<CloudAuthPrompt?> beginAuth() async => null;
 
   @override
   Future<void> completeAuth({String? pastedCode}) async {
-    final r = await _client.get(Uri.parse('https://api.telegram.org/bot${config['token']}/getMe'));
-    _json(r, 'Telegram');
+    config['token'] = _token;
+    config['chat_id'] = _chat;
+    if (_token.isEmpty || _chat.isEmpty) {
+      throw Exception(tr('Nhập đủ Bot token và Chat ID.'));
+    }
+    try {
+      _tgJson(await _tg.get(Uri.parse(_api('getMe'))).timeout(const Duration(seconds: 30)), 'Telegram getMe');
+      _tgJson(
+          await _tg
+              .get(Uri.parse('${_api('getChat')}?chat_id=${Uri.encodeQueryComponent(_chat)}'))
+              .timeout(const Duration(seconds: 30)),
+          'Telegram getChat');
+    } catch (e) {
+      config['ok'] = '0';
+      if (e is Exception && '$e'.contains('Telegram get')) rethrow;
+      _fail('Telegram', e);
+    }
     config['ok'] = '1';
   }
 
@@ -920,29 +1008,61 @@ class TelegramProvider extends CloudProvider {
     await CloudBackupService.instance.save(this);
   }
 
-  @override
-  Future<void> upload(File file) async {
-    final token = config['token'] ?? '';
-    final chatId = config['chat_id'] ?? '';
-    final fileName = p.basename(file.path);
-    final req = http.MultipartRequest(
-      'POST',
-      Uri.parse('https://api.telegram.org/bot$token/sendDocument'),
-    )
-      ..fields['chat_id'] = chatId
-      ..fields['caption'] = 'YomiHub backup ${DateTime.now().toLocal()}'
-      ..files.add(await http.MultipartFile.fromPath('document', file.path));
-    final r = await http.Response.fromStream(await _client.send(req));
-    final data = _json(r, 'Telegram upload');
-    final doc = data['result']?['document'] as Map<String, dynamic>?;
-    if (doc != null) {
-      final fileId = doc['file_id']?.toString() ?? '';
-      final size = (doc['file_size'] as num?)?.toInt() ?? await file.length();
-      if (fileId.isNotEmpty) {
-        await _addHistory(fileId, fileName, size, DateTime.now());
+  Future<Map<String, dynamic>> _sendDocument(String name, List<int> bytes, String caption) async {
+    http.MultipartRequest req() => http.MultipartRequest('POST', Uri.parse(_api('sendDocument')))
+      ..fields['chat_id'] = _chat
+      ..fields['caption'] = caption
+      ..fields['disable_notification'] = 'true'
+      ..files.add(http.MultipartFile.fromBytes('document', bytes, filename: name));
+    for (var attempt = 1;; attempt++) {
+      try {
+        final r = await http.Response.fromStream(
+            await _tg.send(req()).timeout(const Duration(minutes: 5)));
+        if (r.statusCode == 429 && attempt < 3) {
+          await Future.delayed(const Duration(seconds: 5));
+          continue;
+        }
+        return _tgJson(r, 'Telegram upload');
+      } catch (e) {
+        if ('$e'.contains('Telegram upload')) rethrow;
+        if (attempt >= 3) _fail('Telegram upload', e);
+        await Future.delayed(Duration(seconds: 3 * attempt));
       }
     }
   }
+
+  @override
+  Future<void> upload(File file) async {
+    if (_token.isEmpty || _chat.isEmpty) throw Exception(tr('Nhập đủ Bot token và Chat ID.'));
+    final fileName = p.basename(file.path);
+    final total = await file.length();
+    final stamp = DateTime.now().toLocal().toString().split('.').first;
+    if (total <= partSize) {
+      final d = await _sendDocument(fileName, await file.readAsBytes(), 'YomiHub backup $stamp');
+      final id = d['result']?['document']?['file_id']?.toString() ?? '';
+      if (id.isNotEmpty) await _addHistory(id, fileName, total, DateTime.now());
+      return;
+    }
+    final n = (total + partSize - 1) ~/ partSize;
+    final ids = <String>[];
+    final raf = await file.open();
+    try {
+      for (var i = 0; i < n; i++) {
+        await raf.setPosition(i * partSize);
+        final chunk = await raf.read(min(partSize, total - i * partSize));
+        final pn = partName(fileName, i, n);
+        final d = await _sendDocument(pn, chunk, 'YomiHub backup $stamp – ${i + 1}/$n');
+        final id = d['result']?['document']?['file_id']?.toString() ?? '';
+        if (id.isEmpty) throw Exception('Telegram upload: ${tr('không nhận được file_id')} ($pn)');
+        ids.add(id);
+      }
+    } finally {
+      await raf.close();
+    }
+    await _addHistory('parts:${ids.join(',')}', fileName, total, DateTime.now());
+  }
+
+  static final partRe = RegExp(r'^(.*)\.part(\d+)of(\d+)$');
 
   @override
   Future<List<CloudFile>> list() async {
@@ -957,49 +1077,95 @@ class TelegramProvider extends CloudProvider {
         items.add(CloudFile(id, name, size, dt));
       }
     }
+    // Files the user forwarded / sent to the bot (getUpdates keeps ~24 h;
+    // a bot never receives its own messages, so history is the main source).
     try {
-      final token = config['token'] ?? '';
-      final r = await _client.get(Uri.parse('https://api.telegram.org/bot$token/getUpdates?limit=50'));
+      final r = await _tg.get(Uri.parse('${_api('getUpdates')}?limit=100')).timeout(const Duration(seconds: 30));
       if (r.statusCode == 200) {
-        final d = jsonDecode(r.body) as Map<String, dynamic>;
-        final results = (d['result'] as List?) ?? [];
-        for (final item in results) {
+        final d = jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>;
+        final parts = <String, Map<int, Map<String, dynamic>>>{};
+        final partCount = <String, int>{};
+        for (final item in (d['result'] as List?) ?? const []) {
           final msg = item['message'] ?? item['channel_post'];
           final doc = msg?['document'] as Map<String, dynamic>?;
-          if (doc != null) {
-            final fId = doc['file_id']?.toString() ?? '';
-            final fName = doc['file_name']?.toString() ?? '';
-            final fSize = (doc['file_size'] as num?)?.toInt() ?? 0;
-            final fDate = msg?['date'] != null
-                ? DateTime.fromMillisecondsSinceEpoch((msg['date'] as num).toInt() * 1000)
-                : null;
-            if (fId.isNotEmpty && fName.contains('YomiHub') && !items.any((x) => x.id == fId)) {
-              items.add(CloudFile(fId, fName, fSize, fDate));
-            }
+          if (doc == null) continue;
+          final fId = doc['file_id']?.toString() ?? '';
+          final fName = doc['file_name']?.toString() ?? '';
+          final fSize = (doc['file_size'] as num?)?.toInt() ?? 0;
+          final fDate = msg?['date'] != null
+              ? DateTime.fromMillisecondsSinceEpoch((msg['date'] as num).toInt() * 1000)
+              : null;
+          if (fId.isEmpty || !fName.contains('YomiHub')) continue;
+          final m = partRe.firstMatch(fName);
+          if (m != null) {
+            parts.putIfAbsent(m[1]!, () => {})[int.parse(m[2]!)] = {'id': fId, 'size': fSize, 'date': fDate};
+            partCount[m[1]!] = int.parse(m[3]!);
+          } else if (!items.any((x) => x.id == fId || x.name == fName)) {
+            items.add(CloudFile(fId, fName, fSize, fDate));
           }
         }
+        parts.forEach((base, got) {
+          final n = partCount[base] ?? 0;
+          if (n == 0 || got.length != n || items.any((x) => x.name == base)) return;
+          final ordered = [for (var i = 1; i <= n; i++) got[i]];
+          if (ordered.any((e) => e == null)) return;
+          items.add(CloudFile(
+            'parts:${ordered.map((e) => e!['id']).join(',')}',
+            base,
+            ordered.fold<int>(0, (a, e) => a + (e!['size'] as int)),
+            ordered.first!['date'] as DateTime?,
+          ));
+        });
       }
     } catch (_) {}
     items.sort((a, b) => (b.modified ?? DateTime(0)).compareTo(a.modified ?? DateTime(0)));
     return items;
   }
 
+  Future<List<int>> _getFileBytes(String fileId) async {
+    try {
+      final r = await _tg
+          .get(Uri.parse('${_api('getFile')}?file_id=${Uri.encodeQueryComponent(fileId)}'))
+          .timeout(const Duration(seconds: 30));
+      final data = _tgJson(r, 'Telegram getFile');
+      final filePath = data['result']?['file_path']?.toString();
+      if (filePath == null || filePath.isEmpty) {
+        throw Exception(tr('Không tìm thấy tệp trên Telegram'));
+      }
+      final dlRes = await _tg
+          .get(Uri.parse('https://api.telegram.org/file/bot$_token/$filePath'))
+          .timeout(const Duration(minutes: 5));
+      if (dlRes.statusCode != 200) {
+        throw Exception('Telegram download: HTTP ${dlRes.statusCode}');
+      }
+      return dlRes.bodyBytes;
+    } catch (e) {
+      if ('$e'.contains('Telegram ') || '$e'.contains(tr('Không tìm thấy tệp trên Telegram'))) {
+        throw Exception(_mask(e));
+      }
+      _fail('Telegram download', e);
+    }
+  }
+
   @override
   Future<File> download(CloudFile file, Directory into) async {
-    final token = config['token'] ?? '';
-    final r = await _client.get(Uri.parse('https://api.telegram.org/bot$token/getFile?file_id=${file.id}'));
-    final data = _json(r, 'Telegram getFile');
-    final filePath = data['result']?['file_path']?.toString();
-    if (filePath == null || filePath.isEmpty) {
-      throw Exception(tr('Không tìm thấy tệp trên Telegram'));
-    }
-    final fileUrl = 'https://api.telegram.org/file/bot$token/$filePath';
-    final dlRes = await _client.get(Uri.parse(fileUrl));
-    if (dlRes.statusCode != 200) {
-      throw Exception('Telegram download: HTTP ${dlRes.statusCode}');
-    }
     final dest = File(p.join(into.path, file.name));
-    await dest.writeAsBytes(dlRes.bodyBytes);
+    final ids = file.id.startsWith('parts:') ? file.id.substring(6).split(',') : [file.id];
+    final sink = dest.openWrite();
+    try {
+      for (final id in ids) {
+        sink.add(await _getFileBytes(id));
+      }
+      await sink.flush();
+    } finally {
+      await sink.close();
+    }
+    if (file.size > 0) {
+      final got = await dest.length();
+      if (got != file.size) {
+        throw Exception('Telegram: ${tr('tệp tải về không đủ dung lượng')} ($got/${file.size} B)');
+      }
+    }
     return dest;
   }
 }

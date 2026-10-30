@@ -1404,5 +1404,15 @@
   "Vượt Cloudflare bằng WebView": "WebView로 Cloudflare 통과",
   "{p0} tệp – thư mục \"Booru\" trong thư mục tải xuống của ứng dụng": "파일 {p0}개 – 앱 다운로드 폴더의 \"Booru\" 폴더",
   "{p0} không phản hồi kịp (có thể đang chờ xác minh Cloudflare). Thử lại hoặc bấm \"Vượt Cloudflare bằng WebView\".": "{p0}이(가) 제때 응답하지 않았습니다(Cloudflare 확인 대기 중일 수 있음). 다시 시도하거나 \"WebView로 Cloudflare 통과\"를 누르세요.",
-  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, 다른 앱으로 보내기"
+  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, 다른 앱으로 보내기",
+  "Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.": "봇이 이 대화에 게시할 수 없습니다 – 봇 차단을 해제하거나 채널에서 게시 권한을 주세요.",
+  "Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.": "봇 토큰이 잘못되었거나 취소되었습니다 – @BotFather에서 토큰을 다시 받으세요.",
+  "Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong \"VPN & DNS\" rồi thử lại.": "api.telegram.org에 연결할 수 없습니다(통신사가 차단하는 경우가 많음): \"VPN & DNS\"에서 Cloudflare WARP / Tor / 프록시를 켜고 다시 시도하세요.",
+  "Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.": "Chat ID를 찾을 수 없습니다 – 봇에게 /start를 보내거나(또는 그룹/채널에 추가) Chat ID를 확인하세요.",
+  "Nhập API key": "API 키 입력",
+  "Nhập đủ Bot token và Chat ID.": "봇 토큰과 Chat ID를 모두 입력하세요.",
+  "Telegram giới hạn tần suất – thử lại sau ít phút.": "Telegram 속도 제한 – 몇 분 후 다시 시도하세요.",
+  "Tệp vượt giới hạn của Telegram Bot API.": "파일이 Telegram Bot API 한도를 초과합니다.",
+  "không nhận được file_id": "file_id를 받지 못했습니다",
+  "tệp tải về không đủ dung lượng": "다운로드한 파일이 불완전합니다"
 }

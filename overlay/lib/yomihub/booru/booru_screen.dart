@@ -48,9 +48,21 @@ void booruLog(String where, Object e, {BooruSite? site}) {
     final h = YomiExtErrors.hint(e);
     if (h != null) hint = ' – $h';
   }
+  // 0.4.5 (logs 2.txt 30/10 06:09: Rule34 "missing authentication" logged as
+  // ERROR on every open): a site that needs an API key, sits behind
+  // Cloudflare or refuses access is a configuration state, not an app fault
+  // -> WARNING, and only once per site/kind per session.
+  final expected = e is BooruException &&
+      (e.kind == BooruError.needsKey || e.kind == BooruError.cloudflare || e.kind == BooruError.blocked);
+  if (expected) {
+    final k = '${site?.id}|${e.kind.name}';
+    if (!_booruLogged.add(k)) return;
+  }
   AppLogger.log('[Booru App] $where${site == null ? '' : ' (${site.name}, ${site.host})'}: ${YomiExtErrors.short(e)}$hint',
-      logLevel: net ? LogLevel.warning : LogLevel.error);
+      logLevel: net || expected ? LogLevel.warning : LogLevel.error);
 }
+
+final Set<String> _booruLogged = <String>{};
 
 class _BooruScreenState extends ConsumerState<BooruScreen> with SingleTickerProviderStateMixin {
   final store = BooruStore.instance;
@@ -66,6 +78,7 @@ class _BooruScreenState extends ConsumerState<BooruScreen> with SingleTickerProv
   bool _hasMore = true;
   String? _error;
   bool _errorCf = false;
+  bool _errorKey = false;
   String _query = '';
   int _gen = 0;
 
@@ -120,6 +133,11 @@ class _BooruScreenState extends ConsumerState<BooruScreen> with SingleTickerProv
     final site = _site;
     setState(() => _loading = true);
     try {
+      // 0.4.5: a site that requires an API key (Rule34, Gelbooru) is not
+      // queried until a key is saved – no wasted request, no error log.
+      if (site.needsKey && store.apiKey(site.id).isEmpty) {
+        throw BooruException(site, 'missing authentication', BooruError.needsKey);
+      }
       var got = await _api.posts(site, _query, _page,
           safe: !_nsfw, login: store.login(site.id), apiKey: store.apiKey(site.id));
       if (gen != _gen) return;
@@ -139,6 +157,7 @@ class _BooruScreenState extends ConsumerState<BooruScreen> with SingleTickerProv
         // a Cloudflare challenge waiting in the background shows up as a
         // timeout: offer the WebView button for both
         _errorCf = (e is BooruException && e.kind == BooruError.cloudflare) || e is TimeoutException;
+        _errorKey = e is BooruException && e.kind == BooruError.needsKey;
       });
     } finally {
       if (gen == _gen && mounted) setState(() => _loading = false);
@@ -320,7 +339,8 @@ class _BooruScreenState extends ConsumerState<BooruScreen> with SingleTickerProv
       return const Center(child: CircularProgressIndicator());
     }
     if (_posts.isEmpty && _error != null) {
-      return _message(Icons.cloud_off_outlined, _error!, retry: true, cloudflare: _errorCf);
+      return _message(_errorKey ? Icons.key_outlined : Icons.cloud_off_outlined, _error!,
+          retry: true, cloudflare: _errorCf, needsKey: _errorKey);
     }
     if (_posts.isEmpty && !_hasMore) {
       return _message(Icons.image_search_outlined, tr('Không có kết quả'));
@@ -397,7 +417,7 @@ class _BooruScreenState extends ConsumerState<BooruScreen> with SingleTickerProv
     await _reload();
   }
 
-  Widget _message(IconData icon, String text, {bool retry = false, bool cloudflare = false}) => Center(
+  Widget _message(IconData icon, String text, {bool retry = false, bool cloudflare = false, bool needsKey = false}) => Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -414,6 +434,17 @@ class _BooruScreenState extends ConsumerState<BooruScreen> with SingleTickerProv
                 onPressed: _solveCf,
                 icon: const Icon(Icons.shield_outlined),
                 label: Text(tr('Vượt Cloudflare bằng WebView')),
+              ),
+            ],
+            if (needsKey) ...[
+              const SizedBox(height: 8),
+              OutlinedButton.icon(
+                onPressed: () async {
+                  await context.push('/booruSettings');
+                  if (mounted) _reload();
+                },
+                icon: const Icon(Icons.key_outlined),
+                label: Text(tr('Nhập API key')),
               ),
             ],
           ]),

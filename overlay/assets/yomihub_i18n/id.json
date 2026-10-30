@@ -1404,5 +1404,15 @@
   "Vượt Cloudflare bằng WebView": "Lewati Cloudflare dengan WebView",
   "{p0} tệp – thư mục \"Booru\" trong thư mục tải xuống của ứng dụng": "{p0} berkas – folder \"Booru\" di folder unduhan aplikasi",
   "{p0} không phản hồi kịp (có thể đang chờ xác minh Cloudflare). Thử lại hoặc bấm \"Vượt Cloudflare bằng WebView\".": "{p0} tidak merespons tepat waktu (mungkin menunggu verifikasi Cloudflare). Coba lagi atau ketuk \"Lewati Cloudflare dengan WebView\".",
-  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, kirim ke aplikasi lain"
+  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, kirim ke aplikasi lain",
+  "Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.": "Bot tidak diizinkan mengirim ke obrolan ini – buka blokir bot / beri izin posting di kanal.",
+  "Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.": "Token bot salah atau dicabut – ambil token lagi dari @BotFather.",
+  "Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong \"VPN & DNS\" rồi thử lại.": "Tidak dapat terhubung ke api.telegram.org (sering diblokir penyedia): aktifkan Cloudflare WARP / Tor / Proxy di \"VPN & DNS\" lalu coba lagi.",
+  "Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.": "Chat ID tidak ditemukan – kirim /start ke bot (atau tambahkan bot ke grup/kanal) dan periksa Chat ID.",
+  "Nhập API key": "Masukkan kunci API",
+  "Nhập đủ Bot token và Chat ID.": "Isi token bot dan Chat ID.",
+  "Telegram giới hạn tần suất – thử lại sau ít phút.": "Batas frekuensi Telegram – coba lagi beberapa menit lagi.",
+  "Tệp vượt giới hạn của Telegram Bot API.": "File melebihi batas Telegram Bot API.",
+  "không nhận được file_id": "tidak menerima file_id",
+  "tệp tải về không đủ dung lượng": "file yang diunduh tidak lengkap"
 }

@@ -12,6 +12,7 @@ import 'package:mangayomi/providers/storage_provider.dart';
 import 'package:mangayomi/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:mangayomi/utils/log/logger.dart';
+import 'package:mangayomi/yomihub/extensions/ext_errors.dart';
 import 'package:mangayomi/yomihub/reader/novel_translate.dart';
 part 'get_html_content.g.dart';
 
@@ -133,6 +134,21 @@ Future<(String, EpubNovel?)> getHtmlContent(
     return result;
   } catch (e) {
     keepAlive.close();
+    // 0.4.5 (Feature Check 34 – "extension fails to load content"; kiểm thử
+    // Xiaomi 15T: a novel chapter showed "TypeError: not a function at
+    // <eval>:1:8845" on screen but nothing reached the application log, so
+    // the failing source could not be identified).
+    try {
+      final src = ChapterOrigins.sourceFor(chapter);
+      final net = YomiExtErrors.isNetworkError(e);
+      final hint = YomiExtErrors.hint(e);
+      AppLogger.log(
+        '[Tiểu thuyết] Không tải được nội dung chương "${chapter.name}" '
+        '(${src?.name ?? '?'}${src?.lang == null ? '' : ' ${src!.lang}'}, truyện "${chapter.manga.value?.name}"): '
+        '${YomiExtErrors.short(e)}${hint == null ? '' : ' – $hint'}',
+        logLevel: net ? LogLevel.warning : LogLevel.error,
+      );
+    } catch (_) {}
     rethrow;
   }
 }

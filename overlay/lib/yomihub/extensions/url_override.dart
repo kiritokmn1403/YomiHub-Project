@@ -231,6 +231,9 @@ class YomiUrlOverride {
     'motphimc.my': ['https://motphimc.my', 'https://motphim.website', 'https://motchill10.io'],
     'motphim.website': ['https://motphimc.my', 'https://motphim.website', 'https://motchill10.io'],
     'motchill10.io': ['https://motphimc.my', 'https://motphim.website', 'https://motchill10.io'],
+    // 0.4.5 (sheet "Website Extension"): VTV Go also served from cache.vtvgo.vn (same API/Origin accepted)
+    'vtvgo.vn': ['https://vtvgo.vn', 'https://cache.vtvgo.vn'],
+    'cache.vtvgo.vn': ['https://vtvgo.vn', 'https://cache.vtvgo.vn'],
   };
 
   static List<String> getCustomMirrors(int? sourceId, String? host) {

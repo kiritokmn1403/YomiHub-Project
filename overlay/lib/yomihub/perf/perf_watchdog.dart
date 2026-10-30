@@ -44,6 +44,11 @@ class YomiPerf with WidgetsBindingObserver {
   /// 0.4.3: short label of the work running in the background (library
   /// update, repository refresh…) so a freeze in the log says what caused it.
   static String _lastActivity = '';
+
+  /// 0.4.5: current screen (set by MainScreen) – written with every slow
+  /// frame so a slow screen can be found from the log alone (Xiaomi 15T:
+  /// "dựng 855–1195ms" right after leaving a pushed page).
+  static String route = '';
   static void activity(String label) => _lastActivity = label;
   static void activityDone(String label) {
     if (_lastActivity == label) _lastActivity = '';
@@ -96,7 +101,8 @@ class YomiPerf with WidgetsBindingObserver {
       if (build + raster > 700 && DateTime.now().difference(_lastJankLog).inSeconds > 60) {
         _lastJankLog = DateTime.now();
         AppLogger.log(
-          '[Hiệu năng] Khung hình chậm: dựng ${build}ms, vẽ ${raster}ms',
+          '[Hiệu năng] Khung hình chậm: dựng ${build}ms, vẽ ${raster}ms'
+          '${route.isEmpty ? '' : ' • màn hình: $route'}${_lastActivity.isEmpty ? '' : ' • đang chạy: $_lastActivity'}',
           logLevel: LogLevel.info,
         );
       }

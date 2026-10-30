@@ -836,7 +836,11 @@ class YomiVpnService extends ChangeNotifier {
     }
     final apps = switch (warpMode) {
       WarpMode.app => [ownPackage],
-      WarpMode.apps => {...warpApps}.toList(),
+      // 0.4.5 (kiểm tra ngoài ứng dụng trên Xiaomi 15T: `dumpsys
+      // connectivity` → VPN Uids chỉ có 2 ứng dụng đã chọn, không có YomiHub
+      // dù màn hình ghi "YomiHub + 2 ứng dụng"). WireGuard/OpenVPN đã gồm
+      // YomiHub ở chế độ này; WARP nay cũng vậy.
+      WarpMode.apps => {ownPackage, ...warpApps}.toList(),
       WarpMode.device => <String>[],
     };
     final b = StringBuffer()

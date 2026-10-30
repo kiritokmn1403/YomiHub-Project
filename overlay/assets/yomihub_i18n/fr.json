@@ -1404,5 +1404,15 @@
   "Vượt Cloudflare bằng WebView": "Passer Cloudflare avec la WebView",
   "{p0} tệp – thư mục \"Booru\" trong thư mục tải xuống của ứng dụng": "{p0} fichiers – dossier « Booru » dans le dossier de téléchargement de l'app",
   "{p0} không phản hồi kịp (có thể đang chờ xác minh Cloudflare). Thử lại hoặc bấm \"Vượt Cloudflare bằng WebView\".": "{p0} n'a pas répondu à temps (vérification Cloudflare en attente ?). Réessayez ou touchez « Passer Cloudflare avec la WebView ».",
-  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, envoyer vers une autre application"
+  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, envoyer vers une autre application",
+  "Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.": "Le bot n'a pas le droit de publier dans cette conversation – débloquez-le / donnez-lui le droit de publier dans le canal.",
+  "Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.": "Jeton du bot incorrect ou révoqué – récupérez-le à nouveau auprès de @BotFather.",
+  "Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong \"VPN & DNS\" rồi thử lại.": "Impossible de joindre api.telegram.org (souvent bloqué par le FAI) : activez Cloudflare WARP / Tor / Proxy dans « VPN et DNS » puis réessayez.",
+  "Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.": "Chat ID introuvable – envoyez /start au bot (ou ajoutez-le au groupe/canal) et vérifiez le Chat ID.",
+  "Nhập API key": "Saisir la clé API",
+  "Nhập đủ Bot token và Chat ID.": "Saisissez le jeton du bot et le Chat ID.",
+  "Telegram giới hạn tần suất – thử lại sau ít phút.": "Limite de fréquence Telegram – réessayez dans quelques minutes.",
+  "Tệp vượt giới hạn của Telegram Bot API.": "Le fichier dépasse la limite de l'API Bot Telegram.",
+  "không nhận được file_id": "aucun file_id reçu",
+  "tệp tải về không đủ dung lượng": "fichier téléchargé incomplet"
 }

@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/perf/perf_watchdog.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
 import 'dart:async';
@@ -302,6 +303,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     final hideItems = ref.watch(hideItemsStateProvider);
     final mergeLibraryNavMobile = ref.watch(mergeLibraryNavMobileStateProvider);
     final location = ref.watch(routerCurrentLocationStateProvider);
+    YomiPerf.route = location ?? '';
 
     return ref
         .watch(migrationProvider)

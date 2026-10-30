@@ -65,3 +65,11 @@ audit-0.3.9/test-tools/
 !**/jniLibs/**/*.so
 !**/assets/mangayomi_mpv.zip
 !**/res/raw/*.mp4
+
+# ── 0.4.5 (30/10/2026): audit scratch – third-party downloads and pages ──
+/audit-0.4.5/iptproxy/
+/audit-0.4.5/_scratch/
+/audit-0.4.5/hako_repo/
+/audit-0.4.5/vtv_*.html
+# third-party source trees downloaded for reference (414 MB, not YomiHub code)
+/dev/x018/ref/

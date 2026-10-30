@@ -148,6 +148,28 @@ class JsCheerio {
         case 'remove':
           element.remove();
           break;
+        // 0.4.5 (kiểm thử Xiaomi 15T): the LNReader "Hako" plugin calls
+        // replaceWith()/has() – "TypeError: not a function" on every
+        // protected chapter. cheerio API: replaceWith/before/after take HTML.
+        case 'replaceWith':
+        case 'before':
+        case 'after':
+          final frag = parseFragment('${methodArgs.isNotEmpty ? methodArgs[0] : ''}');
+          final parentNode = element.parentNode;
+          if (parentNode == null) break;
+          final nodes = frag.nodes.toList();
+          final idx = parentNode.nodes.indexOf(element);
+          if (idx < 0) break;
+          parentNode.nodes.insertAll(method == 'after' ? idx + 1 : idx, nodes);
+          if (method == 'replaceWith') element.remove();
+          break;
+        case 'is':
+          try {
+            result = element.parent?.select(methodArgs[0])?.contains(element) ?? false;
+          } catch (_) {
+            result = false;
+          }
+          break;
         default:
           result = 'Unsupported method: $method';
       }
@@ -182,6 +204,11 @@ class Element {
   prepend(html) { this._call("prepend", [html]); return this; }
   empty() { this._call("empty"); return this; }
   remove() { this._call("remove"); return this; }
+  replaceWith(html) { this._call("replaceWith", [String(html)]); return this; }
+  before(html) { this._call("before", [String(html)]); return this; }
+  after(html) { this._call("after", [String(html)]); return this; }
+  is(selector) { return this._call("is", [selector]) === true; }
+  get length() { return 1; }
 
   children() {
     const keys = JSON.parse(this._call("children"));
@@ -305,6 +332,37 @@ class ElementCollection {
     return this;
   }
 
+  // 0.4.5: cheerio methods used by LNReader plugins (Hako: replaceWith, has)
+  replaceWith(html) {
+    this.elements.forEach(el => el.replaceWith(html));
+    return this;
+  }
+
+  before(html) {
+    this.elements.forEach(el => el.before(html));
+    return this;
+  }
+
+  after(html) {
+    this.elements.forEach(el => el.after(html));
+    return this;
+  }
+
+  has(selector) {
+    return new ElementCollection(this.elements.filter(el => {
+      try { return JSON.parse(el._call("find", [selector])).length > 0; } catch (_) { return false; }
+    }));
+  }
+
+  is(selector) {
+    return this.elements.some(el => el.is(selector));
+  }
+
+  eq(index) {
+    const i = index < 0 ? this.elements.length + index : index;
+    return new ElementCollection(this.elements[i] ? [this.elements[i]] : []);
+  }
+
   find(selector) {
     const found = this.elements.flatMap(el => {
       const keys = JSON.parse(el._call("find", [selector]));
@@ -348,7 +406,10 @@ class ElementCollection {
     return this.elements[index] || new Stub();
   }
 
-  length() {
+  // 0.4.5: cheerio's `.length` is a number. The old method made
+  // `if (sel.length)` always true (a function is truthy), so plugins
+  // took the "element exists" branch for missing elements.
+  get length() {
     return this.elements.length;
   }
 

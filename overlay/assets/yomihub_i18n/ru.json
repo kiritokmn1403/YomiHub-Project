@@ -1404,5 +1404,15 @@
   "Vượt Cloudflare bằng WebView": "Пройти Cloudflare через WebView",
   "{p0} tệp – thư mục \"Booru\" trong thư mục tải xuống của ứng dụng": "{p0} файлов – папка «Booru» в папке загрузок приложения",
   "{p0} không phản hồi kịp (có thể đang chờ xác minh Cloudflare). Thử lại hoặc bấm \"Vượt Cloudflare bằng WebView\".": "{p0} не ответил вовремя (возможно, ждёт проверки Cloudflare). Повторите или нажмите «Пройти Cloudflare через WebView».",
-  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, отправка в другое приложение"
+  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, отправка в другое приложение",
+  "Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.": "Боту запрещено писать в этот чат – разблокируйте бота / дайте ему право публикации в канале.",
+  "Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.": "Неверный или отозванный токен бота – получите токен заново у @BotFather.",
+  "Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong \"VPN & DNS\" rồi thử lại.": "Нет связи с api.telegram.org (часто блокируется провайдером): включите Cloudflare WARP / Tor / Proxy в «VPN и DNS» и повторите.",
+  "Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.": "Chat ID не найден – отправьте боту /start (или добавьте его в группу/канал) и проверьте Chat ID.",
+  "Nhập API key": "Ввести API-ключ",
+  "Nhập đủ Bot token và Chat ID.": "Укажите токен бота и Chat ID.",
+  "Telegram giới hạn tần suất – thử lại sau ít phút.": "Ограничение частоты Telegram – повторите через несколько минут.",
+  "Tệp vượt giới hạn của Telegram Bot API.": "Файл превышает лимит Telegram Bot API.",
+  "không nhận được file_id": "file_id не получен",
+  "tệp tải về không đủ dung lượng": "загруженный файл неполный"
 }

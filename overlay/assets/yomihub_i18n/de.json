@@ -1404,5 +1404,15 @@
   "Vượt Cloudflare bằng WebView": "Cloudflare per WebView lösen",
   "{p0} tệp – thư mục \"Booru\" trong thư mục tải xuống của ứng dụng": "{p0} Dateien – Ordner \"Booru\" im Download-Ordner der App",
   "{p0} không phản hồi kịp (có thể đang chờ xác minh Cloudflare). Thử lại hoặc bấm \"Vượt Cloudflare bằng WebView\".": "{p0} hat nicht rechtzeitig geantwortet (evtl. wartet eine Cloudflare-Prüfung). Erneut versuchen oder \"Cloudflare per WebView lösen\" tippen.",
-  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, an andere App senden"
+  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, an andere App senden",
+  "Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.": "Der Bot darf in diesem Chat nicht posten – Bot entsperren / ihm im Kanal Schreibrechte geben.",
+  "Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.": "Bot-Token falsch oder widerrufen – Token erneut bei @BotFather holen.",
+  "Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong \"VPN & DNS\" rồi thử lại.": "api.telegram.org nicht erreichbar (oft vom Anbieter gesperrt): Cloudflare WARP / Tor / Proxy unter \"VPN & DNS\" einschalten und erneut versuchen.",
+  "Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.": "Chat-ID nicht gefunden – dem Bot /start senden (oder ihn zur Gruppe/zum Kanal hinzufügen) und die Chat-ID prüfen.",
+  "Nhập API key": "API-Schlüssel eingeben",
+  "Nhập đủ Bot token và Chat ID.": "Bot-Token und Chat-ID eingeben.",
+  "Telegram giới hạn tần suất – thử lại sau ít phút.": "Telegram-Ratenlimit – in einigen Minuten erneut versuchen.",
+  "Tệp vượt giới hạn của Telegram Bot API.": "Die Datei überschreitet das Limit der Telegram Bot API.",
+  "không nhận được file_id": "keine file_id erhalten",
+  "tệp tải về không đủ dung lượng": "heruntergeladene Datei ist unvollständig"
 }

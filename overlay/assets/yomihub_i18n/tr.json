@@ -1404,5 +1404,15 @@
   "Vượt Cloudflare bằng WebView": "Cloudflare'i WebView ile geç",
   "{p0} tệp – thư mục \"Booru\" trong thư mục tải xuống của ứng dụng": "{p0} dosya – uygulamanın indirme klasöründeki \"Booru\" klasörü",
   "{p0} không phản hồi kịp (có thể đang chờ xác minh Cloudflare). Thử lại hoặc bấm \"Vượt Cloudflare bằng WebView\".": "{p0} zamanında yanıt vermedi (Cloudflare doğrulaması bekliyor olabilir). Tekrar deneyin veya \"Cloudflare'i WebView ile geç\"e dokunun.",
-  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, başka uygulamaya gönder"
+  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, başka uygulamaya gönder",
+  "Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.": "Bot bu sohbete gönderi yapamıyor – botun engelini kaldırın / kanalda gönderi izni verin.",
+  "Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.": "Bot token'ı yanlış veya iptal edilmiş – token'ı @BotFather'dan yeniden alın.",
+  "Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong \"VPN & DNS\" rồi thử lại.": "api.telegram.org'a bağlanılamıyor (çoğu zaman sağlayıcı engeller): \"VPN ve DNS\" içinde Cloudflare WARP / Tor / Proxy'yi açıp tekrar deneyin.",
+  "Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.": "Chat ID bulunamadı – bota /start gönderin (veya botu gruba/kanala ekleyin) ve Chat ID'yi kontrol edin.",
+  "Nhập API key": "API anahtarı girin",
+  "Nhập đủ Bot token và Chat ID.": "Bot token'ını ve Chat ID'yi girin.",
+  "Telegram giới hạn tần suất – thử lại sau ít phút.": "Telegram hız sınırı – birkaç dakika sonra tekrar deneyin.",
+  "Tệp vượt giới hạn của Telegram Bot API.": "Dosya Telegram Bot API sınırını aşıyor.",
+  "không nhận được file_id": "file_id alınamadı",
+  "tệp tải về không đủ dung lượng": "indirilen dosya eksik"
 }

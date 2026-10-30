@@ -1404,5 +1404,15 @@
   "Vượt Cloudflare bằng WebView": "用 WebView 通过 Cloudflare",
   "{p0} tệp – thư mục \"Booru\" trong thư mục tải xuống của ứng dụng": "{p0} 个文件——应用下载文件夹中的“Booru”文件夹",
   "{p0} không phản hồi kịp (có thể đang chờ xác minh Cloudflare). Thử lại hoặc bấm \"Vượt Cloudflare bằng WebView\".": "{p0} 未及时响应（可能在等待 Cloudflare 验证）。请重试或点按“用 WebView 通过 Cloudflare”。",
-  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive、OneDrive、Dropbox、WebDAV、Rclone、MediaFire、Telegram、发送到其他应用"
+  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive、OneDrive、Dropbox、WebDAV、Rclone、MediaFire、Telegram、发送到其他应用",
+  "Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.": "机器人无权在此对话中发送消息 – 请解除对机器人的屏蔽 / 在频道中授予其发帖权限。",
+  "Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.": "机器人令牌错误或已被撤销 – 请从 @BotFather 重新获取令牌。",
+  "Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong \"VPN & DNS\" rồi thử lại.": "无法连接 api.telegram.org（常被运营商屏蔽）：请在“VPN 与 DNS”中开启 Cloudflare WARP / Tor / 代理后重试。",
+  "Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.": "找不到 Chat ID – 请向机器人发送 /start（或将其加入群组/频道）并检查 Chat ID。",
+  "Nhập API key": "输入 API 密钥",
+  "Nhập đủ Bot token và Chat ID.": "请填写机器人令牌和 Chat ID。",
+  "Telegram giới hạn tần suất – thử lại sau ít phút.": "Telegram 频率限制 – 请几分钟后重试。",
+  "Tệp vượt giới hạn của Telegram Bot API.": "文件超出 Telegram Bot API 的限制。",
+  "không nhận được file_id": "未收到 file_id",
+  "tệp tải về không đủ dung lượng": "下载的文件不完整"
 }

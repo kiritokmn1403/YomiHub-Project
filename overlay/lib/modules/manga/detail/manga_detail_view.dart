@@ -85,6 +85,11 @@ class _MangaDetailViewState extends ConsumerState<MangaDetailView>
   /// detectable number — sort/dedup can't place them reliably.
   void _notifyUnrecognizedChapterNumbers() {
     if (_shownUnrecognizedNotice) return;
+    // 0.4.5 (kiểm thử Xiaomi 15T, VTVgo › VTV1): a live channel / film with a
+    // single "Trực tiếp" episode showed "1 chương không tự đánh số được … trong
+    // trình đọc". One entry cannot be out of order, and the notice speaks
+    // about chapters and the reader, so it is skipped for Film & Movie.
+    if (widget.itemType == ItemType.anime || widget.manga!.chapters.length <= 1) return;
     final count = widget.manga!.unrecognizedChapterNumberCount();
     if (count == 0) return;
     _shownUnrecognizedNotice = true;

@@ -1404,5 +1404,15 @@
   "Vượt Cloudflare bằng WebView": "تجاوز Cloudflare عبر WebView",
   "{p0} tệp – thư mục \"Booru\" trong thư mục tải xuống của ứng dụng": "{p0} ملف – مجلد \"Booru\" داخل مجلد تنزيلات التطبيق",
   "{p0} không phản hồi kịp (có thể đang chờ xác minh Cloudflare). Thử lại hoặc bấm \"Vượt Cloudflare bằng WebView\".": "لم يستجب {p0} في الوقت المناسب (ربما ينتظر تحقق Cloudflare). أعد المحاولة أو اضغط \"تجاوز Cloudflare عبر WebView\".",
-  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive، OneDrive، Dropbox، WebDAV، Rclone، MediaFire، Telegram، الإرسال إلى تطبيق آخر"
+  "Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, gửi sang ứng dụng khác": "Google Drive، OneDrive، Dropbox، WebDAV، Rclone، MediaFire، Telegram، الإرسال إلى تطبيق آخر",
+  "Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.": "لا يُسمح للبوت بالنشر في هذه المحادثة – ألغِ حظر البوت / امنحه إذن النشر في القناة.",
+  "Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.": "رمز البوت خاطئ أو أُلغي – احصل على الرمز مجددًا من @BotFather.",
+  "Không kết nối được api.telegram.org (thường bị nhà mạng chặn): bật Cloudflare WARP / Tor / Proxy trong \"VPN & DNS\" rồi thử lại.": "تعذّر الاتصال بـ api.telegram.org (غالبًا محظور من مزوّد الخدمة): فعّل Cloudflare WARP / Tor / Proxy في \"VPN و DNS\" ثم أعد المحاولة.",
+  "Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.": "لم يُعثر على Chat ID – أرسل /start إلى البوت (أو أضفه إلى المجموعة/القناة) وتحقق من Chat ID.",
+  "Nhập API key": "أدخل مفتاح API",
+  "Nhập đủ Bot token và Chat ID.": "أدخل رمز البوت و Chat ID.",
+  "Telegram giới hạn tần suất – thử lại sau ít phút.": "حدّ معدل Telegram – أعد المحاولة بعد بضع دقائق.",
+  "Tệp vượt giới hạn của Telegram Bot API.": "الملف يتجاوز حد Telegram Bot API.",
+  "không nhận được file_id": "لم يُستلم file_id",
+  "tệp tải về không đủ dung lượng": "الملف الذي تم تنزيله غير مكتمل"
 }

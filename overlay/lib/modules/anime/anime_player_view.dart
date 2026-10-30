@@ -1268,6 +1268,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   Timer? _yhStallTimer;
   StreamSubscription<bool>? _yhBufSub;
   StreamSubscription<String>? _yhErrSub;
+  bool _yhLiveStream = false;
   bool _yhSwitching = false;
 
   void _yhInitAutoSwitch() {
@@ -1301,6 +1302,13 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       if (msg.isEmpty || isAudioDecoderInitializationError(msg)) return;
       final lower = msg.toLowerCase();
       if (lower.contains('subtitle') || lower.contains('font')) return;
+      // 0.4.5: a failed seek (live stream, server without range support) is
+      // not a broken source – never switch servers or log an ERROR for it.
+      if (lower.contains('cannot seek') || lower.contains('force-seekable')) {
+        _yhLiveStream = true;
+        AppLogger.logOnce('player-noseek', '[Trình phát] Máy chủ không cho tua video: $msg', logLevel: LogLevel.info);
+        return;
+      }
       AppLogger.log(
         "[Trình phát] Lỗi video không tải được: $msg",
         logLevel: LogLevel.error,
@@ -1371,6 +1379,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     // open() can emit zero positions before its future completes.
     _initialResumeTarget = start;
     _hasResumeTargetCompleted = start <= Duration.zero;
+    _yhLiveStream = false;
     _mediaOpenStarted = true;
     _resetAudioFallbackState(resetRequestedLanguage: true);
     _nativeTracks.clearTracks();
@@ -1390,10 +1399,26 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     if (!mounted) return;
     if (start > Duration.zero) {
       bool hasSeeked = false;
-      void doSeek([bool force = false]) {
+      Future<void> doSeek([bool force = false]) async {
         if (!force && hasSeeked) return;
         if (!mounted) return;
         hasSeeked = true;
+        // 0.4.5 (kiểm thử Xiaomi 15T, VTVgo › VTV1): a live HLS channel is not
+        // seekable; restoring "46s" made mpv report "Cannot seek in this
+        // stream", which was logged as ERROR and switched servers 4 times.
+        try {
+          final seekable = await (_player.platform as NativePlayer).getProperty('seekable');
+          if (seekable == 'no') {
+            _yhLiveStream = true;
+            _initialResumeTarget = Duration.zero;
+            _hasResumeTargetCompleted = true;
+            AppLogger.logOnce('player-live',
+                '[Trình phát] Luồng trực tiếp (không tua được) – bỏ qua vị trí đã lưu ${start.inSeconds}s',
+                logLevel: LogLevel.info);
+            return;
+          }
+        } catch (_) {}
+        if (!mounted) return;
         unawaited(
           _player.seek(start).catchError((Object error) {
             AppLogger.log(
@@ -1999,6 +2024,14 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
 
   void _setCurrentPosition(bool save, {bool saveWatchTime = false}) {
     if (!_mediaOpenStarted) return;
+    // 0.4.5: a live channel has no position to resume – only the watch time
+    // is recorded (a stored "46s" made the next open try to seek a live stream).
+    if (_yhLiveStream) {
+      _streamController.setHistoryUpdate(
+        elapsedSeconds: saveWatchTime ? _watchStopwatch.elapsed.inSeconds : 0,
+      );
+      return;
+    }
     if (!_hasResumeTargetCompleted && _initialResumeTarget > Duration.zero) {
       if (_currentPosition.value <
           _initialResumeTarget - const Duration(seconds: 3)) {
