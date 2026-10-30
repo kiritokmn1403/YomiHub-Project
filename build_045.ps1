@@ -54,6 +54,13 @@ try {
     Copy-Item "$abld\build\app\outputs\flutter-apk\app-release.apk" "$out\probe23-x86_64.apk" -Force
     Pop-Location
   }
+  if ($step -eq 'apkx64') {
+    Push-Location $abld
+    Run 'flutter.bat' @('build','apk','--no-pub','--release','--split-per-abi','--target-platform','android-x64','--split-debug-info',"$YH\symbols") 'b045_apkx64.txt'
+    $f = "$abld\build\app\outputs\flutter-apk\app-x86_64-release.apk"
+    if (Test-Path $f) { Copy-Item $f "$out\YomiHub-$ver-x86_64.apk" -Force; Say ("APK: YomiHub-$ver-x86_64.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
+    Pop-Location
+  }
   if ($step -eq 'apk64') {
     Push-Location $abld
     Run 'flutter.bat' @('build','apk','--no-pub','--release','--split-per-abi','--target-platform','android-arm64','--split-debug-info',"$YH\symbols") 'b045_apk64.txt'

@@ -176,16 +176,69 @@ class YomiVpnService extends ChangeNotifier {
 
   static bool get isWindows => Platform.isWindows;
 
-  /// Windows: Tor bridge ('' none, 'snowflake', 'obfs4', 'meek').
+  /// Tor bridge ('' none, 'snowflake', 'obfs4', 'meek'; Android also 'auto').
+  /// 0.4.5: Android too – lyrebird from the Tor Expert Bundle 16.0 runs as
+  /// `liblyrebird.so`; 'auto' (default) starts direct and switches to
+  /// snowflake → obfs4 → meek when bootstrap stalls (network blocks Tor).
   String get torBridge => WinVpnBackend.instance.torBridge;
+
+  /// Transport tor actually uses now (Android, '' = direct).
+  String torBridgeActive = '';
+
   Future<void> setTorBridge(String v) async {
     WinVpnBackend.instance.torBridge = v;
     await _put('torBridge', v);
-    if (YomiVpnState.torEnabled) {
+    if (Platform.isAndroid) {
+      // applied live over the control port – no restart
+      await _sendTorBridges();
+      if (YomiVpnState.torEnabled) unawaited(_logTorPath(const Duration(seconds: 120)));
+    } else if (YomiVpnState.torEnabled) {
       await stopTor();
       await startTor();
     }
     notifyListeners();
+  }
+
+  Map<String, List<String>>? _ptBridges;
+
+  /// 0.4.5: writes which path tor really uses (bridge fingerprint / relay)
+  /// to the application log – the bridge setting can be verified from there.
+  Future<void> _logTorPath([Duration wait = Duration.zero]) async {
+    if (!Platform.isAndroid) return;
+    for (var i = 0; i <= wait.inSeconds ~/ 5; i++) {
+      if (i > 0) await Future.delayed(const Duration(seconds: 5));
+      try {
+        final m = Map<String, dynamic>.from(await _channel.invokeMethod('torDiag') as Map);
+        final hop = '${m['firstHop'] ?? ''}';
+        if (hop.isEmpty && i < wait.inSeconds ~/ 5) continue;
+        AppLogger.log(
+          '[VPN] Tor: UseBridges=${m['useBridges']} (${m['bridges']} cầu nối, kiểu "${m['applied']}"), '
+          'nút vào mạch hiện tại $hop, ${'${m['bootstrap']}'.replaceAll(RegExp(r'^NOTICE BOOTSTRAP '), '')}',
+          logLevel: LogLevel.info,
+        );
+        return;
+      } catch (e) {
+        if (i >= wait.inSeconds ~/ 5) {
+          AppLogger.log('[VPN] Không đọc được trạng thái mạch Tor: $e', logLevel: LogLevel.info);
+        }
+      }
+    }
+  }
+
+  Future<void> _sendTorBridges() async {
+    if (!Platform.isAndroid) return;
+    try {
+      if (_ptBridges == null) {
+        final j = jsonDecode(await rootBundle.loadString('assets/yomihub_vpn/tor_pt_config.json')) as Map;
+        _ptBridges = {
+          for (final e in ((j['bridges'] as Map?) ?? const {}).entries)
+            '${e.key}'.replaceAll('-azure', ''): [for (final l in e.value as List) '$l'],
+        };
+      }
+      await _channel.invokeMethod('torBridges', {'mode': torBridge, 'lines': _ptBridges});
+    } catch (e) {
+      AppLogger.log('[VPN] Không nạp được danh sách cầu nối Tor: $e', logLevel: LogLevel.warning);
+    }
   }
 
   /// Completes once the saved VPN settings are loaded (services may still be
@@ -283,6 +336,9 @@ class YomiVpnService extends ChangeNotifier {
     warpEnabled = b.get('warpEnabled', defaultValue: false);
     warpMode = WarpMode.values[(b.get('warpMode', defaultValue: 0) as int).clamp(0, 2)];
     warpApps = (b.get('warpApps', defaultValue: <dynamic>[]) as List).cast<String>();
+    if (Platform.isAndroid) {
+      WinVpnBackend.instance.torBridge = b.get('torBridge', defaultValue: 'auto') as String;
+    }
     if (Platform.isWindows) {
       // "chosen apps" needs Android's per-app VPN; Windows has app / device.
       if (warpMode == WarpMode.apps) warpMode = WarpMode.app;
@@ -309,6 +365,18 @@ class YomiVpnService extends ChangeNotifier {
             unawaited(_onTorLateOn());
           }
           notifyListeners();
+        case 'torBridge':
+          torBridgeActive = '${call.arguments}';
+          // fixed mode = chosen by the user; "auto" = tor was blocked
+          AppLogger.log(
+              torBridge == 'auto'
+                  ? '[VPN] Tor chưa kết nối trực tiếp được – tự chuyển sang cầu nối "$torBridgeActive"'
+                  : '[VPN] Tor dùng cầu nối "$torBridgeActive" (theo cài đặt)',
+              logLevel: torBridge == 'auto' ? LogLevel.warning : LogLevel.info);
+          notifyListeners();
+          unawaited(_logTorPath(const Duration(seconds: 90)));
+        case 'torBridgeError':
+          AppLogger.log('[VPN] Không áp dụng được cầu nối Tor: ${call.arguments}', logLevel: LogLevel.warning);
         case 'warpState':
           warpUp = call.arguments as bool;
           notifyListeners();
@@ -372,6 +440,7 @@ class YomiVpnService extends ChangeNotifier {
     } catch (e) {
       AppLogger.log('[VPN] Tor báo đã kết nối nhưng không đọc được cổng proxy: $e', logLevel: LogLevel.error);
     }
+    unawaited(_logTorPath(const Duration(seconds: 30)));
   }
 
   /// 0.4.3: marks a Tor start in progress (Android). Cleared once the app has
@@ -437,6 +506,7 @@ class YomiVpnService extends ChangeNotifier {
     }
     await _writeTorrc();
     await _armTorGuard();
+    await _sendTorBridges();
     try {
       final info = Map<String, dynamic>.from(await _channel.invokeMethod('torStart') as Map);
       YomiVpnState.torHttpPort = (info['httpPort'] as num?)?.toInt() ?? 0;
@@ -452,8 +522,11 @@ class YomiVpnService extends ChangeNotifier {
           ? null
           : (pct == null
               ? tr('Tor chưa kết nối được (có thể mạng đang chặn Tor).')
-              : tr('Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – Tor vẫn tiếp tục thử ở nền; nếu mạng chặn Tor hãy dùng WARP.',
-                  {'p0': pct, 'p1': sum == null ? '' : ': $sum'}));
+              : (Platform.isAndroid && torBridge.isNotEmpty
+                  ? tr('Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – YomiHub đang thử cầu nối (Snowflake/obfs4/meek) ở nền và sẽ tự dùng Tor khi kết nối xong.',
+                      {'p0': pct, 'p1': sum == null ? '' : ': $sum'})
+                  : tr('Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – Tor vẫn tiếp tục thử ở nền; nếu mạng chặn Tor hãy dùng WARP.',
+                      {'p0': pct, 'p1': sum == null ? '' : ': $sum'})));
     } catch (e) {
       lastError = e is PlatformException ? (e.message ?? e.code) : '$e';
       torStatus = 'OFF';
@@ -463,6 +536,7 @@ class YomiVpnService extends ChangeNotifier {
     await _applyBrowserProxy();
     await _applyTorVpn();
     notifyListeners();
+    if (YomiVpnState.torRunning) unawaited(_logTorPath());
   }
 
   /// 0.1.6: Tor for other apps / the whole device, following the outside

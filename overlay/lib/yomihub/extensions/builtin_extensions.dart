@@ -149,7 +149,7 @@ class BuiltinExtensions {
       asset: 'pornhub.js',
       baseUrl: 'https://www.pornhub.com',
       itemType: ItemType.anime,
-      version: '0.2.0',
+      version: '0.2.1',
       nsfw: true,
       lang: 'all',
       shorts: true,

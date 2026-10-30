@@ -65,3 +65,14 @@ function EnsureApp {
 function Tap($x,$y) { EnsureApp; A shell input tap $x $y | Out-Null; Start-Sleep -Milliseconds 900 }
 function Key($k) { EnsureApp; A shell input keyevent $k | Out-Null; Start-Sleep -Milliseconds 700 }
 function Swipe($x1,$y1,$x2,$y2,$ms=300) { EnsureApp; A shell input swipe $x1 $y1 $x2 $y2 $ms | Out-Null; Start-Sleep -Milliseconds 900 }
+
+# 0.4.5: tap node whose text/desc starts with $prefix; $xr = relative x (0..1) inside its bounds
+function TapNode($prefix, $xr = 0.5) {
+  A shell uiautomator dump /data/local/tmp/ui.xml | Out-Null; A pull /data/local/tmp/ui.xml "$QA\_ft.xml" | Out-Null
+  [xml]$x = Get-Content "$QA\_ft.xml" -Encoding UTF8
+  $nd = $x.SelectNodes("//node") | Where-Object { ($_.text -and $_.text.StartsWith($prefix)) -or ($_.'content-desc' -and $_.'content-desc'.StartsWith($prefix)) } | Select-Object -First 1
+  if (-not $nd) { return "NOT FOUND: $prefix" }
+  $m = [regex]::Matches($nd.bounds, '\d+'); $x1=[int]$m[0].Value; $x2=[int]$m[2].Value
+  $cx = $x1 + ($x2-$x1)*$xr; $cy = ([int]$m[1].Value + [int]$m[3].Value)/2
+  Tap $cx $cy; "tapnode '$prefix' @ $cx,$cy"
+}

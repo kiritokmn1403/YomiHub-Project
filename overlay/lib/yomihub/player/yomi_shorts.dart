@@ -94,6 +94,12 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
     for (var i = 0; i < 2; i++) {
       final p = Player(configuration: const PlayerConfiguration(bufferSize: 16 * 1024 * 1024));
       p.setPlaylistMode(PlaylistMode.single);
+      // 0.4.5: playback errors of a short (HLS 403/410, timeout) are logged
+      p.stream.error.listen((e) {
+        if (e.trim().isEmpty) return;
+        AppLogger.logOnce('shorts-err:${widget.source.id}:$e', 'Shorts ${widget.source.name}: lỗi phát video: $e',
+            logLevel: LogLevel.warning);
+      });
       _players.add(p);
       _controllers.add(VideoController(p));
     }
@@ -187,6 +193,16 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
         return;
       }
     } catch (e) {
+      // 0.4.5: the feed opens on a random page 1–3; a source whose later pages
+      // depend on a session (Pornhub Shorties token) can fail there – start
+      // over from page 1 once before showing an error.
+      if (_clips.isEmpty && _page > 1 && !_retriedFirst) {
+        _retriedFirst = true;
+        _page = 1;
+        _loading = false;
+        await _more();
+        return;
+      }
       // 0.4.4: network / proxy failures are a warning without the stack dump
       final net = YomiExtErrors.isNetworkError(e);
       final h = net ? YomiExtErrors.hint(e) : null;
@@ -204,7 +220,15 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
     if (v.isEmpty) return null;
     int q(vid.Video x) => int.tryParse(RegExp(r'(\d{3,4})p').firstMatch(x.quality)?.group(1) ?? '') ?? 0;
     final muxed = v.where((x) => x.quality.contains('có tiếng') || x.url.contains('.m3u8') || x.url.contains('yh_hls')).toList();
-    if (muxed.isNotEmpty) return muxed.first;
+    if (muxed.isNotEmpty) {
+      // 0.4.5 (Pornhub Shorties, kiểm thử máy ảo 30/10): sources list their
+      // HLS variants best-first, so a short always opened at 1080p and stalled
+      // on a slow CDN. Short clips use the best variant ≤ 720p.
+      final ok = muxed.where((x) => q(x) > 0 && q(x) <= 720).toList()..sort((a, b) => q(b).compareTo(q(a)));
+      if (ok.isNotEmpty) return ok.first;
+      final known = muxed.where((x) => q(x) > 0).toList()..sort((a, b) => q(a).compareTo(q(b)));
+      return known.isNotEmpty ? known.first : muxed.first;
+    }
     final fit = v.where((x) => q(x) > 0 && q(x) <= 720).toList()..sort((a, b) => q(b).compareTo(q(a)));
     return fit.isNotEmpty ? fit.first : v.first;
   }
@@ -223,6 +247,12 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
       if (c.video == null) c.error = tr('Không có luồng phát');
     } catch (e) {
       c.error = '$e';
+    }
+    // 0.4.5 (Feature Check 34): a clip that cannot be played goes to the log
+    if (c.error != null) {
+      final net = YomiExtErrors.isNetworkError(c.error!);
+      AppLogger.log('Shorts ${widget.source.name}: không phát được "${c.item.name}": ${YomiExtErrors.short(c.error!)}',
+          logLevel: net ? LogLevel.warning : LogLevel.error);
     }
     return c.video;
   }

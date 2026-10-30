@@ -1414,5 +1414,8 @@
   "Telegram giới hạn tần suất – thử lại sau ít phút.": "Telegram จำกัดความถี่ – ลองอีกครั้งในอีกไม่กี่นาที",
   "Tệp vượt giới hạn của Telegram Bot API.": "ไฟล์เกินขีดจำกัดของ Telegram Bot API",
   "không nhận được file_id": "ไม่ได้รับ file_id",
-  "tệp tải về không đủ dung lượng": "ไฟล์ที่ดาวน์โหลดไม่สมบูรณ์"
+  "tệp tải về không đủ dung lượng": "ไฟล์ที่ดาวน์โหลดไม่สมบูรณ์",
+  "Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – YomiHub đang thử cầu nối (Snowflake/obfs4/meek) ở nền và sẽ tự dùng Tor khi kết nối xong.": "Tor เชื่อมต่อไม่ได้ภายใน 90 วินาที (หยุดที่ {p0}%{p1}) – YomiHub กำลังลองบริดจ์ (Snowflake/obfs4/meek) อยู่เบื้องหลัง และจะใช้ Tor ทันทีที่เชื่อมต่อได้",
+  "Tự động: kết nối thẳng, nếu bị chặn thì thử Snowflake → obfs4 → meek": "อัตโนมัติ: เชื่อมต่อโดยตรง หากถูกบล็อกจะลอง Snowflake → obfs4 → meek",
+  "đang dùng: {p0}": "กำลังใช้: {p0}"
 }

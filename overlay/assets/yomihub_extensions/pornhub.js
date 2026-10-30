@@ -57,7 +57,13 @@ class DefaultExtension extends MProvider {
     const ck = "accessAgeDisclaimerPH=1; accessAgeDisclaimerUK=1; age_verified=1";
     let st = {};
     try { st = JSON.parse(yhJarGet("yh_ph_short_state") || "{}"); } catch (e) {}
-    if (page <= 1 || !st.token) {
+    // 0.4.5: the page token expires (it starts with a unix time). Short Video
+    // opens the feed on a random page 1–3, so a token saved yesterday was
+    // reused: /shorties/get answered 403 "Down for Maintenance" (HTML) and the
+    // feed failed with "Pornhub Shorties: HTTP 403". A token older than 15
+    // minutes, or one the API rejects, is now fetched again.
+    const stale = !st.ts || (Date.now() - st.ts) > 15 * 60 * 1000;
+    if (page <= 1 || !st.token || stale) {
       const res = await this.client.get(base + "/shorties", { "User-Agent": YH_UA, "Cookie": ck, "Referer": base + "/" });
       const html = res.body || "";
       const jar = yhJarMerge("yh_ph_short_jar", res, ck);
@@ -65,6 +71,7 @@ class DefaultExtension extends MProvider {
         token: (html.match(/var token = "([^"]+)"/) || [])[1] || "",
         seed: (html.match(/ddSeed = (\d+)/) || [])[1] || "",
         next: +((html.match(/ddOffset = (\d+)/) || [])[1] || 10),
+        ts: Date.now(),
       };
       new SharedPreferences().setString("yh_ph_short_state", JSON.stringify(st));
       const list = [];
@@ -87,7 +94,15 @@ class DefaultExtension extends MProvider {
       if (!list.length) throw new Error("Pornhub Shorties không trả về video (trang bị chặn? bật DoH hoặc VPN).");
       return { list, hasNextPage: !!st.token };
     }
-    return await this.shortiesApi(st, yhJarGet("yh_ph_short_jar"));
+    try {
+      return await this.shortiesApi(st, yhJarGet("yh_ph_short_jar"));
+    } catch (e) {
+      // token rejected → start a new session once
+      if (!/HTTP 40[13]|HTML/.test("" + e)) throw e;
+      st.ts = 0;
+      new SharedPreferences().setString("yh_ph_short_state", JSON.stringify(st));
+      return await this.shorties(1);
+    }
   }
   async shortiesApi(st, jar) {
     const base = this.base();
@@ -97,7 +112,9 @@ class DefaultExtension extends MProvider {
       "X-Requested-With": "XMLHttpRequest", "Accept": "application/json",
     });
     let j = {};
-    try { j = JSON.parse(res.body); } catch (e) { throw new Error("Pornhub Shorties: HTTP " + res.statusCode); }
+    const body = (res.body || "").trim();
+    if (res.statusCode >= 400 || body.startsWith("<")) throw new Error("Pornhub Shorties: HTTP " + res.statusCode + (body.startsWith("<") ? " (HTML)" : ""));
+    try { j = JSON.parse(body); } catch (e) { throw new Error("Pornhub Shorties: HTTP " + res.statusCode); }
     const vids = j.videos || [];
     st.next = (+j.offset || st.next) + Math.max(vids.length, 5);
     new SharedPreferences().setString("yh_ph_short_state", JSON.stringify(st));

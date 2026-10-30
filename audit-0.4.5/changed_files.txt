@@ -31,3 +31,12 @@ lib/modules/main_view/main_screen.dart
 lib/services/get_html_content.dart
 lib/eval/lnreader/js_cheerio.dart
 lib/yomihub/vpn/vpn_service.dart
+android/app/src/main/kotlin/com/kodjodevf/mangayomi/YomiVpn.kt
+lib/yomihub/vpn/vpn_screen.dart
+assets/yomihub_vpn/tor_pt_config.json
+android/app/src/main/jniLibs/arm64-v8a/liblyrebird.so
+android/app/src/main/jniLibs/armeabi-v7a/liblyrebird.so
+android/app/src/main/jniLibs/x86_64/liblyrebird.so
+assets/yomihub_extensions/pornhub.js
+lib/yomihub/extensions/builtin_extensions.dart
+lib/yomihub/player/yomi_shorts.dart

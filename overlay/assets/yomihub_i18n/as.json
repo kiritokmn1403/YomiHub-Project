@@ -1414,5 +1414,8 @@
   "Telegram giới hạn tần suất – thử lại sau ít phút.": "Telegram হাৰ সীমা – কেইমিনিটমান পিছত পুনৰ চেষ্টা কৰক।",
   "Tệp vượt giới hạn của Telegram Bot API.": "ফাইলটো Telegram Bot API ৰ সীমাতকৈ ডাঙৰ।",
   "không nhận được file_id": "file_id পোৱা নগ'ল",
-  "tệp tải về không đủ dung lượng": "ডাউনল'ড কৰা ফাইল অসম্পূৰ্ণ"
+  "tệp tải về không đủ dung lượng": "ডাউনল'ড কৰা ফাইল অসম্পূৰ্ণ",
+  "Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – YomiHub đang thử cầu nối (Snowflake/obfs4/meek) ở nền và sẽ tự dùng Tor khi kết nối xong.": "৯০ ছেকেণ্ডত Tor সংযোগ নহ'ল ({p0}%{p1} ত ৰ'ল) – YomiHub এ পটভূমিত ব্ৰিজ (Snowflake/obfs4/meek) চেষ্টা কৰি আছে আৰু সংযোগ হোৱাৰ লগে লগে Tor ব্যৱহাৰ কৰিব।",
+  "Tự động: kết nối thẳng, nếu bị chặn thì thử Snowflake → obfs4 → meek": "স্বয়ংক্ৰিয়: পোনপটীয়াকৈ সংযোগ; অৱৰোধ হ'লে Snowflake → obfs4 → meek চেষ্টা",
+  "đang dùng: {p0}": "ব্যৱহাৰত: {p0}"
 }

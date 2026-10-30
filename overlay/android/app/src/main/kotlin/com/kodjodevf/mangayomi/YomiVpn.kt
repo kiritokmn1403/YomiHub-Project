@@ -78,6 +78,7 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
     private val torConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             torService = (service as? TorService.LocalBinder)?.service
+            if (bridgeMode.isNotEmpty() || bridgeApplied.isNotEmpty()) startBridgeWatcher()
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
@@ -96,6 +97,30 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
                     torStop(); result.success(true)
                 }
                 "torStatus" -> result.success(torInfo())
+                "torDiag" -> io.execute {
+                    // 0.4.5: proof of the path tor really uses (bridge or relay)
+                    val c = torService?.torControlConnection
+                    val m = try {
+                        val built = (c?.getInfo("circuit-status") ?: "").lines().firstOrNull { it.contains(" BUILT ") } ?: ""
+                        mapOf(
+                            "useBridges" to (c?.getConf("UseBridges")?.firstOrNull()?.value ?: ""),
+                            "bridges" to (c?.getConf("Bridge")?.size ?: 0),
+                            "firstHop" to (built.split(" ").getOrNull(2)?.split(",")?.firstOrNull() ?: ""),
+                            "bootstrap" to (c?.getInfo("status/bootstrap-phase") ?: ""),
+                            "applied" to bridgeApplied,
+                        )
+                    } catch (e: Exception) { mapOf("error" to "${e.message}") }
+                    main.post { result.success(m) }
+                }
+                "torBridges" -> {
+                    // 0.4.5: bridge mode + bridge lines (pt_config.json of the Tor
+                    // Expert Bundle, sent by Dart). Applied live over the control port.
+                    bridgeMode = call.argument<String>("mode") ?: ""
+                    @Suppress("UNCHECKED_CAST")
+                    bridgeLines = (call.argument<Map<String, List<String>>>("lines") ?: emptyMap())
+                    if (torService != null && !torDormant) startBridgeWatcher()
+                    result.success(true)
+                }
                 "jvmProxy" -> {
                     setJvmProxy(call.argument<String>("url") ?: ""); result.success(true)
                 }
@@ -210,8 +235,97 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
         "socksPort" to (torService?.socksPort ?: 0),
         "httpPort" to (torService?.httpTunnelPort ?: 0),
         // 0.4.4: last bootstrap phase, shown when tor is slow / blocked
-        "bootstrap" to (if (torStatus == TorService.STATUS_ON) "" else torBoot)
+        "bootstrap" to (if (torStatus == TorService.STATUS_ON) "" else torBoot),
+        // 0.4.5: pluggable transport in use ("" = direct)
+        "bridge" to bridgeApplied
     )
+
+    // ───────────── 0.4.5: Tor bridges (lyrebird) ─────────────
+    // 30/10/2026 Xiaomi 15T: tor stopped at 50 % "Loading relay descriptors"
+    // for > 5 min – the network blocks Tor relays. tor-android has no
+    // pluggable transports; IPtProxy cannot be bundled (its gomobile
+    // libgojni.so clashes with libmtorrentserver). The Tor Expert Bundle 16.0
+    // for Android ships `lyrebird` as a standalone PIE executable: it is
+    // packaged as jniLibs/<abi>/liblyrebird.so (extracted, useLegacyPackaging)
+    // and tor starts it itself through ClientTransportPlugin … exec.
+    @Volatile private var bridgeMode = "auto"
+    @Volatile private var bridgeLines: Map<String, List<String>> = emptyMap()
+    @Volatile private var bridgeApplied = ""
+    @Volatile private var bridgeWatcher: Thread? = null
+
+    private fun lyrebird(): java.io.File = java.io.File(ctx.applicationInfo.nativeLibraryDir, "liblyrebird.so")
+
+    private fun applyBridge(kind: String): Boolean {
+        val c = torService?.torControlConnection ?: return false
+        return try {
+            if (kind.isEmpty()) {
+                if (bridgeApplied.isNotEmpty()) c.setConf("UseBridges", "0")
+                bridgeApplied = ""
+                true
+            } else {
+                val lines = bridgeLines[kind].orEmpty()
+                val lyre = lyrebird()
+                if (lines.isEmpty() || !lyre.exists()) return false
+                val conf = mutableListOf(
+                    "ClientTransportPlugin meek_lite,obfs2,obfs3,obfs4,scramblesuit,webtunnel,snowflake exec ${lyre.absolutePath}",
+                )
+                lines.forEach { conf.add("Bridge $it") }
+                conf.add("UseBridges 1")
+                c.setConf(conf)
+                bridgeApplied = kind
+                main.post { channel.invokeMethod("torBridge", kind) }
+                true
+            }
+        } catch (e: Exception) {
+            main.post { channel.invokeMethod("torBridgeError", "$kind: ${e.message}") }
+            false
+        }
+    }
+
+    private fun bootPercent(): Int = try {
+        val p = torService?.torControlConnection?.getInfo("status/bootstrap-phase") ?: ""
+        torBoot = p
+        Regex("PROGRESS=(\\d+)").find(p)?.groupValues?.get(1)?.toInt() ?: 0
+    } catch (_: Exception) { 0 }
+
+    /** Fixed mode: apply as soon as the control port is up. "auto": start
+     *  direct; when bootstrap stalls, try snowflake → obfs4 → meek. */
+    private fun startBridgeWatcher() {
+        bridgeWatcher?.interrupt()
+        val t = Thread {
+            try {
+                var waited = 0
+                while (torService?.torControlConnection == null && waited < 60) { Thread.sleep(1000); waited++ }
+                val mode = bridgeMode
+                if (mode != "auto") {
+                    if (mode != bridgeApplied) applyBridge(mode)
+                    return@Thread
+                }
+                val order = listOf("", "snowflake", "obfs4", "meek")
+                var idx = maxOf(0, order.indexOf(bridgeApplied))
+                var best = bootPercent(); var since = System.currentTimeMillis()
+                while (!Thread.currentThread().isInterrupted) {
+                    Thread.sleep(3000)
+                    if (torDormant) return@Thread
+                    val pct = bootPercent()
+                    if (pct >= 100) return@Thread
+                    if (pct > best) { best = pct; since = System.currentTimeMillis() }
+                    // direct: give it 40 s without progress; a transport: 75 s
+                    val limit = if (idx == 0) 40_000 else 75_000
+                    if (System.currentTimeMillis() - since > limit) {
+                        if (idx + 1 >= order.size) return@Thread
+                        idx++
+                        if (!applyBridge(order[idx])) continue
+                        best = 0; since = System.currentTimeMillis()
+                    }
+                }
+            } catch (_: InterruptedException) {
+            }
+        }
+        t.isDaemon = true
+        bridgeWatcher = t
+        t.start()
+    }
 
     // 0.4.4: read on the io thread (control-port socket), never on main
     @Volatile private var torBoot = ""
@@ -244,6 +358,7 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
                 } catch (_: Exception) {
                 }
                 torDormant = false
+                startBridgeWatcher()
                 // Report "on" only once tor has a working circuit again.
                 var ready = false
                 for (i in 0 until 90) {

@@ -339,20 +339,23 @@ class _VpnScreenState extends State<VpnScreen> {
         ),
         if (vpn.autoTorIdentity)
           _rotationInterval(tr('Thời gian làm mới danh tính'), vpn.torIdentityMinutes, 'torIdentityMinutes'),
-        if (Platform.isWindows)
+        // 0.4.5: Android too (lyrebird), with "Tự động" as default
+        if (Platform.isWindows || Platform.isAndroid)
           ListTile(
             leading: const Icon(Icons.alt_route),
             title: Text(tr('Cầu nối (khi mạng chặn Tor)')),
-            subtitle: Text(switch (vpn.torBridge) {
+            subtitle: Text('${switch (vpn.torBridge) {
+              'auto' => tr('Tự động: kết nối thẳng, nếu bị chặn thì thử Snowflake → obfs4 → meek'),
               'snowflake' => 'Snowflake',
               'obfs4' => 'obfs4',
               'meek' => 'meek (Azure)',
               _ => tr('Không dùng – kết nối thẳng vào mạng Tor'),
-            }),
+            }}${vpn.torBridgeActive.isEmpty ? '' : ' • ${tr('đang dùng: {p0}', {'p0': vpn.torBridgeActive})}'}'),
             trailing: DropdownButton<String>(
               value: vpn.torBridge,
               underline: const SizedBox.shrink(),
               items: [
+                if (Platform.isAndroid) DropdownMenuItem(value: 'auto', child: Text(tr('Tự động'))),
                 DropdownMenuItem(value: '', child: Text(tr('Tắt'))),
                 DropdownMenuItem(value: 'snowflake', child: Text('Snowflake')),
                 DropdownMenuItem(value: 'obfs4', child: Text('obfs4')),

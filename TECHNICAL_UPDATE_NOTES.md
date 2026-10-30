@@ -1048,3 +1048,88 @@ Các mục không liệt kê giữ trạng thái của 0.4.4.
 - Lần dựng này gặp lại lỗi Gradle `minifyReleaseWithR8 … desugar_jdk_libs_configuration-2.1.5-desugar.json` (như 0.4.4). Đã xoá thư mục transform hỏng, dựng lại mất 924 s.
 - **Còn lại cho người dùng:** nhập lại Bot token (@BotFather) và Chat ID trong Sao lưu đám mây › Telegram › Kết nối. App sẽ kiểm tra `getMe` + `getChat`, sau đó bấm "Tải bản sao lưu mới lên" (25 MB → 2 phần).
 - Chỉ APK `YomiHub-0.4.5-arm64-v8a.apk` được dựng lại với bản sửa này (15:05). Các APK khác, APK TV và gói Windows dựng lúc 13:10–13:50 vẫn hiển thị sai trạng thái "Đã kết nối" khi thiếu token; chức năng sao lưu khác không đổi. `SHA256SUMS-0.4.5.txt` đã cập nhật.
+
+#### L. Sửa lỗi Tor – cầu nối (obfs4 / Snowflake / meek) cho Android (30/10/2026 15:20–)
+
+**Vấn đề (0.4.4 mục A6, 0.4.5 mục B):** trên mạng chặn Tor, Tor Android dừng ở 50 % "Loading relay descriptors". Bản Android không có pluggable transport. IPtProxy không đóng gói được vì `libgojni.so` xung đột với `libmtorrentserver`.
+
+**Giải pháp:**
+1. Tải **Tor Expert Bundle 16.0 cho Android** (aarch64/armv7/x86_64) từ `archive.torproject.org` vào `D:\yh\tor_android`. SHA-256 khớp `sha256sums-signed-build.txt`.
+2. Trong gói có `lyrebird` là tệp thực thi PIE độc lập (Go, không phải gomobile), nên không xung đột. Chép thành `android/app/src/main/jniLibs/<abi>/liblyrebird.so` (17–20 MB/ABI). Nhờ `useLegacyPackaging true`, Android giải nén tệp vào `nativeLibraryDir` và cho phép chạy, giống `libxray.so`. APK arm64 tăng 162,7 → 168,7 MB.
+3. Danh sách cầu nối mặc định (`pt_config.json` của bundle: obfs4 ×7, snowflake ×2, meek ×1) lưu thành asset `assets/yomihub_vpn/tor_pt_config.json`.
+4. `YomiVpn.kt`: phương thức mới `torBridges` (mode + bridge lines từ Dart). `applyBridge()` gửi qua control port của tor-android: `SETCONF ClientTransportPlugin meek_lite,obfs2,obfs3,obfs4,scramblesuit,webtunnel,snowflake exec <nativeLibraryDir>/liblyrebird.so`, `Bridge …`, `UseBridges 1` – **áp dụng ngay, không cần khởi động lại Tor** (tor-android chỉ chạy được 1 lần mỗi tiến trình). `startBridgeWatcher()` (luồng riêng, không chặn `io`):
+   - chế độ cố định: áp dụng ngay khi control port sẵn sàng;
+   - **"Tự động" (mặc định Android):** kết nối thẳng; nếu % bootstrap không tăng trong 40 s thì chuyển Snowflake; sau đó 75 s không tăng thì chuyển obfs4, rồi meek.
+   - Báo về Dart `torBridge` / `torBridgeError`; `torInfo()` có khoá `bridge`.
+5. `vpn_service.dart`: `torBridge` dùng cho cả Android (mặc định `auto`), `_sendTorBridges()` trước `torStart`. Đổi chế độ trên Android áp dụng trực tiếp (không tắt/bật Tor). Log `[VPN] Tor chưa kết nối trực tiếp được – chuyển sang cầu nối "…"`. Thông báo 90 s nói rõ đang thử cầu nối.
+6. `vpn_screen.dart`: mục "Cầu nối (khi mạng chặn Tor)" hiện trên Android (Tự động / Tắt / Snowflake / obfs4 / meek), kèm "đang dùng: …".
+7. 3 chuỗi mới, dịch đủ 18 ngôn ngữ (`audit-0.4.5/tr045b.py`; i18n 1.283 chuỗi, 0 thiếu). `dart analyze` 0 lỗi; `flutter test` 46/46.
+
+**Kiểm thử trên Xiaomi 15T (APK arm64 dựng 15:47, video `p045_tor_bridges.mp4`, `p045_tor_snowflake.mp4`):**
+- Mục Cầu nối hiện "Tự động: kết nối thẳng, nếu bị chặn thì thử Snowflake → obfs4 → meek" (`p90`).
+- Bật Tor ở chế độ Tự động lúc 15:51. Lần này mạng **không chặn**: Tor kết nối trực tiếp lúc 15:54:05 (log `[VPN] Tor đã kết nối (muộn hơn thời gian chờ)…`), không cần cầu nối.
+- Chọn **Snowflake** khi Tor đang chạy (16:04): sau 18 s có tiến trình `liblyrebird.so` (pid 18738) do tor khởi chạy → cơ chế `ClientTransportPlugin exec` hoạt động trên Android 16. Trạng thái vẫn "Đã kết nối".
+- 16:06 điện thoại ngắt kết nối USB (`adb: device not found`), nên kiểm thử tiếp trên máy ảo.
+
+**Kiểm thử trên máy ảo Android Studio** (theo yêu cầu người dùng). AVD `Medium_Phone_API_37.0`, x86_64, Android 17, DNS 8.8.8.8/1.1.1.1. APK `YomiHub-0.4.5-x86_64.apk` dựng lúc 16:40 và 17:30 (`-step apkx64` mới trong `build_045.ps1`).
+
+Cách kiểm tra:
+- Cổng SOCKS của Tor trên máy ảo được chuyển ra Windows (`adb forward tcp:19050 tcp:9050`).
+- `curl.exe --socks5-hostname 127.0.0.1:19050 https://check.torproject.org/api/ip` trả `IsTor` (dịch vụ chính thức của Tor Project).
+- Đối chiếu: gọi trực tiếp, không qua Tor, trả `{"IsTor":false,"IP":"222.252.212.181"}` (IP thật của mạng).
+
+| Lúc | Chế độ cầu nối | Kết quả |
+|---|---|---|
+| 16:40–16:47 | **Snowflake** (chọn trước khi bật Tor) | `liblyrebird.so` (pid 8575, cùng uid app) chạy sau 13 s. VPN báo "Tor • Đã kết nối". `{"IsTor":true,"IP":"192.42.116.67"}`. Tải 13,98 MB qua Tor thành công (`speed.cloudflare.com`). Video `e045_tor_snowflake.mp4`. |
+| 17:35–17:40 | **obfs4** (7 cầu nối mặc định của Tor Browser 16.0) | Tor dừng ở **2 % "Connected to pluggable transport"**. Như vậy cầu nối đã được dùng (Tor chỉ còn đi qua PT), nhưng các cầu nối obfs4 công khai **không hoạt động trên mạng này**. App hiện thông báo mới "…YomiHub đang thử cầu nối (Snowflake/obfs4/meek) ở nền…" (`e10`). |
+| 17:43–17:44 | đổi trực tiếp sang **Snowflake** khi đang kẹt ở obfs4 | Không cần tắt Tor: sau **37 s** có `{"IsTor":true,"IP":"171.25.193.82"}`, VPN "Đã kết nối" (`e11_snowflake.png`, `e045_tor_snowflake2.mp4`). Nhật ký: `[VPN] … cầu nối "snowflake"`. |
+| 17:56–18:00 | đổi sang **meek** (cdn77) | Nhật ký `… cầu nối "meek"` lúc 17:56:44. IP thoát đổi sang 204.8.96.111, `IsTor:true` liên tục 214 s (`e045_tor_meek.mp4`). |
+
+Ghi chú:
+- `/proc/net/tcp*` của máy ảo không cho thấy socket của uid app, nên kiểm chứng dựa vào `check.torproject.org` và trạng thái bootstrap.
+- App mở trang "All files access" ở mỗi lần khởi động khi chưa có quyền. Trên **máy ảo kiểm thử**, đã cấp bằng `appops set … MANAGE_EXTERNAL_STORAGE allow` để ghi được `logs.txt`.
+
+Chỉnh sau kiểm thử (18:00):
+- Chế độ cố định ghi INFO `[VPN] Tor dùng cầu nối "…" (theo cài đặt)`. Chế độ Tự động mới ghi WARNING "…tự chuyển sang cầu nối…". Trước đó cả hai đều báo "chưa kết nối trực tiếp được".
+- Thêm `torDiag` (UseBridges, số cầu nối, nút vào mạch đang dùng, bootstrap), ghi vào Nhật ký sau khi Tor kết nối hoặc đổi cầu nối. Nếu không đọc được thì ghi lý do.
+- Dựng lại toàn bộ APK (3 ABI) và APK TV (`x045_117_full`).
+
+**Đánh giá:**
+- Tor trên Android giờ có cầu nối hoạt động (Snowflake, meek). Chế độ **Tự động** (mặc định) dùng thứ tự **Snowflake → obfs4 → meek** khi kết nối thẳng bị chặn.
+- Chưa giả lập được mạng chặn Tor để chạy hết luồng Tự động. Trên mạng hiện tại, Tor kết nối thẳng được (Xiaomi 15T 15:54).
+
+#### M. Sửa phần Short (Shorties) của tiện ích Pornhub (sheet Website Extension – `https://www.pornhub.com/shorties`) – 30/10/2026 18:10–
+
+Mọi yêu cầu kiểm tra đều chạy bằng `curl.exe` trên Windows, phân giải tên miền qua DoH `--doh-url https://1.1.1.1/dns-query`. DNS mặc định của nhà mạng trả về lỗi (`000`) – chặn bằng DNS. Chỉ đối chiếu cấu trúc trang/JSON (khoá `vkey`, `token`, mã HTTP), không lưu nội dung.
+
+Kết quả kiểm tra:
+- `/shorties` trả 200: còn `var token`, `ddSeed`, `ddOffset = 10` và 5 clip đầu (`"vkey"`, `"videoTitle"`, `"imageUrl"`). Cách tách hiện tại vẫn đúng.
+- `/shorties/get?token=<token mới>&offset=10&orientation=straight&seed=…` trả 200 JSON `{"seed","offset","videos":[…]}`.
+- `view_video.php` vẫn có `flashvars_*`, gồm `mediaDefinitions` HLS 240/480/720 và mp4 `remote`.
+- **Token cũ/không hợp lệ** gọi `/shorties/get` trả **403 HTML "Down for Maintenance"**.
+
+**Nguyên nhân lỗi:**
+- Token của trang có hạn: chuỗi token bắt đầu bằng thời điểm unix.
+- Short Video mở feed ở **trang ngẫu nhiên 1–3** (`ShortsStore.randomStartPage`).
+- `pornhub.js` dùng lại `yh_ph_short_state` đã lưu từ phiên trước khi `page > 1`, nên gửi token đã hết hạn. Server trả 403 HTML, `JSON.parse` lỗi, và Short Video hiện "Pornhub Shorties: HTTP 403" thay vì video.
+- Lỗi văng từ `search()` chứ không phải danh sách rỗng, nên `yomi_shorts.dart` không thử lại từ trang 1.
+
+**Sửa:**
+1. `assets/yomihub_extensions/pornhub.js` (phiên bản tiện ích 0.2.0 → **0.2.1**, `builtin_extensions.dart`, để bản đã cài được cập nhật):
+   - `st.ts` lưu thời điểm lấy token; token cũ hơn **15 phút** thì tải lại `/shorties`.
+   - `shortiesApi` coi HTTP ≥ 400 hoặc thân trả về là HTML là lỗi rõ ràng (`HTTP 403 (HTML)`).
+   - `shorties()` bắt lỗi 401/403/HTML thì tạo phiên mới (`shorties(1)`) một lần.
+2. `lib/yomihub/player/yomi_shorts.dart`:
+   - Lỗi ở lần tải đầu khi trang ngẫu nhiên > 1: thử lại từ trang 1 một lần (áp dụng cho mọi nguồn Short).
+   - `_pick`: chọn biến thể HLS tốt nhất **≤ 720p** thay vì phần tử đầu (1080p). Trên máy ảo, CDN `*.phncdn.com` chỉ đạt ~25–150 KB/s, trình phát thường báo "Tự chuyển server: 480p HLS (tải quá 12s)".
+   - Clip không phát được và lỗi trình phát ghi vào Nhật ký (`Shorts <nguồn>: …`, FC 34).
+
+**Kiểm thử trên máy ảo** (`Medium_Phone_API_37.0`, APK x86_64 dựng 19:47; nguồn NSFW chỉ bật trên máy ảo thử; video `e045_ph_shorts_fixed.mp4`):
+- Máy ảo khởi chạy bằng `-gpu swiftshader_indirect` bị thoát hẳn (tiến trình qemu biến mất) khi app phát video: 2 lần, 19:05 và 19:56. Đổi sang **`-gpu host`** thì chạy ổn định.
+- Pornhub (18+) › nút **Short**: feed mở, có clip đầu. Lưu lượng mạng của máy ảo **9,7 MB trong 20 s**. Vuốt sang clip kế: 3,5 MB/15 s. So 2 ảnh chụp cách nhau 2 s bằng máy (không xem nội dung): khác biệt điểm ảnh trung bình 15,1 → **video đang chạy**.
+- Nhật ký ghi đúng một clip lỗi: `Shorts Pornhub (18+): lỗi phát video: Failed to open http://127.0.0.1:…/yh_hls?u=…720P_4000K…` (dòng mới theo FC 34). Feed vẫn chuyển tiếp các clip khác.
+- Lần chạy trước (`-gpu swiftshader_indirect`, bản 18:52): màn hình đen, mạng ~0. Đó là do trình giả lập đồ hoạ phần mềm, không phải do app.
+
+**Tor trên máy ảo, lần chạy cuối** (`-gpu host`, 20:16–20:18):
+- Chọn Snowflake trước rồi bật Tor. Sau ~30 s có `{"IsTor":true,"IP":"192.42.116.92"}`.
+- Dòng chẩn đoán `[VPN] Tor: UseBridges=…` và "Tor dùng cầu nối … (theo cài đặt)" là mức INFO. Mức này chỉ ghi vào `logs.txt` khi bật "Ghi nhật ký chi tiết" (từ 0.2.3). Chế độ Tự động ghi WARNING nên luôn có trong nhật ký.
