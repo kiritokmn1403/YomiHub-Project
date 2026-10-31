@@ -69,7 +69,9 @@ class MClient {
     // source) is switched to Tor in Settings > VPN.
     final torProxy = (reqcopyWith?["noProxy"] ?? false)
         ? null
-        : YomiVpnState.proxyFor(sourceId ?? reqcopyWith?["yomihubSourceId"] as int?);
+        : (reqcopyWith?["booruSiteId"] != null
+            ? YomiVpnState.proxyForBooru(reqcopyWith!["booruSiteId"] as String?)
+            : YomiVpnState.proxyFor(sourceId ?? reqcopyWith?["yomihubSourceId"] as int?));
     if (!(reqcopyWith?["useDartHttpClient"] ?? false)) {
       try {
         final callerSettings = settings;

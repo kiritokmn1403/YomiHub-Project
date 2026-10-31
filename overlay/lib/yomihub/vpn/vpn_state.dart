@@ -37,6 +37,12 @@ class YomiVpnState {
   /// Extensions routed when [scopeAllSources] is off.
   static Set<int> scopeSources = {};
 
+  /// Route every Booru site through the VPN by default (0.4.6).
+  static bool scopeAllBooru = true;
+
+  /// Booru sites routed when [scopeAllBooru] is off.
+  static Set<String> scopeBooruSites = {};
+
   /// WebView mode: extension WebViews, Cloudflare solver, hidden WebViews.
   static bool scopeWebView = true;
 
@@ -46,10 +52,11 @@ class YomiVpnState {
   static bool routes(int? sourceId) =>
       scopeAllSources || (sourceId != null && scopeSources.contains(sourceId));
 
-  /// Proxy URL for a request made on behalf of [sourceId] (null = not a
-  /// source request), or null to connect directly.
-  static String? proxyFor(int? sourceId) {
-    if (!routes(sourceId)) return null;
+  static bool routesBooru(String? siteId) =>
+      scopeAllBooru || (siteId != null && scopeBooruSites.contains(siteId));
+
+  /// Returns the current active VPN proxy URL if any service is on, or null.
+  static String? activeProxy() {
     if (torEnabled) {
       if (torRunning && torHttpPort > 0) return 'http://127.0.0.1:$torHttpPort';
       // Port 9 (discard) refuses connections: nothing leaks outside Tor.
@@ -58,6 +65,19 @@ class YomiVpnState {
     if (xrayRunning && xrayHttpPort > 0) return 'http://127.0.0.1:$xrayHttpPort';
     if (proxyEnabled && proxyUrl.isNotEmpty) return proxyUrl;
     return null;
+  }
+
+  /// Proxy URL for a request made on behalf of [sourceId] (null = not a
+  /// source request), or null to connect directly.
+  static String? proxyFor(int? sourceId) {
+    if (!routes(sourceId)) return null;
+    return activeProxy();
+  }
+
+  /// Proxy URL for a Booru site request, or null to connect directly.
+  static String? proxyForBooru(String? siteId) {
+    if (!routesBooru(siteId)) return null;
+    return activeProxy();
   }
 
   /// Normalises "host:port", "user:pass@host:port", "socks5://…".

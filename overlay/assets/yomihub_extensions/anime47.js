@@ -214,7 +214,7 @@ class DefaultExtension extends MProvider {
         `\n\n${a.type || ""} • ${a.status || ""}${a.year ? " • " + a.year : ""}${a.season ? " • " + a.season : ""}`,
       author: names(a.studios).join(", "),
       genre: names(a.genres).concat(names(a.themes)),
-      status: yhStatus(a.status),
+      status: yhStatus(a.status && typeof a.status === 'object' ? (a.status.name || a.status.title || a.status.status || "") : a.status),
       link: `${yhBase(this)}${a.link || "/phim/" + (a.slug || id)}`,
       episodes,
     };

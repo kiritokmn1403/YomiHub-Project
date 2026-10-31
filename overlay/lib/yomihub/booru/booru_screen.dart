@@ -32,7 +32,10 @@ class BooruScreen extends ConsumerStatefulWidget {
 }
 
 /// Shared HTTP client: follows "VPN & DNS" (Tor/WARP/proxy, DoH).
-http.Client booruClient() => MClient.init(reqcopyWith: {'useDartHttpClient': true});
+http.Client booruClient({String? siteId}) => MClient.init(reqcopyWith: {
+      'useDartHttpClient': true,
+      if (siteId != null) 'booruSiteId': siteId,
+    });
 
 void booruLog(String where, Object e, {BooruSite? site}) {
   final net = YomiExtErrors.isNetworkError(e) || e is TimeoutException;
@@ -70,7 +73,10 @@ class _BooruScreenState extends ConsumerState<BooruScreen> with SingleTickerProv
   final _search = TextEditingController();
   final _focus = FocusNode();
   final _scroll = ScrollController();
-  late final BooruApi _api = BooruApi(booruClient());
+  late final BooruApi _api = BooruApi(
+    booruClient(),
+    clientFactory: (siteId) => booruClient(siteId: siteId),
+  );
 
   final List<BooruPost> _posts = [];
   int _page = 1;

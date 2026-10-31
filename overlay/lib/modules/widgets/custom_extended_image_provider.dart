@@ -465,7 +465,22 @@ class CustomExtendedNetworkImageProvider
       return tryDecodeDataUri(key.url);
     }
     try {
-      final Uri resolved = Uri.base.resolve(key.url);
+      String resolvedUrl = key.url.trim();
+      if (resolvedUrl.startsWith('//')) {
+        resolvedUrl = 'https:$resolvedUrl';
+      } else if (resolvedUrl.startsWith('/')) {
+        final ref = key.headers?['Referer'] ?? key.headers?['referer'] ?? key.headers?['Origin'] ?? key.headers?['origin'];
+        if (ref != null && ref.isNotEmpty) {
+          final refUri = Uri.tryParse(ref);
+          if (refUri != null && refUri.hasScheme && refUri.hasAuthority) {
+            resolvedUrl = '${refUri.scheme}://${refUri.authority}$resolvedUrl';
+          }
+        }
+      }
+      final Uri? resolved = Uri.tryParse(resolvedUrl);
+      if (resolved == null || !resolved.hasScheme || !resolved.hasAuthority) {
+        return null;
+      }
       final StreamedResponse? response = await _tryGetResponse(resolved);
 
       if (response == null || response.statusCode != HttpStatus.ok) {

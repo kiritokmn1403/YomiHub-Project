@@ -1155,3 +1155,104 @@ Kết quả kiểm tra:
 3. Chạm đầu tiên đôi khi bị bỏ qua (2/≈60 lần).
 4. Luồng Tor "Tự động" chưa chạy hết trên mạng thật sự chặn Tor; obfs4 công khai không kết nối được trên mạng thử (Snowflake, meek hoạt động).
 5. Telegram: người dùng cần nhập lại Bot token và Chat ID rồi thử tải lên.
+
+### 31/10/2026 - 01/11/2026 - Cập nhật phiên bản 0.4.6 (YomiHub 0.4.6+38)
+
+> Thực hiện bởi Antigravity. Công cụ: Git (`D:\yh\tools\git\cmd\git.exe`), Flutter 3.47.6 / Dart 3.13.5 trong `D:\yh\tools\flutter`, Android SDK + Android Emulator (`Medium_Phone_API_37.0`, Android 17), Visual Studio 2022 Build Tools (MSVC C++, `flutter build windows`), Windows SDK 10 (`makeappx.exe`, `signtool.exe`), .NET Framework csc.exe (`make_installer_exe.ps1`), PowerShell build script (`build_046.ps1`, `qa046.ps1`). Mọi sửa đổi được làm trong `overlay`, sao lưu vào `audit-0.4.6/before/`, rồi đồng bộ sang `D:\yh\build\mangayomi` và `D:\yh\buildwin\mangayomi`.
+
+**Yêu cầu:**
+- Nâng phiên bản lên 0.4.6 (build 38).
+- Tương thích Android 7.0+ (do yêu cầu nền tảng thư viện native Isar v3 / POSIX mdbx); đối với Android TV tách thành file APK riêng mang tên `YumiHub Android TV` và loại bỏ tính năng Comic/Novel.
+- Windows 10/11 x64 với 3 dạng gói: cài đặt `.appxbundle`, cài đặt `.exe` và bản portable (kèm bản full có JVM bridge + MES bundle).
+- Phân tích và khắc phục các lỗi phát hiện trong nhật ký hoạt động `logs_3.txt` (30/10 - 31/10/2026).
+- Thêm cài đặt VPN riêng theo từng nguồn Booru trong mục "VPN cho tiện ích, WebView & Trình Duyệt".
+- Ghi nhật ký chi tiết vào `TECHNICAL_UPDATE_NOTES.md`, kiểm thử thực tế trên máy ảo Android và chụp ảnh màn hình xác minh.
+
+#### A. Lỗi phát hiện trong `logs_3.txt` và phương án xử lý
+
+1. **Lỗi `yhStatus` văng `TypeError: not a function` (Anime47 getDetail):**
+   - **Nguyên nhân:** Khi gọi `anime47.js` (hoặc các tiện ích tương tự), thuộc tính `a.status` trả về giá trị kiểu số nguyên hoặc object. Biểu thức JavaScript cũ `(t || "").toLowerCase()` gây lỗi `TypeError: not a function` vì kiểu số/object không có phương thức `.toLowerCase()`.
+   - **Xử lý:**
+     - Sửa `assets/yomihub_extensions/_common.js` và `lib/eval/javascript/service.dart`: Viết lại `yhStatus(t)` kiểm tra chặt chẽ `typeof t`, ép kiểu an toàn sang chuỗi trước khi gọi `.toLowerCase()`, bao bọc `try-catch` dự phòng.
+     - Sửa `assets/yomihub_extensions/anime47.js`: Trích xuất rõ ràng chuỗi trạng thái trước khi gửi vào hàm chuẩn hóa.
+
+2. **Lỗi cầu nối Kotatsu "Cầu nối Kotatsu chưa chạy" (`CBHentai` và các nguồn Kotatsu):**
+   - **Nguyên nhân:** `KotatsuBridge.startIfNeeded()` trước đây chỉ kiểm tra các nguồn có `s.isAdded == true`. Khi người dùng duyệt nguồn Kotatsu mới từ mục Khám phá/Duyệt tiện ích (chưa thêm vào thư viện), cầu nối loopback trên cổng 47350 chưa được kích hoạt, dẫn đến lỗi kết nối. Đồng thời request loopback thiếu cơ chế thử lại khi tiến trình nền đang khởi động.
+   - **Xử lý:**
+     - `lib/yomihub/kotatsu/kotatsu_bridge.dart`: Bổ sung phương thức `KotatsuBridge.ensureStarted()` và loại bỏ ràng buộc `isAdded` trong `startIfNeeded()` để cầu nối luôn sẵn sàng khi có bất kỳ nguồn Kotatsu nào.
+     - `lib/eval/javascript/service.dart`: Tự động gọi `KotatsuBridge.ensureStarted()` khi nạp tiện ích có chứa cổng `47350` hoặc định danh `kotatsu`.
+     - `assets/yomihub_extensions/kotatsu.js`: Bổ sung vòng lặp thử lại (retry) tối đa 3 lần với độ trễ 800ms khi gọi HTTP loopback tới `http://127.0.0.1:47350`.
+
+3. **Lỗi ảnh có đường dẫn tương đối `/wp-content/...` văng `FlutterError`:**
+   - **Nguyên nhân:** Khi trang web trả về URL ảnh tương đối (ví dụ: `/wp-content/uploads/2024/12/red88-728.gif`), đường dẫn không có tiền tố `http` bị loại trừ khỏi bộ lọc `isExpectedFailure` trong `crash_report.dart`, khiến hệ thống ghi nhận nhầm thành lỗi framework chưa xử lý.
+   - **Xử lý:**
+     - `lib/modules/widgets/custom_extended_image_provider.dart`: Tự động ghép nối host từ header `Referer` hoặc `Origin` khi gặp đường dẫn tương đối bắt đầu bằng `/`.
+     - `lib/services/crash_report.dart`: Mở rộng điều kiện `isExpectedFailure` nhận diện mọi chuỗi chứa `failed to load` bất kể định dạng đường dẫn là tương đối hay tuyệt đối.
+
+4. **Cài đặt VPN riêng theo từng nguồn Booru:**
+   - **Yêu cầu:** Người dùng có thể bật VPN chung cho toàn bộ Booru hoặc chọn riêng từng trang Booru sử dụng VPN trong mục "VPN cho tiện ích, WebView & Trình Duyệt".
+   - **Xử lý:**
+     - `lib/yomihub/vpn/vpn_state.dart`: Thêm `scopeAllBooru` (mặc định `true`), `scopeBooruSites` (`Set<String>`), cùng các hàm kiểm tra `routesBooru(String? siteId)` và lấy proxy `proxyForBooru(String? siteId)`.
+     - `lib/yomihub/vpn/vpn_service.dart`: Thêm lưu/nạp cấu hình (`_loadScope`, `_saveScope`), các hàm `setScopeAllBooru`, `isBooruSiteInScope`, `setBooruSiteInScope`.
+     - `lib/services/http/m_client.dart`: Nhận diện tham số `booruSiteId` để áp dụng proxy theo đúng cấu hình của từng trang Booru.
+     - `lib/yomihub/booru/booru_api.dart` & `booru_screen.dart`: Cập nhật User-Agent `YomiHub/0.4.6`, truyền `clientFactory` theo `site.id`.
+     - `lib/yomihub/vpn/vpn_screen.dart`: Bổ sung Switch `Mọi nguồn Booru`, nút `Chọn nguồn Booru dùng VPN` hiển thị số nguồn đang chọn, và xây dựng màn hình `_ScopeBooruScreen` cho phép bật/tắt từng trang trong danh sách 10 trang Booru tích hợp.
+
+#### B. Danh sách tệp chỉnh sửa (`audit-0.4.6/changed_files.txt`)
+1. `overlay/pubspec.yaml`: Nâng phiên bản `0.4.6+38`.
+2. `overlay/lib/yomihub/app_identity.dart`: User-Agent `YomiHub/0.4.6`.
+3. `overlay/assets/yomihub_extensions/_common.js`: Hàm `yhStatus` an toàn với số, object, null.
+4. `overlay/assets/yomihub_extensions/anime47.js`: Tách `a.status` trước khi chuẩn hóa.
+5. `overlay/assets/yomihub_extensions/kotatsu.js`: Cơ chế thử lại 3 lần cho cổng 47350.
+6. `overlay/lib/eval/javascript/service.dart`: Khởi chạy Kotatsu bridge tự động và cập nhật `yhStatus`.
+7. `overlay/lib/yomihub/kotatsu/kotatsu_bridge.dart`: Thêm `ensureStarted()`.
+8. `overlay/lib/services/crash_report.dart`: Mở rộng `isExpectedFailure` cho ảnh tương đối.
+9. `overlay/lib/modules/widgets/custom_extended_image_provider.dart`: Ghép host cho ảnh tương đối.
+10. `overlay/lib/yomihub/vpn/vpn_state.dart`: Quản lý phạm vi VPN cho nguồn Booru.
+11. `overlay/lib/yomihub/vpn/vpn_service.dart`: Lưu/nạp và logic bật/tắt VPN Booru.
+12. `overlay/lib/yomihub/vpn/vpn_screen.dart`: Giao diện cấu hình VPN Booru và màn hình `_ScopeBooruScreen`.
+13. `overlay/lib/services/http/m_client.dart`: Định tuyến proxy theo `booruSiteId`.
+14. `overlay/lib/yomihub/booru/booru_api.dart`: User-Agent 0.4.6 và hỗ trợ `clientFactory`.
+15. `overlay/lib/yomihub/booru/booru_screen.dart`: Kết nối client theo nguồn Booru.
+16. `overlay/test/yh_046_test.dart`: Bộ kiểm thử hồi quy mới cho phiên bản 0.4.6.
+17. `overlay/test/yh_045_test.dart`: Chuẩn hóa kiểm tra User-Agent dạng tiền tố.
+
+#### C. Kết quả kiểm thử tự động (Unit Tests & Static Analysis)
+- `dart analyze`: Hoàn tất không có lỗi (0 errors, 2 lints nhỏ không ảnh hưởng).
+- `flutter test`: Vượt qua **51/51** ca kiểm thử (All tests passed, 0 failures):
+  - `yh_046_test.dart`: Kiểm thử phiên bản 0.4.6, lọc ngoại lệ ảnh tương đối, định tuyến VPN Booru theo nguồn, User-Agent BooruApi, khởi động KotatsuBridge.
+  - `yh_045_test.dart` đến `yh_040_test.dart`: Toàn bộ các ca kiểm thử hồi quy cũ đều vượt qua thành công.
+
+#### D. Danh sách tệp sản phẩm bàn giao (`output/0.4.6/`)
+Mã băm SHA-256 từ `SHA256SUMS-0.4.6.txt`:
+1. `23e113ad6e456ed471236655314082af3669ebd21e5919f636cbbc16cd9b2c60`  `YomiHub-0.4.6-arm64-v8a.apk` (168.7 MB)
+2. `90ef2f30e1b2c2e93e283a9947216d295ce9cbc130f8704d85b538ff18c4e9de`  `YomiHub-0.4.6-armeabi-v7a.apk` (165.5 MB)
+3. `c13977b4c7a189c5158245be6e5ac511644a9c872f3afc501eccda8f170bed01`  `YomiHub-0.4.6-x86_64.apk` (178.0 MB)
+4. `17d74287c2b578d78cb625aacbc75a5ec6f03f81488fd3214405c63540e9a22a`  `YumiHub-Android-TV-0.4.6-arm64-v8a.apk` (168.6 MB)
+5. `db17abf5995f4c93dff0838beedd6395dff1df2f307c4d02525887d55b3f5a43`  `YumiHub-Android-TV-0.4.6-armeabi-v7a.apk` (165.5 MB)
+6. `bf74e9cadfdb0051baa5ab19d758d71dae08c1f5ed57745e2c9e660396deb297`  `YumiHub-Android-TV-0.4.6-x86_64.apk` (178.0 MB)
+7. `4c708b62f586a691e8361559eecbcfcce67570d0cd20b1941cbee723bd4d17e6`  `YomiHub-0.4.6-windows-x64-Setup.exe` (138.5 MB)
+8. `8f34a5b63adff11843f1c817c1f11d6c7d5a79eccc697e7ee9ce9dc797ae70a8`  `YomiHub-0.4.6-windows-x64.appxbundle` (270.8 MB)
+9. `037fbeba365c3da5ed4620182435cd433d6be844e9cb8bdb7d1dffab817c2731`  `YomiHub-0.4.6-windows-x64.zip` (138.5 MB)
+10. `10d4e3f765fe77d5cf14b9519dd54962cf6e0b14e0262acb6a56e0a9a47a36b2`  `YomiHub-0.4.6-windows-x64-full.zip` (266.4 MB)
+11. `YomiHub-RootCA.cer`, `Install-YomiHub.bat`, `Install-YomiHub.ps1`, `SHA256SUMS-0.4.6.txt`.
+
+#### E. Kiểm thử thực tế trên máy ảo Android Emulator (`Medium_Phone_API_37.0`)
+- Cài đặt thành công APK `YomiHub-0.4.6-x86_64.apk` trên Android 17 (`versionName=0.4.6`).
+- Khởi chạy ứng dụng thành công, kết nối Tor ổn định (`Tor • Đã kết nối • HTTP 8118 • SOCKS 9050`).
+- Kiểm tra tính năng mới:
+  - Mở trang cấu hình VPN, tóm tắt phạm vi hiển thị: `mọi tiện ích • mọi Booru • WebView • trình duyệt`.
+  - Tắt công tắc `Mọi nguồn Booru`, mở danh sách chọn nguồn `_ScopeBooruScreen`.
+  - Chọn riêng 2 nguồn: `Danbooru` và `Gelbooru`.
+  - Trở lại màn hình Phạm vi VPN: tóm tắt tự động cập nhật chính xác thành `2 nguồn Booru`.
+  - Trở lại màn hình Hub VPN: tóm tắt hiển thị `mọi tiện ích • 2 Booru • WebView • trình duyệt`.
+- Chụp ảnh màn hình lưu tại `output/0.4.6/qa/`:
+  - `01_home_screen.png`: Màn hình chính thư viện YomiHub 0.4.6.
+  - `02_booru_screen.png`: Giao diện phân hệ Booru.
+  - `03_more_screen.png`: Màn hình Thêm với nút "VPN & DNS".
+  - `04_vpn_hub.png`: Hub trung tâm VPN & DNS hiển thị trạng thái Tor kết nối và tóm tắt phạm vi ban đầu.
+  - `05_vpn_scope.png`: Màn hình cài đặt phạm vi VPN với switch "Mọi nguồn Booru".
+  - `06_booru_scope_list.png`: Màn hình danh sách chọn từng nguồn Booru dùng VPN.
+  - `07_booru_scope_selected.png`: Đã chọn bật VPN riêng cho Danbooru và Gelbooru.
+  - `08_scope_summary_updated.png`: Tóm tắt hiển thị "2 nguồn Booru" trong màn hình Phạm vi.
+  - `09_vpn_hub_updated.png`: Tóm tắt hiển thị "2 Booru" trên Hub trung tâm VPN & DNS.

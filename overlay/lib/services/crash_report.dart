@@ -142,10 +142,7 @@ String? describeLikelyCause(String error) {
 /// able to look up. They just do not interrupt anybody.
 bool isExpectedFailure(Object error) {
   final text = error.toString().toLowerCase();
-  return text.contains('failed to load http') ||
-      text.contains('failed to load data:image') ||
-      text.contains('failed to load content://') ||
-      text.contains('failed to load file://') ||
+  return text.contains('failed to load') ||
       text.contains('networkimageloadexception') ||
       text.contains('socketexception') ||
       text.contains('failed host lookup') ||

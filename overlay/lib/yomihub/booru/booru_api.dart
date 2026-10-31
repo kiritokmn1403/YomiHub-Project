@@ -9,10 +9,13 @@ import 'package:mangayomi/yomihub/booru/booru_models.dart';
 /// (`test/yh_044_test.dart`). The app passes [MClient.init] as [client], so
 /// requests follow "VPN & DNS" (Tor/WARP/proxy, DNS-over-HTTPS).
 class BooruApi {
-  BooruApi(this.client, {this.userAgent = 'YomiHub/0.4.4 (Booru App)'});
+  BooruApi(this.client, {this.userAgent = 'YomiHub/0.4.6 (Booru App)', this.clientFactory});
 
   final http.Client client;
+  final http.Client Function(String? siteId)? clientFactory;
   final String userAgent;
+
+  http.Client _clientFor(BooruSite s) => clientFactory?.call(s.id) ?? client;
 
   static const pageSize = 40;
 
@@ -77,7 +80,7 @@ class BooruApi {
   Future<List<BooruPost>> posts(BooruSite s, String tags, int page,
       {bool safe = true, String? login, String? apiKey}) async {
     final uri = postsUri(s, tags, page, safe: safe, login: login, apiKey: apiKey);
-    final res = await client.get(uri, headers: _headers).timeout(const Duration(seconds: 40));
+    final res = await _clientFor(s).get(uri, headers: _headers).timeout(const Duration(seconds: 40));
     final body = utf8.decode(res.bodyBytes, allowMalformed: true).trim();
     final lower = body.length > 4000 ? body.substring(0, 4000).toLowerCase() : body.toLowerCase();
     // 0.4.4 (tested 29/10 from the owner's network): Danbooru and konachan.com
@@ -292,7 +295,7 @@ class BooruApi {
           'expiry': '7',
         });
     }
-    final res = await client.get(uri, headers: _headers).timeout(const Duration(seconds: 12));
+    final res = await _clientFor(s).get(uri, headers: _headers).timeout(const Duration(seconds: 12));
     if (res.statusCode != 200) return const [];
     final body = utf8.decode(res.bodyBytes, allowMalformed: true).trim();
     if (body.isEmpty || body.startsWith('<')) return const [];

@@ -101,13 +101,18 @@ class KotatsuBridge {
     return _started;
   }
 
+  /// Ensures the bridge is started if not already running.
+  static Future<bool> ensureStarted() async {
+    if (_started) return true;
+    return await start();
+  }
+
   /// Called at startup: only spins the bridge up when a Kotatsu source is installed.
   static Future<void> startIfNeeded() async {
     if (!supported) return;
     try {
       final hasKotatsu = sourceRepository.anyIdBetween(930000000000, 930000000000 + 0x100000000) ||
           sourceRepository.getAll().any((s) =>
-              (s.isAdded ?? false) &&
               ((s.baseUrl?.contains('47350') ?? false) ||
                   (s.sourceCode?.contains('kotatsu') ?? false) ||
                   (s.sourceCodeUrl?.contains('kotatsu') ?? false)));

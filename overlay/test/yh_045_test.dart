@@ -8,8 +8,8 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('YomiHub 0.4.5', () {
-    test('AppIdentity reports version 0.4.5', () {
-      expect(AppIdentity.userAgent, 'YomiHub/0.4.5');
+    test('AppIdentity reports a 0.4.x version', () {
+      expect(AppIdentity.userAgent, startsWith('YomiHub/0.4.'));
     });
 
     test('Website Extension: VTV Go mirrors include cache.vtvgo.vn', () {

@@ -19,6 +19,7 @@ import 'package:mangayomi/models/video.dart';
 import 'package:mangayomi/yomihub/net/chunk_proxy.dart';
 
 import 'package:mangayomi/eval/interface.dart';
+import 'package:mangayomi/yomihub/kotatsu/kotatsu_bridge.dart';
 
 class JsExtensionService implements ExtensionService {
   late JavascriptRuntime runtime;
@@ -31,6 +32,12 @@ class JsExtensionService implements ExtensionService {
 
   void _init() {
     if (_isInitialized) return;
+    final code = source.sourceCode ?? '';
+    final url = source.sourceCodeUrl ?? '';
+    final base = source.baseUrl ?? '';
+    if (code.contains('47350') || code.contains('kotatsu') || url.contains('kotatsu') || base.contains('47350')) {
+      KotatsuBridge.ensureStarted();
+    }
     runtime = getJavascriptRuntime();
     JsHttpClient(runtime, sourceId: source.id, fallbackBaseUrl: source.baseUrl).init();
     _jsDomSelector = JsDomSelector(runtime)..init();
@@ -129,7 +136,16 @@ if (typeof yhText === 'undefined') {
   }
   function yhText(s) { return (s || "").replace(/\\s+/g, " ").trim(); }
   function yhStatus(t) {
-    t = (t || "").toLowerCase();
+    if (t === null || t === undefined) return 5;
+    if (typeof t === "number") {
+      if (t >= 0 && t <= 5) return Math.floor(t);
+      t = String(t);
+    } else if (typeof t === "object") {
+      t = String(t.name || t.status || t.title || t.label || "");
+    } else {
+      t = String(t);
+    }
+    t = t.toLowerCase();
     if (/hoàn|complete|full|finished|đã kết thúc/.test(t)) return 1;
     if (/tạm ngưng|hiatus|drop/.test(t)) return 2;
     if (/đang|ongoing|airing|updating|cập nhật/.test(t)) return 0;

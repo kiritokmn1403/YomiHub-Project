@@ -661,6 +661,9 @@ class YomiVpnService extends ChangeNotifier {
       YomiVpnState.scopeAllSources = b.get('scopeAll') as bool;
       YomiVpnState.scopeSources =
           ((b.get('scopeSources', defaultValue: <dynamic>[]) as List).cast<int>()).toSet();
+      YomiVpnState.scopeAllBooru = b.get('scopeAllBooru', defaultValue: true) as bool;
+      YomiVpnState.scopeBooruSites =
+          ((b.get('scopeBooruSites', defaultValue: <dynamic>[]) as List).cast<String>()).toSet();
       YomiVpnState.scopeWebView = b.get('scopeWebView', defaultValue: true) as bool;
       YomiVpnState.scopeBrowser = b.get('scopeBrowser', defaultValue: true) as bool;
       return;
@@ -676,6 +679,8 @@ class YomiVpnService extends ChangeNotifier {
         (b.get('xrayBrowser', defaultValue: true) as bool);
     YomiVpnState.scopeAllSources = torOn ? torAll : proxyAll;
     YomiVpnState.scopeSources = {...torSrc, ...proxySrc};
+    YomiVpnState.scopeAllBooru = true;
+    YomiVpnState.scopeBooruSites = {};
     YomiVpnState.scopeWebView = web;
     YomiVpnState.scopeBrowser = web;
     _saveScope();
@@ -684,6 +689,8 @@ class YomiVpnService extends ChangeNotifier {
   void _saveScope() {
     _box?.put('scopeAll', YomiVpnState.scopeAllSources);
     _box?.put('scopeSources', YomiVpnState.scopeSources.toList());
+    _box?.put('scopeAllBooru', YomiVpnState.scopeAllBooru);
+    _box?.put('scopeBooruSites', YomiVpnState.scopeBooruSites.toList());
     _box?.put('scopeWebView', YomiVpnState.scopeWebView);
     _box?.put('scopeBrowser', YomiVpnState.scopeBrowser);
   }
@@ -699,6 +706,22 @@ class YomiVpnService extends ChangeNotifier {
 
   Future<void> setSourceInScope(int id, bool v) async {
     v ? YomiVpnState.scopeSources.add(id) : YomiVpnState.scopeSources.remove(id);
+    _saveScope();
+    YomiVpnState.bump();
+    notifyListeners();
+  }
+
+  Future<void> setScopeAllBooru(bool v) async {
+    YomiVpnState.scopeAllBooru = v;
+    _saveScope();
+    YomiVpnState.bump();
+    notifyListeners();
+  }
+
+  bool isBooruSiteInScope(String id) => YomiVpnState.scopeBooruSites.contains(id);
+
+  Future<void> setBooruSiteInScope(String id, bool v) async {
+    v ? YomiVpnState.scopeBooruSites.add(id) : YomiVpnState.scopeBooruSites.remove(id);
     _saveScope();
     YomiVpnState.bump();
     notifyListeners();

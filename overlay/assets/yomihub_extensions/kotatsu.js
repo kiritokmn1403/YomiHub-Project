@@ -11,11 +11,18 @@ class DefaultExtension extends MProvider {
   async call(path, params) {
     const q = Object.assign({ source: KT_ID }, params || {});
     const qs = Object.keys(q).map((k) => k + "=" + encodeURIComponent(q[k])).join("&");
-    let res;
-    try {
-      res = await this.client.get(`${KT_HOST}/${path}?${qs}`);
-    } catch (e) {
-      throw new Error("Cầu nối Kotatsu chưa chạy. Mở YomiHub > Duyệt > Extensions Repo > Kotatsu một lần rồi thử lại. (" + e + ")");
+    let res = null, lastErr = null;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        res = await this.client.get(`${KT_HOST}/${path}?${qs}`);
+        if (res && res.statusCode < 500) { lastErr = null; break; }
+      } catch (e) {
+        lastErr = e;
+        if (attempt < 2) await new Promise((r) => setTimeout(r, 800));
+      }
+    }
+    if (res === null && lastErr !== null) {
+      throw new Error("Cầu nối Kotatsu chưa chạy. Mở YomiHub > Duyệt > Extensions Repo > Kotatsu một lần rồi thử lại. (" + lastErr + ")");
     }
     let j;
     try {

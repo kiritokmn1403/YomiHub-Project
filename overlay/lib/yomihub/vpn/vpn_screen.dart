@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/source.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
+import 'package:mangayomi/yomihub/booru/booru_models.dart';
+import 'package:mangayomi/yomihub/booru/booru_store.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_service.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_tunnels.dart';
@@ -170,6 +172,7 @@ class _VpnScreenState extends State<VpnScreen> {
   String get _scopeSummary {
     final parts = <String>[
       YomiVpnState.scopeAllSources ? tr('mọi tiện ích') : tr('{p0} tiện ích', {'p0': YomiVpnState.scopeSources.length}),
+      YomiVpnState.scopeAllBooru ? tr('mọi Booru') : tr('{p0} Booru', {'p0': YomiVpnState.scopeBooruSites.length}),
       if (YomiVpnState.scopeWebView) 'WebView',
       if (YomiVpnState.scopeBrowser) tr('trình duyệt'),
     ];
@@ -456,6 +459,25 @@ class _VpnScreenState extends State<VpnScreen> {
         enabled: !YomiVpnState.scopeAllSources,
         onTap: () => Navigator.of(context)
             .push(MaterialPageRoute(builder: (_) => const _ScopeSourcesScreen()))
+            .then((_) => _refresh()),
+      ),
+      const Divider(),
+      SwitchListTile(
+        secondary: const Icon(Icons.photo_library_outlined),
+        title: Text(tr('Mọi nguồn Booru')),
+        subtitle: Text(tr('Áp dụng VPN cho các trang ảnh Booru (Danbooru, Safebooru, Gelbooru...). Tắt để chọn riêng.')),
+        value: YomiVpnState.scopeAllBooru,
+        onChanged: (v) => vpn.setScopeAllBooru(v),
+      ),
+      ListTile(
+        leading: const Icon(Icons.checklist),
+        title: Text(tr('Chọn nguồn Booru dùng VPN')),
+        subtitle: Text(YomiVpnState.scopeAllBooru
+            ? tr('Đang áp dụng cho mọi nguồn Booru')
+            : tr('{p0} nguồn Booru', {'p0': YomiVpnState.scopeBooruSites.length})),
+        enabled: !YomiVpnState.scopeAllBooru,
+        onTap: () => Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => const _ScopeBooruScreen()))
             .then((_) => _refresh()),
       ),
       const Divider(),
@@ -1240,6 +1262,53 @@ class _ScopeSourcesScreenState extends State<_ScopeSourcesScreen> {
                   value: vpn.isSourceInScope(s.id!),
                   onChanged: (v) async {
                     await vpn.setSourceInScope(s.id!, v);
+                    setState(() {});
+                  },
+                );
+              },
+            ),
+    );
+  }
+}
+
+class _ScopeBooruScreen extends StatefulWidget {
+  const _ScopeBooruScreen();
+  @override
+  State<_ScopeBooruScreen> createState() => _ScopeBooruScreenState();
+}
+
+class _ScopeBooruScreenState extends State<_ScopeBooruScreen> {
+  final vpn = YomiVpnService.instance;
+  String _q = '';
+  late final List<BooruSite> _all = BooruStore.instance.allSites;
+
+  @override
+  Widget build(BuildContext context) {
+    final list = _all
+        .where((s) =>
+            s.name.toLowerCase().contains(_q.toLowerCase()) ||
+            s.baseUrl.toLowerCase().contains(_q.toLowerCase()))
+        .toList();
+    return Scaffold(
+      appBar: AppBar(
+        title: TextField(
+          decoration: InputDecoration(hintText: tr('Tìm nguồn Booru…'), border: InputBorder.none),
+          onChanged: (v) => setState(() => _q = v),
+        ),
+      ),
+      body: list.isEmpty
+          ? Center(child: Text(tr('Không tìm thấy nguồn Booru nào')))
+          : ListView.builder(
+              itemCount: list.length,
+              itemBuilder: (_, i) {
+                final s = list[i];
+                return SwitchListTile(
+                  title: Text(s.name),
+                  subtitle: Text('${s.baseUrl}${s.nsfwOnly ? ' • 18+' : ''}',
+                      maxLines: 1, overflow: TextOverflow.ellipsis),
+                  value: vpn.isBooruSiteInScope(s.id),
+                  onChanged: (v) async {
+                    await vpn.setBooruSiteInScope(s.id, v);
                     setState(() {});
                   },
                 );
