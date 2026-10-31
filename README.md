@@ -6,7 +6,7 @@
 - Android TV (`YumiHub Android TV`, chỉ có Phim & Điện ảnh);
 - Windows 10/11 x64 (`Setup.exe`, `.appxbundle`, bản portable).
 
-Phiên bản hiện tại: **0.4.4+36** (29/10/2026). Xem `TECHNICAL_UPDATE_NOTES.md`.
+Phiên bản hiện tại: **0.4.5** (30/10/2026). Xem `TECHNICAL_UPDATE_NOTES.md`.
 
 ## Cấu trúc
 
