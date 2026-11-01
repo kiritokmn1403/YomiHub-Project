@@ -1256,3 +1256,25 @@ Mã băm SHA-256 từ `SHA256SUMS-0.4.6.txt`:
   - `07_booru_scope_selected.png`: Đã chọn bật VPN riêng cho Danbooru và Gelbooru.
   - `08_scope_summary_updated.png`: Tóm tắt hiển thị "2 nguồn Booru" trong màn hình Phạm vi.
   - `09_vpn_hub_updated.png`: Tóm tắt hiển thị "2 Booru" trên Hub trung tâm VPN & DNS.
+
+#### F. Phát hành GitHub Release v0.4.6 (01/11/2026)
+- **Mã nguồn:** Nhánh `main` commit `4ed7cc7`, đồng bộ thành công lên GitHub tại `https://github.com/kiritokmn1403/YomiHub-Project`.
+- **Bản phát hành:** https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.4.6 – Tag `v0.4.6`, tiêu đề **"YomiHub 0.4.6 (0.4.6+38)"**, đánh dấu **Latest Release**.
+- **Đã tải lên đủ 16 tệp phát hành:**
+  1. `YomiHub-0.4.6-arm64-v8a.apk` (168.7 MB)
+  2. `YomiHub-0.4.6-armeabi-v7a.apk` (165.5 MB)
+  3. `YomiHub-0.4.6-x86_64.apk` (178.0 MB)
+  4. `YumiHub-Android-TV-0.4.6-arm64-v8a.apk` (168.6 MB)
+  5. `YumiHub-Android-TV-0.4.6-armeabi-v7a.apk` (165.5 MB)
+  6. `YumiHub-Android-TV-0.4.6-x86_64.apk` (178.0 MB)
+  7. `YomiHub-0.4.6-windows-x64-Setup.exe` (138.5 MB)
+  8. `YomiHub-0.4.6-windows-x64.appxbundle` (270.8 MB)
+  9. `YomiHub-0.4.6-windows-x64.zip` (138.5 MB)
+  10. `YomiHub-0.4.6-windows-x64-full.zip` (266.4 MB)
+  11. `SHA256SUMS-0.4.6.txt`
+  12. `YomiHub-RootCA.cer`
+  13. `Install-YomiHub.bat`
+  14. `Install-YomiHub.ps1`
+  15. `YomiHub-0.4.6-changelog.md`
+  16. `TECHNICAL_UPDATE_NOTES.md`
+- **Xác thực sau phát hành:** API GitHub trả về mã 200 OK với đúng 16 assets và dung lượng trùng khớp 100% với tệp cục bộ.
