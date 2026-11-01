@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -38,7 +39,6 @@ class BrowseTab {
 
 class _BrowseScreenState extends ConsumerState<BrowseScreen>
     with TickerProviderStateMixin {
-  late final hideItems = ref.read(hideItemsStateProvider);
   final _textEditingController = TextEditingController();
 
   /// Which TV list row currently holds focus, so the rest of the list can
@@ -88,32 +88,38 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen>
     _tabBarController.animateTo(i);
   }
 
+  bool _isRouteHidden(String route, List<String> hiddenList) {
+    final lower = route.toLowerCase();
+    return hiddenList.any((h) => h.toLowerCase() == lower);
+  }
+
   // Hide manga & novel from Browse (sources + extensions) on the anime-only TV
-  // layout so only anime shows. Recomputed live so toggling "Anime only" updates
-  // the tabs without a restart. Defaults to isTv, user-overridable. See #729.
-  List<BrowseTab> _computeTabList(bool animeOnly) => [
-    if (!animeOnly && !hideItems.contains("/MangaLibrary"))
-      BrowseTab(ItemType.manga, BrowseTabKind.sources),
-    if (!hideItems.contains("/AnimeLibrary"))
-      BrowseTab(ItemType.anime, BrowseTabKind.sources),
-    if (!animeOnly && !hideItems.contains("/NovelLibrary"))
-      BrowseTab(ItemType.novel, BrowseTabKind.sources),
-    if (!animeOnly && !hideItems.contains("/MangaLibrary"))
-      BrowseTab(ItemType.manga, BrowseTabKind.extensions),
-    if (!hideItems.contains("/AnimeLibrary"))
-      BrowseTab(ItemType.anime, BrowseTabKind.extensions),
-    if (!animeOnly && !hideItems.contains("/NovelLibrary"))
-      BrowseTab(ItemType.novel, BrowseTabKind.extensions),
-  ];
+  // layout so only anime shows. Recomputed live so toggling features in Feature
+  // Toggle or "Anime only" updates the tabs without a restart. See #729.
+  List<BrowseTab> _computeTabList(bool animeOnly, List<String> hiddenList) {
+    final hideManga = animeOnly || _isRouteHidden('/MangaLibrary', hiddenList);
+    final hideAnime = _isRouteHidden('/AnimeLibrary', hiddenList);
+    final hideNovel = animeOnly || _isRouteHidden('/NovelLibrary', hiddenList);
+
+    return [
+      if (!hideManga) BrowseTab(ItemType.manga, BrowseTabKind.sources),
+      if (!hideAnime) BrowseTab(ItemType.anime, BrowseTabKind.sources),
+      if (!hideNovel) BrowseTab(ItemType.novel, BrowseTabKind.sources),
+      if (!hideManga) BrowseTab(ItemType.manga, BrowseTabKind.extensions),
+      if (!hideAnime) BrowseTab(ItemType.anime, BrowseTabKind.extensions),
+      if (!hideNovel) BrowseTab(ItemType.novel, BrowseTabKind.extensions),
+    ];
+  }
 
   @override
   void initState() {
     super.initState();
-    _tabList = _computeTabList(ref.read(animeOnlyTvModeProvider));
+    final initialHidden = ref.read(hideItemsStateProvider);
+    _tabList = _computeTabList(ref.read(animeOnlyTvModeProvider), initialHidden);
     _types = _typesOf(_tabList);
     _tabBarController = TabController(
-      length: _types.length,
-      initialIndex: _takeRequestedTabIndex(),
+      length: _types.isEmpty ? 1 : _types.length,
+      initialIndex: _takeRequestedTabIndex().clamp(0, (_types.length - 1).clamp(0, 999)),
       vsync: this,
     );
     _tabBarController.addListener(_onTabChanged);
@@ -396,22 +402,28 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen>
 
   @override
   Widget build(BuildContext context) {
-    // Recompute the tab list live when "Anime only" flips; recreate the
-    // controller when the tab count changes.
-    final newTabs = _computeTabList(ref.watch(animeOnlyTvModeProvider));
+    // Recompute the tab list live when features toggle or "Anime only" flips;
+    // recreate the controller when the tabs change.
+    final hideItems = ref.watch(hideItemsStateProvider);
+    final animeOnly = ref.watch(animeOnlyTvModeProvider);
+    final newTabs = _computeTabList(animeOnly, hideItems);
     final newTypes = _typesOf(newTabs);
     _tabList = newTabs;
-    if (newTypes.length != _types.length) {
+    if (!listEquals(newTypes, _types)) {
       _types = newTypes;
       _tabBarController.removeListener(_onTabChanged);
       _tabBarController.dispose();
-      _tabBarController = TabController(length: _types.length, vsync: this);
+      _tabBarController = TabController(
+        length: _types.isEmpty ? 1 : _types.length,
+        initialIndex: (_tabBarController.index).clamp(0, (_types.length - 1).clamp(0, 999)),
+        vsync: this,
+      );
       _tabBarController.addListener(_onTabChanged);
     } else {
       _types = newTypes;
     }
     if (_types.isEmpty) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
     final currentTab = _currentTab;
     final isExtensionTab = currentTab.kind == BrowseTabKind.extensions;

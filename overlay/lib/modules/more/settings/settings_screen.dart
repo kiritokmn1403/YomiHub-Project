@@ -12,6 +12,7 @@ import 'package:mangayomi/yomihub/playbooks/playbooks_toggle.dart';
 import 'package:mangayomi/yomihub/booru/booru_settings_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mangayomi/modules/more/settings/reader/providers/reader_state_provider.dart';
 import 'package:mangayomi/modules/main_view/providers/tv_mode_provider.dart';
 import 'package:mangayomi/modules/more/widgets/list_tile_widget.dart';
 import 'package:mangayomi/providers/l10n_providers.dart';
@@ -40,32 +41,44 @@ class SettingsScreen extends StatelessWidget {
               icon: Icons.color_lens_rounded,
               onTap: () => context.push('/appearance'),
             ),
-            // Reader is manga/novel-only — hide it on the anime-only layout.
+            ListTileWidget(
+              title: tr('Bật/Tắt tính năng & Nguồn mở rộng'),
+              subtitle: tr('Bật/tắt tính năng và kho nguồn mở rộng Comic, Film & Movie, Novel'),
+              icon: Icons.toggle_on_outlined,
+              onTap: () => context.push('/featureToggle'),
+            ),
+            // Reader / Player settings hide dynamically based on Feature Toggle or anime-only TV mode.
             Consumer(
               builder: (context, ref, _) {
-                if (ref.watch(animeOnlyTvModeProvider)) {
-                  return const SizedBox.shrink();
-                }
+                final hideItems = ref.watch(hideItemsStateProvider);
+                final isMangaHidden = hideItems.any((h) => h.toLowerCase() == '/mangalibrary');
+                final isNovelHidden = hideItems.any((h) => h.toLowerCase() == '/novellibrary');
+                final isAnimeHidden = hideItems.any((h) => h.toLowerCase() == '/animelibrary');
+                final isAnimeOnly = ref.watch(animeOnlyTvModeProvider);
+
                 return Column(
                   children: [
-                    ListTileWidget(
-                      title: l10n.reader,
-                      icon: Icons.chrome_reader_mode_rounded,
-                      onTap: () => context.push('/readerMode'),
-                    ),
-                    ListTileWidget(
-                      title: '${l10n.novel} ${l10n.reader}',
-                      icon: Icons.menu_book_rounded,
-                      onTap: () => context.push('/novelReaderMode'),
-                    ),
+                    if (!isAnimeOnly && !isMangaHidden)
+                      ListTileWidget(
+                        title: l10n.reader,
+                        icon: Icons.chrome_reader_mode_rounded,
+                        onTap: () => context.push('/readerMode'),
+                      ),
+                    if (!isAnimeOnly && !isNovelHidden)
+                      ListTileWidget(
+                        title: '${l10n.novel} ${l10n.reader}',
+                        icon: Icons.menu_book_rounded,
+                        onTap: () => context.push('/novelReaderMode'),
+                      ),
+                    if (!isAnimeHidden)
+                      ListTileWidget(
+                        title: l10n.player,
+                        icon: Icons.play_circle_outline_outlined,
+                        onTap: () => context.push('/playerOverview'),
+                      ),
                   ],
                 );
               },
-            ),
-            ListTileWidget(
-              title: l10n.player,
-              icon: Icons.play_circle_outline_outlined,
-              onTap: () => context.push('/playerOverview'),
             ),
             ListTileWidget(
               title: l10n.downloads,

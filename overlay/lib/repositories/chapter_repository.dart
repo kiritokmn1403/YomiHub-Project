@@ -118,10 +118,14 @@ class ChapterRepository {
   });
 
   void saveSync(Chapter chapter) {
-    isar.writeTxnSync(() {
-      chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
-      isar.chapters.putSync(chapter);
-    });
+    try {
+      isar.writeTxnSync(() {
+        chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
+        isar.chapters.putSync(chapter);
+      });
+    } catch (_) {
+      unawaited(save(chapter));
+    }
   }
 
   /// Moving a chapter must update both its indexed parent ID and Isar link.

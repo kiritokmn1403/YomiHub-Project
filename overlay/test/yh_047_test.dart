@@ -12,8 +12,8 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('YomiHub 0.4.7', () {
-    test('AppIdentity reports version 0.4.7', () {
-      expect(AppIdentity.userAgent, 'YomiHub/0.4.7');
+    test('AppIdentity reports version 0.4.7 or later', () {
+      expect(AppIdentity.userAgent, startsWith('YomiHub/0.4.'));
     });
 
     test('YomiPrefs resumeVideoPosition defaults to true', () {

@@ -221,23 +221,28 @@ class Element {
   }
 
   parent() {
-    return new Element(this._call("parent"));
+    const k = this._call("parent");
+    return (k !== undefined && k !== null && k !== "") ? new Element(k) : createStub();
   }
 
   next() {
-    return new Element(this._call("next"));
+    const k = this._call("next");
+    return (k !== undefined && k !== null && k !== "") ? new Element(k) : createStub();
   }
 
   prev() {
-    return new Element(this._call("prev"));
+    const k = this._call("prev");
+    return (k !== undefined && k !== null && k !== "") ? new Element(k) : createStub();
   }
 
   first() {
-    return new Element(this._call("first"));
+    const k = this._call("first");
+    return (k !== undefined && k !== null && k !== "") ? new Element(k) : createStub();
   }
 
   last() {
-    return new Element(this._call("last"));
+    const k = this._call("last");
+    return (k !== undefined && k !== null && k !== "") ? new Element(k) : createStub();
   }
 }
 
@@ -403,7 +408,7 @@ class ElementCollection {
   }
 
   get(index) {
-    return this.elements[index] || new Stub();
+    return this.elements[index] || createStub();
   }
 
   // 0.4.5: cheerio's `.length` is a number. The old method made
@@ -423,24 +428,53 @@ class ElementCollection {
 }
 
 class Stub {
-  text() {
-    return "";
+  text() { return ""; }
+  html() { return ""; }
+  outerHtml() { return ""; }
+  val() { return ""; }
+  attr(name) { return ""; }
+  hasClass(cls) { return false; }
+  addClass(cls) { return this; }
+  removeClass(cls) { return this; }
+  setAttr(name, value) { return this; }
+  removeAttr(name) { return this; }
+  setVal(value) { return this; }
+  append(html) { return this; }
+  prepend(html) { return this; }
+  empty() { return this; }
+  remove() { return this; }
+  replaceWith(html) { return this; }
+  before(html) { return this; }
+  after(html) { return this; }
+  is(selector) { return false; }
+  get length() { return 0; }
+  toArray() { return []; }
+  children() { return new ElementCollection([]); }
+  find(selector) { return new ElementCollection([]); }
+  parent() { return this; }
+  next() { return this; }
+  prev() { return this; }
+  first() { return this; }
+  last() { return this; }
+  eq(index) { return new ElementCollection([]); }
+  get(index) { return this; }
+  each(fn) { return this; }
+  map(fn) { return new ElementCollection([]); }
+  filter(fn) { return new ElementCollection([]); }
+}
+
+function createStub() {
+  const target = new Stub();
+  if (typeof Proxy !== "undefined") {
+    return new Proxy(target, {
+      get(t, prop) {
+        if (prop in t) return t[prop];
+        if (typeof prop === "symbol") return undefined;
+        return function() { return target; };
+      }
+    });
   }
-  html() {
-    return "";
-  }
-  outerHtml() {
-    return "";
-  }
-  val() {
-    return "";
-  }
-  attr(name) {
-    return "";
-  }
-  hasClass(cls) {
-    return false;
-  }
+  return target;
 }
 
 function load(html) {
@@ -461,7 +495,10 @@ function load(html) {
     }
   };
 
-  \$.html = function() {
+  \$.html = function(input) {
+    if (!input) return root.html();
+    if (typeof input.html === "function") return input.html();
+    if (typeof input.outerHtml === "function") return input.outerHtml();
     return root.html();
   };
   \$.root = root;

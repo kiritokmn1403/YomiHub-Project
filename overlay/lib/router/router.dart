@@ -61,6 +61,7 @@ import 'package:mangayomi/yomihub/playbooks/playbooks_settings_screen.dart';
 import 'package:mangayomi/yomihub/microg/microg_screen.dart';
 import 'package:mangayomi/yomihub/health/health_connect_screen.dart';
 import 'package:mangayomi/yomihub/merge/content_merge_screen.dart';
+import 'package:mangayomi/yomihub/features/feature_toggle_screen.dart';
 import 'package:mangayomi/modules/browse/browse_screen.dart';
 import 'package:mangayomi/modules/browse/extension/extension_lang.dart';
 import 'package:mangayomi/modules/browse/global_search/global_search_screen.dart';
@@ -315,6 +316,10 @@ class RouterNotifier extends ChangeNotifier {
     _genericRoute(
       name: "customNavigationSettings",
       child: const CustomNavigationSettings(),
+    ),
+    _genericRoute(
+      name: "featureToggle",
+      child: const FeatureToggleScreen(),
     ),
     _genericRoute(
       name: "customButtonScreen",

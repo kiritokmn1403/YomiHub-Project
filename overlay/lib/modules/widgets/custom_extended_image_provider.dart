@@ -468,12 +468,22 @@ class CustomExtendedNetworkImageProvider
       String resolvedUrl = key.url.trim();
       if (resolvedUrl.startsWith('//')) {
         resolvedUrl = 'https:$resolvedUrl';
-      } else if (resolvedUrl.startsWith('/')) {
+      } else if (resolvedUrl.startsWith('/') || (!resolvedUrl.startsWith('http://') && !resolvedUrl.startsWith('https://'))) {
         final ref = key.headers?['Referer'] ?? key.headers?['referer'] ?? key.headers?['Origin'] ?? key.headers?['origin'];
         if (ref != null && ref.isNotEmpty) {
           final refUri = Uri.tryParse(ref);
           if (refUri != null && refUri.hasScheme && refUri.hasAuthority) {
-            resolvedUrl = '${refUri.scheme}://${refUri.authority}$resolvedUrl';
+            final slash = resolvedUrl.startsWith('/') ? '' : '/';
+            resolvedUrl = '${refUri.scheme}://${refUri.authority}$slash$resolvedUrl';
+          }
+        }
+      } else if (false) {
+        final ref = key.headers?['Referer'] ?? key.headers?['referer'] ?? key.headers?['Origin'] ?? key.headers?['origin'];
+        if (ref != null && ref.isNotEmpty) {
+          final refUri = Uri.tryParse(ref);
+          if (refUri != null && refUri.hasScheme && refUri.hasAuthority) {
+            final slash = resolvedUrl.startsWith('/') ? '' : '/';
+            resolvedUrl = '${refUri.scheme}://${refUri.authority}$slash$resolvedUrl';
           }
         }
       }

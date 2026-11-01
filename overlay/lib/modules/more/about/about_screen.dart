@@ -195,7 +195,7 @@ class AboutScreen extends ConsumerWidget {
                             onPressed: () {
                               _launchInBrowser(
                                 Uri.parse(
-                                  'https://github.com/kodjodevf/mangayomi',
+                                  'https://github.com/kiritokmn1403/YomiHub-Project',
                                 ),
                               );
                             },

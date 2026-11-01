@@ -61,20 +61,24 @@ function yhF(filters, key) {
   return null;
 }
 function yhStatus(t) {
-  if (t === null || t === undefined) return 5;
-  if (typeof t === "number") {
-    if (t >= 0 && t <= 5) return Math.floor(t);
-    t = String(t);
-  } else if (typeof t === "object") {
-    t = String(t.name || t.status || t.title || t.label || "");
-  } else {
-    t = String(t);
+  try {
+    if (t === null || t === undefined) return 5;
+    if (typeof t === "number") {
+      if (t >= 0 && t <= 5) return Math.floor(t);
+      t = String(t);
+    } else if (typeof t === "object") {
+      t = String(t.name || t.status || t.title || t.label || "");
+    } else {
+      t = String(t);
+    }
+    t = (t || "").toLowerCase();
+    if (/hoàn|complete|full|finished|đã kết thúc/.test(t)) return 1;
+    if (/tạm ngưng|hiatus|drop/.test(t)) return 2;
+    if (/đang|ongoing|airing|updating|cập nhật/.test(t)) return 0;
+    return 5;
+  } catch (e) {
+    return 5;
   }
-  t = t.toLowerCase();
-  if (/hoàn|complete|full|finished|đã kết thúc/.test(t)) return 1;
-  if (/tạm ngưng|hiatus|drop/.test(t)) return 2;
-  if (/đang|ongoing|airing|updating|cập nhật/.test(t)) return 0;
-  return 5;
 }
 // 0.2.0: tiny per-extension cookie jar (sites whose AJAX API needs the
 // session cookies of the page that issued the token).

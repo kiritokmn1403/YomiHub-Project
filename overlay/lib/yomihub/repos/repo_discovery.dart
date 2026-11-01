@@ -71,6 +71,8 @@ class YomiRepoDiscovery {
     'https://www.lnreader.app/plugins': 'LNReader',
     'https://github.com/IReaderorg/IReader-extensions': 'IReader Extension',
     'https://p.codekk.com/detail/Android/IReaderorg/IReader-extensions': 'codeKK',
+    'https://www.vbookext.me/sources': 'vBook Extensions',
+    'https://raw.githubusercontent.com/Darkrai9x/vbook-extensions/master/plugins.json': 'vBook Community Plugins',
   };
 
   /// Result of the last scan per website (shown in Extensions Repo).
@@ -330,6 +332,8 @@ class YomiRepoDiscovery {
           // 0.2.0: IReader (repov2) and LNReader (plugins branch) layouts
           'https://raw.githubusercontent.com/$o/$repo/repov2/index.min.json',
           'https://raw.githubusercontent.com/$o/$repo/plugins/v3.0.0/.dist/plugins.min.json',
+          'https://raw.githubusercontent.com/$o/$repo/master/plugins.json',
+          'https://raw.githubusercontent.com/$o/$repo/master/index.json',
         ]);
       }
     } else if (u.host.endsWith('.github.io')) {

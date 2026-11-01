@@ -102,17 +102,13 @@ class AnimeStreamController extends _$AnimeStreamController
       }
       ep.updatedAt = DateTime.now().millisecondsSinceEpoch;
       try {
-        if (save) {
-          chapterRepository.saveSync(ep);
-        } else {
-          chapterRepository.save(ep).catchError((Object e, StackTrace stack) {
-            AppLogger.logOnce(
-              'save_ep_pos_err_${ep.id}',
-              '[Trình phát] Lỗi không lưu được vị trí đã xem của tập "${ep.name}": $e',
-              logLevel: LogLevel.error,
-            );
-          });
-        }
+        chapterRepository.save(ep).catchError((Object e, StackTrace stack) {
+          AppLogger.logOnce(
+            'save_ep_pos_err_${ep.id}',
+            '[Trình phát] Lỗi không lưu được vị trí đã xem của tập "${ep.name}": $e',
+            logLevel: LogLevel.error,
+          );
+        });
         episode.lastPageRead = ep.lastPageRead;
         episode.duration = ep.duration;
         episode.isRead = ep.isRead;

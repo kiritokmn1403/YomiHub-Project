@@ -41,6 +41,11 @@ import 'package:mangayomi/modules/more/providers/incognito_mode_state_provider.d
 
 final libLocationRegex = RegExp(r"^/(Manga|Anime|Novel)Library$");
 
+bool _isNavHidden(String nav, List<String> hiddenList) {
+  final lower = nav.toLowerCase();
+  return hiddenList.any((h) => h.toLowerCase() == lower);
+}
+
 /// Nav destinations kept off the anime-only TV layout (the manga & novel
 /// libraries). True means "keep this destination".
 bool _isNotHiddenLibOnTv(String nav) =>
@@ -160,7 +165,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     // 0.4.3 (sheet "YomiHub Update"): the stand-alone History view lives only
     // in "More"; each library keeps its own real-time History section.
     final visible = order
-        .where((e) => !hiddenItems.contains(e) && e != '/history')
+        .where((e) => !_isNavHidden(e, hiddenItems) && e != '/history')
         .toList();
     _defaultLocation = visible.isNotEmpty ? visible.first : "/AnimeLibrary";
 
@@ -318,9 +323,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       ...navigationOrder.where(
                         (nav) => libLocationRegex.hasMatch(nav),
                       ),
-                    ].where((nav) => !hideItems.contains(nav)).toList()
+                    ].where((nav) => !_isNavHidden(nav, hideItems)).toList()
                   : navigationOrder
-                        .where((nav) => !hideItems.contains(nav))
+                        .where((nav) => !_isNavHidden(nav, hideItems))
                         .toList();
               // 0.4.3: History only from "More" (not a bottom tab)
               dest = dest.where((nav) => nav != '/history').toList();
@@ -328,6 +333,13 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               // Anime-only TV layout: drop the manga & novel library tabs.
               if (isTv || kIsTvBuild || ref.watch(animeOnlyTvModeProvider)) {
                 dest = dest.where(_isNotHiddenLibOnTv).toList();
+              }
+
+              // Auto-redirect if currently selected library is hidden
+              if (location != null && _isNavHidden(location, hideItems) && dest.isNotEmpty) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (mounted) context.go(dest.first);
+                });
               }
 
               if (mergeLibraryNavMobile && !context.isTablet && !isLibSwitch) {
@@ -1225,9 +1237,9 @@ class _ExtensionBadgeWidget extends ConsumerWidget {
 
     return StreamBuilder(
       stream: sourceRepository.watchActiveExcludingHiddenItemTypes(
-        hideManga: hideItems.contains("/MangaLibrary"),
-        hideAnime: hideItems.contains("/AnimeLibrary"),
-        hideNovel: hideItems.contains("/NovelLibrary"),
+        hideManga: _isNavHidden("/MangaLibrary", hideItems),
+        hideAnime: _isNavHidden("/AnimeLibrary", hideItems),
+        hideNovel: _isNavHidden("/NovelLibrary", hideItems),
       ),
       builder: (context, snapshot) {
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -1269,9 +1281,9 @@ class _UpdatesBadgeWidget extends ConsumerWidget {
 
     return StreamBuilder(
       stream: updateRepository.watchUnreadExcludingHiddenItemTypes(
-        hideManga: hideItems.contains("/MangaLibrary"),
-        hideAnime: hideItems.contains("/AnimeLibrary"),
-        hideNovel: hideItems.contains("/NovelLibrary"),
+        hideManga: _isNavHidden("/MangaLibrary", hideItems),
+        hideAnime: _isNavHidden("/AnimeLibrary", hideItems),
+        hideNovel: _isNavHidden("/NovelLibrary", hideItems),
       ),
       builder: (context, snapshot) {
         if (!snapshot.hasData || snapshot.data!.isEmpty) {

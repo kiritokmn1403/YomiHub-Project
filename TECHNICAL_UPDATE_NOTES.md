@@ -1375,3 +1375,109 @@ f70a4bba7d843b63c3d1ea9dc2e666ee96a62c8ac5b77490eaaaa3ee8a99a832  YomiHub-0.4.7-
 4b550db2f230e0df3908aa9da06fa741d0baae131ef452d7f986c14fc7d2617d  YomiHub-0.4.7-windows-x64-full.zip
 `
 Kèm theo: YomiHub-RootCA.cer, Install-YomiHub.bat, Install-YomiHub.ps1, YomiHub-0.4.7-changelog.md.
+
+---
+
+### 01/11/2026 — Nâng cấp toàn diện phiên bản 0.4.8 (YomiHub 0.4.8+40)
+
+#### A. Yêu cầu thực hiện
+1. Nâng cấp phiên bản YomiHub lên `0.4.8` (Build `40`), tương thích hoàn toàn Android 6.0+, Android TV (bản riêng `YumiHub Android TV` loại bỏ Comic và Novel), và Windows 7+ (x64, x86, ARM).
+2. Xử lý các lỗi tồn đọng từ nhật ký hoạt động (`logs_5.txt`):
+   - Sửa lỗi Isar concurrency lock khi nhiều luồng đồng thời ghi dữ liệu thư viện.
+   - Sửa lỗi Cheerio Proxy fallback khi gặp sự cố phân giải HTML nguồn mạng.
+   - Sửa lỗi ép kiểu `item.yhStatus` (Anime47) tránh lỗi crash `type 'int' is not a subtype of type 'String'`.
+   - Sửa lỗi xử lý URL ảnh tương đối (`images/...`) trong tiện ích `anime47.js`.
+3. Khắc phục triệt để lỗi người dùng phản hồi:
+   - "Khoan đã, tại sao khi tắt tính năng truyện tranh đi mà mục Truyện Tranh vẫn hiện? Kể cả các mục còn lại cũng lỗi tương tự? Hãy sửa lại".
+   - Cơ chế Bật/Tắt tính năng & Nguồn mở rộng phải phản ứng tức thì (reactive dynamic feature toggle) trên cả Thanh điều hướng (Bottom Navigation Bar & Tablet/Desktop Rail), Màn hình Duyệt nguồn mở rộng (Browse Screen), và Màn hình Cài đặt (Settings Screen).
+4. Kiểm thử trực tiếp và xác thực trên thiết bị thật Samsung Galaxy Note 9 (`SM-N960F`, Device ID: `281038ac31217ece`, Android 10).
+5. Đóng gói đầy đủ các bộ cài:
+   - Android Mobile APK (`arm64-v8a`, `armeabi-v7a`, `x86_64`)
+   - Android TV APK (`YumiHub-Android-TV-0.4.8-*.apk`)
+   - Windows 3 định dạng: `.appxbundle`, `Setup.exe`, `portable .zip` và `-full.zip`.
+
+#### B. Nguyên nhân lỗi và giải pháp kỹ thuật
+
+1. **Lỗi Feature Toggle không ẩn mục Truyện tranh / Anime / Novel trên giao diện:**
+   - **Nguyên nhân 1 (Lệch chuẩn Case Route):** Trong `overlay/lib/yomihub/features/feature_toggle_screen.dart`, mã nguồn lưu route bị ẩn vào danh sách `hideItems` dưới dạng chữ thường: `'/mangaLibrary'`, `'/animeLibrary'`, `'/novelLibrary'`. Trong khi đó, GoRouter và `main_screen.dart` sử dụng hằng số chuẩn `PascalCase`: `'/MangaLibrary'`, `'/AnimeLibrary'`, `'/NovelLibrary'`. Phép so sánh so khớp chuỗi phân biệt hoa thường (`dest.contains(...)`) dẫn đến việc route không bao giờ được coi là bị ẩn.
+   - **Nguyên nhân 2 (TabController tĩnh trong BrowseScreen):** Trong `overlay/lib/modules/browse/browse_screen.dart`, `TabController` được khởi tạo cố định trong `initState()` với độ dài `_types.length` ban đầu, và phương thức `build()` không hề lắng nghe `ref.watch(hideItemsStateProvider)`. Do đó, khi người dùng thay đổi trạng thái trong Cài đặt, màn hình Duyệt không bao giờ dựng lại các Tab con.
+   - **Nguyên nhân 3 (Thiếu ẩn mục trong SettingsScreen):** `settings_screen.dart` không lắng nghe `hideItemsStateProvider`, khiến các mục cấu hình chuyên biệt như *Trình đọc* (Manga), *Trình phát* (Anime) vẫn hiển thị ngay cả khi tính năng chính đã bị người dùng vô hiệu hóa.
+   - **Giải pháp triệt để:**
+     - Chuẩn hóa các hằng số route trong `feature_toggle_screen.dart` thành `'/MangaLibrary'`, `'/AnimeLibrary'`, `'/NovelLibrary'`. Thêm hàm dọn dẹp case-insensitive loại bỏ triệt để cả biến thể chữ thường lẫn chữ hoa khi bật lại tính năng.
+     - Viết hàm `_isNavHidden(nav, hideItems)` so sánh chuẩn hóa `toLowerCase().trim()` trong `main_screen.dart` cho cả Bottom Navigation Bar và Navigation Rail.
+     - Bổ sung logic tự động điều hướng: Nếu người dùng đang đứng ở một thư viện vừa bị tắt, ứng dụng tự động chuyển vùng sang tab hợp lệ đầu tiên còn lại (`dest.first`).
+     - Trong `browse_screen.dart`: Bổ sung `ref.watch(hideItemsStateProvider)` trong `build()`. Khi danh sách `newTypes` thay đổi so với `_types`, tự động hủy `TabController` cũ và khởi tạo `TabController(length: _types.length)` mới, loại bỏ hoàn toàn tab của tính năng bị tắt.
+     - Trong `settings_screen.dart`: Bổ sung `ref.watch(hideItemsStateProvider)` và bọc điều kiện hiển thị cho `Reader`, `Player`, `Novel Reader`.
+     - Cập nhật `item_type_filters.dart` với so sánh case-insensitive.
+
+2. **Lỗi ép kiểu `item.yhStatus` (`extension_detail.dart`):**
+   - **Nguyên nhân:** Nguồn mở rộng Anime47 và một số nguồn trả về trường trạng thái dưới dạng số nguyên `int` hoặc mã đối tượng không phải chuỗi, khiến lệnh đọc `item.yhStatus as String` quăng ngoại lệ `type 'int' is not a subtype of type 'String'`.
+   - **Giải pháp:** Bọc an toàn `item.yhStatus?.toString() ?? ''` và cung cấp fallback trạng thái mặc định.
+
+3. **Lỗi phân giải đường dẫn ảnh tương đối (`anime47.js`):**
+   - **Nguyên nhân:** Các ảnh bìa trả về đường dẫn dạng `images/...` hoặc `/images/...` không có tiền tố domain `https://anime47.com/`, dẫn đến lỗi 404 khi tải ảnh.
+   - **Giải pháp:** Bổ sung hàm tiện ích `resolveUrl(baseUrl, relativePath)` trong JS runtime, tự động chuẩn hóa các URL bắt đầu bằng `//` hoặc relative path thành URL HTTPS đầy đủ.
+
+4. **Lỗi Isar concurrency lock:**
+   - **Nguyên nhân:** Khi quá trình kiểm tra cập nhật thư viện chạy đồng thời với quá trình đồng bộ nền, nhiều isolate cùng gọi `isar.writeTxn()` gây nghẽn luồng.
+   - **Giải pháp:** Triển khai hàng đợi tuần tự hóa giao dịch ghi `IsarWriteQueue`, đảm bảo chỉ có 1 tác vụ ghi cơ sở dữ liệu được thực thi tại một thời điểm.
+
+#### C. Danh sách tệp chỉnh sửa
+1. `overlay/pubspec.yaml`: Nâng phiên bản `0.4.8+40`.
+2. `overlay/lib/yomihub/app_identity.dart`: Nâng User-Agent nhận diện `YomiHub/0.4.8`.
+3. `overlay/lib/yomihub/features/feature_toggle_screen.dart`: Chuẩn hóa route `PascalCase`, dọn dẹp case-insensitive.
+4. `overlay/lib/modules/main_view/main_screen.dart`: Lọc tab động case-insensitive `_isNavHidden`, tự động redirect `dest.first`.
+5. `overlay/lib/modules/browse/browse_screen.dart`: Lắng nghe `hideItemsStateProvider`, tái tạo động `TabController`.
+6. `overlay/lib/modules/more/settings/settings_screen.dart`: Tự động ẩn các mục Reader/Player khi tắt tính năng.
+7. `overlay/lib/utils/item_type_filters.dart`: Chuẩn hóa bộ lọc mục ẩn case-insensitive.
+8. `overlay/lib/modules/browse/extension/extension_detail.dart`: An toàn ép kiểu `yhStatus`.
+9. `overlay/assets/yomihub_extensions/anime47.js`: Chuẩn hóa URL ảnh tương đối.
+10. `overlay/test/yh_048_test.dart`: Bộ kiểm thử tự động kiểm tra Feature Toggle, Version, URL Resolution.
+11. `sync_048.ps1`: Script đồng bộ toàn bộ 38 tệp từ `overlay/` sang các thư mục build.
+12. `build_048.ps1`: Script dựng toàn diện 0.4.8 (APK mobile, Android TV, Windows).
+
+#### D. Kết quả kiểm thử tự động
+- `dart analyze`: Đạt **0 error, 0 warning**.
+- `flutter test`: Toàn bộ các bộ test tự động từ `yh_040_test.dart` đến `yh_048_test.dart` vượt qua 100% (**All tests passed**).
+
+#### E. Kết quả kiểm thử trực tiếp trên Samsung Galaxy Note 9 (`SM-N960F`, Android 10)
+- Đã cài đặt thành công `YomiHub-0.4.8-arm64-v8a.apk` (Streamed Install Success).
+- **Kiểm thử Bật/Tắt tính năng thực tế:**
+  - **Trường hợp TẮT Truyện tranh & Phim:** 
+    - Bottom Nav lập tức giảm từ 8 tab xuống 6 tab (Tab Truyện tranh và Phim & Điện ảnh biến mất hoàn toàn).
+    - Màn hình Duyệt (Browse) lập tức chỉ còn 1 tab duy nhất là "Cài đặt tiện ích Tiểu thuyết".
+    - Màn hình Cài đặt tự động ẩn "Trình đọc" và "Trình phát", chỉ còn "Tiểu thuyết Trình đọc".
+  - **Trường hợp BẬT lại Truyện tranh:**
+    - Bottom Nav lập tức tăng lên 7 tab (Tab Truyện tranh xuất hiện lại ở vị trí đầu tiên).
+    - Màn hình Duyệt lập tức xuất hiện lại tab "Cài đặt tiện ích Truyện tranh".
+    - Màn hình Cài đặt lập tức xuất hiện lại mục "Trình đọc".
+  - **Trường hợp BẬT đầy đủ 3 tính năng:**
+    - Bottom Nav hiển thị trọn vẹn 8 tab.
+    - Màn hình Duyệt hiển thị trọn vẹn 3 tab: Truyện tranh, Phim & Điện ảnh, Tiểu thuyết.
+- Bộ ảnh chụp màn hình minh chứng lưu trữ tại `qa/`:
+  - `12_settings_comic_hidden.png`: Cài đặt khi tắt Truyện tranh & Phim.
+  - `13_browse_comic_hidden.png`: Màn hình Duyệt khi chỉ còn Tiểu thuyết.
+  - `14_settings_comic_restored.png`: Cài đặt khi bật lại Truyện tranh ("Trình đọc" xuất hiện lại).
+  - `15_nav_comic_restored.png`: Bottom Nav khi bật lại Truyện tranh (7 tab).
+  - `16_browse_comic_restored.png`: Màn hình Duyệt có 2 tab (Truyện tranh + Tiểu thuyết).
+  - `17_browse_all_enabled.png`: Màn hình Duyệt đầy đủ 3 tab.
+  - `18_nav_all_enabled.png`: Bottom Nav đầy đủ 8 tab.
+  - Chi tiết trong tài liệu: `yomihub_048_phone_qa_report.md`.
+
+#### F. Danh sách tệp bàn giao và Mã băm SHA-256 (SHA256SUMS-0.4.8.txt)
+Toàn bộ tệp phát hành chính thức phiên bản 0.4.8 được xuất ra tại thư mục `output/0.4.8/`:
+```
+6719635cc83309010c243e67b43e23befd476c03dfe6d57d06c91d25a21b8cae  YomiHub-0.4.8-arm64-v8a.apk
+d4975f4fada08dd16f34aa8a42e359e90794b8475d58660a6e99fcfa65731d15  YomiHub-0.4.8-armeabi-v7a.apk
+98de69b9c1a3629ef1a008558599e22d0669a66bdd4b38139896dfcd3d478ea5  YomiHub-0.4.8-x86_64.apk
+b066b98fab2e5f79e5d2701ae026c2833eccf1bbfac6e3e64231f3790b456f1a  YumiHub-Android-TV-0.4.8-arm64-v8a.apk
+13462d043f3e2dd426bdedf7c6a87c02259f650a17f9cf0d0db9c91b0153ffa3  YumiHub-Android-TV-0.4.8-armeabi-v7a.apk
+9c80b2a0a2a54fa3da27694840c96ffed932a465a4a2e79a5ee290611a04795d  YumiHub-Android-TV-0.4.8-x86_64.apk
+d2da2ffe39b143f3c6d8c67179fcec4f59c1b8d4a6070361d9072ed79e772fe6  YomiHub-0.4.8-windows-x64-Setup.exe
+1de9d77bf437055c7490f106135b625595af7c1094cf490b93afc305c8e22b46  YomiHub-0.4.8-windows-x64.appxbundle
+84255458d1e9b0c5802636194af91a61ba89b672f5b2bda039803fb1d289b320  YomiHub-0.4.8-windows-x64.zip
+6548663d188106e6e0af78f33fb41d03862da3fa1a4a63a22c06133a0709fd4f  YomiHub-0.4.8-windows-x64-full.zip
+```
+Kèm theo: `YomiHub-RootCA.cer`, `Install-YomiHub.bat`, `Install-YomiHub.ps1`, `YomiHub-0.4.8-changelog.md`.
+
+

@@ -136,21 +136,26 @@ if (typeof yhText === 'undefined') {
   }
   function yhText(s) { return (s || "").replace(/\\s+/g, " ").trim(); }
   function yhStatus(t) {
-    if (t === null || t === undefined) return 5;
-    if (typeof t === "number") {
-      if (t >= 0 && t <= 5) return Math.floor(t);
-      t = String(t);
-    } else if (typeof t === "object") {
-      t = String(t.name || t.status || t.title || t.label || "");
-    } else {
-      t = String(t);
+    try {
+      if (t === null || t === undefined) return 5;
+      if (typeof t === "number") {
+        if (t >= 0 && t <= 5) return Math.floor(t);
+        t = String(t);
+      } else if (typeof t === "object") {
+        t = String(t.name || t.status || t.title || t.label || "");
+      } else {
+        t = String(t);
+      }
+      t = (t || "").toLowerCase();
+      if (/hoàn|complete|full|finished|đã kết thúc/.test(t)) return 1;
+      if (/tạm ngưng|hiatus|drop/.test(t)) return 2;
+      if (/đang|ongoing|airing|updating|cập nhật/.test(t)) return 0;
+      return 5;
+    } catch (_) {
+      return 5;
     }
-    t = t.toLowerCase();
-    if (/hoàn|complete|full|finished|đã kết thúc/.test(t)) return 1;
-    if (/tạm ngưng|hiatus|drop/.test(t)) return 2;
-    if (/đang|ongoing|airing|updating|cập nhật/.test(t)) return 0;
-    return 5;
   }
+
 }
 ''');
     // evaluate() reports a failure by returning a result with isError set; it

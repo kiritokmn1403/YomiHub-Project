@@ -1,9 +1,14 @@
 import 'package:mangayomi/models/manga.dart';
 
+bool _isTypeHidden(String route, List<String> hideItems) {
+  final lower = route.toLowerCase();
+  return hideItems.any((h) => h.toLowerCase() == lower);
+}
+
 List<ItemType> hiddenItemTypes(List<String> hideItems) {
   return [
-    if (!hideItems.contains("/MangaLibrary")) ItemType.manga,
-    if (!hideItems.contains("/AnimeLibrary")) ItemType.anime,
-    if (!hideItems.contains("/NovelLibrary")) ItemType.novel,
+    if (!_isTypeHidden("/MangaLibrary", hideItems)) ItemType.manga,
+    if (!_isTypeHidden("/AnimeLibrary", hideItems)) ItemType.anime,
+    if (!_isTypeHidden("/NovelLibrary", hideItems)) ItemType.novel,
   ];
 }
