@@ -74,4 +74,8 @@ class YomiPrefs {
   /// Seconds of buffering without progress before switching server.
   static int get serverStallSeconds => get('serverStallSeconds', 12);
   static set serverStallSeconds(int v) => set('serverStallSeconds', v);
+
+  /// Resume playback from previous position. Default is true.
+  static bool get resumeVideoPosition => get('resumeVideoPosition', true);
+  static set resumeVideoPosition(bool v) => set('resumeVideoPosition', v);
 }

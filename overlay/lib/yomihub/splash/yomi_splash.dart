@@ -238,8 +238,8 @@ class _YomiSplashState extends State<YomiSplash> with TickerProviderStateMixin {
     final pulse = 0.5 + 0.5 * math.sin(t * math.pi * 4);
     final morph = _seg(t, 0.05, 0.35, Curves.easeInOutCubic);
     const size = 132.0;
-    // 0.22 × size ≈ the icon's own corner radius → 0.5 × size = full circle
-    final r = size * (0.22 + 0.28 * morph);
+    // 0.0 × size = square → 0.5 × size = full circle
+    final r = size * (0.0 + 0.5 * morph);
     return Container(
       width: size,
       height: size,

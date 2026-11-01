@@ -391,6 +391,7 @@ class _AnimeStreamPageState extends riv.ConsumerState<AnimeStreamPage>
       config: true,
       configDir: useMpvConfig ? widget.mpvDirectory?.path ?? "" : "",
       options: {
+        "force-seekable": "yes",
         if (debandingType == DebandingType.cpu) "vf": "gradfun=radius=12",
         if (debandingType == DebandingType.gpu) "deband": "yes",
         if (useYUV420P) "vf": "format=yuv420p",
@@ -1372,10 +1373,11 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   }
 
   Future<void> _openMedia(VideoPrefs prefs, [Duration? position]) async {
-    final start =
+    final initialPos =
         position ??
         YomiMiniPlayer.takeResume(widget.episode.id) ??
         _streamController.getCurrentPosition();
+    final start = YomiPrefs.resumeVideoPosition ? initialPos : Duration.zero;
     // open() can emit zero positions before its future completes.
     _initialResumeTarget = start;
     _hasResumeTargetCompleted = start <= Duration.zero;
@@ -1421,9 +1423,11 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
         if (!mounted) return;
         unawaited(
           _player.seek(start).catchError((Object error) {
+            final msg = error.toString().toLowerCase();
+            final isSeekFail = msg.contains('cannot seek') || msg.contains('force-seekable');
             AppLogger.log(
               '[Trình phát] Không thể khôi phục vị trí xem: $error',
-              logLevel: LogLevel.error,
+              logLevel: isSeekFail ? LogLevel.info : LogLevel.error,
             );
           }),
         );

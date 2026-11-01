@@ -182,21 +182,25 @@ class DefaultExtension extends MProvider {
       }
     }
     if (!html && el) {
-      html = el.innerHtml.replace(/<p[^>]*display:\s*none[^>]*>.*?<\/p>/gi, "");
+      html = (el.innerHtml || "").replace(/<p[^>]*display:\s*none[^>]*>.*?<\/p>/gi, "");
     }
-    if (!html || html.replace(/<[^>]+>/g, "").trim().length < 30) {
-      // Last resort: let a hidden WebView render the chapter.
-      const script = `(function(){var n=0;var t=setInterval(function(){n++;var el=document.querySelector('#chapter-content');
-        var prot=document.querySelector('#chapter-c-protected');
-        if((el&&!prot)||n>60){clearInterval(t);var c=el?el.cloneNode(true):null;
-        if(c){c.querySelectorAll('script,style,noscript').forEach(function(e){e.remove();});}
-        window.flutter_inappwebview.callHandler('setResponse', c?c.innerHTML:'');}},250);})();`;
-      try {
-        const w = await evaluateJavascriptViaWebview(full, this.getHeaders(full), [script]);
-        if (w && w.length > html.length) html = w;
-      } catch (e) { diag.push("WebView: " + e); }
+    const hasImages = /<img\b[^>]*>/i.test(html);
+    if (!html || (!hasImages && html.replace(/<[^>]+>/g, "").trim().length < 30)) {
+      // Last resort: let a hidden WebView render the chapter if supported.
+      if (typeof evaluateJavascriptViaWebview === "function") {
+        const script = `(function(){var n=0;var t=setInterval(function(){n++;var el=document.querySelector('#chapter-content');
+          var prot=document.querySelector('#chapter-c-protected');
+          if((el&&!prot)||n>60){clearInterval(t);var c=el?el.cloneNode(true):null;
+          if(c){c.querySelectorAll('script,style,noscript').forEach(function(e){e.remove();});}
+          window.flutter_inappwebview.callHandler('setResponse', c?c.innerHTML:'');}},250);})();`;
+        try {
+          const w = await evaluateJavascriptViaWebview(full, this.getHeaders(full), [script]);
+          if (w && w.length > html.length) html = w;
+        } catch (e) { diag.push("WebView: " + e); }
+      }
     }
-    if (!html || html.replace(/<[^>]+>/g, "").trim().length < 30) {
+    const hasImagesFinal = /<img\b[^>]*>/i.test(html);
+    if (!html || (!hasImagesFinal && html.replace(/<[^>]+>/g, "").trim().length < 30)) {
       html = `<p>Không đọc được chương này.</p><p><small>${diag.join(" · ") || "trang không có nội dung"}</small></p><p><small>${full}</small></p>`;
     }
     return html;

@@ -163,7 +163,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                             title,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
+                            style: (Theme.of(context).textTheme.titleSmall ?? const TextStyle()).copyWith(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
                             ),
@@ -178,7 +178,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                         rec.description!,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: (Theme.of(context).textTheme.bodySmall ?? const TextStyle()).copyWith(
                           fontSize: 12,
                           height: 1.35,
                           color: context.textColor.withValues(

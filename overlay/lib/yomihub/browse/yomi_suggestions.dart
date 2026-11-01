@@ -12,8 +12,14 @@ import 'package:mangayomi/main.dart';
 import 'package:mangayomi/models/history.dart';
 import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/source.dart';
-import 'package:mangayomi/modules/browse/global_search/global_search_screen.dart'
-    show MangaGlobalImageCard;
+import 'package:flutter/services.dart';
+import 'package:mangayomi/modules/widgets/manga_image_card_widget.dart'
+    show pushToMangaReaderDetail;
+import 'package:mangayomi/modules/widgets/tv_pill.dart' show tvIsSelectKey;
+import 'package:mangayomi/utils/cached_network.dart';
+import 'package:mangayomi/utils/constant.dart';
+import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
+import 'package:mangayomi/utils/headers.dart';
 import 'package:mangayomi/modules/more/settings/browse/providers/browse_state_provider.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
 import 'package:mangayomi/services/get_filter_list.dart';
@@ -418,36 +424,174 @@ class _YomiSuggestionsViewState extends ConsumerState<YomiSuggestionsView>
             )
           else
             SliverPadding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
               sliver: SliverGrid(
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 160,
-                  mainAxisExtent: 240,
-                  crossAxisSpacing: 4,
-                  mainAxisSpacing: 4,
+                  maxCrossAxisExtent: 170,
+                  mainAxisExtent: 260,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
                 ),
                 delegate: SliverChildBuilderDelegate(
-                  (c, i) {
-                    final s = items[i];
-                    return Column(
-                      children: [
-                        Expanded(
-                          child: MangaGlobalImageCard(manga: s.manga, source: s.source),
-                        ),
-                        Text(
-                          s.source.name ?? '',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(c).textTheme.labelSmall,
-                        ),
-                      ],
-                    );
-                  },
+                  (c, i) => _SuggestionCard(
+                    manga: items[i].manga,
+                    source: items[i].source,
+                  ),
                   childCount: items.length,
                 ),
               ),
             ),
         ],
+      ),
+    );
+  }
+}
+
+class _SuggestionCard extends ConsumerStatefulWidget {
+  final MManga manga;
+  final Source source;
+
+  const _SuggestionCard({
+    required this.manga,
+    required this.source,
+  });
+
+  @override
+  ConsumerState<_SuggestionCard> createState() => _SuggestionCardState();
+}
+
+class _SuggestionCardState extends ConsumerState<_SuggestionCard> {
+  bool _focused = false;
+
+  void _open() {
+    pushToMangaReaderDetail(
+      ref: ref,
+      context: context,
+      getManga: widget.manga,
+      lang: widget.source.lang!,
+      itemType: widget.source.itemType,
+      useMaterialRoute: true,
+      source: widget.source.name!,
+      sourceId: widget.source.id,
+    );
+  }
+
+  void _quickAddToLibrary() {
+    pushToMangaReaderDetail(
+      ref: ref,
+      context: context,
+      getManga: widget.manga,
+      lang: widget.source.lang!,
+      itemType: widget.source.itemType,
+      source: widget.source.name!,
+      sourceId: widget.source.id,
+      addToFavourite: true,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Focus(
+      onFocusChange: (f) {
+        setState(() => _focused = f);
+        if (f && context.mounted && Scrollable.maybeOf(context) != null) {
+          Scrollable.ensureVisible(
+            context,
+            alignment: 0.5,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeOut,
+          );
+        }
+      },
+      onKeyEvent: (node, event) {
+        if (event is KeyDownEvent && tvIsSelectKey(event.logicalKey)) {
+          _open();
+          return KeyEventResult.handled;
+        }
+        return KeyEventResult.ignored;
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 130),
+        curve: Curves.easeOut,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: _focused ? context.primaryColor : Colors.transparent,
+            width: 2,
+          ),
+          color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.25),
+        ),
+        child: Material(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(8),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: _open,
+            onLongPress: _quickAddToLibrary,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
+                        child: cachedNetworkImage(
+                          headers: ref.watch(
+                            headersProvider(
+                              source: widget.source.name!,
+                              lang: widget.source.lang!,
+                              sourceId: widget.source.id,
+                            ),
+                          ),
+                          imageUrl: toImgUrl(widget.manga.imageUrl ?? ""),
+                          width: double.infinity,
+                          height: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                        top: 6,
+                        left: 6,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withValues(alpha: 0.72),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            widget.source.name ?? '',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
+                  child: Text(
+                    widget.manga.name ?? '',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      height: 1.25,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

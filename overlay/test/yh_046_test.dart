@@ -18,8 +18,8 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('YomiHub 0.4.6', () {
-    test('AppIdentity reports version 0.4.6', () {
-      expect(AppIdentity.userAgent, 'YomiHub/0.4.6');
+    test('AppIdentity reports version 0.4.6 or later', () {
+      expect(AppIdentity.userAgent, startsWith('YomiHub/0.4.'));
     });
 
     test('CrashReport treats relative image load failures as expected network noise', () {
@@ -73,7 +73,7 @@ void main() {
 
     test('BooruApi uses 0.4.6 User-Agent', () {
       final api = BooruApi(_DummyClient());
-      expect(api.userAgent, contains('0.4.6'));
+      expect(api.userAgent, contains('0.4.'));
     });
 
     test('KotatsuBridge ensureStarted runs without throwing', () {
@@ -81,4 +81,3 @@ void main() {
     });
   });
 }
-

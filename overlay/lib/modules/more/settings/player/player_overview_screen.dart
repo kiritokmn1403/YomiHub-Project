@@ -15,7 +15,7 @@ class PlayerOverviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = l10nLocalizations(context);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n!.player)),
+      appBar: AppBar(title: Text(l10n.player)),
       body: SingleChildScrollView(
         padding: tvPageInsets,
         child: Column(
@@ -43,6 +43,15 @@ class PlayerOverviewScreen extends StatelessWidget {
               valueListenable: YomiPrefs.changes,
               builder: (context, _, _) => Column(
                 children: [
+                  SwitchListTile(
+                    secondary: const Icon(Icons.history_toggle_off),
+                    title: Text(tr('Tiếp tục phát video từ vị trí đã xem')),
+                    subtitle: Text(
+                      tr('Tự động tua đến thời điểm đang xem dở của tập video khi mở lại'),
+                    ),
+                    value: YomiPrefs.resumeVideoPosition,
+                    onChanged: (v) => YomiPrefs.resumeVideoPosition = v,
+                  ),
                   SwitchListTile(
                     secondary: const Icon(Icons.swap_horiz),
                     title: Text(tr('Tự động chuyển server')),

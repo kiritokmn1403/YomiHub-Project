@@ -22,6 +22,7 @@ class BottomTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return isComfortableGrid
         ? Padding(
             padding: const EdgeInsets.only(left: 5, bottom: 5),
@@ -30,7 +31,7 @@ class BottomTextWidget extends StatelessWidget {
                 Expanded(
                   child: Text(
                     text,
-                    style: TextStyle(
+                    style: (textTheme.bodySmall ?? const TextStyle()).copyWith(
                       fontSize: fontSize,
                       fontWeight: FontWeight.w600,
                       color: textColor ?? context.textColor,
@@ -56,7 +57,7 @@ class BottomTextWidget extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 5, bottom: 5),
                         child: Text(
                           text,
-                          style: TextStyle(
+                          style: (textTheme.bodySmall ?? const TextStyle()).copyWith(
                             fontSize: 13.0,
                             color: textColor ?? Colors.white,
                             shadows: const <Shadow>[
@@ -92,7 +93,7 @@ class BottomTextWidget extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 5, bottom: 5),
                           child: Text(
                             text,
-                            style: TextStyle(
+                            style: (textTheme.bodySmall ?? const TextStyle()).copyWith(
                               fontSize: 13.0,
                               color: textColor ?? Colors.white,
                               shadows: const <Shadow>[

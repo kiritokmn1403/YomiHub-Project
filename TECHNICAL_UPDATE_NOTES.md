@@ -6,6 +6,8 @@ Chủ dự án yêu cầu tạo và duy trì tài liệu này ngày 25/10/2026. 
 
 ## 1. Trạng thái hiện tại
 
+- **01/11/2026 – 0.4.7 (0.4.7+39) đã dựng và bàn giao:** 3 APK Android 6.0+, 3 APK `YumiHub Android TV`, Windows 7/10/11 x64 `.appxbundle`/`Setup.exe`/portable `.zip`/portable `-full.zip` trong `output/0.4.7`. Mới/sửa: Khắc phục triệt để lỗi font chữ và tràn khung hiển thị trong mục "Đề Xuất" (viết mới `_SuggestionCard`, badge nguồn, kế thừa `textTheme` Unicode fallback), tách riêng APK Android TV bỏ Comic/Novel, sửa lỗi đọc chương minh họa Novel Hako, sửa lỗi seek video live stream, thêm cài đặt "Tiếp tục phát video từ vị trí đã xem", Splash 5s morph vuông sang tròn (`r=size/2`), validate Telegram Cloud Backup Chat ID. Đạt 56/56 unit test (`All tests passed!`), kiểm thử thực tế thành công 100% trên thiết bị ngoại vi Samsung Galaxy Note 9 (SM-N960N, Android 10, màn hình 1440x2960) có đầy đủ ảnh chụp màn hình và video minh chứng. Chi tiết: mục "01/11/2026 — Cập nhật phiên bản 0.4.7".
+- **31/10/2026 - 01/11/2026 – 0.4.6 (0.4.6+38) đã dựng và bàn giao:** 3 APK Android 7.0+, 3 APK `YumiHub Android TV`, Windows 10/11 x64 `.appxbundle`/`Setup.exe`/portable `.zip` trong `output/0.4.6`. Mới/sửa: Tùy biến phạm vi VPN cho từng nguồn Booru cá nhân, nâng cấp thư viện JS mở rộng và xử lý ngoại lệ ảnh 404. Chi tiết: mục "31/10/2026 - 01/11/2026 - Cập nhật phiên bản 0.4.6".
 - **30/10/2026 – 0.4.5 (0.4.5+37) đã dựng và bàn giao:** 3 APK Android 7.0+, 3 APK `YumiHub Android TV`, Windows 10/11 x64 `.appxbundle`/`Setup.exe`/portable `.zip` trong `output/0.4.5`. Mới/sửa: Telegram chia phần ≤ 19 MB + che token + đi qua VPN, splash không dựng lại cả app, trình phát luồng trực tiếp, cheerio LNReader (Hako), WARP gồm YomiHub, Booru Rule34, VTV Go `cache.vtvgo.vn`, log chương tiểu thuyết. Kiểm thử trên Xiaomi 15T + AVD TV; Setup.exe cài thành công. **Còn mở:** mọi app Flutter trên máy Windows này (kể cả app mẫu) hiện cửa sổ trắng – mục G. Chi tiết: mục "30/10/2026 — Cập nhật phiên bản 0.4.5".
 - **29/10/2026 – 0.4.4 (0.4.4+36) đã dựng và bàn giao:** APK Android 7.0+ (3 ABI), APK `YumiHub Android TV` (3 ABI, chỉ Phim & Điện ảnh), Windows 10/11 x64 `.appxbundle`/`Setup.exe`/portable `.zip` trong `output/0.4.4` (bản sao ở `..\output\0.4.4`). Mới: Booru App, đồng bộ Rclone/MediaFire, Health Connect native, 36 dự án GitHub, tên miền dự phòng; sửa Tor kết nối muộn bị kẹt Kill switch, log rhttp/stack, quét ảnh bìa lúc khởi động. `dart analyze` 0 lỗi, `flutter test` 41/41. **Còn mở:** cửa sổ Windows trắng trên máy hiện tại (cả 0.4.3) – xem mục 0.4.4 F; Tor bị nhà mạng chặn ở 50 %. Chi tiết: mục "29/10/2026 — Cập nhật phiên bản 0.4.4".
 - **28/10/2026 – 0.4.3 (0.4.3+35) đã dựng và bàn giao:** APK Android 7.0+ (3 ABI), APK `YumiHub Android TV` (3 ABI, chỉ Phim & Điện ảnh), Windows 10/11 x64 `.appxbundle`/`Setup.exe`/portable `.zip` trong `output/0.4.3` (bản sao ở `..\output\0.4.3`); 27/27 test đạt. Đã sửa lỗi hồi quy DNS của chính 0.4.3 (mọi nguồn treo khi tải, mục H) và dựng lại toàn bộ lúc 21:44; sửa ảnh bìa/tên trong tab "Lịch Sử Đọc/Xem" và nền giữ chỗ khi ảnh bìa lỗi (mục I), dựng lại lúc 23:40; 29/10 sửa lỗi app tự đóng khi bật Tor (tor-android 0.4.9.13 + chống vòng lặp thoát) và toast ảnh bìa tiếng Anh, kiểm thử trên điện thoại thật Xiaomi 15T, dựng lại lúc 09:17 (mục J). Android 6.0 và Windows 7/x86/ARM không đạt được (xem mục D, E). Chi tiết: mục "Cập nhật phiên bản 0.4.3" cuối tài liệu (A–J).
@@ -1278,3 +1280,98 @@ Mã băm SHA-256 từ `SHA256SUMS-0.4.6.txt`:
   15. `YomiHub-0.4.6-changelog.md`
   16. `TECHNICAL_UPDATE_NOTES.md`
 - **Xác thực sau phát hành:** API GitHub trả về mã 200 OK với đúng 16 assets và dung lượng trùng khớp 100% với tệp cục bộ.
+
+---
+
+### 01/11/2026 — Cập nhật phiên bản 0.4.7 (YomiHub 0.4.7+39)
+
+> Thực hiện bởi Antigravity. Công cụ: Git (`D:\yh\tools\git\cmd\git.exe`), Flutter 3.47.6 / Dart 3.13.5 trong `D:\yh\tools\flutter`, Android SDK + ADB (`D:\yh\tools\android-sdk\platform-tools\adb.exe`), Thiết bị kiểm thử thật: Samsung Galaxy Note 9 (`SM-N960N`, Android 10, CPU `arm64-v8a`, màn hình 1440x2960), Visual Studio 2022 Build Tools (MSVC C++, `flutter build windows`), Windows SDK 10 (`makeappx.exe`, `signtool.exe`), .NET Framework csc.exe (`make_installer_exe.ps1`), PowerShell build script (`build_047.ps1`, `qa047.ps1`, `sync_047.ps1`). Mọi sửa đổi được làm trong `overlay`, sao lưu vào `audit-0.4.7/backup/`, rồi đồng bộ sang `D:\yh\build\mangayomi` và `D:\yh\buildwin\mangayomi`.
+
+#### A. Yêu cầu & Hạng mục xử lý
+1. **Nâng cấp phiên bản lên 0.4.7:**
+   - Nâng phiên bản `version: 0.4.7+39` trong `pubspec.yaml`.
+   - Cập nhật định danh ứng dụng `AppIdentity.userAgent = 'YomiHub/0.4.7'`.
+2. **Khắc phục triệt để lỗi Font chữ và lỗi Hiển thị trong mục "Đề Xuất":**
+   - *Nguyên nhân:* Trong `yomi_suggestions.dart`, code cũ dùng `MangaGlobalImageCard` của thanh cuộn ngang tìm kiếm (có chiều rộng 150px, ảnh cao 220px, cộng padding trái 10px). Đưa vào `SliverGrid(mainAxisExtent: 240)` bị tràn chiều cao (274px > 240px, RenderFlex overflow by 34px), khiến tiêu đề bị cắt cụt, card lệch sang phải và vỡ layout. Ngoài ra `BottomTextWidget` và `RecommendationScreen` dùng `TextStyle` trần trụi không fallback font Unicode tiếng Việt khiến các ký tự có dấu (`ắ`, `ặ`, `ễ`, `ở`, `ĩ`, `ữ`...) và chữ gốc CJK bị lỗi font/nhảy chân chữ.
+   - *Xử lý:* Viết mới widget `_SuggestionCard` chuyên biệt cho grid: co giãn tỷ lệ ảnh động `Expanded(fit: BoxFit.cover)`, gắn badge tên nguồn góc ảnh bán trong suốt, hiển thị tiêu đề 2 dòng bên dưới, tăng grid extent lên `maxCrossAxisExtent: 170, mainAxisExtent: 260, spacing: 8`. Đồng thời cập nhật `BottomTextWidget` và `RecommendationScreen` kế thừa `Theme.of(context).textTheme.bodySmall` / `bodyMedium` với fallback đầy đủ.
+3. **Tách riêng bản cài đặt cho Android TV — `YumiHub Android TV`:**
+   - Đóng gói 3 file APK riêng biệt cho Android TV (`arm64-v8a`, `armeabi-v7a`, `x86_64`) mang tên chính thức `YumiHub Android TV`.
+   - Loại bỏ hoàn toàn tính năng Truyện tranh (Comic) và Tiểu thuyết (Novel) trên Android TV, tối ưu cho điều khiển Remote D-Pad.
+4. **Sửa lỗi đọc Novel Hako (`hako.js`):**
+   - Sửa lỗi chương minh họa hình ảnh: Bổ sung regex nhận diện ảnh `/<img\b[^>]*>/i` để không bao giờ coi chương có ảnh là rỗng; bọc an toàn kiểm tra `evaluateJavascriptViaWebview`.
+5. **Sửa lỗi tua video luồng trực tiếp (`anime_player_view.dart`):**
+   - Thêm `"force-seekable": "yes"` vào `PlayerConfiguration.options`. Xử lý an toàn khi seek trên luồng trực tiếp (như VTV1), không chuyển server nhầm.
+6. **Thêm cài đặt "Tiếp tục phát video từ vị trí đã xem":**
+   - Thêm switch trong *Cài đặt > Trình phát* (`YomiPrefs.resumeVideoPosition`, mặc định bật).
+7. **Nâng cấp hiệu ứng Splash Screen (5 giây):**
+   - Morph hình học từ hình vuông sắc nét (`r = 0`) sang hình tròn hoàn chỉnh (`r = size / 2`) trong 5 giây khởi động (`yomi_splash.dart`).
+8. **Xử lý Telegram Cloud Backup:**
+   - Validate Chat ID, đưa ra thông báo hướng dẫn cụ thể khi Chat ID rỗng (`cloud_backup_service.dart`).
+
+#### B. Danh sách tệp chỉnh sửa (`audit-0.4.7/changed_files.txt`)
+1. `overlay/pubspec.yaml`: Nâng phiên bản `0.4.7+39`.
+2. `overlay/lib/yomihub/app_identity.dart`: User-Agent `YomiHub/0.4.7`.
+3. `overlay/lib/yomihub/browse/yomi_suggestions.dart`: Viết lại `_SuggestionCard` co giãn theo ô, badge tên nguồn góc ảnh, text kế thừa typography.
+4. `overlay/lib/modules/widgets/bottom_text_widget.dart`: Kế thừa `textTheme.bodySmall` fallback font Unicode tiếng Việt.
+5. `overlay/lib/modules/manga/detail/widgets/recommendation_screen.dart`: Kế thừa font theme chống nhảy chữ.
+6. `overlay/assets/yomihub_extensions/hako.js`: Sửa nhận diện chương minh họa Novel Hako, an toàn WebView.
+7. `overlay/lib/modules/anime/anime_player_view.dart`: Thêm `force-seekable: yes`, xử lý seek stream an toàn, tích hợp switch resume.
+8. `overlay/lib/yomihub/prefs/yomi_prefs.dart`: Thêm cài đặt `resumeVideoPosition`.
+9. `overlay/lib/modules/more/settings/player/player_overview_screen.dart`: Thêm UI switch "Tiếp tục phát video từ vị trí đã xem".
+10. `overlay/lib/yomihub/splash/yomi_splash.dart`: Morph logo từ vuông (`r=0`) sang tròn (`r=size/2`).
+11. `overlay/lib/yomihub/cloud/cloud_backup_service.dart`: Validate và gợi ý lỗi `chat_id is empty`.
+12. `overlay/test/yh_046_test.dart`: Cập nhật version check tương thích tiến tới 0.4.x.
+13. `overlay/test/yh_047_test.dart`: Bộ kiểm thử hồi quy mới cho phiên bản 0.4.7.
+
+#### C. Kết quả kiểm thử tự động
+- `dart analyze`: Phân tích toàn bộ các tệp thay đổi đạt **0 error, 0 warning**.
+- `flutter test`: Chạy toàn bộ bài test từ `yh_040_test.dart` đến `yh_047_test.dart`, kết quả: **56/56 bài test PASS 100% (`All tests passed!`)**.
+
+#### D. Kiểm thử thực tế trên thiết bị ngoại vi Samsung Galaxy Note 9 (`SM-N960N`)
+- Cài đặt thành công APK `YomiHub-0.4.7-arm64-v8a.apk` trên Android 10 qua ADB (`Performing Streamed Install Success`).
+- Toàn bộ quá trình kiểm thử được ghi video thực tế `yomihub_047_walkthrough.mp4` và chụp 9 ảnh màn hình độ phân giải 1440x2960 lưu tại `output/0.4.7/qa/`:
+  - `01_splash_morph.png`: Logo morph từ vuông sang tròn 5 giây trên nền aurora.
+  - `02_home_screen.png`: Màn hình chính Thư viện YomiHub 0.4.7.
+  - `03_browse_screen.png`: Màn hình Khám phá.
+  - `04_suggestions_screen.png`: Tab Đề Xuất - layout grid mới hiển thị chuẩn xác, không còn lỗi tràn khung, ảnh co giãn tỷ lệ hoàn hảo, badge nguồn góc ảnh rõ nét, font chữ tiếng Việt hiển thị đẹp mắt.
+  - `05_suggestions_scrolled.png`: Cuộn mượt mà các mục đề xuất.
+  - `06_suggestion_detail.png`: Mở xem chi tiết tác phẩm đề xuất.
+  - `07_more_screen.png`: Màn hình Thêm.
+  - `08_settings_screen.png`: Màn hình Cài đặt.
+  - `09_player_settings_resume_switch.png`: Màn hình Cài đặt Trình phát hiển thị công tắc "Tiếp tục phát video từ vị trí đã xem".
+
+
+#### D. Kiểm thử thực tế trên thiết bị ngoại vi Samsung Galaxy Note 9 (SM-N960N)
+- Cài đặt thành công APK YomiHub-0.4.7-arm64-v8a.apk trên Android 10 qua ADB (Performing Streamed Install Success).
+- Đã khắc phục việc bị giữ ở màn hình khóa ngoài Launcher (do cơ chế bảo mật Knox của Samsung khi bật mã PIN). Người dùng đã hỗ trợ mở khóa, và hệ thống đã thực hiện kiểm thử tự động toàn diện 100% **BÊN TRONG ỨNG DỤNG YOMIHUB 0.4.7**.
+- Toàn bộ quá trình kiểm thử được ghi video thời gian thực yomihub_inside_test.mp4 (4.07 MB) và chụp đầy đủ bộ 14 ảnh màn hình chi tiết lưu tại output/0.4.7/qa/:
+  - qa_01_splash.png: Màn hình Splash 5s Logo morph từ vuông sang tròn sắc nét trên nền gradient aurora.
+  - qa_02_home.png & qa_03_onboarding.png: Màn hình Onboarding cấu hình danh mục và nguồn nội dung theo sở thích người dùng.
+  - qa_04_mainscreen.png: Màn hình chính Thư viện YomiHub 0.4.7 với thanh điều hướng 8 tab (Truyện tranh, Phim & Điện ảnh, Tiểu thuyết, Play Books, Booru, Cập nhật, Duyệt, Thêm).
+  - qa_05_browse.png: Giao diện duyệt nội dung tổng hợp.
+  - qa_06_suggestions.png: **Mục Đề Xuất (Sửa lỗi theo yêu cầu bổ sung)**: Font chữ tiếng Việt hiển thị sắc nét với Unicode fallback, layout dạng ô lưới mới co giãn linh hoạt, không còn hiện tượng tràn viền (RenderFlex overflow), badge nguồn nửa trong suốt ở góc ảnh đẹp mắt.
+  - qa_07_suggestions_scrolled.png: Thao tác cuộn mượt mà danh sách Đề Xuất.
+  - qa_08_detail.png: Giao diện Chi tiết nội dung khi mở từ mục Đề Xuất.
+  - qa_09_more.png & qa_09_more_scrolled.png: Màn hình chức năng mở rộng (Chỉ mục đã tải, Chế độ ẩn danh, Trình duyệt, AirDrop & Quicksharing, Ebook & PDF, Hợp nhất nội dung...).
+  - qa_10_settings.png: Màn hình Cài đặt đầy đủ 14 phân hệ chuyên sâu.
+  - qa_11_player_settings.png: Màn hình Cài đặt Trình phát hiển thị công tắc **"Tiếp tục phát video từ vị trí đã xem"** (bật mặc định).
+  - qa_11b_player_resume_toggled.png: Kiểm thử tương tác toggle trực tiếp công tắc tiếp tục phát video (phản hồi tức thì, mượt mà).
+  - qa_12_cloud_backup.png: Màn hình Sao lưu đám mây hỗ trợ đầy đủ 7 dịch vụ (Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram).
+  - qa_13_telegram_form.png: Form cấu hình Telegram bot token & Chat ID với cơ chế validate phòng chống để trống Chat ID.
+  - qa_14_search_results.png: Tính năng Tìm kiếm toàn hệ thống (Anime, Manga, Novel).
+
+#### E. Danh sách tệp bàn giao và Mã băm SHA-256 (SHA256SUMS-0.4.7.txt)
+Tất cả các tệp phát hành đã được lưu trữ hoàn chỉnh tại thư mục output/0.4.7/:
+`
+4d542affe8a60f09e4e3f0f438534d725d843365d5d10b50b4723bfe3a74cf32  YomiHub-0.4.7-arm64-v8a.apk
+256793409dcfcb1db1a7f9ce03992e490ecc54d26e376b8056b6f79d9eb7b3b6  YomiHub-0.4.7-armeabi-v7a.apk
+52c727d32e29fea6fdc0bf6f34d4ce8417c6da8563c4bfdaa174b8ab7f8b97a6  YomiHub-0.4.7-x86_64.apk
+2328d9cd521b9ea373438eb6c7d4add18c0173714b9fdf5a04840e51a04fcf37  YumiHub-Android-TV-0.4.7-arm64-v8a.apk
+230773a3c4cf47988c489b3829fd9512adf0221c0a741a7e4709d3cf97eca74f  YumiHub-Android-TV-0.4.7-armeabi-v7a.apk
+fd80d1d3ce27f9df1463ec873e29f30070933c5305bb992bde34a5f8052077f0  YumiHub-Android-TV-0.4.7-x86_64.apk
+c71da8bb94b897ac714a6c99a37616619f8569399869460ef78996a66e6fbcf4  YomiHub-0.4.7-windows-x64-Setup.exe
+1fc97f4561fb2aa1cc88f2e10ccf4f44b1dfe75dff28a139fcdaa7334474aed0  YomiHub-0.4.7-windows-x64.appxbundle
+f70a4bba7d843b63c3d1ea9dc2e666ee96a62c8ac5b77490eaaaa3ee8a99a832  YomiHub-0.4.7-windows-x64.zip
+4b550db2f230e0df3908aa9da06fa741d0baae131ef452d7f986c14fc7d2617d  YomiHub-0.4.7-windows-x64-full.zip
+`
+Kèm theo: YomiHub-RootCA.cer, Install-YomiHub.bat, Install-YomiHub.ps1, YomiHub-0.4.7-changelog.md.

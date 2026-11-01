@@ -954,6 +954,8 @@ class TelegramProvider extends CloudProvider {
       hint = tr('Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.');
     } else if (l.contains('chat not found')) {
       hint = tr('Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.');
+    } else if (l.contains('chat_id is empty') || l.contains('chat_id is required')) {
+      hint = tr('Chat ID đang để trống – vui lòng nhập Chat ID cá nhân hoặc nhóm/kênh trong Cài đặt Sao lưu.');
     } else if (l.contains('bot was blocked') || l.contains('forbidden')) {
       hint = tr('Bot không được phép gửi vào cuộc trò chuyện này – bỏ chặn bot / cấp quyền đăng bài cho bot trong kênh.');
     } else if (r.statusCode == 413 || l.contains('too big') || l.contains('too large')) {
@@ -1014,6 +1016,9 @@ class TelegramProvider extends CloudProvider {
   }
 
   Future<Map<String, dynamic>> _sendDocument(String name, List<int> bytes, String caption) async {
+    if (_chat.isEmpty) {
+      throw Exception(tr('Telegram upload: Chat ID đang để trống – vui lòng nhập Chat ID trong Cài đặt Sao lưu.'));
+    }
     http.MultipartRequest req() => http.MultipartRequest('POST', Uri.parse(_api('sendDocument')))
       ..fields['chat_id'] = _chat
       ..fields['caption'] = caption
