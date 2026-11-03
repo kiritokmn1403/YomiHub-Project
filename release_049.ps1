@@ -17,7 +17,8 @@ function Log($m) { $line = "[{0}] {1}" -f (Get-Date -Format HH:mm:ss), $m; Write
 $files = @(Get-ChildItem $out -File | Sort-Object Name)
 $extra = @("$root\TECHNICAL_UPDATE_NOTES.md", "$out\..\YomiHub-0.4.9-QA-screenshots.zip")
 foreach ($e in $extra) { if (Test-Path $e) { $files += Get-Item $e } }
-$body = Get-Content "$out\YomiHub-0.4.9-changelog.md" -Raw -Encoding UTF8
+# ReadAllText: Get-Content -Raw adds PSPath note properties that ConvertTo-Json would serialize
+[string]$body = [IO.File]::ReadAllText("$out\YomiHub-0.4.9-changelog.md", [Text.Encoding]::UTF8)
 
 try { $rel = Invoke-RestMethod -Headers $h "$api/releases/tags/$tag"; Log "Release $tag exists (id $($rel.id))" }
 catch {
@@ -28,7 +29,7 @@ catch {
 $req = @{ body = $body; make_latest = 'true'; name = 'YomiHub 0.4.9 (0.4.9+41)' } | ConvertTo-Json
 Invoke-RestMethod -Method Patch -Headers $h -ContentType 'application/json; charset=utf-8' -Body ([Text.Encoding]::UTF8.GetBytes($req)) "$api/releases/$($rel.id)" | Out-Null
 
-$existing = @(Invoke-RestMethod -Headers $h "$api/releases/$($rel.id)/assets?per_page=100")
+$existing = @(Invoke-RestMethod -Headers $h "$api/releases/$($rel.id)/assets?per_page=100" | ForEach-Object { $_ })  # unroll the JSON array (PowerShell 5)
 $total = ($files | Measure-Object Length -Sum).Sum; $done = 0; $i = 0
 Log ("Uploading {0} files, {1:N1} MB" -f $files.Count, ($total / 1MB))
 foreach ($f in $files) {
@@ -45,13 +46,15 @@ foreach ($f in $files) {
   $sw.Stop(); $done += $f.Length
   Log ("[{0}/{1}] {2} {3:N1} MB -> HTTP {4} in {5:N0}s - total {6:P0}" -f $i, $files.Count, $f.Name, ($f.Length/1MB), $code, $sw.Elapsed.TotalSeconds, ($done/$total))
 }
-$assets = @(Invoke-RestMethod -Headers $h "$api/releases/$($rel.id)/assets?per_page=100")
+$assets = @(Invoke-RestMethod -Headers $h "$api/releases/$($rel.id)/assets?per_page=100" | ForEach-Object { $_ })
 $bad = 0
 foreach ($f in $files) {
   $a = $assets | Where-Object { $_.name -eq $f.Name }
   $ok = $a -and $a.size -eq $f.Length -and $a.state -eq 'uploaded'
   if (-not $ok) { $bad++ }
-  Log ("VERIFY {0,-45} local {1,12} remote {2,12} {3}" -f $f.Name, $f.Length, $(if ($a) { $a.size } else { '-' }), $(if ($ok) { 'OK' } else { 'MISSING/MISMATCH' }))
+  $dl = '-'
+  if ($a) { try { $r = Invoke-WebRequest -UseBasicParsing -Method Head -MaximumRedirection 5 $a.browser_download_url; $dl = $r.StatusCode } catch { $dl = 'ERR' } }
+  Log ("VERIFY {0,-45} local {1,12} remote {2,12} {3} download={4}" -f $f.Name, $f.Length, $(if ($a) { $a.size } else { '-' }), $(if ($ok) { 'OK' } else { 'MISSING/MISMATCH' }), $dl)
 }
 $latest = Invoke-RestMethod -Headers $h "$api/releases/latest"
 Log "releases/latest = $($latest.tag_name); assets on release: $($assets.Count); problems: $bad"
