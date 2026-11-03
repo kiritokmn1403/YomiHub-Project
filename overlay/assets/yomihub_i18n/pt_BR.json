@@ -1497,5 +1497,14 @@
   "Danh mục này chưa có phim.\nThêm phim vào từ trang chi tiết của phim.": "Esta categoria ainda não tem títulos.\nAdicione-os pela página de detalhes.",
   "Tìm phim trong thư viện": "Pesquisar na biblioteca",
   "Đã ẩn “{p0}” · giữ OK trên “Tất cả” để hiện lại": "“{p0}” oculta · segure OK em “Todos” para mostrar",
-  "Không có danh mục ẩn": "Nenhuma categoria oculta"
+  "Không có danh mục ẩn": "Nenhuma categoria oculta",
+  "Chỉ chạy trên vBook": "Somente vBook",
+  "Cài đặt": "Configurações",
+  "Tốc độ phát": "Velocidade de reprodução",
+  "Chất lượng": "Qualidade",
+  "Phụ đề": "Legendas",
+  "Âm thanh": "Áudio",
+  "Shader": "Shaders",
+  "Bộ giải mã": "Decodificador",
+  "Thống kê chi tiết": "Estatísticas detalhadas"
 }

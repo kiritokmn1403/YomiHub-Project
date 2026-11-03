@@ -196,8 +196,9 @@ class SettingsScreen extends StatelessWidget {
               onTap: () => context.push('/healthConnect'),
             ),
             // YomiHub 0.2.0: Google Play Books on/off
-            const PlayBooksSettingTile(),
-            const BooruSettingTile(),
+            // 0.5.0: no Play Books / Booru on Android TV
+            if (!(isTv || kIsTvBuild)) const PlayBooksSettingTile(),
+            if (!(isTv || kIsTvBuild)) const BooruSettingTile(),
             ListTileWidget(
               title: tr('Sao lưu đám mây'),
               subtitle: 'Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram',

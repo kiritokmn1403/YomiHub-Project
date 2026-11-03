@@ -290,6 +290,18 @@ void _logUpdateFailure(
   StackTrace st, {
   String? from,
 }) {
+  // 0.5.0: an author-encrypted vBook plugin is not an app error – remember
+  // it (the row is locked) and log it once as a warning, without a stack.
+  if (e is VBookEncryptedException ||
+      (e is YomiLoggedError && e.inner is VBookEncryptedException)) {
+    VBookBridge.markEncrypted(source);
+    AppLogger.logOnce(
+      'vbook-enc:${source.sourceCodeUrl}@${source.version}',
+      '[Cập nhật tiện ích] $e • kho: ${repo?.name ?? repo?.jsonUrl ?? '?'}',
+      logLevel: LogLevel.warning,
+    );
+    return;
+  }
   final installed = from ?? (source.id == null ? null : sourceRepository.getById(source.id!)?.version);
   final msg = e.toString().replaceAll(RegExp(r'\s*statusCode:\s*\d+\s*$'), '').trim();
   AppLogger.log(

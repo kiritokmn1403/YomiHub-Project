@@ -646,7 +646,9 @@ class _MyAppState extends ConsumerState<MyApp>
           final router = GoRouter.of(ctx);
           const tabs = {'/MangaLibrary', '/AnimeLibrary', '/NovelLibrary', '/playBooks', '/booru'};
           // YomiHub 0.2.0: no Play Books shortcut while it is switched off
-          if (route == YomiPlayBooks.route && !YomiPlayBooks.enabled) {
+          if ((route == YomiPlayBooks.route && !YomiPlayBooks.enabled) ||
+              // 0.5.0: Android TV build has no Play Books / Booru
+              (kIsTvBuild && (route == '/playBooks' || route == '/booru'))) {
             lastUri = null;
             return;
           }

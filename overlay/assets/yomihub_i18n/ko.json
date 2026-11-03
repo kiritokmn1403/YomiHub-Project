@@ -1497,5 +1497,14 @@
   "Danh mục này chưa có phim.\nThêm phim vào từ trang chi tiết của phim.": "이 카테고리에 아직 작품이 없습니다.\n작품 상세 페이지에서 추가하세요.",
   "Tìm phim trong thư viện": "라이브러리 검색",
   "Đã ẩn “{p0}” · giữ OK trên “Tất cả” để hiện lại": "“{p0}” 숨김 · “전체”에서 OK를 길게 눌러 다시 표시",
-  "Không có danh mục ẩn": "숨긴 카테고리 없음"
+  "Không có danh mục ẩn": "숨긴 카테고리 없음",
+  "Chỉ chạy trên vBook": "vBook 전용",
+  "Cài đặt": "설정",
+  "Tốc độ phát": "재생 속도",
+  "Chất lượng": "화질",
+  "Phụ đề": "자막",
+  "Âm thanh": "오디오",
+  "Shader": "셰이더",
+  "Bộ giải mã": "디코더",
+  "Thống kê chi tiết": "상세 통계"
 }

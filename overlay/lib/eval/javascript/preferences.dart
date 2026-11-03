@@ -8,11 +8,27 @@ class JsPreferences {
   JsPreferences(this.runtime, this.source);
 
   void init() {
+    // YomiHub 0.5.0 (logs 03/11 11:09 "MangaDex (unlocked) … getHeaders …
+    // TypeError: not a function"): kegareta-sauces scripts read keys that are
+    // not in their own getSourcePreferences() (custom_user_agent,
+    // original_languages) and pass a default (`get(key, [])`). The Dart side
+    // threw "Error when getting source preference", which QuickJS surfaced as
+    // a TypeError and the source could not even be installed. A missing key
+    // (or a source not saved yet) now answers null and the script's default
+    // is used.
     runtime.onMessage('get', (dynamic args) {
-      return getPreferenceValue(source!.id!, args[0]);
+      try {
+        return getPreferenceValue(source!.id!, args[0]);
+      } catch (_) {
+        return null;
+      }
     });
     runtime.onMessage('getString', (dynamic args) {
-      return getSourcePreferenceStringValue(source!.id!, args[0], args[1]);
+      try {
+        return getSourcePreferenceStringValue(source!.id!, args[0], args[1]);
+      } catch (_) {
+        return args.length > 1 ? args[1] : null;
+      }
     });
     runtime.onMessage('setString', (dynamic args) {
       return setSourcePreferenceStringValue(source!.id!, args[0], args[1]);
@@ -20,11 +36,12 @@ class JsPreferences {
 
     runtime.evaluate('''
 class SharedPreferences {
-    get(key) {
-        return sendMessage(
+    get(key, defaultValue) {
+        const v = sendMessage(
             "get",
             JSON.stringify([key])
         );
+        return (v === null || v === undefined) && defaultValue !== undefined ? defaultValue : v;
     }
     getString(key, defaultValue) {
         return sendMessage(

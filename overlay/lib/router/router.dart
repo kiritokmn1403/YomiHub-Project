@@ -188,9 +188,11 @@ class RouterNotifier extends ChangeNotifier {
           ),
         ),
         // YomiHub 0.1.5: Google Play Books beside Comic / Film / Novel.
-        _branch(_genericRoute(name: "playBooks", child: const PlayBooksScreen())),
+        // 0.5.0: the Android TV build has no Play Books / Booru – the branch
+        // stays (StatefulShellRoute is index based) but only bounces back.
+        _branch(_genericRoute(name: "playBooks", child: kIsTvBuild ? const _TvRemovedScreen() : const PlayBooksScreen())),
         // YomiHub 0.4.4: Booru App, right of Play Books.
-        _branch(_genericRoute(name: "booru", child: const BooruScreen())),
+        _branch(_genericRoute(name: "booru", child: kIsTvBuild ? const _TvRemovedScreen() : const BooruScreen())),
         _branch(
           _genericRoute<String?>(
             name: "trackerLibrary",
@@ -490,4 +492,25 @@ class _LostPage extends StatelessWidget {
       ),
     );
   }
+}
+
+/// YomiHub 0.5.0: placeholder for features removed from the Android TV build
+/// (Google Play Books, Booru); sends the user back to Film & Movie.
+class _TvRemovedScreen extends StatefulWidget {
+  const _TvRemovedScreen();
+  @override
+  State<_TvRemovedScreen> createState() => _TvRemovedScreenState();
+}
+
+class _TvRemovedScreenState extends State<_TvRemovedScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) GoRouter.of(context).go('/AnimeLibrary');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) => const SizedBox.shrink();
 }

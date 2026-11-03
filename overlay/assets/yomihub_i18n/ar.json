@@ -1497,5 +1497,14 @@
   "Danh mục này chưa có phim.\nThêm phim vào từ trang chi tiết của phim.": "لا توجد عناوين في هذه الفئة بعد.\nأضفها من صفحة تفاصيل العنوان.",
   "Tìm phim trong thư viện": "ابحث في مكتبتك",
   "Đã ẩn “{p0}” · giữ OK trên “Tất cả” để hiện lại": "تم إخفاء “{p0}” · اضغط مطولًا على OK في “الكل” لإظهارها",
-  "Không có danh mục ẩn": "لا توجد فئات مخفية"
+  "Không có danh mục ẩn": "لا توجد فئات مخفية",
+  "Chỉ chạy trên vBook": "vBook فقط",
+  "Cài đặt": "الإعدادات",
+  "Tốc độ phát": "سرعة التشغيل",
+  "Chất lượng": "الجودة",
+  "Phụ đề": "الترجمة",
+  "Âm thanh": "الصوت",
+  "Shader": "المظللات",
+  "Bộ giải mã": "فك الترميز",
+  "Thống kê chi tiết": "إحصاءات تفصيلية"
 }

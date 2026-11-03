@@ -1497,5 +1497,14 @@
   "Danh mục này chưa có phim.\nThêm phim vào từ trang chi tiết của phim.": "No titles in this category yet.\nAdd titles to it from a title’s detail page.",
   "Tìm phim trong thư viện": "Search your library",
   "Đã ẩn “{p0}” · giữ OK trên “Tất cả” để hiện lại": "Hid “{p0}” · hold OK on “All” to unhide",
-  "Không có danh mục ẩn": "No hidden categories"
+  "Không có danh mục ẩn": "No hidden categories",
+  "Chỉ chạy trên vBook": "vBook only",
+  "Cài đặt": "Settings",
+  "Tốc độ phát": "Playback speed",
+  "Chất lượng": "Quality",
+  "Phụ đề": "Subtitles",
+  "Âm thanh": "Audio",
+  "Shader": "Shaders",
+  "Bộ giải mã": "Decoder",
+  "Thống kê chi tiết": "Stats for nerds"
 }

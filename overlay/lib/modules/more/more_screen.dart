@@ -5,7 +5,6 @@ import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
 import 'package:mangayomi/yomihub/extensions/merge_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mangayomi/modules/more/settings/reader/providers/reader_state_provider.dart';
 import 'package:mangayomi/modules/more/widgets/downloaded_only_widget.dart';
 import 'package:mangayomi/modules/more/widgets/incognito_mode_widget.dart';
 import 'package:mangayomi/modules/more/widgets/list_tile_widget.dart';
@@ -30,16 +29,18 @@ class MoreScreenState extends ConsumerState<MoreScreen> {
     // YomiHub: suggest merging extensions that share a domain (once per run).
     if (!_mergeHintShown) {
       _mergeHintShown = true;
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => ExtensionMergeScreen.suggestIfNeeded(context),
-      );
+      // 0.5.0: the duplicate scan reads every installed source synchronously;
+      // run it after the page has settled, not inside the first frame
+      // (logs: "Khung hình chậm: dựng 1164ms … màn hình: /more").
+      Future<void>.delayed(const Duration(milliseconds: 1200), () {
+        if (mounted) ExtensionMergeScreen.suggestIfNeeded(context);
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = l10nLocalizations(context)!;
-    final hiddenItems = ref.watch(hideItemsStateProvider);
     return Scaffold(
       body: LiquidGlassBackdrop(child: SingleChildScrollView(
         padding: tvPageInsets,

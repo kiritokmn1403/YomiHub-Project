@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
 import 'package:mangayomi/yomihub/kotatsu/kotatsu_bridge.dart';
 import 'package:mangayomi/eval/model/m_bridge.dart' show botToast;
+import 'package:mangayomi/yomihub/vbook/vbook_bridge.dart';
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart' as yh;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
@@ -41,7 +43,15 @@ class _ExtensionListTileWidgetState
   bool get _sourceNotEmpty =>
       widget.source.sourceCode != null && widget.source.sourceCode!.isNotEmpty;
 
+  /// 0.5.0: author-encrypted vBook plugin (not installable here).
+  bool get _vbookLocked =>
+      !_sourceNotEmpty && VBookBridge.isKnownEncrypted(widget.source);
+
   Future<void> _handleSourceFetch() async {
+    if (_vbookLocked) {
+      botToast(VBookEncryptedException(widget.source.name ?? '').toString(), second: 4);
+      return;
+    }
     setState(() => _isLoading = true);
 
     try {
@@ -205,6 +215,18 @@ class _ExtensionListTileWidgetState
                 style: TextStyle(fontSize: 12),
               ),
             ),
+          if (_vbookLocked)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Text(
+                yh.tr('Chỉ chạy trên vBook'),
+                style: TextStyle(
+                  color: context.primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
+              ),
+            ),
           if (widget.source.isObsolete ?? false)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -234,7 +256,7 @@ class _ExtensionListTileWidgetState
             children: [
               TextButton(
                 onPressed: _isLoading ? null : () => _onActionTap(context),
-                child: Icon(_actionIcon(context, label), size: 24),
+                child: Icon(_vbookLocked ? Icons.lock_outline : _actionIcon(context, label), size: 24),
               ),
               if (_sourceNotEmpty)
                 TextButton(

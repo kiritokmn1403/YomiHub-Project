@@ -19,7 +19,8 @@ void main() {
 
   group('YomiHub 0.4.6', () {
     test('AppIdentity reports version 0.4.6 or later', () {
-      expect(AppIdentity.userAgent, startsWith('YomiHub/0.4.'));
+      // 0.5.0: exact version checked in yh_050_test.dart
+      expect(AppIdentity.userAgent, startsWith('YomiHub/0.'));
     });
 
     test('CrashReport treats relative image load failures as expected network noise', () {

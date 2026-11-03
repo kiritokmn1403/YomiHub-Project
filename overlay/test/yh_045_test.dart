@@ -9,7 +9,8 @@ void main() {
 
   group('YomiHub 0.4.5', () {
     test('AppIdentity reports a 0.4.x version', () {
-      expect(AppIdentity.userAgent, startsWith('YomiHub/0.4.'));
+      // 0.5.0: exact version checked in yh_050_test.dart
+      expect(AppIdentity.userAgent, startsWith('YomiHub/0.'));
     });
 
     test('Website Extension: VTV Go mirrors include cache.vtvgo.vn', () {

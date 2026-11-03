@@ -15,7 +15,7 @@ void main() {
 
   group('YomiHub 0.4.2 Upgrades & Feature Tests', () {
     test('AppIdentity reports version 0.4.2', () {
-      expect(AppIdentity.userAgent, startsWith('YomiHub/0.4.'));
+      expect(AppIdentity.userAgent, startsWith('YomiHub/0.'));
     });
 
     test('AppIdentity returns YomiHub by default and YumiHub Android TV for TV', () {

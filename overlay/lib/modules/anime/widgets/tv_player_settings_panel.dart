@@ -151,7 +151,7 @@ class _TvPlayerSettingsPanelState extends ConsumerState<TvPlayerSettingsPanel> {
   }
 
   Widget _header(BuildContext context) {
-    final title = _open == null ? 'Settings' : _titleFor(_open!);
+    final title = _open == null ? tr('Cài đặt') : _titleFor(_open!);
     return Padding(
       padding: const EdgeInsets.fromLTRB(6, 8, 8, 4),
       child: Row(
@@ -173,26 +173,27 @@ class _TvPlayerSettingsPanelState extends ConsumerState<TvPlayerSettingsPanel> {
     );
   }
 
+  // 0.5.0: the TV player panel was still English (0.4.9 J "Settings").
   String _titleFor(String key) => switch (key) {
-    'playback' => 'Playback speed',
-    'quality' => 'Quality',
-    'subtitles' => 'Subtitles',
-    'audio' => 'Audio',
-    'shaders' => 'Shaders',
-    'decoder' => 'Decoder',
-    'stats' => 'Stats for nerds',
-    _ => 'Settings',
+    'playback' => tr('Tốc độ phát'),
+    'quality' => tr('Chất lượng'),
+    'subtitles' => tr('Phụ đề'),
+    'audio' => tr('Âm thanh'),
+    'shaders' => tr('Shader'),
+    'decoder' => tr('Bộ giải mã'),
+    'stats' => tr('Thống kê chi tiết'),
+    _ => tr('Cài đặt'),
   };
 
   Widget _categoryList(BuildContext context, Color accent) {
     final entries = <(String, IconData, String)>[
-      ('playback', Icons.speed, 'Playback speed'),
-      ('quality', Icons.high_quality_outlined, 'Quality'),
-      ('subtitles', Icons.subtitles_outlined, 'Subtitles'),
-      ('audio', Icons.audiotrack_outlined, 'Audio'),
-      ('shaders', Icons.auto_awesome_outlined, 'Shaders'),
-      ('decoder', Icons.memory_outlined, 'Decoder'),
-      ('stats', Icons.insights_outlined, 'Stats for nerds'),
+      ('playback', Icons.speed, _titleFor('playback')),
+      ('quality', Icons.high_quality_outlined, _titleFor('quality')),
+      ('subtitles', Icons.subtitles_outlined, _titleFor('subtitles')),
+      ('audio', Icons.audiotrack_outlined, _titleFor('audio')),
+      ('shaders', Icons.auto_awesome_outlined, _titleFor('shaders')),
+      ('decoder', Icons.memory_outlined, _titleFor('decoder')),
+      ('stats', Icons.insights_outlined, _titleFor('stats')),
     ];
     return ListView(
       children: [

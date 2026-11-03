@@ -573,7 +573,7 @@ class _PillBar extends StatelessWidget {
                   _TrackPill(
                     accent: accent,
                     icon: Icons.settings,
-                    label: 'Settings',
+                    label: tr('Cài đặt'),
                     selected: false,
                     onTap: onSettings,
                   ),
@@ -705,7 +705,7 @@ class _SpeedMenuState extends State<_SpeedMenu> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Playback speed'),
+      title: Text(tr('Tốc độ phát')),
       contentPadding: const EdgeInsets.symmetric(vertical: 8),
       content: SizedBox(
         width: 300,

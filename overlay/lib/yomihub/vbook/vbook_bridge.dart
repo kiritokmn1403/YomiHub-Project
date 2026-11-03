@@ -8,6 +8,7 @@ import 'package:mangayomi/models/source.dart';
 import 'package:mangayomi/services/extension_store_service.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/net/gh_mirror.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 
 /// YomiHub 0.4.9 (sheet "YomiHub Update": "Quét toàn bộ mã nguồn của các
 /// project vBook, vBook 2, LeechText … sao cho nó hoạt động đối với các
@@ -37,6 +38,32 @@ class VBookBridge {
   static const runtimeRev = 2;
 
   static bool isVBookSource(Source s) => (s.additionalParams ?? '').startsWith(marker);
+
+  // ---- 0.5.0: encrypted plugins (logs 03/11 10:36–11:08: the same 16
+  // encrypted plugins were "reinstalled" again and again, each try an ERROR
+  // with a stack trace). Once a plugin.zip turns out to be encrypted, its
+  // URL + version is remembered: the row shows "vBook only", the install
+  // button is locked and the log gets one warning instead of an error.
+  static const _encKey = 'vbookEncrypted';
+  static Set<String> _enc() =>
+      {for (final e in YomiPrefs.get<List>(_encKey, const [])) '$e'};
+  static String _encId(String? url, String? ver) => '${url ?? ''}@${ver ?? ''}';
+
+  /// True when this repo entry was already found to be encrypted.
+  static bool isKnownEncrypted(Source s) {
+    if (!isVBookSource(s) || !YomiPrefs.isOpen) return false;
+    final e = _enc();
+    return e.contains(_encId(s.sourceCodeUrl, s.versionLast)) ||
+        e.contains(_encId(s.sourceCodeUrl, s.version));
+  }
+
+  static Future<void> markEncrypted(Source s) async {
+    if (!YomiPrefs.isOpen) return;
+    final e = _enc()..add(_encId(s.sourceCodeUrl, s.version));
+    // keep the list small: newest 500 entries
+    final list = e.toList();
+    await YomiPrefs.set(_encKey, list.length > 500 ? list.sublist(list.length - 500) : list);
+  }
 
   static bool isIndex(Map<String, dynamic> j) =>
       j['data'] is List &&
@@ -154,7 +181,7 @@ class VBookBridge {
     if (scripts.isEmpty) throw Exception(tr('Gói vBook không có script trong src/'));
     final meta = plugin['metadata'] is Map ? plugin['metadata'] as Map : const {};
     if (meta['encrypt'] == true && scripts.values.every((s) => !looksLikeScript(s))) {
-      throw Exception(tr('Tiện ích vBook "{p0}" được tác giả mã hóa – chỉ chạy được trong ứng dụng vBook.', {'p0': meta['name'] ?? ''}));
+      throw VBookEncryptedException('${meta['name'] ?? ''}');
     }
     return '$common\n'
         'const VB_PLUGIN = ${jsonEncode(plugin)};\n'
@@ -165,4 +192,13 @@ class VBookBridge {
   /// Plain JavaScript (not vBook ciphertext).
   static bool looksLikeScript(String s) =>
       RegExp(r'\bfunction\b|=>|\bvar\b|\blet\b|\bconst\b').hasMatch(s) && s.contains('execute');
+}
+
+/// 0.5.0: a vBook plugin whose scripts are encrypted by its author (runs only
+/// inside the closed-source vBook app). Not an app error.
+class VBookEncryptedException implements Exception {
+  final String name;
+  VBookEncryptedException(this.name);
+  @override
+  String toString() => tr('Tiện ích vBook "{p0}" được tác giả mã hóa – chỉ chạy được trong ứng dụng vBook.', {'p0': name});
 }

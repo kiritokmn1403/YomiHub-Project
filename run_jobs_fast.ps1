@@ -1,7 +1,14 @@
-# YomiHub FAST runner (watch mode).
+﻿# YomiHub FAST runner (watch mode).
 # Runs every jobs\pending_fast\*.ps1 in name order, logs to jobs\done\<name>.log,
 # then keeps watching for new jobs. A job may set its own limit with a first
 # line "# timeout: <minutes>" (default 120). Create jobs\STOP_FAST to quit.
+# 0.5.0: turn off console QuickEdit - a stray click in this window put it in
+# "Select" mode and froze every job (03/11/2026 12:10).
+try {
+  Add-Type -Name QE -Namespace YH -MemberDefinition '[DllImport("kernel32.dll")] public static extern IntPtr GetStdHandle(int h); [DllImport("kernel32.dll")] public static extern bool GetConsoleMode(IntPtr h, out uint m); [DllImport("kernel32.dll")] public static extern bool SetConsoleMode(IntPtr h, uint m);' -ErrorAction Stop
+  $qeH = [YH.QE]::GetStdHandle(-10); $qeM = 0
+  if ([YH.QE]::GetConsoleMode($qeH, [ref]$qeM)) { [void][YH.QE]::SetConsoleMode($qeH, (($qeM -band (-bnot 0x40)) -bor 0x80)) }
+} catch { }
 try { . (Join-Path $PSScriptRoot 'link_paths.ps1') } catch { Write-Host $_ }
 $J = Join-Path $PSScriptRoot 'jobs'
 foreach ($d in 'pending_fast','done') { New-Item -ItemType Directory -Force "$J\$d" | Out-Null }

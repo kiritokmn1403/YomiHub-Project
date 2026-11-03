@@ -1497,5 +1497,14 @@
   "Danh mục này chưa có phim.\nThêm phim vào từ trang chi tiết của phim.": "此分类暂无作品。\n请在作品详情页添加。",
   "Tìm phim trong thư viện": "搜索书架",
   "Đã ẩn “{p0}” · giữ OK trên “Tất cả” để hiện lại": "已隐藏“{p0}” · 在“全部”上长按 OK 可重新显示",
-  "Không có danh mục ẩn": "没有隐藏的分类"
+  "Không có danh mục ẩn": "没有隐藏的分类",
+  "Chỉ chạy trên vBook": "仅限 vBook",
+  "Cài đặt": "设置",
+  "Tốc độ phát": "播放速度",
+  "Chất lượng": "画质",
+  "Phụ đề": "字幕",
+  "Âm thanh": "音频",
+  "Shader": "着色器",
+  "Bộ giải mã": "解码器",
+  "Thống kê chi tiết": "详细统计信息"
 }

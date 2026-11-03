@@ -80,3 +80,9 @@ audit-0.3.9/test-tools/
 /audit-0.4.9/*.html
 /audit-0.4.9/qa/
 /_to_delete/
+
+# ── 0.5.0 (03/11/2026): audit scratch – build-dir copies, third-party downloads, QA ──
+/audit-0.5.0/backup/
+/audit-0.5.0/fetch/
+/audit-0.5.0/qa/
+/audit-0.5.0/before_scripts/

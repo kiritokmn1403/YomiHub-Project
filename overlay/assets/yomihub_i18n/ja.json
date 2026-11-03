@@ -1497,5 +1497,14 @@
   "Danh mục này chưa có phim.\nThêm phim vào từ trang chi tiết của phim.": "このカテゴリにはまだ作品がありません。\n作品の詳細ページから追加してください。",
   "Tìm phim trong thư viện": "ライブラリを検索",
   "Đã ẩn “{p0}” · giữ OK trên “Tất cả” để hiện lại": "「{p0}」を非表示にしました · 「すべて」でOKを長押しすると再表示",
-  "Không có danh mục ẩn": "非表示のカテゴリはありません"
+  "Không có danh mục ẩn": "非表示のカテゴリはありません",
+  "Chỉ chạy trên vBook": "vBook専用",
+  "Cài đặt": "設定",
+  "Tốc độ phát": "再生速度",
+  "Chất lượng": "画質",
+  "Phụ đề": "字幕",
+  "Âm thanh": "音声",
+  "Shader": "シェーダー",
+  "Bộ giải mã": "デコーダー",
+  "Thống kê chi tiết": "詳細な統計情報"
 }

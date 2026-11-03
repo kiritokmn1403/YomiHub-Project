@@ -48,8 +48,13 @@ bool _isNavHidden(String nav, List<String> hiddenList) {
 
 /// Nav destinations kept off the anime-only TV layout (the manga & novel
 /// libraries). True means "keep this destination".
+// YomiHub 0.5.0: the Android TV build also drops Google Play Books and
+// Booru (sheet "YomiHub Update": TV = Film & Movie only).
 bool _isNotHiddenLibOnTv(String nav) =>
-    nav != "/MangaLibrary" && nav != "/NovelLibrary";
+    nav != "/MangaLibrary" &&
+    nav != "/NovelLibrary" &&
+    nav != "/playBooks" &&
+    nav != "/booru";
 
 /// The ItemType a nav destination maps to, or null for destinations with no
 /// single content type to scope a global search to (Updates, History,

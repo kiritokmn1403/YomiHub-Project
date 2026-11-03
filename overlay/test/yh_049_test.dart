@@ -25,7 +25,8 @@ List<int> _zip(Map<String, String> files) {
 
 void main() {
   test('0.4.9: version / user agent', () {
-    expect(AppIdentity.userAgent, 'YomiHub/0.4.9');
+    // 0.5.0: the exact version is checked in yh_050_test.dart
+    expect(AppIdentity.userAgent, startsWith('YomiHub/'));
   });
 
   group('DbWriteQueue (logs_6: async write transaction already in progress)', () {

@@ -1497,5 +1497,14 @@
   "Danh mục này chưa có phim.\nThêm phim vào từ trang chi tiết của phim.": "Bu kategoride henüz başlık yok.\nBaşlıkları ayrıntı sayfasından ekleyin.",
   "Tìm phim trong thư viện": "Kitaplıkta ara",
   "Đã ẩn “{p0}” · giữ OK trên “Tất cả” để hiện lại": "“{p0}” gizlendi · göstermek için “Tümü” üzerinde OK’yi basılı tutun",
-  "Không có danh mục ẩn": "Gizli kategori yok"
+  "Không có danh mục ẩn": "Gizli kategori yok",
+  "Chỉ chạy trên vBook": "Yalnızca vBook",
+  "Cài đặt": "Ayarlar",
+  "Tốc độ phát": "Oynatma hızı",
+  "Chất lượng": "Kalite",
+  "Phụ đề": "Altyazılar",
+  "Âm thanh": "Ses",
+  "Shader": "Gölgelendiriciler",
+  "Bộ giải mã": "Kod çözücü",
+  "Thống kê chi tiết": "Ayrıntılı istatistikler"
 }
