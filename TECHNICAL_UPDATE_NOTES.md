@@ -6,6 +6,7 @@ Chủ dự án yêu cầu tạo và duy trì tài liệu này ngày 25/10/2026. 
 
 ## 1. Trạng thái hiện tại
 
+- **03/11/2026 – 0.4.9 (0.4.9+41) đã dựng, kiểm thử và phát hành (GitHub Release `v0.4.9`):** 3 APK Android 7.0+ (arm64-v8a, armeabi-v7a, x86_64), 3 APK `YumiHub Android TV` (không có Comic/Novel), Windows 10/11 x64 `.appxbundle` / `Setup.exe` / portable `.zip` / portable `-full.zip` trong `output/0.4.9` kèm `SHA256SUMS-0.4.9.txt`. Mới: chạy tiện ích **vBook** (runtime chuyển mã Rhino → QuickJS), kiểm tra cập nhật nhiều nguồn (GitHub → Drive ×3 → MediaFire ×3, cả bản TV), VPN Windscribe/Hotspot Shield, Telegram tự lấy Chat ID, 59 liên kết GitHub còn thiếu. Sửa: hàng đợi ghi Isar (lỗi `async write transaction already in progress` trong logs_6), tiếp tục phát từ vị trí đã xem với HLS, Đề Xuất timeout hàng loạt, Anime47 (đã gỡ tài khoản viết cứng – **nên đổi mật khẩu**), mô tả vBook, giao diện Android TV còn tiếng Anh / thời lượng thô / hỏi quyền lặp lại, 80 chuỗi dịch × 18 ngôn ngữ. `flutter test` 76/76, `dart analyze` 0 lỗi. Kiểm thử thật trên Samsung Note 9 (Android 10), giả lập Android TV API 34 và Windows 11 x64, có ảnh + video. **Không đạt:** Android 6.0, Windows 7/8/x86/ARM (giới hạn Isar/Flutter – mục 0.4.9 H). Chi tiết: mục "02/11/2026 – 03/11/2026 — Cập nhật phiên bản 0.4.9".
 - **01/11/2026 – 0.4.7 (0.4.7+39) đã dựng và bàn giao:** 3 APK Android 6.0+, 3 APK `YumiHub Android TV`, Windows 7/10/11 x64 `.appxbundle`/`Setup.exe`/portable `.zip`/portable `-full.zip` trong `output/0.4.7`. Mới/sửa: Khắc phục triệt để lỗi font chữ và tràn khung hiển thị trong mục "Đề Xuất" (viết mới `_SuggestionCard`, badge nguồn, kế thừa `textTheme` Unicode fallback), tách riêng APK Android TV bỏ Comic/Novel, sửa lỗi đọc chương minh họa Novel Hako, sửa lỗi seek video live stream, thêm cài đặt "Tiếp tục phát video từ vị trí đã xem", Splash 5s morph vuông sang tròn (`r=size/2`), validate Telegram Cloud Backup Chat ID. Đạt 56/56 unit test (`All tests passed!`), kiểm thử thực tế thành công 100% trên thiết bị ngoại vi Samsung Galaxy Note 9 (SM-N960N, Android 10, màn hình 1440x2960) có đầy đủ ảnh chụp màn hình và video minh chứng. Chi tiết: mục "01/11/2026 — Cập nhật phiên bản 0.4.7".
 - **31/10/2026 - 01/11/2026 – 0.4.6 (0.4.6+38) đã dựng và bàn giao:** 3 APK Android 7.0+, 3 APK `YumiHub Android TV`, Windows 10/11 x64 `.appxbundle`/`Setup.exe`/portable `.zip` trong `output/0.4.6`. Mới/sửa: Tùy biến phạm vi VPN cho từng nguồn Booru cá nhân, nâng cấp thư viện JS mở rộng và xử lý ngoại lệ ảnh 404. Chi tiết: mục "31/10/2026 - 01/11/2026 - Cập nhật phiên bản 0.4.6".
 - **30/10/2026 – 0.4.5 (0.4.5+37) đã dựng và bàn giao:** 3 APK Android 7.0+, 3 APK `YumiHub Android TV`, Windows 10/11 x64 `.appxbundle`/`Setup.exe`/portable `.zip` trong `output/0.4.5`. Mới/sửa: Telegram chia phần ≤ 19 MB + che token + đi qua VPN, splash không dựng lại cả app, trình phát luồng trực tiếp, cheerio LNReader (Hako), WARP gồm YomiHub, Booru Rule34, VTV Go `cache.vtvgo.vn`, log chương tiểu thuyết. Kiểm thử trên Xiaomi 15T + AVD TV; Setup.exe cài thành công. **Còn mở:** mọi app Flutter trên máy Windows này (kể cả app mẫu) hiện cửa sổ trắng – mục G. Chi tiết: mục "30/10/2026 — Cập nhật phiên bản 0.4.5".
@@ -1480,4 +1481,138 @@ d2da2ffe39b143f3c6d8c67179fcec4f59c1b8d4a6070361d9072ed79e772fe6  YomiHub-0.4.8-
 ```
 Kèm theo: `YomiHub-RootCA.cer`, `Install-YomiHub.bat`, `Install-YomiHub.ps1`, `YomiHub-0.4.8-changelog.md`.
 
+### 02/11/2026 – 03/11/2026 — Cập nhật phiên bản 0.4.9 (YomiHub 0.4.9+41)
 
+### 02/11/2026 — Cập nhật phiên bản 0.4.9 (YomiHub 0.4.9+41)
+
+Thực hiện: Claude (Claude Code, phiên cloud liên kết máy `kiritokmn-lap`), 02/11/2026 20:58 → (xem mục H). Người dùng xác nhận bản tóm tắt yêu cầu lúc 21:00 và cấp toàn quyền (GitHub, điều khiển máy, công cụ) lúc 21:14.
+
+#### A. Yêu cầu
+1. Nâng lên 0.4.9; Android 6.0+ và mọi bản Android TV (APK riêng `YumiHub Android TV`, bỏ Comic/Novel); Windows 7+ x64/x86/ARM với 3 gói `.appxbundle`, `.exe`, portable.
+2. Làm từng mục sheet `Feature Check` (43 mục) và `YomiHub Update` (13 mục) của `Project YomiHub.xlsx`; đối chiếu `Project GitHub.xlsx` (563 liên kết, 22 nhóm).
+3. Sửa lỗi trong `logs_6.txt` (30/10 06:09 → 02/11 20:55; 79 dòng ERROR).
+4. Ghi vào tài liệu này: hạng mục sửa, lỗi phát hiện, dòng lệnh sửa, công cụ, kết quả kiểm thử, ngày.
+5. Dựng, cài và kiểm thử (Android SDK/Emulator, thiết bị ngoài, Windows) có ảnh chụp + video; tải mã nguồn, bộ cài, Output lên GitHub (Releases + README).
+
+#### B. Công cụ đã dùng
+- Đọc/sửa mã: shell Linux của Claude trên máy người dùng (thư mục kết nối `D:\A.I Project\…`), Python 3 cho các phép sửa có kiểm tra (`assert old in s`), Node.js (trong container cloud) để kiểm thử bộ chuyển mã vBook.
+- Dựng/kiểm thử trên Windows: trình chạy tác vụ `3_run_jobs.bat` (dựng) và `3b_run_fast_jobs.bat` (QA song song, Claude tự mở bằng Computer use trong File Explorer), Flutter 3.47.6 / Dart 3.13.5 (`D:\yh\tools\flutter`), Android SDK + adb, Gradle 9.3.1, Rust/Cargo, Visual Studio 2022 Build Tools (CMake/MSVC cho `flutter build windows`), WiX/NuGet (`make_installer_exe.ps1`, `make_appxbundle.ps1`), ffmpeg 9.0.2 (quay màn hình Windows), `adb screencap/screenrecord/uiautomator` (Android).
+- Script mới: `sync_049.ps1`, `build_049.ps1`, `qa049.ps1` (chụp/quay/chạm theo chữ qua uiautomator), `audit-0.4.9/changed_files.txt`, bản trước sửa trong `audit-0.4.9/before/`.
+
+#### C. Lỗi phát hiện trong `logs_6.txt` và cách xử lý
+
+| Lỗi trong log | Nguyên nhân thật | Xử lý 0.4.9 |
+| --- | --- | --- |
+| `[Trình phát] Lỗi không lưu được vị trí đã xem…: IsarError: An async write transaction is already in progress` (01/11 11:42) | Hàng đợi `dbWriteQueue` chỉ bao một phần: ~15 lệnh `isar.writeTxn(...)` chạy ngoài hàng đợi (thủ phạm chính `download_index.dart` lúc khởi động – log "Download index: 81 on disk, +9"). Khi một giao dịch async đó đang chờ, `writeTxnSync` của trình phát bị Isar từ chối → mất vị trí xem. **Ghi chú 0.4.8 nói đã thêm `IsarWriteQueue` nhưng lớp này không tồn tại trong mã.** | Viết lại `repositories/db_write_queue.dart`: hàng đợi tái nhập (Zone), `isar.writeTxnQ` (async, luôn xếp hàng) và `isar.writeTxnSyncSafe` (sync, nếu xung đột thì xếp lại sau giao dịch async). Đổi toàn bộ 19 tệp: `sed -E 's/\bisar\.writeTxnSync(<[^>]*>)?\(/isar.writeTxnSyncSafe\1(/g; s/\bisar\.writeTxn(<[^>]*>)?\(/isar.writeTxnQ\1(/g'`. Test `yh_049_test.dart` (thứ tự, tái nhập, lỗi không chặn hàng đợi). |
+| ~20 dòng `Đề Xuất [...]: TimeoutException after 0:00:12` trong cùng 1 giây (01/11 13:26) | 3 tab (Comic/Film/Novel) mỗi tab chạy 2 nguồn song song, tất cả xếp hàng trên một isolate dịch vụ; thời gian chờ hàng đợi bị tính vào timeout 12 s. | `yomi_suggestions.dart`: cổng chung `_SuggestGate` (tối đa 2 nguồn cho cả 3 tab), timeout chỉ tính khi nguồn thực sự chạy, nới lên 20 s. |
+| `Anime47: máy chủ trả về trang HTML thay vì dữ liệu` (01/11 22:51) | `api()` không bao giờ dùng địa chỉ API đã tự dò (`a47_api_auto`), mỗi lần gọi lại tải bundle site để dò. **Tài khoản/mật khẩu Anime47 bị viết cứng trong `anime47.js` (cả mặc định cài đặt) – được đóng vào mọi bộ cài và GitHub công khai, vi phạm `AGENTS.md` mục 6.** | `anime47.js`: thứ tự yh_api → a47_api_auto → mặc định; dò lại tối đa 10 phút/lần; gỡ toàn bộ tài khoản khỏi mã (giờ chỉ nhập trong cài đặt tiện ích). Test kiểm tra không còn chuỗi tài khoản. **Khuyến nghị người dùng đổi mật khẩu Anime47** (đã nằm trong lịch sử Git công khai). |
+| `Telegram upload: HTTP 400 chat_id is empty`, `Nhập đủ Bot token và Chat ID`, `getChat: chat not found` | Người dùng phải tự tìm Chat ID; nhập sai/để trống là hỏng. | `cloud_backup_service.dart` (theo cách Kotatsu): Chat ID có thể để trống → `getUpdates` lấy chat mới nhất đã nhắn `/start`; khi `chat not found` thử tự phát hiện; thông báo hướng dẫn rõ. Token luôn bị che trong log (test). |
+| `Kho tiện ích … TimeoutException` (kegareta, x.noz.one), `codeberg.org Failed host lookup` | Mạng/DNS phía người dùng hoặc máy chủ kho. | Đã có thử lại + GhMirror; ghi nhận, không phải lỗi mã. |
+| `[Cloudflare] … đã giải xong Cloudflare trên WebView nhưng vẫn không tải được trang` (MiMiHentai, CBHentai, LxManga), `Honto: không giải được` | Trang kiểm tra dấu vân tay TLS/trình duyệt sau khi có `cf_clearance` (đã xác nhận ở 0.4.5). Ứng dụng đã chuyển sang tải qua WebView với nguồn JS. | Ghi nhận giới hạn; không sửa được ở phía ứng dụng cho nguồn Mihon (APK). |
+| `Kagane` (HTTP 404 / JSON parse error), `CManga` (missing result), `YuriNeko` 404, `Nhentai World/OioiVn/NetTruyenFE` không phân giải tên miền, `HentaiVN.plus tls handshake eof` | Trang nguồn đổi API/đóng/đổi tên miền. | Ghi nhận; người dùng dùng "Đổi URL/tên miền" hoặc chờ kho cập nhật. |
+| `Tor chưa kết nối được sau 90 giây (dừng ở 75%/10%)` | Nhà mạng chặn Tor; cầu nối đã tự thử nền. | Không đổi (đúng thiết kế 0.4.5 L). |
+| `Rule34: missing authentication`, `Google Drive: Enter drive path(s)` | Thiếu cấu hình người dùng. | Không phải lỗi; Đề Xuất đã bỏ qua nguồn cần cấu hình. |
+| `FlutterError: Failed to load /wp-content/uploads/2024/12/red88-728.gif` | Chỉ xuất hiện 31/10 (0.4.5/0.4.6); đã được `isExpectedFailure` lọc ở bản sau. | Không cần sửa thêm. |
+| `Hình minh họa (Hako): TypeError: not a function`, `Cannot seek in this stream` | Chỉ xuất hiện 30/10, trước bản 0.4.7 (đã sửa ở 0.4.7). | Không xuất hiện lại trong log sau 30/10; 0.4.9 không kiểm thử riêng Hako. |
+
+#### D. Sheet "YomiHub Update" (13 mục) – trạng thái thực tế trong mã
+
+| # | Yêu cầu | Trạng thái 0.4.9 |
+| --- | --- | --- |
+| 1 | Sửa lỗi + cảnh báo trong log, tối ưu chạy mượt | Mục C. Thêm: hàng đợi ghi Isar không còn xung đột (nguyên nhân giật khi lưu vị trí/tải), Đề Xuất không còn bắn ~20 yêu cầu cùng lúc. |
+| 2 | Xem và sửa Website Extension | Đối chiếu 27 tiện ích × mọi URL của sheet với `builtin_extensions.dart` và `assets/yomihub_extensions/*.js`: ngôn ngữ/NSFW khớp sheet; tên miền phụ đều có (AVSub .nl/.sale chuyển 301 về .news; VTV Go dựng `/channel/<id>`). Anime47 sửa (mục C). |
+| 3 | Bật/tắt bộ tính năng + kho Truyện/Phim/Tiểu thuyết | Đã có từ 0.4.8 (`feature_toggle_screen.dart`). 0.4.9 bổ sung bản dịch 18 ngôn ngữ cho màn hình này (trước đó chưa dịch). |
+| 4 | Bổ sung project GitHub còn thiếu | So khớp tự động 563 liên kết của `Project GitHub.xlsx` với `github_projects.dart`: thiếu 59 liên kết / 11 dự án (LeechText, Hotspot Shield ×11, Windscribe ×13, Telegram Bot Project ×10, Resume A Video ×7, Âm Lịch ×7, Flash Player ×7) → đã thêm (đánh dấu "(0.4.9)", nhóm mới "Flash Player (0.4.9)"). Kiểm tra lại: 0 liên kết thiếu. |
+| 5 | Sửa lỗi VPN; VPN riêng cho từng nguồn Booru | VPN riêng từng nguồn Booru đã có từ 0.4.6 (`vpn_screen.dart` "Chọn nguồn Booru dùng VPN"); 0.4.9 dịch đủ các chuỗi Booru/VPN còn thiếu. |
+| 6 | Sao lưu Telegram (tham khảo Kotatsu, Telegram Bot Project) | Mục C – tự lấy Chat ID qua `getUpdates`. |
+| 7 | vBook, vBook 2, LeechText → chạy được extension repo vBook | **Mới:** `lib/yomihub/vbook/vbook_bridge.dart` + `assets/yomihub_extensions/vbook.js`. Chi tiết mục E. LeechText (công cụ desktop tải truyện) được dùng làm tham chiếu; phần đọc truyện chữ đã có qua runtime vBook/LNReader. |
+| 8 | Resume A Video + "Tiếp tục phát video từ vị trí đã xem" (mặc định bật) | Cài đặt có từ 0.4.7. Hai nguyên nhân: (1) xung đột ghi Isar làm mất vị trí đã lưu (mục C); (2) với luồng HLS, lệnh tua lúc mở bị mpv bỏ qua nên phim chạy lại từ 0:00 dù toast báo "Tiếp tục phát từ…" (phát hiện khi kiểm thử, mục G/I). Cả hai đã sửa và kiểm thử lại trên Note 9. |
+| 9 | Link GitHub trong Giới thiệu | Đã đúng `https://github.com/kiritokmn1403/YomiHub-Project` (`about_screen.dart:198`). |
+| 10 | Kiểm tra cập nhật theo thứ tự sheet "Website Update Apps", tự tải & cài | **Mới:** `lib/yomihub/update/multi_source_update.dart`: GitHub Releases (API; khi bị giới hạn 60 lượt/giờ dùng trang `releases/latest` + `expanded_assets`) → Google Drive ×3 → MediaFire ×3 (API `folder/get_content.php`, lấy link tải trực tiếp). `drive_update.dart` nhận `folderId`. Bản Android TV giờ cũng kiểm tra cập nhật (chỉ nhận APK `android-tv`). Hộp thoại tải & cài giữ nguyên (`download_file_screen.dart`). |
+| 11 | Hotspot Shield + Windscribe trong cài đặt VPN | **Mới:** `vpn_screen.dart` `_brandSection` + `ext_vpn.dart`: Windscribe (nhập .conf/.ovpn từ Config Generator → chạy bằng lõi WireGuard/OpenVPN của YomiHub, áp dụng "VPN cho tiện ích"; nút tạo cấu hình; mở app Windscribe), Hotspot Shield (mở app gốc/trang tải; nhận diện VPN đang chạy; nhập cấu hình nếu có). Hotspot Shield không phát hành file cấu hình/SDK công khai nên không thể kết nối trực tiếp trong ứng dụng. |
+| 12 | Treo, lag, văng | Mục C (Isar, Đề Xuất). |
+| 13 | Windows trên AMD Ryzen 9 thiếu tính năng | Máy kiểm thử là Intel i5-11300H (không có máy Ryzen 9); kiểm tra Windows ở mục J. |
+
+#### E. Runtime vBook (mới)
+- Kho vBook (`plugin.json` dạng `{metadata, data:[{path: …/plugin.zip, type, locale, version}]}`) được nhận ở `extension_store_service.dart` (`VBookBridge.isIndex/parseIndex`): novel/chinese_novel → Tiểu thuyết, comic → Truyện tranh, video → Phim; tts/translate/ai/audio bỏ qua.
+- Cài/cập nhật (`fetch_sources_list.dart` `_updateSource`, phần tải cũ tách thành `_downloadCode`): tải plugin.zip → giải nén (`archive`) → `_common.js` + `VB_PLUGIN` + `VB_SCRIPTS` + `vbook.js` → lưu thành nguồn JavaScript.
+- `vbook.js`: (1) bộ tách token tự viết (chuỗi, template, regex, comment) + phân tích đồ thị gọi hàm → hàm có lời gọi mạng thành `async`, lời gọi được bọc `(await …)`, `forEach/map/filter…` có callback async dùng `__aforEach/__amap…` tuần tự; (2) API vBook: `fetch` (không bao giờ ném lỗi mạng, trả 504 như vBook), `Http.get/post` builder, `Html.parse` + Elements kiểu jsoup (select/first/last/get/text/html/attr/remove/absUrl…), `Response`, `localStorage/cacheStorage/localConfig/localCookie`, `sleep`, `UserAgent`, `Engine.newBrowser` (qua WebView ẩn của app), `Script.execute`, `load('x.js')`, hằng cấu hình tĩnh; (3) bộ chuyển `DefaultExtension`: home→Phổ biến/Mới, genre→bộ lọc "Thể loại", search, detail+page+toc→chi tiết & chương, chap→trang ảnh (tôn trọng `referrerpolicy`) / HTML tiểu thuyết / track→video; cấu hình plugin → cài đặt tiện ích; "Đổi tên miền" thay origin trong script.
+- Kiểm chứng (Node.js, không chạy mã bên thứ ba, chỉ biên dịch): 1.260 script của 148 tiện ích (Darkrai9x/vbook-extensions, duongden/vbook) → **0 lỗi cú pháp sau chuyển mã**; 341 hàm `execute` chuyển async. Kiểm thử chức năng với tiện ích mẫu (phân trang token, page+toc, forEach+fetch, Http chain, IIFE, referrerpolicy, bộ lọc): đạt.
+- Giới hạn: 23/122 tiện ích nội dung có script **mã hóa** (AES, khóa riêng của ứng dụng vBook đóng mã nguồn) → báo "chỉ chạy được trong ứng dụng vBook", không cài thành nguồn hỏng; không phá mã hóa của tác giả. 99/122 chạy được về mặt mã. Bảng mã GBK của nguồn Trung Quốc chưa hỗ trợ (đọc UTF‑8).
+- Quét repo: sửa URL sai `vbook-extensions/master/plugins.json` (không tồn tại) → `repository.json` (danh sách 19 kho vBook cộng đồng); trang có `plugin.json` cũng được nhận.
+
+#### F. Bản địa hóa
+- Quét toàn bộ `tr('…')`: 55 chuỗi chưa có ở **cả 18 ngôn ngữ** (gồm chuỗi tồn đọng của 0.4.6–0.4.8 như Bật/Tắt tính năng, Booru, MediaFire, Tiếp tục phát video) → đã dịch đủ 55 × 18 (`audit-0.4.9/i18n_049.json`), giữ "Comic/Film & Movie/Novel" cho `YomiTr.sections()`. Test `every tr() text has an English translation` chặn tái phát.
+
+#### G. Kiểm thử trên thiết bị (Note 9 – SM-N960N, Android 10, 1440×2960, cài đè 0.4.8 → 0.4.9)
+Ảnh và video ở `audit-0.4.9/qa/` (không đưa lên Git, đính kèm Release trong `YomiHub-0.4.9-QA-screenshots.zip`). Điều khiển bằng `qa049.ps1` (adb `input`, `uiautomator dump`, `screencap`, `screenrecord`).
+
+| Tính năng | Kết quả | Bằng chứng |
+| --- | --- | --- |
+| Cài đè 0.4.8 → 0.4.9 (versionCode 2041), dữ liệu giữ nguyên | Đạt | `00_baseline`, `02_man_hinh_chinh` |
+| Splash 5 s, khung vuông → tròn | Đạt | `01_splash_a/b` |
+| Các tab Truyện tranh / Phim / Tiểu thuyết / Cập nhật / Duyệt / Thêm / Cài đặt | Đạt | `02`–`10` |
+| Bật/Tắt tính năng – tiêu đề không còn lặp "Truyện tranh (Truyện tranh)" | Đạt sau sửa | `11_bat_tat_tinh_nang` |
+| Thêm kho vBook (Darkrai9x `plugin.json`) → danh sách tiện ích vBook → cài Truyện Full | Đạt | `13`–`20`, video `v02_vbook.mp4` |
+| Truyện Full: Phổ biến, Mới nhất, Tìm kiếm, chi tiết (500 chương), đọc chương, cuộn | Đạt | `21`–`28`, video `v03_vbook_doc.mp4` |
+| Mô tả truyện vBook | Lỗi ở bản dựng 1–3 (trống). Nguyên nhân 1: `Document.text` = null (đã sửa ở `vbook.js`). Nguyên nhân 2: runtime được đóng vào tiện ích lúc cài nên tiện ích đã cài vẫn chạy runtime cũ → thêm `VBookBridge.runtimeRev` vào số phiên bản (14.0.0 → 14.0.2). Kiểm thử lại: Duyệt hiện "1 cập nhật", "Cập nhật tất cả" → 14.0.2, mô tả hiện đủ | `90_vb_detail` (trước), `97`–`100` (sau), video `v13_cap_nhat_vbook_mo_ta.mp4` |
+| AnimeVN: danh sách, chi tiết, phát (máy chủ nhúng), đổi máy chủ, PiP | Đạt | `30`–`40`, video `v04_phim_animevn.mp4` |
+| RoPhim: phát HLS gốc, điều khiển, tự PiP khi thoát | Đạt | `43`–`50` |
+| **Tiếp tục phát từ vị trí đã xem** | Lỗi ở bản dựng 2 và 3: toast "Tiếp tục phát từ 05:00/01:35" nhưng phim chạy lại từ 0:00 (`v07`, `v11`). Tua tay bằng thanh thời gian vẫn được (00:07:00 → 00:37:25, `84_seek`) → luồng tua được, chỉ lệnh tua lúc mở bị mất. Sửa `_yhResumeTo` (mục I). Kiểm thử lại: lưu 39:50 → mở lại từ Lịch sử phát tiếp ở 00:40:10 | `v11_grid2.jpg` (lỗi), `v12_tiep_tuc_vi_tri_fix.mp4`, `v12_grid.jpg`, `93_resume_fix` (đạt) |
+| Lịch sử (3 tab), mở lại tập đang xem | Đạt | `53`, `79`, `80` |
+| Giới thiệu: phiên bản Beta (0.4.9), liên kết GitHub đúng | Đạt | `57`, `74` |
+| Kiểm tra cập nhật nhiều nguồn (GitHub → Drive → MediaFire) | Đạt: "Không có bản cập nhật mới" (Release mới nhất lúc thử là 0.4.8 < 0.4.9) | `75`, `76`, video `v09_kiem_tra_cap_nhat.mp4` |
+| Nhật ký ứng dụng sau khi thử | Không có dòng ERROR mới | `59_nhat_ky` |
+| Hợp nhất tiện ích | Mở được, danh sách đúng | `61_hop_nhat_tien_ich` |
+| VPN hub: Windscribe + Hotspot Shield, phạm vi VPN | Đạt (giao diện) | `60`, `63`–`66` |
+| **VPN (kiểm tra ngoài ứng dụng):** bật WARP phạm vi "Toàn thiết bị", mở `cloudflare.com/cdn-cgi/trace` bằng Edge | `warp=on`, IP 2a09:bac5:… (Cloudflare); tắt → `warp=off`, IP 2001:ee0:… (nhà mạng). Trả phạm vi về "Chỉ YomiHub" | `69`–`73`, video `v08_vpn_warp.mp4` |
+
+
+#### H. Không đạt được / giới hạn (ghi trung thực)
+- **Android 6.0:** không cài/chạy được – CSDL Isar (libmdbx) báo `MDBX_INCOMPATIBLE` trên kernel Android 6 (đã chứng minh ở 0.4.3 mục D). APK để `minSdk 24` (Android 7.0). Mục trạng thái của 0.4.7/0.4.8 ghi "Android 6.0+" – không khớp với giới hạn này; 0.4.9 ghi đúng là Android 7.0+.
+- **Windows 7/8, Windows x86 (32-bit) và Windows ARM64:** Flutter Windows chỉ hỗ trợ Windows 10+ x64 (engine dùng API Windows 10); ARM64 phải dựng trên máy ARM64 với Flutter master. Ghi chú 0.4.8 ("Windows 7+ bundles") không có bằng chứng chạy trên Windows 7; gói thực tế chỉ có x64.
+- Ghi chú 0.4.8 nói đã có `IsarWriteQueue` và "0 cảnh báo": lớp này không có trong mã và `dart analyze` vẫn có 161 cảnh báo cũ (0 lỗi). Đã sửa thật ở 0.4.9 (mục C).
+- 23/122 tiện ích vBook mã hóa – chỉ chạy trong ứng dụng vBook.
+- Hotspot Shield không có cấu hình/SDK công khai → chỉ mở ứng dụng gốc / nhận diện VPN.
+- Mật khẩu Anime47 đã nằm trong lịch sử Git công khai (các bản ≤ 0.4.8) – **chủ dự án nên đổi mật khẩu**. Không viết lại lịch sử Git (cần force-push, phải do chủ dự án quyết định).
+
+#### I. Sửa thêm trong lúc kiểm thử (03/11/2026)
+1. `overlay/lib/modules/anime/anime_player_view.dart`: thay vòng "tua + kiểm tra 6 lần" bằng hàm mới `_yhResumeTo(start)` – chờ đến khi `playing && !buffering && duration > 0 && position > 0`, gửi `seek <giây> absolute` thẳng cho mpv qua `NativePlayer.command(..., waitForInitialization: false)` có `timeout(3s)` (tránh kẹt sau khóa `open()`), tua lại tối đa 8 lần trong 45 s, chỉ coi là xong khi đã phát ổn định ≥ 3 s trong khoảng [đích − 10 s, đích + 60 s]; hết lượt → ghi ERROR và bật lại lưu vị trí.
+2. `overlay/lib/yomihub/net/chunk_proxy.dart` (`YomiHlsAdFilter.handle`): trả danh sách phát có `Content-Length` (không chunked).
+3. `overlay/lib/yomihub/vbook/vbook_bridge.dart`: `runtimeRev = 2`, phiên bản tiện ích vBook `'$ver.0.$runtimeRev'`; test cập nhật.
+4. `overlay/test/yh_049_test.dart`: test "no Anime47 account" không còn chứa chuỗi tài khoản (bản trước của test có chứa một phần tài khoản để so sánh) – nay kiểm tra không có địa chỉ e‑mail và giá trị mặc định rỗng.
+5. `.gitignore`: loại `audit-0.4.9/npm/`, `backup/`, `*.html` (trang bên thứ ba), `qa/`.
+6. **Android TV** – `overlay/lib/modules/manga/detail/tv/tv_anime_detail_view.dart`: màn chi tiết TV còn chữ tiếng Anh viết cứng (Play/Replay/Continue, Add to Library, Categories, Tracking, Open in browser, Recommendations, Watch order, Migrate, "N episodes", "Episodes", "Episode N", "FILLER", trạng thái `Completed`) → `tr(...)`; hàm mới `_statusLabel(Status)`; bỏ `_cap`. Thời lượng tập hiện số mili-giây thô "4303400" → hàm mới `_durationLabel` (H:MM:SS). `overlay/lib/modules/library/tv_home/tv_anime_home_view.dart`: 11 chuỗi tiếng Anh → `tr(...)`. 25 chuỗi mới dịch đủ 18 ngôn ngữ.
+7. **Android TV** – `overlay/lib/providers/storage_provider.dart` `requestPermission({bool force = false})`: trang hệ thống "All files access" bật lại mỗi lần mở tập (trình phát gọi xin quyền cho thư mục mpv) dù người dùng đã từ chối. Nay các lệnh gọi nền chỉ xin 1 lần mỗi lần chạy app; thao tác do người dùng bấm (tải xuống `download_provider.dart`, thư mục cục bộ `local_directory_resolver.dart`, `foreign_downloads.dart`, cài đặt trình phát `player_advanced_screen.dart`) truyền `force: true` và luôn hỏi lại.
+8. Sơ suất trong phiên: một lệnh chép bản gốc chạy sai thư mục, tạo `overlay/audit-0.4.9/` thừa. Đã chuyển sang `_to_delete/overlay-audit-0.4.9-stray` (shell không có quyền xóa; `/_to_delete/` đã thêm vào `.gitignore`) – chủ dự án có thể xóa.
+
+#### J. Kiểm thử bản dựng cuối (dựng lần 5, 03/11/2026 09:02 → 09:53)
+- `dart analyze lib`: **0 lỗi** (211 mục cảnh báo/info, đều có từ trước, trừ 1 info `unnecessary_string_interpolations` ở `anime_player_view.dart` dòng `seekable`). `flutter test` (10 tệp yh_040…yh_049): **76/76 đạt**.
+- **Note 9:** cài đè APK arm64 cuối thành công (versionCode 2041); mở lại Tập 04 từ Lịch sử → tự tua tới **00:42:05** (`v14_ban_cuoi_tiep_tuc.mp4`, `v14_grid.jpg`).
+- **Android TV** (AVD `YomiHub_TV_API34`, 1920×1080, cài đè APK TV armeabi-v7a): khởi động, thanh bên chỉ có Phim & Điện ảnh / Play Books / Booru / Cập nhật / Duyệt / Thêm (không có Truyện tranh, Tiểu thuyết), Duyệt nguồn phim, tìm kiếm toàn cục, chi tiết phim, phát RoPhim/HotPhim, điều khiển và tua bằng D-pad (05:15 → 05:25), quay lại chi tiết. Bản cuối: chi tiết hiện tiếng Việt ("Phát · Xem phim", "Thêm vào thư viện", "Danh sách tập · 1"), thời lượng "3:12:12", không còn bật trang xin quyền khi phát. Ảnh `tv11`–`tv39`, video `tv_v01`–`tv_v06`. Còn lại: nút "Settings" trong thanh điều khiển trình phát TV vẫn là tiếng Anh (chuỗi của trình phát gốc).
+- **Windows 11 x64** (máy của chủ dự án):
+  - Kiểm tra SHA256 cả 10 tệp với `SHA256SUMS-0.4.9.txt`: khớp hết.
+  - `Setup.exe`: chạy trình cài, bấm "Cài Đặt Ngay" (UI Automation + chuột). Cài đè 0.4.7+39 → **0.4.9+41** vào `%LOCALAPPDATA%\YomiHub`, tạo lối tắt Desktop + Start Menu, tự mở app. Ảnh `win01_setup`, `win02_setup_xong`; video `win_v01_setup_exe.mp4`, `win_v02_setup_cai_dat.mp4`.
+  - Portable `.zip`: giải nén (330.9 MB), `YomiHub.exe` chạy (Responding, ~468 MB), nhật ký ghi bình thường (tải kho, ảnh bìa).
+  - `.appxbundle`: kiểm tra cấu trúc – chứa `YomiHub_0.4.9_x64.appx` (Version 0.4.9.0, x64) và có chữ ký `CN=YomiHub` (thumbprint `4C62D3C5…2A49`). **Chưa cài thử**: cài cần thêm `YomiHub-RootCA.cer` vào kho chứng chỉ gốc của máy (thay đổi cài đặt bảo mật) – để chủ dự án tự chạy `Install-YomiHub.bat`.
+  - **Cửa sổ vẫn trắng** (`win03_app_sau_cai`, `win04_mo_lai`, `win05_portable`): tiến trình chạy và ghi log bình thường, phóng to cửa sổ thì vùng vẽ không đổi kích thước. Đây vẫn là lỗi hiển thị Flutter của máy này đã ghi ở 0.4.4 F / 0.4.5 G (ứng dụng mẫu `flutter create` cũng trắng; Intel Iris Xe driver 2021 + GTX 1650). Đã thử dừng Gradle daemon và mở lại: vẫn trắng. Không đổi cài đặt đồ hoạ hệ thống. **Giao diện bên trong bản Windows chưa kiểm thử được trên máy này** – cần cập nhật driver Intel / chọn GPU NVIDIA cho `YomiHub.exe` (Cài đặt › Hiển thị › Đồ hoạ) hoặc thử máy khác.
+
+#### K. Tệp bàn giao (`output/0.4.9`)
+| Tệp | MB | SHA256 |
+| --- | ---: | --- |
+| YomiHub-0.4.9-arm64-v8a.apk | 168.8 | `5346291ba7cb61eed162c2391577c7b4c30a0ec2b6e2dbc23be10a6699c1f981` |
+| YomiHub-0.4.9-armeabi-v7a.apk | 165.6 | `89310b70960b270cdd04886b7603e4acfe99eaaa4bd6dcb5759916a5a5c97277` |
+| YomiHub-0.4.9-x86_64.apk | 178.1 | `fb2131c9fb154e55e1576be3d11c032750e998792d72914258e547fd0a2b3a13` |
+| YumiHub-Android-TV-0.4.9-arm64-v8a.apk | 168.7 | `1a97998f94528e04664e915ae96af3ec6f3ec36ef251df8371a3846bd94d72c6` |
+| YumiHub-Android-TV-0.4.9-armeabi-v7a.apk | 165.5 | `6a2d3c3a0089061141a4eea9b0f3abcb6bfaabd2a06c7d6857d3b4fe055d700f` |
+| YumiHub-Android-TV-0.4.9-x86_64.apk | 178.1 | `06e6d2be30412474b15080a7cbee00c09d9b6eb4bdf834cde2b2bd30b7d9cf89` |
+| YomiHub-0.4.9-windows-x64-Setup.exe | 138.6 | `504453e290b7b4a4200187965b666ef980cc674736b8b11ce3b6a8d07487ffd7` |
+| YomiHub-0.4.9-windows-x64.appxbundle | 270.9 | `dba1a0f3b19a742f83ce63cd9a2344ca494ecd84d4e9876e1d3bd225614d94ef` |
+| YomiHub-0.4.9-windows-x64.zip (portable) | 138.6 | `c1cc910d36ebbc4534c237cd05a72efe7cbb05d25151da966ae2e12eb2195689` |
+| YomiHub-0.4.9-windows-x64-full.zip (portable + MES/JRE) | 266.4 | `248e29eac3d2a7f5770de2555d6b414ce1992761efdc523456312941f1f2936b` |
+
+Kèm: `SHA256SUMS-0.4.9.txt`, `YomiHub-RootCA.cer`, `Install-YomiHub.bat/.ps1`, `YomiHub-0.4.9-changelog.md`; ảnh/video kiểm thử đóng gói ở `output/YomiHub-0.4.9-QA-screenshots.zip`.
+
+#### L. GitHub
+- Mã nguồn: commit trên `main` của `kiritokmn1403/YomiHub-Project` (đẩy bằng Git for Windows + Git Credential Manager có sẵn trên máy; token không ghi ra log/tệp).
+- Release `v0.4.9` (đánh dấu Latest): tải bằng `release_049.ps1` – một dòng tiến độ mỗi tệp, cuối cùng so kích thước từng tệp trên GitHub với tệp trên máy. README có bảng link tải trực tiếp từ Releases.

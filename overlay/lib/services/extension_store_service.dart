@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:mangayomi/yomihub/ireader/ireader_bridge.dart';
+import 'package:mangayomi/yomihub/vbook/vbook_bridge.dart';
 import 'package:mangayomi/yomihub/net/gh_mirror.dart';
 
 import 'dart:convert';
@@ -271,6 +272,10 @@ class ExtensionStoreService {
     InterceptedClient client,
   ) async {
     try {
+      // YomiHub 0.4.9: vBook repository ({metadata, data: [{path: plugin.zip}]})
+      if (VBookBridge.isIndex(jsonMap)) {
+        return VBookBridge.parseIndex(indexUrl, jsonMap);
+      }
       // 1. Check if it's an Aidoku format repository index (e.g. index.min.json with "sources": [...])
       if (jsonMap['sources'] is List) {
         final aidokuResult = _parseAidokuJsonStore(indexUrl, jsonMap);

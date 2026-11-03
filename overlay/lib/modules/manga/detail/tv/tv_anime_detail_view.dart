@@ -20,6 +20,7 @@ import 'package:mangayomi/utils/extensions/chapter_extensions.dart';
 import 'package:mangayomi/utils/extensions/manga_extensions.dart';
 import 'package:mangayomi/utils/extensions/string_extensions.dart';
 import 'package:mangayomi/utils/utils.dart';
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 
 /// TV-only, d-pad-first anime detail. Equal split, screen-padded: the hero
 /// (cover, title, meta, synopsis) and a vertical list of actions on the left,
@@ -463,17 +464,17 @@ class _LeftInfo extends StatelessWidget {
         .where((g) => g.trim().isNotEmpty)
         .toList();
     final metaBits = <String>[
-      manga.status.name.isNotEmpty ? _cap(manga.status.name) : '',
-      '$episodeCount episodes',
+      _statusLabel(manga.status),
+      tr('{p0} tập', {'p0': episodeCount}),
       if ((manga.source ?? '').isNotEmpty) manga.source!,
       if ((manga.author ?? '').isNotEmpty) manga.author!,
     ].where((s) => s.isNotEmpty).join('   ·   ');
     final favorite = manga.favorite ?? false;
     final resumeWord = resume == null
-        ? 'Play'
+        ? tr('Phát')
         : (resume!.isRead ?? false)
-        ? 'Replay'
-        : (watched > 0 ? 'Continue' : 'Play');
+        ? tr('Xem lại')
+        : (watched > 0 ? tr('Xem tiếp') : tr('Phát'));
     final resumeName = resume?.name?.trim() ?? '';
     final resumeLabel = resumeName.isEmpty
         ? resumeWord
@@ -598,56 +599,56 @@ class _LeftInfo extends StatelessWidget {
                       focusNode: actionFocus[1],
                       accent: accent,
                       icon: favorite ? Icons.favorite : Icons.favorite_border,
-                      label: favorite ? 'In Library' : 'Add to Library',
+                      label: favorite ? tr('Trong thư viện') : tr('Thêm vào thư viện'),
                       onPressed: onToggleLibrary,
                     ),
                     _VActionButton(
                       focusNode: actionFocus[2],
                       accent: accent,
                       icon: Icons.label_outline,
-                      label: 'Categories',
+                      label: tr('Danh mục'),
                       onPressed: onCategories,
                     ),
                     _VActionButton(
                       focusNode: actionFocus[8],
                       accent: accent,
                       icon: Icons.sync_alt,
-                      label: 'Tracking',
+                      label: tr('Theo dõi'),
                       onPressed: onTracking,
                     ),
                     _VActionButton(
                       focusNode: actionFocus[3],
                       accent: accent,
                       icon: Icons.public,
-                      label: 'Open in browser',
+                      label: tr('Mở trong trình duyệt'),
                       onPressed: onBrowser,
                     ),
                     _VActionButton(
                       focusNode: actionFocus[4],
                       accent: accent,
                       icon: Icons.recommend_outlined,
-                      label: 'Recommendations',
+                      label: tr('Đề xuất'),
                       onPressed: onRecommendations,
                     ),
                     _VActionButton(
                       focusNode: actionFocus[5],
                       accent: accent,
                       icon: Icons.format_list_numbered,
-                      label: 'Watch order',
+                      label: tr('Thứ tự xem'),
                       onPressed: onWatchOrder,
                     ),
                     _VActionButton(
                       focusNode: actionFocus[6],
                       accent: accent,
                       icon: Icons.swap_horiz,
-                      label: 'Migrate',
+                      label: tr('Chuyển nguồn'),
                       onPressed: onMigrate,
                     ),
                     _VActionButton(
                       focusNode: actionFocus[7],
                       accent: accent,
                       icon: Icons.dynamic_feed,
-                      label: 'Migrate source',
+                      label: tr('Chuyển cả nguồn'),
                       onPressed: onMassMigrate,
                     ),
                   ],
@@ -660,7 +661,15 @@ class _LeftInfo extends StatelessWidget {
     );
   }
 
-  String _cap(String s) => s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
+  // 0.4.9: the TV detail showed the raw enum name ("Completed") in English.
+  String _statusLabel(Status s) => switch (s) {
+    Status.ongoing => tr('Đang ra'),
+    Status.completed => tr('Hoàn thành'),
+    Status.canceled => tr('Đã hủy'),
+    Status.onHiatus => tr('Tạm ngưng'),
+    Status.publishingFinished => tr('Đã xuất bản xong'),
+    Status.unknown => '',
+  };
 }
 
 /// A full-width, d-pad-focusable action row. Subtle until focused (the primary
@@ -798,7 +807,7 @@ class _EpisodesPanel extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
           child: Text(
-            'Episodes  ·  ${episodes.length}',
+            '${tr('Danh sách tập')}  ·  ${episodes.length}',
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
           ),
         ),
@@ -808,7 +817,7 @@ class _EpisodesPanel extends StatelessWidget {
               : episodes.isEmpty
               ? Center(
                   child: Text(
-                    'No episodes yet',
+                    tr('Chưa có tập nào'),
                     style: TextStyle(color: Theme.of(context).hintColor),
                   ),
                 )
@@ -865,7 +874,7 @@ class _EpisodeRowState extends State<_EpisodeRow> {
     final watched = ep.isRead ?? false;
     final filler = ep.isFiller ?? false;
     final title = (ep.name ?? '').trim().isEmpty
-        ? 'Episode ${widget.index + 1}'
+        ? tr('Tập {p0}', {'p0': widget.index + 1})
         : ep.name!.trim();
     return Focus(
       onFocusChange: (f) => setState(() => _focused = f),
@@ -937,17 +946,17 @@ class _EpisodeRowState extends State<_EpisodeRow> {
                     border: Border.all(color: Theme.of(context).hintColor),
                   ),
                   child: Text(
-                    'FILLER',
+                    tr('TẬP ĐỘN'),
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).hintColor,
                     ),
                   ),
                 ),
-              if ((ep.duration ?? '').isNotEmpty) ...[
+              if (_durationLabel(ep.duration).isNotEmpty) ...[
                 const SizedBox(width: 10),
                 Text(
-                  ep.duration!,
+                  _durationLabel(ep.duration),
                   style: TextStyle(
                     fontSize: 12,
                     color: Theme.of(context).hintColor,
@@ -977,3 +986,18 @@ bool _isSelect(LogicalKeyboardKey k) =>
     k == LogicalKeyboardKey.numpadEnter ||
     k == LogicalKeyboardKey.gameButtonA ||
     k == LogicalKeyboardKey.space;
+
+/// 0.4.9 (kiểm thử Android TV, 03/11/2026): the player stores an episode's
+/// length as milliseconds ("4303400"), which the TV episode list printed
+/// raw. Numbers are shown as H:MM:SS / M:SS; any other text is kept.
+String _durationLabel(String? raw) {
+  final t = (raw ?? '').trim();
+  if (t.isEmpty) return '';
+  final ms = int.tryParse(t);
+  if (ms == null) return t;
+  if (ms <= 0) return '';
+  final d = Duration(milliseconds: ms);
+  final h = d.inHours, m = d.inMinutes % 60, sec = d.inSeconds % 60;
+  String two(int v) => v.toString().padLeft(2, '0');
+  return h > 0 ? '$h:${two(m)}:${two(sec)}' : '$m:${two(sec)}';
+}

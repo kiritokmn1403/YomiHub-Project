@@ -61,7 +61,7 @@ class SourcePreferenceRepository {
     Source source,
     SourcePreference? existing,
   ) => dbWriteQueue.run(
-    () => isar.writeTxn(() async {
+    () => isar.writeTxnQ(() async {
       if ((source.sourceCodeLanguage == SourceCodeLanguage.mihon ||
               source.sourceCodeLanguage == SourceCodeLanguage.aidoku) &&
           source.preferenceList != null) {
@@ -95,7 +95,7 @@ class SourcePreferenceRepository {
     String value,
     SourcePreferenceStringValue? existing,
   ) => dbWriteQueue.run(
-    () => isar.writeTxn(() async {
+    () => isar.writeTxnQ(() async {
       if (existing != null) {
         await isar.sourcePreferenceStringValues.put(existing..value = value);
       } else {

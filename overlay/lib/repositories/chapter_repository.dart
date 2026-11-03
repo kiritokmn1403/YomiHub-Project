@@ -111,7 +111,7 @@ class ChapterRepository {
   // Stamps updatedAt for callers that just want to persist a mutated Chapter
   // they already hold, without setting the timestamp themselves.
   Future<void> save(Chapter chapter) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
       isar.chapters.putSync(chapter);
     });
@@ -119,7 +119,7 @@ class ChapterRepository {
 
   void saveSync(Chapter chapter) {
     try {
-      isar.writeTxnSync(() {
+      isar.writeTxnSyncSafe(() {
         chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
         isar.chapters.putSync(chapter);
       });
@@ -130,7 +130,7 @@ class ChapterRepository {
 
   /// Moving a chapter must update both its indexed parent ID and Isar link.
   Future<void> saveWithMangaLink(Chapter chapter) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
       isar.chapters.putSync(chapter);
       chapter.manga.saveSync();
@@ -154,21 +154,21 @@ class ChapterRepository {
   });
 
   Future<void> putAll(List<Chapter> chapters) => dbWriteQueue.run(
-    () => isar.writeTxnSync(() => isar.chapters.putAllSync(chapters)),
+    () => isar.writeTxnSyncSafe(() => isar.chapters.putAllSync(chapters)),
   );
 
   // Same transaction as putAll, plus the parent Manga (e.g. bumping its
   // updatedAt/read state alongside a batch of chapter changes).
   Future<void> putAllWithManga(List<Chapter> chapters, Manga manga) =>
       dbWriteQueue.run(() {
-        isar.writeTxnSync(() {
+        isar.writeTxnSyncSafe(() {
           isar.chapters.putAllSync(chapters);
           isar.mangas.putSync(manga);
         });
       });
 
   Future<void> deleteAll(List<int> ids) =>
-      dbWriteQueue.run(() => isar.writeTxn(() => isar.chapters.deleteAll(ids)));
+      dbWriteQueue.run(() => isar.writeTxnQ(() => isar.chapters.deleteAll(ids)));
 
   // Sync primitives below are for callers already inside a write transaction
   // opened by transaction()/writeTransaction() — they don't queue on their own.
@@ -199,10 +199,10 @@ class ChapterRepository {
 
   // Same, but opens the write transaction too, so callers never touch isar.
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSync(body));
+      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxn(body));
+      dbWriteQueue.run(() => isar.writeTxnQ(body));
 }
 
 final chapterRepository = ChapterRepository();

@@ -139,29 +139,29 @@ class TrackRepository {
       ?.mediaId;
 
   Future<void> savePreference(TrackPreference preference) => dbWriteQueue.run(
-    () => isar.writeTxnSync(() => isar.trackPreferences.putSync(preference)),
+    () => isar.writeTxnSyncSafe(() => isar.trackPreferences.putSync(preference)),
   );
 
   Future<void> putAllPreferences(List<TrackPreference> preferences) =>
       dbWriteQueue.run(
-        () => isar.writeTxn(() => isar.trackPreferences.putAll(preferences)),
+        () => isar.writeTxnQ(() => isar.trackPreferences.putAll(preferences)),
       );
 
   Future<void> deletePreference(int syncId) => dbWriteQueue.run(
-    () => isar.writeTxnSync(() => isar.trackPreferences.deleteSync(syncId)),
+    () => isar.writeTxnSyncSafe(() => isar.trackPreferences.deleteSync(syncId)),
   );
 
   // Stamps updatedAt for callers that just want to persist a mutated Track
   // they already hold, without setting the timestamp themselves.
   Future<void> save(Track track) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       track.updatedAt = DateTime.now().millisecondsSinceEpoch;
       isar.tracks.putSync(track);
     });
   });
 
   Future<void> delete(Ref ref, Track track) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       isar.tracks.deleteSync(track.id!);
       ref
           .read(synchingProvider(syncId: 1).notifier)
@@ -196,10 +196,10 @@ class TrackRepository {
       dbWriteQueue.run(body);
 
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSync(body));
+      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxn(body));
+      dbWriteQueue.run(() => isar.writeTxnQ(body));
 }
 
 final trackRepository = TrackRepository();

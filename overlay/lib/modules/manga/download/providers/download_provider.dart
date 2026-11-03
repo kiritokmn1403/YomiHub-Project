@@ -97,7 +97,7 @@ Future<void> downloadChapter(
     PageUrl? novelPage;
     List<PageUrl> pages = [];
     final StorageProvider storageProvider = StorageProvider();
-    await storageProvider.requestPermission();
+    await storageProvider.requestPermission(force: true);
     final manga = chapter.manga.value!;
     final itemType = manga.itemType;
     final mangaMainDirectory = (await storageProvider.getMangaMainDirectory(

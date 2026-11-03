@@ -104,6 +104,9 @@ const yomiGithubProjects = <YomiGhGroup>[
     ]),
     YomiGhProject('IReader', ['https://github.com/IReaderorg/Ireader']),
     YomiGhProject('Tachiyomi', ['https://github.com/tachiyomiorg']),
+    YomiGhProject('LeechText (0.4.9)', [
+      'https://github.com/haipham22/LeechText/releases',
+    ]),
   ]),
   YomiGhGroup('Trình chặn quảng cáo (AdBlock)', [
     YomiGhProject('AdBlock', ['https://github.com/adblockplus']),
@@ -137,6 +140,35 @@ const yomiGithubProjects = <YomiGhGroup>[
       'https://github.com/VulcanoSoftware/urbanvpn/releases',
       'https://github.com/jamie950315/Urban-Proxy',
       'https://github.com/topics/urban-vpn',
+    ]),
+    YomiGhProject('Hotspot Shield (0.4.9)', [
+      'https://github.com/ParadoxIsCoding/Hotspot-Shield-VPN',
+      'https://github.com/HotspotShield-Mac/',
+      'https://github.com/HotspotShield-Mac/HotspotShield',
+      'https://github.com/jmistichelli/Hotspot-Shield-VPN-GUI-for-Linux',
+      'https://github.com/hotspotshieldvpn/',
+      'https://gist.github.com/satrancci/cbef6c7f4cc6768ec610354235e7c433',
+      'https://github.com/kiraitachi/PyShieldGUI',
+      'https://github.com/satrancci/web-crawler-with-proxies',
+      'https://github.com/thevahidal/hotsmart',
+      'https://github.com/bennettrolive/hotspot-shield-vpn',
+      'https://github.com/hotspotshieldvpn/hotspotshield',
+    ]),
+    YomiGhProject('Windscribe (0.4.9)', [
+      'https://github.com/windscribe',
+      'https://github.com/orgs/Windscribe/repositories?type=all',
+      'https://github.com/Windscribe/ws-vcpkg-registry',
+      'https://github.com/Windscribe/wsnet',
+      'https://github.com/Windscribe/browser-extension-mv3',
+      'https://github.com/Windscribe/ubo-lite',
+      'https://github.com/Windscribe/iOS-App',
+      'https://github.com/Windscribe/Desktop-App',
+      'https://github.com/Windscribe/OpenVPNAdapter',
+      'https://github.com/Windscribe/amneziawg-go',
+      'https://github.com/Windscribe/wstunnel',
+      'https://github.com/Windscribe/wireguard',
+      'https://github.com/DenisNovac/stealth-vpn',
+      'https://github.com/Windscribe/Android-App',
     ]),
   ]),
   YomiGhGroup('YouTube', [
@@ -218,6 +250,36 @@ const yomiGithubProjects = <YomiGhGroup>[
       'https://github.com/microsoft/onnxruntime',
       'https://github.com/phi-media-lab/apu-hybrid-runtime-Phi',
       'https://github.com/namdpran8/Setu',
+    ]),
+    YomiGhProject('Telegram Bot Project (0.4.9)', [
+      'https://gist.github.com/zapisnicar/247d53f8e3980f6013a221d8c7459dc3',
+      'https://github.com/botfatherio/botfather',
+      'https://telegram.me/BotFather',
+      'https://gist.github.com/nafiesl/4ad622f344cd1dc3bb1ecbe468ff9f8a',
+      'https://kelen.cc/posts/telegram-bot-tutorial',
+      'https://github.com/TelegramBots',
+      'https://github.com/python-telegram-bot/python-telegram-bot',
+      'https://danyspin97.github.io/TelegramBotsList/',
+      'https://nuhmanpk.github.io/telegram-bots/',
+      'https://github.com/telegram-botfather',
+    ]),
+    YomiGhProject('Resume A Video (0.4.9)', [
+      'https://github.com/apivideo/resumeAVideo',
+      'https://github.com/Alplox/Youtube-Playback-Plox',
+      'https://github.com/thenimaaa/Youtube-Playback-Continuity',
+      'https://github.com/gitrohan01/Browser-Productivity-Tool',
+      'https://www.vlchelp.com/restart-continue-playback-ask/',
+      'https://github.com/Reelhouse/videojs-resume',
+      'https://api.video/blog/tutorials/resume-a-video/',
+    ]),
+    YomiGhProject('Âm Lịch - Luna Calendar (0.4.9)', [
+      'https://github.com/wolfhong/LunarCalendar',
+      'https://github.com/XhinLiang/LunarCalendar',
+      'https://github.com/hochanh/amlich',
+      'https://github.com/copthuy/amlich',
+      'https://github.com/cmduyeen/lich-am-viet-nam',
+      'https://copthuy.github.io/amlich/',
+      'https://github.com/lwlsw/Chinese-Lunar-Calendar-ics',
     ]),
   ]),
   YomiGhGroup('Liquid Glass', [
@@ -585,6 +647,29 @@ const yomiGithubProjects = <YomiGhGroup>[
     YomiGhProject("funmaker/Hybooru", ["https://github.com/funmaker/Hybooru"]),
     YomiGhProject("monbooru/monbooru", ["https://github.com/monbooru/monbooru"]),
     YomiGhProject("onlymash/BooruHubDocs", ["https://github.com/onlymash/BooruHubDocs"]),
+  ]),
+  YomiGhGroup('Flash Player (0.4.9)', [
+    YomiGhProject('Ruffle (0.4.9)', [
+      'https://github.com/ruffle-rs/ruffle',
+    ]),
+    YomiGhProject('Spi_flash (0.4.9)', [
+      'https://github.com/Arisotura/spi_flash',
+    ]),
+    YomiGhProject('Spi_spy (0.4.9)', [
+      'https://github.com/osresearch/spispy/',
+    ]),
+    YomiGhProject('swf2js.js (0.4.9)', [
+      'https://github.com/music4classicalguitar/swf2js',
+    ]),
+    YomiGhProject('Flashcart Guides (0.4.9)', [
+      'https://github.com/Sanrax/flashcart-guides',
+    ]),
+    YomiGhProject('RetroBIOS (0.4.9)', [
+      'https://github.com/Abdess/retrobios',
+    ]),
+    YomiGhProject('Light Spark (0.4.9)', [
+      'https://github.com/lightspark/lightspark',
+    ]),
   ]),
   YomiGhGroup('Tài liệu và dự án tham khảo bổ sung', [
     YomiGhProject("openshelf", ["https://github.com/SanHsien/openshelf"]),

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:mangayomi/yomihub/extensions/ext_errors.dart';
 import 'package:mangayomi/yomihub/ireader/ireader_bridge.dart';
+import 'package:mangayomi/yomihub/vbook/vbook_bridge.dart';
 import 'package:mangayomi/yomihub/net/gh_mirror.dart';
 import 'package:mangayomi/yomihub/mes/yomi_mes.dart';
 import 'package:mangayomi/yomihub/extensions/url_override.dart';
@@ -308,36 +309,14 @@ Future<void> _updateSource(
   ItemType itemType,
 ) async {
   final http = MClient.init(reqcopyWith: {'useDartHttpClient': true});
-  final req = await GhMirror.getValid(
-    http,
-    Uri.parse(source.sourceCodeUrl!),
-    isValid: (r) => yomiLooksLikeExtensionCode(source.sourceCodeLanguage, r.bodyBytes, () => r.body),
-  );
-  // YomiHub 0.2.1: never install a 404 page / empty body as the extension
-  // (it replaced a working extension with a broken one)
-  if (req.statusCode != 200 || req.bodyBytes.isEmpty) {
-    throw Exception('Tải mã tiện ích thất bại: HTTP ${req.statusCode} (${req.bodyBytes.length} byte)');
+  final String sourceCode;
+  if (VBookBridge.isVBookSource(source)) {
+    // YomiHub 0.4.9: plugin.zip of a vBook repository → generated script
+    sourceCode = await VBookBridge.buildSourceCode(source, http);
+  } else {
+    sourceCode = await _downloadCode(source, http);
   }
-  final isBinary = source.sourceCodeLanguage == SourceCodeLanguage.mihon ||
-      source.sourceCodeLanguage == SourceCodeLanguage.aidoku;
-  if (isBinary && !(req.bodyBytes.length > 4 && req.bodyBytes[0] == 0x50 && req.bodyBytes[1] == 0x4b)) {
-    throw Exception('Tệp tải về không phải gói APK/AIX hợp lệ (${req.bodyBytes.length} byte)');
-  }
-  if (!isBinary && req.body.trimLeft().toLowerCase().startsWith('<!doctype html')) {
-    throw Exception('Máy chủ trả về trang HTML thay vì mã tiện ích');
-  }
-  // 0.2.2: the body must really be extension code (see GhMirror.getValid)
-  if (!yomiLooksLikeExtensionCode(source.sourceCodeLanguage, req.bodyBytes, () => req.body)) {
-    throw Exception(
-      'Nội dung tải về không phải mã tiện ích (có thể bị nhà mạng/DNS chặn hoặc chuyển hướng): '
-      '"${GhMirror.preview(req)}" – bản đã cài được giữ nguyên',
-    );
-  }
-  final sourceCode =
-      (source.sourceCodeLanguage == SourceCodeLanguage.mihon ||
-          source.sourceCodeLanguage == SourceCodeLanguage.aidoku)
-      ? base64.encode(req.bodyBytes)
-      : req.body;
+
 
   Map<String, String> headers = {};
   bool? supportLatest;
@@ -413,6 +392,40 @@ Future<void> _updateSource(
     ..updatedAt = DateTime.now().millisecondsSinceEpoch;
 
   await sourceRepository.save(updatedSource);
+}
+
+
+Future<String> _downloadCode(Source source, dynamic http) async {
+  final req = await GhMirror.getValid(
+    http,
+    Uri.parse(source.sourceCodeUrl!),
+    isValid: (r) => yomiLooksLikeExtensionCode(source.sourceCodeLanguage, r.bodyBytes, () => r.body),
+  );
+  // YomiHub 0.2.1: never install a 404 page / empty body as the extension
+  // (it replaced a working extension with a broken one)
+  if (req.statusCode != 200 || req.bodyBytes.isEmpty) {
+    throw Exception('Tải mã tiện ích thất bại: HTTP ${req.statusCode} (${req.bodyBytes.length} byte)');
+  }
+  final isBinary = source.sourceCodeLanguage == SourceCodeLanguage.mihon ||
+      source.sourceCodeLanguage == SourceCodeLanguage.aidoku;
+  if (isBinary && !(req.bodyBytes.length > 4 && req.bodyBytes[0] == 0x50 && req.bodyBytes[1] == 0x4b)) {
+    throw Exception('Tệp tải về không phải gói APK/AIX hợp lệ (${req.bodyBytes.length} byte)');
+  }
+  if (!isBinary && req.body.trimLeft().toLowerCase().startsWith('<!doctype html')) {
+    throw Exception('Máy chủ trả về trang HTML thay vì mã tiện ích');
+  }
+  // 0.2.2: the body must really be extension code (see GhMirror.getValid)
+  if (!yomiLooksLikeExtensionCode(source.sourceCodeLanguage, req.bodyBytes, () => req.body)) {
+    throw Exception(
+      'Nội dung tải về không phải mã tiện ích (có thể bị nhà mạng/DNS chặn hoặc chuyển hướng): '
+      '"${GhMirror.preview(req)}" – bản đã cài được giữ nguyên',
+    );
+  }
+  return
+      (source.sourceCodeLanguage == SourceCodeLanguage.mihon ||
+          source.sourceCodeLanguage == SourceCodeLanguage.aidoku)
+      ? base64.encode(req.bodyBytes)
+      : req.body;
 }
 
 /// YomiHub 0.2.1: new rows of a repository refresh are written in batches

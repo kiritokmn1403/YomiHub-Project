@@ -48,8 +48,8 @@ void main() {
   });
 
   group('YomiHub 0.4.8', () {
-    test('AppIdentity reports version 0.4.8', () {
-      expect(AppIdentity.userAgent, 'YomiHub/0.4.8');
+    test('AppIdentity reports a 0.4.x version (0.4.8 or later)', () {
+      expect(AppIdentity.userAgent, startsWith('YomiHub/0.4.'));
     });
 
     test('yhStatus handles diverse inputs without throwing', () {

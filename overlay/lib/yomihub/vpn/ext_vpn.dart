@@ -78,7 +78,7 @@ class YomiExtVpn {
       return ifs.any((i) {
         final n = i.name.toLowerCase();
         if (nameHint != null) return n.contains(nameHint);
-        return n.contains('adguard') || n.contains('urban') || n.contains('tap') || n.contains('wintun') || n.contains('vpn');
+        return n.contains('adguard') || n.contains('urban') || n.contains('windscribe') || n.contains('hotspot') || n.contains('hss') || n.contains('tap') || n.contains('wintun') || n.contains('vpn');
       });
     } catch (_) {
       return false;
@@ -164,6 +164,33 @@ class YomiExtVpn {
 
   static bool get adguardSocksOn =>
       YomiVpnState.proxyEnabled && YomiPrefs.get<String>('proxyOwner', '') == 'adguard';
+
+  // ───────── Windscribe / Hotspot Shield (0.4.9, sheet "YomiHub Update") ─────────
+  // Windscribe publishes WireGuard / OpenVPN configs for every account
+  // (windscribe.com/getconfig); YomiHub runs them in its own WireGuard /
+  // OpenVPN engine so the per-extension scope applies. Hotspot Shield has no
+  // public config export: YomiHub opens the official app (device-wide VPN)
+  // and also accepts a .conf/.ovpn when the user has one.
+  static const windscribePackage = 'com.windscribe.vpn';
+  static const windscribeSite = 'https://windscribe.com/download';
+  static const windscribeConfigWireGuard = 'https://windscribe.com/getconfig/wireguard';
+  static const windscribeConfigOpenVpn = 'https://windscribe.com/getconfig/openvpn';
+  static const hotspotPackage = 'hotspotshield.android.vpn';
+  static const hotspotSite = 'https://www.hotspotshield.com/vpn/vpn-download/';
+
+  static Future<bool> openWindscribe() => openApp(
+        package: windscribePackage,
+        winDirs: const ['Windscribe'],
+        winExe: RegExp(r'^Windscribe\.exe$', caseSensitive: false),
+        site: windscribeSite,
+      );
+
+  static Future<bool> openHotspotShield() => openApp(
+        package: hotspotPackage,
+        winDirs: const ['Hotspot Shield', 'HotspotShield', 'Pango\\Hotspot Shield'],
+        winExe: RegExp(r'^(hsscp|HotspotShield.*)\.exe$', caseSensitive: false),
+        site: hotspotSite,
+      );
 
   // ───────── Urban VPN ─────────
   static const urbanPackage = 'com.urbanvpn.android';

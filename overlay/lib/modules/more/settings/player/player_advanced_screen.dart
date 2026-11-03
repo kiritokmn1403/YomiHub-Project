@@ -65,7 +65,7 @@ class _PlayerAdvancedScreenState extends ConsumerState<PlayerAdvancedScreen> {
     bool redownload = false,
   }) async {
     final provider = StorageProvider();
-    if (!(await provider.requestPermission())) {
+    if (!(await provider.requestPermission(force: true))) {
       return false;
     }
     final dir = await provider.getMpvDirectory();

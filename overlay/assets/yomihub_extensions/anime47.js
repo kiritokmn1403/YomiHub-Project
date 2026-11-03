@@ -22,8 +22,11 @@ class DefaultExtension extends MProvider {
   constructor() { super(); this.client = new Client(); }
   get supportsLatest() { return true; }
   api() {
+    // 0.4.9: user value > API found in the site's own bundle > default.
     let a = "" + yhPref("yh_api", "");
-    if (!a || /anime47\.(love|best)\/api\/?$/.test(a)) a = "https://animevui.com/api";
+    if (!a || /anime47\.(love|best)\/api\/?$/.test(a)) {
+      a = "" + (new SharedPreferences().getString("a47_api_auto", "") || "https://animevui.com/api");
+    }
     return ("" + a).replace(/\/+$/, "");
   }
   getHeaders(url) {
@@ -70,7 +73,8 @@ class DefaultExtension extends MProvider {
   }
   async login() {
     if (await this.webviewLogin()) return true;
-    const email = ("" + (yhPref("a47_email", "") || "dkkk081426")).trim(), pass = "" + (yhPref("a47_password", "") || "Piacom@1403");
+    // 0.4.9: no built-in account – credentials only come from the extension settings.
+    const email = ("" + (yhPref("a47_email", "") || "")).trim(), pass = "" + (yhPref("a47_password", "") || "");
     if (!email || !pass) return false;
     const res = await this.client.post(`${this.api()}/auth/login`,
       { "Content-Type": "application/json", "User-Agent": YH_UA, "Origin": yhBase(this), "Referer": yhBase(this) + "/" },
@@ -85,6 +89,11 @@ class DefaultExtension extends MProvider {
   }
   // 0.3.6: finds the API base in the site's own JS bundle (".../api-instance-*.js")
   async discoverApi() {
+    // 0.4.9: at most one discovery per 10 minutes (it downloads the site bundle).
+    const sp0 = new SharedPreferences();
+    const last = parseInt(sp0.getString("a47_api_probe_at", "0")) || 0;
+    if (Date.now() - last < 600000) return sp0.getString("a47_api_auto", "") || "";
+    sp0.setString("a47_api_probe_at", "" + Date.now());
     try {
       const home = await this.client.get(yhBase(this) + "/", { "User-Agent": YH_UA });
       const m = (home.body || "").match(/\/assets\/api-instance-[A-Za-z0-9_\-]+\.js/);
@@ -257,8 +266,8 @@ class DefaultExtension extends MProvider {
     return [
       yhDomainPref("https://anime47.best"),
       { key: "yh_api", editTextPreference: { title: "Địa chỉ API", summary: "Mặc định https://animevui.com/api (để trống = tự dò)", value: "", dialogTitle: "API", dialogMessage: "", text: "" } },
-      { key: "a47_email", editTextPreference: { title: "Tên đăng nhập / Email Anime47", summary: "Tài khoản mặc định: dkkk081426 (hoặc qua WebView)", value: "dkkk081426", dialogTitle: "Email", dialogMessage: "", text: "dkkk081426" } },
-      { key: "a47_password", editTextPreference: { title: "Mật khẩu Anime47", summary: "Mật khẩu mặc định: Piacom@1403 (lưu trên máy)", value: "Piacom@1403", dialogTitle: "Mật khẩu", dialogMessage: "", text: "Piacom@1403" } },
+      { key: "a47_email", editTextPreference: { title: "Tên đăng nhập / Email Anime47", summary: "Để trống nếu đăng nhập qua WebView", value: "", dialogTitle: "Email", dialogMessage: "", text: "" } },
+      { key: "a47_password", editTextPreference: { title: "Mật khẩu Anime47", summary: "Lưu trên máy, không gửi đi nơi khác", value: "", dialogTitle: "Mật khẩu", dialogMessage: "", text: "" } },
     ];
   }
 }

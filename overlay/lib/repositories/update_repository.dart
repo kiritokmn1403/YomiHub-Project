@@ -97,7 +97,7 @@ class UpdateRepository {
   // matching the original two-step shape), then deletes the rows.
   Future<void> deleteAll(WidgetRef ref, List<int> ids) async {
     await dbWriteQueue.run(() {
-      isar.writeTxnSync(() {
+      isar.writeTxnSyncSafe(() {
         for (var id in ids) {
           final clientId = isar.updates.getSync(id)?.clientId;
           ref
@@ -113,7 +113,7 @@ class UpdateRepository {
       });
     });
     await dbWriteQueue.run(
-      () => isar.writeTxn(() => isar.updates.deleteAll(ids)),
+      () => isar.writeTxnQ(() => isar.updates.deleteAll(ids)),
     );
   }
 
@@ -141,10 +141,10 @@ class UpdateRepository {
 
   // Same, but opens the write transaction too, so callers never touch isar.
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSync(body));
+      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxn(body));
+      dbWriteQueue.run(() => isar.writeTxnQ(body));
 }
 
 final updateRepository = UpdateRepository();

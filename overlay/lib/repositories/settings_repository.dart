@@ -27,7 +27,7 @@ class SettingsRepository {
       .map((l) => l.first);
 
   Future<void> update(void Function(Settings s) mutate) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       // A damaged/partially-created database must not turn every settings
       // control into a null-check crash. Recreate the singleton row with its
       // model defaults and apply the requested change in the same transaction.
@@ -41,7 +41,7 @@ class SettingsRepository {
   // For callers that already hold the Settings instance to mutate (e.g. a family
   // provider's cached param) rather than wanting a freshly-fetched one.
   Future<void> save(Settings s) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       s.updatedAt = DateTime.now().millisecondsSinceEpoch;
       isar.settings.putSync(s);
     });
@@ -65,10 +65,10 @@ class SettingsRepository {
 
   // Same, but opens the write transaction too, so callers never touch isar.
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSync(body));
+      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxn(body));
+      dbWriteQueue.run(() => isar.writeTxnQ(body));
 }
 
 final settingsRepository = SettingsRepository();

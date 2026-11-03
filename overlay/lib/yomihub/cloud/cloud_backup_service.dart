@@ -896,11 +896,11 @@ class TelegramProvider extends CloudProvider {
   @override
   List<CloudField> get fields => [
         CloudField('token', 'Bot token', secret: true, hint: '123456:ABC-DEF…'),
-        CloudField('chat_id', 'Chat ID', hint: tr('ID của bạn hoặc của nhóm/kênh')),
+        CloudField('chat_id', 'Chat ID', hint: tr('Để trống để tự lấy sau khi nhắn /start cho bot')),
       ];
   @override
   String get help =>
-      tr('Tạo bot bằng @BotFather để lấy token. Nhắn /start cho bot, rồi lấy Chat ID của bạn (ví dụ qua @userinfobot). Hỗ trợ tự động sao lưu và khôi phục trực tiếp qua Telegram.');
+      tr('Tạo bot bằng @BotFather để lấy token. Nhắn /start cho bot; Chat ID có thể để trống – YomiHub tự lấy từ tin nhắn gần nhất của bot. Hỗ trợ tự động sao lưu và khôi phục trực tiếp qua Telegram.');
   // 0.4.5 (thử tải lên thật trên Xiaomi 15T, 30/10 14:25): màn hình ghi
   // "Đã kết nối" nhưng cấu hình đã lưu chỉ còn cờ `ok` – không có Bot token /
   // Chat ID. Mọi lần tự sao lưu đều thất bại ("Nhập đủ Bot token và Chat
@@ -973,22 +973,59 @@ class TelegramProvider extends CloudProvider {
   Future<void> completeAuth({String? pastedCode}) async {
     config['token'] = _token;
     config['chat_id'] = _chat;
-    if (_token.isEmpty || _chat.isEmpty) {
-      throw Exception(tr('Nhập đủ Bot token và Chat ID.'));
+    if (_token.isEmpty) {
+      throw Exception(tr('Nhập Bot token (lấy từ @BotFather).'));
     }
     try {
       _tgJson(await _tg.get(Uri.parse(_api('getMe'))).timeout(const Duration(seconds: 30)), 'Telegram getMe');
-      _tgJson(
-          await _tg
-              .get(Uri.parse('${_api('getChat')}?chat_id=${Uri.encodeQueryComponent(_chat)}'))
-              .timeout(const Duration(seconds: 30)),
-          'Telegram getChat');
+      // 0.4.9 (logs_6: "chat_id is empty", "chat not found"): like Kotatsu,
+      // the Chat ID can be left empty – it is read from the newest message
+      // the user sent to the bot (/start) or posted in a channel/group with it.
+      if (_chat.isEmpty) {
+        final found = await _detectChatId();
+        if (found == null) {
+          throw Exception(tr('Chưa tìm thấy Chat ID: mở Telegram, nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh và gửi 1 tin), rồi bấm Kết nối lại.'));
+        }
+        config['chat_id'] = found;
+      }
+      try {
+        _tgJson(
+            await _tg
+                .get(Uri.parse('${_api('getChat')}?chat_id=${Uri.encodeQueryComponent(_chat)}'))
+                .timeout(const Duration(seconds: 30)),
+            'Telegram getChat');
+      } catch (e) {
+        final found = '$e'.toLowerCase().contains('chat not found') ? await _detectChatId() : null;
+        if (found == null || found == _chat) rethrow;
+        AppLogger.log('[Đồng bộ đám mây] Telegram: Chat ID đã nhập không hợp lệ – dùng Chat ID tự phát hiện từ tin nhắn gần nhất của bot.',
+            logLevel: LogLevel.warning);
+        config['chat_id'] = found;
+      }
     } catch (e) {
       config['ok'] = '0';
       if (e is Exception && '$e'.contains('Telegram get')) rethrow;
       _fail('Telegram', e);
     }
     config['ok'] = '1';
+  }
+
+  /// Newest chat that talked to the bot (private /start, group or channel).
+  Future<String?> _detectChatId() async {
+    try {
+      final d = _tgJson(
+          await _tg.get(Uri.parse('${_api('getUpdates')}?limit=50&allowed_updates=%5B%22message%22,%22channel_post%22,%22my_chat_member%22%5D'))
+              .timeout(const Duration(seconds: 30)),
+          'Telegram getUpdates');
+      final updates = (d['result'] as List? ?? const []).reversed;
+      for (final u in updates) {
+        final m = (u as Map)['message'] ?? u['channel_post'] ?? u['my_chat_member'];
+        final id = (m is Map ? m['chat'] : null) is Map ? m['chat']['id'] : null;
+        if (id != null) return '$id';
+      }
+    } catch (e) {
+      AppLogger.log('[Đồng bộ đám mây] Telegram: không tự lấy được Chat ID: ${_mask(e)}', logLevel: LogLevel.warning);
+    }
+    return null;
   }
 
   List<Map<String, dynamic>> _getHistory() {

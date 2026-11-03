@@ -205,7 +205,7 @@ class YomiSuggestionEngine {
                     serviceType: 'search',
                     proxyServer: proxyServer,
                   )
-                  .timeout(const Duration(seconds: 12));
+                  .timeout(_kSuggestTimeout);
             }
           }
         }
@@ -217,7 +217,7 @@ class YomiSuggestionEngine {
                 serviceType: 'getPopular',
                 proxyServer: proxyServer,
               )
-              .timeout(const Duration(seconds: 12));
+              .timeout(_kSuggestTimeout);
         }
       } catch (e) {
         if (e is TimeoutException || YomiExtErrors.isNetworkError(e)) {
@@ -255,19 +255,19 @@ class YomiSuggestionEngine {
       progress?.call(sorted, top);
     }
 
-    // YomiHub 0.2.7: chạy tối ưu 2 luồng song song để tránh nghẽn CPU và chống tràn RAM
-    const parallel = 2;
-    for (var i = 0; i < picked.length; i += parallel) {
-      await Future.wait(
-        picked.skip(i).take(parallel).map((s) async {
-          try {
-            await fromSource(s);
-          } catch (e) {
-            AppLogger.log('Đề Xuất [${s.name}]: $e', logLevel: LogLevel.warning);
-          }
-        }),
-      );
-    }
+    // YomiHub 0.4.9: one gate shared by the Comic/Anime/Novel tabs. Before,
+    // each tab ran 2 sources at once and all of them queued on the single
+    // isolate service; the queue wait counted against the 12 s timeout, so
+    // ~20 sources "timed out" within one second (logs_6, 01/11 13:26).
+    await Future.wait(
+      picked.map((s) => _SuggestGate.run(() async {
+            try {
+              await fromSource(s);
+            } catch (e) {
+              AppLogger.log('Đề Xuất [${s.name}]: $e', logLevel: LogLevel.warning);
+            }
+          })),
+    );
     final result = out.values.toList()..sort((a, b) => b.score.compareTo(a.score));
     _cache[type] = (DateTime.now(), result, top);
     return result;
@@ -594,5 +594,29 @@ class _SuggestionCardState extends ConsumerState<_SuggestionCard> {
         ),
       ),
     );
+  }
+}
+
+const Duration _kSuggestTimeout = Duration(seconds: 20);
+
+/// Global concurrency gate for suggestion fetches (all item types together).
+class _SuggestGate {
+  static const int _max = 2;
+  static int _running = 0;
+  static final List<Completer<void>> _waiters = [];
+
+  static Future<T> run<T>(Future<T> Function() body) async {
+    if (_running >= _max) {
+      final c = Completer<void>();
+      _waiters.add(c);
+      await c.future;
+    }
+    _running++;
+    try {
+      return await body();
+    } finally {
+      _running--;
+      if (_waiters.isNotEmpty) _waiters.removeAt(0).complete();
+    }
   }
 }

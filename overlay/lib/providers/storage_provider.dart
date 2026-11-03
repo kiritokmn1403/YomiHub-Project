@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:isar_community/isar.dart';
+import 'package:mangayomi/repositories/db_write_queue.dart';
 import 'package:mangayomi/eval/model/source_preference.dart';
 import 'package:mangayomi/models/category.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
@@ -51,13 +52,23 @@ class StorageProvider {
     }
   }
 
-  Future<bool> requestPermission() async {
+  /// 0.4.9 (kiểm thử Android TV, 03/11/2026): the system "All files access"
+  /// page opened again at every episode (player, browse, mpv folder) after the
+  /// user had already declined. Background callers now ask once per app run;
+  /// actions the user starts (download, local folder, settings) pass
+  /// [force] and always ask again.
+  static bool _declinedThisRun = false;
+
+  Future<bool> requestPermission({bool force = false}) async {
     if (!Platform.isAndroid) return true;
     Permission permission = Permission.manageExternalStorage;
     if (await permission.isGranted) return true;
+    if (_declinedThisRun && !force) return false;
     if (await permission.request().isGranted) {
+      _declinedThisRun = false;
       return true;
     }
+    _declinedThisRun = true;
     return false;
   }
 
@@ -347,7 +358,7 @@ class StorageProvider {
       if (settings == null) {
         // TV defaults to dark on first run (a fresh library). Only the
         // initial Settings row is seeded, so switching to light later sticks.
-        await isar.writeTxn(
+        await isar.writeTxnQ(
           () async => isar.settings.put(Settings()..themeIsDark = isTv),
         );
       }
@@ -358,7 +369,7 @@ class StorageProvider {
           if (settings == null) {
             // TV defaults to dark on first run (a fresh library). Only the
             // initial Settings row is seeded, so switching to light later sticks.
-            await isar.writeTxn(
+            await isar.writeTxnQ(
               () async => isar.settings.put(Settings()..themeIsDark = isTv),
             );
           }
@@ -379,7 +390,7 @@ class StorageProvider {
         .syncIdIsNotNull()
         .findAll();
     if (prefs.isNotEmpty) {
-      await isar.writeTxn(
+      await isar.writeTxnQ(
         () => isar.trackPreferences.putAll([
           for (final pref in prefs) pref..refreshing = true,
         ]),
@@ -391,7 +402,7 @@ class StorageProvider {
         .idIsNotNull()
         .findFirst();
     if (customButton == null) {
-      await isar.writeTxn(
+      await isar.writeTxnQ(
         () => isar.customButtons.put(
           CustomButton(
             title: "+85 s",

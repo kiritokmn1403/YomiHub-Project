@@ -28,15 +28,15 @@ class CustomButtonRepository {
   // CustomButton they already hold, without setting the timestamp themselves.
   Future<void> save(CustomButton button) => dbWriteQueue.run(() {
     button.updatedAt = DateTime.now().millisecondsSinceEpoch;
-    return isar.writeTxn(() => isar.customButtons.put(button));
+    return isar.writeTxnQ(() => isar.customButtons.put(button));
   });
 
   Future<void> putAll(List<CustomButton> buttons) => dbWriteQueue.run(
-    () => isar.writeTxn(() => isar.customButtons.putAll(buttons)),
+    () => isar.writeTxnQ(() => isar.customButtons.putAll(buttons)),
   );
 
   Future<void> delete(int id) => dbWriteQueue.run(
-    () => isar.writeTxn(() => isar.customButtons.delete(id)),
+    () => isar.writeTxnQ(() => isar.customButtons.delete(id)),
   );
 
   // Sync primitives below are for callers already inside a write transaction

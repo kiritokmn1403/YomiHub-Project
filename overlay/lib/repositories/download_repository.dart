@@ -70,7 +70,7 @@ class DownloadRepository {
   /// Atomically appends a chapter to the queue. Repeated requests preserve
   /// completed and active entries, while failed entries become retryable.
   Future<void> enqueue(Chapter chapter) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       final existing = isar.downloads.getSync(chapter.id!);
       if (existing?.isDownload == true || existing?.isStartDownload == true) {
         return;
@@ -98,15 +98,15 @@ class DownloadRepository {
   });
 
   Future<void> save(Download download) => dbWriteQueue.run(
-    () => isar.writeTxnSync(() => isar.downloads.putSync(download)),
+    () => isar.writeTxnSyncSafe(() => isar.downloads.putSync(download)),
   );
 
   Future<void> delete(int id) => dbWriteQueue.run(
-    () => isar.writeTxnSync(() => isar.downloads.deleteSync(id)),
+    () => isar.writeTxnSyncSafe(() => isar.downloads.deleteSync(id)),
   );
 
   Future<void> deleteAll(List<int> ids) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       for (final id in ids) {
         isar.downloads.deleteSync(id);
       }

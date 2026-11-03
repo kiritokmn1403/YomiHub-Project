@@ -62,7 +62,7 @@ Future<ResolvedLocalDirectory> resolveLocalDirectoryPath(
   }
 
   if (Platform.isAndroid) {
-    final permissionGranted = await StorageProvider().requestPermission();
+    final permissionGranted = await StorageProvider().requestPermission(force: true);
     debugPrint(
       '[LocalLibraryScanner] $logContext Android storage permission retry: '
       'granted=$permissionGranted, path=$dirPath',

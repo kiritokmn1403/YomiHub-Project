@@ -72,7 +72,7 @@ class FeatureToggleScreen extends ConsumerWidget {
             _buildSectionHeader(
               context,
               icon: Icons.collections_bookmark_outlined,
-              title: tr('Comic (Truyện tranh)'),
+              title: YomiTr.term(0),
               color: Colors.blueAccent,
             ),
             Card(
@@ -126,7 +126,7 @@ class FeatureToggleScreen extends ConsumerWidget {
             _buildSectionHeader(
               context,
               icon: Icons.movie_outlined,
-              title: tr('Film & Movie (Phim ảnh & Anime)'),
+              title: YomiTr.term(1),
               color: Colors.orangeAccent,
             ),
             Card(
@@ -180,7 +180,7 @@ class FeatureToggleScreen extends ConsumerWidget {
             _buildSectionHeader(
               context,
               icon: Icons.auto_stories_outlined,
-              title: tr('Novel (Tiểu thuyết & Light Novel)'),
+              title: YomiTr.term(2),
               color: Colors.greenAccent,
             ),
             Card(

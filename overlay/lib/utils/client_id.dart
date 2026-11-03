@@ -51,7 +51,7 @@ int generateClientId() {
 /// session, which startup's sweep couldn't have seen yet).
 ///
 /// The reads happen outside any transaction (Isar allows that freely); the
-/// writes are wrapped in one `isar.writeTxnSync()` - Isar requires every
+/// writes are wrapped in one `isar.writeTxnSyncSafe()` - Isar requires every
 /// write, even a single `put()`, to run inside an explicit transaction, and
 /// it does not open one of its own. Kept fully synchronous (no `await`
 /// anywhere inside the transaction) rather than the async `writeTxn` form:
@@ -79,7 +79,7 @@ Future<void> backfillMissingClientIds() async {
   }
 
   await dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       for (final row in categories) {
         categoryRepository.putSync(row..clientId = generateClientId());
       }

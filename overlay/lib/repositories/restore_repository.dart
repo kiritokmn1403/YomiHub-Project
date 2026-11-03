@@ -9,7 +9,7 @@ import 'package:mangayomi/repositories/db_write_queue.dart';
 // rest of the app, without forcing that logic into the wrong repository.
 class RestoreRepository {
   Future<T> run<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSync<T>(body));
+      dbWriteQueue.run(() => isar.writeTxnSyncSafe<T>(body));
 }
 
 final restoreRepository = RestoreRepository();

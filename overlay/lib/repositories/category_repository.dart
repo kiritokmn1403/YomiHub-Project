@@ -55,26 +55,26 @@ class CategoryRepository {
 
   Future<void> setHidden(Category category, bool hidden) => dbWriteQueue.run(
     () {
-      isar.writeTxnSync(() => isar.categorys.putSync(category..hide = hidden));
+      isar.writeTxnSyncSafe(() => isar.categorys.putSync(category..hide = hidden));
     },
   );
 
   // Stamps updatedAt for callers that just want to persist a mutated Category
   // they already hold, without setting the timestamp themselves.
   Future<void> save(Category category) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       category.updatedAt = DateTime.now().millisecondsSinceEpoch;
       isar.categorys.putSync(category);
     });
   });
 
   Future<void> putAll(List<Category> categories) => dbWriteQueue.run(
-    () => isar.writeTxn(() => isar.categorys.putAll(categories)),
+    () => isar.writeTxnQ(() => isar.categorys.putAll(categories)),
   );
 
   // Uncategorizes every manga that had this category, then deletes it.
   Future<void> remove(Category category) => dbWriteQueue.run(
-    () => isar.writeTxn(() async {
+    () => isar.writeTxnQ(() async {
       final items = await isar.mangas
           .filter()
           .categoriesElementEqualTo(category.id!)
@@ -91,7 +91,7 @@ class CategoryRepository {
   );
 
   Future<void> create(Category category) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       isar.categorys.putSync(category..pos = category.id);
       final nulls = isar.categorys.filter().posIsNull().findAllSync();
       for (final c in nulls) {
@@ -122,10 +122,10 @@ class CategoryRepository {
       dbWriteQueue.run(body);
 
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSync(body));
+      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxn(body));
+      dbWriteQueue.run(() => isar.writeTxnQ(body));
 }
 
 final categoryRepository = CategoryRepository();

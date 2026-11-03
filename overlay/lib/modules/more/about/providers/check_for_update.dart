@@ -9,6 +9,7 @@ import 'package:mangayomi/services/http/m_client.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:mangayomi/yomihub/update/drive_update.dart';
+import 'package:mangayomi/yomihub/update/multi_source_update.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'check_for_update.g.dart';
@@ -48,14 +49,16 @@ Future<UpdateInfo?> checkForUpdate(Ref ref) async {
 Future<UpdateInfo?> _getUpdateIfAvailable() async {
   final info = await PackageInfo.fromPlatform();
   try {
-    final drive = await YomiDriveUpdate.check(
+    // YomiHub 0.4.9: GitHub (primary) → 3 Google Drive → 3 MediaFire folders,
+    // in the order of the "Website Update Apps" sheet.
+    final found = await YomiUpdateSources.check(
       info.version,
       acceptsFile: (name) => _hasPlatformAssets([name]),
     );
-    if (drive == null || !_hasPlatformAssets(drive.$4)) return null;
-    return drive;
+    if (found == null || !_hasPlatformAssets(found.$4)) return null;
+    return found;
   } catch (e) {
-    AppLogger.log('Drive update check failed: $e', logLevel: LogLevel.error);
+    AppLogger.log('[Kiểm tra cập nhật] Thất bại: $e', logLevel: LogLevel.error);
     rethrow;
   }
 }

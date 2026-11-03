@@ -14,7 +14,7 @@ class SyncPreferenceRepository {
   // No updatedAt stamping - SyncPreference is local-only (never synced
   // itself), so it has no such field.
   Future<void> save(SyncPreference preference) => dbWriteQueue.run(
-    () => isar.writeTxnSync(() => isar.syncPreferences.putSync(preference)),
+    () => isar.writeTxnSyncSafe(() => isar.syncPreferences.putSync(preference)),
   );
 }
 

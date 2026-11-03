@@ -7,6 +7,7 @@ import 'package:mangayomi/models/download.dart';
 import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/providers/storage_provider.dart';
 import 'package:mangayomi/repositories/chapter_repository.dart';
+import 'package:mangayomi/repositories/db_write_queue.dart';
 import 'package:mangayomi/repositories/download_repository.dart';
 import 'package:mangayomi/repositories/manga_repository.dart';
 import 'package:mangayomi/services/downloaded_chapter.dart';
@@ -146,7 +147,7 @@ class YomiDownloadIndex {
         toRemove.clear();
       }
       if (toAdd.isNotEmpty || toRemove.isNotEmpty) {
-        await isar.writeTxn(() async {
+        await isar.writeTxnQ(() async {
           for (final c in toAdd) {
             final d = Download(
               id: c.id,

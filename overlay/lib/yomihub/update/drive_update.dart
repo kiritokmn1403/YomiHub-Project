@@ -103,6 +103,7 @@ class YomiDriveUpdate {
     String current, {
     http.Client? client,
     bool Function(String name)? acceptsFile,
+    String folderId = rootFolderId,
   }) async {
     final ownsClient = client == null;
     final transport = client ?? IOClient(yomiDartHttpClient());
@@ -156,7 +157,7 @@ class YomiDriveUpdate {
     }
 
     try {
-      await walk(rootFolderId, null, 0).timeout(const Duration(seconds: 60));
+      await walk(folderId, null, 0).timeout(const Duration(seconds: 60));
     } finally {
       if (ownsClient) transport.close();
     }

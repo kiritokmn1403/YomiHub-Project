@@ -1408,29 +1408,34 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
         // 0.4.5 (kiểm thử Xiaomi 15T, VTVgo › VTV1): a live HLS channel is not
         // seekable; restoring "46s" made mpv report "Cannot seek in this
         // stream", which was logged as ERROR and switched servers 4 times.
+        // 0.4.9 (Note 9, RoPhim HLS qua proxy yh_hls, 03/11/2026): the toast
+        // "Tiếp tục phát từ 05:00" appeared but playback restarted at 0:00 –
+        // mpv ignores a seek sent before the HLS playlist is indexed, and it
+        // reports seekable=no for a few seconds, which 0.4.5 took for a live
+        // channel (resume skipped AND position saving disabled). Now only a
+        // stream without a known duration counts as live, and the seek is
+        // verified and retried until the position really moved.
+        String seekable = 'yes';
         try {
-          final seekable = await (_player.platform as NativePlayer).getProperty('seekable');
-          if (seekable == 'no') {
-            _yhLiveStream = true;
-            _initialResumeTarget = Duration.zero;
-            _hasResumeTargetCompleted = true;
-            AppLogger.logOnce('player-live',
-                '[Trình phát] Luồng trực tiếp (không tua được) – bỏ qua vị trí đã lưu ${start.inSeconds}s',
-                logLevel: LogLevel.info);
-            return;
-          }
+          seekable = '${await (_player.platform as NativePlayer).getProperty('seekable')}';
         } catch (_) {}
+        if (seekable == 'no' && _player.state.duration <= Duration.zero) {
+          for (var i = 0; i < 10 && mounted && _player.state.duration <= Duration.zero; i++) {
+            await Future<void>.delayed(const Duration(milliseconds: 500));
+          }
+        }
         if (!mounted) return;
-        unawaited(
-          _player.seek(start).catchError((Object error) {
-            final msg = error.toString().toLowerCase();
-            final isSeekFail = msg.contains('cannot seek') || msg.contains('force-seekable');
-            AppLogger.log(
-              '[Trình phát] Không thể khôi phục vị trí xem: $error',
-              logLevel: isSeekFail ? LogLevel.info : LogLevel.error,
-            );
-          }),
-        );
+        if (seekable == 'no' && _player.state.duration <= Duration.zero) {
+          _yhLiveStream = true;
+          _initialResumeTarget = Duration.zero;
+          _hasResumeTargetCompleted = true;
+          AppLogger.logOnce('player-live',
+              '[Trình phát] Luồng trực tiếp (không tua được) – bỏ qua vị trí đã lưu ${start.inSeconds}s',
+              logLevel: LogLevel.info);
+          return;
+        }
+        if (!mounted) return;
+        unawaited(_yhResumeTo(start));
         AppLogger.log(
           "[Trình phát] Tiếp tục xem video tại ${start.inSeconds}s",
           logLevel: LogLevel.info,
@@ -1474,6 +1479,72 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
         _setCurrentPosition(true);
       }
     });
+  }
+
+  /// 0.4.9 (kiểm thử lại Note 9, 03/11/2026): the verified seek above still
+  /// restarted RoPhim/HLS at 0:00 – mpv reports the pending seek target as the
+  /// position and then drops the seek when the HLS variant is (re)opened, and
+  /// Player.seek can wait behind the open() lock. The resume now waits until
+  /// the stream really plays, seeks through mpv directly (with a timeout) and
+  /// only stops once playback has stayed at the target for 3 s.
+  Future<void> _yhResumeTo(Duration start) async {
+    final until = DateTime.now().add(const Duration(seconds: 45));
+    var tries = 0;
+    DateTime? okSince;
+    while (mounted && DateTime.now().isBefore(until) && tries < 8) {
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+      if (!mounted) return;
+      final st = _player.state;
+      final diff = st.position - start;
+      final near = diff.abs() <= const Duration(seconds: 10) ||
+          (diff > Duration.zero && diff <= const Duration(seconds: 60));
+      if (near) {
+        if (st.playing && !st.buffering) {
+          okSince ??= DateTime.now();
+          if (DateTime.now().difference(okSince) >= const Duration(seconds: 3)) {
+            _hasResumeTargetCompleted = true;
+            return;
+          }
+        }
+        continue;
+      }
+      okSince = null;
+      final ready = st.duration > Duration.zero &&
+          st.playing &&
+          !st.buffering &&
+          st.position > Duration.zero;
+      if (!ready) continue;
+      tries++;
+      try {
+        final p = _player.platform;
+        if (p is NativePlayer) {
+          await p
+              .command(
+                ['seek', (start.inMilliseconds / 1000).toStringAsFixed(3), 'absolute'],
+                waitForInitialization: false,
+              )
+              .timeout(const Duration(seconds: 3));
+        } else {
+          await _player.seek(start).timeout(const Duration(seconds: 3));
+        }
+      } catch (error) {
+        final msg = error.toString().toLowerCase();
+        if (!(msg.contains('cannot seek') ||
+            msg.contains('force-seekable') ||
+            msg.contains('timeout'))) {
+          AppLogger.log('[Trình phát] Không thể khôi phục vị trí xem: $error',
+              logLevel: LogLevel.error);
+        }
+      }
+      await Future<void>.delayed(const Duration(seconds: 2));
+    }
+    if (!mounted || _hasResumeTargetCompleted) return;
+    // give up: keep saving the real position from here on
+    _hasResumeTargetCompleted = true;
+    AppLogger.log(
+      '[Trình phát] Không khôi phục được vị trí đã xem (${start.inSeconds}s) sau $tries lần tua',
+      logLevel: LogLevel.error,
+    );
   }
 
   // The position is saved every 3 s and on every pause, so

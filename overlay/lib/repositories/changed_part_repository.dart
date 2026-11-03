@@ -60,7 +60,7 @@ class ChangedPartRepository {
     }
 
     if (writeTxn) {
-      dbWriteQueue.run(() => isar.writeTxnSync(putChangedPart));
+      dbWriteQueue.run(() => isar.writeTxnSyncSafe(putChangedPart));
     } else {
       putChangedPart();
     }
@@ -100,7 +100,7 @@ class ChangedPartRepository {
     }
 
     if (writeTxn) {
-      await dbWriteQueue.run(() => isar.writeTxn(putChangedPart));
+      await dbWriteQueue.run(() => isar.writeTxnQ(putChangedPart));
     } else {
       await putChangedPart();
     }
@@ -114,7 +114,7 @@ class ChangedPartRepository {
     final ids = await temp.idProperty().findAll();
     if (txn) {
       await dbWriteQueue.run(
-        () => isar.writeTxn(() => isar.changedParts.deleteAll(ids)),
+        () => isar.writeTxnQ(() => isar.changedParts.deleteAll(ids)),
       );
     } else {
       await isar.changedParts.deleteAll(ids);
@@ -124,7 +124,7 @@ class ChangedPartRepository {
   void clearAll(bool txn) {
     if (txn) {
       dbWriteQueue.run(
-        () => isar.writeTxnSync(() => isar.changedParts.clearSync()),
+        () => isar.writeTxnSyncSafe(() => isar.changedParts.clearSync()),
       );
     } else {
       isar.changedParts.clearSync();

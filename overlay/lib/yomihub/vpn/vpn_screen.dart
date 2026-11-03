@@ -2,6 +2,7 @@ import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/source.dart';
@@ -281,7 +282,7 @@ class _VpnScreenState extends State<VpnScreen> {
   List<Widget> _hubPage() => [
         if (vpn.supported) _statusCard(),
         if (vpn.supported) ...[
-          _hubTile(Icons.shield_outlined, tr('Dịch vụ VPN'), tr('Tor, Cloudflare WARP, OpenVPN, WireGuard, SoftEther, AdGuard VPN, Urban VPN, Mihon Proxy, Proxy riêng — chỉ bật 1 dịch vụ cùng lúc'), 'services'),
+          _hubTile(Icons.shield_outlined, tr('Dịch vụ VPN'), tr('Tor, Cloudflare WARP, OpenVPN, WireGuard, SoftEther, AdGuard VPN, Urban VPN, Windscribe, Hotspot Shield, Mihon Proxy, Proxy riêng — chỉ bật 1 dịch vụ cùng lúc'), 'services'),
           _hubTile(Icons.extension_outlined, tr('VPN cho tiện ích, WebView & trình duyệt'), _scopeSummary, 'scope'),
           _hubTile(Icons.apps_outlined,
               Platform.isWindows ? tr('VPN cho toàn bộ máy tính') : tr('VPN cho ứng dụng ngoài / toàn thiết bị'), _appsSummary, 'apps'),
@@ -408,6 +409,22 @@ class _VpnScreenState extends State<VpnScreen> {
       _softEtherSection(theme),
       _adguardSection(theme),
       _urbanSection(theme),
+      _brandSection(
+        'Windscribe',
+        Icons.air,
+        tr('Tạo cấu hình WireGuard (.conf) hoặc OpenVPN (.ovpn) bằng tài khoản Windscribe của bạn ở trang “Config Generator”, rồi nhập vào đây – YomiHub chạy bằng lõi WireGuard/OpenVPN riêng nên áp dụng được “VPN cho tiện ích”.'),
+        onOpenApp: YomiExtVpn.openWindscribe,
+        configLinks: const {
+          'WireGuard': YomiExtVpn.windscribeConfigWireGuard,
+          'OpenVPN': YomiExtVpn.windscribeConfigOpenVpn,
+        },
+      ),
+      _brandSection(
+        'Hotspot Shield',
+        Icons.security,
+        tr('Hotspot Shield không cung cấp file cấu hình công khai: mở ứng dụng Hotspot Shield để bật VPN cho toàn thiết bị (YomiHub tự nhận ra VPN đang chạy). Nếu bạn có file .conf/.ovpn của Hotspot Shield (gói cho router), có thể nhập để YomiHub tự kết nối.'),
+        onOpenApp: YomiExtVpn.openHotspotShield,
+      ),
       _profileSection(
         TunnelType.xray,
         Icons.alt_route,
@@ -971,6 +988,89 @@ class _VpnScreenState extends State<VpnScreen> {
 
   // ───────── 0.1.8: Urban VPN ─────────
   bool? _urbanReady;
+
+  /// 0.4.9: provider page (Windscribe, Hotspot Shield) – profiles whose name
+  /// starts with the brand, config import, config generator, official app.
+  Widget _brandSection(
+    String brand,
+    IconData icon,
+    String help, {
+    required Future<bool> Function() onOpenApp,
+    Map<String, String> configLinks = const {},
+  }) {
+    final mine = tun.profiles.where((p) => p.name.startsWith(brand)).toList();
+    final active = tun.active;
+    final on = active != null && active.name.startsWith(brand);
+    return _section(
+      brand,
+      icon,
+      subtitle: on ? '${active.name} • ${_stateLabel(tun.state)}' : tr('{p0} hồ sơ', {'p0': mine.length}),
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: Text(help, style: Theme.of(context).textTheme.bodySmall),
+        ),
+        for (final p in mine)
+          ListTile(
+            leading: Text(countryFlag(p.country), style: const TextStyle(fontSize: 22)),
+            title: Text(p.name, maxLines: 1, overflow: TextOverflow.ellipsis),
+            subtitle: Text('${p.type.label} • ${tun.activeId == p.id ? _stateLabel(tun.state) : (vpnCountries[p.country] ?? tr('Chưa gắn quốc gia'))}'),
+            trailing: IconButton(
+              tooltip: tun.activeId == p.id ? tr('Ngắt') : tr('Kết nối'),
+              icon: Icon(tun.activeId == p.id ? Icons.stop_circle_outlined : Icons.play_circle_outline),
+              onPressed: () => _run(() async {
+                if (tun.activeId == p.id) {
+                  await tun.disconnect();
+                } else {
+                  await _connect(p);
+                }
+              }),
+            ),
+          ),
+        ListTile(
+          leading: const Icon(Icons.file_open_outlined),
+          title: Text(tr('Nhập cấu hình {p0} (.conf / .ovpn)', {'p0': brand})),
+          onTap: () => _importBrand(brand),
+        ),
+        for (final e in configLinks.entries)
+          ListTile(
+            leading: const Icon(Icons.link),
+            title: Text(tr('Tạo cấu hình {p0} trên trang {p1}', {'p0': e.key, 'p1': brand})),
+            onTap: () => launchUrl(Uri.parse(e.value), mode: LaunchMode.externalApplication),
+          ),
+        ListTile(
+          leading: const Icon(Icons.open_in_new),
+          title: Text(tr('Mở ứng dụng {p0} (toàn thiết bị)', {'p0': brand})),
+          onTap: () => onOpenApp(),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _importBrand(String brand) async {
+    final files = await FilePicker.pickFiles();
+    for (final f in files) {
+      final path = f.path;
+      if (path == null) continue;
+      try {
+        final text = await File(path).readAsString();
+        final base = f.name.replaceAll(RegExp(r'\.(ovpn|conf)$', caseSensitive: false), '');
+        final err = await tun.importText(
+          text,
+          name: base.toLowerCase().startsWith(brand.toLowerCase()) ? base : '$brand – $base',
+          country: tun.country,
+        );
+        if (err != null) {
+          yomiLogVpnError('Nhập cấu hình $brand ${f.name}', err);
+          _snack('${f.name}: $err');
+        }
+      } catch (e) {
+        yomiLogVpnError('Nhập cấu hình $brand ${f.name}', '$e');
+        _snack('${f.name}: $e');
+      }
+    }
+    if (mounted) setState(() {});
+  }
 
   Widget _urbanSection(ThemeData theme) {
     final active = tun.active;

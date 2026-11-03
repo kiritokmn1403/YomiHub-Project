@@ -245,7 +245,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       }
     });
     Future.delayed(const Duration(seconds: 5), () {
-      if (!mounted || isTv) return;
+      // 0.4.9: Android TV checks for updates too (TV APKs are matched by name).
+      if (!mounted) return;
       ref.listenManual<AsyncValue<UpdateInfo?>>(checkForUpdateProvider, (
         _,
         next,

@@ -111,7 +111,7 @@ class ForeignDownloads {
   }
 
   static Future<List<ForeignDownloadDir>> scan() async {
-    if (Platform.isAndroid) await StorageProvider().requestPermission();
+    if (Platform.isAndroid) await StorageProvider().requestPermission(force: true);
     final found = <ForeignDownloadDir>[];
     final seen = <String>{};
     for (final root in await _roots()) {

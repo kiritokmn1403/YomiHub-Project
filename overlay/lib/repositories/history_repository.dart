@@ -116,7 +116,7 @@ class HistoryRepository {
   // they already hold, without setting the timestamp themselves. Also saves
   // its chapter link, since every current caller needs that too.
   Future<void> save(History history) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       history.updatedAt = DateTime.now().millisecondsSinceEpoch;
       isar.historys.putSync(history);
       history.chapter.saveSync();
@@ -124,10 +124,10 @@ class HistoryRepository {
   });
 
   Future<void> deleteAll(List<int> ids) =>
-      dbWriteQueue.run(() => isar.writeTxn(() => isar.historys.deleteAll(ids)));
+      dbWriteQueue.run(() => isar.writeTxnQ(() => isar.historys.deleteAll(ids)));
 
   Future<void> delete(WidgetRef ref, int id) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       final clientId = isar.historys.getSync(id)?.clientId;
       isar.historys.deleteSync(id);
       ref
@@ -164,10 +164,10 @@ class HistoryRepository {
 
   // Same, but opens the write transaction too, so callers never touch isar.
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSync(body));
+      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxn(body));
+      dbWriteQueue.run(() => isar.writeTxnQ(body));
 }
 
 final historyRepository = HistoryRepository();

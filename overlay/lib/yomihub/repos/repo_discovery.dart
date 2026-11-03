@@ -72,7 +72,8 @@ class YomiRepoDiscovery {
     'https://github.com/IReaderorg/IReader-extensions': 'IReader Extension',
     'https://p.codekk.com/detail/Android/IReaderorg/IReader-extensions': 'codeKK',
     'https://www.vbookext.me/sources': 'vBook Extensions',
-    'https://raw.githubusercontent.com/Darkrai9x/vbook-extensions/master/plugins.json': 'vBook Community Plugins',
+    // 0.4.9: the old "plugins.json" never existed – the vBook repo list is repository.json
+    'https://raw.githubusercontent.com/Darkrai9x/vbook-extensions/master/repository.json': 'vBook Community Plugins',
   };
 
   /// Result of the last scan per website (shown in Extensions Repo).
@@ -141,6 +142,21 @@ class YomiRepoDiscovery {
       siteStatus[label] = 'HTTP ${r.statusCode}';
       return const [];
     }
+    // 0.4.9: vBook repository list (repository.json): [{link, author, description}]
+    final trimmed = r.body.trimLeft();
+    if (trimmed.startsWith('[') && trimmed.contains('"link"')) {
+      final out = <YomiSuggestedRepo>[];
+      try {
+        for (final e in (jsonDecode(r.body) as List).whereType<Map>()) {
+          final link = '${e['link'] ?? ''}'.trim();
+          if (!_looksLikeIndex(link)) continue;
+          out.add(YomiSuggestedRepo(link, '${e['author'] ?? _nameOf(link)} (vBook)',
+              note: '$label${'${e['description'] ?? ''}'.isEmpty ? '' : ' • ${e['description']}'}'));
+        }
+      } catch (_) {}
+      siteStatus[label] = '${out.length} kho';
+      return out;
+    }
     final html = _unescape(r.body);
     final origin = Uri.parse(page).origin;
     final cands = <String, String>{}; // url → name
@@ -154,7 +170,7 @@ class YomiRepoDiscovery {
       add(Uri.decodeComponent(m.group(1)!));
     }
     for (final m in RegExp(
-      r'https://[^"\s<>]+?(?:index\.min\.json|index\.json|index\.pb|plugins\.min\.json|anime_index\.json|novel_index\.json)',
+      r'https://[^"\s<>]+?(?:index\.min\.json|index\.json|index\.pb|plugins\.min\.json|anime_index\.json|novel_index\.json|[a-z_]*plugin\.json)',
     ).allMatches(html)) {
       add(m.group(0)!);
     }

@@ -73,3 +73,10 @@ audit-0.3.9/test-tools/
 /audit-0.4.5/vtv_*.html
 # third-party source trees downloaded for reference (414 MB, not YomiHub code)
 /dev/x018/ref/
+
+# ── 0.4.9 (03/11/2026): audit scratch – third-party pages/packages, build-dir copies ──
+/audit-0.4.9/npm/
+/audit-0.4.9/backup/
+/audit-0.4.9/*.html
+/audit-0.4.9/qa/
+/_to_delete/

@@ -335,7 +335,11 @@ class YomiHlsAdFilter {
       );
       response.statusCode = HttpStatus.ok;
       response.headers.set(HttpHeaders.contentTypeHeader, 'application/vnd.apple.mpegurl');
-      response.write(text);
+      // 0.4.9: a sized (non-chunked) reply, so mpv/ffmpeg treat the playlist
+      // as a normal seekable resource.
+      final bytes = utf8.encode(text);
+      response.contentLength = bytes.length;
+      response.add(bytes);
       await response.close();
     } catch (_) {
       try {

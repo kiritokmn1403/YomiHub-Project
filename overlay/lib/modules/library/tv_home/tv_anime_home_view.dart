@@ -428,8 +428,8 @@ class _TvAnimeHomeViewState extends ConsumerState<TvAnimeHomeView> {
               child: _MangaGrid(
                 items: matches,
                 emptyLabel: catName == null
-                    ? 'No matching anime'
-                    : 'No matching anime in “$catName”',
+                    ? tr('Không có phim nào khớp')
+                    : tr('Không có phim nào khớp trong “{p0}”', {'p0': catName}),
               ),
             );
           } else if (entries.isEmpty) {
@@ -465,10 +465,10 @@ class _TvAnimeHomeViewState extends ConsumerState<TvAnimeHomeView> {
             }
 
             if (continueList.isNotEmpty) {
-              addRow('Continue Watching', continueList);
+              addRow(tr('Xem tiếp'), continueList);
             }
-            if (newEpisodes.isNotEmpty) addRow('New Episodes', newEpisodes);
-            addRow('Recently Added', recent);
+            if (newEpisodes.isNotEmpty) addRow(tr('Tập mới'), newEpisodes);
+            addRow(tr('Mới thêm gần đây'), recent);
 
             // Genre rows — browse the library by genre (top few, ≥3 titles).
             // The one place a title can appear in more than one row, so they're
@@ -521,9 +521,9 @@ class _TvAnimeHomeViewState extends ConsumerState<TvAnimeHomeView> {
                 node: _scopeGrid,
                 child: _MangaGrid(
                   items: inCat,
-                  emptyLabel:
-                      'No anime in this category yet.\n'
-                      'Add titles to it from a title’s detail page.',
+                  emptyLabel: tr(
+                    'Danh mục này chưa có phim.\nThêm phim vào từ trang chi tiết của phim.',
+                  ),
                 ),
               );
             } else {
@@ -549,7 +549,7 @@ class _TvAnimeHomeViewState extends ConsumerState<TvAnimeHomeView> {
                       child: FocusScope(
                         node: _scopeRows[0],
                         child: _TvHomeRow(
-                          title: 'Continue Watching',
+                          title: tr('Xem tiếp'),
                           items: catContinue,
                         ),
                       ),
@@ -691,7 +691,7 @@ class _TvHomeTopBar extends StatelessWidget {
                 decoration: InputDecoration(
                   isDense: true,
                   filled: true,
-                  hintText: 'Search your anime',
+                  hintText: tr('Tìm phim trong thư viện'),
                   prefixIcon: const Icon(Icons.search, size: 20),
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: 12,
@@ -1304,7 +1304,7 @@ class _CategoryPillsState extends State<_CategoryPills> {
     categoryRepository.setHidden(category, true);
     if (widget.selected == category.id) widget.onSelect(null);
     _focusAll();
-    botToast('Hid “${category.name}” · hold OK on “All” to unhide');
+    botToast(tr('Đã ẩn “{p0}” · giữ OK trên “Tất cả” để hiện lại', {'p0': category.name}));
   }
 
   @override
@@ -1323,7 +1323,7 @@ class _CategoryPillsState extends State<_CategoryPills> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TvPill(
-                    label: 'All',
+                    label: tr('Tất cả'),
                     focusNode: _allNode,
                     selected: widget.selected == null,
                     autofocus: true,
@@ -1346,7 +1346,7 @@ class _CategoryPillsState extends State<_CategoryPills> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: TvPill(
-                      label: 'Category',
+                      label: tr('Danh mục'),
                       icon: Icons.add,
                       onTap: () =>
                           _showAddCategoryDialog(context, widget.categories),
@@ -1373,7 +1373,7 @@ class _CategoryPillsState extends State<_CategoryPills> {
 /// focused. Hiding leaves focus there, so the toast can name the way back.
 void _showHiddenCategoriesDialog(BuildContext context, List<Category> hidden) {
   if (hidden.isEmpty) {
-    botToast('No hidden categories');
+    botToast(tr('Không có danh mục ẩn'));
     return;
   }
   showDialog(

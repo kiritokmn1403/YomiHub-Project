@@ -48,7 +48,7 @@ class SyncEntityApplier {
   Future<bool> apply(Map<String, dynamic> response) async {
     var settingsChanged = false;
     await dbWriteQueue.run(() {
-      isar.writeTxnSync(() {
+      isar.writeTxnSyncSafe(() {
         final remaps = _MangaChapterRemaps(
           manga: (response['mangaClientIdRemap'] as Map?)?.map(
             (k, v) => MapEntry(int.parse(k as String), v as int),

@@ -339,7 +339,7 @@ class MangaRepository {
   // Local archives get fully wiped (via wipeManga); everything else just unfavorites.
   Future<void> removeFromLibrary(WidgetRef ref, Manga manga) =>
       dbWriteQueue.run(() {
-        isar.writeTxnSync(() {
+        isar.writeTxnSyncSafe(() {
           if (manga.isLocalArchive ?? false) {
             wipeManga(ref, manga);
           } else {
@@ -351,12 +351,12 @@ class MangaRepository {
       });
 
   Future<void> putAll(List<Manga> mangas) =>
-      dbWriteQueue.run(() => isar.writeTxn(() => isar.mangas.putAll(mangas)));
+      dbWriteQueue.run(() => isar.writeTxnQ(() => isar.mangas.putAll(mangas)));
 
   // Stamps updatedAt for callers that just want to persist a mutated Manga
   // they already hold, without setting the timestamp themselves.
   Future<void> save(Manga manga) => dbWriteQueue.run(
-    () => isar.writeTxn(() async {
+    () => isar.writeTxnQ(() async {
       manga.updatedAt = DateTime.now().millisecondsSinceEpoch;
       await isar.mangas.put(manga);
     }),
@@ -366,14 +366,14 @@ class MangaRepository {
   // deliberately don't) and need the generated id back.
   Future<int> put(Manga manga) => dbWriteQueue.run(() {
     late final int id;
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       id = isar.mangas.putSync(manga);
     });
     return id;
   });
 
   Future<void> delete(int id) =>
-      dbWriteQueue.run(() => isar.writeTxn(() => isar.mangas.delete(id)));
+      dbWriteQueue.run(() => isar.writeTxnQ(() => isar.mangas.delete(id)));
 
   // Sync primitive below is for callers already inside a write transaction
   // opened by transaction()/writeTransaction() — it doesn't queue on its own.
@@ -396,18 +396,18 @@ class MangaRepository {
 
   // Same, but opens the write transaction too, so callers never touch isar.
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSync(body));
+      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
 
   // Async variant, for bodies that need to await other async isar calls
   // inside the same transaction.
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxn(body));
+      dbWriteQueue.run(() => isar.writeTxnQ(body));
 
   // Queued, transacted wipeManga for callers with a batch of mangas and no
   // other work to fold into the same transaction.
   Future<void> wipeMangas(WidgetRef ref, List<Manga> mangas) =>
       dbWriteQueue.run(() {
-        isar.writeTxnSync(() {
+        isar.writeTxnSyncSafe(() {
           for (final manga in mangas) {
             wipeManga(ref, manga);
           }
@@ -477,7 +477,7 @@ class MangaRepository {
     bool keepHistory = false,
     bool keepDownloads = false,
   }) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
+    isar.writeTxnSyncSafe(() {
       for (final manga in mangaList) {
         final chapterIds = chapterRepository
             .getAllByMangaId(manga.id)
@@ -515,7 +515,7 @@ class MangaRepository {
   // each of `others` is deleted once its rows are gone.
   Future<void> mergeGroup(Manga primary, List<Manga> others) =>
       dbWriteQueue.run(() {
-        isar.writeTxnSync(() {
+        isar.writeTxnSyncSafe(() {
           final primaryByUrl = <String, Chapter>{
             for (final c in chapterRepository.getAllByMangaId(primary.id))
               ?_chapterDedupKey(c): c,
