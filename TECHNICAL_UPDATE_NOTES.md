@@ -1846,4 +1846,6 @@ Danh sách tệp sửa (`audit-0.5.1/changed_files.txt`, bản gốc ở `audit-
 Kèm `SHA256SUMS-0.5.1.txt`, `YomiHub-RootCA.cer`, `Install-YomiHub.bat/.ps1`, `YomiHub-0.5.1-changelog.md`; ảnh/video kiểm thử đã lọc (34 tệp, không có nội dung 18+ / thư viện / tệp cá nhân): `output/YomiHub-0.5.1-QA-screenshots.zip` (`audit-0.5.1/make_qa_zip.ps1`).
 
 #### K. GitHub
-__GITHUB__
+- Mã nguồn: commit `64cf239` "release: YomiHub 0.5.1 (0.5.1+43)" trên `main` của `kiritokmn1403/YomiHub-Project` (81 tệp; `git ls-remote` = local). Kiểm tra trước khi commit: không có khóa ký / mật khẩu / bộ cài / ảnh QA / danh sách tệp cá nhân (`.gitignore` thêm `audit-0.5.1/backup|qa|yomi_ls*`, `__pycache__`). Git for Windows + Git Credential Manager trên máy; token không ghi ra log/tệp.
+- Release `v0.5.1` (Latest) – `release_051.ps1`, 04/11 08:45 → 08:50: 17 tệp / 1.884 MB, mỗi tệp `HTTP 201`; bước kiểm tra: kích thước local = remote và tải về `HTTP 200` cho cả 17 tệp, `releases/latest = v0.5.1`, `problems: 0`. https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.5.1
+- README: bảng link tải 0.5.1 (Android, Android TV, Windows `.appxbundle` / `Setup.exe` / portable / full, SHA256SUMS, gói QA).
