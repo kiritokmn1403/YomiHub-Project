@@ -28,6 +28,23 @@ function Run($exe, [string[]]$a, $logName) {
 }
 
 $abld = "$YH\build\mangayomi"; $wbld = "$YH\buildwin\mangayomi"
+# 0.5.1 (04/11 09:04, reported by the owner): phone APKs were labelled "YumiHub Android TV".
+# The TV step restored the strings.xml text it had read at its start; one interrupted TV
+# build left the TV name behind and every later build "restored" that wrong name. The name
+# is now set explicitly per APK type and every APK label is checked with aapt2.
+$strXml = "$abld\android\app\src\main\res\values\strings.xml"
+function Set-AppName([string]$n) {
+  $c = [IO.File]::ReadAllText($strXml)
+  $c = [regex]::Replace($c, '<string name="app_name">[^<]*</string>', "<string name=`"app_name`">$n</string>")
+  [IO.File]::WriteAllText($strXml, $c, (New-Object Text.UTF8Encoding($false)))
+  Say "app_name = $n"
+}
+function Assert-Label([string]$apk, [string]$want) {
+  $aapt = (Get-ChildItem "$TOOLS\android-sdk\build-tools" -Recurse -Filter aapt2.exe | Select-Object -Last 1).FullName
+  $l = ((& $aapt dump badging $apk 2>$null) | Select-String '^application-label:' | Select-Object -First 1).Line
+  if ($l -ne "application-label:'$want'") { throw "WRONG LABEL $l (expected '$want') in $apk" }
+  Say "label OK: $(Split-Path $apk -Leaf) = $want"
+}
 $out = "$KIT\output\0.5.1"; New-Item -ItemType Directory -Force $out | Out-Null
 $ver = ([regex]::Match((Get-Content "$abld\pubspec.yaml" -Raw), '(?m)^version:\s*([\d\.]+)')).Groups[1].Value
 try {
@@ -48,40 +65,41 @@ try {
     Pop-Location
   }
   if ($step -eq 'apkx64') {
+    Set-AppName 'YomiHub'
     Push-Location $abld
     Run 'flutter.bat' @('build','apk','--no-pub','--release','--split-per-abi','--target-platform','android-x64','--split-debug-info',"$YH\symbols") 'b051_apkx64.txt'
     $f = "$abld\build\app\outputs\flutter-apk\app-x86_64-release.apk"
-    if (Test-Path $f) { Copy-Item $f "$out\YomiHub-$ver-x86_64.apk" -Force; Say ("APK: YomiHub-$ver-x86_64.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
+    if (Test-Path $f) { Assert-Label $f 'YomiHub'; Copy-Item $f "$out\YomiHub-$ver-x86_64.apk" -Force; Say ("APK: YomiHub-$ver-x86_64.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
     Pop-Location
   }
   if ($step -eq 'apk64') {
+    Set-AppName 'YomiHub'
     Push-Location $abld
     Run 'flutter.bat' @('build','apk','--no-pub','--release','--split-per-abi','--target-platform','android-arm64','--split-debug-info',"$YH\symbols") 'b051_apk64.txt'
     $f = "$abld\build\app\outputs\flutter-apk\app-arm64-v8a-release.apk"
-    if (Test-Path $f) { Copy-Item $f "$out\YomiHub-$ver-arm64-v8a.apk" -Force; Say ("APK: YomiHub-$ver-arm64-v8a.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
+    if (Test-Path $f) { Assert-Label $f 'YomiHub'; Copy-Item $f "$out\YomiHub-$ver-arm64-v8a.apk" -Force; Say ("APK: YomiHub-$ver-arm64-v8a.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
     Pop-Location
   }
   if ($step -in 'all','apk') {
+    Set-AppName 'YomiHub'
     Push-Location $abld
     Run 'flutter.bat' @('build','apk','--no-pub','--release','--split-per-abi','--target-platform','android-arm,android-arm64,android-x64','--split-debug-info',"$YH\symbols") 'b051_apk.txt'
     foreach ($abi in 'arm64-v8a','armeabi-v7a','x86_64') {
       $f = "$abld\build\app\outputs\flutter-apk\app-$abi-release.apk"
-      if (Test-Path $f) { Copy-Item $f "$out\YomiHub-$ver-$abi.apk" -Force; Say ("APK: YomiHub-$ver-$abi.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
+      if (Test-Path $f) { Assert-Label $f 'YomiHub'; Copy-Item $f "$out\YomiHub-$ver-$abi.apk" -Force; Say ("APK: YomiHub-$ver-$abi.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
     }
     Pop-Location
   }
   if ($step -in 'all','tv') {
     Push-Location $abld
-    $strXml = "$abld\android\app\src\main\res\values\strings.xml"
-    $origStr = Get-Content $strXml -Raw -Encoding UTF8
-    Set-Content -Path $strXml -Value ($origStr -replace '<string name="app_name">YomiHub</string>', '<string name="app_name">YumiHub Android TV</string>') -Encoding UTF8
+    Set-AppName 'YumiHub Android TV'
     try {
       Run 'flutter.bat' @('build','apk','--no-pub','--release','--split-per-abi','--target-platform','android-arm,android-arm64,android-x64','--split-debug-info',"$YH\symbols_tv",'--dart-define=IS_TV_BUILD=true','--dart-define=APP_NAME=YumiHub Android TV') 'b051_tv.txt'
       foreach ($abi in 'arm64-v8a','armeabi-v7a','x86_64') {
         $f = "$abld\build\app\outputs\flutter-apk\app-$abi-release.apk"
-        if (Test-Path $f) { Copy-Item $f "$out\YumiHub-Android-TV-$ver-$abi.apk" -Force; Say ("TV APK: YumiHub-Android-TV-$ver-$abi.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
+        if (Test-Path $f) { Assert-Label $f 'YumiHub Android TV'; Copy-Item $f "$out\YumiHub-Android-TV-$ver-$abi.apk" -Force; Say ("TV APK: YumiHub-Android-TV-$ver-$abi.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
       }
-    } finally { Set-Content -Path $strXml -Value $origStr -Encoding UTF8 }
+    } finally { Set-AppName 'YomiHub' }
     Pop-Location
   }
   if ($step -in 'all','win') {

@@ -1829,16 +1829,16 @@ Danh sách tệp sửa (`audit-0.5.1/changed_files.txt`, bản gốc ở `audit-
   - **Android TV** (APK armeabi-v7a 08:17): máy ảo `YomiHub_TV_API34` **không ổn định** – `qemu-system-x86_64.exe` lỗi 2 lần (Windows Error Reporting 08:21:34, 08:29:59) với `-gpu swiftshader_indirect`; khởi động lạnh (`-no-snapshot-load`) đưa đĩa về bản 0.4.9 (1041) → cài đè **0.4.9 → 0.5.1 (1043)** thành công. Với `-gpu host`: lần mở 1 hiện trang quyền (hỏi đúng 1 lần), **lần 2 và 3 cửa sổ trên cùng là `com.yomihub.app/…MainActivity`** – không còn trang quyền (`tv14_khong_hoi_quyen`). Phát HotPhim tới 00:35 (`tv15a`, `tv15b`); Lịch sử ghi đủ các lần xem (`tv16_lich_su`).
   - **Không đạt / chưa xác nhận:** "tiếp tục phát" trên máy ảo TV – mở lại phim sau khi tắt ứng dụng: trình phát đứng ở 00:00, màn hình đen (`-2:34:00`), video ghi màn hình hết 3 phút trước khi thấy kết quả tua. Mã trình phát không đổi ở 0.5.1 (đã đạt trên Note 9 ở 0.5.0, mục 0.5.0 F); trên Note 9 đợt này phép thử bị chạm ma làm sai (mục E.3). Cần kiểm thử lại trên TV/điện thoại thật.
 
-#### J. Tệp bàn giao (`output/0.5.1`)
+#### J. Tệp bàn giao (`output/0.5.1`, cập nhật 04/11 09:28 – mục L)
 | Tệp | MB | SHA256 |
 | --- | ---: | --- |
-| YomiHub-0.5.1-arm64-v8a.apk | 168.8 | `1c10012566c15d1e0ae6d18b16f395dd464ab91b7b9eb4e666ce9ecd8af1bb19` |
-| YomiHub-0.5.1-armeabi-v7a.apk | 165.6 | `a7be978f96f3703c2bdd2abdfa8a54d2c05499a440a9ed5fb059da2fc9b2d7ea` |
+| YomiHub-0.5.1-arm64-v8a.apk | 168.8 | `5b5e3beacaf08a2252f79ca4cb2482b8e502e46e80736ffa4c64493455d19d73` |
+| YomiHub-0.5.1-armeabi-v7a.apk | 165.6 | `56332e00c39668566a192e119d18a7c094fe2097880bfc59c9d4f886fad749f3` |
 | YomiHub-0.5.1-windows-x64-full.zip | 266.5 | `e1ebae8fe0f700908a7e8a173bbcaf1d24ee2ef16cdddad8b21b4a34389771e5` |
-| YomiHub-0.5.1-windows-x64-Setup.exe | 138.7 | `0ca8bd428436687ce54d8b5e838534bd5402fb023ddb9048a13c29bd4341adb1` |
-| YomiHub-0.5.1-windows-x64.appxbundle | 270.9 | `5e55cd111a502039f32bc285a3431c7b49a34c2dbe63010973f36a613d642064` |
+| YomiHub-0.5.1-windows-x64-Setup.exe | 138.7 | `de0632031faf4011f8ab1e060ebaf22589e3d69210b89cc5d8a0015283ea15da` |
+| YomiHub-0.5.1-windows-x64.appxbundle | 270.9 | `cf8c42c25cd44ed38bfe01c04727a024fd3f6efea905751f422605e7136c584a` |
 | YomiHub-0.5.1-windows-x64.zip | 138.6 | `4e7d7a324775d9fca0420c02e9bee82d7d850bf5d4c15471787e0534f67b7255` |
-| YomiHub-0.5.1-x86_64.apk | 178.1 | `29bbe7c35f169677453ae0753713d3937026da3b2747affb2b452d72b73dd551` |
+| YomiHub-0.5.1-x86_64.apk | 178.1 | `3ed7eabd3414eff68d3b8a9100115aa495c63bac0f8a7a4ce38d58b68334a5b1` |
 | YumiHub-Android-TV-0.5.1-arm64-v8a.apk | 168.7 | `f7e0dcbac8f3cd041d7ff4d104e17ef6f747fdcb60e402127f5f6cf50ac64468` |
 | YumiHub-Android-TV-0.5.1-armeabi-v7a.apk | 165.5 | `c886840fbe6bcd67768893ea938f09a82de6d8d26da0090dc09fb56854b46a1b` |
 | YumiHub-Android-TV-0.5.1-x86_64.apk | 178.0 | `0ebe303393c3bb97c39c5cab72e0b87aa68bb88046c2b616c6f40ebe7de7c601` |
@@ -1849,3 +1849,10 @@ Kèm `SHA256SUMS-0.5.1.txt`, `YomiHub-RootCA.cer`, `Install-YomiHub.bat/.ps1`, `
 - Mã nguồn: commit `64cf239` "release: YomiHub 0.5.1 (0.5.1+43)" trên `main` của `kiritokmn1403/YomiHub-Project` (81 tệp; `git ls-remote` = local). Kiểm tra trước khi commit: không có khóa ký / mật khẩu / bộ cài / ảnh QA / danh sách tệp cá nhân (`.gitignore` thêm `audit-0.5.1/backup|qa|yomi_ls*`, `__pycache__`). Git for Windows + Git Credential Manager trên máy; token không ghi ra log/tệp.
 - Release `v0.5.1` (Latest) – `release_051.ps1`, 04/11 08:45 → 08:50: 17 tệp / 1.884 MB, mỗi tệp `HTTP 201`; bước kiểm tra: kích thước local = remote và tải về `HTTP 200` cho cả 17 tệp, `releases/latest = v0.5.1`, `problems: 0`. https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.5.1
 - README: bảng link tải 0.5.1 (Android, Android TV, Windows `.appxbundle` / `Setup.exe` / portable / full, SHA256SUMS, gói QA).
+
+#### L. Sửa lỗi sau phát hành: APK điện thoại mang tên "YumiHub Android TV" (04/11 09:04 → 09:35)
+- Người dùng báo 09:04: bản trên điện thoại hiện tên **YumiHub Android TV**. Kiểm tra bằng `aapt2 dump badging`: cả 3 APK điện thoại của Release (dựng 08:05) có `application-label:'YumiHub Android TV'`; `D:\yh\build\mangayomi\android\app\src\main\res\values\strings.xml` đang là `<string name="app_name">YumiHub Android TV</string>` (overlay vẫn đúng: `YomiHub`).
+- Nguyên nhân (`build_051.ps1`, kế thừa từ `build_050.ps1`): bước `tv` đọc `strings.xml`, thay `YomiHub` → `YumiHub Android TV`, dựng, rồi trong `finally` ghi lại **nội dung đã đọc lúc đầu**. Một lần dựng TV bị ngắt trong đêm (tác vụ bị dừng – `finally` không chạy) để lại tên TV; từ đó mọi bước `tv` "khôi phục" về chính tên sai, và bước `apk` không tự đặt tên → mọi APK điện thoại sau đó mang tên TV. Kiểm thử trước phát hành không kiểm tra nhãn ứng dụng (thiếu sót – đã bổ sung).
+- Sửa `build_051.ps1`: hàm `Set-AppName` (đặt `app_name` rõ ràng: `YomiHub` trước mọi bước `apk`/`apk64`/`apkx64`, `YumiHub Android TV` cho bước `tv`, `finally` luôn trả về `YomiHub`); hàm `Assert-Label` kiểm tra nhãn **mọi APK** bằng `aapt2` trước khi chép ra `output` – sai là dừng. Bản trước sửa: `audit-0.5.1/build_051.before_label.ps1`.
+- Dựng lại `-step apk` (09:14 → 09:25) + `-step pack` (09:25 → 09:28): `YomiHub-0.5.1-{arm64-v8a,armeabi-v7a,x86_64}.apk` → `application-label:'YomiHub'`; 3 APK TV giữ `'YumiHub Android TV'`. Note 9: cài đè, `pm path` + `aapt2` trên APK đang cài → `'YomiHub'`.
+- Release `v0.5.1`: xóa 9 tệp cũ (3 APK điện thoại, `SHA256SUMS`, `Setup.exe`, `.appxbundle`, `RootCA.cer`, `Install-YomiHub.bat/.ps1` – bước `pack` tạo lại các tệp này) và tải lại (`audit-0.5.1/release_fix_label.ps1`, 09:30 → 09:32): 17/17 tệp `OK download=200`, `releases/latest = v0.5.1`, `problems: 0`. Bảng mã băm mục J đã cập nhật.
