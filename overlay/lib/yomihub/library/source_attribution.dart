@@ -10,7 +10,6 @@ import 'package:mangayomi/models/source.dart';
 import 'package:mangayomi/modules/library/providers/library_filter_provider.dart';
 import 'package:mangayomi/modules/widgets/manga_image_card_widget.dart';
 import 'package:mangayomi/repositories/manga_repository.dart';
-import 'package:mangayomi/repositories/source_repository.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
@@ -86,7 +85,8 @@ class YomiSourceAttribution {
     var found = 0;
     try {
       await open();
-      final installed = sourceRepository.getInstalled();
+      // 0.5.1: async (was findAllSync of every source with its script)
+      final installed = await isar.sources.filter().isAddedEqualTo(true).findAll();
       final byName = <String, List<Source>>{};
       for (final s in installed) {
         byName.putIfAbsent(_norm(s.name ?? ''), () => []).add(s);
@@ -94,7 +94,7 @@ class YomiSourceAttribution {
       final locals = await mangaRepository.getAllLocal();
       // titles from real extensions, by normalised name + type
       final online = <String, Manga>{};
-      for (final m in isar.mangas.filter().not().sourceEqualTo('local').findAllSync()) {
+      for (final m in await isar.mangas.filter().not().sourceEqualTo('local').findAll()) {
         if (m.isLocalArchive ?? false) continue;
         online.putIfAbsent('${m.itemType.index}|${_norm(m.name ?? '')}', () => m);
       }

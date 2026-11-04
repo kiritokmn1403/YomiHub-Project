@@ -1,5 +1,6 @@
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +8,12 @@ import 'package:mangayomi/utils/log/logger.dart';
 
 /// YomiHub 0.1.8: "Nhật ký ứng dụng" - the application log (logs.txt) inside
 /// the app. Every error report is written here, on Android and Windows.
+/// 0.5.1: top-level so the isolate closure captures only [paths] (a closure
+/// made inside the State method also captured the widget tree: "object is
+/// unsendable – _AsyncCompleter", seen on the Note 9).
+Future<List<String>> parseAppLogInBackground(List<String> paths) =>
+    Isolate.run(() => _AppLogScreenState.parseLog(paths));
+
 class AppLogScreen extends StatefulWidget {
   const AppLogScreen({super.key});
   @override
@@ -27,28 +34,51 @@ class _AppLogScreenState extends State<AppLogScreen> {
 
   Future<void> _load() async {
     setState(() => _loading = true);
-    await AppLogger.flush();
-    final f = await AppLogger.logFile();
-    var text = '';
-    if (f != null && await f.exists()) {
-      final old = File('${f.path}.old');
-      if (await old.exists()) text = await old.readAsString();
-      text += await f.readAsString();
-    }
-    // one entry per "[date][LEVEL]" header, continuation lines kept with it
-    final entries = <String>[];
-    for (final l in text.split('\n')) {
-      if (l.startsWith('[') && l.contains('][') || entries.isEmpty) {
-        entries.add(l);
-      } else if (l.trim().isNotEmpty) {
-        entries[entries.length - 1] += '\n$l';
+    var lines = <String>[];
+    // 0.5.1: the screen spun for minutes on the Note 9: every continuation
+    // line was appended with `entries[last] += line` (quadratic on long
+    // stack traces / big logs) on the UI isolate, and any exception left
+    // `_loading` true forever. Now: bounded waits, parsing in a background
+    // isolate with linear joins, newest 3000 entries, spinner always ends.
+    try {
+      await AppLogger.flush();
+      final f = await AppLogger.logFile().timeout(const Duration(seconds: 5));
+      final paths = <String>[if (f != null) '${f.path}.old', if (f != null) f.path];
+      lines = await parseAppLogInBackground(paths).timeout(const Duration(seconds: 20));
+    } catch (e) {
+      lines = ['[${DateTime.now()}][WARNING] Không đọc được nhật ký: $e'];
+    } finally {
+      if (mounted) {
+        setState(() {
+          _lines = lines;
+          _loading = false;
+        });
       }
     }
-    if (!mounted) return;
-    setState(() {
-      _lines = entries.reversed.where((e) => e.trim().isNotEmpty).toList();
-      _loading = false;
-    });
+  }
+
+  /// Newest-first entries ("[date][LEVEL]" header + its continuation lines).
+  static List<String> parseLog(List<String> paths) {
+    final text = StringBuffer();
+    for (final p in paths) {
+      try {
+        final file = File(p);
+        if (file.existsSync()) text.write(file.readAsStringSync());
+      } catch (_) {}
+    }
+    final entries = <String>[];
+    StringBuffer? cur;
+    for (final l in text.toString().split('\n')) {
+      if ((l.startsWith('[') && l.contains('][')) || cur == null) {
+        if (cur != null && cur.toString().trim().isNotEmpty) entries.add(cur.toString());
+        cur = StringBuffer(l);
+      } else if (l.trim().isNotEmpty) {
+        cur..write('\n')..write(l);
+      }
+    }
+    if (cur != null && cur.toString().trim().isNotEmpty) entries.add(cur.toString());
+    final newest = entries.reversed.take(3000).toList();
+    return newest;
   }
 
   Color? _color(String e, BuildContext c) {

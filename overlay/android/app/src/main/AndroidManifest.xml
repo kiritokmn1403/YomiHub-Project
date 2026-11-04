@@ -60,6 +60,8 @@
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:banner="@drawable/tv_banner"
+        android:requestLegacyExternalStorage="true"
+        android:preserveLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
         <!-- YomiHub 0.1.9: ask Google Play services to download the text
              recognition models ("Dịch ảnh") when the app is installed -->

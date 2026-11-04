@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:mangayomi/providers/storage_provider.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
 
 class AppLogger {
   static File? _logFile;
@@ -39,14 +40,26 @@ class AppLogger {
     try {
       final storage = StorageProvider();
       final directory = await storage.getDefaultDirectory();
-      _logFile = File(path.join(directory!.path, 'logs.txt'));
+      var candidate = File(path.join(directory!.path, 'logs.txt'));
+      // 0.5.1: Note 9 / Android 10 had no storage permission (see
+      // StorageProvider.requestPermission), /storage/emulated/0/YomiHub could
+      // not be created, init() failed silently and NO error was ever written
+      // – the log screen then spun forever. Fall back to the app's own folder.
+      try {
+        await candidate.parent.create(recursive: true);
+        await candidate.writeAsString('', mode: FileMode.append, flush: true);
+      } catch (_) {
+        candidate = File(path.join((await getApplicationSupportDirectory()).path, 'logs.txt'));
+        await candidate.parent.create(recursive: true);
+      }
+      _logFile = candidate;
 
       if (await _logFile!.exists() && await _logFile!.length() > _maxSize) {
         // keep the previous log one generation back instead of losing it
         final old = File('${_logFile!.path}.old');
         if (await old.exists()) await old.delete();
         await _logFile!.rename(old.path);
-        _logFile = File(path.join(directory.path, 'logs.txt'));
+        _logFile = File(candidate.path);
       }
 
       if (!await _logFile!.exists()) {
@@ -138,11 +151,14 @@ class AppLogger {
   }
 
   static Future<void> flush() async {
+    // 0.5.1: bounded – a sink in error state kept _draining busy and the
+    // log screen waiting forever.
     try {
-      while (_draining) {
+      final sw = Stopwatch()..start();
+      while (_draining && sw.elapsedMilliseconds < 3000) {
         await Future<void>.delayed(const Duration(milliseconds: 5));
       }
-      await _sink?.flush();
+      await _sink?.flush().timeout(const Duration(seconds: 3));
     } catch (_) {}
   }
 

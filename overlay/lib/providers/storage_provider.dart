@@ -23,6 +23,8 @@ import 'package:mangayomi/models/track_preference.dart';
 import 'package:mangayomi/utils/extensions/string_extensions.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:path/path.dart' as path;
 import 'package:mangayomi/yomihub/app_identity.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
@@ -59,11 +61,48 @@ class StorageProvider {
   /// [force] and always ask again.
   static bool _declinedThisRun = false;
 
+  /// 0.5.1: Android SDK level (cached). "All files access"
+  /// (MANAGE_EXTERNAL_STORAGE) only exists from Android 11 (SDK 30). On
+  /// Android 7–10 the app must hold READ/WRITE_EXTERNAL_STORAGE – it never
+  /// asked for them, so every folder outside its own storage failed with
+  /// "PathAccessException … Permission denied (errno 13)": Note 9 / Android
+  /// 10, 03/11/2026, local folders on the SD card (Aniyomi / Nekoyomi /
+  /// Mangayomi downloads) stayed empty (YomiHub Update item 5). The manifest
+  /// also gets requestLegacyExternalStorage for Android 10.
+  static int? _sdkInt;
+  static Future<int> androidSdkInt() async {
+    if (_sdkInt != null) return _sdkInt!;
+    try {
+      _sdkInt = (await DeviceInfoPlugin().androidInfo).version.sdkInt;
+    } catch (_) {
+      _sdkInt = 30;
+    }
+    return _sdkInt!;
+  }
+
   Future<bool> requestPermission({bool force = false}) async {
     if (!Platform.isAndroid) return true;
-    Permission permission = Permission.manageExternalStorage;
+    Permission permission = (await androidSdkInt()) >= 30
+        ? Permission.manageExternalStorage
+        : Permission.storage;
     if (await permission.isGranted) return true;
     if (_declinedThisRun && !force) return false;
+    // 0.5.1 (Android TV 14 emulator, 04/11/2026): the Browse tab and the
+    // start-up local scan ask without `force`, so the system "All files
+    // access" page still opened at EVERY launch. Background callers now ask
+    // only once ever; actions the user starts (rescan local folders, add a
+    // folder, download, mpv folder) pass `force` and always ask.
+    if (!force) {
+      // The start-up scan runs before _postLaunchInit opens YomiPrefs: wait
+      // for it (TV emulator 04/11 07:46 – the page still opened at every
+      // launch because get() saw the default and set() had no box yet).
+      try {
+        await YomiPrefs.ready.timeout(const Duration(seconds: 10));
+      } catch (_) {}
+      if (!YomiPrefs.isOpen) return false;
+      if (YomiPrefs.get<bool>('storagePromptShown', false)) return false;
+      await YomiPrefs.set('storagePromptShown', true);
+    }
     if (await permission.request().isGranted) {
       _declinedThisRun = false;
       return true;

@@ -146,8 +146,12 @@ Future<void> fetchSourcesList({
       final t = e.toString().toLowerCase();
       if (t.contains('host lookup') || t.contains('socketexception') ||
           t.contains('timeout') || t.contains('connection')) {
-        // offline / DNS: not an app error, once per repo is enough
-        AppLogger.logOnce('repo-net:$url', 'fetchSourcesList: $url unreachable: ${YomiExtErrors.short(e)}');
+        // offline / DNS: not an app error. 0.5.1: once per HOST and session
+        // (logs 03/11 14:15: 45 lines in 13 s, one per repo, while the
+        // device was offline – github.com, codeberg.org, api.github.com and
+        // the jsDelivr mirrors all failed at the same time).
+        final host = Uri.tryParse(url)?.host ?? url;
+        AppLogger.logOnce('repo-net:$host', 'fetchSourcesList: $host unreachable (vd. $url): ${YomiExtErrors.short(e)} – sẽ thử lại khi có mạng');
       } else {
         AppLogger.log(
           'fetchSourcesList: filtering sources failed ($url): $e\n$st',
@@ -214,7 +218,8 @@ Future<void> fetchSourcesList({
     // name + language and keep its id, so it is updated instead of being
     // shown as a second, never-updating source.
     final byName = <String, Source>{};
-    for (final s in sourceRepository.getInstalled()) {
+    // 0.5.1: filtered async query instead of getInstalled() on the UI thread
+    for (final s in await sourceRepository.installedAidokuLnreaderAsync(itemType)) {
       if (s.itemType == itemType &&
           (s.sourceCodeLanguage == SourceCodeLanguage.aidoku ||
               s.sourceCodeLanguage == SourceCodeLanguage.lnreader)) {

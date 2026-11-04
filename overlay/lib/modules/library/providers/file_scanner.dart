@@ -222,6 +222,7 @@ Future<void> _scanDirectory(
     List<FileSystemEntity> items,
     bool imageFolder, [
     String? mangaKey,
+    String? nameOverride,
   ]) {
     for (final chapter in items) {
       final relPath = getLocalVirtualPath(localFolder, chapter.path).trim();
@@ -234,6 +235,7 @@ Future<void> _scanDirectory(
           imageFolder,
           relPath,
           mangaKey ?? p.posix.dirname(relPath),
+          nameOverride,
         ]);
         existingPaths.add(relPath);
       }
@@ -261,7 +263,7 @@ Future<void> _scanDirectory(
   final looseFiles = (await localFiles(
     titleEntities,
     logContext: '_scanDirectory root files',
-  )).where((f) => !isHiddenSystemFile(f.path)).toList();
+  )).where((f) => !isHiddenSystemFile(f.path) && !_isForeignBackupFile(f.path)).toList();
   for (final f in looseFiles) {
     final ItemType? looseType = isArchiveFile(f.path)
         ? ItemType.manga
@@ -310,7 +312,11 @@ Future<void> _scanDirectory(
   }
 
   // Iterate over each sub-directory (each representing a title, Manga or Anime)
-  for (final folder in titleFolders) {
+  // 0.5.1: titles may sit deeper (downloads/<Source>/<Title>), see
+  // _collectTitleFolders.
+  final scanTitleFolders = await _collectTitleFolders(titleFolders);
+  debugPrint('[LocalLibraryScanner] title folders: top=${titleFolders.length}, titles=${scanTitleFolders.length}');
+  for (final folder in scanTitleFolders) {
     final title = p.basename(folder.path); // Anime/Manga title
     String relativePath = getLocalVirtualPath(localFolder, folder.path);
 
@@ -337,9 +343,17 @@ Future<void> _scanDirectory(
         imageChapterDirs.add(subDir);
       }
     }
+    // 0.5.1: Aniyomi/Nekoyomi/Mangayomi keep each episode in its own folder
+    // ("Episode 3/Episode 3.mkv", "Video/Video.mkv").
+    final episodeVideos = <File>[];
+    for (final subDir in subDirs) {
+      if (_isIgnoredLocalSubDirectory(subDir) || imageChapterDirs.contains(subDir)) continue;
+      final v = await _firstVideoFileInDirectory(subDir);
+      if (v != null) episodeVideos.add(v);
+    }
     final hasImagesFolders = imageChapterDirs.isNotEmpty;
-    final hasArchives = files.any((f) => isArchiveFile(f.path));
-    final hasVideos = files.any((f) => isVideoFile(f.path));
+    final hasArchives = files.any((f) => isArchiveFile(f.path) && !_isForeignBackupFile(f.path));
+    final hasVideos = files.any((f) => isVideoFile(f.path)) || episodeVideos.isNotEmpty;
     final hasEpubs = files.any((f) => isEpubFile(f.path));
     debugPrint(
       '[LocalLibraryScanner] _scanDirectory title scan: '
@@ -515,13 +529,18 @@ Future<void> _scanDirectory(
     } // Possible that image folders and archives are mixed in one manga
     if (hasArchives) {
       // Each .cbz/.zip file is a chapter
-      final archives = files.where((f) => isArchiveFile(f.path)).toList();
+      final archives = files.where((f) => isArchiveFile(f.path) && !_isForeignBackupFile(f.path)).toList();
       addNewChapters(archives, false);
     }
     if (hasVideos) {
       // Each .mp4 is an episode
       final videos = files.where((f) => isVideoFile(f.path)).toList();
-      addNewChapters(videos, false);
+      addNewChapters(videos, false, relativePath);
+      // 0.5.1: episode folders – the folder name is the episode name
+      // (the file inside is often just "Video.mkv" / "Episode.mkv").
+      for (final v in episodeVideos) {
+        addNewChapters([v], false, relativePath, p.basename(p.dirname(v.path)));
+      }
     }
     if (hasEpubs) {
       // Each .epub
@@ -592,10 +611,24 @@ Future<void> _scanDirectory(
     final manga = mangaByPath[mangaPath];
     if (manga != null) {
       if (manga.itemType == ItemType.novel) {
-        final book = await parseEpubFromPath(
-          epubPath: chapterPath,
-          fullData: true,
-        );
+        // 0.5.1: a broken / half-downloaded .epub ("invalid Zip archive:
+        // Could not find EOCD", Note 9 localnovel 04/11 00:25) threw out of
+        // the loop – every later chapter of the scan was lost and a crash
+        // report was written. Skip that file and log it once.
+        final EpubNovel book;
+        try {
+          book = await parseEpubFromPath(
+            epubPath: chapterPath,
+            fullData: true,
+          );
+        } catch (e) {
+          AppLogger.logOnce(
+            'bad-epub:$chapterPath',
+            '[Thư mục cục bộ] Bỏ qua EPUB hỏng: $virtualChapterPath ($e)',
+            logLevel: LogLevel.warning,
+          );
+          continue;
+        }
 
         if (book.cover != null) {
           manga.customCoverImage = book.cover!.getCoverImage;
@@ -629,8 +662,9 @@ Future<void> _scanDirectory(
         final chapterFile = File(chapterPath);
         final chap = Chapter(
           mangaId: manga.id,
-          name:
-              pathBool[1] // If Chapter is an image folder or archive/video
+          name: (pathBool.length > 4 && pathBool[4] != null)
+              ? pathBool[4] as String
+              : pathBool[1] // If Chapter is an image folder or archive/video
               ? p.basename(chapterPath)
               : p.basenameWithoutExtension(chapterPath),
           dateUpload: dateNow.toString(),
@@ -762,9 +796,98 @@ Future<File?> _firstImageFileInDirectory(Directory dir) async {
   }
 }
 
+/// 0.5.1: app data folders that sit next to downloads in a shared
+/// Mihon/Aniyomi/Nekoyomi/Mangayomi storage folder (never titles).
+const _yhAppDataDirs = {
+  'autobackup', 'mpv-config', 'fonts', 'shaders', 'scripts', 'script-opts',
+  '.thumbnails', 'cache', 'logs',
+};
+
 bool _isIgnoredLocalSubDirectory(Directory dir) {
   final name = p.basename(dir.path);
-  return name.startsWith('.') || name.endsWith('_subtitles');
+  final lower = name.toLowerCase();
+  // 0.5.1: "<chapter>_tmp" = unfinished download of Mihon/Aniyomi/Mangayomi
+  return name.startsWith('.') ||
+      name.endsWith('_subtitles') ||
+      lower.endsWith('_tmp') ||
+      _yhAppDataDirs.contains(lower);
+}
+
+/// 0.5.1: backups of other apps are not comics (Kotatsu `*.bk.zip`).
+bool _isForeignBackupFile(String path) {
+  final n = p.basename(path).toLowerCase();
+  return n.endsWith('.bk.zip') || n.endsWith('.tachibk') || n.endsWith('.backup');
+}
+
+Future<File?> _firstVideoFileInDirectory(Directory dir) async {
+  try {
+    final entities = await listLocalDirectory(dir, logContext: '_firstVideoFileInDirectory');
+    final videos = (await localFiles(entities, logContext: '_firstVideoFileInDirectory'))
+        .where((f) => isVideoFile(f.path))
+        .toList()
+      ..sort((a, b) => a.path.compareTo(b.path));
+    return videos.firstOrNull;
+  } catch (_) {
+    return null;
+  }
+}
+
+/// 0.5.1 (YomiHub Update: "thư mục cục bộ không nhận diện được các tệp đã
+/// tải của Aniyomi, Nekoyomi, Mangayomi"). Those apps keep titles 2–3 levels
+/// below the folder the user picks:
+///   Mihon/Aniyomi/Nekoyomi: downloads/<Source (LANG)>/<Title>/<Chapter>.cbz
+///                           downloads/<Source (LANG)>/<Title>/<Episode>/<Episode>.mkv
+///   Mangayomi:              downloads/Manga|Anime|Novel/<Source (LANG)>/<Title>/…
+/// The scanner treated every first-level folder ("downloads", "local", …) as
+/// a title and found nothing. Walk down until a folder holds chapter content
+/// itself (archive / video / epub file, or a sub folder with images or a
+/// video); that folder is a title. Copies of the same tree nested inside
+/// each other ("localnovel/localnovel/downloads/…") import once.
+@visibleForTesting
+Future<List<Directory>> debugCollectTitleFolders(List<Directory> top) =>
+    _collectTitleFolders(top);
+
+Future<List<Directory>> _collectTitleFolders(List<Directory> top) async {
+  final out = <Directory>[];
+  final seen = <String>{};
+  var visited = 0;
+  Future<void> visit(Directory d, int depth) async {
+    if (visited++ > 20000) return;
+    if (_isIgnoredLocalSubDirectory(d)) return;
+    final children = await listLocalDirectory(d, logContext: '_collectTitleFolders');
+    final files = await localFiles(children, logContext: '_collectTitleFolders');
+    final subs = (await localDirectories(children, logContext: '_collectTitleFolders'))
+        .where((s) => !_isIgnoredLocalSubDirectory(s))
+        .toList()
+      ..sort((a, b) => a.path.compareTo(b.path));
+    var isTitle = depth >= 4 ||
+        subs.isEmpty ||
+        files.any((f) =>
+            !_isForeignBackupFile(f.path) &&
+            (isArchiveFile(f.path) || isVideoFile(f.path) || isEpubFile(f.path)));
+    if (!isTitle) {
+      for (final s in subs) {
+        if (await _firstImageFileInDirectory(s) != null ||
+            await _firstVideoFileInDirectory(s) != null) {
+          isTitle = true;
+          break;
+        }
+      }
+    }
+    if (isTitle) {
+      final key = '${p.basename(d.parent.path)}/${p.basename(d.path)}'.toLowerCase();
+      if (depth == 0 || seen.add(key)) out.add(d);
+      return;
+    }
+    for (final s in subs) {
+      await visit(s, depth + 1);
+    }
+  }
+  final sortedTop = [...top]..sort((a, b) => a.path.compareTo(b.path));
+  for (final d in sortedTop) {
+    await visit(d, 0);
+  }
+  return out;
 }
 
 bool _sameBytes(List<int>? a, List<int> b) {

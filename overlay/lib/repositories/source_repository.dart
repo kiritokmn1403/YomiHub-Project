@@ -36,6 +36,43 @@ class SourceRepository {
   List<Source> getInstalled() =>
       isar.sources.filter().isAddedEqualTo(true).findAllSync();
 
+  /// 0.5.1: start-up check for a Kotatsu source, as an Isar query (the old
+  /// check loaded every source with its script on the UI thread).
+  Future<bool> anyKotatsuLikeAsync() => isar.sources
+      .filter()
+      .baseUrlContains('47350')
+      .or()
+      .sourceCodeUrlContains('kotatsu')
+      .or()
+      .sourceCodeContains('kotatsu')
+      .isNotEmpty();
+
+  /// 0.5.1: installed Aidoku / LNReader sources of one type, async.
+  Future<List<Source>> installedAidokuLnreaderAsync(ItemType itemType) => isar.sources
+      .filter()
+      .isAddedEqualTo(true)
+      .itemTypeEqualTo(itemType)
+      .group((q) => q
+          .sourceCodeLanguageEqualTo(SourceCodeLanguage.aidoku)
+          .or()
+          .sourceCodeLanguageEqualTo(SourceCodeLanguage.lnreader))
+      .findAll();
+
+  /// 0.5.1: id / website / type / active of every installed source, without
+  /// loading the sources themselves (their scripts are several MB in total).
+  /// Four property queries on the same filter return rows in the same order.
+  Future<List<(int, String?, ItemType, bool)>> installedLiteAsync() async {
+    QueryBuilder<Source, Source, QAfterFilterCondition> q() =>
+        isar.sources.filter().isAddedEqualTo(true);
+    final ids = await q().idProperty().findAll();
+    final urls = await q().baseUrlProperty().findAll();
+    final types = await q().itemTypeProperty().findAll();
+    final active = await q().isActiveProperty().findAll();
+    final n = [ids.length, urls.length, types.length, active.length]
+        .reduce((a, b) => a < b ? a : b);
+    return [for (var i = 0; i < n; i++) (ids[i], urls[i], types[i], active[i] ?? true)];
+  }
+
   Future<Source?> findByIdAsync(int id) => isar.sources.get(id);
 
   List<Source> getAllOrInstalled({bool installedOnly = false}) {

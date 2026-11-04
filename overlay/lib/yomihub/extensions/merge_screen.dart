@@ -18,9 +18,13 @@ class ExtensionMergeScreen extends StatefulWidget {
 
   /// Shows a one-time hint when unmerged duplicate domains are found (called
   /// from the More screen).
+  static bool _suggested = false;
   static Future<void> suggestIfNeeded(BuildContext context) async {
-    final groups = ExtensionMergeHelper.duplicateGroups();
-    if (groups.isEmpty || !context.mounted) return;
+    // 0.5.1: light async count (see duplicateGroupCountAsync), once per session
+    if (_suggested) return;
+    _suggested = true;
+    final count = await ExtensionMergeHelper.duplicateGroupCountAsync();
+    if (count == 0 || !context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 8),
@@ -28,7 +32,7 @@ class ExtensionMergeScreen extends StatefulWidget {
         showCloseIcon: true,
         content: Text(
           tr('Phát hiện {p0} nhóm tiện ích trùng tên miền. Nên hợp nhất?', {
-            'p0': groups.length,
+            'p0': count,
           }),
         ),
         action: SnackBarAction(

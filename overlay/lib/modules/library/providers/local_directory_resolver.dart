@@ -62,7 +62,12 @@ Future<ResolvedLocalDirectory> resolveLocalDirectoryPath(
   }
 
   if (Platform.isAndroid) {
-    final permissionGranted = await StorageProvider().requestPermission(force: true);
+    // 0.5.1: no `force` – this also runs in the background start-up scan.
+    // With `force: true` the system "All files access" page (Android 11+,
+    // seen on the Android TV 14 emulator) or the storage dialog opened at
+    // EVERY launch when the user had not granted it. The user-started
+    // rescan (Cài đặt › Tải xuống) asks with `force` before scanning.
+    final permissionGranted = await StorageProvider().requestPermission();
     debugPrint(
       '[LocalLibraryScanner] $logContext Android storage permission retry: '
       'granted=$permissionGranted, path=$dirPath',

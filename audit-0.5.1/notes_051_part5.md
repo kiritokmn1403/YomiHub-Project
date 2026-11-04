@@ -1,0 +1,25 @@
+
+#### H. Yêu cầu bổ sung 04/11 06:13 và 06:58; kiểm thử Android TV và Windows (04/11 06:13 → 07:30)
+- **06:13 – "tích hợp Decode-Extract":** đã có từ mục F (phiên làm việc trong đêm). Đã kiểm tra lại kho (commit `e5d18b3`, thư mục `Pact/`) và mã Dart (`lib/yomihub/apk/`).
+- **06:58 – "Decode-Extract có thể dùng để giải mã các tiện ích vBooks": từ chối**, như mục C. `decode_manifest.js` / `extract_classes.js` chỉ đọc định dạng tệp: AXML, bảng DEX, khung lớp không có thân hàm. Muốn mở 234 tiện ích mã hóa thì phải lấy khóa/thuật toán từ ứng dụng vBook đã dịch ngược, tức vượt qua lớp bảo vệ mà tác giả tiện ích chủ ý đặt, rồi phát hành công khai. Công cụ trong YomiHub giữ vai trò **chỉ đọc** tệp APK tiện ích. Đã đề xuất với người dùng: xin tác giả bản không mã hóa, hoặc dùng 310 tiện ích không mã hóa.
+- **Lỗi mới (Android TV 14, máy ảo `YomiHub_TV_API34`):** mỗi lần mở YomiHub, trang hệ thống "Allow access to manage all files" tự hiện, kể cả ở bản dựng 03:20 (đã bỏ `force` ở `local_directory_resolver`). Nguyên nhân: `browse_screen.dart` (`_chekPermission`) và lượt quét nền vẫn gọi `requestPermission()`; cờ `_declinedThisRun` chỉ chặn hỏi lại trong **một lần chạy**.
+  - Sửa `lib/providers/storage_provider.dart`: lời gọi không có `force` chỉ hỏi **một lần duy nhất** (`YomiPrefs['storagePromptShown']`). Thao tác người dùng tự bấm (quét lại, thêm thư mục, tải xuống, thư mục mpv) vẫn truyền `force` nên vẫn được hỏi.
+  - Test `yh_051_test.dart` có thêm kiểm tra này.
+  - Trong lúc thử, phím Enter (`key:23`) trên trang cài đặt đó đã vô tình tắt quyền "manage all files" của `com.android.sharedstoragebackup` **trên máy ảo**. Đã bật lại và kiểm tra: `appops … MANAGE_EXTERNAL_STORAGE: allow`.
+- **Android TV** (bản dựng 03:20, APK armeabi-v7a, `versionCode 1043`):
+  - Thanh bên chỉ còn Phim & Điện ảnh / Cập nhật / Duyệt / Thêm (`tv02_man_hinh_chinh`).
+  - Duyệt › Nguồn: HotPhim, YouTube, AVSub, Anime47, AnimeVN, HayChill, HiHiPhim (`tv03_duyet`).
+  - HotPhim: danh sách Phổ biến (`tv04_hotphim`) → chi tiết "Thanh Gươm Diệt Quỷ: Vô Hạn Thành" → **phát được** (logo TOHO, HotPhim HLS, điều khiển tiếng Việt: `tv07_phat_35s`, `tv08_dieu_khien`). Ở 0.5.0 luồng HotPhim không mở được trên máy ảo này.
+  - Bấm "Quay lại" khi đang phát → phim thu vào **cửa sổ PiP** (`tv10_chi_tiet`).
+  - Phép thử "tiếp tục phát" trên TV bị gián đoạn vì trang quyền nói trên mở lại khi khởi động → kiểm thử lại trên bản dựng cuối (mục I).
+- **Windows 11 x64** (bản dựng Windows 02:44):
+  - Portable `YomiHub-0.5.1-windows-x64.zip`: giải nén 193 tệp / 331 MB; `YomiHub.exe` 0.5.1+43 chạy, phản hồi (469 MB).
+  - `Setup.exe`: bấm "Cài Đặt Ngay" → cài đè 0.5.0+42 vào `%LOCALAPPDATA%\YomiHub`, tự mở ứng dụng với thư viện, danh mục, cài đặt giữ nguyên (`win01_setup_051`).
+  - Thêm › gợi ý "Phát hiện 14 nhóm tiện ích trùng tên miền" vẫn hiện, cùng số nhóm như 0.5.0 với truy vấn nhẹ mới (`win03`).
+  - Giới thiệu: **Beta (0.5.1)** (`win04`).
+  - Nhật ký ứng dụng mở ngay, có dòng gộp mới `fetchSourcesList: kohiden.xyz unreachable (vd. …)` (`win05`). Dòng "Giao diện bị treo 2.8 giây" lúc 06:36:29 trùng lúc máy ngủ / mất kết nối (bộ đo dùng đồng hồ thực).
+  - Dự án GitHub đã sử dụng: tìm "vbook" ra 5 mục, gồm 3 mục mới 0.5.1 (`win06`).
+  - Cài đặt › Duyệt › **Kiểm tra tệp APK tiện ích** → chọn `YomiHub-0.5.1-armeabi-v7a.apk`: Ứng dụng Android, `com.yomihub.app`, 0.5.1 (1043), minSdk/targetSdk 24/36, 5 tệp `classes*.dex` / 21.500 lớp, 15 lớp nguồn, 18 `<meta-data>`, nút xem `AndroidManifest.xml` (`win07`).
+  - `.appxbundle`: **không cài** (phải nhập chứng chỉ `YomiHub-RootCA.cer` vào kho tin cậy của Windows – thay đổi bảo mật hệ thống; người dùng tự chạy `Install-YomiHub.bat`). Kiểm tra cấu trúc: `YomiHub_0.5.1_x64.appx` 270,9 MB, `Package Version="0.5.1.0" Architecture="x64"`, `MinVersion="10.0.14393.0"`, 447 tệp, có `AppxSignature.p7x` (ký `CN=YomiHub, O=YomiHub, C=VN`; `Get-AuthenticodeSignature` = UnknownError vì gốc tự ký chưa được tin cậy – đúng như dự kiến).
+  - Ảnh Windows chụp bằng Computer use (chỉ cửa sổ YomiHub; ứng dụng khác bị che). `PrintWindow` cho ảnh trắng với cửa sổ Flutter (vẽ bằng GPU).
+- Thư viện Windows có danh mục/ảnh bìa 18+ của người dùng → ảnh chụp thư viện **không** đưa vào gói QA công khai.

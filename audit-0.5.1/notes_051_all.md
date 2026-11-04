@@ -1,0 +1,135 @@
+
+### 03/11/2026 — Cập nhật phiên bản 0.5.1 (YomiHub 0.5.1+43)
+
+Thực hiện: Claude (phiên cloud liên kết máy `kiritokmn-lap`), 03/11/2026 21:51 → (xem mục J) (Asia/Saigon). Người dùng xác nhận bản tóm tắt lúc 21:51 ("đồng ý, hãy tiến hành ngay bây giờ"), giữ đề xuất như 0.5.0: Android 7.0+ (không phải 6.0) và Windows 10/11 x64 (không phải Windows 7/x86/ARM). 21:55 người dùng yêu cầu thêm: "tích hợp các mã nguồn mới, kiểm tra xem các tiện ích vBooks có còn bị mã hoá nữa không" (mục C).
+
+#### A. Yêu cầu
+1. Nâng lên 0.5.1; Android (3 APK) + `YumiHub Android TV` (3 APK, bỏ Comic, Novel, Google Play Books, Booru); Windows `.appxbundle`, `Setup.exe`, portable.
+2. Sheet `Feature Check` (45 mục) và `YomiHub Update` (7 mục, mới: thư mục cục bộ không nhận tệp tải của Aniyomi/Nekoyomi/Mangayomi) của `Project YomiHub.xlsx`; `Project GitHub.xlsx` (579 liên kết).
+3. Sửa lỗi trong `logs (1).txt` (30/10 06:09 → 03/11 21:24).
+4. Ghi vào tài liệu này: hạng mục, lỗi, dòng lệnh sửa, công cụ, kết quả kiểm thử, ngày.
+5. Dựng, cài, kiểm thử (ảnh + video), tải mã nguồn + Output lên GitHub (Releases + README).
+
+#### B. Công cụ đã dùng
+- Đọc/sửa mã: shell Linux của Claude trên máy người dùng (thư mục kết nối); mọi phép sửa bằng `audit-0.5.1/edit.py` (Python 3: `assert` chuỗi cũ xuất hiện đúng 1 lần, chép bản gốc vào `audit-0.5.1/before/`, ghi `audit-0.5.1/changed_files.txt`). Kịch bản sửa: `audit-0.5.1/e01_local.py` (thư mục cục bộ), `e02_net.py` (nhật ký mạng), `e03_vbook.py` (runtime vBook) và các lệnh `edit(...)` ghi trong mục D.
+- Dựng/kiểm thử trên Windows: `3_run_jobs.bat` + `3b_run_fast_jobs.bat` (Claude mở lại bằng Computer use trong File Explorer lúc 21:54 – hai trình chạy đã dừng từ 14:08), `sync_051.ps1`, `build_051.ps1`, `qa051.ps1`, `release_051.ps1` (sinh từ bản 0.5.0, đổi phiên bản/thư mục); Flutter 3.47.6 / Dart 3.13.5, Android SDK + adb, Gradle, Rust/Cargo, Visual Studio 2022 Build Tools, WiX/NuGet, ffmpeg.
+- Quét kho vBook: `git clone --depth 1` 18 kho + Python (`zipfile`) trong môi trường cloud (máy người dùng chặn `raw.githubusercontent.com` từ shell); kết quả `audit-0.5.1/vbook_encryption_scan_2026-11-03.csv`.
+- Kiểm tra thư mục trên Note 9: `adb push` script `audit-0.5.1/yomi_ls*.sh` + `adb shell sh` (danh sách tệp cá nhân – không đưa lên Git, `.gitignore`).
+
+#### C. Tiện ích vBook mã hóa – kiểm tra lại (yêu cầu bổ sung 21:55)
+- Thư mục mới `D:\A.I Project\A.I Project - vBooks` chứa `vBooks.apk` và mã Java dịch ngược của ứng dụng vBook (đóng nguồn) cùng `decode_manifest.js`, `extract_classes.js`. **Không tích hợp** mã này vào YomiHub và không dùng để giải mã tiện ích: chép mã dịch ngược của ứng dụng đóng nguồn vào dự án công khai là vi phạm bản quyền, và lấy khóa từ ứng dụng để mở tiện ích mà tác giả chủ ý chỉ cho chạy trong vBook là vượt qua lớp bảo vệ của họ. Người dùng đã được thông báo và đồng ý tiếp tục ("Tiếp tục đi", 22:01).
+- Quét 554 mục của 18 kho vBook (BaoBao666888, Darkrai9x ×2, Evamirion, Gold2k2k2k, Ivan1hai, Moleys, SoulGodEve9x9, WillSun28, dat-bi, duongden, gh369-639, hajljnopera, hienpro00123, kychitoge, lethituyen, mizhm, yae-miko-313): **234 mã hóa** (`metadata.encrypt=true`, mọi `src/*.js` là bản mã), **310 không mã hóa** + 3 không mã hóa (mã nén một phần: Legado, 85 Novel, 123 Truyện), 6 thiếu `plugin.zip` trong kho, 1 zip lỗi. Toàn bộ 16 tiện ích báo trong log (MotPhim, RoPhim ×2, GuPhim, LuPhim, Phim4K, Phim Nhựa, Phimtv, AnimeVietsub, Mimimoe, 210CB, CBunu Comic, BLVietsub, Bilibili, Bilibili TV, FreeReels) **vẫn mã hóa**. Kết luận: giữ cách xử lý 0.5.0 (khóa + nhãn "Chỉ chạy trên vBook").
+
+#### D. Lỗi phát hiện và cách sửa (tệp, dòng lệnh)
+
+Log mới có 2.400+ dòng; phần lớn ERROR (Cloudflare MiMiHentai ×23, "Cannot seek in this stream", Pornhub Shorties HTTP 403, Hako `TypeError`, Tor quá 90 giây, Telegram `chat_id is empty`) xảy ra **30/10–03/11 trước khi cài 0.5.0** và đã được xử lý/ghi nhận ở 0.4.5–0.5.0. Sau khi cài 0.5.0 (03/11 13:50 → 21:24) còn 75 dòng WARNING/ERROR:
+
+| Lỗi (sau 0.5.0) | Nguyên nhân thật | Sửa ở 0.5.1 |
+| --- | --- | --- |
+| 45 × `fetchSourcesList: … unreachable: Failed host lookup: 'raw.githubusercontent.com' (DNS hệ thống và DNS-over-HTTPS)` + github.com, codeberg.org, api.github.com, MediaFire – **trong 13 giây** (14:15:33 → 14:15:47) | Máy mất mạng lúc đó: mọi máy chủ đều không phân giải được, kể cả DoH và gương jsDelivr/statically (`GhMirror`, có từ 0.1.9). Không phải lỗi mã; chỉ là nhật ký ghi 1 dòng cho **mỗi kho** | `lib/services/fetch_sources_list.dart`: khóa `logOnce` đổi từ `'repo-net:$url'` sang `'repo-net:$host'` – 1 dòng cho mỗi máy chủ/phiên ("… sẽ thử lại khi có mạng") |
+| 3 × `[Tiểu thuyết] Không tải được nội dung chương "02. Huong dan nhanh…" (Hướng dẫn sử dụng VBook)`: "Không thể tải nội dung từ Gitbook" (14:17, 2 phút sau lúc mất mạng) | Tiện ích vBook `kychi_vbook_docs` gọi `fetch()` tới `vbookapp.gitbook.io`; runtime `vbook.js` nuốt lỗi mạng (trả HTTP 504 giả) nên chỉ thấy câu báo của tiện ích, không biết lỗi thật | `assets/yomihub_extensions/vbook.js`: `fetch()` thử lại 1 lần sau 800 ms khi lỗi mạng; ghi `__vbLastFetchError` (URL + ngoại lệ hoặc `HTTP <mã>`); `__vbRun` nối nguyên nhân vào thông báo lỗi `"… [<url>: <lỗi>]"`. `vbook_bridge.dart`: `runtimeRev = 3` → các tiện ích vBook đã cài tự cập nhật runtime |
+| `[Hiệu năng] Khung hình chậm: dựng 1013ms • màn hình: /more` (14:49) – vẫn còn sau sửa 0.5.0 | 0.5.0 chỉ dời `ExtensionMergeScreen.suggestIfNeeded` 1,2 s; hàm vẫn gọi `duplicateGroups()` → `sourceRepository.getInstalled()` = `findAllSync()` **mọi tiện ích kèm mã JS (vài MB)** trên luồng UI | `source_repository.dart`: thêm `installedLiteAsync()` (4 truy vấn thuộc tính `id/baseUrl/itemType/isActive`, bất đồng bộ); `builtin_extensions.dart`: `duplicateGroupCountAsync()`; `merge_screen.dart`: dùng hàm mới, chỉ gợi ý 1 lần/phiên (`_suggested`) |
+| `[Hiệu năng] Giao diện bị treo 2.7 giây` + `Khung hình chậm: dựng 2881ms • màn hình: /settings` (14:52) | Màn Cài đặt không có việc nặng; trùng lúc chạy nền các tác vụ đọc **đồng bộ toàn bộ tiện ích/bộ truyện** trên luồng UI: `KotatsuBridge.startIfNeeded` (`getAll().any(…sourceCode.contains('kotatsu'))`), làm mới kho Aidoku/LNReader (`getInstalled()`), `YomiSourceAttribution.refresh` (`getInstalled()` + `isar.mangas…findAllSync()`) | `source_repository.dart`: `anyKotatsuLikeAsync()` (truy vấn Isar `baseUrlContains/sourceCodeUrlContains/sourceCodeContains`), `installedAidokuLnreaderAsync(itemType)`; `kotatsu_bridge.dart`, `fetch_sources_list.dart`, `source_attribution.dart` dùng truy vấn bất đồng bộ (`findAll()`) |
+| 9 × `[Cập nhật tiện ích] Tiện ích vBook "…" được tác giả mã hóa` (RoPhim ×2, YOUKU, Anime Vietsub, BLVietsub, Bilibili, Bilibili TV, GuPhim, FreeReels, DocLN, Hako Novel) | Đúng thiết kế 0.5.0 (1 cảnh báo/tiện ích). Mục C: vẫn mã hóa | Không đổi. Nhãn "Chỉ chạy trên vBook" bị cắt (0.5.0 G) → `extension_list_tile_widget.dart`: `_meta` đưa nhãn + ổ khóa xuống dòng riêng (`_metaRow`) |
+| `Booru Rule34: missing authentication`, `Hako HandshakeException`, `NHentai/TruyenTranhNQ connection error`, `MeHentai` không có bộ lọc, MediaFire timeout | Thiếu API key Rule34 (cài đặt), mạng/nhà mạng, tiện ích không khai báo bộ lọc | Ghi nhận, không phải lỗi mã |
+
+**YomiHub Update mục 5 – thư mục cục bộ không nhận tệp của Aniyomi/Nekoyomi/Mangayomi** (kiểm tra trực tiếp trên Note 9, thẻ nhớ `/storage/7563-670C/Backup & Sync/Backup Yomi Apps`, 50 GB: 1.828 `.cbz`, 3.203 `.jpg`, 56 `.mkv`, 193 `.epub`):
+- Cấu trúc thật: `downloads/<Nguồn (VI)>/<Truyện>/<Chương>.cbz` (Mihon/Nekoyomi), `downloads/<Nguồn>/<Phim>/<Tập>/<Tập>.mkv` (Aniyomi: mỗi tập 1 thư mục; Xvideos/MissAV: `Video/Video.mkv`, `Episode/Episode.mkv`), `downloads/Manga|Anime|Novel/<Nguồn>/<Truyện>/…` + `metadata.json` (Mangayomi), `local/`, `localanime/`, `localnovel/`, `autobackup/`, `mpv-config/`, tải dở `*_tmp`, bản sao lồng `localnovel/localnovel/downloads/…`, sao lưu Kotatsu `kotatsu_*.bk.zip` ở gốc.
+- Nguyên nhân: `_scanDirectory` (`file_scanner.dart`) coi **mỗi thư mục con cấp 1 là một bộ truyện** (`downloads`, `local`…) → không tìm thấy chương nào; tập phim trong thư mục riêng không được tính; `.bk.zip` ở gốc bị nhập thành "truyện".
+- Sửa (`lib/modules/library/providers/file_scanner.dart`, `audit-0.5.1/e01_local.py`): hàm mới `_collectTitleFolders` đi xuống tối đa 4 cấp tới thư mục **tự chứa nội dung chương** (tệp archive/video/epub, hoặc thư mục con có ảnh/video) – đó là bộ truyện; chống nhập trùng bản sao lồng (khóa `<thư mục cha>/<tên>`); `_isIgnoredLocalSubDirectory` bỏ qua `*_tmp`, `autobackup`, `mpv-config`, `fonts`, `shaders`, `scripts`, `script-opts`, `.thumbnails`, `cache`, `logs`; `_isForeignBackupFile` bỏ `*.bk.zip`, `*.tachibk`, `*.backup`; `episodeVideos` – video trong thư mục tập được nhận làm tập phim, **tên tập = tên thư mục** (tệp bên trong thường chỉ là "Video.mkv"). `YomiSourceAttribution` (có từ 0.2.2) gắn nguồn theo thư mục cha "Tên (LANG)" nên các truyện này tự nhận đúng tiện ích gốc.
+
+**YomiHub Update mục 3 – dự án GitHub còn thiếu:** so khớp 579 liên kết của `Project GitHub.xlsx` (chuẩn hóa: bỏ `#…`, `?…`, `/` cuối, `www.`, http→https) với 605 liên kết trong `lib/yomihub/about/github_projects.dart` → thiếu 17: vBook (Darkrai9x ×4, kychitoge ×10, hieu45666 ×1), `haipham22/LeechText` (bản gốc, ngoài `/releases`), `k2-fsa/sherpa-onnx` → đã thêm (đánh dấu "(0.5.1)"). Kiểm tra lại: **0 thiếu**. (Chỉ là danh sách ghi công; sherpa-onnx **chưa tích hợp** vào mã – xem mục I.)
+
+**YomiHub Update mục 2 – Website Extension:** 46 URL của 30 tiện ích (Film & Movie 22, Comic 3, Novel 2) đối chiếu `builtin_extensions.dart` + `url_override.dart` + `assets/yomihub_extensions/*.js`: **đủ cả 46 tên miền**; ngôn ngữ (`vi` mặc định / `all` cho PornHub, FikFap, Tik.Porn, Kwiky, xFree, FapReel) và NSFW (true cho 18+, false còn lại) khớp sheet. Không phải sửa.
+
+**Bản địa hóa:** 1 chuỗi mới (`Kho vBook không còn tệp plugin.zip…`, `vbook_bridge.dart` – báo rõ HTTP 404 cho 7/554 mục kho vBook thiếu tệp) × 18 ngôn ngữ (`assets/yomihub_i18n/*.json`, giữ định dạng thụt 2 khoảng trắng).
+
+**Phiên bản:** `pubspec.yaml` `0.5.0+42` → `0.5.1+43`; `app_identity.dart` `YomiHub/0.5.1`. `yh_050_test.dart`: kiểm tra phiên bản nới thành `0.`.
+
+Danh sách tệp sửa (`audit-0.5.1/changed_files.txt`, bản gốc ở `audit-0.5.1/before/`): `vbook.js`, 18 × `yomihub_i18n/*.json`, `extension_list_tile_widget.dart`, `file_scanner.dart`, `source_repository.dart`, `fetch_sources_list.dart`, `github_projects.dart`, `app_identity.dart`, `builtin_extensions.dart`, `merge_screen.dart`, `kotatsu_bridge.dart`, `source_attribution.dart`, `vbook_bridge.dart`, `pubspec.yaml`, `test/yh_050_test.dart`, `test/yh_051_test.dart` (mới). Script mới: `sync_051.ps1`, `build_051.ps1`, `qa051.ps1`, `release_051.ps1`, `audit-0.5.1/job.sh`, `wait.sh`, `qa.sh`. `.gitignore`: thêm `audit-0.5.1/backup|qa|yomi_ls*`.
+
+#### E. Phát hiện thêm khi kiểm thử trên Note 9 (SM-N960N, Android 10) – 22:58 → 23:45
+
+1. **Nguyên nhân chính của YomiHub Update mục 5: thiếu quyền bộ nhớ trên Android 7–10.** Sau khi cài 0.5.1 (bản đầu) và bấm "Quét lại mọi thư mục cục bộ", cả 6 thư mục vẫn "Chưa có mục nào". `adb logcat` (`[LocalLibraryScanner]`): `_scanDirectory root list failed … PathAccessException: Directory listing failed … (OS Error: Permission denied, errno = 13)` cho mọi thư mục trên thẻ nhớ; `dumpsys package`: `READ_EXTERNAL_STORAGE: granted=false`. `StorageProvider.requestPermission()` chỉ xin `Permission.manageExternalStorage` ("Quyền truy cập mọi tệp") – quyền này **chỉ có từ Android 11**; Android 7–10 cần `READ/WRITE_EXTERNAL_STORAGE`, và Android 10 cần thêm `requestLegacyExternalStorage`. Thử `pm grant … READ_EXTERNAL_STORAGE` + `appops set … LEGACY_STORAGE allow` trên bản cũ: vẫn `errno 13` (Android 10 coi quyền này là "restricted" khi manifest không khai báo legacy).
+   - Sửa: `lib/providers/storage_provider.dart` – `androidSdkInt()` (device_info_plus, cache) và `requestPermission` dùng `Permission.storage` khi SDK < 30, `manageExternalStorage` khi ≥ 30; `android/app/src/main/AndroidManifest.xml` – `<application android:requestLegacyExternalStorage="true" android:preserveLegacyExternalStorage="true">`.
+2. **Nhật ký ứng dụng không ghi được gì và màn "Nhật ký ứng dụng" quay vòng mãi** (cùng nguyên nhân): `AppLogger` ghi vào `/storage/emulated/0/YomiHub/logs.txt`; không có quyền → `init()` lỗi im lặng, mọi lỗi bị mất; `AppLogScreen._load()` chờ `AppLogger.flush()` không giới hạn. Sửa: `lib/utils/log/logger.dart` – thử ghi; nếu không được thì dùng `getApplicationSupportDirectory()/logs.txt`; `flush()` tối đa 3 s; `lib/yomihub/ui/app_log_screen.dart` – đọc tệp có `timeout(5 s)` + `try/catch`.
+3. **Chạm ma trên màn hình Note 9** (không phải lỗi ứng dụng): khi thử trình phát, phim tự tua liên tục ("↻10 300s → 4980s"). `getevent -lt` (20 s): 7–10 lần chạm vật lý ~15 ms trên `/dev/input/event0` (`sec_touchscreen`) ở vị trí ngẫu nhiên, chủ yếu mép phải – vùng chạm đúp tua +10 s; các lệnh `adb input` không đi qua thiết bị này. Cũng giải thích Camera / Trình duyệt tự mở. Đã báo người dùng (nghi do sạc/cáp USB hoặc màn hình). Chế độ ẩn danh của YomiHub bị bật trong lúc này (lệnh `text:Lịch sử` của `qa051.ps1` – `-match` của PowerShell không phân biệt hoa/thường – khớp "Tạm dừng ghi lịch sử đọc", hoặc chạm ma) → **đã tắt lại**, kiểm tra `checked="false"`. Các bước sau trên Note 9 dùng tọa độ thay vì so chữ.
+4. Tiện ích vBook mã hóa "MotPhim" (Ivan1hai): bấm cài 2 lần, vòng quay ~4 s rồi trở lại nút tải, **không khóa / không thấy thông báo**; vì nhật ký không ghi được (mục 2) nên chưa xác định được nguyên nhân trên bản đầu → kiểm tra lại trên bản dựng cuối (mục F).
+5. Dữ liệu sau khi cài đè 0.5.0 → 0.5.1 (versionCode 2042 → 2043): nguồn phim, cài đặt, 6 thư mục cục bộ, vị trí tải giữ nguyên. Thư viện Truyện tranh và Lịch sử trống, chưa cài nguồn Truyện tranh – trạng thái trước khi cài không được ghi lại nên không kết luận được là do người dùng xóa hay không.
+
+#### F. Tích hợp "Decode & Extract" (yêu cầu 23:37 / 23:41)
+- Kho `https://github.com/kiritokmn1403/Decode-Extract` (của chủ dự án): lần clone đầu (23:38) chỉ có README/LICENSE; lần 2 (23:41) có `Pact/decode_manifest.js` (giải mã Android binary XML) và `Pact/extract_classes.js` (đọc bảng DEX, sinh khung lớp `.java` – không có thân hàm/bytecode), mô tả dùng để dịch ngược `vBooks.apk`.
+- Tích hợp dưới dạng **công cụ đọc định dạng tệp**, không dùng để lấy khóa / giải mã tiện ích vBook (giữ nguyên quyết định mục C): `lib/yomihub/apk/axml_decoder.dart` (AXML → cây phần tử + XML), `lib/yomihub/apk/dex_reader.dart` (lớp, lớp cha, interface, chữ ký trường/phương thức), `lib/yomihub/apk/apk_inspector.dart` (đọc APK tiện ích Mihon/Aniyomi/IReader: gói, phiên bản, `tachiyomi.(anime)extension.class`, NSFW, phiên bản thư viện, quyền, lớp nguồn kế thừa `Source`/`HttpSource`/`AnimeHttpSource`/IReader `Source`), `lib/yomihub/apk/apk_inspector_screen.dart` – **Cài đặt › Duyệt › "Kiểm tra tệp APK tiện ích"** (chọn tệp `.apk`, phân tích trong `Isolate.run`).
+- Sửa 2 lỗi của script gốc khi chuyển sang Dart: (a) chuỗi UTF-8 ≥ 128 byte – độ dài 2 byte bị đọc thành byte đầu → chuỗi bị cắt (kiểm chứng: mẫu AXML 151 ký tự, `node decode_manifest.js` cho 128 ký tự, bản Dart 151); (b) chỉ số trường/phương thức trong `class_data_item` phải đếm lại từ 0 khi sang nhóm instance field / virtual method (script cộng dồn → tên sai).
+- Ghi công: `github_projects.dart` "Decode & Extract – bộ đọc AXML / DEX (0.5.1)". 18 chuỗi giao diện mới × 18 ngôn ngữ (`audit-0.5.1/i18n_apk.py`).
+- Test (`yh_051_test.dart`): giải mã mẫu AXML (namespace, thuộc tính, meta-data, chuỗi dài); `ApkInspector` trên chính APK YomiHub vừa dựng (`com.yomihub.app`, ≥ 1 dex, > 100 lớp, quyền INTERNET); `DexReader` từ chối dữ liệu không phải DEX; bản dịch đủ 18 ngôn ngữ.
+
+#### G. Kiểm thử bản dựng lần 2 và lần 3 trên Note 9 (04/11 00:18 → 01:03) và các lỗi sửa thêm
+- **Luồng quyền bộ nhớ (bản dựng lần 2, 00:18):** thu hồi các quyền cấp tạm (`pm revoke`, `appops set … LEGACY_STORAGE default`) → cài đè → `LEGACY_STORAGE: allow` (nhờ cờ manifest) → mở app: hộp thoại hệ thống **"Cho phép YomiHub truy cập vào ảnh, phương tiện và tệp trên thiết bị của bạn?"** → Cho phép → `READ_EXTERNAL_STORAGE: granted=true` (hộp thoại của hệ thống chặn chụp màn hình; có trong video `v02_thu_muc_cuc_bo.mp4`). Lần bấm đầu trượt vì màn hình tắt (`Display Power: state=OFF`, ứng dụng "My Files" của Samsung bật lên) → đánh thức, bấm lại.
+- **Quét thư mục cục bộ** (Cài đặt › Tải xuống › Quét lại mọi thư mục cục bộ), `adb logcat [LocalLibraryScanner]`:
+
+| Thư mục (thẻ nhớ `…/Backup Yomi Apps/`) | Thư mục truyện tìm thấy | Truyện/phim/sách nhập | Chương/tập |
+| --- | ---: | ---: | ---: |
+| `downloads` (Aniyomi / Nekoyomi / Mihon / Mangayomi) | 467 | **427** | **1.905** |
+| `local` | 1 | 1 | 1 |
+| `localnovel` (EPUB) | 737 | **131** | **193** |
+| `autobackup`, `localanime`, `/storage/emulated/0/YomiHub/local` | 0 | 0 | 0 |
+
+  Trước khi sửa (bản 0.5.0 và bản 0.5.1 lần 1): **0** ở mọi thư mục. Duyệt › Nguồn cục bộ Truyện tranh hiện các bộ truyện (ảnh màn hình chỉ giữ trên máy – nội dung 18+, không đưa vào gói QA công khai). Thư viện chính chỉ hiện mục yêu thích (thiết kế gốc: mục cục bộ `favorite=false`).
+- **Lỗi mới phát hiện:** `crash_reports.json` 00:25:54 – `Failed to open EPUB: Archive Error: Zip Error: invalid Zip archive: Could not find EOCD` (màn `/downloads`, khi quét `localnovel`): `parseEpubFromPath` ném lỗi trong vòng lưu chương → dừng cả lượt lưu. Sửa `file_scanner.dart`: `try/catch`, bỏ qua tệp hỏng, `AppLogger.logOnce('bad-epub:…', '[Thư mục cục bộ] Bỏ qua EPUB hỏng: …')`.
+- **Màn "Nhật ký ứng dụng" vẫn quay vòng ở bản lần 2** dù đã giới hạn thời gian chờ → viết lại `_load`: đọc + tách mục trong isolate nền, nối chuỗi tuyến tính (`StringBuffer` thay cho `entries[last] += …` – bậc hai), 3.000 mục mới nhất, `finally` luôn tắt vòng quay. Bản lần 3 (01:01): vòng quay hết ngay, hiện lỗi thật `Illegal argument in isolate message: object is unsendable – _AsyncCompleter` (closure `Isolate.run` tạo trong phương thức `State` kéo theo cây widget) → chuyển `Isolate.run` ra hàm cấp cao: `parseAppLogInBackground(paths)` (`app_log_screen.dart`), `inspectApkInBackground(bytes)` (`apk_inspector_screen.dart` – cùng lỗi). Thêm 2 test **chạy thật** hai hàm này (tệp nhật ký tạm; APK dựng từ mẫu AXML) – test chỉ so chuỗi mã nguồn đã bỏ sót lỗi này.
+- **Mạng của Note 9 bị mất** từ khoảng 00:32 (`DnsResolver … ETIMEDOUT`, `NetworkMonitor … Probe failed`): giải thích việc cài lại tiện ích vBook "MotPhim" kết thúc sau ~4 s mà không khóa (tải `plugin.zip` thất bại do mạng, chưa tới bước nhận diện mã hóa). Các phần cần mạng được kiểm thử trên máy ảo / Windows (mục H).
+- Kiểm thử tự động sau mọi sửa (`build_051.ps1 -step test`, 01:12): `dart analyze lib` **0 lỗi** (211 info/warning, không đổi so với 0.5.0); `flutter test` 12 tệp yh_040…yh_051: **102/102 đạt**.
+
+#### H. Yêu cầu bổ sung 04/11 06:13 và 06:58; kiểm thử Android TV và Windows (04/11 06:13 → 07:30)
+- **06:13 – "tích hợp Decode-Extract":** đã có từ mục F (phiên làm việc trong đêm). Đã kiểm tra lại kho (commit `e5d18b3`, thư mục `Pact/`) và mã Dart (`lib/yomihub/apk/`).
+- **06:58 – "Decode-Extract có thể dùng để giải mã các tiện ích vBooks": từ chối**, như mục C. `decode_manifest.js` / `extract_classes.js` chỉ đọc định dạng tệp: AXML, bảng DEX, khung lớp không có thân hàm. Muốn mở 234 tiện ích mã hóa thì phải lấy khóa/thuật toán từ ứng dụng vBook đã dịch ngược, tức vượt qua lớp bảo vệ mà tác giả tiện ích chủ ý đặt, rồi phát hành công khai. Công cụ trong YomiHub giữ vai trò **chỉ đọc** tệp APK tiện ích. Đã đề xuất với người dùng: xin tác giả bản không mã hóa, hoặc dùng 310 tiện ích không mã hóa.
+- **Lỗi mới (Android TV 14, máy ảo `YomiHub_TV_API34`):** mỗi lần mở YomiHub, trang hệ thống "Allow access to manage all files" tự hiện, kể cả ở bản dựng 03:20 (đã bỏ `force` ở `local_directory_resolver`). Nguyên nhân: `browse_screen.dart` (`_chekPermission`) và lượt quét nền vẫn gọi `requestPermission()`; cờ `_declinedThisRun` chỉ chặn hỏi lại trong **một lần chạy**.
+  - Sửa `lib/providers/storage_provider.dart`: lời gọi không có `force` chỉ hỏi **một lần duy nhất** (`YomiPrefs['storagePromptShown']`). Thao tác người dùng tự bấm (quét lại, thêm thư mục, tải xuống, thư mục mpv) vẫn truyền `force` nên vẫn được hỏi.
+  - Test `yh_051_test.dart` có thêm kiểm tra này.
+  - Trong lúc thử, phím Enter (`key:23`) trên trang cài đặt đó đã vô tình tắt quyền "manage all files" của `com.android.sharedstoragebackup` **trên máy ảo**. Đã bật lại và kiểm tra: `appops … MANAGE_EXTERNAL_STORAGE: allow`.
+- **Android TV** (bản dựng 03:20, APK armeabi-v7a, `versionCode 1043`):
+  - Thanh bên chỉ còn Phim & Điện ảnh / Cập nhật / Duyệt / Thêm (`tv02_man_hinh_chinh`).
+  - Duyệt › Nguồn: HotPhim, YouTube, AVSub, Anime47, AnimeVN, HayChill, HiHiPhim (`tv03_duyet`).
+  - HotPhim: danh sách Phổ biến (`tv04_hotphim`) → chi tiết "Thanh Gươm Diệt Quỷ: Vô Hạn Thành" → **phát được** (logo TOHO, HotPhim HLS, điều khiển tiếng Việt: `tv07_phat_35s`, `tv08_dieu_khien`). Ở 0.5.0 luồng HotPhim không mở được trên máy ảo này.
+  - Bấm "Quay lại" khi đang phát → phim thu vào **cửa sổ PiP** (`tv10_chi_tiet`).
+  - Phép thử "tiếp tục phát" trên TV bị gián đoạn vì trang quyền nói trên mở lại khi khởi động → kiểm thử lại trên bản dựng cuối (mục I).
+- **Windows 11 x64** (bản dựng Windows 02:44):
+  - Portable `YomiHub-0.5.1-windows-x64.zip`: giải nén 193 tệp / 331 MB; `YomiHub.exe` 0.5.1+43 chạy, phản hồi (469 MB).
+  - `Setup.exe`: bấm "Cài Đặt Ngay" → cài đè 0.5.0+42 vào `%LOCALAPPDATA%\YomiHub`, tự mở ứng dụng với thư viện, danh mục, cài đặt giữ nguyên (`win01_setup_051`).
+  - Thêm › gợi ý "Phát hiện 14 nhóm tiện ích trùng tên miền" vẫn hiện, cùng số nhóm như 0.5.0 với truy vấn nhẹ mới (`win03`).
+  - Giới thiệu: **Beta (0.5.1)** (`win04`).
+  - Nhật ký ứng dụng mở ngay, có dòng gộp mới `fetchSourcesList: kohiden.xyz unreachable (vd. …)` (`win05`). Dòng "Giao diện bị treo 2.8 giây" lúc 06:36:29 trùng lúc máy ngủ / mất kết nối (bộ đo dùng đồng hồ thực).
+  - Dự án GitHub đã sử dụng: tìm "vbook" ra 5 mục, gồm 3 mục mới 0.5.1 (`win06`).
+  - Cài đặt › Duyệt › **Kiểm tra tệp APK tiện ích** → chọn `YomiHub-0.5.1-armeabi-v7a.apk`: Ứng dụng Android, `com.yomihub.app`, 0.5.1 (1043), minSdk/targetSdk 24/36, 5 tệp `classes*.dex` / 21.500 lớp, 15 lớp nguồn, 18 `<meta-data>`, nút xem `AndroidManifest.xml` (`win07`).
+  - `.appxbundle`: **không cài** (phải nhập chứng chỉ `YomiHub-RootCA.cer` vào kho tin cậy của Windows – thay đổi bảo mật hệ thống; người dùng tự chạy `Install-YomiHub.bat`). Kiểm tra cấu trúc: `YomiHub_0.5.1_x64.appx` 270,9 MB, `Package Version="0.5.1.0" Architecture="x64"`, `MinVersion="10.0.14393.0"`, 447 tệp, có `AppxSignature.p7x` (ký `CN=YomiHub, O=YomiHub, C=VN`; `Get-AuthenticodeSignature` = UnknownError vì gốc tự ký chưa được tin cậy – đúng như dự kiến).
+  - Ảnh Windows chụp bằng Computer use (chỉ cửa sổ YomiHub; ứng dụng khác bị che). `PrintWindow` cho ảnh trắng với cửa sổ Flutter (vẽ bằng GPU).
+- Thư viện Windows có danh mục/ảnh bìa 18+ của người dùng → ảnh chụp thư viện **không** đưa vào gói QA công khai.
+
+#### I. Bản dựng cuối (lần 5, 04/11 07:48 → 08:40) và kiểm thử xác nhận
+- Thêm sửa lỗi (07:46, máy ảo Android TV 14): trang "Allow access to manage all files" **vẫn** mở ở mọi lần khởi động dù đã có cờ chỉ hỏi một lần. Nguyên nhân: lượt quét nền chạy **trước** khi `_postLaunchInit` mở `YomiPrefs` (`main.dart`: `AppLogger.init` → … → `YomiPrefs.open()`). Lúc đó `get()` trả về mặc định `false` và `set()` không có hộp lưu, nên cờ không bao giờ được ghi. Sửa `storage_provider.dart`: lời gọi không có `force` chờ `YomiPrefs.ready` (tối đa 10 s); nếu kho vẫn chưa mở thì **không hỏi**. Test bổ sung.
+- `build_051.ps1 -step test` (07:48): `dart analyze lib` **0 lỗi**; `flutter test` 12 tệp yh_040…yh_051 **102/102 đạt**.
+- `-step apk` / `tv` / `pack`: APK 07:53 → 08:05, TV 08:05 → 08:17, đóng gói 08:17 → 08:22 (`SHA256SUMS-0.5.1.txt` viết lại). Bản Windows giữ bản dựng 02:44 (`j051_080`): mọi thay đổi sau đó (`storage_provider.dart`, `local_directory_resolver.dart`, `downloads_screen.dart`) chỉ chạy trên Android (`if (!Platform.isAndroid) return true`). `Setup.exe` giữ tệp 03:15 – chính tệp đã cài thử lúc 07:00.
+- Kiểm thử xác nhận trên bản cuối: 
+  - **Note 9** (APK arm64-v8a 08:05, cài đè 2043): mở được, `[LocalLibraryScanner]` khi khởi động: `downloads` 467 thư mục truyện, `local` 1, `localnovel` 737; không `FATAL` / `AndroidRuntime`. Cài đặt `stay_on_while_plugged_in` (đã bật tạm lúc 22:59 để kiểm thử) trả về **0**.
+  - **Android TV** (APK armeabi-v7a 08:17): máy ảo `YomiHub_TV_API34` **không ổn định** – `qemu-system-x86_64.exe` lỗi 2 lần (Windows Error Reporting 08:21:34, 08:29:59) với `-gpu swiftshader_indirect`; khởi động lạnh (`-no-snapshot-load`) đưa đĩa về bản 0.4.9 (1041) → cài đè **0.4.9 → 0.5.1 (1043)** thành công. Với `-gpu host`: lần mở 1 hiện trang quyền (hỏi đúng 1 lần), **lần 2 và 3 cửa sổ trên cùng là `com.yomihub.app/…MainActivity`** – không còn trang quyền (`tv14_khong_hoi_quyen`). Phát HotPhim tới 00:35 (`tv15a`, `tv15b`); Lịch sử ghi đủ các lần xem (`tv16_lich_su`).
+  - **Không đạt / chưa xác nhận:** "tiếp tục phát" trên máy ảo TV – mở lại phim sau khi tắt ứng dụng: trình phát đứng ở 00:00, màn hình đen (`-2:34:00`), video ghi màn hình hết 3 phút trước khi thấy kết quả tua. Mã trình phát không đổi ở 0.5.1 (đã đạt trên Note 9 ở 0.5.0, mục 0.5.0 F); trên Note 9 đợt này phép thử bị chạm ma làm sai (mục E.3). Cần kiểm thử lại trên TV/điện thoại thật.
+
+#### J. Tệp bàn giao (`output/0.5.1`)
+| Tệp | MB | SHA256 |
+| --- | ---: | --- |
+| YomiHub-0.5.1-arm64-v8a.apk | 168.8 | `1c10012566c15d1e0ae6d18b16f395dd464ab91b7b9eb4e666ce9ecd8af1bb19` |
+| YomiHub-0.5.1-armeabi-v7a.apk | 165.6 | `a7be978f96f3703c2bdd2abdfa8a54d2c05499a440a9ed5fb059da2fc9b2d7ea` |
+| YomiHub-0.5.1-windows-x64-full.zip | 266.5 | `e1ebae8fe0f700908a7e8a173bbcaf1d24ee2ef16cdddad8b21b4a34389771e5` |
+| YomiHub-0.5.1-windows-x64-Setup.exe | 138.7 | `0ca8bd428436687ce54d8b5e838534bd5402fb023ddb9048a13c29bd4341adb1` |
+| YomiHub-0.5.1-windows-x64.appxbundle | 270.9 | `5e55cd111a502039f32bc285a3431c7b49a34c2dbe63010973f36a613d642064` |
+| YomiHub-0.5.1-windows-x64.zip | 138.6 | `4e7d7a324775d9fca0420c02e9bee82d7d850bf5d4c15471787e0534f67b7255` |
+| YomiHub-0.5.1-x86_64.apk | 178.1 | `29bbe7c35f169677453ae0753713d3937026da3b2747affb2b452d72b73dd551` |
+| YumiHub-Android-TV-0.5.1-arm64-v8a.apk | 168.7 | `f7e0dcbac8f3cd041d7ff4d104e17ef6f747fdcb60e402127f5f6cf50ac64468` |
+| YumiHub-Android-TV-0.5.1-armeabi-v7a.apk | 165.5 | `c886840fbe6bcd67768893ea938f09a82de6d8d26da0090dc09fb56854b46a1b` |
+| YumiHub-Android-TV-0.5.1-x86_64.apk | 178.0 | `0ebe303393c3bb97c39c5cab72e0b87aa68bb88046c2b616c6f40ebe7de7c601` |
+
+Kèm `SHA256SUMS-0.5.1.txt`, `YomiHub-RootCA.cer`, `Install-YomiHub.bat/.ps1`, `YomiHub-0.5.1-changelog.md`; ảnh/video kiểm thử đã lọc (34 tệp, không có nội dung 18+ / thư viện / tệp cá nhân): `output/YomiHub-0.5.1-QA-screenshots.zip` (`audit-0.5.1/make_qa_zip.ps1`).
+
+#### K. GitHub
+__GITHUB__

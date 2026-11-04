@@ -35,7 +35,9 @@ class VBookBridge {
   /// each installed source, so it is the last part of the version: a runtime
   /// fix then shows up as an extension update and reinstalls the source.
   /// 1: first 0.4.9 build · 2: Document.text / description fix (03/11/2026).
-  static const runtimeRev = 2;
+  /// 3: 0.5.1 – fetch retries once on a network error and the error names
+  ///    the real cause (URL + exception / HTTP status).
+  static const runtimeRev = 3;
 
   static bool isVBookSource(Source s) => (s.additionalParams ?? '').startsWith(marker);
 
@@ -144,6 +146,11 @@ class VBookBridge {
     final url = source.sourceCodeUrl ?? '';
     final r = await GhMirror.get(client, Uri.parse(url), timeout: const Duration(seconds: 60));
     final b = r.bodyBytes;
+    if (r.statusCode == 404) {
+      // 0.5.1: 7 of 554 entries in the 18 known vBook repos point to a
+      // plugin.zip that is not in the repo (scan 03/11/2026) – say so.
+      throw Exception(tr('Kho vBook không còn tệp plugin.zip của tiện ích này (HTTP 404) – tác giả kho đã xóa hoặc đổi đường dẫn.'));
+    }
     if (r.statusCode != 200 || b.length < 4 || b[0] != 0x50 || b[1] != 0x4b) {
       throw Exception(tr('Tải gói tiện ích vBook thất bại (HTTP {p0}, {p1} byte)', {'p0': r.statusCode, 'p1': b.length}));
     }

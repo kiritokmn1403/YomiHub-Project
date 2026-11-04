@@ -12,6 +12,7 @@ import 'package:mangayomi/models/settings.dart';
 import 'package:mangayomi/modules/library/providers/file_scanner.dart';
 import 'package:mangayomi/modules/more/settings/downloads/providers/downloads_state_provider.dart';
 import 'package:mangayomi/providers/l10n_providers.dart';
+import 'package:mangayomi/providers/storage_provider.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:mangayomi/utils/local_directory_access.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -357,6 +358,9 @@ class _DownloadsScreenState extends ConsumerState<DownloadsScreen> {
     if (_scanning) return;
     setState(() => _scanning = true);
     try {
+      // 0.5.1: the user asked for it – ask for storage access now (the
+      // background scan no longer forces the system prompt)
+      await StorageProvider().requestPermission(force: true);
       if (only == null) {
         await ref.read(scanLocalLibraryProvider.future);
       } else {

@@ -111,11 +111,9 @@ class KotatsuBridge {
   static Future<void> startIfNeeded() async {
     if (!supported) return;
     try {
+      // 0.5.1: Isar query instead of getAll() (every script, UI thread)
       final hasKotatsu = sourceRepository.anyIdBetween(930000000000, 930000000000 + 0x100000000) ||
-          sourceRepository.getAll().any((s) =>
-              ((s.baseUrl?.contains('47350') ?? false) ||
-                  (s.sourceCode?.contains('kotatsu') ?? false) ||
-                  (s.sourceCodeUrl?.contains('kotatsu') ?? false)));
+          await sourceRepository.anyKotatsuLikeAsync();
       if (hasKotatsu) await start();
     } catch (_) {}
   }

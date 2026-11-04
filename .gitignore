@@ -86,3 +86,9 @@ audit-0.3.9/test-tools/
 /audit-0.5.0/fetch/
 /audit-0.5.0/qa/
 /audit-0.5.0/before_scripts/
+
+# ── 0.5.1 (03/11/2026): audit scratch – build-dir copies, QA media, personal device listings ──
+/audit-0.5.1/backup/
+/audit-0.5.1/qa/
+/audit-0.5.1/yomi_ls*
+**/__pycache__/

@@ -503,6 +503,25 @@ class ExtensionMergeHelper {
     return byKey.values.where((g) => g.length > 1).toList();
   }
 
+  /// 0.5.1: number of unmerged duplicate groups, computed from a light
+  /// property query off the UI thread. The More screen hint used
+  /// duplicateGroups(), i.e. getInstalled() with every script, on the UI
+  /// thread: "Khung hình chậm: dựng 1013ms • màn hình: /more" (logs
+  /// 03/11 14:49, still there after the 0.5.0 delay).
+  static Future<int> duplicateGroupCountAsync() async {
+    final rows = await sourceRepository.installedLiteAsync();
+    final byKey = <String, List<int>>{};
+    for (final r in rows) {
+      if (!r.$4) continue;
+      final h = hostOf(r.$2);
+      if (h.isEmpty) continue;
+      byKey.putIfAbsent('${r.$3.index}|$h', () => []).add(r.$1);
+    }
+    return byKey.entries
+        .where((e) => e.value.length > 1 && !YomiMerge.isMerged(e.key))
+        .length;
+  }
+
   /// Duplicate groups the user has not merged yet.
   static List<List<Source>> duplicateGroups() =>
       allGroups().where((g) => !YomiMerge.isMerged(keyOf(g.first))).toList();

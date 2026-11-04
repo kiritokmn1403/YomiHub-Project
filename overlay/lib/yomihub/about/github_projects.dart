@@ -99,6 +99,31 @@ const yomiGithubProjects = <YomiGhGroup>[
     YomiGhProject('LNReader', ['https://github.com/LNReader/lnreader']),
     YomiGhProject('vBook', ['https://github.com/Darkrai9x/vbook-extensions']),
     YomiGhProject('vBook 2', ['https://github.com/duongden/vbook/']),
+    // 0.5.1: links added to the "vBook" row of Project GitHub.xlsx
+    YomiGhProject('vBook – Darkrai9x (0.5.1)', [
+      'https://github.com/Darkrai9x/vbook-settings',
+      'https://github.com/Darkrai9x/vbook-ext',
+      'https://github.com/Darkrai9x/jAdapterForNativeTTS',
+      'https://github.com/Darkrai9x/avr_jokes',
+    ]),
+    YomiGhProject('vBook – kychitoge (API tiện ích, 0.5.1)', [
+      'https://github.com/kychitoge/vbook-ext',
+      'https://github.com/kychitoge/vbook-ext/blob/main/docs/extension-api.md',
+      'https://github.com/kychitoge/vbook-ext/blob/main/docs/verify-checklist.md',
+      'https://github.com/kychitoge/vbook-ext/blob/main/.claude/skills/vbook-extensions/SKILL.md',
+      'https://github.com/kychitoge/vbook-opds',
+      'https://github.com/kychitoge/vbook-link-app',
+      'https://github.com/kychitoge/vbook-ext-admin',
+      'https://github.com/kychitoge/vbook-wrapped',
+      'https://github.com/kychitoge/do-kiep',
+      'https://github.com/kychitoge/vbook-toolkit',
+    ]),
+    YomiGhProject('Decode & Extract – bộ đọc AXML / DEX (0.5.1)', [
+      'https://github.com/kiritokmn1403/Decode-Extract',
+    ]),
+    YomiGhProject('vBook – hieu45666 (0.5.1)', [
+      'https://github.com/hieu45666/vbook_ext',
+    ]),
     YomiGhProject('Google Play Books Desktop', [
       'https://github.com/TheLox95/Google-Play-Books-Desktop',
     ]),
@@ -106,6 +131,7 @@ const yomiGithubProjects = <YomiGhGroup>[
     YomiGhProject('Tachiyomi', ['https://github.com/tachiyomiorg']),
     YomiGhProject('LeechText (0.4.9)', [
       'https://github.com/haipham22/LeechText/releases',
+      'https://github.com/haipham22/LeechText',
     ]),
   ]),
   YomiGhGroup('Trình chặn quảng cáo (AdBlock)', [
@@ -305,6 +331,9 @@ const yomiGithubProjects = <YomiGhGroup>[
     YomiGhProject('SiteCheck', ['https://github.com/cixtor/sitecheck']),
   ]),
   YomiGhGroup('Dịch hình ảnh', [
+    YomiGhProject('sherpa-onnx (0.5.1)', [
+      'https://github.com/k2-fsa/sherpa-onnx',
+    ]),
     YomiGhProject('Image Translation', [
       'https://github.com/topics/image-to-image-translation',
       'https://github.com/topics/image-translation',

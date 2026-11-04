@@ -1,4 +1,5 @@
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
+import 'package:mangayomi/yomihub/apk/apk_inspector_screen.dart';
 import 'dart:io';
 
 import 'package:mangayomi/utils/platform_utils.dart';
@@ -109,6 +110,21 @@ class BrowseSScreen extends ConsumerWidget {
                     title: const Text('Extensions Repo'),
                     subtitle: Text(
                       tr('Kho tiện ích Comic, Film & Movie và Novel ở cùng một chỗ'),
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: context.secondaryColor,
+                      ),
+                    ),
+                  ),
+                  // 0.5.1: "Decode & Extract" (AXML + DEX readers) in the app
+                  ListTile(
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const ApkInspectorScreen()),
+                    ),
+                    leading: const Icon(Icons.manage_search_outlined),
+                    title: Text(tr('Kiểm tra tệp APK tiện ích')),
+                    subtitle: Text(
+                      tr('Đọc gói, phiên bản, lớp nguồn và NSFW của tệp APK Mihon / Aniyomi / IReader mà không cần cài'),
                       style: TextStyle(
                         fontSize: 11,
                         color: context.secondaryColor,

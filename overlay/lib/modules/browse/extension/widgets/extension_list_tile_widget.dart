@@ -174,6 +174,40 @@ class _ExtensionListTileWidgetState
 
   /// Language, version and the NSFW / repo / obsolete badges.
   Widget _meta(BuildContext context) {
+    // 0.5.1: the "vBook only" label sat at the end of this one-line row and
+    // was cut to "Chỉ c…" when the repo name was long (0.5.0 G) – own line.
+    if (_vbookLocked) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _metaRow(context),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.lock_outline, size: 12, color: context.primaryColor),
+              const SizedBox(width: 3),
+              Flexible(
+                child: Text(
+                  yh.tr('Chỉ chạy trên vBook'),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: context.primaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
+    return _metaRow(context);
+  }
+
+  Widget _metaRow(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -213,18 +247,6 @@ class _ExtensionListTileWidgetState
               child: Text(
                 "- ${widget.source.repo!.name!}",
                 style: TextStyle(fontSize: 12),
-              ),
-            ),
-          if (_vbookLocked)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: Text(
-                yh.tr('Chỉ chạy trên vBook'),
-                style: TextStyle(
-                  color: context.primaryColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
               ),
             ),
           if (widget.source.isObsolete ?? false)
