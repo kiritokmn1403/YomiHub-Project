@@ -13,11 +13,25 @@ import 'package:path/path.dart' as p;
 
 String _read(String path) => File(path).readAsStringSync();
 
+// 0.5.3: the website extensions moved to the Kiritokmn Extension Repo
+// (sources-yomihub/); older checkouts still have them in assets/.
+String _extSource(String f) {
+  for (final d in const [
+    'assets/yomihub_extensions',
+    r'D:\A.I Project\A.I Project - Extension Repo\Kiritokmn - Extension Repo\sources-yomihub',
+  ]) {
+    final x = File('$d/$f');
+    if (x.existsSync()) return x.readAsStringSync();
+  }
+  throw StateError('extension source $f not found');
+}
+
 void main() {
   group('YomiHub 0.5.2', () {
     test('version / user agent', () {
-      expect(AppIdentity.userAgent, 'YomiHub/0.5.2');
-      expect(_read('pubspec.yaml'), contains('version: 0.5.2+44'));
+      // 0.5.3: still a 0.5.x build (exact version checked in yh_053_test)
+      expect(AppIdentity.userAgent, startsWith('YomiHub/0.5.'));
+      expect(_read('pubspec.yaml'), contains('version: 0.5.'));
     });
 
     test('tachibk: platform gunzip, cached per file', () async {
@@ -66,10 +80,10 @@ void main() {
     });
 
     test('bundled extensions: FikFap / Anime47 links survive a refresh', () {
-      final ff = _read('assets/yomihub_extensions/fikfap.js');
+      final ff = _extSource('fikfap.js');
       expect(ff, contains('postId(url)'));
       expect(ff, isNot(contains('const o = JSON.parse(url);')));
-      final a47 = _read('assets/yomihub_extensions/anime47.js');
+      final a47 = _extSource('anime47.js');
       expect(a47, contains('async resolveId(url)'));
       expect(a47, contains('/m\${id}.html'));
     });

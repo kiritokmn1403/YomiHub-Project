@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:mangayomi/modules/more/data_and_storage/providers/backup.dart';
 import 'package:mangayomi/providers/storage_provider.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
+import 'package:mangayomi/utils/log/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:path/path.dart' as p;
 part 'auto_backup.g.dart';
@@ -82,10 +83,24 @@ Future<void> checkAndBackup(Ref ref) async {
     backupDirectory = await (storageProvider.getIosBackupDirectory());
   } else {
     final defaultDirectory = await storageProvider.getDefaultDirectory();
+    // 0.5.3 (open item of 0.5.2): settings restored from an Android backup
+    // carried "/storage/3730-6132/Backup & Sync/..." to Windows, where the
+    // auto-backup then created a "\storage\..." folder on the current drive.
+    // A location that does not belong to this platform falls back to the
+    // default folder (and is logged once) instead of being created.
+    final usable = backupLocation.isNotEmpty &&
+        _isUsableBackupLocation(backupLocation);
+    if (backupLocation.isNotEmpty && !usable) {
+      AppLogger.logOnce(
+        'autobackup-foreign-path:$backupLocation',
+        '[Sao lưu] Vị trí tự sao lưu "$backupLocation" không dùng được trên '
+        'thiết bị này (đường dẫn của nền tảng khác hoặc thẻ nhớ đã tháo) – '
+        'dùng thư mục mặc định.',
+        logLevel: LogLevel.warning,
+      );
+    }
     backupDirectory = Directory(
-      backupLocation.isEmpty
-          ? p.join(defaultDirectory!.path, "backup")
-          : backupLocation,
+      usable ? backupLocation : p.join(defaultDirectory!.path, "backup"),
     );
   }
   await storageProvider.createDirectorySafely(backupDirectory!.path);
@@ -118,4 +133,32 @@ void _setBackupFrequency(int value) {
       ..backupFrequency = value
       ..startDatebackup = startDate?.millisecondsSinceEpoch,
   );
+}
+
+/// 0.5.3: true when [location] is a path of the current platform.
+/// Windows needs a drive (C:\) or UNC (\\server) path; Android, Linux
+/// and macOS need an absolute POSIX path, and Android paths are not usable
+/// on desktop systems.
+bool _isUsableBackupLocation(String location) {
+  if (Platform.isWindows) {
+    return RegExp(r'^[a-zA-Z]:[\\/]').hasMatch(location) ||
+        location.startsWith(r'\\');
+  }
+  if (!location.startsWith('/')) return false;
+  // 0.5.3 (Note 9): a folder on an SD card that was removed or replaced
+  // (/storage/7563-670C gone) is not usable either - fall back to default.
+  if (Platform.isAndroid) {
+    final vol = RegExp(r'^/storage/([^/]+)').firstMatch(location)?.group(1);
+    if (vol != null &&
+        vol != 'emulated' &&
+        vol != 'self' &&
+        !Directory('/storage/$vol').existsSync()) {
+      return false;
+    }
+  }
+  if (!Platform.isAndroid &&
+      (location.startsWith('/storage/') || location.startsWith('/sdcard'))) {
+    return false;
+  }
+  return true;
 }

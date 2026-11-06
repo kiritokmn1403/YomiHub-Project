@@ -9,6 +9,9 @@ import 'package:mangayomi/modules/more/settings/reader/providers/reader_state_pr
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/repos/extensions_repo_screen.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
+import 'package:mangayomi/yomihub/playbooks/playbooks_toggle.dart';
+import 'package:mangayomi/yomihub/booru/booru_settings_screen.dart';
+import 'package:mangayomi/utils/platform_utils.dart';
 
 /// Screen allowing users to toggle features and extension repositories
 /// for Comic (Manga), Film & Movie (Anime), and Novel.
@@ -229,6 +232,32 @@ class FeatureToggleScreen extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 24),
+
+            // 0.5.3 (YomiHub Update mục 5): Google Play Books and Booru App
+            // on/off live here with the other features (not on Android TV)
+            if (!(isTv || kIsTvBuild)) ...[
+              _buildSectionHeader(
+                context,
+                icon: Icons.extension_outlined,
+                title: tr('Tính năng khác'),
+                color: Colors.deepPurple,
+              ),
+              Card(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(color: Theme.of(context).dividerColor.withValues(alpha: 0.2)),
+                ),
+                child: const Column(
+                  children: [
+                    PlayBooksSettingTile(),
+                    Divider(height: 1),
+                    BooruSettingTile(),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24),
+            ],
 
             // --- QUICK SHORTCUTS ---
             Card(

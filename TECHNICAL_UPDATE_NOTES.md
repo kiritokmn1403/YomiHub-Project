@@ -6,6 +6,7 @@ Chủ dự án yêu cầu tạo và duy trì tài liệu này ngày 25/10/2026. 
 
 ## 1. Trạng thái hiện tại
 
+- **06/11/2026 – 0.5.3 (0.5.3+45) đã dựng, kiểm thử và phát hành (GitHub Release `v0.5.3`):** 29 tiện ích website chuyển sang kho Kiritokmn Extension Repo (ứng dụng chỉ tự thêm kho, tiện ích đã cài nhận cập nhật từ kho); mục "Sao Lưu & Đồng Bộ" ở Cài đặt và Thêm (kèm sao lưu Booru App); công tắc Google Play Books / Booru App trong "Bật/Tắt tính năng & Nguồn mở rộng"; xuất danh sách MyAnimeList (XML), tracker không bị thanh hệ thống/bàn phím che; Cài đặt › Chẩn đoán Windows; sửa lỗi trong `logs 3.txt` (treo khi tự sao lưu, EPUB hỏng báo lặp, trình phát/Shorts qua VPN, sao lưu vào đường dẫn Android trên Windows); 19 liên kết dự án GitHub. `dart analyze` 0 lỗi, 122/122 test. Chi tiết: mục "06/11/2026 — Cập nhật phiên bản 0.5.3" cuối tài liệu.
 - **06/11/2026 – 0.5.2 (0.5.2+44) đã dựng, kiểm thử và phát hành (GitHub Release `v0.5.2`):** 3 APK Android 7.0+, 3 APK `YumiHub Android TV` (không Comic/Novel/Play Books/Booru), Windows 10/11 x64 `Setup.exe` (gói đầy đủ, kèm VC++ runtime + Java/M-Extension-Server), `.appxbundle`, portable `.zip`/`-full.zip`. Sao lưu/khôi phục nhanh và không treo (TachiyomiMi 12 MB: 45 s → 8 s; Mangayomi 22 MB → 8–11 s trên Galaxy Note 9), Gộp giữ nguồn + cài tiện ích có trong bản sao lưu + thêm chương còn thiếu, chẩn đoán Windows trong nhật ký, WARP tự đổi cổng UDP và không báo kết nối giả, sửa lỗi trong `logs 2.txt`. Chi tiết: mục "05/11/2026 – 06/11/2026 — Cập nhật phiên bản 0.5.2" cuối tài liệu.
 - **04/11/2026 – 0.5.1 (0.5.1+43) đã dựng, kiểm thử và phát hành (GitHub Release `v0.5.1`):** 3 APK Android 7.0+, 3 APK `YumiHub Android TV` (không Comic/Novel/Play Books/Booru), Windows 10/11 x64 `.appxbundle` / `Setup.exe` / portable `.zip` / `-full.zip` trong `output/0.5.1`. Sửa: thư mục cục bộ nhận tệp tải của Aniyomi/Nekoyomi/Mihon/Mangayomi (tìm sâu tới 4 cấp + **quyền bộ nhớ Android 7–10** – nguyên nhân chính), nhật ký ứng dụng luôn ghi được, trang "Truy cập mọi tệp" không tự mở mỗi lần khởi động, giật ở Thêm/Cài đặt (truy vấn Isar nhẹ, bất đồng bộ), runtime vBook thử lại + báo nguyên nhân, EPUB hỏng không dừng lượt quét. Mới: **Kiểm tra tệp APK tiện ích** (Decode & Extract, chỉ đọc). Tiện ích vBook mã hóa (234/554): không giải mã (mục 0.5.1 C, H). Còn lại: "tiếp tục phát" chưa xác nhận lại trên máy ảo TV (0.5.1 I). Chi tiết: mục "03/11/2026 — Cập nhật phiên bản 0.5.1".
 - **03/11/2026 – 0.5.0 (0.5.0+42) đã dựng, kiểm thử và phát hành (GitHub Release `v0.5.0`):** 3 APK Android 7.0+, 3 APK `YumiHub Android TV` (nay bỏ cả Comic, Novel, **Google Play Books, Booru**), Windows 10/11 x64 `.appxbundle` / `Setup.exe` / portable `.zip` / `-full.zip` trong `output/0.5.0`. Sửa: tiện ích vBook mã hóa bị "cài lại" + ghi ERROR lặp (nay khóa, nhãn "Chỉ chạy trên vBook", 1 cảnh báo), MangaDex (unlocked) không cài được do `SharedPreferences.get` ném lỗi với khóa lạ, khung hình chậm ở "Thêm", bảng cài đặt trình phát TV còn tiếng Anh, trình chạy tác vụ treo do QuickEdit. `flutter test` 84/84, `dart analyze` 0 lỗi. Kiểm thử Note 9 (cài đè, vBook mã hóa, nhật ký 0 lỗi, tiếp tục phát 42:26, HotPhim), AVD TV (thanh bên, trình phát tiếng Việt; phát phim không đạt trên giả lập), Windows 11 (Setup.exe cài đè 0.4.9→0.5.0, **giao diện hiển thị đầy đủ** – hết cửa sổ trắng). **Không đạt:** Android 6.0, Windows 7/8/x86/ARM, sherpa-onnx. Chi tiết: mục "03/11/2026 — Cập nhật phiên bản 0.5.0".
@@ -2054,3 +2055,204 @@ Sửa (bản dựng 3, `e15`–`e22`):
 - Commit `fe2e679` "release: YomiHub 0.5.2 (0.5.2+44)" (115 tệp) đã push lên `main`.
 - `release_052.ps1`: tạo Release `v0.5.2` (id 436095081), tải 17 tệp (1.976,9 MB): 6 APK, 4 gói Windows, `Install-YomiHub.bat/.ps1`, `YomiHub-RootCA.cer`, `SHA256SUMS-0.5.2.txt`, changelog, `TECHNICAL_UPDATE_NOTES.md`, `YomiHub-0.5.2-QA-screenshots.zip` (37 ảnh, 6,8 MB). Mọi tệp HTTP 201; kiểm tra lại: kích thước khớp từng byte, tải về HTTP 200, `releases/latest = v0.5.2`, 0 lỗi.
 - README trên `main`: 16 liên kết `releases/download/v0.5.2/…` đều trả HTTP 200 (kiểm tra bằng `curl -I -L`).
+
+### 06/11/2026 — Cập nhật phiên bản 0.5.3 (YomiHub 0.5.3+45)
+
+Thực hiện: Claude.
+- **Đợt 1** (phiên chat claude.ai, không nối với máy): phân tích log, sửa mã. Kết quả là `YomiHub-0.5.3-part1.patch` + HANDOFF (`files.zip`).
+- **Đợt 2** (phiên Cowork nối máy `kiritokmn-lap`, 06/11/2026 14:40 → … Asia/Saigon): áp đợt 1, làm các mục còn lại, dựng, kiểm thử, phát hành.
+- Người dùng đã xác nhận bản tóm tắt yêu cầu và cho toàn quyền điều khiển máy. Các lựa chọn đã chốt:
+  - Giữ **Android 7.0+** và **Windows 10/11 x64**. Android 6.0 và Windows 7/x86/ARM vẫn bị chặn bởi Isar/libmdbx, Flutter và WebView2, như ghi ở 0.4.4–0.5.2.
+  - Tiện ích website: **chỉ tự thêm kho**, không tự cài tiện ích nào.
+  - Thiết bị kiểm thử: **tự dò bằng adb**. Kết quả là Galaxy Note 9 SM-N960N (Android 10, Samsung DeX, màn ảo 1920×1080, display 2).
+
+#### A. Yêu cầu
+1. Nâng lên 0.5.3, gồm:
+   - 3 APK điện thoại.
+   - 3 APK `YumiHub Android TV` (bỏ Comic, Novel, Google Play Books, Booru).
+   - Windows: `.appxbundle`, `Setup.exe`, portable.
+2. `Project YomiHub.xlsx`:
+   - `Feature Check` (45 mục).
+   - `YomiHub Update` (9 mục, bên dưới).
+   - Các sheet `Website Extension`, `Extension Repo`, `Website Update Apps`, `Website Scan`.
+3. `Project GitHub.xlsx`: 605 liên kết khác nhau.
+4. Sửa lỗi và cảnh báo trong `logs 3.txt`: 3.288 dòng, 30/10 06:09 → 06/11 14:10, 138 ERROR, 345 WARNING.
+5. Ghi tài liệu này; dựng; kiểm thử có ảnh và video (riêng VPN kiểm tra ngoài ứng dụng); đẩy mã nguồn, Release và README lên GitHub.
+
+YomiHub Update:
+- (1) Nhật ký.
+- (2) Chuyển tiện ích sheet *Website Extension* sang `Kiritokmn---Extension-Repo` và gỡ khỏi ứng dụng.
+- (3) Dự án GitHub còn thiếu.
+- (4) Mục "Sao Lưu & Đồng Bộ" ở Cài đặt và Thêm.
+- (5) Đưa công tắc Google Play Books và Booru App vào "Bật/Tắt tính năng & Nguồn mở rộng".
+- (6) Yomikiru, Yomihon, Zenshin, Nyora, Nuvio, Mangayomi Server.
+- (7) Tracker theo AnymeX, AniSync, Tankobun, Rokku; ô cài đặt và ô nhập không bị thanh hệ thống che.
+- (8) Treo, lag, văng.
+- (9) Windows, AMD Ryzen 9.
+
+#### B. Công cụ
+- **Git / GitHub Desktop**:
+  - Git for Windows (`D:\yh\tools\git`): `git status`, `git apply --check` / `git apply` (patch đợt 1), `git rm --cached`, commit, push.
+  - Credential Manager của GitHub Desktop dùng để push và gọi API Release; token không bao giờ in ra.
+- **Sửa mã**:
+  - `audit-0.5.3/edit.py`: thay chuỗi; `assert` chuỗi cũ xuất hiện đúng 1 lần; chép bản gốc vào `audit-0.5.3/before/`; ghi `changed_files.txt`.
+  - Các kịch bản `audit-0.5.3/scripts/e01_player_proxy.py` … `e06_mal_export_sync.py`.
+  - Bản dịch: `tr053a.py`, `tr053b.py` (18 ngôn ngữ).
+- **Dựng**:
+  - `sync_053.ps1`, `build_053.ps1` (sinh từ 0.5.2).
+  - Flutter 3.47.6 / Dart 3.13.5, Gradle, Rust/Cargo, Android SDK, Visual Studio 2022 Build Tools, WiX/NuGet.
+  - Runner `3_run_jobs.bat` / `3b_run_fast_jobs.bat` (`audit-0.5.3/job.sh`, `wait.sh`, `adb.sh`).
+- **Kiểm thử**:
+  - Thiết bị và AVD: adb (`input -d 2`, `screencap -d 2`), Android Emulator (`Medium_Phone_API_37.0` Android 17, `YomiHub_TV_API34`).
+  - Video: `framerec.ps1` (screencap liên tục của màn DeX → ffmpeg MP4).
+  - Kiểm tra trang và mạng: `curl.exe --doh-url`.
+  - Kiểm tra JS: `node --check`.
+  - `openpyxl` đọc Excel; `git clone --depth 1` để quét 9 dự án GitHub.
+  - Computer use cho bản Windows.
+
+#### C. Lỗi trong `logs 3.txt` (sau khi cài 0.5.2, 06/11 11:39 → 14:10) – nguyên nhân và cách sửa
+
+| # | Dòng log | Nguyên nhân | Sửa (tệp) | Kiểm thử |
+| --- | --- | --- | --- | --- |
+| 1 | `[WARNING] [Hiệu năng] Giao diện bị treo 3.3 giây` (13:40:53, đúng lúc tự sao lưu 27,8 MB) | `writeMangayomiBackupZip` đọc ~88.000 chương bằng `findAllSync()` và `toJson()` hàng loạt trên luồng UI | `backup.dart`: `getAllAsync()` + `_toJsonInBatches()` (lô 1.000, nhường event loop) – đợt 1 | Note 9: tạo bản sao lưu 23,9 MB trong 13 s, có vòng quay chờ, log không còn "Giao diện bị treo" |
+| 2 | `[WARNING]` rỗng + `Logger initialized` (73 lần) | Mốc phiên ghi ở mức WARNING kèm xuống dòng | `logger.dart`: `[INFO] ===== Logger initialized (phiên mới) =====` – đợt 1 | log Note 9 15:44: một dòng INFO |
+| 3 | `[Thư mục cục bộ] Bỏ qua EPUB hỏng …Bản Lĩnh Putin…` lặp lại mỗi lần mở | Quét lúc khởi động chạy trước khi box Hive `yomihub_prefs` mở → danh sách `badEpubs` không đọc/ghi được | `file_scanner.dart`: chờ `YomiPrefs.ready` (tối đa 5 s) – đợt 1 | test `yh_053` |
+| 4 | `Shorts FapReel (18+): lỗi phát video: Failed to open https://cdncontent.imctransfer.com/…?token=…` ×2 | `curl` từ PC (cùng mạng): URL đúng trong log vẫn trả **206** (token còn hạn, không chặn DNS); trang nay phát `/ig/<id>.mp4` trên chính fapreel.com. Nguyên nhân khả dĩ nhất: Tor / Mihon Proxy / proxy riêng định tuyến yêu cầu của tiện ích qua proxy, nhưng libmpv nối thẳng → token CDN gắn với IP proxy bị từ chối. Ngoài ra: lỗi do trình phát bị huỷ khi rời màn Shorts cũng bị ghi | Mới `lib/yomihub/player/player_net.dart` (`YomiPlayerNet`): đặt `http-proxy` của mpv theo đúng tuyến của nguồn, **chỉ với tệp tiến trình (mp4/webm/mkv/mov)**; Shorts: nếu phát qua proxy lỗi thì tự thử lại 1 lần nối thẳng rồi mới ghi log; bỏ lỗi phát sinh sau khi màn hình đã đóng. Trình phát chính (`anime_player_view.dart`) dùng cùng quy tắc | Note 9: Tor toàn thiết bị + HotPhim (HLS) → mpv kẹt vòng quay > 5 phút ở bản dựng 1 (áp proxy cho mọi URL) → bản dựng 2 giới hạn ở tệp tiến trình; test `yh_053` |
+| 5 | `Hệ thống báo thiếu bộ nhớ`, `Image/network load failed` | Thông tin (ảnh bìa trang nguồn hỏng, hệ thống thu hồi RAM) | Không sửa | – |
+| 6 | (phát hiện khi test) `[Kho tiện ích] Không tải được kho kohiden.xyz … CERTIFICATE_VERIFY_FAILED` | Chứng chỉ TLS của kohiden.xyz (trang nguồn) | Đã xử lý là lỗi mạng (WARNING, 1 lần/phiên) từ 0.5.2 | – |
+
+Việc tồn từ 0.5.2 (đợt 1):
+- **Bản Windows tự sao lưu vào đường dẫn Android.**
+  - Cách sửa: `auto_backup.dart › _isUsableBackupLocation`.
+  - Đợt 2 bổ sung (lỗi tìm thấy khi kiểm thử): trên Android, vị trí tự sao lưu nằm trên thẻ nhớ đã tháo (`/storage/7563-670C`) cũng bị coi là không dùng được. Khi đó ứng dụng lưu vào thư mục mặc định, còn màn "Sao Lưu & Đồng Bộ" ghi đường dẫn bằng chữ đỏ.
+
+#### D. Sheet "YomiHub Update"
+
+**Mục 2 – Chuyển tiện ích website sang kho Kiritokmn**
+
+1. Kho `kiritokmn1403/Kiritokmn---Extension-Repo`, commit `4fc3839` và `152678e`:
+   - Thư mục `sources-yomihub/`: 29 tiện ích + `_common.js` + `meta.json`.
+   - Công cụ `tools/build/yomihub-sources.mjs` (gọi từ `build-all.mjs`) ghi `repo/yomihub/<tệp>.js`. Mỗi tệp tự chứa, kiểm tra bằng `node --check` 29/29 đạt.
+   - `repo/index.json` thêm 29 mục **cùng id 920260001…** (version 0.5.3). 20 mục vBook→Mangayomi trùng trang web bị bỏ khỏi `index.json`. README, CHANGELOG và TECHNICAL_UPDATE_NOTES của kho đã cập nhật.
+2. Ứng dụng:
+   - `builtin_extensions.dart`: bỏ cài/cập nhật mã tích hợp (danh sách chỉ còn giữ id cho Shorts và tên miền dự phòng).
+   - `install()` chạy **một lần**, trước khung hình đầu (`main.dart`, ngay sau khi mở DB). Hàm này thêm kho `…/repo/index.json` vào Truyện tranh / Phim & Điện ảnh / Tiểu thuyết (không trùng) và đổi các tiện ích đã cài sang `isLocal=false` + `repo` + `sourceCodeUrl` của kho. Kết quả được ghi log.
+   - Gỡ 29 tệp khỏi `overlay/assets/yomihub_extensions` (bản gốc ở `audit-0.5.3/before/`). Chỉ giữ `_common.js`, `vbook.js`, `kotatsu.js`, `ireader.js`.
+3. Kiểm thử trên Note 9:
+   - Log: `[Tiện ích] 0.5.3 … đã thêm kho "Kiritokmn Extension Repo" … 29 tiện ích đã cài được chuyển sang nhận cập nhật từ kho này`.
+   - "Quản lý URL kho Phim & Điện ảnh" có "Kiritokmn Extension Repo".
+   - Tab Tiện ích: AVSub, Anime47, AnimeVN, HayChill, HiHiPhim, HotPhim… hiện "… – Kiritokmn Extension Repo" và "Đang chờ cập nhật". Cập nhật HotPhim và Anime47 thành công.
+   - HotPhim tải Phổ biến, mở chi tiết, phát phim: mpv có luồng âm thanh `state:started`. Ảnh màn video đen vì DeX không chụp được surface video.
+   - Android TV (AVD): HotPhim từ kho tải được, có viền focus.
+4. Lỗi tìm thấy khi kiểm thử: ghi chú "(YomiHub 0.5.3 – Kiritokmn Extension Repo)" chạy thành dải chữ trên màn nguồn. Đã sửa trong kho, chỉ giữ ghi chú gốc.
+
+**Mục 3 – Dự án GitHub**
+- So khớp 605 liên kết của `Project GitHub.xlsx` (gồm cả hyperlink ô) với `github_projects.dart` (643 liên kết, sau khi đợt 1 thêm 19 liên kết).
+- Kết quả: **0 thiếu**.
+
+**Mục 4 – "Sao Lưu & Đồng Bộ"**
+- `DataAndStorage(backupSync: true)`, route `/backupSync`, gồm:
+  - Tạo / khôi phục sao lưu, Hoàn tác thay đổi gần nhất.
+  - Tần suất, mã hoá, mức nén, vị trí sao lưu.
+  - Sao lưu đám mây.
+  - **Đồng bộ** (`/sync`).
+  - **Sao lưu dữ liệu Booru App** (công tắc `backupBooru`, `YomiBackupExtras` bỏ box `yomihub_booru` khi tắt).
+- Mục này có ở **Cài đặt** (thay mục "Đồng bộ" và "Sao lưu đám mây" cũ) và ở **Thêm**.
+- "Dữ liệu và bộ nhớ" chỉ còn lập chỉ mục, vị trí tải, công cụ thư viện, bộ nhớ, cùng một ô dẫn sang "Sao Lưu & Đồng Bộ".
+- Note 9: ảnh `n9_53_03`, `n9_53_04`, `n9_53_14`.
+
+**Mục 5**
+- Ô Google Play Books và Booru App chuyển từ Cài đặt sang "Bật/Tắt tính năng & Nguồn mở rộng › Tính năng khác" (ẩn trên Android TV).
+- Note 9: ảnh `n9_53_15`.
+
+**Mục 6 – Quét 6 dự án** (`git clone --depth 1`, đọc README và mã):
+
+| Dự án | Kết quả |
+| --- | --- |
+| Mangayomi Server | Tác giả đã ngừng hỗ trợ và chuyển sang `not-akari/mangayomi-sync-server` → nút "Lấy máy chủ đồng bộ" trỏ tới máy chủ mới (`sync.dart`). Mục Đồng bộ nay nằm trong "Sao Lưu & Đồng Bộ" |
+| Yomikiru (Electron, đọc offline) | Các tính năng chính (đọc dọc/LTR/RTL, 2 trang, webtoon, chủ đề, phím tắt, EPUB, CBZ/CBR/7z, AniList, lịch sử/bookmark) YomiHub đã có từ trước – không thêm |
+| Yomihon (miyomi.app, không có mã nguồn công khai) | Không quét được mã |
+| Zenshin (Electron + WebTorrent, AniList) | Phát torrent + AniList: YomiHub đã có máy chủ torrent (`libmtorrentserver`) và tracker AniList – không thêm |
+| Nyora (fork Kotatsu: dịch cả trang, 1100+ nguồn, đồng bộ đám mây) | Nguồn Kotatsu (cầu nối Kotatsu), dịch ảnh và đồng bộ đám mây đã có; Nyora Cloud cần tài khoản dịch vụ riêng – không tích hợp |
+| Nuvio (Kotlin Multiplatform, addon Stremio) | Addon Stremio là một hệ nguồn khác (API Stremio); chưa làm ở 0.5.3, ghi lại làm việc tồn |
+
+**Mục 7 – Tracker**
+
+| Dự án | Kết quả |
+| --- | --- |
+| AnymeX | AniList / MAL / Simkl: YomiHub đã có cả 3 (và Kitsu, Trakt, MangaUpdates, Shikimori, Bangumi, Kavita, Suwayomi) |
+| AniSync | Client AniList (feed, forum, widget) – ngoài phạm vi theo dõi tiến độ |
+| Tankobun | **Mới**: "Xuất danh sách MyAnimeList (XML)" (`lib/yomihub/trackers/mal_export.dart`, Cài đặt › Theo dõi). Mục MAL dùng MAL id; mục AniList được ghép sang MAL qua `idMal` (GraphQL, 50 mục/lần). Tệp ghi vào `…/backup/export/YomiHub_MAL_{anime,manga}_<ngày>.xml`, nhập được vào myanimelist.net/import.php, AnymeX, Taiga |
+| Rokku | Màn lỗi cập nhật thư viện (`updateErrorsProvider`) và lọc NSFW đã có – không thêm |
+
+Che bởi thanh hệ thống (yêu cầu bắt buộc):
+- `tracker_search_widget.dart`: chiều cao lấy từ `MediaQuery.padding` của trang ngoài. Ở chế độ edge-to-edge (Android 15+) giá trị này bằng 0, nên ô tìm nằm dưới thanh điều hướng hoặc bàn phím. Nay dùng `SafeArea` + `LayoutBuilder` + `resizeToAvoidBottomInset`.
+- `tracking_menu.dart`: lấy khoảng đệm dưới ở trang mở menu.
+- `track.dart`: thêm đệm cuối danh sách; hộp Kitsu `scrollable: true`.
+- `tracking_detail.dart`: `SafeArea(top: false)`.
+- Emulator Android 17 (1080×2400, gesture bar): hàng cuối "Xuất danh sách MyAnimeList (XML)" nằm trên thanh cử chỉ; hộp "Đăng nhập vào Kitsu" có bàn phím mở vẫn thấy đủ 2 ô và nút. Ảnh `emu_53_05`, `emu_53_06`.
+- Note 9: Xuất XML khi chưa đăng nhập tracker báo "anime 0, manga 0" → bản dựng 2 báo rõ "Không có mục nào đang theo dõi…".
+
+**Mục 8 – Treo / lag / văng:** xem C1–C3.
+- Tạo bản sao lưu không còn chặn UI.
+- Không có lỗi hay văng trong log Note 9 của phiên kiểm thử.
+
+**Mục 9 – Windows (Ryzen 9):**
+- Không có máy Ryzen. 0.5.2 đã thêm VC++ runtime và gói Setup đầy đủ (Java + M-Extension-Server) cùng chẩn đoán vào log.
+- 0.5.3 thêm màn **Cài đặt › Chẩn đoán Windows** (`win_diag_screen.dart`). Màn này hiện CPU, số luồng, GPU + driver, WebView2, Java, thư mục cài, các thành phần thiếu kèm tính năng bị tắt; có nút "Kiểm tra lại" và "Mở thư mục cài đặt". Người dùng máy Ryzen tự thấy được thiếu gì, không phải đọc `logs.txt`.
+
+#### E. Dựng và kiểm thử
+- Công cụ: Flutter 3.47.6 / Dart 3.13.5, Android SDK + Emulator (Android Studio), Visual Studio 2022 (MSVC, dựng Windows), VS Code để đọc/sửa mã, Git, adb, ffmpeg. Lệnh: `sync_053.ps1` (chép 96 tệp của `audit-0.5.3/changed_files.txt` vào `D:\yh\build` và `D:\yh\buildwin`), `build_053.ps1 -step test|apk|tv|win|pack`.
+- **Bản dựng 1**: kiểm thử đầu trên Note 9, TV AVD, emulator Android 17 và bản portable Windows. Phát hiện 3 lỗi → sửa ở bản dựng 2:
+  1. HotPhim (HLS) dừng > 5 phút khi bật Tor "Chỉ YomiHub" vì proxy áp cho mọi URL → `YomiPlayerNet.apply` chỉ đặt `http-proxy` cho tệp video (mp4/m4v/webm/mkv/mov); Shorts thử lại nối thẳng một lần nếu lỗi.
+  2. Xuất MAL khi chưa có mục theo dõi báo "anime 0, manga 0" → báo rõ "Không có mục nào đang theo dõi trên MyAnimeList hoặc AniList để xuất".
+  3. Vị trí tự sao lưu trên thẻ nhớ đã tháo hiển thị như bình thường → chữ đỏ + tự lưu vào thư mục mặc định (`auto_backup.dart`, `data_and_storage.dart`, `tr053b.py` 2 chuỗi × 18 ngôn ngữ).
+- **Bản dựng 2** (`jobs/done/p053_100_build2.log`, 16:42 → 17:26):
+  - `flutter gen-l10n`; `dart analyze lib`: **0 lỗi**; `flutter test` 14 tệp (`yh_040` … `yh_053`): **122/122 đạt**.
+  - APK điện thoại 16:47 → 17:01; APK TV 17:01 → 17:13 (`aapt2` xác nhận nhãn `YomiHub` / `YumiHub Android TV`); Windows 17:13 → 17:24 (VC++ runtime, xray + tor, bridge 54 jar 21,5 MB, JRE + M-Extension-Server); `pack` 17:26 (Setup.exe, appxbundle, `Install-YomiHub.bat/.ps1`, `YomiHub-RootCA.cer`, `SHA256SUMS-0.5.3.txt`).
+
+| Tệp (`output/0.5.3`) | Kích thước | SHA-256 (đầu) |
+| --- | --- | --- |
+| YomiHub-0.5.3-arm64-v8a.apk | 168,8 MB | `902a5718…` (đúng tệp đã cài lên Note 9) |
+| YomiHub-0.5.3-armeabi-v7a.apk | 165,6 MB | `6cfa35a3…` |
+| YomiHub-0.5.3-x86_64.apk | 178,1 MB | `f6b47dc6…` |
+| YumiHub-Android-TV-0.5.3-arm64-v8a.apk | 168,6 MB | `2e22ebdd…` |
+| YumiHub-Android-TV-0.5.3-armeabi-v7a.apk | 165,4 MB | `28353209…` |
+| YumiHub-Android-TV-0.5.3-x86_64.apk | 178,1 MB | `71f9e54e…` |
+| YomiHub-0.5.3-windows-x64-Setup.exe (gói đầy đủ) | 267,2 MB | `96289ae7…` |
+| YomiHub-0.5.3-windows-x64.appxbundle | 271,6 MB | `c46845de…` |
+| YomiHub-0.5.3-windows-x64.zip (portable) | 139,2 MB | `44a82af0…` |
+| YomiHub-0.5.3-windows-x64-full.zip (portable + JRE/MES) | 267,1 MB | `060826b9…` |
+
+- **Galaxy Note 9** (SM-N960N, Android 10, Samsung DeX display 2; `audit-0.5.3/adb.sh`):
+  - Bản dựng 1 cài đè 0.5.2 → 0.5.3 "Success"; bản dựng 2 cài đè lúc 17:06 (`versionName=0.5.3`).
+  - Nhật ký: `[Kho tiện ích] Đã thêm kho Kiritokmn Extension Repo…` và chuyển 29 tiện ích (isLocal=false, có `repo`); kho xuất hiện trong danh sách kho Truyện tranh / Phim & Điện ảnh / Tiểu thuyết (`n9_53_16`, `n9_53_17`).
+  - HotPhim và Anime47 hiện "Đang chờ cập nhật" → cập nhật từ kho thành công (`n9_53_20`); HotPhim danh sách Phổ biến, chi tiết, phát phim (`n9_53_24` … `n9_53_27`).
+  - Thêm › Sao Lưu & Đồng Bộ và Cài đặt › Sao Lưu & Đồng Bộ: đủ tạo/khôi phục, tần suất, mã hoá, nén, vị trí, đám mây, đồng bộ, "Sao lưu dữ liệu Booru App"; tạo bản sao lưu **23,9 MB trong 13 s**, giao diện không treo (`n9_53_04` … `n9_53_12`).
+  - Bật/Tắt tính năng › Tính năng khác: Google Play Books, Booru App (`n9_53_15`). Cài đặt không còn 2 ô này.
+  - Theo dõi › Xuất danh sách MyAnimeList (XML) (`n9_53_31` … `n9_53_33`, bản dựng 2: `n9_53_52`).
+  - Bản dựng 2: Tor "Chỉ YomiHub" → HotPhim phát được (AudioPlayer `state:started` 17:12:31; `n9_53_53` … `n9_53_57`); tắt VPN, phạm vi trả về "Chỉ YomiHub" (`n9_53_58`, `n9_53_59`).
+  - `n9_logs_053a…e.txt`: không có văng/FATAL; 17–18 dòng `[ERROR]` đều do mạng hoặc nguồn bên ngoài (DNS `api.github.com` khi kiểm tra cập nhật, HTTP 404 của Rule34Video/Xvideos, Kohi-den lỗi TLS, Anime47 cần đăng nhập). Tệp nhật ký có tên mục trong thư viện nên không đưa lên GitHub.
+- **VPN ngoài ứng dụng (Note 9):** Tor phạm vi "Toàn bộ thiết bị" → Chrome mở `check.torproject.org`: "Congratulations. This browser is configured to use Tor." (`n9_53_41`, IP che trong ảnh công khai). WARP: mạng chặn UDP → báo lỗi và gỡ đường hầm (`n9_53_37` … `n9_53_39`).
+- **Emulator Android 17** (1080×2400, thanh cử chỉ): Thêm, Cài đặt, cuối danh sách Theo dõi, hộp đăng nhập Kitsu có bàn phím (`emu_53_01` … `emu_53_06`).
+- **Android TV** (AVD `YomiHub_TV_API34`, APK TV `armeabi-v7a`): cài "Success", tên "YumiHub Android TV", thanh bên chỉ có Phim & Điện ảnh / Cập nhật / Duyệt / Thêm, HotPhim tải từ kho Kiritokmn, có viền focus D-pad (`tv_53_01` … `tv_53_04`).
+- **Windows** (i5-11300H, GTX 1650 + Iris Xe, Windows build 26300):
+  - Portable: nhật ký ghi dòng `[Windows] Chẩn đoán: …` và chuyển 29 tiện ích sang kho.
+  - `Setup.exe` (bản dựng 2): cài vào `%LOCALAPPDATA%\YomiHub`, FileVersion **0.5.3+45**, có `yomihub_bin\mes` và VC++ runtime; tạo lối tắt Desktop + Start Menu; ứng dụng tự mở, `Responding = True`. Nút của trình cài được bấm bằng `SetCursorPos`/`mouse_event` (computer use bị chặn bởi Pickerhost). Video `win053_setup.mp4` (gdigrab).
+  - Nhật ký sau cài (17:50–17:55): tự sao lưu báo "Vị trí … `/storage/3730-6132/…` không dùng được trên thiết bị này … dùng thư mục mặc định" (sửa của 0.5.3 hoạt động); các cảnh báo DNS lúc 17:50 là do máy mất mạng (cùng lúc phiên mất kết nối), không phải lỗi ứng dụng.
+  - **Không chụp được nội dung cửa sổ Flutter**: ảnh trắng với cả `PrintWindow`, `gdigrab`, computer use, kể cả ứng dụng Flutter mẫu `hello_win` (`win_53_00_hello`); ffmpeg `ddagrab` báo "Operation not permitted". Giống 0.5.2: lỗi môi trường chụp màn hình, không phải lỗi ứng dụng.
+- **Gói QA công khai:** `output/YomiHub-0.5.3-QA-screenshots.zip` (`audit-0.5.3/qa_zip.ps1`): 75 tệp (ảnh + `n9v053_02_build2_settings_tor.mp4`, `win053_setup.mp4`), 15,8 MB. Ảnh/video có thư viện cá nhân (`PRIVATE_*`, `n9v053_01_*`) chỉ giữ trong `audit-0.5.3/qa`, không đưa lên GitHub.
+
+#### F. Phát hành
+- Đang phát hành: commit + push mã nguồn, Release `v0.5.3` (`release_053.ps1`). Kết quả ghi lại sau khi tải lên xong.
+
+#### G. Giới hạn và việc tồn
+- Android 6.0, Windows 7, x86, ARM: không hỗ trợ (giữ như 0.5.2; người dùng đồng ý).
+- FapReel Shorts:
+  - Chưa tái hiện được lỗi trên máy thử. URL trong log vẫn phát được từ PC.
+  - Bản sửa (proxy cho trình phát + tự thử lại nối thẳng) dựa trên phân tích mã.
+  - Nếu còn lỗi, cần `logs.txt` kèm trạng thái VPN lúc lỗi.
+- WARP trên mạng Wi-Fi hiện tại của Note 9 không bắt tay được qua cả 5 cổng UDP. Ứng dụng tắt đường hầm và báo lỗi đúng như thiết kế 0.5.2. Kiểm tra VPN ngoài ứng dụng dùng **Tor toàn thiết bị**: Chrome mở `check.torproject.org` → "Congratulations. This browser is configured to use Tor." (IP 5.2.69.82).
+- Video trên Samsung DeX: `screencap` không chụp được surface video (ảnh đen). Đã xác nhận phát bằng trạng thái AudioPlayer của hệ thống.
+- Nuvio (addon Stremio) và Nyora Cloud chưa tích hợp. Yomihon không có mã nguồn.
+- Ảnh hoặc video có thư viện cá nhân được đặt tên `PRIVATE_*` / `n9v053_*` và không đưa vào gói QA công khai.

@@ -285,14 +285,22 @@ Future<dynamic> trackersSearchDraggableMenu(
   required Track track,
   required ItemType itemType,
 }) async {
-  var padding = MediaQuery.of(context).padding;
+  // 0.5.3 (YomiHub Update mục 7): the height was computed from the screen
+  // minus the outer padding, which is 0 in edge-to-edge mode (Android 15+),
+  // so the search field ended up under the navigation bar / keyboard. The
+  // sheet now lives inside a SafeArea and takes the height that is left
+  // after the status bar, navigation bar and keyboard.
   return await showDialog(
     context: context,
+    useSafeArea: false,
     builder: (context) => Scaffold(
       backgroundColor: Colors.transparent,
-      body: SingleChildScrollView(
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, box) => SingleChildScrollView(
         child: SizedBox(
-          height: context.height(1) - padding.top - padding.bottom,
+          height: box.maxHeight,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -325,6 +333,8 @@ Future<dynamic> trackersSearchDraggableMenu(
               ),
               TrackerWidgetSearch(track: track, itemType: itemType),
             ],
+          ),
+        ),
           ),
         ),
       ),

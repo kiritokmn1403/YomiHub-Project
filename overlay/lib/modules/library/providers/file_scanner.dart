@@ -598,6 +598,17 @@ Future<void> _scanDirectory(
       localVirtualPathFromStoredPath(m.link, localFolders): m,
   };
 
+  // 0.5.3 (logs 3: the same "Bỏ qua EPUB hỏng" at every launch even after
+  // 0.5.2 remembered it): the start-up scan ran before the Hive prefs box
+  // was open - YomiPrefs.get returned [] and YomiPrefs.set wrote nothing, so
+  // the list of damaged EPUBs was never read nor saved. Wait for the box.
+  if (!YomiPrefs.isOpen) {
+    await YomiPrefs.ready.timeout(
+      const Duration(seconds: 5),
+      onTimeout: () {},
+    );
+  }
+
   // iterate through newChapters elements, which are: ["full_path/to/chapter1", "true"]
   for (var pathBool in newChapters) {
     final chapterPath = pathBool[0] as String;

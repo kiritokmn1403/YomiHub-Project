@@ -23,6 +23,9 @@ class WinDiag {
   /// Result of the last run (shown in tests / logs).
   static final List<String> problems = [];
 
+  /// 0.5.3: the last "[Windows] Chẩn đoán" line, shown in Settings.
+  static String summary = '';
+
   static Future<String> _reg(String key, String value) async {
     try {
       final r = await Process.run('reg', ['query', key, '/v', value])
@@ -90,10 +93,11 @@ class WinDiag {
       if (!java) {
         problems.add('chưa có Java của M-Extension-Server – tiện ích Mihon/Aniyomi (ApkBridge), Kotatsu, IReader không chạy (Cài đặt › Duyệt › M-Extension-Server › Cài tự động, hoặc dùng gói Setup/-full)');
       }
+      summary = '${Platform.operatingSystemVersion} • CPU $cpu ($arch, ${Platform.numberOfProcessors} luồng)'
+          '${gpu.isEmpty ? '' : ' • GPU $gpu'} • WebView2 ${wv2.isEmpty ? 'không có' : wv2}'
+          ' • Java ${java ? 'có' : 'không'} • thư mục $exeDir';
       AppLogger.log(
-        '[Windows] Chẩn đoán: ${Platform.operatingSystemVersion} • CPU $cpu ($arch, ${Platform.numberOfProcessors} luồng)'
-        '${gpu.isEmpty ? '' : ' • GPU $gpu'} • WebView2 ${wv2.isEmpty ? 'không có' : wv2}'
-        ' • Java ${java ? 'có' : 'không'} • thư mục $exeDir',
+        '[Windows] Chẩn đoán: $summary',
         logLevel: LogLevel.info, always: true,
       );
       for (final m in problems) {

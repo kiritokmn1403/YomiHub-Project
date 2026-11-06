@@ -18,6 +18,7 @@ import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/extensions/ext_errors.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/player/sponsorblock.dart';
+import 'package:mangayomi/yomihub/player/player_net.dart';
 import 'package:mangayomi/yomihub/player/shorts_store.dart';
 import 'package:mangayomi/modules/manga/download/providers/download_provider.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -83,6 +84,8 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
   final List<Player> _players = [];
   final List<VideoController> _controllers = [];
   final List<int> _loaded = [-1, -1];
+  // 0.5.3: media opened through a proxy (retried directly on error)
+  final Map<Player, Media> _proxiedMedia = {};
   StreamSubscription<bool>? _completed;
 
   String get _proxy => ref.read(androidProxyServerStateProvider);
@@ -95,8 +98,17 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
       final p = Player(configuration: const PlayerConfiguration(bufferSize: 16 * 1024 * 1024));
       p.setPlaylistMode(PlaylistMode.single);
       // 0.4.5: playback errors of a short (HLS 403/410, timeout) are logged
-      p.stream.error.listen((e) {
-        if (e.trim().isEmpty) return;
+      p.stream.error.listen((e) async {
+        if (e.trim().isEmpty || !mounted) return;
+        // 0.5.3: a clip opened through the source's proxy is retried once
+        // over a direct connection before the error is logged
+        final retry = _proxiedMedia.remove(p);
+        if (retry != null) {
+          await YomiPlayerNet.clear(p);
+          if (!mounted) return;
+          await p.open(retry, play: identical(p, _players.first));
+          return;
+        }
         AppLogger.logOnce('shorts-err:${widget.source.id}:$e', 'Shorts ${widget.source.name}: lỗi phát video: $e',
             logLevel: LogLevel.warning);
       });
@@ -264,7 +276,17 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
     final v = await _resolve(_clips[index]);
     if (v == null || _loaded[slot] != index) return;
     final p = _players[slot];
-    await p.open(Media(v.url, httpHeaders: YomiSponsorBlock.clean(v.headers)), play: false);
+    // 0.5.3: same network route (Tor / Mihon Proxy / custom proxy) as the
+    // extension that produced the URL – tokenised CDN links failed otherwise
+    final media = Media(v.url, httpHeaders: YomiSponsorBlock.clean(v.headers));
+    final proxied = await YomiPlayerNet.apply(p, widget.source.id, url: v.url);
+    if (_loaded[slot] != index || !mounted) return;
+    if (proxied) {
+      _proxiedMedia[p] = media;
+    } else {
+      _proxiedMedia.remove(p);
+    }
+    await p.open(media, play: false);
     final audios = v.audios ?? const [];
     if (audios.isNotEmpty) {
       await p.setAudioTrack(AudioTrack.uri(audios.first.file!, title: audios.first.label));

@@ -3,6 +3,7 @@ import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:mangayomi/models/settings.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
@@ -73,6 +74,8 @@ class YomiBackupExtras {
     }
     final data = <String, dynamic>{};
     for (final name in boxes) {
+      // 0.5.3: "Sao lưu dữ liệu Booru App" switch in Sao Lưu & Đồng Bộ
+      if (name == 'yomihub_booru' && !YomiPrefs.get<bool>('backupBooru', true)) continue;
       try {
         final box = Hive.isBoxOpen(name)
             ? Hive.box(name)

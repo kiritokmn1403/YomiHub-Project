@@ -298,6 +298,11 @@ class RouterNotifier extends ChangeNotifier {
     ),
     _genericRoute(name: "downloads", child: const DownloadsScreen()),
     _genericRoute(name: "dataAndStorage", child: const DataAndStorage()),
+    // 0.5.3: "Sao Lưu & Đồng Bộ" (Settings + More)
+    _genericRoute(
+      name: "backupSync",
+      child: const DataAndStorage(backupSync: true),
+    ),
     _genericRoute(name: "security", child: const SecurityScreen()),
     _genericRoute(name: "manageTrackers", child: const ManageTrackersScreen()),
     _genericRoute<TrackPreference>(

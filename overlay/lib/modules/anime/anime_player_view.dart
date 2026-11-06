@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:mangayomi/yomihub/player/player_net.dart';
 import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
@@ -1390,6 +1391,15 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     _yhSponsor = YomiSponsorBlock.attach(_player, prefs.headers, (label) {
       botToast('${tr('Đã bỏ qua')}: ${tr(label)}', second: 2);
     });
+    // 0.5.3: play through the same route (Tor / Mihon Proxy / custom proxy)
+    // as the source's requests – CDN tokens are often tied to that IP.
+    if (!widget.isLocal) {
+      await YomiPlayerNet.apply(
+        _player,
+        widget.episode.manga.value?.sourceId,
+        url: prefs.videoTrack!.id,
+      );
+    }
     await _player.open(
       playbackMedia(
         prefs.videoTrack!.id,

@@ -151,10 +151,19 @@ Future<String> writeMangayomiBackupZip({
     final res = categoryRepository.getAll().map((e) => e.toJson()).toList();
     datas.addAll({"categories": res});
   }
+  // 0.5.3 (logs 3, 06/11 13:40:53): "Giao diện bị treo 3.3 giây" began in
+  // the same second as an auto-backup. The ZIP step was already off the UI
+  // isolate (0.5.2) but ~88 000 chapters were still read with findAllSync()
+  // and converted with toJson() in one go on the UI isolate. Chapters are now
+  // read asynchronously and every large table is converted in batches that
+  // yield to the event loop between them.
   if (list.contains(2)) {
-    final res = chapterRepository.getAll().map((e) => e.toJson()).toList();
-    datas.addAll({"chapters": res});
-    final res_ = downloadRepository.getAll().map((e) => e.toJson()).toList();
+    final chapters = await chapterRepository.getAllAsync();
+    datas.addAll({"chapters": await _toJsonInBatches(chapters, (e) => e.toJson())});
+    final res_ = await _toJsonInBatches(
+      downloadRepository.getAll(),
+      (e) => e.toJson(),
+    );
     datas.addAll({"downloads": res_});
   }
   if (list.contains(3)) {
@@ -162,13 +171,19 @@ Future<String> writeMangayomiBackupZip({
     datas.addAll({"tracks": res});
   }
   if (list.contains(4)) {
-    final res = historyRepository.getAll().map((e) => e.toJson()).toList();
+    final res = await _toJsonInBatches(
+      historyRepository.getAll(),
+      (e) => e.toJson(),
+    );
     datas.addAll({"history": res});
     // YomiHub: in-app browser history travels with the reading history.
     datas.addAll({"yomihub_browser_history": await BrowserHistory.all()});
   }
   if (list.contains(5)) {
-    final res = updateRepository.getAll().map((e) => e.toJson()).toList();
+    final res = await _toJsonInBatches(
+      updateRepository.getAll(),
+      (e) => e.toJson(),
+    );
     datas.addAll({"updates": res});
   }
   if (list.contains(6)) {
@@ -242,4 +257,22 @@ Future<String> writeMangayomiBackupZip({
     await file.delete();
   });
   return zipPath;
+}
+
+/// 0.5.3: converts [items] to JSON maps [batchSize] at a time, yielding to
+/// the event loop between batches so that a large library does not block the
+/// UI isolate while a backup is being prepared (frames keep being drawn).
+Future<List<Map<String, dynamic>>> _toJsonInBatches<T>(
+  List<T> items,
+  Map<String, dynamic> Function(T) toJson, {
+  int batchSize = 1000,
+}) async {
+  final out = <Map<String, dynamic>>[];
+  for (var i = 0; i < items.length; i++) {
+    out.add(toJson(items[i]));
+    if ((i + 1) % batchSize == 0) {
+      await Future<void>.delayed(Duration.zero);
+    }
+  }
+  return out;
 }

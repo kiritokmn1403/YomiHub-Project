@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:mangayomi/yomihub/trackers/yomi_tracker_login.dart';
+import 'package:mangayomi/yomihub/trackers/mal_export.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,7 +33,9 @@ class TrackScreen extends ConsumerWidget {
     final l10n = l10nLocalizations(context)!;
     return Scaffold(
       appBar: AppBar(title: Text(l10nLocalizations(context)!.tracking)),
+      // 0.5.3: the last tracker rows stayed under the navigation bar
       body: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: MediaQuery.viewPaddingOf(context).bottom + 16),
         child: StreamBuilder(
           stream: trackRepository.watchAllWithSyncId(),
           builder: (context, snapshot) {
@@ -172,6 +176,27 @@ class TrackScreen extends ConsumerWidget {
                   icon: Icons.settings,
                   onTap: () => context.push('/manageTrackers'),
                 ),
+                // 0.5.3 (Tankobun / AnymeX): export the tracked lists in the
+                // MyAnimeList XML format (MyAnimeList + AniList via idMal)
+                ListTileWidget(
+                  title: tr('Xuất danh sách MyAnimeList (XML)'),
+                  subtitle: tr('Truyện/phim đang theo dõi trên MyAnimeList và AniList → tệp XML nhập được vào MyAnimeList, AnymeX, Taiga'),
+                  icon: Icons.ios_share,
+                  onTap: () async {
+                    BotToast.showText(text: tr('Đang xuất danh sách…'));
+                    try {
+                      final r = await YomiMalExport.run();
+                      BotToast.showText(
+                        text: r.isEmpty
+                            ? tr('Không có mục nào đang theo dõi trên MyAnimeList hoặc AniList để xuất')
+                            : '${tr('Đã xuất')}: $r',
+                        duration: const Duration(seconds: 8),
+                      );
+                    } catch (e) {
+                      BotToast.showText(text: '${tr('Xuất thất bại')}: $e');
+                    }
+                  },
+                ),
               ],
             );
           },
@@ -230,6 +255,9 @@ Future<void> _showDialogLogin(BuildContext context, WidgetRef ref) async {
         }
 
         return AlertDialog(
+          // 0.5.3: the e-mail / password fields were pushed under the
+          // keyboard (fixed 300 px content)
+          scrollable: true,
           title: Text(
             l10n.login_into("Kitsu"),
             style: const TextStyle(fontSize: 30),

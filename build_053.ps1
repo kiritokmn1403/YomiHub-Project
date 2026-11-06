@@ -1,0 +1,196 @@
+﻿# build_053.ps1 - YomiHub 0.5.3 build (sources synced from overlay
+# into D:\yh\build and D:\yh\buildwin; no mirror copy).
+# Usage: powershell -ExecutionPolicy Bypass -File build_050.ps1 -step test|apk|tv|win|pack|all
+param([string]$step = 'all')
+# skip switch used while a newer source revision is pending (audit-0.5.3\SKIP_STEPS lists steps)
+$skipFile = "$PSScriptRoot\audit-0.5.3\SKIP_STEPS"
+if ((Test-Path $skipFile) -and ((Get-Content $skipFile -Raw) -split '\s+' -contains $step)) { "step $step skipped (SKIP_STEPS)"; exit 0 }
+. "$PSScriptRoot\common.ps1"
+$stamp = Get-Date -Format HHmmss
+Start-Transcript "$LOGS\build053_${step}_$stamp.txt" -Force | Out-Null
+$ErrorActionPreference = 'Continue'
+function Run($exe, [string[]]$a, $logName) {
+  $shown = ($a -join ' '); if ($script:secret) { $shown = $shown.Replace($script:secret, '***') }
+  Say "> $exe $shown"
+  $outLog = "$LOGS\$logName"
+  $fullExe = if (Test-Path "$TOOLS\flutter\bin\$exe") { "$TOOLS\flutter\bin\$exe" }
+             elseif (Test-Path "$TOOLS\cargo\bin\$exe") { "$TOOLS\cargo\bin\$exe" }
+             elseif (Test-Path "$TOOLS\git\cmd\$exe") { "$TOOLS\git\cmd\$exe" }
+             else { $exe }
+  $quotedArgs = @()
+  foreach ($arg in $a) {
+    if ($arg -match '\s' -and -not ($arg.StartsWith('\"') -or $arg.StartsWith('"'))) {
+      $quotedArgs += "`"$arg`""
+    } else {
+      $quotedArgs += $arg
+    }
+  }
+  $cmdStr = if ($quotedArgs.Count -gt 0) { "`"$fullExe`" $($quotedArgs -join ' ')" } else { "`"$fullExe`"" }
+  cmd.exe /c "set `"PATH=$TOOLS\git\cmd;$TOOLS\mingw64\bin;$TOOLS\flutter\bin;$TOOLS\jdk\bin;$TOOLS\cargo\bin;$TOOLS\android-sdk\cmdline-tools\latest\bin;$TOOLS\android-sdk\platform-tools;%PATH%`" && $cmdStr >> `"$outLog`" 2>&1"
+  if ($LASTEXITCODE -ne 0) { throw "$exe failed (exit $LASTEXITCODE) - see logs\$logName" }
+}
+
+$abld = "$YH\build\mangayomi"; $wbld = "$YH\buildwin\mangayomi"
+# 0.5.1 (04/11 09:04, reported by the owner): phone APKs were labelled "YumiHub Android TV".
+# The TV step restored the strings.xml text it had read at its start; one interrupted TV
+# build left the TV name behind and every later build "restored" that wrong name. The name
+# is now set explicitly per APK type and every APK label is checked with aapt2.
+$strXml = "$abld\android\app\src\main\res\values\strings.xml"
+function Set-AppName([string]$n) {
+  $c = [IO.File]::ReadAllText($strXml)
+  $c = [regex]::Replace($c, '<string name="app_name">[^<]*</string>', "<string name=`"app_name`">$n</string>")
+  [IO.File]::WriteAllText($strXml, $c, (New-Object Text.UTF8Encoding($false)))
+  Say "app_name = $n"
+}
+function Assert-Label([string]$apk, [string]$want) {
+  $aapt = (Get-ChildItem "$TOOLS\android-sdk\build-tools" -Recurse -Filter aapt2.exe | Select-Object -Last 1).FullName
+  $l = ((& $aapt dump badging $apk 2>$null) | Select-String '^application-label:' | Select-Object -First 1).Line
+  if ($l -ne "application-label:'$want'") { throw "WRONG LABEL $l (expected '$want') in $apk" }
+  Say "label OK: $(Split-Path $apk -Leaf) = $want"
+}
+$out = "$KIT\output\0.5.3"; New-Item -ItemType Directory -Force $out | Out-Null
+$ver = ([regex]::Match((Get-Content "$abld\pubspec.yaml" -Raw), '(?m)^version:\s*([\d\.]+)')).Groups[1].Value
+try {
+  Say "BUILD 0.5.3 START step=$step ver=$ver"
+  if ($ver -ne '0.5.3') { throw "pubspec version is $ver, expected 0.5.3" }
+  $env:PATH = "$TOOLS\android-sdk\cmake\3.22.1\bin;" + $env:PATH
+  $env:CARGO_HTTP_MULTIPLEXING = "false"; $env:CARGO_NET_RETRY = "10"
+  if ($step -in 'all','test') {
+    Push-Location $abld
+    Remove-Item "$LOGS\b053_analyze.txt","$LOGS\b053_test.txt" -ErrorAction SilentlyContinue
+    Run 'flutter.bat' @('pub','get','--offline') 'b053_pub_get.txt'
+    Run 'flutter.bat' @('gen-l10n') 'b053_gen_l10n.txt'
+    Run 'dart.bat' @('analyze','--no-fatal-warnings','lib') 'b053_analyze.txt'
+    Pop-Location
+  }
+  if ($step -in 'all','test','unit') {
+    Push-Location $abld
+    Run 'flutter.bat' @('test','--no-pub','test/yh_053_test.dart','test/yh_052_test.dart','test/yh_051_test.dart','test/yh_050_test.dart','test/yh_049_test.dart','test/yh_048_test.dart','test/yh_047_test.dart','test/yh_046_test.dart','test/yh_045_test.dart','test/yh_044_test.dart','test/yh_043_test.dart','test/yh_042_test.dart','test/yh_041_test.dart','test/yh_040_test.dart') 'b053_test.txt'
+    Pop-Location
+  }
+  if ($step -eq 'apkx64') {
+    Set-AppName 'YomiHub'
+    Push-Location $abld
+    Run 'flutter.bat' @('build','apk','--no-pub','--release','--split-per-abi','--target-platform','android-x64','--split-debug-info',"$YH\symbols") 'b053_apkx64.txt'
+    $f = "$abld\build\app\outputs\flutter-apk\app-x86_64-release.apk"
+    if (Test-Path $f) { Assert-Label $f 'YomiHub'; Copy-Item $f "$out\YomiHub-$ver-x86_64.apk" -Force; Say ("APK: YomiHub-$ver-x86_64.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
+    Pop-Location
+  }
+  if ($step -eq 'apk64') {
+    Set-AppName 'YomiHub'
+    Push-Location $abld
+    Run 'flutter.bat' @('build','apk','--no-pub','--release','--split-per-abi','--target-platform','android-arm64','--split-debug-info',"$YH\symbols") 'b053_apk64.txt'
+    $f = "$abld\build\app\outputs\flutter-apk\app-arm64-v8a-release.apk"
+    if (Test-Path $f) { Assert-Label $f 'YomiHub'; Copy-Item $f "$out\YomiHub-$ver-arm64-v8a.apk" -Force; Say ("APK: YomiHub-$ver-arm64-v8a.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
+    Pop-Location
+  }
+  if ($step -in 'all','apk') {
+    Set-AppName 'YomiHub'
+    Push-Location $abld
+    Run 'flutter.bat' @('build','apk','--no-pub','--release','--split-per-abi','--target-platform','android-arm,android-arm64,android-x64','--split-debug-info',"$YH\symbols") 'b053_apk.txt'
+    foreach ($abi in 'arm64-v8a','armeabi-v7a','x86_64') {
+      $f = "$abld\build\app\outputs\flutter-apk\app-$abi-release.apk"
+      if (Test-Path $f) { Assert-Label $f 'YomiHub'; Copy-Item $f "$out\YomiHub-$ver-$abi.apk" -Force; Say ("APK: YomiHub-$ver-$abi.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
+    }
+    Pop-Location
+  }
+  if ($step -in 'all','tv') {
+    Push-Location $abld
+    Set-AppName 'YumiHub Android TV'
+    try {
+      Run 'flutter.bat' @('build','apk','--no-pub','--release','--split-per-abi','--target-platform','android-arm,android-arm64,android-x64','--split-debug-info',"$YH\symbols_tv",'--dart-define=IS_TV_BUILD=true','--dart-define=APP_NAME=YumiHub Android TV') 'b053_tv.txt'
+      foreach ($abi in 'arm64-v8a','armeabi-v7a','x86_64') {
+        $f = "$abld\build\app\outputs\flutter-apk\app-$abi-release.apk"
+        if (Test-Path $f) { Assert-Label $f 'YumiHub Android TV'; Copy-Item $f "$out\YumiHub-Android-TV-$ver-$abi.apk" -Force; Say ("TV APK: YumiHub-Android-TV-$ver-$abi.apk ({0:N1} MB)" -f ((Get-Item $f).Length/1MB)) }
+      }
+    } finally { Set-AppName 'YomiHub' }
+    Pop-Location
+  }
+  if ($step -in 'all','win') {
+    $ng = "$TOOLS\nuget"; $env:PATH = "$ng;" + $env:PATH
+    $bld = $wbld
+    Remove-Item "$bld\build\windows\x64\CMakeCache.txt" -ErrorAction SilentlyContinue
+    Push-Location $bld
+    Run 'flutter.bat' @('pub','get','--offline') 'b053_win_pub_get.txt'
+    Run 'flutter.bat' @('gen-l10n') 'b053_win_gen_l10n.txt'
+    Run 'flutter.bat' @('build','windows','--no-pub','--release') 'b053_win_build.txt'
+    Pop-Location
+    $out0 = $out
+    $rel = "$bld\build\windows\x64\runner\Release"
+    $ver = ([regex]::Match((Get-Content "$bld\pubspec.yaml" -Raw), '(?m)^version:\s*([\d\.]+)')).Groups[1].Value
+    
+    # 0.5.3 (YomiHub Update: "Windows, đặc biệt AMD Ryzen 9, thiếu tính năng"):
+    # app-local VC++ 2015-2022 runtime next to YomiHub.exe. The FFI libraries
+    # loaded at run time (Rust core, Isar, torrent server, dartjni, libmpv)
+    # need it; the build PC has it from Visual Studio, a fresh PC may not.
+    $crt = Get-ChildItem "C:\Program Files*\Microsoft Visual Studio\*\*\VC\Redist\MSVC\*\x64\Microsoft.VC14*.CRT" -Directory -ErrorAction SilentlyContinue | Sort-Object FullName | Select-Object -Last 1
+    if ($crt) {
+      foreach ($n in 'msvcp140.dll','msvcp140_1.dll','msvcp140_2.dll','vcruntime140.dll','vcruntime140_1.dll','concrt140.dll') { Copy-Item "$($crt.FullName)\$n" $rel -Force -ErrorAction SilentlyContinue }
+      Say "VC++ runtime bundled from $($crt.FullName)"
+    } else { Say "WARNING: VC++ redistributable folder not found - runtime not bundled" }
+
+    # YomiHub helper programs for VPN & DNS (xray.exe, tor.exe + lyrebird)
+    $deps = "$YH\win_deps"; $bin = "$rel\yomihub_bin"
+    Remove-Item $bin -Recurse -Force -ErrorAction SilentlyContinue
+    New-Item -ItemType Directory -Force "$bin\tor\pluggable_transports" | Out-Null
+    if (Test-Path "$deps\xray\xray.exe") {
+      Copy-Item "$deps\xray\xray.exe" $bin; Copy-Item "$deps\xray\LICENSE" "$bin\LICENSE-xray.txt" -ErrorAction SilentlyContinue
+      Copy-Item "$deps\tor\tor\tor.exe" "$bin\tor"
+      Copy-Item "$deps\tor\data\geoip" "$bin\tor"
+      Copy-Item "$deps\tor\tor\pluggable_transports\lyrebird.exe" "$bin\tor\pluggable_transports"
+      Copy-Item "$deps\tor\tor\pluggable_transports\pt_config.json" "$bin\tor\pluggable_transports"
+      Copy-Item "$deps\tor\docs\tor.txt" "$bin\tor\LICENSE-tor.txt" -ErrorAction SilentlyContinue
+      Copy-Item "$deps\tor\docs\lyrebird.txt" "$bin\tor\LICENSE-lyrebird.txt" -ErrorAction SilentlyContinue
+      Say "yomihub_bin: xray + tor added"
+    } else { Say "WARNING: $deps missing - VPN helpers not bundled" }
+    
+    # JVM bridge (Kotatsu + IReader on Windows) -> yomihub_bin\bridge\lib
+    $br = "$bld\tools\yomihub_bridge"
+    if (Test-Path "$br\build.gradle") {
+      $g = Get-ChildItem "$YH\gradle-home\wrapper\dists\gradle-9.3.1-bin" -Recurse -Filter gradle.bat | Select-Object -First 1
+      Push-Location $br
+      & $g.FullName --no-daemon --console=plain installDist *>&1 | Tee-Object -FilePath "$LOGS\win_bridge.txt" | Out-Null
+      Pop-Location
+      $bl = "$br\build\install\yomihub-bridge\lib"
+      if (Test-Path "$bl\yomihub-bridge-0.2.1.jar") {
+        New-Item -ItemType Directory -Force "$bin\bridge\lib" | Out-Null
+        Copy-Item "$bl\*.jar" "$bin\bridge\lib" -Force
+        Say ("yomihub_bin\bridge: {0} jars ({1:N1} MB)" -f (Get-ChildItem "$bin\bridge\lib").Count, ((Get-ChildItem "$bin\bridge\lib" | Measure-Object Length -Sum).Sum/1MB))
+      } else { Say "WARNING: JVM bridge build failed - see logs\win_bridge.txt" }
+    }
+    $zip = "$out\YomiHub-$ver-windows-x64.zip"
+    Remove-Item $zip -ErrorAction SilentlyContinue
+    Compress-Archive -Path "$rel\*" -DestinationPath $zip -CompressionLevel Optimal
+    Say ("ZIP: {0} ({1:N1} MB)" -f (Split-Path $zip -Leaf), ((Get-Item $zip).Length/1MB))
+    
+    # full package: M-Extension-Server (JRE + JAR) preinstalled in yomihub_bin\mes
+    if (Test-Path "$deps\mes-windows-x64-bundle.zip") {
+      Expand-Archive "$deps\mes-windows-x64-bundle.zip" "$bin\mes" -Force
+      $zipF = "$out\YomiHub-$ver-windows-x64-full.zip"
+      Remove-Item $zipF -ErrorAction SilentlyContinue
+      Compress-Archive -Path "$rel\*" -DestinationPath $zipF -CompressionLevel Optimal
+      Say ("ZIP full: {0} ({1:N1} MB)" -f (Split-Path $zipF -Leaf), ((Get-Item $zipF).Length/1MB))
+    }
+  }
+  if ($step -in 'all','pack') {
+    # 0.5.3: Setup.exe installs the FULL package (JRE + M-Extension-Server):
+    # with the light one, Mihon/Aniyomi (ApkBridge), Kotatsu and IReader
+    # sources stayed unavailable on a new PC until "Cài tự động" was found.
+    $srcZip = if (Test-Path "$out\YomiHub-$ver-windows-x64-full.zip") { "$out\YomiHub-$ver-windows-x64-full.zip" } else { "$out\YomiHub-$ver-windows-x64.zip" }
+    Say "installer payload: $(Split-Path $srcZip -Leaf)"
+    Copy-Item $srcZip "$KIT\output\YomiHub-$ver-windows-x64.zip" -Force
+    & powershell -ExecutionPolicy Bypass -File "$KIT\make_installer_exe.ps1"
+    Remove-Item "$KIT\output\YomiHub-$ver-windows-x64.zip" -ErrorAction SilentlyContinue
+    & powershell -ExecutionPolicy Bypass -File "$KIT\make_appxbundle.ps1"
+    foreach ($n in "YomiHub-$ver-windows-x64-Setup.exe","YomiHub-$ver-windows-x64.appxbundle","YomiHub-RootCA.cer","Install-YomiHub.bat","Install-YomiHub.ps1") {
+      if (Test-Path "$KIT\output\$n") { Move-Item "$KIT\output\$n" "$out\$n" -Force; Say "packed: $n" }
+    }
+    Get-ChildItem $out -File | Where-Object { $_.Extension -in '.apk','.exe','.zip','.appxbundle' } | ForEach-Object {
+      "{0}  {1}" -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower(), $_.Name
+    } | Set-Content "$out\SHA256SUMS-$ver.txt" -Encoding ascii
+    Say "checksums written"
+  }
+  Say "BUILD 0.5.3 DONE step=$step"
+} catch {
+  Say "ERROR: $($_.Exception.Message)"
+} finally { Pop-Location -ErrorAction SilentlyContinue; Stop-Transcript | Out-Null }

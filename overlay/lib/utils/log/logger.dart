@@ -69,7 +69,10 @@ class AppLogger {
       _sink = _logFile!.openWrite(mode: FileMode.append);
       _initialized = true;
 
-      log('\n\nLogger initialized\n\n', logLevel: LogLevel.warning);
+      // 0.5.3: the session marker was written as a WARNING wrapped in blank
+      // lines - 73 of the warnings in "logs 3" were only this marker. It is
+      // now one INFO line, still always written so sessions stay separable.
+      log('===== Logger initialized (phiên mới) =====', logLevel: LogLevel.info, always: true);
       _queue.addAll(_pending);
       _pending.clear();
       _drain();

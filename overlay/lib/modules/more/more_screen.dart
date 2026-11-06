@@ -157,6 +157,12 @@ class MoreScreenState extends ConsumerState<MoreScreen> {
               icon: Icons.calendar_month_outlined,
               title: l10n.calendar,
             ),
+            // 0.5.3 (YomiHub Update mục 4)
+            ListTileWidget(
+              onTap: () => context.push('/backupSync'),
+              icon: Icons.settings_backup_restore,
+              title: tr('Sao Lưu & Đồng Bộ'),
+            ),
             ListTileWidget(
               onTap: () {
                 context.push('/dataAndStorage');

@@ -137,6 +137,25 @@ const yomiGithubProjects = <YomiGhGroup>[
       'https://github.com/haipham22/LeechText/releases',
       'https://github.com/haipham22/LeechText',
     ]),
+    // 0.5.3: projects added to Project GitHub.xlsx (YomiHub Update mục 3, 6).
+    YomiGhProject('Mangayomi Server (0.5.3)', [
+      'https://github.com/Schnitzel5/mangayomi-server',
+    ]),
+    YomiGhProject('Yomikiru (0.5.3)', ['https://github.com/mienaiyami/yomikiru']),
+    YomiGhProject('Yomihon (0.5.3)', ['https://miyomi.app/software/yomihon']),
+    YomiGhProject('Zenshin (0.5.3)', ['https://github.com/hitarth-gg/zenshin']),
+    YomiGhProject('Nyora (0.5.3)', [
+      'https://github.com/Nyora-Manga/nyora-android',
+      'https://github.com/Nyora-Manga/nyora-mihon',
+      'https://github.com/Nyora-Manga/nyora-python',
+      'https://github.com/Nyora-Manga/nyora-linux',
+      'https://github.com/Nyora-Manga/nyora-shared',
+      'https://github.com/Nyora-Manga/nyora-data-driven',
+      'https://github.com/Nyora-Manga/homebrew-nyora',
+      'https://github.com/Nyora-Manga/nyora-windows',
+      'https://github.com/Nyora-Manga/nyora-ios',
+    ]),
+    YomiGhProject('Nuvio (0.5.3)', ['https://github.com/NuvioMedia/NuvioMobile']),
   ]),
   YomiGhGroup('Trình chặn quảng cáo (AdBlock)', [
     YomiGhProject('AdBlock', ['https://github.com/adblockplus']),
@@ -225,6 +244,10 @@ const yomiGithubProjects = <YomiGhGroup>[
       'https://github.com/eisman/fingerprintjs2',
       'https://github.com/niespodd/browser-fingerprinting',
       'https://eisman.github.io/fingerprintjs2/',
+    ]),
+    // 0.5.3: "Donut Browser" had no link in the sheet; repository verified.
+    YomiGhProject('Donut Browser (0.5.3)', [
+      'https://github.com/donutbrowser/donutbrowser',
     ]),
   ]),
   YomiGhGroup('Cloudflare & Cloudflare Bypass', [
@@ -504,6 +527,11 @@ const yomiGithubProjects = <YomiGhGroup>[
       'https://clawhub.ai/mountlynx/skills/bangumi-trackr',
       'https://skywork.ai/skillhub/bangumi-tracker/',
     ]),
+    // 0.5.3: Tracker projects of YomiHub Update mục 7.
+    YomiGhProject('AnymeX (0.5.3)', ['https://github.com/RyanYuuki/AnymeX']),
+    YomiGhProject('AniSync (0.5.3)', ['https://github.com/Marco-9456/AniSync']),
+    YomiGhProject('Tankobun (0.5.3)', ['https://github.com/Tankobun/Tankobun']),
+    YomiGhProject('Rokku (0.5.3)', ['https://github.com/rokku-app/rokku']),
   ]),
   YomiGhGroup('Đám mây & Đồng bộ dữ liệu (Cloud & Storage)', [
     YomiGhProject('Rclone', ['https://github.com/rclone/rclone']),

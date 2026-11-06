@@ -219,6 +219,9 @@ void main(List<String> args) async {
         AppLogger.log('DB init failed: $e\n$st', logLevel: LogLevel.error);
         startupError = e;
       }
+      // 0.5.3: bundled website extensions -> Kiritokmn Extension Repo
+      // (before the first frame, so the repo lists the UI reads include it)
+      if (startupError == null) await BuiltinExtensions.install();
       runApp(
         startupError != null
             ? _StartupErrorApp(error: startupError.toString())
@@ -322,7 +325,6 @@ Future<void> _postLaunchInit(StorageProvider storage) async {
   unawaited(Future<void>.delayed(const Duration(seconds: 25), YomiSourceAttribution.refresh));
   // YomiHub: VPN state (Tor / WARP) and the bundled extensions.
   unawaited(YomiVpnService.instance.init());
-  unawaited(BuiltinExtensions.install());
   unawaited(KotatsuBridge.startIfNeeded());
   unawaited(IReaderBridge.startIfNeeded());
   // 0.1.9: remove an update file that has been installed

@@ -63,9 +63,11 @@ void main() {
       final r = _read('lib/router/router.dart');
       expect(r, contains('kIsTvBuild ? const _TvRemovedScreen() : const PlayBooksScreen()'));
       expect(r, contains('kIsTvBuild ? const _TvRemovedScreen() : const BooruScreen()'));
-      final st = _read('lib/modules/more/settings/settings_screen.dart');
-      expect(st, contains('if (!(isTv || kIsTvBuild)) const PlayBooksSettingTile()'));
-      expect(st, contains('if (!(isTv || kIsTvBuild)) const BooruSettingTile()'));
+      // 0.5.3: the two tiles moved to "Bật/Tắt tính năng & Nguồn mở rộng"
+      final st = _read('lib/yomihub/features/feature_toggle_screen.dart');
+      expect(st, contains('if (!(isTv || kIsTvBuild)) ...['));
+      expect(st, contains('PlayBooksSettingTile()'));
+      expect(st, contains('BooruSettingTile()'));
     });
 
     test('TV player panel no longer has hard-coded English titles', () {

@@ -1,0 +1,222 @@
+diff --git a/overlay/lib/modules/library/providers/file_scanner.dart b/overlay/lib/modules/library/providers/file_scanner.dart
+index 010b77f..fd0f2cb 100644
+--- a/overlay/lib/modules/library/providers/file_scanner.dart
++++ b/overlay/lib/modules/library/providers/file_scanner.dart
+@@ -598,6 +598,17 @@ Future<void> _scanDirectory(
+       localVirtualPathFromStoredPath(m.link, localFolders): m,
+   };
+ 
++  // 0.5.3 (logs 3: the same "Bỏ qua EPUB hỏng" at every launch even after
++  // 0.5.2 remembered it): the start-up scan ran before the Hive prefs box
++  // was open - YomiPrefs.get returned [] and YomiPrefs.set wrote nothing, so
++  // the list of damaged EPUBs was never read nor saved. Wait for the box.
++  if (!YomiPrefs.isOpen) {
++    await YomiPrefs.ready.timeout(
++      const Duration(seconds: 5),
++      onTimeout: () {},
++    );
++  }
++
+   // iterate through newChapters elements, which are: ["full_path/to/chapter1", "true"]
+   for (var pathBool in newChapters) {
+     final chapterPath = pathBool[0] as String;
+diff --git a/overlay/lib/modules/more/data_and_storage/providers/auto_backup.dart b/overlay/lib/modules/more/data_and_storage/providers/auto_backup.dart
+index b6ccbf8..4d6612a 100644
+--- a/overlay/lib/modules/more/data_and_storage/providers/auto_backup.dart
++++ b/overlay/lib/modules/more/data_and_storage/providers/auto_backup.dart
+@@ -3,6 +3,7 @@ import 'dart:io';
+ import 'package:mangayomi/modules/more/data_and_storage/providers/backup.dart';
+ import 'package:mangayomi/providers/storage_provider.dart';
+ import 'package:mangayomi/repositories/settings_repository.dart';
++import 'package:mangayomi/utils/log/logger.dart';
+ import 'package:riverpod_annotation/riverpod_annotation.dart';
+ import 'package:path/path.dart' as p;
+ part 'auto_backup.g.dart';
+@@ -82,10 +83,23 @@ Future<void> checkAndBackup(Ref ref) async {
+     backupDirectory = await (storageProvider.getIosBackupDirectory());
+   } else {
+     final defaultDirectory = await storageProvider.getDefaultDirectory();
++    // 0.5.3 (open item of 0.5.2): settings restored from an Android backup
++    // carried "/storage/3730-6132/Backup & Sync/..." to Windows, where the
++    // auto-backup then created a "\storage\..." folder on the current drive.
++    // A location that does not belong to this platform falls back to the
++    // default folder (and is logged once) instead of being created.
++    final usable = backupLocation.isNotEmpty &&
++        _isUsableBackupLocation(backupLocation);
++    if (backupLocation.isNotEmpty && !usable) {
++      AppLogger.logOnce(
++        'autobackup-foreign-path:$backupLocation',
++        '[Sao lưu] Vị trí tự sao lưu "$backupLocation" không dùng được trên '
++        'thiết bị này (đường dẫn của nền tảng khác) – dùng thư mục mặc định.',
++        logLevel: LogLevel.warning,
++      );
++    }
+     backupDirectory = Directory(
+-      backupLocation.isEmpty
+-          ? p.join(defaultDirectory!.path, "backup")
+-          : backupLocation,
++      usable ? backupLocation : p.join(defaultDirectory!.path, "backup"),
+     );
+   }
+   await storageProvider.createDirectorySafely(backupDirectory!.path);
+@@ -119,3 +133,20 @@ void _setBackupFrequency(int value) {
+       ..startDatebackup = startDate?.millisecondsSinceEpoch,
+   );
+ }
++
++/// 0.5.3: true when [location] is a path of the current platform.
++/// Windows needs a drive (C:\) or UNC (\\server) path; Android, Linux
++/// and macOS need an absolute POSIX path, and Android paths are not usable
++/// on desktop systems.
++bool _isUsableBackupLocation(String location) {
++  if (Platform.isWindows) {
++    return RegExp(r'^[a-zA-Z]:[\\/]').hasMatch(location) ||
++        location.startsWith(r'\\');
++  }
++  if (!location.startsWith('/')) return false;
++  if (!Platform.isAndroid &&
++      (location.startsWith('/storage/') || location.startsWith('/sdcard'))) {
++    return false;
++  }
++  return true;
++}
+diff --git a/overlay/lib/modules/more/data_and_storage/providers/backup.dart b/overlay/lib/modules/more/data_and_storage/providers/backup.dart
+index d8864d8..88d269b 100644
+--- a/overlay/lib/modules/more/data_and_storage/providers/backup.dart
++++ b/overlay/lib/modules/more/data_and_storage/providers/backup.dart
+@@ -151,10 +151,19 @@ Future<String> writeMangayomiBackupZip({
+     final res = categoryRepository.getAll().map((e) => e.toJson()).toList();
+     datas.addAll({"categories": res});
+   }
++  // 0.5.3 (logs 3, 06/11 13:40:53): "Giao diện bị treo 3.3 giây" began in
++  // the same second as an auto-backup. The ZIP step was already off the UI
++  // isolate (0.5.2) but ~88 000 chapters were still read with findAllSync()
++  // and converted with toJson() in one go on the UI isolate. Chapters are now
++  // read asynchronously and every large table is converted in batches that
++  // yield to the event loop between them.
+   if (list.contains(2)) {
+-    final res = chapterRepository.getAll().map((e) => e.toJson()).toList();
+-    datas.addAll({"chapters": res});
+-    final res_ = downloadRepository.getAll().map((e) => e.toJson()).toList();
++    final chapters = await chapterRepository.getAllAsync();
++    datas.addAll({"chapters": await _toJsonInBatches(chapters, (e) => e.toJson())});
++    final res_ = await _toJsonInBatches(
++      downloadRepository.getAll(),
++      (e) => e.toJson(),
++    );
+     datas.addAll({"downloads": res_});
+   }
+   if (list.contains(3)) {
+@@ -162,13 +171,19 @@ Future<String> writeMangayomiBackupZip({
+     datas.addAll({"tracks": res});
+   }
+   if (list.contains(4)) {
+-    final res = historyRepository.getAll().map((e) => e.toJson()).toList();
++    final res = await _toJsonInBatches(
++      historyRepository.getAll(),
++      (e) => e.toJson(),
++    );
+     datas.addAll({"history": res});
+     // YomiHub: in-app browser history travels with the reading history.
+     datas.addAll({"yomihub_browser_history": await BrowserHistory.all()});
+   }
+   if (list.contains(5)) {
+-    final res = updateRepository.getAll().map((e) => e.toJson()).toList();
++    final res = await _toJsonInBatches(
++      updateRepository.getAll(),
++      (e) => e.toJson(),
++    );
+     datas.addAll({"updates": res});
+   }
+   if (list.contains(6)) {
+@@ -243,3 +258,21 @@ Future<String> writeMangayomiBackupZip({
+   });
+   return zipPath;
+ }
++
++/// 0.5.3: converts [items] to JSON maps [batchSize] at a time, yielding to
++/// the event loop between batches so that a large library does not block the
++/// UI isolate while a backup is being prepared (frames keep being drawn).
++Future<List<Map<String, dynamic>>> _toJsonInBatches<T>(
++  List<T> items,
++  Map<String, dynamic> Function(T) toJson, {
++  int batchSize = 1000,
++}) async {
++  final out = <Map<String, dynamic>>[];
++  for (var i = 0; i < items.length; i++) {
++    out.add(toJson(items[i]));
++    if ((i + 1) % batchSize == 0) {
++      await Future<void>.delayed(Duration.zero);
++    }
++  }
++  return out;
++}
+diff --git a/overlay/lib/utils/log/logger.dart b/overlay/lib/utils/log/logger.dart
+index da5a2fb..b231bfc 100644
+--- a/overlay/lib/utils/log/logger.dart
++++ b/overlay/lib/utils/log/logger.dart
+@@ -69,7 +69,10 @@ class AppLogger {
+       _sink = _logFile!.openWrite(mode: FileMode.append);
+       _initialized = true;
+ 
+-      log('\n\nLogger initialized\n\n', logLevel: LogLevel.warning);
++      // 0.5.3: the session marker was written as a WARNING wrapped in blank
++      // lines - 73 of the warnings in "logs 3" were only this marker. It is
++      // now one INFO line, still always written so sessions stay separable.
++      log('===== Logger initialized (phiên mới) =====', logLevel: LogLevel.info, always: true);
+       _queue.addAll(_pending);
+       _pending.clear();
+       _drain();
+diff --git a/overlay/lib/yomihub/about/github_projects.dart b/overlay/lib/yomihub/about/github_projects.dart
+index f05d9d1..00ef2b1 100644
+--- a/overlay/lib/yomihub/about/github_projects.dart
++++ b/overlay/lib/yomihub/about/github_projects.dart
+@@ -137,6 +137,25 @@ const yomiGithubProjects = <YomiGhGroup>[
+       'https://github.com/haipham22/LeechText/releases',
+       'https://github.com/haipham22/LeechText',
+     ]),
++    // 0.5.3: projects added to Project GitHub.xlsx (YomiHub Update mục 3, 6).
++    YomiGhProject('Mangayomi Server (0.5.3)', [
++      'https://github.com/Schnitzel5/mangayomi-server',
++    ]),
++    YomiGhProject('Yomikiru (0.5.3)', ['https://github.com/mienaiyami/yomikiru']),
++    YomiGhProject('Yomihon (0.5.3)', ['https://miyomi.app/software/yomihon']),
++    YomiGhProject('Zenshin (0.5.3)', ['https://github.com/hitarth-gg/zenshin']),
++    YomiGhProject('Nyora (0.5.3)', [
++      'https://github.com/Nyora-Manga/nyora-android',
++      'https://github.com/Nyora-Manga/nyora-mihon',
++      'https://github.com/Nyora-Manga/nyora-python',
++      'https://github.com/Nyora-Manga/nyora-linux',
++      'https://github.com/Nyora-Manga/nyora-shared',
++      'https://github.com/Nyora-Manga/nyora-data-driven',
++      'https://github.com/Nyora-Manga/homebrew-nyora',
++      'https://github.com/Nyora-Manga/nyora-windows',
++      'https://github.com/Nyora-Manga/nyora-ios',
++    ]),
++    YomiGhProject('Nuvio (0.5.3)', ['https://github.com/NuvioMedia/NuvioMobile']),
+   ]),
+   YomiGhGroup('Trình chặn quảng cáo (AdBlock)', [
+     YomiGhProject('AdBlock', ['https://github.com/adblockplus']),
+@@ -226,6 +245,10 @@ const yomiGithubProjects = <YomiGhGroup>[
+       'https://github.com/niespodd/browser-fingerprinting',
+       'https://eisman.github.io/fingerprintjs2/',
+     ]),
++    // 0.5.3: "Donut Browser" had no link in the sheet; repository verified.
++    YomiGhProject('Donut Browser (0.5.3)', [
++      'https://github.com/donutbrowser/donutbrowser',
++    ]),
+   ]),
+   YomiGhGroup('Cloudflare & Cloudflare Bypass', [
+     YomiGhProject('Cloudflare', ['https://github.com/cloudflare']),
+@@ -504,6 +527,11 @@ const yomiGithubProjects = <YomiGhGroup>[
+       'https://clawhub.ai/mountlynx/skills/bangumi-trackr',
+       'https://skywork.ai/skillhub/bangumi-tracker/',
+     ]),
++    // 0.5.3: Tracker projects of YomiHub Update mục 7.
++    YomiGhProject('AnymeX (0.5.3)', ['https://github.com/RyanYuuki/AnymeX']),
++    YomiGhProject('AniSync (0.5.3)', ['https://github.com/Marco-9456/AniSync']),
++    YomiGhProject('Tankobun (0.5.3)', ['https://github.com/Tankobun/Tankobun']),
++    YomiGhProject('Rokku (0.5.3)', ['https://github.com/rokku-app/rokku']),
+   ]),
+   YomiGhGroup('Đám mây & Đồng bộ dữ liệu (Cloud & Storage)', [
+     YomiGhProject('Rclone', ['https://github.com/rclone/rclone']),

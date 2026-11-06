@@ -61,7 +61,10 @@ class _TrackingDetailState extends State<TrackingDetail>
             ],
           ),
         ),
-        body: TabBarView(
+        // 0.5.3: keep the lists clear of the navigation bar
+        body: SafeArea(
+          top: false,
+          child: TabBarView(
           controller: _tabBarController,
           children: [
             if (!isMovies)
@@ -74,6 +77,7 @@ class _TrackingDetailState extends State<TrackingDetail>
               syncId: widget.trackerPref.syncId!,
             ),
           ],
+        ),
         ),
       ),
     );

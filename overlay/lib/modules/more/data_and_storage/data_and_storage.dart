@@ -26,7 +26,12 @@ import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
 class DataAndStorage extends ConsumerWidget {
-  const DataAndStorage({super.key});
+  /// 0.5.3 (sheet "YomiHub Update" mục 4): true = the "Sao Lưu & Đồng Bộ"
+  /// screen (create / restore, frequency, compression, location, encryption,
+  /// cloud backup, sync, Booru App backup) – opened from Settings and More.
+  /// false = "Dữ liệu và bộ nhớ" without the backup settings.
+  final bool backupSync;
+  const DataAndStorage({super.key, this.backupSync = false});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,10 +46,13 @@ class DataAndStorage extends ConsumerWidget {
     final compression = ref.watch(backupCompressionLevelProvider);
     final backupEncryptionEnabled = ref.watch(backupEncryptionEnabledProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.data_and_storage)),
+      appBar: AppBar(
+        title: Text(backupSync ? tr('Sao Lưu & Đồng Bộ') : l10n.data_and_storage),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            if (!backupSync) ...[
             // YomiHub 0.1.8: download index (on by default, only the user
             // can turn it off)
             ValueListenableBuilder<int>(
@@ -200,6 +208,21 @@ class DataAndStorage extends ConsumerWidget {
                 style: TextStyle(fontSize: 11, color: context.secondaryColor),
               ),
             ),
+            // 0.5.3: library tools stay here; backup settings moved
+            const MissingSourceCheckTile(),
+            const DeleteSourceTile(),
+            const MergeDuplicateMangaTile(),
+            const ManualMergeMangaTile(),
+            const CustomMergeSourcesTile(),
+            ListTile(
+              leading: const Icon(Icons.settings_backup_restore),
+              title: Text(tr('Sao Lưu & Đồng Bộ')),
+              subtitle: Text(tr('Tạo / khôi phục sao lưu, tần suất, mức nén, vị trí, sao lưu đám mây, đồng bộ, Booru App')),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push('/backupSync'),
+            ),
+            ],
+            if (backupSync) ...[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: Row(
@@ -254,11 +277,6 @@ class DataAndStorage extends ConsumerWidget {
               ),
             ),
             const RollbackLastChangeTile(),
-            const MissingSourceCheckTile(),
-            const DeleteSourceTile(),
-            const MergeDuplicateMangaTile(),
-            const ManualMergeMangaTile(),
-            const CustomMergeSourcesTile(),
             ListTile(
               onTap: () {
                 showDialog(
@@ -395,11 +413,22 @@ class DataAndStorage extends ConsumerWidget {
                   }
                 },
                 title: Text(l10n.backup_location),
-                subtitle: Text(
-                  autoBackupLocation.$2.isEmpty
-                      ? autoBackupLocation.$1
-                      : autoBackupLocation.$2,
-                  style: TextStyle(fontSize: 11, color: context.secondaryColor),
+                // 0.5.3 (Note 9 test): the backup folder on the removed SD
+                // card was shown as if it still worked; auto-backup now falls
+                // back to the default folder and the path is shown in red.
+                subtitle: Builder(
+                  builder: (context) {
+                    final missing = autoBackupLocation.$2.isNotEmpty &&
+                        !Directory(autoBackupLocation.$2).existsSync();
+                    return Text(
+                      '${autoBackupLocation.$2.isEmpty ? autoBackupLocation.$1 : autoBackupLocation.$2}'
+                      '${missing ? '\n${tr('Thư mục này không còn tồn tại – bản tự sao lưu được lưu vào thư mục mặc định. Chọn lại vị trí sao lưu.')}' : ''}',
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: missing ? Colors.red : context.secondaryColor,
+                      ),
+                    );
+                  },
                 ),
               ),
             ListTile(
@@ -428,6 +457,26 @@ class DataAndStorage extends ConsumerWidget {
               ),
               onTap: () => context.push('/cloudBackup'),
             ),
+            // 0.5.3: sync + Booru App backup in the same place
+            ListTile(
+              leading: const Icon(Icons.cloud_sync_outlined),
+              title: Text(l10n.syncing),
+              subtitle: Text(tr('Đồng bộ thư viện, tiến độ đọc/xem giữa các thiết bị qua máy chủ đồng bộ')),
+              onTap: () => context.push('/sync'),
+            ),
+            if (!(isTv || kIsTvBuild))
+              ValueListenableBuilder<int>(
+                valueListenable: YomiPrefs.changes,
+                builder: (context, _, _) => SwitchListTile(
+                  secondary: const Icon(Icons.photo_library_outlined),
+                  title: Text(tr('Sao lưu dữ liệu Booru App')),
+                  subtitle: Text(tr('Yêu thích, lịch sử tìm kiếm, trang và cài đặt Booru App đi kèm bản sao lưu và sao lưu đám mây')),
+                  value: YomiPrefs.get<bool>('backupBooru', true),
+                  onChanged: (v) => YomiPrefs.set('backupBooru', v),
+                ),
+              ),
+            ],
+            if (!backupSync) ...[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: Row(
@@ -460,6 +509,7 @@ class DataAndStorage extends ConsumerWidget {
                     .set(value);
               },
             ),
+            ],
           ],
         ),
       ),

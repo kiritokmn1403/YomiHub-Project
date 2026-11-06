@@ -23,6 +23,19 @@ List<int> _zip(Map<String, String> files) {
   return ZipEncoder().encode(a);
 }
 
+// 0.5.3: the website extensions moved to the Kiritokmn Extension Repo
+// (sources-yomihub/); older checkouts still have them in assets/.
+String _extSource(String f) {
+  for (final d in const [
+    'assets/yomihub_extensions',
+    r'D:\A.I Project\A.I Project - Extension Repo\Kiritokmn - Extension Repo\sources-yomihub',
+  ]) {
+    final x = File('$d/$f');
+    if (x.existsSync()) return x.readAsStringSync();
+  }
+  throw StateError('extension source $f not found');
+}
+
 void main() {
   test('0.4.9: version / user agent', () {
     // 0.5.0: the exact version is checked in yh_050_test.dart
@@ -159,7 +172,7 @@ void main() {
   });
 
   test('no Anime47 account is shipped inside the extension', () {
-    final s = File('assets/yomihub_extensions/anime47.js').readAsStringSync();
+    final s = _extSource('anime47.js');
     // no e-mail address and no default value for the account fields
     expect(RegExp(r'[A-Za-z0-9.+_-]+@[A-Za-z0-9-]+\.[a-z]{2,}').hasMatch(s), isFalse);
     expect(s.contains('yhPref("a47_email", "")'), isTrue);

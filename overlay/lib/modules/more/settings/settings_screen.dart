@@ -1,4 +1,5 @@
 import 'package:mangayomi/yomihub/speedtest/speedtest_screen.dart';
+import 'package:mangayomi/yomihub/win/win_diag_screen.dart';
 import 'package:mangayomi/yomihub/wifi/wifi_settings_screen.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'dart:io';
@@ -8,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:mangayomi/yomihub/cloudscraper/cloudscraper_screen.dart';
 import 'package:mangayomi/yomihub/scanner/web_scanner.dart';
 import 'package:mangayomi/yomihub/browser/adblock_settings.dart';
-import 'package:mangayomi/yomihub/playbooks/playbooks_toggle.dart';
-import 'package:mangayomi/yomihub/booru/booru_settings_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mangayomi/modules/more/settings/reader/providers/reader_state_provider.dart';
@@ -97,10 +96,12 @@ class SettingsScreen extends StatelessWidget {
               icon: Icons.sync_outlined,
               onTap: () => context.push('/track'),
             ),
+            // 0.5.3: backup, cloud backup and sync are one section
             ListTileWidget(
-              title: l10n.syncing,
-              icon: Icons.cloud_sync_outlined,
-              onTap: () => context.push('/sync'),
+              title: tr('Sao Lưu & Đồng Bộ'),
+              subtitle: tr('Tạo / khôi phục sao lưu, tần suất, mức nén, vị trí, sao lưu đám mây, đồng bộ, Booru App'),
+              icon: Icons.settings_backup_restore,
+              onTap: () => context.push('/backupSync'),
             ),
             ListTileWidget(
               title: l10n.browse,
@@ -195,16 +196,18 @@ class SettingsScreen extends StatelessWidget {
               icon: Icons.favorite_border_rounded,
               onTap: () => context.push('/healthConnect'),
             ),
-            // YomiHub 0.2.0: Google Play Books on/off
-            // 0.5.0: no Play Books / Booru on Android TV
-            if (!(isTv || kIsTvBuild)) const PlayBooksSettingTile(),
-            if (!(isTv || kIsTvBuild)) const BooruSettingTile(),
-            ListTileWidget(
-              title: tr('Sao lưu đám mây'),
-              subtitle: 'Google Drive, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram',
-              icon: Icons.cloud_upload_outlined,
-              onTap: () => context.push('/cloudBackup'),
-            ),
+            // 0.5.3: Google Play Books / Booru App moved to "Bật/Tắt tính
+            // năng & Nguồn mở rộng"; cloud backup to "Sao Lưu & Đồng Bộ"
+            // 0.5.3: Windows components check (Ryzen 9 report)
+            if (Platform.isWindows)
+              ListTileWidget(
+                title: tr('Chẩn đoán Windows'),
+                subtitle: tr('CPU, GPU, WebView2, Java/M-Extension-Server, VC++ – thành phần thiếu và tính năng bị tắt'),
+                icon: Icons.health_and_safety_outlined,
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const WinDiagScreen()),
+                ),
+              ),
             if (!Platform.isLinux)
               ListTileWidget(
                 title: l10n.security,

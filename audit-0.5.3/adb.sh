@@ -1,0 +1,5 @@
+# usage: adb.sh <name> <timeout_s>  ; stdin = lines of PowerShell using $adb (Note 9 serial preselected)
+cd "$HOME/mnt/A.I Project - YomiHub Project/YomiHub-Project"
+n=$1; t=${2:-150}
+{ echo '. .\common.ps1; $ErrorActionPreference="Continue"; $adb="adb"; $env:ANDROID_SERIAL="281038ac31217ece"; $Q="audit-0.5.3\qa"'; echo 'function Shot($name){ adb shell screencap -d 2 -p /sdcard/yh_shot.png | Out-Null; adb pull /sdcard/yh_shot.png "$Q\$name.png" 2>&1 | Out-Null; "shot $name" }; function Tap($x,$y){ adb shell input -d 2 tap $x $y }; function Swipe($x1,$y1,$x2,$y2,$ms=400){ adb shell input touchscreen -d 2 swipe $x1 $y1 $x2 $y2 $ms }; function Key($k){ adb shell input -d 2 keyevent $k }; function Txt($t){ adb shell input -d 2 text $t }; function RecStart($n,$s=170){ adb shell "nohup screenrecord --display-id 2 --bit-rate 4000000 --time-limit $s /sdcard/$n.mp4 >/dev/null 2>&1 &"; "rec $n" }; function RecPull($n){ adb pull /sdcard/$n.mp4 "$Q\$n.mp4" 2>&1 | Out-Null; "pulled $n" }'; cat; } | bash audit-0.5.3/job.sh pending_fast $n 10 >/dev/null
+bash audit-0.5.3/wait.sh $n $t

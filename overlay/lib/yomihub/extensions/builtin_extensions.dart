@@ -1,5 +1,6 @@
 import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
-import 'package:flutter/services.dart';
+import 'package:mangayomi/models/settings.dart';
+import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/source.dart';
@@ -38,11 +39,8 @@ class BuiltinExtension {
   });
 }
 
-/// Installs / updates the extensions bundled with YomiHub.
-///
-/// They are ordinary JavaScript sources (same engine as repository
-/// extensions), so filters, per-source settings (including the domain),
-/// downloads, migration and backup all work the same way.
+/// Metadata of the extensions that were bundled with YomiHub up to 0.5.2.
+/// Since 0.5.3 their code lives in the Kiritokmn Extension Repo.
 class BuiltinExtensions {
   static const _box = 'yomihub_builtin_ext';
 
@@ -383,92 +381,72 @@ class BuiltinExtensions {
     ),
   ];
 
-  static Future<String> _code(BuiltinExtension e) async {
-    final common = await rootBundle.loadString(
-      'assets/yomihub_extensions/_common.js',
-    );
-    final body = await rootBundle.loadString(
-      'assets/yomihub_extensions/${e.asset}',
-    );
-    return '$common\n$body';
+  // ── 0.5.3 (sheet "YomiHub Update" mục 2) ────────────────────────────
+  // The website extensions above are no longer bundled in the app: their
+  // code moved to github.com/kiritokmn1403/Kiritokmn---Extension-Repo
+  // (repo/yomihub/<asset>, same ids). The list stays for the ids (Shorts
+  // feed, domain mirrors). On the first start of 0.5.3 the repo is added to
+  // the Comic / Film & Movie / Novel repo lists (the user chose "only add the
+  // repo": nothing is installed automatically), and copies that are already
+  // installed are re-linked to the repo so they keep working and receive
+  // updates from it (repo version 0.5.3 > bundled versions).
+  static const repoName = 'Kiritokmn Extension Repo';
+  static const repoBase =
+      'https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main';
+  static const repoJson = '$repoBase/repo/index.json';
+  static const repoWebsite =
+      'https://github.com/kiritokmn1403/Kiritokmn---Extension-Repo';
+
+  static Repo get repo =>
+      Repo(name: repoName, website: repoWebsite, jsonUrl: repoJson);
+
+  /// Adds [repoJson] to a repo list unless it is there already.
+  static List<Repo> withRepo(List<Repo>? current) {
+    final list = List<Repo>.from(current ?? const <Repo>[]);
+    final key = repoJson.toLowerCase();
+    final has = list.any((r) {
+      final u = (r.jsonUrl ?? '').trim().toLowerCase();
+      return u == key || u == '$key/';
+    });
+    if (!has) list.add(repo);
+    return list;
   }
 
-  /// Adds missing bundled extensions and updates outdated ones. An extension
-  /// the user removed stays removed.
+  /// Runs once (before the first frame, right after the database opens).
   static Future<void> install() async {
     try {
       final box = await YomiHive.open(_box);
+      if (box.get('repo_migrated_053') == true) return;
+      await settingsRepository.update((s) {
+        s.mangaExtensionsRepo = withRepo(s.mangaExtensionsRepo);
+        s.animeExtensionsRepo = withRepo(s.animeExtensionsRepo);
+        s.novelExtensionsRepo = withRepo(s.novelExtensionsRepo);
+      });
+      var moved = 0;
       for (final e in all) {
-        final existing = sourceRepository.getById(e.id);
-        const legacyDomains = {
-          'haychill.js': 'https://haychill.tv',
-          'xemphimgi.js': 'https://xemphimgi.net',
-          'nextphim.js': 'https://nextphim.com',
-          'vfilm.js': 'https://vfilm.tv',
-          // 0.4.3: animevietsub.nl (sheet) and .sale both 301 to
-          // animevietsub.news (checked from Windows 28/10/2026 20:38)
-          'avsub.js': 'https://animevietsub.nl',
-        };
-        const extraLegacy = {
-          'avsub.js': ['https://animevietsub.sale'],
-        };
-        final migrateDomain =
-            existing != null &&
-            ((legacyDomains[e.asset] != null &&
-                    existing.baseUrl == legacyDomains[e.asset]) ||
-                (extraLegacy[e.asset]?.contains(existing.baseUrl) ?? false));
-        final seenVersion = box.get('v_${e.id}') as String?;
-        if (existing == null && seenVersion != null)
-          continue; // user uninstalled it
-        // 0.2.0: also refresh when the bundled code changed without a
-        // version bump (fixes shipped in an app update reach everyone)
-        final code = await _code(e);
-        if (existing != null &&
-            seenVersion == e.version &&
-            existing.sourceCode == code &&
-            existing.lang == e.lang &&
-            existing.name == e.name &&
-            !migrateDomain &&
-            (existing.isNsfw ?? false) == e.nsfw) {
-          continue;
-        }
-        final src =
-            existing ??
-            (Source(
-              id: e.id,
-              name: e.name,
-              lang: e.lang,
-              baseUrl: e.baseUrl,
-              iconUrl: e.iconUrl,
-              typeSource: 'single',
-              itemType: e.itemType,
-              isAdded: true,
-              isActive: true,
-              isNsfw: e.nsfw,
-              version: e.version,
-              notes: e.notes,
-            )..sourceCodeLanguage = SourceCodeLanguage.javascript);
+        final src = sourceRepository.getById(e.id);
+        if (src == null) continue;
         src
-          ..name = e.name
-          ..baseUrl = migrateDomain ? e.baseUrl : src.baseUrl
-          ..sourceCode = code
-          ..version = e.version
-          ..versionLast = e.version
-          ..isLocal = true
-          ..notes = e.notes
-          ..iconUrl = e.iconUrl
-          ..isNsfw = e.nsfw
-          ..lang = e.lang
-          ..sourceCodeLanguage = SourceCodeLanguage.javascript;
+          ..isLocal = false
+          ..repo = repo
+          ..sourceCodeUrl = '$repoBase/repo/yomihub/${e.asset}';
         await sourceRepository.save(src);
-        await box.put('v_${e.id}', e.version);
+        moved++;
       }
-    } catch (error) {
+      await box.put('repo_migrated_053', true);
       AppLogger.log(
-        'Bundled extension update failed: $error',
+        '[Tiện ích] 0.5.3: tiện ích website không còn tích hợp sẵn – đã thêm '
+        'kho "$repoName" vào Truyện tranh / Phim & Điện ảnh / Tiểu thuyết; '
+        '$moved tiện ích đã cài được chuyển sang nhận cập nhật từ kho này.',
+        always: true,
+      );
+    } catch (error, st) {
+      AppLogger.log(
+        '[Tiện ích] Chuyển tiện ích tích hợp sang kho Kiritokmn thất bại: '
+        '$error\n$st',
         logLevel: LogLevel.error,
       );
-      // never block startup because of a bundled extension
+      // never block startup because of this
     }
   }
 }

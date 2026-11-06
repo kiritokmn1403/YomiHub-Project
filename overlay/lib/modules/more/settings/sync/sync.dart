@@ -19,7 +19,10 @@ import 'package:super_sliver_list/super_sliver_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SyncScreen extends ConsumerWidget {
-  static const serverUrl = "https://github.com/Schnitzel5/mangayomi-server";
+  // 0.5.3 (Mangayomi Server, sheet "YomiHub Update" mục 6): the old
+  // Schnitzel5/mangayomi-server is deprecated by its author in favour of the
+  // new sync server.
+  static const serverUrl = "https://github.com/not-akari/mangayomi-sync-server";
 
   const SyncScreen({super.key});
 

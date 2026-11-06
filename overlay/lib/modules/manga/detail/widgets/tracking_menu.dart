@@ -24,6 +24,10 @@ void openTrackingMenu({
   required Manga manga,
   required List<TrackPreference> entries,
 }) {
+  // 0.5.3: measured on the page that opens the menu - inside the menu route
+  // the system padding is already consumed (0), so the last tracker row sat
+  // behind the navigation bar.
+  final outerBottom = MediaQuery.viewPaddingOf(context).bottom;
   DraggableMenu.open(
     context,
     Consumer(
@@ -53,7 +57,10 @@ void openTrackingMenu({
                 8,
                 8,
                 8,
-                8 + MediaQuery.viewPaddingOf(context).bottom,
+                8 +
+                    (MediaQuery.viewPaddingOf(context).bottom > outerBottom
+                        ? MediaQuery.viewPaddingOf(context).bottom
+                        : outerBottom),
               ),
               child: SuperListView.separated(
                 padding: const EdgeInsets.all(0),
