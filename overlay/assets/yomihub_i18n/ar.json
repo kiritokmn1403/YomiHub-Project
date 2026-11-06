@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "تطبيق أندرويد",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "إضافة Aniyomi (أفلام وأنمي)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "إضافة Mihon / Tachiyomi (قصص مصورة)",
-  "Tiện ích IReader (Tiểu thuyết)": "إضافة IReader (روايات)"
+  "Tiện ích IReader (Tiểu thuyết)": "إضافة IReader (روايات)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "تم حفظ مسار الفصل/العنوان بواسطة إصدار أقدم من الإضافة، لذا تم دمج النطاق بشكل خاطئ. افتح العنوان واسحب للأسفل لتحديث الفصول، أو استخدم \"ترحيل\" إلى الإضافة الجديدة.",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "تعذّرت قراءة النسخة الاحتياطية (ملف تالف أو ليس نسخة احتياطية من YomiHub/Mangayomi): {e}",
+  "Đã khôi phục bản sao lưu!": "تمت استعادة النسخة الاحتياطية!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "تنسيق النسخة الاحتياطية غير مدعوم!",
+  "Đang đọc bản sao lưu…": "جارٍ قراءة النسخة الاحتياطية…",
+  "Lỗi khôi phục bản sao lưu: {e}": "خطأ في استعادة النسخة الاحتياطية: {e}",
+  "(Không rõ nguồn)": "(مصدر غير معروف)",
+  "Đã tạo bản sao lưu!": "تم إنشاء النسخة الاحتياطية!",
+  "Chia sẻ tệp sao lưu YomiHub": "مشاركة ملف النسخة الاحتياطية لـ YomiHub",
+  "Tạo bản sao lưu thất bại: {e}": "فشل إنشاء النسخة الاحتياطية: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "هذا المجلد لم يعد موجودًا (هل أُزيلت بطاقة الذاكرة أو استُبدلت؟) – اختر موقع التنزيل مرة أخرى.",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – الشيفرة المصدرية والإصدارات (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "تم تشغيل WARP لكن تعذّر إتمام المصافحة مع خادم Cloudflare – قد تحظر هذه الشبكة UDP (المنافذ 2408 و500 و4500 و1701 و854). جرّب شبكة أخرى أو استخدم Tor / WireGuard."
 }

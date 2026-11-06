@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "Android 앱",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Aniyomi 확장 (영화 및 애니메이션)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Mihon / Tachiyomi 확장 (만화)",
-  "Tiện ích IReader (Tiểu thuyết)": "IReader 확장 (소설)"
+  "Tiện ích IReader (Tiểu thuyết)": "IReader 확장 (소설)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "챕터/작품 경로가 이전 버전의 확장에서 저장되어 도메인이 잘못 결합되었습니다. 작품을 열고 아래로 당겨 챕터를 새로 고치거나, 새 확장으로 \"이전\"을 사용하세요.",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "백업을 읽을 수 없습니다(손상된 파일이거나 YomiHub/Mangayomi 백업이 아님): {e}",
+  "Đã khôi phục bản sao lưu!": "백업을 복원했습니다!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "지원되지 않는 백업 형식입니다!",
+  "Đang đọc bản sao lưu…": "백업을 읽는 중…",
+  "Lỗi khôi phục bản sao lưu: {e}": "백업 복원 오류: {e}",
+  "(Không rõ nguồn)": "(알 수 없는 소스)",
+  "Đã tạo bản sao lưu!": "백업을 만들었습니다!",
+  "Chia sẻ tệp sao lưu YomiHub": "YomiHub 백업 파일 공유",
+  "Tạo bản sao lưu thất bại: {e}": "백업 실패: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "이 폴더가 더 이상 존재하지 않습니다(SD 카드를 제거하거나 교체했나요?). 다운로드 위치를 다시 선택하세요.",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – 소스 코드 및 릴리스 (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "WARP를 켰지만 Cloudflare 서버와 핸드셰이크를 완료하지 못했습니다. 이 네트워크에서 UDP(포트 2408, 500, 4500, 1701, 854)를 차단하고 있을 수 있습니다. 다른 네트워크를 사용하거나 Tor / WireGuard를 사용하세요."
 }

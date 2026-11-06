@@ -1,0 +1,13 @@
+https://aidoku-community.github.io/sources/index.min.json
+https://raw.githubusercontent.com/Kareadita/tach-extension/repo/index.min.json
+https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repov2/index.min.json
+https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/index.json
+https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/anime_index.json
+https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/novel_index.json
+https://raw.githubusercontent.com/LNReader/lnreader-plugins/plugins/v3.0.0/.dist/plugins.min.json
+https://raw.githubusercontent.com/yuzono/anime-repo/repo/index.min.json
+https://raw.githubusercontent.com/gato404/kegareta-sauces/main/index.json
+https://raw.githubusercontent.com/FelipeGFA/extensoes/repo/index.min.json
+https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.pb
+https://github.com/Shebyyy/kotatsu-multi-parsers
+https://github.com/IReaderorg/IReader-extensions

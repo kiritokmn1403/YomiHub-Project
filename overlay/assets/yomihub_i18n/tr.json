@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "Android uygulaması",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Aniyomi uzantısı (Film ve Anime)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Mihon / Tachiyomi uzantısı (Çizgi roman)",
-  "Tiện ích IReader (Tiểu thuyết)": "IReader uzantısı (Roman)"
+  "Tiện ích IReader (Tiểu thuyết)": "IReader uzantısı (Roman)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "Bölüm/seri yolu uzantının eski bir sürümü tarafından kaydedildiği için alan adı yanlış birleşti. Seriyi açıp bölümleri yenilemek için aşağı çekin veya yeni uzantıya \"Taşı\"yı kullanın.",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "Yedek okunamıyor (dosya bozuk ya da YomiHub/Mangayomi yedeği değil): {e}",
+  "Đã khôi phục bản sao lưu!": "Yedek geri yüklendi!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "Desteklenmeyen yedek biçimi!",
+  "Đang đọc bản sao lưu…": "Yedek okunuyor…",
+  "Lỗi khôi phục bản sao lưu: {e}": "Yedek geri yüklenirken hata: {e}",
+  "(Không rõ nguồn)": "(Bilinmeyen kaynak)",
+  "Đã tạo bản sao lưu!": "Yedek oluşturuldu!",
+  "Chia sẻ tệp sao lưu YomiHub": "YomiHub yedek dosyasını paylaş",
+  "Tạo bản sao lưu thất bại: {e}": "Yedekleme başarısız: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "Bu klasör artık yok (SD kart çıkarıldı veya değiştirildi mi?) – indirme konumunu yeniden seçin.",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – kaynak kod ve sürümler (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "WARP açıldı ancak Cloudflare sunucusuyla el sıkışma tamamlanamadı – bu ağ UDP'yi engelliyor olabilir (2408, 500, 4500, 1701, 854 numaralı portlar). Başka bir ağ deneyin veya Tor / WireGuard kullanın."
 }

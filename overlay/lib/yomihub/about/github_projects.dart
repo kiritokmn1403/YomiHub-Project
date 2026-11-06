@@ -20,6 +20,10 @@ class YomiGhGroup {
 
 const yomiGithubProjects = <YomiGhGroup>[
   YomiGhGroup('Nền tảng & thư viện tích hợp trong YomiHub', [
+    // 0.5.2: the only link of Project GitHub.xlsx (576 unique) still missing.
+    YomiGhProject('YomiHub – mã nguồn và bản phát hành (0.5.2)', [
+      'https://github.com/kiritokmn1403/YomiHub-Project',
+    ]),
     YomiGhProject('Mangayomi (nhân ứng dụng)', [
       'https://github.com/kodjodevf/mangayomi',
     ]),

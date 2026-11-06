@@ -55,8 +55,13 @@ final libraryUpdateProvider =
 /// Returns the entries that failed. Honours the Stop button: the caller has
 /// already marked the run as started, and this checks for a cancellation
 /// between entries.
+// 0.5.2: runs on the app-wide ProviderContainer instead of a WidgetRef. A
+// library update lasts minutes; the pull-to-refresh caller's WidgetRef died
+// when the user left the Library tab ("Using \"ref\" when a widget is about
+// to or has been unmounted is unsafe", logs 2 04/11 09:50:39) and the whole
+// run was aborted.
 Future<List<UpdateError>> _runUpdate({
-  required WidgetRef ref,
+  required ProviderContainer container,
   required List<Manga> mangaList,
   required String itemtype,
   void Function(int done, int failed, int total)? onProgress,
@@ -82,7 +87,7 @@ Future<List<UpdateError>> _runUpdate({
   final skipped = <String>{};
   for (var i = 0; i < mangaList.length; i++) {
     // Stop early if the user pressed Stop.
-    if (ref.read(libraryUpdateProvider).cancelRequested) break;
+    if (container.read(libraryUpdateProvider).cancelRequested) break;
     final manga = mangaList[i];
     final key = '${manga.source}|${manga.lang}';
     if (skipped.contains(key)) {
@@ -98,13 +103,23 @@ Future<List<UpdateError>> _runUpdate({
       continue;
     }
     try {
-      await ref.read(
+      // A listener keeps the autoDispose provider alive until it is done
+      // (a bare container.read let it be disposed mid-flight: "Cannot use
+      // the Ref of updateMangaDetailProvider(...) after it has been
+      // disposed" for every entry - found on the Note 9, 06/11 00:27).
+      final sub = container.listen(
         updateMangaDetailProvider(
           mangaId: manga.id,
           isInit: false,
           showToast: false,
         ).future,
+        (_, _) {},
       );
+      try {
+        await sub.read();
+      } finally {
+        sub.close();
+      }
       strikes.remove(key);
     } catch (e) {
       final msg = _shortError(e);
@@ -163,10 +178,13 @@ Future<void> updateLibrary({
     AppLogger.log("$itemtype library is empty. Nothing to update.");
     return;
   }
+  // 0.5.2: everything after the first await goes through the app-wide
+  // container, which outlives the Library screen that started the run.
+  final container = ProviderScope.containerOf(context, listen: false);
   // Don't start a second concurrent run.
-  if (ref.read(libraryUpdateProvider).running) return;
-  ref.read(libraryUpdateProvider.notifier).begin();
-  bool isDark = ref.read(themeModeStateProvider);
+  if (container.read(libraryUpdateProvider).running) return;
+  container.read(libraryUpdateProvider.notifier).begin();
+  bool isDark = container.read(themeModeStateProvider);
   botToast(
     context.l10n.updating_library("0", "0", "0"),
     fontSize: 13,
@@ -174,8 +192,10 @@ Future<void> updateLibrary({
     alignY: !context.isTablet ? 0.85 : 1,
     themeDark: isDark,
   );
-  final failures = await _runUpdate(
-    ref: ref,
+  final List<UpdateError> failures;
+  try {
+  failures = await _runUpdate(
+    container: container,
     mangaList: mangaList,
     itemtype: itemtype,
     onProgress: (done, failed, total) {
@@ -192,14 +212,21 @@ Future<void> updateLibrary({
       );
     },
   );
+  } catch (e) {
+    container.read(libraryUpdateProvider.notifier).end();
+    AppLogger.log('[Cập nhật thư viện] Dừng giữa chừng: ${_shortError(e)}',
+        logLevel: LogLevel.error);
+    BotToast.cleanAll();
+    return;
+  }
   final failed = failures.length;
-  ref.read(libraryUpdateProvider.notifier).end();
+  container.read(libraryUpdateProvider.notifier).end();
   await Future.delayed(const Duration(seconds: 1));
   BotToast.cleanAll();
   // Persist this run's failures (empty list clears any previous ones) so they
   // can be reviewed and migrated away later from the Updates tab's error
   // screen, in addition to the dialog below.
-  ref.read(updateErrorsProvider.notifier).set(failures);
+  container.read(updateErrorsProvider.notifier).set(failures);
   if (context.mounted && failures.isNotEmpty) {
     final plural = failed == 1 ? itemtype : "${itemtype}s";
     // Show the failures in a dismissible dialog rather than a transient toast,
@@ -314,7 +341,7 @@ Future<void> autoUpdateLibraryIfDue(WidgetRef ref) async {
       "Starting scheduled library update (${entries.length} entries)...",
     );
     final failures = await _runUpdate(
-      ref: ref,
+      container: ProviderScope.containerOf(ref as BuildContext, listen: false),
       mangaList: entries,
       itemtype: "Library",
     );

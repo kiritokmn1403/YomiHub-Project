@@ -1,0 +1,5 @@
+﻿# TapText: find a node whose text/content-desc starts with $t on the DeX window (uiautomator bounds are 0.75x) and tap it
+function UiDump(){ adb shell "uiautomator dump /sdcard/ui.xml >/dev/null 2>&1"; adb pull /sdcard/ui.xml "$env:TEMP\yh_ui.xml" 2>&1 | Out-Null; [IO.File]::ReadAllText("$env:TEMP\yh_ui.xml", [Text.Encoding]::UTF8) }
+function FindText($t){ $x = UiDump; $esc=[regex]::Escape($t); $m = [regex]::Matches($x, '(?:text|content-desc)="' + $esc + '[^"]*"[^>]*?bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"'); foreach($mm in $m){ $a=[int]$mm.Groups[1].Value;$b=[int]$mm.Groups[2].Value;$c=[int]$mm.Groups[3].Value;$d=[int]$mm.Groups[4].Value; if($c -gt $a -and $d -gt $b){ return @([int](($a+$c)/2),[int](($b+$d)/2+27)) } }; return $null }
+function TapText($t){ $p = FindText $t; if($p){ Tap $p[0] $p[1]; "tap '$t' at $($p[0]),$($p[1])" } else { "NOT FOUND '$t'" } }
+function Texts(){ $x = UiDump; [regex]::Matches($x, '(?:text|content-desc)="([^"]+)"[^>]*?bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"') | ForEach-Object { "{0} @{1},{2}" -f ($_.Groups[1].Value -replace '&#10;',' | '), [int]$_.Groups[2].Value, ([int]$_.Groups[3].Value+27) } }

@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "Android ऐप",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Aniyomi एक्सटेंशन (फ़िल्में और एनीमे)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Mihon / Tachiyomi एक्सटेंशन (कॉमिक्स)",
-  "Tiện ích IReader (Tiểu thuyết)": "IReader एक्सटेंशन (उपन्यास)"
+  "Tiện ích IReader (Tiểu thuyết)": "IReader एक्सटेंशन (उपन्यास)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "अध्याय/शीर्षक का पथ एक्सटेंशन के पुराने संस्करण ने सहेजा था, इसलिए डोमेन गलत तरह से जुड़ गया। शीर्षक खोलें और अध्याय ताज़ा करने के लिए नीचे खींचें, या नए एक्सटेंशन पर \"माइग्रेट\" करें।",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "बैकअप पढ़ा नहीं जा सका (क्षतिग्रस्त फ़ाइल या YomiHub/Mangayomi बैकअप नहीं): {e}",
+  "Đã khôi phục bản sao lưu!": "बैकअप पुनर्स्थापित हुआ!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "बैकअप फ़ॉर्मेट समर्थित नहीं है!",
+  "Đang đọc bản sao lưu…": "बैकअप पढ़ा जा रहा है…",
+  "Lỗi khôi phục bản sao lưu: {e}": "बैकअप पुनर्स्थापित करने में त्रुटि: {e}",
+  "(Không rõ nguồn)": "(अज्ञात स्रोत)",
+  "Đã tạo bản sao lưu!": "बैकअप बनाया गया!",
+  "Chia sẻ tệp sao lưu YomiHub": "YomiHub बैकअप फ़ाइल साझा करें",
+  "Tạo bản sao lưu thất bại: {e}": "बैकअप विफल: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "यह फ़ोल्डर अब मौजूद नहीं है (SD कार्ड निकाला या बदला गया?) – डाउनलोड स्थान फिर से चुनें।",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – सोर्स कोड और रिलीज़ (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "WARP चालू हुआ लेकिन Cloudflare सर्वर के साथ हैंडशेक पूरा नहीं हो सका – यह नेटवर्क UDP (पोर्ट 2408, 500, 4500, 1701, 854) ब्लॉक कर सकता है। कोई दूसरा नेटवर्क आज़माएँ, या Tor / WireGuard का उपयोग करें।"
 }

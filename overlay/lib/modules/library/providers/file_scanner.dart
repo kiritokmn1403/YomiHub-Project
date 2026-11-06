@@ -615,6 +615,18 @@ Future<void> _scanDirectory(
         // Could not find EOCD", Note 9 localnovel 04/11 00:25) threw out of
         // the loop – every later chapter of the scan was lost and a crash
         // report was written. Skip that file and log it once.
+        // 0.5.2: a damaged file is remembered (path + size + date): the
+        // same warning was written at every launch (logs 2: 11 times for
+        // one EPUB) and the file was re-parsed each scan.
+        String badKey = chapterPath;
+        try {
+          final st = File(chapterPath).statSync();
+          badKey = '$chapterPath|${st.size}|${st.modified.millisecondsSinceEpoch}';
+        } catch (_) {}
+        final knownBad = (YomiPrefs.get('badEpubs', const <dynamic>[]) as List)
+            .map((e) => '$e')
+            .toList();
+        if (knownBad.contains(badKey)) continue;
         final EpubNovel book;
         try {
           book = await parseEpubFromPath(
@@ -624,9 +636,12 @@ Future<void> _scanDirectory(
         } catch (e) {
           AppLogger.logOnce(
             'bad-epub:$chapterPath',
-            '[Thư mục cục bộ] Bỏ qua EPUB hỏng: $virtualChapterPath ($e)',
+            '[Thư mục cục bộ] Bỏ qua EPUB hỏng: $virtualChapterPath ($e) – lần quét sau sẽ bỏ qua tệp này cho tới khi nó được thay đổi',
             logLevel: LogLevel.warning,
           );
+          knownBad.add(badKey);
+          if (knownBad.length > 200) knownBad.removeRange(0, knownBad.length - 200);
+          unawaited(YomiPrefs.set('badEpubs', knownBad));
           continue;
         }
 

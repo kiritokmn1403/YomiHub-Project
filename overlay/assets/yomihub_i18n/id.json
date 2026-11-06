@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "Aplikasi Android",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Ekstensi Aniyomi (Film & Anime)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Ekstensi Mihon / Tachiyomi (Komik)",
-  "Tiện ích IReader (Tiểu thuyết)": "Ekstensi IReader (Novel)"
+  "Tiện ích IReader (Tiểu thuyết)": "Ekstensi IReader (Novel)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "Jalur bab/judul disimpan oleh versi ekstensi yang lebih lama sehingga domainnya tergabung salah. Buka judul dan tarik ke bawah untuk menyegarkan bab, atau gunakan \"Migrasi\" ke ekstensi baru.",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "Tidak dapat membaca cadangan (file rusak atau bukan cadangan YomiHub/Mangayomi): {e}",
+  "Đã khôi phục bản sao lưu!": "Cadangan dipulihkan!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "Format cadangan tidak didukung!",
+  "Đang đọc bản sao lưu…": "Membaca cadangan…",
+  "Lỗi khôi phục bản sao lưu: {e}": "Gagal memulihkan cadangan: {e}",
+  "(Không rõ nguồn)": "(Sumber tidak diketahui)",
+  "Đã tạo bản sao lưu!": "Cadangan dibuat!",
+  "Chia sẻ tệp sao lưu YomiHub": "Bagikan file cadangan YomiHub",
+  "Tạo bản sao lưu thất bại: {e}": "Pencadangan gagal: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "Folder ini sudah tidak ada (kartu SD dilepas atau diganti?) – pilih ulang lokasi unduhan.",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – kode sumber dan rilis (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "WARP sudah dinyalakan tetapi handshake dengan server Cloudflare gagal – jaringan ini mungkin memblokir UDP (port 2408, 500, 4500, 1701, 854). Coba jaringan lain, atau gunakan Tor / WireGuard."
 }

@@ -37,7 +37,9 @@ class VBookBridge {
   /// 1: first 0.4.9 build · 2: Document.text / description fix (03/11/2026).
   /// 3: 0.5.1 – fetch retries once on a network error and the error names
   ///    the real cause (URL + exception / HTTP status).
-  static const runtimeRev = 3;
+  /// 4: 0.5.2 – a list/search script returning nothing is an empty page,
+  ///    not an error.
+  static const runtimeRev = 4;
 
   static bool isVBookSource(Source s) => (s.additionalParams ?? '').startsWith(marker);
 

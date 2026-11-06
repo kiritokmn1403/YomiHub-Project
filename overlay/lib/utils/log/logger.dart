@@ -79,10 +79,19 @@ class AppLogger {
     }
   }
 
-  static void log(String message, {LogLevel logLevel = LogLevel.info}) {
+  /// [always]: 0.5.2 - an INFO line that is written even with "Enable logs"
+  /// off (backup / restore results, Windows diagnostics), so a log sent in
+  /// by a user shows what happened, not only what failed.
+  static void log(String message, {LogLevel logLevel = LogLevel.info, bool always = false}) {
     final important =
         logLevel == LogLevel.error || logLevel == LogLevel.warning;
-    if (!important && !verbose) return;
+    if (!important && !always && !verbose) return;
+    // 0.5.2: one line may not exceed 16 000 characters. A failed restore
+    // printed its whole provider argument (the decoded backup) - ~30 MB per
+    // line, logs.txt + crash_reports.json grew to 133 MB on the Note 9.
+    if (message.length > 16000) {
+      message = '${message.substring(0, 16000)}… [đã cắt ${message.length - 16000} ký tự]';
+    }
 
     final now = DateTime.now();
     final timestamp =

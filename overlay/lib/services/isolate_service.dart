@@ -235,8 +235,11 @@ class GetIsolateService {
           ? '${source!.repo!.name ?? 'repo'}${source!.repo!.jsonUrl != null ? ' <${source!.repo!.jsonUrl}>' : ''}'
           : 'Built-in/Local';
       final langEngine = source?.sourceCodeLanguage.name ?? 'unknown';
+      // 0.5.2: a global search with a long title repeated the whole title
+      // in every source's line (logs 2, 04/11 09:51) - keep 80 characters.
+      final q = query != null && query.length > 80 ? '${query.substring(0, 80)}…' : query;
       final where = 'Extension "${source?.name}" (${source?.lang}, engine: $langEngine, repo: $repoInfo) $serviceType '
-          '${url ?? query ?? page ?? ''}';
+          '${url ?? q ?? page ?? ''}';
       if (YomiExtErrors.isSetupError(e)) {
         if (!YomiExtErrors.needsSetup(source?.name, source?.lang)) {
           YomiExtErrors.markSetup(source?.name, source?.lang);
@@ -251,6 +254,19 @@ class GetIsolateService {
           final h = YomiExtErrors.hint(e);
           AppLogger.log('$where: ${YomiExtErrors.short(e)}${h == null ? '' : ' – $h'}',
               logLevel: LogLevel.warning);
+        }
+      } else if (serviceType == 'search' &&
+          (query ?? '').trim().isNotEmpty &&
+          RegExp(r"expected start of the object '\{', but had '\['|http error 404\b",
+                  caseSensitive: false)
+              .hasMatch(e.toString())) {
+        // 0.5.2: Subsplease answers "[]" when nothing matches and the
+        // extension expects an object; such sources simply have no result
+        // for this keyword - not an app error (logs 2: ERROR + stack).
+        if (YomiExtErrors.shouldLog(source?.name, source?.lang, serviceType, e)) {
+          AppLogger.log(
+              '$where: ${YomiExtErrors.short(e).split('\n').first} – nguồn không có kết quả cho từ khóa này',
+              logLevel: LogLevel.info);
         }
       } else if (YomiExtErrors.shouldLog(source?.name, source?.lang, serviceType, e)) {
         final timeout = e is TimeoutException;

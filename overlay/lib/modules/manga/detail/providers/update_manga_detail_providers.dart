@@ -22,11 +22,21 @@ Future<dynamic> updateMangaDetail(
   required bool isInit,
   bool showToast = true,
 }) async {
+  // 0.5.2: this autoDispose provider is read without a listener; with the
+  // async reads below its first await came before `ref` was used and it was
+  // disposed mid-flight ("Cannot use the Ref of updateMangaDetailProvider(…)
+  // after it has been disposed" - detail page and library update, Note 9
+  // 06/11 00:27-00:34). Kept alive until it has finished.
+  final keepAlive = ref.keepAlive();
   try {
-    final manga = mangaRepository.findById(mangaId!);
+    // 0.5.2: async reads. The library update calls this for every entry;
+    // getSync + chapters.loadSync of a long series ran on the UI isolate and
+    // froze the app ("Giao diện bị treo 2.6 giây • đang chạy: cập nhật thư
+    // viện", logs 2 04/11 09:52:16).
+    final manga = await mangaRepository.findByIdAsync(mangaId!);
     if (manga == null) return;
 
-    manga.chapters.loadSync();
+    await manga.chapters.load();
 
     if ((manga.isLocalArchive ?? false) ||
         (manga.chapters.isNotEmpty && isInit)) {
@@ -292,5 +302,7 @@ Future<dynamic> updateMangaDetail(
     } else {
       rethrow;
     }
+  } finally {
+    keepAlive.close();
   }
 }

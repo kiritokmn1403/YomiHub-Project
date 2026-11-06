@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "Application Android",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Extension Aniyomi (films et anime)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Extension Mihon / Tachiyomi (BD)",
-  "Tiện ích IReader (Tiểu thuyết)": "Extension IReader (romans)"
+  "Tiện ích IReader (Tiểu thuyết)": "Extension IReader (romans)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "Le chemin du chapitre/titre a été enregistré par une ancienne version de l'extension, le domaine a donc été mal joint. Ouvrez le titre et tirez vers le bas pour actualiser ses chapitres, ou utilisez « Migrer » vers la nouvelle extension.",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "Impossible de lire la sauvegarde (fichier endommagé ou pas une sauvegarde YomiHub/Mangayomi) : {e}",
+  "Đã khôi phục bản sao lưu!": "Sauvegarde restaurée !",
+  "Định dạng bản sao lưu không được hỗ trợ!": "Format de sauvegarde non pris en charge !",
+  "Đang đọc bản sao lưu…": "Lecture de la sauvegarde…",
+  "Lỗi khôi phục bản sao lưu: {e}": "Erreur lors de la restauration de la sauvegarde : {e}",
+  "(Không rõ nguồn)": "(Source inconnue)",
+  "Đã tạo bản sao lưu!": "Sauvegarde créée !",
+  "Chia sẻ tệp sao lưu YomiHub": "Partager le fichier de sauvegarde YomiHub",
+  "Tạo bản sao lưu thất bại: {e}": "Échec de la sauvegarde : {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "Ce dossier n'existe plus (carte SD retirée ou remplacée ?) – choisissez à nouveau l'emplacement de téléchargement.",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – code source et versions (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "WARP a été activé mais la poignée de main avec le serveur Cloudflare a échoué – ce réseau bloque peut-être l'UDP (ports 2408, 500, 4500, 1701, 854). Essayez un autre réseau ou utilisez Tor / WireGuard."
 }

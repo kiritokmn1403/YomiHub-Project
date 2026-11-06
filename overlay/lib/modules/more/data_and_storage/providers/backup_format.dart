@@ -4,6 +4,7 @@
 // inspected - format, conflicts, counts - before the user commits to
 // anything destructive.
 import 'dart:io';
+import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:archive/archive_io.dart';
@@ -21,8 +22,128 @@ import 'package:mangayomi/repositories/source_repository.dart';
 import 'package:protobuf/protobuf.dart';
 import 'package:mangayomi/yomihub/repos/repo_importer.dart';
 import 'package:mangayomi/yomihub/backup/lnreader_backup.dart';
+import 'package:mangayomi/utils/log/logger.dart';
+import 'package:path/path.dart' as p;
 
 enum BackupType { unknown, mangayomi, mihon, aniyomi, kotatsu, neko, lnreader }
+
+// ---- 0.5.2: "Sao lưu / Khôi phục bị lỗi" (sheet YomiHub Update) ----------
+// Restoring a 12 MB Mihon/Aniyomi .tachibk on the Note 9 showed nothing for
+// 45 s before the first dialog (tested 05/11/2026): the file was inflated with
+// archive's pure-Dart GZipDecoder up to four times (type sniff, preview,
+// restore, repo import), all on the UI isolate. It is now inflated once with
+// the platform zlib (dart:io gzip), off the UI isolate, and kept for the
+// rest of the restore flow.
+class _TachiBkBytes {
+  _TachiBkBytes(this.key, this.bytes);
+  final String key;
+  final Uint8List bytes;
+}
+
+_TachiBkBytes? _tachiBkCache;
+
+String _tachiBkKey(String path) {
+  final st = File(path).statSync();
+  return '$path|${st.size}|${st.modified.millisecondsSinceEpoch}';
+}
+
+/// gzip → bytes with the platform zlib; archive's decoder as a fallback.
+Uint8List yhGunzip(List<int> raw) {
+  try {
+    final d = gzip.decode(raw);
+    return d is Uint8List ? d : Uint8List.fromList(d);
+  } catch (_) {
+    return Uint8List.fromList(GZipDecoder().decodeBytes(raw));
+  }
+}
+
+/// The inflated content of a .tachibk / .proto.gz file (cached per file).
+Uint8List tachiBkBytes(String path) {
+  final key = _tachiBkKey(path);
+  final c = _tachiBkCache;
+  if (c != null && c.key == key) return c.bytes;
+  final bytes = yhGunzip(File(path).readAsBytesSync());
+  _tachiBkCache = _TachiBkBytes(key, bytes);
+  return bytes;
+}
+
+/// Inflates [path] in a background isolate so the UI keeps drawing.
+Future<void> warmTachiBk(String path) async {
+  final key = _tachiBkKey(path);
+  if (_tachiBkCache?.key == key) return;
+  final bytes = await Isolate.run(() => yhGunzip(File(path).readAsBytesSync()));
+  _tachiBkCache = _TachiBkBytes(key, bytes);
+}
+
+void clearTachiBkCache() {
+  _tachiBkCache = null;
+  _decodedCache = null;
+}
+
+/// 0.5.2: the protobuf decode was the real cost (tested on the Note 9 after
+/// moving gunzip off the UI: still 53 s before the first dialog) - ~100 MB of
+/// protobuf decoded on the UI isolate twice in the preview (Mihon + Aniyomi
+/// schema) and again by the restore. It now runs once, in a background
+/// isolate, and the preview and the restore share the result.
+class TachiBkDecoded {
+  TachiBkDecoded(this.mihon, this.aniyomi);
+  final BackupMihon mihon;
+  final BackupAniyomi? aniyomi;
+}
+
+TachiBkDecoded _decodeTachiBk(Uint8List content, bool anime) {
+  final m = BackupMihon.create()
+    ..mergeFromCodedBufferReader(CodedBufferReader(content, sizeLimit: 250 << 20));
+  final a = anime
+      ? (BackupAniyomi.create()
+          ..mergeFromCodedBufferReader(CodedBufferReader(content, sizeLimit: 250 << 20)))
+      : null;
+  return TachiBkDecoded(m, a);
+}
+
+(String, TachiBkDecoded)? _decodedCache;
+
+Future<TachiBkDecoded> decodeTachiBkAsync(String path, BackupType type) async {
+  final key = '${_tachiBkKey(path)}|${type.name}';
+  final c = _decodedCache;
+  if (c != null && c.$1 == key) return c.$2;
+  final anime = type == BackupType.aniyomi;
+  final sw = Stopwatch()..start();
+  final d = await Isolate.run(() => _decodeTachiBk(yhGunzip(File(path).readAsBytesSync()), anime));
+  _decodedCache = (key, d);
+  AppLogger.log(
+    '[Sao lưu] Đã giải mã ${p.basename(path)} (${type.name}) ở luồng nền trong ${(sw.elapsedMilliseconds / 1000).toStringAsFixed(1)} s',
+    logLevel: LogLevel.info, always: true,
+  );
+  return d;
+}
+
+TachiBkDecoded tachiBkDecoded(String path, BackupType type) {
+  final key = '${_tachiBkKey(path)}|${type.name}';
+  final c = _decodedCache;
+  if (c != null && c.$1 == key) return c.$2;
+  final d = _decodeTachiBk(tachiBkBytes(path), type == BackupType.aniyomi);
+  _decodedCache = (key, d);
+  return d;
+}
+
+/// 0.5.2: extensions a mangayomi/YomiHub backup carries with their code -
+/// a merge restore installs them, so they must not be reported as missing.
+List<Map<String, dynamic>> backupInstalledExtensions(Map<String, dynamic> backup) {
+  final extras = backup['yomihub'];
+  final all = <dynamic>[
+    ...?(backup['extensions'] as List?),
+    if (extras is Map) ...?(extras['extensions'] as List?),
+  ];
+  return [
+    for (final e in all)
+      if (e is Map &&
+          e['isAdded'] == true &&
+          '${e['sourceCode'] ?? ''}'.isNotEmpty &&
+          '${e['name'] ?? ''}'.isNotEmpty)
+        Map<String, dynamic>.from(e),
+  ];
+}
 
 BackupType checkBackupType(String path, Archive archive) {
   // YomiHub 0.1.8: backups are now named yomihub_….backup; the old
@@ -92,20 +213,17 @@ class TachiBkImportPreview {
   final int newChapterCount;
 }
 
-TachiBkImportPreview? previewTachiBkImport(String path) {
+Future<TachiBkImportPreview?> previewTachiBkImport(String path) async {
   final backupType = peekBackupType(path);
   if (backupType != BackupType.mihon &&
       backupType != BackupType.aniyomi &&
       backupType != BackupType.neko) {
     return null;
   }
-  final inputStream = InputFileStream(path);
-  final content = GZipDecoder().decodeBytes(inputStream.toUint8List());
-  inputStream.close();
-  final backup = BackupMihon.create();
-  backup.mergeFromCodedBufferReader(
-    CodedBufferReader(content, sizeLimit: 250 << 20),
-  );
+  final decoded = await decodeTachiBkAsync(path, backupType);
+  final backup = decoded.mihon;
+  final swPreview = Stopwatch()..start();
+  var yieldN = 0; // 0.5.2: let the progress dialog draw between entries
 
   final existingCategoryNames = categoryRepository
       .getAll()
@@ -121,12 +239,22 @@ TachiBkImportPreview? previewTachiBkImport(String path) {
       .toSet();
   final unmatchedSources = <String, ItemType>{};
 
+  // 0.5.2 (Note 9, 12 MB TachiyomiMi backup into a 2 698-series library):
+  // one synchronous chapter query per already-present series froze the UI
+  // for 2-3 s at a time ("Giao diện bị treo 2.7 giây"). All series and the
+  // chapter URLs of the ones present are now read with asynchronous,
+  // batched queries.
+  final allSeries = await mangaRepository.getAllAsync();
   final existingMangaByLink = {
-    for (var m in mangaRepository.getByItemType(ItemType.manga))
-      if (m.link != null) m.link!: m,
+    for (var m in allSeries)
+      if (m.itemType == ItemType.manga && m.link != null) m.link!: m,
   };
+  final chapterUrls = await _chapterUrlsFor([
+    for (var m in backup.backupManga) existingMangaByLink[m.url]?.id,
+  ]);
   int newSeries = 0, updatedSeries = 0, newChapters = 0;
   for (var m in backup.backupManga) {
+    if (++yieldN % 150 == 0) await Future<void>.delayed(Duration.zero);
     final sourceId = protoInt(m.source);
     final srcName =
         backup.backupSources
@@ -142,11 +270,7 @@ TachiBkImportPreview? previewTachiBkImport(String path) {
     final existing = existingMangaByLink[m.url];
     if (existing != null) {
       updatedSeries++;
-      final existingUrls = chapterRepository
-          .getAllByMangaId(existing.id)
-          .map((c) => c.url)
-          .whereType<String>()
-          .toSet();
+      final existingUrls = chapterUrls[existing.id] ?? const <String>{};
       newChapters += m.chapters
           .where((c) => !existingUrls.contains(c.url))
           .length;
@@ -157,7 +281,7 @@ TachiBkImportPreview? previewTachiBkImport(String path) {
   }
 
   if (backupType == BackupType.aniyomi) {
-    final backupAnime = BackupAniyomi.fromBuffer(content);
+    final backupAnime = decoded.aniyomi!;
     final animeCategories = backupAnime.backupAnimeCategories.isNotEmpty
         ? backupAnime.backupAnimeCategories
         : backupAnime.legacyBackupAnimeCategories;
@@ -169,10 +293,14 @@ TachiBkImportPreview? previewTachiBkImport(String path) {
         : backupAnime.legacyBackupAnimeSources;
     categoryNames.addAll(animeCategories.map((c) => c.name));
     final existingAnimeByLink = {
-      for (var m in mangaRepository.getByItemType(ItemType.anime))
-        if (m.link != null) m.link!: m,
+      for (var m in allSeries)
+        if (m.itemType == ItemType.anime && m.link != null) m.link!: m,
     };
+    final episodeUrls = await _chapterUrlsFor([
+      for (var a in animeEntries) existingAnimeByLink[a.url]?.id,
+    ]);
     for (var a in animeEntries) {
+      if (++yieldN % 150 == 0) await Future<void>.delayed(Duration.zero);
       final sourceId = protoInt(a.source);
       final srcName =
           animeSources
@@ -188,11 +316,7 @@ TachiBkImportPreview? previewTachiBkImport(String path) {
       final existing = existingAnimeByLink[a.url];
       if (existing != null) {
         updatedSeries++;
-        final existingUrls = chapterRepository
-            .getAllByMangaId(existing.id)
-            .map((c) => c.url)
-            .whereType<String>()
-            .toSet();
+        final existingUrls = episodeUrls[existing.id] ?? const <String>{};
         newChapters += a.episodes
             .where((c) => !existingUrls.contains(c.url))
             .length;
@@ -203,6 +327,10 @@ TachiBkImportPreview? previewTachiBkImport(String path) {
     }
   }
 
+  AppLogger.log(
+    '[Sao lưu] Xem trước ${p.basename(path)}: $newSeries bộ mới, $updatedSeries cập nhật, $newChapters chương mới (${(swPreview.elapsedMilliseconds / 1000).toStringAsFixed(1)} s)',
+    logLevel: LogLevel.info, always: true,
+  );
   return TachiBkImportPreview(
     conflictingCategories: categoryNames
         .where(existingCategoryNames.contains)
@@ -222,13 +350,13 @@ List<Source> installedSourcesFor(ItemType itemType) => sourceRepository
 /// Same preview shape as previewTachiBkImport, but for the native
 /// mangayomi backup format - already-decoded (and, for encrypted backups,
 /// already-decrypted) JSON rather than a path to re-read from disk.
-TachiBkImportPreview previewMangayomiBackup(Map<String, dynamic> backup) {
+Future<TachiBkImportPreview> previewMangayomiBackup(Map<String, dynamic> backup) async {
+  final swPreview = Stopwatch()..start();
   final mangaList = (backup["manga"] as List?)
       ?.map((e) => Manga.fromJson(e)..itemType = convertToItemType(e))
       .toList();
-  final chapterList = (backup["chapters"] as List?)
-      ?.map((e) => Chapter.fromJson(e))
-      .toList();
+  // 0.5.2: only mangaId + url are needed here - read them from the raw JSON
+  // instead of building ~90 000 Chapter objects on the UI isolate.
   final categoryList = (backup["categories"] as List?)
       ?.map(
         (e) =>
@@ -251,20 +379,33 @@ TachiBkImportPreview previewMangayomiBackup(Map<String, dynamic> backup) {
       .where((s) => s.isAdded ?? false)
       .map((s) => (s.itemType, s.name?.toLowerCase()))
       .toSet();
+  for (final e in backupInstalledExtensions(backup)) {
+    installedSourceNames.add((convertToItemType(e), '${e['name']}'.toLowerCase()));
+  }
   final unmatchedSources = <String, ItemType>{};
 
+  // 0.5.2: asynchronous, batched reads (see previewTachiBkImport) - the
+  // 22 MB Mangayomi backup took ~100 s on the Note 9 before its first dialog.
   final existingMangaByKey = {
-    for (final m in mangaRepository.getAll())
+    for (final m in await mangaRepository.getAllAsync())
       if (m.link != null) '${m.itemType.index}|${m.link}': m,
   };
-  final chaptersByMangaId = <int, List<Chapter>>{};
-  for (final c in chapterList ?? <Chapter>[]) {
-    if (c.mangaId == null) continue;
-    chaptersByMangaId.putIfAbsent(c.mangaId!, () => []).add(c);
+  final existingChapterUrls = await _chapterUrlsFor([
+    for (final m in mangaList ?? <Manga>[])
+      if (m.link != null) existingMangaByKey['${m.itemType.index}|${m.link}']?.id,
+  ]);
+  final chaptersByMangaId = <int, List<String?>>{};
+  for (final c in (backup["chapters"] as List?) ?? const []) {
+    if (c is! Map) continue;
+    final mid = c['mangaId'];
+    if (mid is! int) continue;
+    chaptersByMangaId.putIfAbsent(mid, () => []).add(c['url'] as String?);
   }
 
   int newSeries = 0, updatedSeries = 0, newChapters = 0;
+  var yieldN = 0;
   for (final m in mangaList ?? <Manga>[]) {
+    if (++yieldN % 150 == 0) await Future<void>.delayed(Duration.zero);
     final srcName = m.source ?? "Unknown";
     if (!installedSourceNames.contains((m.itemType, srcName.toLowerCase()))) {
       unmatchedSources[srcName] = m.itemType;
@@ -272,17 +413,13 @@ TachiBkImportPreview previewMangayomiBackup(Map<String, dynamic> backup) {
     final key = '${m.itemType.index}|${m.link}';
     final existing = m.link != null ? existingMangaByKey[key] : null;
     final mangaChapters = m.id != null
-        ? chaptersByMangaId[m.id!] ?? const <Chapter>[]
-        : const <Chapter>[];
+        ? chaptersByMangaId[m.id!] ?? const <String?>[]
+        : const <String?>[];
     if (existing != null) {
       updatedSeries++;
-      final existingUrls = chapterRepository
-          .getAllByMangaId(existing.id)
-          .map((c) => c.url)
-          .whereType<String>()
-          .toSet();
+      final existingUrls = existingChapterUrls[existing.id] ?? const <String>{};
       newChapters += mangaChapters
-          .where((c) => c.url != null && !existingUrls.contains(c.url))
+          .where((u) => u != null && !existingUrls.contains(u))
           .length;
     } else {
       newSeries++;
@@ -290,6 +427,10 @@ TachiBkImportPreview previewMangayomiBackup(Map<String, dynamic> backup) {
     }
   }
 
+  AppLogger.log(
+    '[Sao lưu] Xem trước bản sao lưu Mangayomi/YomiHub: $newSeries bộ mới, $updatedSeries cập nhật, $newChapters chương mới (${(swPreview.elapsedMilliseconds / 1000).toStringAsFixed(1)} s)',
+    logLevel: LogLevel.info, always: true,
+  );
   return TachiBkImportPreview(
     conflictingCategories: categoryNames
         .where(existingCategoryNames.contains)
@@ -348,10 +489,28 @@ Status convertStatusFromTachiBk(int idx) {
 }
 
 
+/// Public entry for the restore (merge) - see [_chapterUrlsFor].
+Future<Map<int, Set<String>>> yhChapterUrlsFor(Iterable<int?> ids) =>
+    _chapterUrlsFor(ids);
+
+/// Chapter URLs of the given series, read in batches of 200 ids with
+/// asynchronous Isar queries (0.5.2).
+Future<Map<int, Set<String>>> _chapterUrlsFor(Iterable<int?> ids) async {
+  final wanted = ids.whereType<int>().toSet().toList();
+  final out = <int, Set<String>>{};
+  for (var i = 0; i < wanted.length; i += 200) {
+    final part = wanted.sublist(i, i + 200 > wanted.length ? wanted.length : i + 200);
+    for (final c in await chapterRepository.getAllByMangaIds(part)) {
+      final id = c.mangaId, url = c.url;
+      if (id != null && url != null) (out[id] ??= <String>{}).add(url);
+    }
+  }
+  return out;
+}
+
 BackupType? _sniffTachiBk(String path) {
   try {
-    final raw = File(path).readAsBytesSync();
-    final data = Uint8List.fromList(GZipDecoder().decodeBytes(raw));
+    final data = tachiBkBytes(path);
     if (data.isEmpty) return null;
     if (YomiRepoImporter.isAniyomiFlavour(data)) return BackupType.aniyomi;
     final lower = path.toLowerCase();

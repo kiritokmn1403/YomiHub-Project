@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "Aplicación Android",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Extensión de Aniyomi (películas y anime)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Extensión de Mihon / Tachiyomi (cómics)",
-  "Tiện ích IReader (Tiểu thuyết)": "Extensión de IReader (novelas)"
+  "Tiện ích IReader (Tiểu thuyết)": "Extensión de IReader (novelas)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "La ruta del capítulo/título se guardó con una versión anterior de la extensión, por lo que el dominio se unió mal. Abre el título y desliza hacia abajo para actualizar sus capítulos, o usa \"Migrar\" a la nueva extensión.",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "No se puede leer la copia de seguridad (archivo dañado o no es una copia de YomiHub/Mangayomi): {e}",
+  "Đã khôi phục bản sao lưu!": "¡Copia de seguridad restaurada!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "¡Formato de copia de seguridad no compatible!",
+  "Đang đọc bản sao lưu…": "Leyendo copia de seguridad…",
+  "Lỗi khôi phục bản sao lưu: {e}": "Error al restaurar la copia de seguridad: {e}",
+  "(Không rõ nguồn)": "(Fuente desconocida)",
+  "Đã tạo bản sao lưu!": "¡Copia de seguridad creada!",
+  "Chia sẻ tệp sao lưu YomiHub": "Compartir archivo de copia de seguridad de YomiHub",
+  "Tạo bản sao lưu thất bại: {e}": "Error al crear la copia de seguridad: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "Esta carpeta ya no existe (¿tarjeta SD extraída o cambiada?) – elige de nuevo la ubicación de descarga.",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – código fuente y versiones (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "WARP se activó pero no pudo completar el handshake con el servidor de Cloudflare: esta red puede bloquear UDP (puertos 2408, 500, 4500, 1701, 854). Prueba otra red o usa Tor / WireGuard."
 }

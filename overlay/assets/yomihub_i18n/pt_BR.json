@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "App Android",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Extensão Aniyomi (filmes e anime)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Extensão Mihon / Tachiyomi (quadrinhos)",
-  "Tiện ích IReader (Tiểu thuyết)": "Extensão IReader (romances)"
+  "Tiện ích IReader (Tiểu thuyết)": "Extensão IReader (romances)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "O caminho do capítulo/título foi salvo por uma versão antiga da extensão, então o domínio foi unido de forma errada. Abra o título e puxe para baixo para atualizar os capítulos, ou use \"Migrar\" para a nova extensão.",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "Não foi possível ler o backup (arquivo danificado ou não é um backup do YomiHub/Mangayomi): {e}",
+  "Đã khôi phục bản sao lưu!": "Backup restaurado!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "Formato de backup não suportado!",
+  "Đang đọc bản sao lưu…": "Lendo o backup…",
+  "Lỗi khôi phục bản sao lưu: {e}": "Erro ao restaurar o backup: {e}",
+  "(Không rõ nguồn)": "(Fonte desconhecida)",
+  "Đã tạo bản sao lưu!": "Backup criado!",
+  "Chia sẻ tệp sao lưu YomiHub": "Compartilhar arquivo de backup do YomiHub",
+  "Tạo bản sao lưu thất bại: {e}": "Falha no backup: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "Esta pasta não existe mais (cartão SD removido ou trocado?) – escolha novamente o local de download.",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – código-fonte e versões (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "O WARP foi ativado, mas não conseguiu concluir o handshake com o servidor da Cloudflare – esta rede pode bloquear UDP (portas 2408, 500, 4500, 1701, 854). Tente outra rede ou use Tor / WireGuard."
 }

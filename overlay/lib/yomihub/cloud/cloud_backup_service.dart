@@ -982,9 +982,10 @@ class TelegramProvider extends CloudProvider {
       // the Chat ID can be left empty – it is read from the newest message
       // the user sent to the bot (/start) or posted in a channel/group with it.
       if (_chat.isEmpty) {
-        final found = await _detectChatId();
+        final found = await _detectChatId(wait: true);
         if (found == null) {
           throw Exception(tr('Chưa tìm thấy Chat ID: mở Telegram, nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh và gửi 1 tin), rồi bấm Kết nối lại.'));
+          // (0.5.2: the connect button now waits ~55 s for that message)
         }
         config['chat_id'] = found;
       }
@@ -1010,18 +1011,48 @@ class TelegramProvider extends CloudProvider {
   }
 
   /// Newest chat that talked to the bot (private /start, group or channel).
-  Future<String?> _detectChatId() async {
-    try {
-      final d = _tgJson(
-          await _tg.get(Uri.parse('${_api('getUpdates')}?limit=50&allowed_updates=%5B%22message%22,%22channel_post%22,%22my_chat_member%22%5D'))
-              .timeout(const Duration(seconds: 30)),
-          'Telegram getUpdates');
+  ///
+  /// 0.5.2 (logs 2, 03/11 12:26: "Chưa tìm thấy Chat ID" twice in 7 s):
+  /// getUpdates only keeps ~24 h of messages and answers 409 while the bot
+  /// has a webhook. The webhook is now removed when that happens, and with
+  /// [wait] the app long-polls up to ~55 s so a /start sent right after
+  /// pressing "Kết nối" is found instead of failing at once.
+  Future<String?> _detectChatId({bool wait = false}) async {
+    const allowed = 'allowed_updates=%5B%22message%22,%22channel_post%22,%22my_chat_member%22%5D';
+    String? pick(Map<String, dynamic> d) {
       final updates = (d['result'] as List? ?? const []).reversed;
       for (final u in updates) {
         final m = (u as Map)['message'] ?? u['channel_post'] ?? u['my_chat_member'];
         final id = (m is Map ? m['chat'] : null) is Map ? m['chat']['id'] : null;
         if (id != null) return '$id';
       }
+      return null;
+    }
+
+    Future<Map<String, dynamic>> poll(int timeoutS) async {
+      final r = await _tg
+          .get(Uri.parse('${_api('getUpdates')}?limit=50&timeout=$timeoutS&$allowed'))
+          .timeout(Duration(seconds: timeoutS + 20));
+      if (r.statusCode == 409) {
+        // a webhook (or another getUpdates client) owns the updates
+        await _tg.get(Uri.parse('${_api('deleteWebhook')}?drop_pending_updates=false'))
+            .timeout(const Duration(seconds: 20));
+        AppLogger.log('[Đồng bộ đám mây] Telegram: bot đang dùng webhook – đã gỡ webhook để đọc tin nhắn /start.',
+            logLevel: LogLevel.warning);
+        return _tgJson(
+            await _tg.get(Uri.parse('${_api('getUpdates')}?limit=50&timeout=$timeoutS&$allowed'))
+                .timeout(Duration(seconds: timeoutS + 20)),
+            'Telegram getUpdates');
+      }
+      return _tgJson(r, 'Telegram getUpdates');
+    }
+
+    try {
+      final first = pick(await poll(0));
+      if (first != null || !wait) return first;
+      AppLogger.log('[Đồng bộ đám mây] Telegram: chưa có tin nhắn nào gửi cho bot – đang chờ /start (tối đa 55 giây).',
+          logLevel: LogLevel.info);
+      return pick(await poll(55));
     } catch (e) {
       AppLogger.log('[Đồng bộ đám mây] Telegram: không tự lấy được Chat ID: ${_mask(e)}', logLevel: LogLevel.warning);
     }

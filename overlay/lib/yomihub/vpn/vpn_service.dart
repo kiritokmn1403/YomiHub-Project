@@ -8,6 +8,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart' show AppLifecycleListener;
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
@@ -210,6 +211,11 @@ class YomiVpnService extends ChangeNotifier {
       try {
         final m = Map<String, dynamic>.from(await _channel.invokeMethod('torDiag') as Map);
         final hop = '${m['firstHop'] ?? ''}';
+        // tor answered on its control port with a consensus loaded: it is
+        // past the point where it used to exit() (0.4.3 guard).
+        if (RegExp(r'PROGRESS=([5-9]\d|100)').hasMatch('${m['bootstrap']}')) {
+          _clearTorGuard();
+        }
         if (hop.isEmpty && i < wait.inSeconds ~/ 5) continue;
         AppLogger.log(
           '[VPN] Tor: UseBridges=${m['useBridges']} (${m['bridges']} cầu nối, kiểu "${m['applied']}"), '
@@ -401,7 +407,7 @@ class YomiVpnService extends ChangeNotifier {
       await _put('torEnabled', false);
       YomiVpnState.bump();
       lastError = tr('Tor đã làm ứng dụng thoát ở lần mở trước nên đã được tắt. Bật lại trong VPN & DNS nếu muốn thử lại.');
-      AppLogger.log('[VPN] Tor dừng đột ngột khi khởi động (tiến trình bị đóng) – đã tắt Tor để ứng dụng mở được', logLevel: LogLevel.error);
+      AppLogger.log('[VPN] Ứng dụng bị đóng trong lúc Tor đang khởi động (chưa tải xong dữ liệu mạng Tor) – đã tắt Tor để ứng dụng mở được; bật lại trong VPN & DNS', logLevel: LogLevel.error);
     }
     if (YomiVpnState.torEnabled) {
       // don't block startup
@@ -447,6 +453,22 @@ class YomiVpnService extends ChangeNotifier {
   /// survived the first seconds of tor loading its cached consensus; if the
   /// process dies first, [init] finds the mark on the next launch.
   Timer? _torGuardTimer;
+  AppLifecycleListener? _torGuardLife;
+
+  /// 0.5.2: the crash-loop guard fired falsely (logs 2, 04/11 09:01:46 →
+  /// 09:04:55): tor had loaded its consensus and reached 75 %
+  /// ("enough_dirinfo"), then YomiHub went to the background (onTrimMemory
+  /// 3 s later) and Android/the user closed it inside the 25 s window – the
+  /// next launch blamed Tor and switched it off. The guard is now dropped as
+  /// soon as tor has survived loading its consensus (circuit diagnostics
+  /// readable) or the app leaves the foreground, where a process death is
+  /// the system's doing, not tor's exit().
+  void _clearTorGuard() {
+    if (!(_torGuardTimer?.isActive ?? false)) return;
+    _torGuardTimer!.cancel();
+    unawaited(_put('torStartPending', false));
+  }
+
   Future<void> _armTorGuard() async {
     if (!Platform.isAndroid) return;
     await _put('torStartPending', true);
@@ -457,6 +479,11 @@ class YomiVpnService extends ChangeNotifier {
     _torGuardTimer = Timer(const Duration(seconds: 25), () {
       unawaited(_put('torStartPending', false));
     });
+    _torGuardLife ??= AppLifecycleListener(
+      onHide: _clearTorGuard,
+      onPause: _clearTorGuard,
+      onDetach: _clearTorGuard,
+    );
   }
 
   // ───────────── Tor ─────────────
@@ -922,14 +949,16 @@ class YomiVpnService extends ChangeNotifier {
     return acc;
   }
 
-  String _warpConfig(Map<String, dynamic> a, String ownPackage) {
+  String _warpConfig(Map<String, dynamic> a, String ownPackage, {int? port}) {
     String endpoint = '${a['endpoint']}';
     final v4 = '${a['endpoint_v4'] ?? ''}';
     // Prefer the literal IPv4 endpoint: avoids DNS lookups that may be blocked.
     if (v4.isNotEmpty) {
       final host = v4.split(':').first;
-      final port = endpoint.split(':').last;
-      endpoint = '$host:${int.tryParse(port) == null ? 2408 : port}';
+      final p = endpoint.split(':').last;
+      endpoint = '$host:${port ?? (int.tryParse(p) == null ? 2408 : p)}';
+    } else if (port != null) {
+      endpoint = '${endpoint.split(':').first}:$port';
     }
     final apps = switch (warpMode) {
       WarpMode.app => [ownPackage],
@@ -992,7 +1021,42 @@ class YomiVpnService extends ChangeNotifier {
       }
       final acc = warpAccount ?? await _registerWarp();
       final pkg = await _channel.invokeMethod<String>('packageName') ?? 'com.yomihub.app';
-      await _channel.invokeMethod('warpUp', {'config': _warpConfig(acc, pkg)});
+      // 0.5.2 (Note 9 on an office Wi-Fi: "Đã kết nối" was shown while the
+      // WireGuard log repeated "Handshake did not complete" and no app had
+      // Internet): the tunnel is checked through Cloudflare's trace page;
+      // if UDP 2408 is blocked the other ports WARP answers on are tried.
+      // null = the account's own endpoint port (2408); the port that worked
+      // last time is tried first.
+      final saved = int.tryParse('${_box?.get('warpPort', defaultValue: '') ?? ''}');
+      final ports = <int?>{saved, null, 500, 4500, 1701, 854};
+      var reached = !Platform.isAndroid;
+      for (final port in Platform.isAndroid ? ports : const <int?>{null}) {
+        await _channel.invokeMethod('warpUp', {'config': _warpConfig(acc, pkg, port: port)});
+        if (!Platform.isAndroid) break;
+        if (await _warpReachable()) {
+          reached = true;
+          await _put('warpPort', port?.toString() ?? '');
+          AppLogger.log('[VPN] WARP đã bắt tay với Cloudflare (cổng ${port ?? 2408})',
+              logLevel: LogLevel.info, always: true);
+          break;
+        }
+        AppLogger.log('[VPN] WARP: không bắt tay được qua cổng UDP ${port ?? 2408}',
+            logLevel: LogLevel.warning);
+      }
+      if (!reached) {
+        // A tunnel without a handshake cuts every app in its scope off the
+        // Internet - take it down and say why.
+        try {
+          await _channel.invokeMethod('warpDown');
+        } catch (_) {}
+        warpEnabled = false;
+        warpUp = false;
+        await _put('warpEnabled', false);
+        lastError = tr('WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.');
+        AppLogger.log('[VPN] $lastError', logLevel: LogLevel.warning);
+        notifyListeners();
+        return;
+      }
       warpEnabled = true;
       warpUp = true;
       await _put('warpEnabled', true);
@@ -1007,6 +1071,23 @@ class YomiVpnService extends ChangeNotifier {
       lastError = e is PlatformException ? (e.message ?? e.code) : '$e';
     }
     notifyListeners();
+  }
+
+  /// True when YomiHub's own traffic (always inside the WARP tunnel's app
+  /// scope) comes out at Cloudflare with WARP on.
+  Future<bool> _warpReachable() async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    final c = HttpClient()..connectionTimeout = const Duration(seconds: 6);
+    try {
+      final rq = await c.getUrl(Uri.parse('https://www.cloudflare.com/cdn-cgi/trace'));
+      final rs = await rq.close().timeout(const Duration(seconds: 6));
+      final body = await rs.transform(utf8.decoder).join().timeout(const Duration(seconds: 4));
+      return body.contains('warp=on') || body.contains('warp=plus');
+    } catch (_) {
+      return false;
+    } finally {
+      c.close(force: true);
+    }
   }
 
   Future<void> setWarpMode(WarpMode m) async {

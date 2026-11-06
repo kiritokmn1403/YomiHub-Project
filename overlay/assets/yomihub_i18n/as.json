@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "Android এপ",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Aniyomi এক্সটেনচন (চলচ্চিত্ৰ আৰু এনিমে)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Mihon / Tachiyomi এক্সটেনচন (কমিক)",
-  "Tiện ích IReader (Tiểu thuyết)": "IReader এক্সটেনচন (উপন্যাস)"
+  "Tiện ích IReader (Tiểu thuyết)": "IReader এক্সটেনচন (উপন্যাস)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "অধ্যায়/শিৰোনামৰ পথটো এক্সটেনচনৰ পুৰণি সংস্কৰণে সাঁচি ৰাখিছিল, সেয়ে ডমেইন ভুলকৈ যোগ হৈছে। শিৰোনামটো খুলি অধ্যায় সতেজ কৰিবলৈ তললৈ টানক, বা নতুন এক্সটেনচনলৈ \"স্থানান্তৰ\" ব্যৱহাৰ কৰক।",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "বেকআপ পঢ়িব পৰা নগ'ল (ক্ষতিগ্ৰস্ত ফাইল বা YomiHub/Mangayomi বেকআপ নহয়): {e}",
+  "Đã khôi phục bản sao lưu!": "বেকআপ পুনৰুদ্ধাৰ কৰা হ'ল!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "বেকআপ ফৰ্মেট সমৰ্থিত নহয়!",
+  "Đang đọc bản sao lưu…": "বেকআপ পঢ়ি আছে…",
+  "Lỗi khôi phục bản sao lưu: {e}": "বেকআপ পুনৰুদ্ধাৰত ত্ৰুটি: {e}",
+  "(Không rõ nguồn)": "(অজ্ঞাত উৎস)",
+  "Đã tạo bản sao lưu!": "বেকআপ সৃষ্টি কৰা হ'ল!",
+  "Chia sẻ tệp sao lưu YomiHub": "YomiHub বেকআপ ফাইল শ্বেয়াৰ কৰক",
+  "Tạo bản sao lưu thất bại: {e}": "বেকআপ বিফল: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "এই ফোল্ডাৰটো আৰু নাই (SD কাৰ্ড আঁতৰোৱা বা সলনি কৰা হৈছে?) – ডাউনলোডৰ স্থান পুনৰ বাছক।",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – উৎস ক'ড আৰু সংস্কৰণসমূহ (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "WARP অন কৰা হ'ল কিন্তু Cloudflare চাৰ্ভাৰৰ সৈতে হেণ্ডশ্বেক সম্পূৰ্ণ নহ'ল – এই নেটৱৰ্কে UDP (প'ৰ্ট 2408, 500, 4500, 1701, 854) বন্ধ কৰিব পাৰে। আন নেটৱৰ্ক চেষ্টা কৰক, বা Tor / WireGuard ব্যৱহাৰ কৰক।"
 }

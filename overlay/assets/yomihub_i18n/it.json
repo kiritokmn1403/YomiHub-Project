@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "App Android",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Estensione Aniyomi (film e anime)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Estensione Mihon / Tachiyomi (fumetti)",
-  "Tiện ích IReader (Tiểu thuyết)": "Estensione IReader (romanzi)"
+  "Tiện ích IReader (Tiểu thuyết)": "Estensione IReader (romanzi)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "Il percorso del capitolo/titolo è stato salvato da una versione precedente dell'estensione, quindi il dominio è stato unito in modo errato. Apri il titolo e trascina verso il basso per aggiornare i capitoli, oppure usa «Migra» verso la nuova estensione.",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "Impossibile leggere il backup (file danneggiato o non è un backup YomiHub/Mangayomi): {e}",
+  "Đã khôi phục bản sao lưu!": "Backup ripristinato!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "Formato di backup non supportato!",
+  "Đang đọc bản sao lưu…": "Lettura del backup…",
+  "Lỗi khôi phục bản sao lưu: {e}": "Errore nel ripristino del backup: {e}",
+  "(Không rõ nguồn)": "(Sorgente sconosciuta)",
+  "Đã tạo bản sao lưu!": "Backup creato!",
+  "Chia sẻ tệp sao lưu YomiHub": "Condividi file di backup YomiHub",
+  "Tạo bản sao lưu thất bại: {e}": "Backup non riuscito: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "Questa cartella non esiste più (scheda SD rimossa o sostituita?) – scegli di nuovo la posizione di download.",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – codice sorgente e release (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "WARP è stato attivato ma l'handshake con il server Cloudflare non è riuscito – questa rete potrebbe bloccare l'UDP (porte 2408, 500, 4500, 1701, 854). Prova un'altra rete oppure usa Tor / WireGuard."
 }

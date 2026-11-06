@@ -41,6 +41,14 @@ class YomiPerf with WidgetsBindingObserver {
   final Stopwatch _mono = Stopwatch();
   int _lastMonoMs = 0;
 
+  /// 0.5.2: monotonic time of the last foreground/background switch. A frame
+  /// or timer gap that spans one is the OS pausing the app (APK installer,
+  /// share sheet, permission page), not YomiHub blocking its UI: logs 2
+  /// 04/11 09:01:05 "dựng 4855ms • màn hình: /about" was the update
+  /// installer opening over the About screen.
+  int _lifecycleMonoMs = -100000;
+  bool get _nearLifecycleChange => _mono.elapsedMilliseconds - _lifecycleMonoMs < 2000;
+
   /// 0.4.3: short label of the work running in the background (library
   /// update, repository refresh…) so a freeze in the log says what caused it.
   static String _lastActivity = '';
@@ -75,6 +83,7 @@ class YomiPerf with WidgetsBindingObserver {
       _lastMonoMs = monoMs;
       _last = now;
       if (!_foreground) return; // timers are paused in background
+      if (monoMs - _lifecycleMonoMs < gap + 2000) return;
       // A wall-clock jump much larger than the monotonic one = device slept.
       if (wallGap - gap > 5000) return;
       if (gap >= 2500 && gap < 600000 &&
@@ -98,7 +107,10 @@ class YomiPerf with WidgetsBindingObserver {
       if (raster > 40) {
         _slowRaster.add(now);
       }
-      if (build + raster > 700 && DateTime.now().difference(_lastJankLog).inSeconds > 60) {
+      if (build + raster > 700 &&
+          _foreground &&
+          !_nearLifecycleChange &&
+          DateTime.now().difference(_lastJankLog).inSeconds > 60) {
         _lastJankLog = DateTime.now();
         AppLogger.log(
           '[Hiệu năng] Khung hình chậm: dựng ${build}ms, vẽ ${raster}ms'
@@ -180,6 +192,7 @@ class YomiPerf with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     _foreground = state == AppLifecycleState.resumed;
+    _lifecycleMonoMs = _mono.elapsedMilliseconds;
     _last = DateTime.now();
     _lastMonoMs = _mono.elapsedMilliseconds;
     // 0.2.3: in the background Android kills the biggest apps first – give

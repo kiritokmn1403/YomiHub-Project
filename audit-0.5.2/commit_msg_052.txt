@@ -1,0 +1,20 @@
+release: YomiHub 0.5.2 (0.5.2+44)
+
+- Backup/restore: platform gunzip + background protobuf/JSON decode, batched
+  async chapter queries, busy dialogs; merge installs the extensions a backup
+  carries, rebinds orphan entries, adds missing chapters to existing series,
+  skips unchanged series (Note 9: TachiyomiMi 12 MB read 45 s -> 8 s,
+  Mangayomi 22 MB -> 8-11 s, merge without UI freeze)
+- Windows: VC++ runtime bundled, Setup.exe installs the full package
+  (JRE + M-Extension-Server), WinDiag start-up diagnostics in the log
+- WARP: real handshake check via cdn-cgi/trace, UDP port fallback
+  (2408/500/4500/1701/854), dead tunnel taken down instead of "connected"
+- Fixes from logs 2.txt: library tab controller, library update after leaving
+  the screen, Tor false alarm, Anime47/FikFap saved links, vBook/Subsplease
+  empty results, old-extension host hint, perf watchdog, bad EPUB memo,
+  log/crash report size caps, TLS repo errors as warnings
+- New mirrors, own repo in GitHub projects list, 18-language strings
+- Docs: TECHNICAL_UPDATE_NOTES 0.5.2, README links for v0.5.2
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01PnzRArN6jv9iA8eqfbxydy

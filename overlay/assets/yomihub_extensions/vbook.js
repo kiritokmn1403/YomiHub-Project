@@ -773,7 +773,16 @@ class DefaultExtension extends MProvider {
     if (!toks) { try { toks = JSON.parse(new SharedPreferences().getString(key, "") || "{}"); } catch (e) { toks = {}; } this._tok[key] = toks; }
     let token = page <= 1 ? "" : toks[page];
     if (token === undefined) token = "" + page;
-    const r = await __vbRun(script, [input, token]);
+    // 0.5.2: many vBook scripts return nothing (null) when a search has no
+    // hit; that is an empty page, not an error (logs 2: OPhim "search.js trả
+    // về kết quả rỗng" logged as ERROR for every global search).
+    let r;
+    try {
+      r = await __vbRun(script, [input, token]);
+    } catch (e) {
+      if (("" + e).indexOf("trả về kết quả rỗng") >= 0) return { list: [], hasNextPage: false };
+      throw e;
+    }
     const next = r.data2 === undefined || r.data2 === null ? "" : "" + r.data2;
     if (next && toks[page + 1] !== next) { toks[page + 1] = next; try { new SharedPreferences().setString(key, JSON.stringify(toks)); } catch (e) {} }
     const seen = new Set();

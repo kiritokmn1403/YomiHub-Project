@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "แอป Android",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "ส่วนขยาย Aniyomi (ภาพยนตร์และอนิเมะ)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "ส่วนขยาย Mihon / Tachiyomi (การ์ตูน)",
-  "Tiện ích IReader (Tiểu thuyết)": "ส่วนขยาย IReader (นิยาย)"
+  "Tiện ích IReader (Tiểu thuyết)": "ส่วนขยาย IReader (นิยาย)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "เส้นทางตอน/เรื่องถูกบันทึกโดยส่วนขยายเวอร์ชันเก่า จึงต่อโดเมนผิด เปิดเรื่องแล้วดึงลงเพื่อรีเฟรชตอน หรือใช้ \"ย้าย\" ไปยังส่วนขยายใหม่",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "อ่านข้อมูลสำรองไม่ได้ (ไฟล์เสียหายหรือไม่ใช่ข้อมูลสำรองของ YomiHub/Mangayomi): {e}",
+  "Đã khôi phục bản sao lưu!": "กู้คืนข้อมูลสำรองแล้ว!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "ไม่รองรับรูปแบบข้อมูลสำรองนี้!",
+  "Đang đọc bản sao lưu…": "กำลังอ่านข้อมูลสำรอง…",
+  "Lỗi khôi phục bản sao lưu: {e}": "เกิดข้อผิดพลาดในการกู้คืนข้อมูลสำรอง: {e}",
+  "(Không rõ nguồn)": "(ไม่ทราบแหล่งที่มา)",
+  "Đã tạo bản sao lưu!": "สร้างข้อมูลสำรองแล้ว!",
+  "Chia sẻ tệp sao lưu YomiHub": "แชร์ไฟล์ข้อมูลสำรอง YomiHub",
+  "Tạo bản sao lưu thất bại: {e}": "สร้างข้อมูลสำรองไม่สำเร็จ: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "โฟลเดอร์นี้ไม่มีอยู่แล้ว (ถอดหรือเปลี่ยนการ์ด SD?) – เลือกตำแหน่งดาวน์โหลดใหม่",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – ซอร์สโค้ดและรุ่นเผยแพร่ (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "เปิด WARP แล้วแต่ไม่สามารถแฮนด์เชกกับเซิร์ฟเวอร์ Cloudflare ได้ – เครือข่ายนี้อาจบล็อก UDP (พอร์ต 2408, 500, 4500, 1701, 854) ลองใช้เครือข่ายอื่น หรือใช้ Tor / WireGuard"
 }

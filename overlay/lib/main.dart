@@ -29,6 +29,7 @@ import 'package:mangayomi/yomihub/cloudscraper/cloudscraper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mangayomi/yomihub/win/win_diag.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
 import 'package:mangayomi/yomihub/cloudflare/cf_challenge.dart';
 import 'package:mangayomi/yomihub/repos/repo_discovery.dart';
@@ -326,6 +327,11 @@ Future<void> _postLaunchInit(StorageProvider storage) async {
   unawaited(IReaderBridge.startIfNeeded());
   // 0.1.9: remove an update file that has been installed
   unawaited(Future<void>.delayed(const Duration(seconds: 8), YomiUpdateCleanup.run));
+  // 0.5.2: Windows components check (VC++, WebView2, Java, bundled tools),
+  // written to the app log once per version.
+  if (Platform.isWindows) {
+    unawaited(Future<void>.delayed(const Duration(seconds: 12), WinDiag.runOnce));
+  }
   // 0.1.8: Kotatsu Multi Parsers listed in Comic › Extensions
   unawaited(Future<void>.delayed(const Duration(seconds: 40), KotatsuBridge.syncCatalogIfDue));
   unawaited(YomiFilterStore.open());

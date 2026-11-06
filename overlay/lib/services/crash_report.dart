@@ -375,6 +375,9 @@ class CrashReports {
   /// Called from error handlers, so it must not throw and must not await:
   /// anything that fails here would be an error raised while handling an
   /// error.
+  static String _cap(String s, int max) =>
+      s.length <= max ? s : '${s.substring(0, max)}… [${s.length - max} ký tự bị cắt]';
+
   static void record({
     required String source,
     required Object error,
@@ -385,7 +388,9 @@ class CrashReports {
       final report = CrashReport(
         time: DateTime.now(),
         source: source,
-        error: redact(error.toString()),
+        // 0.5.2: capped (see AppLogger.log) - a provider error can embed
+        // its whole argument, e.g. a decoded backup of tens of MB.
+        error: _cap(redact(error.toString()), 8000),
         stack: stack == null ? null : _trimStack(redact(stack.toString())),
         // A native crash is reported on the launch after it happened, so it
         // has to say where it was rather than where we are now.
@@ -395,7 +400,10 @@ class CrashReports {
       AppLogger.log(
         '[Báo cáo lỗi] ${report.source}${report.screen == null ? '' : ' @ ${report.screen}'}: '
         '${report.error}${report.stack == null ? '' : '\n${report.stack}'}',
-        logLevel: LogLevel.error,
+        // 0.5.2: a source / network fault (e.g. "Anime47 cần đăng nhập",
+        // HTTP 401 PRIVATE_MODE) is not an app failure - WARNING, as the
+        // extension line written just before it.
+        logLevel: isReportableFailure(report) ? LogLevel.error : LogLevel.warning,
       );
       _recordOccurrence(_reports, report);
       if (!_loaded) _recordOccurrence(_pending, report);

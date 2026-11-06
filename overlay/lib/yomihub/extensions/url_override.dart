@@ -146,6 +146,7 @@ class YomiUrlOverride {
       'https://animevietsub.nl',
     ],
     'animevietsub.nl': [
+      'https://animevietsub.best', // 0.5.2: animevietsub.nl redirects here
       'https://animevietsub.news',
       'https://animevietsub.nl',
       'https://animevietsub.tv',
@@ -210,27 +211,37 @@ class YomiUrlOverride {
       'https://xoilacxxi.cc',
       'https://xoilacvb.cc',
       'https://xoilac32.org',
+      'https://xoilac.run', // 0.5.2: xoilacvb.cc redirects here
+      'https://xoilactv3.co', // 0.5.2: xoilac32.org redirects here
     ],
     'xoilacvb.cc': [
       'https://xoilacxxi.cc',
       'https://xoilacvb.cc',
       'https://xoilac32.org',
+      'https://xoilac.run', // 0.5.2: xoilacvb.cc redirects here
+      'https://xoilactv3.co', // 0.5.2: xoilac32.org redirects here
     ],
     'xoilac32.org': [
       'https://xoilacxxi.cc',
       'https://xoilacvb.cc',
       'https://xoilac32.org',
+      'https://xoilac.run', // 0.5.2: xoilacvb.cc redirects here
+      'https://xoilactv3.co', // 0.5.2: xoilac32.org redirects here
     ],
     'nhentai.net': ['https://nhentai.net', 'https://nhentai.xxx'],
     // 0.4.4 (sheet "Website Extension"): every URL listed for the source
     'xemphimgi.com': ['https://xemphimgi.com', 'https://xemphimgi.net', 'https://xemphimgi.tv'],
     'nextphim.net': ['https://nextphim.net', 'https://nextphim.com', 'https://nextphim.tv'],
-    'phimmoii.mom': ['https://phimmoii.mom', 'https://messiahelartista.com', 'https://phimmois.sh'],
-    'messiahelartista.com': ['https://phimmoii.mom', 'https://messiahelartista.com', 'https://phimmois.sh'],
-    'phimmois.sh': ['https://phimmoii.mom', 'https://messiahelartista.com', 'https://phimmois.sh'],
-    'motphimc.my': ['https://motphimc.my', 'https://motphim.website', 'https://motchill10.io'],
-    'motphim.website': ['https://motphimc.my', 'https://motphim.website', 'https://motchill10.io'],
-    'motchill10.io': ['https://motphimc.my', 'https://motphim.website', 'https://motchill10.io'],
+    // 0.5.2: new domains the sites now redirect to (curl 05/11/2026 23:40:
+    // phimmoii.mom → phimmoii.cloud, motchill10.io → motchill10.com.mx).
+    'phimmoii.mom': ['https://phimmoii.mom', 'https://phimmoii.cloud', 'https://messiahelartista.com', 'https://phimmois.sh'],
+    'phimmoii.cloud': ['https://phimmoii.cloud', 'https://phimmoii.mom', 'https://messiahelartista.com', 'https://phimmois.sh'],
+    'messiahelartista.com': ['https://phimmoii.mom', 'https://phimmoii.cloud', 'https://messiahelartista.com', 'https://phimmois.sh'],
+    'phimmois.sh': ['https://phimmoii.mom', 'https://phimmoii.cloud', 'https://messiahelartista.com', 'https://phimmois.sh'],
+    'motphimc.my': ['https://motphimc.my', 'https://motphim.website', 'https://motchill10.io', 'https://motchill10.com.mx'],
+    'motphim.website': ['https://motphimc.my', 'https://motphim.website', 'https://motchill10.io', 'https://motchill10.com.mx'],
+    'motchill10.io': ['https://motphimc.my', 'https://motphim.website', 'https://motchill10.io', 'https://motchill10.com.mx'],
+    'motchill10.com.mx': ['https://motchill10.com.mx', 'https://motphim.website', 'https://motphimc.my', 'https://motchill10.io'],
     // 0.4.5 (sheet "Website Extension"): VTV Go also served from cache.vtvgo.vn (same API/Origin accepted)
     'vtvgo.vn': ['https://vtvgo.vn', 'https://cache.vtvgo.vn'],
     'cache.vtvgo.vn': ['https://vtvgo.vn', 'https://cache.vtvgo.vn'],

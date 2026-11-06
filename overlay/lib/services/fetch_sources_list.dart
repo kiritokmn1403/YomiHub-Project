@@ -144,8 +144,11 @@ Future<void> fetchSourcesList({
     } catch (e, st) {
       // A failure here drops sources from the list with no sign of why.
       final t = e.toString().toLowerCase();
+      // 0.5.2: a repo whose TLS handshake fails (kohiden.xyz, logs 06/11
+      // 07:15-07:21: the same ERROR + stack 5 times) is a site problem too.
       if (t.contains('host lookup') || t.contains('socketexception') ||
-          t.contains('timeout') || t.contains('connection')) {
+          t.contains('timeout') || t.contains('connection') ||
+          t.contains('handshake') || t.contains('certificate')) {
         // offline / DNS: not an app error. 0.5.1: once per HOST and session
         // (logs 03/11 14:15: 45 lines in 13 s, one per repo, while the
         // device was offline – github.com, codeberg.org, api.github.com and

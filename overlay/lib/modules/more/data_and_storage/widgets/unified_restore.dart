@@ -14,6 +14,8 @@ import 'package:mangayomi/modules/more/widgets/dialog_actions.dart';
 import 'package:mangayomi/providers/l10n_providers.dart';
 import 'package:mangayomi/utils/constant.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
+import 'package:mangayomi/utils/log/logger.dart';
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 
 /// Whether there's a sync server configured to ask about (regardless of
 /// whether sync is currently on or off) and, if so, whether it's on.
@@ -52,7 +54,28 @@ Future<bool> performRestore(
     // wrong backup here could overwrite good server data — ask first.
     final (hasServer, syncOn) = _syncState(ref);
 
-    final backupType = peekBackupType(path);
+    // 0.5.2: reading a large backup took up to 45 s with nothing on screen
+    // (12 MB .tachibk, Note 9) - users took it for a broken restore and
+    // tapped again. Show progress, inflate in the background, then preview.
+    final BackupType backupType;
+    TachiBkImportPreview? tachiPreview;
+    showBusyDialog(context, tr('Đang đọc bản sao lưu…'));
+    try {
+      final lower = path.toLowerCase();
+      if (lower.endsWith('.tachibk') || lower.endsWith('.proto.gz')) {
+        await warmTachiBk(path);
+      }
+      // let the spinner paint before the synchronous parsing below
+      await Future<void>.delayed(const Duration(milliseconds: 32));
+      backupType = peekBackupType(path);
+      if (backupType == BackupType.mihon ||
+          backupType == BackupType.aniyomi ||
+          backupType == BackupType.neko) {
+        tachiPreview = await previewTachiBkImport(path);
+      }
+    } finally {
+      if (context.mounted) hideBusyDialog(context);
+    }
     final isMihonFamily =
         backupType == BackupType.mihon ||
         backupType == BackupType.aniyomi ||
@@ -92,9 +115,9 @@ Future<bool> performRestore(
     }
 
     final l10n = context.l10n;
-    final preview = previewTachiBkImport(path);
+    final preview = tachiPreview;
     if (preview == null) {
-      botToast("Unsupported or unrecognized backup file.");
+      botToast(tr("Định dạng bản sao lưu không được hỗ trợ!"));
       return false;
     }
 
@@ -186,12 +209,15 @@ Future<bool> performRestore(
 
     _showImportResultToast(context, ref, resultDescription, safetyBackupPath);
     return true;
-  } catch (e) {
-    botToast("Error restoring backup: $e");
+  } catch (e, s) {
+    AppLogger.log('[Sao lưu] Lỗi khôi phục bản sao lưu: $e\n$s', logLevel: LogLevel.error);
+    botToast(tr('Lỗi khôi phục bản sao lưu: {e}', {'e': e}));
     if (safetyBackupPath != null && context.mounted) {
       offerLibraryRollback(context, ref, safetyBackupPath);
     }
     return false;
+  } finally {
+    clearTachiBkCache();
   }
 }
 
@@ -207,6 +233,7 @@ Future<void> _performMangayomiRestore(
   try {
     final Map<String, dynamic> backup;
     try {
+      botToast(tr('Đang đọc bản sao lưu…'), second: 3);
       backup = await decodeMangayomiBackup(path, context);
     } catch (e) {
       if (context.mounted) botToast("$e");
@@ -214,7 +241,16 @@ Future<void> _performMangayomiRestore(
     }
     if (!context.mounted) return;
     final l10n = context.l10n;
-    final preview = previewMangayomiBackup(backup);
+    // 0.5.2: comparing a large backup with the library takes a while - show
+    // it instead of a frozen screen.
+    showBusyDialog(context, tr('Đang đọc bản sao lưu…'));
+    final TachiBkImportPreview preview;
+    try {
+      preview = await previewMangayomiBackup(backup);
+    } finally {
+      if (context.mounted) hideBusyDialog(context);
+    }
+    if (!context.mounted) return;
 
     final keepExisting = await _chooseImportMode(context);
     if (keepExisting == null || !context.mounted) return;
@@ -293,7 +329,8 @@ Future<void> _performMangayomiRestore(
 
     _showImportResultToast(context, ref, resultDescription, safetyBackupPath);
   } catch (e) {
-    botToast("Error restoring backup: $e");
+    AppLogger.log('[Sao lưu] Lỗi khôi phục bản sao lưu: $e', logLevel: LogLevel.error);
+    botToast(tr('Lỗi khôi phục bản sao lưu: {e}', {'e': e}));
     if (safetyBackupPath != null && context.mounted) {
       offerLibraryRollback(context, ref, safetyBackupPath);
     }
@@ -482,7 +519,7 @@ Future<Map<String, int>?> _resolveSourceConflicts(
                             isExpanded: true,
                             decoration: InputDecoration(
                               label: Text(
-                                name,
+                                name.trim().isEmpty ? tr('(Không rõ nguồn)') : name,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),

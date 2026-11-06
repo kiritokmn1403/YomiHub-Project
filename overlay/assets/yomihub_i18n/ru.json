@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "Приложение Android",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Расширение Aniyomi (фильмы и аниме)",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Расширение Mihon / Tachiyomi (комиксы)",
-  "Tiện ích IReader (Tiểu thuyết)": "Расширение IReader (новеллы)"
+  "Tiện ích IReader (Tiểu thuyết)": "Расширение IReader (новеллы)",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "Путь главы/тайтла был сохранён старой версией расширения, поэтому домен склеился неправильно. Откройте тайтл и потяните вниз, чтобы обновить главы, или используйте «Перенос» на новое расширение.",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "Не удалось прочитать резервную копию (файл повреждён или это не копия YomiHub/Mangayomi): {e}",
+  "Đã khôi phục bản sao lưu!": "Резервная копия восстановлена!",
+  "Định dạng bản sao lưu không được hỗ trợ!": "Формат резервной копии не поддерживается!",
+  "Đang đọc bản sao lưu…": "Чтение резервной копии…",
+  "Lỗi khôi phục bản sao lưu: {e}": "Ошибка восстановления резервной копии: {e}",
+  "(Không rõ nguồn)": "(Неизвестный источник)",
+  "Đã tạo bản sao lưu!": "Резервная копия создана!",
+  "Chia sẻ tệp sao lưu YomiHub": "Поделиться файлом резервной копии YomiHub",
+  "Tạo bản sao lưu thất bại: {e}": "Не удалось создать резервную копию: {e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "Эта папка больше не существует (SD-карта извлечена или заменена?) – выберите место загрузки заново.",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – исходный код и выпуски (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "WARP включён, но установить соединение (handshake) с сервером Cloudflare не удалось – эта сеть, возможно, блокирует UDP (порты 2408, 500, 4500, 1701, 854). Попробуйте другую сеть или используйте Tor / WireGuard."
 }

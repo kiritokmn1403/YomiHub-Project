@@ -1525,5 +1525,18 @@
   "Ứng dụng Android": "Android 应用",
   "Tiện ích Aniyomi (Phim & Điện ảnh)": "Aniyomi 扩展（影视与动画）",
   "Tiện ích Mihon / Tachiyomi (Truyện tranh)": "Mihon / Tachiyomi 扩展（漫画）",
-  "Tiện ích IReader (Tiểu thuyết)": "IReader 扩展（小说）"
+  "Tiện ích IReader (Tiểu thuyết)": "IReader 扩展（小说）",
+  "Đường dẫn chương/truyện được lưu từ phiên bản cũ của tiện ích nên bị ghép sai tên miền. Mở chi tiết truyện và kéo xuống để làm mới danh sách chương, hoặc dùng \"Di chuyển\" sang tiện ích mới.": "章节/作品路径由旧版扩展保存，导致域名拼接错误。请打开作品并下拉刷新章节，或使用“迁移”到新扩展。",
+  "Không đọc được bản sao lưu (tệp hỏng hoặc không phải bản sao lưu YomiHub/Mangayomi): {e}": "无法读取备份（文件已损坏或不是 YomiHub/Mangayomi 备份）：{e}",
+  "Đã khôi phục bản sao lưu!": "备份已恢复！",
+  "Định dạng bản sao lưu không được hỗ trợ!": "不支持的备份格式！",
+  "Đang đọc bản sao lưu…": "正在读取备份…",
+  "Lỗi khôi phục bản sao lưu: {e}": "恢复备份出错：{e}",
+  "(Không rõ nguồn)": "（未知来源）",
+  "Đã tạo bản sao lưu!": "备份已创建！",
+  "Chia sẻ tệp sao lưu YomiHub": "分享 YomiHub 备份文件",
+  "Tạo bản sao lưu thất bại: {e}": "备份失败：{e}",
+  "Thư mục này không còn tồn tại (thẻ nhớ đã tháo hoặc đổi?) – chọn lại vị trí tải xuống.": "此文件夹已不存在（SD 卡已移除或更换？）——请重新选择下载位置。",
+  "YomiHub – mã nguồn và bản phát hành (0.5.2)": "YomiHub – 源代码与发布版本 (0.5.2)",
+  "WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.": "WARP 已开启,但未能与 Cloudflare 服务器完成握手 —— 当前网络可能屏蔽了 UDP(端口 2408、500、4500、1701、854)。请尝试其他网络,或使用 Tor / WireGuard。"
 }
