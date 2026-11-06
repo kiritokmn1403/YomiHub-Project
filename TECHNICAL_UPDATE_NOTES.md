@@ -2060,7 +2060,7 @@ Sửa (bản dựng 3, `e15`–`e22`):
 
 Thực hiện: Claude.
 - **Đợt 1** (phiên chat claude.ai, không nối với máy): phân tích log, sửa mã. Kết quả là `YomiHub-0.5.3-part1.patch` + HANDOFF (`files.zip`).
-- **Đợt 2** (phiên Cowork nối máy `kiritokmn-lap`, 06/11/2026 14:40 → … Asia/Saigon): áp đợt 1, làm các mục còn lại, dựng, kiểm thử, phát hành.
+- **Đợt 2** (phiên Cowork nối máy `kiritokmn-lap`, 06/11/2026 14:40 → 19:20 Asia/Saigon): áp đợt 1, làm các mục còn lại, dựng, kiểm thử, phát hành.
 - Người dùng đã xác nhận bản tóm tắt yêu cầu và cho toàn quyền điều khiển máy. Các lựa chọn đã chốt:
   - Giữ **Android 7.0+** và **Windows 10/11 x64**. Android 6.0 và Windows 7/x86/ARM vẫn bị chặn bởi Isar/libmdbx, Flutter và WebView2, như ghi ở 0.4.4–0.5.2.
   - Tiện ích website: **chỉ tự thêm kho**, không tự cài tiện ích nào.
@@ -2244,7 +2244,13 @@ Che bởi thanh hệ thống (yêu cầu bắt buộc):
 - **Gói QA công khai:** `output/YomiHub-0.5.3-QA-screenshots.zip` (`audit-0.5.3/qa_zip.ps1`): 75 tệp (ảnh + `n9v053_02_build2_settings_tor.mp4`, `win053_setup.mp4`), 15,8 MB. Ảnh/video có thư viện cá nhân (`PRIVATE_*`, `n9v053_01_*`) chỉ giữ trong `audit-0.5.3/qa`, không đưa lên GitHub.
 
 #### F. Phát hành
-- Đang phát hành: commit + push mã nguồn, Release `v0.5.3` (`release_053.ps1`). Kết quả ghi lại sau khi tải lên xong.
+- **Commit mã nguồn:** `9ff8e94` "release: YomiHub 0.5.3 (0.5.3+45)" (109 tệp, +3.235 / −4.538 dòng; gồm `git rm` 29 tệp `overlay/assets/yomihub_extensions/*.js` đã chuyển sang kho) đã push lên `main` lúc 18:42. Không đưa lên: `audit-0.5.3/input/` (có thông tin đăng nhập), `audit-0.5.3/backup/`, nhật ký thiết bị `audit-0.5.3/qa/*.txt`, ảnh/video `PRIVATE_*`, khoá ký.
+- **Release `v0.5.3`** (id 436434689, `release_053.ps1`): 17 tệp, 1.985,6 MB: 6 APK, 4 gói Windows, `Install-YomiHub.bat/.ps1`, `YomiHub-RootCA.cer`, `SHA256SUMS-0.5.3.txt`, `YomiHub-0.5.3-changelog.md`, `TECHNICAL_UPDATE_NOTES.md`, `YomiHub-0.5.3-QA-screenshots.zip`.
+  - Lần 1 (18:43 → 19:06): 13/17 tệp HTTP 201, sau đó Wi-Fi của máy rớt và script dừng (`EXIT 1`).
+  - Lần 2 (19:11 → 19:13): script bỏ qua 13 tệp đã có, tải 4 tệp còn lại + tải lại các tệp `.md`/`.txt`: tất cả HTTP 201.
+  - Kiểm tra: 17/17 tệp có kích thước khớp từng byte, tải về HTTP 200, `releases/latest = v0.5.3`, 0 lỗi. Tải lại `YomiHub-0.5.3-arm64-v8a.apk` từ Release: SHA-256 `902a5718…` trùng tệp gốc.
+- **README trên `main`:** 16 liên kết `releases/download/v0.5.3/…` đều HTTP 200 (`curl -I -L`); trang `releases/tag/v0.5.3`, `releases/latest` và `Kiritokmn---Extension-Repo/main/repo/index.json` đều HTTP 200.
+- Sau khi ghi kết quả này, commit thêm tài liệu và tải lại `TECHNICAL_UPDATE_NOTES.md` lên Release.
 
 #### G. Giới hạn và việc tồn
 - Android 6.0, Windows 7, x86, ARM: không hỗ trợ (giữ như 0.5.2; người dùng đồng ý).
