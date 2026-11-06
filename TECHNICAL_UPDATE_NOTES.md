@@ -2049,3 +2049,8 @@ Sửa (bản dựng 3, `e15`–`e22`):
   - `Setup.exe`: cài đè bản 0.5.1 ở `C:\Users\nguye\AppData\Local\YomiHub` (mặc định), có VC++ runtime và `yomihub_bin\mes`; tự mở ứng dụng; tiến trình `Responding = True`, nhật ký khởi động bình thường (MAL token, kho tiện ích, ảnh).
   - **Không chụp được giao diện Windows lúc kiểm thử:** cửa sổ Flutter hiện trắng/xám trong ảnh chụp màn hình (computer use, `PrintWindow`, `gdigrab`) – bản **0.5.1** chạy cùng lúc cũng trắng y hệt, ứng dụng vẫn phản hồi và ghi nhật ký → do môi trường chụp màn hình của máy lúc đó (Samsung DeX trên PC đang chạy, GPU lai), không phải lỗi của 0.5.2. Không có ảnh Windows trong gói QA lần này.
   - Ghi nhận thêm (chưa sửa, không thuộc phạm vi): bản Windows có cài đặt "tự sao lưu" khôi phục từ máy Android nên tạo bản sao lưu vào đường dẫn Android `/storage/3730-6132/Backup & Sync/Mangayomi` (thành thư mục `\storage\…` trên ổ hiện tại).
+
+#### L. Kết quả phát hành GitHub (06/11/2026 11:19 → 11:37)
+- Commit `fe2e679` "release: YomiHub 0.5.2 (0.5.2+44)" (115 tệp) đã push lên `main`.
+- `release_052.ps1`: tạo Release `v0.5.2` (id 436095081), tải 17 tệp (1.976,9 MB): 6 APK, 4 gói Windows, `Install-YomiHub.bat/.ps1`, `YomiHub-RootCA.cer`, `SHA256SUMS-0.5.2.txt`, changelog, `TECHNICAL_UPDATE_NOTES.md`, `YomiHub-0.5.2-QA-screenshots.zip` (37 ảnh, 6,8 MB). Mọi tệp HTTP 201; kiểm tra lại: kích thước khớp từng byte, tải về HTTP 200, `releases/latest = v0.5.2`, 0 lỗi.
+- README trên `main`: 16 liên kết `releases/download/v0.5.2/…` đều trả HTTP 200 (kiểm tra bằng `curl -I -L`).
