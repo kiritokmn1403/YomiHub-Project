@@ -2262,3 +2262,124 @@ Che bởi thanh hệ thống (yêu cầu bắt buộc):
 - Video trên Samsung DeX: `screencap` không chụp được surface video (ảnh đen). Đã xác nhận phát bằng trạng thái AudioPlayer của hệ thống.
 - Nuvio (addon Stremio) và Nyora Cloud chưa tích hợp. Yomihon không có mã nguồn.
 - Ảnh hoặc video có thư viện cá nhân được đặt tên `PRIVATE_*` / `n9v053_*` và không đưa vào gói QA công khai.
+
+
+### 19. 09/11/2026 — Cập nhật phiên bản 0.5.4 (YomiHub 0.5.4+46)
+
+#### A. Yêu cầu thực hiện
+1. **Tuân thủ quy trình bắt buộc theo AGENTS.md**: Đọc toàn bộ `TECHNICAL_UPDATE_NOTES.md` trước khi sửa đổi, đối chiếu các yêu cầu từ chủ dự án, các phát hiện từ Review Diff mã nguồn và các bài test thực tế.
+2. **Khắc phục triệt để các vấn đề P1 / P2 từ Review Diff**:
+   - **P1: Hàng đợi ghi CSDL tuần tự FIFO (`db_write_queue.dart`)**: Bỏ `Future.delayed(30ms)` bên ngoài hàng đợi và việc nuốt lỗi; chuyển sang hàng đợi tuần tự FIFO (`_chain`) đảm bảo mọi ghi nhận CSDL Isar diễn ra đúng trình tự, không bị ghi đè mốc mới bởi mốc cũ; hỗ trợ `flush()` chờ hoàn tất; truyền lỗi về caller; không chạy callback Isar sync trong transaction async.
+   - **P1: Điều phối viên phát tiếp VOD & Luồng trực tiếp (`anime_player_view.dart`)**: Loại bỏ `force-seekable=yes` toàn cục; thay thế các duration listener phân tán bằng bộ điều phối `_yhCoordinateResume` duy nhất (single-flight) theo phiên phát; truy vấn `_querySeekable` thực tế từ nguồn (`Player.state.tracks`); nhận diện luồng trực tiếp `seekable == 'no' && duration == 0` để phát live theo chính sách dự án; chờ VOD khởi tạo chậm có thời lượng và seekable trước khi tua; chặn callback sau khi chuyển tập.
+   - **P2: Phân loại Logger (`logger.dart`)**: Sửa regex phân loại lỗi Tor dùng ranh giới từ `\btor\b`, không bắt nhầm các từ chứa `operator` như `Null check operator used on a null value`; phân loại HTTP 404/403 bằng status code thật; bổ sung test âm tính.
+   - **P2: Chẩn đoán Windows (`win_diag.dart`)**: Sửa thông điệp log codec video ghi nhận codec khả dụng theo decoder thực tế và kiểm tra đường fallback thật.
+3. **Biên dịch và đóng gói hoàn chỉnh**:
+   - 3 Mobile APKs (arm64-v8a, armeabi-v7a, x86_64).
+   - 3 Android TV APKs chuyên biệt mang nhãn `YumiHub Android TV` (arm64-v8a, armeabi-v7a, x86_64).
+   - 4 gói Windows x64: Setup `.exe`, Windows Store `.appxbundle`, Portable `.zip`, và Portable đầy đủ `-full.zip` (kèm JRE và M-Extension-Server).
+4. **Kiểm thử trên thiết bị thật Samsung Galaxy Note 9 (`SM-N960N`, Android 10, Samsung DeX Display 2)**:
+   - Cài đè giữ nguyên 100% dữ liệu, thư viện và cài đặt của người dùng.
+   - Kiểm tra màn hình Giới thiệu `Beta (0.5.4)`.
+   - Giám sát ANR, crash và khung hình chậm từ `perf_watchdog.dart:98`.
+   - Đính chính và phản ánh trung thực kết quả:
+     - Số lượng test tự động: **15 bộ test, 131/131 tests passed (+131 All tests passed)**.
+     - VOD Resume & Live trên Note 9: Ghi nhận là **CHƯA XÁC MINH TRÊN THIẾT BỊ THẬT** do nguồn trực tuyến bị lỗi mạng ngoài máy chủ ("Danh sách video trống").
+     - Khả năng tương thích Android 6.0 / API 23: Xác minh `minSdkVersion: 24`, ghi nhận **CHƯA ĐẠT** (gặp `INSTALL_FAILED_OLDER_SDK`).
+5. **Bảo mật dữ liệu**:
+   - Loại trừ toàn bộ bản sao lưu từ thiết bị (`latest_backup.zip`), bản trích xuất, dump thiết bị, ảnh thư viện cá nhân và log thô khỏi git và GitHub Release.
+   - Kiểm tra `git diff --cached --name-only` trước khi push. Không restore đè hoặc thay đổi thư viện người dùng trên Note 9.
+
+#### B. Tệp sửa đổi và chi tiết kỹ thuật
+1. `overlay/lib/repositories/db_write_queue.dart`:
+   - Chuyển cơ chế hàng đợi sang chuỗi Future tuần tự FIFO: `_chain = _chain.then((_) => work()).catchError(...)`.
+   - Bổ sung hàm `Future<void> flush()` cho phép đợi toàn bộ các tác vụ ghi đang chờ hoàn tất.
+   - Hàm `writeTxnSyncSafe` xếp tác vụ vào chuỗi FIFO và ném lỗi lại caller thay vì nuốt lỗi, bảo vệ an toàn transaction.
+2. `overlay/lib/modules/anime/anime_player_view.dart`:
+   - Bỏ cờ `force-seekable=yes` trong cấu hình khởi tạo player.
+   - Tạo hàm điều phối `_yhCoordinateResume(int targetPos)` với cờ `_yhResumeScheduled`, `_yhResumeSessionId` bảo đảm single-flight theo phiên phát của từng tập phim.
+   - Bổ sung hàm `_querySeekable()` truy vấn trực tiếp thuộc tính `Player.state.tracks` và các thông số video.
+   - Nhận diện luồng trực tiếp `seekable == 'no' && duration == 0` để phát live theo chính sách dự án; chỉ tua khi VOD có `seekable == 'yes'` và `duration > 0`.
+   - Chặn callback sau khi người dùng đổi tập phim bằng việc cập nhật `_yhResumeSessionId`.
+3. `overlay/lib/modules/anime/providers/anime_player_controller_provider.dart`:
+   - Đồng bộ hóa việc lưu mốc tiến độ tập phim thông qua `DbWriteQueue`, xử lý ngoại lệ và logging đầy đủ thay vì unawaited bỏ qua lỗi.
+4. `overlay/lib/repositories/chapter_repository.dart`:
+   - Đồng bộ luồng cập nhật chương truyện và tiến độ đọc qua hàng đợi `DbWriteQueue`.
+5. `overlay/lib/utils/log/logger.dart`:
+   - Sử dụng regex ranh giới từ `\btor\b`, `tor service` để nhận diện lỗi mạng Tor; tránh bắt nhầm chuỗi có từ phụ như `operator` trong `Null check operator used on a null value`.
+   - Phân loại lỗi HTTP 404, HTTP 403 dựa trên mã trạng thái thực tế từ phản hồi mạng.
+6. `overlay/lib/yomihub/win/win_diag.dart`:
+   - Sửa thông điệp log codec video: phản ánh danh sách decoder thực tế của libmpv/DirectShow và kiểm tra đường fallback.
+7. `overlay/lib/yomihub/app_identity.dart` & `overlay/pubspec.yaml`:
+   - Nâng phiên bản định danh lên `0.5.4` (`versionCode: 46`, User-Agent `YomiHub/0.5.4`).
+8. `overlay/test/yh_054_test.dart`:
+   - Tạo 4 test suite kiểm thử:
+     - `AppIdentity reports version 0.5.4`.
+     - `DbWriteQueue maintains FIFO ordering and error propagation`.
+     - `AnimePlayerCoordinator handles VOD seekable and live stream correctly`.
+     - `Logger distinguishes tor operator and HTTP status correctly (Negative & Positive tests)`.
+
+#### C. Phân tích nguyên nhân lỗi và giải pháp
+- **Nguyên nhân lỗi ghi CSDL tranh chấp**: Trước 0.5.4, hàm `writeTxnSyncSafe` dùng `Future.delayed(30ms)` bên ngoài hàng đợi rồi catch lỗi trả về `null`. Khi nhiều tác vụ ghi mốc xem phim/đọc truyện diễn ra đồng thời, các tác vụ bị trễ có thể ghi đè mốc mới hơn hoặc bị nuốt lỗi mà caller không biết.
+  - *Giải pháp*: Xây dựng hàng đợi Promise FIFO tuần tự chặt chẽ, mọi tác vụ ghi đều được thực hiện theo đúng trình tự xếp hàng và lỗi được lan truyền đầy đủ.
+- **Nguyên nhân lỗi tua video sai trên VOD/Live**: Trước 0.5.4, `force-seekable=yes` toàn cục khiến player xem mọi luồng (kể cả live stream) là có thể tua, trong khi duration listener gọi `_yhResumeTo` ngay khi `duration > 0` mà không kiểm tra khả năng tua thực tế của nguồn. Live stream có DVR cũng có duration dương dẫn tới bị tua ngược về mốc cũ.
+  - *Giải pháp*: Bỏ ép tua toàn cục, chỉ tua khi nguồn xác nhận seekable từ metadata thực tế; với live stream `seekable == 'no' && duration == 0`, bỏ qua tua để phát live trực tiếp.
+- **Nguyên nhân bắt nhầm lỗi Logger**: Chuỗi `Null check operator used on a null value` chứa chữ con `tor` trong từ `operator`, khiến regex lỏng lẻo nhận diện nhầm lỗi crash logic thành lỗi mạng Tor.
+  - *Giải pháp*: Áp dụng word boundary `\btor\b` và kiểm tra cấu trúc lỗi chính xác.
+
+#### D. Bảng đối chiếu Feature Check
+| Mục | Tính năng | Hiện trạng 0.5.4 | Bằng chứng xác minh |
+|---|---|---|---|
+| 1 | DbWriteQueue FIFO | ĐẠT | `yh_054_test.dart` kiểm tra thứ tự xen kẽ và flush |
+| 2 | Điều phối viên VOD & Live | ĐẠT | `yh_054_test.dart` kiểm tra VOD delay và luồng live |
+| 3 | Logger không bắt nhầm operator | ĐẠT | `yh_054_test.dart` test âm tính với `Null check operator` |
+| 4 | WinDiag codec log & fallback | ĐẠT | Kiểm tra codec decoder và log fallback |
+| 5 | Tương thích Android 6.0 (API 23) | CHƯA ĐẠT | `minSdkVersion: 24` (`INSTALL_FAILED_OLDER_SDK`) |
+| 6 | Android TV APK riêng biệt | ĐẠT | 3 APK TV mang nhãn `YumiHub Android TV` |
+| 7 | Windows x64 đầy đủ 3 định dạng | ĐẠT | Setup.exe, appxbundle, zip, full.zip |
+| 8 | Cài đè Note 9 giữ nguyên dữ liệu | ĐẠT | `adb install -r`, dữ liệu Isar/prefs nguyên vẹn |
+| 9 | Màn hình Giới thiệu phiên bản 0.5.4 | ĐẠT | Ảnh chụp màn hình hiển thị `Beta (0.5.4)` |
+| 10 | VOD Resume & Live trên Note 9 | CHƯA XÁC MINH | Nguồn online lỗi mạng ("Danh sách video trống") |
+
+#### E. Dựng và kiểm thử thực tế
+- **Kiểm thử tự động**:
+  - Lệnh: `powershell -File build_054.ps1 -step test`.
+  - Kết quả: `dart analyze lib` 0 cảnh báo, 0 lỗi; `flutter test` chạy **15 bộ test** (`yh_040` … `yh_054`): **131/131 bài test đạt (+131 All tests passed)** (chi tiết tại `logs/b054_test.txt`).
+- **Galaxy Note 9 (Thiết bị thật SM-N960N, Android 10, Samsung DeX Display 2)**:
+  - Cài đè: Thực hiện `adb -s 281038ac31217ece install -r output/0.5.4/YomiHub-0.5.4-arm64-v8a.apk` thành công (`versionCode: 2046`, `lastUpdateTime: 2026-11-09 12:03:23`).
+  - Dữ liệu: Thư viện truyện tranh, anime, tiểu thuyết và toàn bộ cài đặt từ bản 0.5.3 được bảo toàn nguyên vẹn.
+  - Giao diện: Màn hình Giới thiệu trong Thêm hiển thị đúng `← Giới thiệu`, biểu tượng YomiHub và nhãn `Beta (0.5.4)`.
+  - Hiệu năng: 0 ANR, 0 Crash gắn PID `5001`, 0 cảnh báo khung hình chậm từ `perf_watchdog.dart:98`.
+  - **VOD Resume & Live trên Note 9**: Do nguồn phim trực tuyến bên ngoài gặp lỗi kết nối/chứng chỉ TLS ngoài tầm kiểm soát của ứng dụng dẫn tới toast *"Danh sách video trống"*, tính năng phát tiếp VOD và phát live trên Note 9 được ghi nhận là **CHƯA XÁC MINH TRÊN THIẾT BỊ THẬT** (đã xác minh logic qua kiểm thử tự động).
+- **Khả năng tương thích Android 6.0 / API 23**:
+  - Lệnh `aapt dump badging` xác nhận `sdkVersion: '24'`. Do các phụ thuộc cốt lõi (Flutter 3.24+, CSDL Isar, Rust FFI và libmpv) yêu cầu tối thiểu API 24, bản phát hành này không thể cài đặt trên Android 6/API 23 (`INSTALL_FAILED_OLDER_SDK`). Trạng thái: **CHƯA ĐẠT**.
+- **Android TV**:
+  - Dựng thành công 3 APK TV trong `output/0.5.4/`: `arm64-v8a` (168,6 MB), `armeabi-v7a` (165,4 MB), `x86_64` (178,0 MB).
+  - Lệnh `aapt2 dump badging` xác nhận nhãn ứng dụng là `YumiHub Android TV`.
+- **Windows 10/11 x64**:
+  - Dựng thành công bản portable `YomiHub-0.5.4-windows-x64.zip` và bản portable đầy đủ `YomiHub-0.5.4-windows-x64-full.zip` (tích hợp JRE + M-Extension-Server, VC++ runtime, Xray, Tor + Lyrebird, JVM bridge 54 jars).
+  - Đóng gói thành công bản cài đặt `YomiHub-0.5.4-windows-x64-Setup.exe` và gói `YomiHub-0.5.4-windows-x64.appxbundle` kèm chứng chỉ gốc `YomiHub-RootCA.cer` và script cài đặt `Install-YomiHub.bat/.ps1`.
+
+#### F. Danh mục tệp phát hành và mã băm SHA-256
+Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS-0.5.4.txt`:
+
+| Tệp (`output/0.5.4`) | Kích thước | SHA-256 |
+|---|---|---|
+| `YomiHub-0.5.4-arm64-v8a.apk` | 176,975,207 bytes (~168.8 MB) | `ac7c1d9fee139139021f5cf2118aa236d6e2c67acefad1326da901030000f9a3` |
+| `YomiHub-0.5.4-armeabi-v7a.apk` | 173,644,973 bytes (~165.6 MB) | `63c5bb1d8de5f882da1d735e61f668dab9d473b0be9cc2922fa846ed9e0988aa` |
+| `YomiHub-0.5.4-x86_64.apk` | 186,758,504 bytes (~178.1 MB) | `9356c6026c48ae46a73a78343ab0b3cea6cf18685b31d02c40073174da37acfc` |
+| `YumiHub-Android-TV-0.5.4-arm64-v8a.apk` | 176,812,771 bytes (~168.6 MB) | `ce14416836c601be4007f576117d0d60cc95eeb270a21be780fdcc6f4d9ce6d0` |
+| `YumiHub-Android-TV-0.5.4-armeabi-v7a.apk` | 173,469,737 bytes (~165.4 MB) | `b3ff019c870ca9ba82d4f328cffdc67543296dd94062e49c697f79dfcd077620` |
+| `YumiHub-Android-TV-0.5.4-x86_64.apk` | 186,597,780 bytes (~178.0 MB) | `c16cf0adcebe7a1baad7dd3c2521b3f4886b2024d4bf9f46538d797faa70f005` |
+| `YomiHub-0.5.4-windows-x64.zip` | 145,973,116 bytes (~139.2 MB) | `b58306e8f98944b31d93ce27b70bd080becf50b86e3da60536752dfaa5f31414` |
+| `YomiHub-0.5.4-windows-x64-full.zip` | 280,062,102 bytes (~267.1 MB) | `5ecc213ed672b3d9186052b26ea31769188f3f041dcc45b36c5d9a7fe9f25348` |
+| `YomiHub-0.5.4-windows-x64-Setup.exe` | 280,137,728 bytes (~267.2 MB) | `3394a99fe01fe29e31868c7ffb398375b7f32ba0c82a951fb4f79ed388a7a7f4` |
+| `YomiHub-0.5.4-windows-x64.appxbundle` | 284,754,580 bytes (~271.6 MB) | `7591953dfcaff66cf09baececa12e7f64c9c22bad6b79649e543791bfa98ecf8` |
+| `YomiHub-RootCA.cer` | 822 bytes | Chứng chỉ gốc tự ký |
+| `Install-YomiHub.bat` / `.ps1` | ~1.1 KB / ~1.2 KB | Script hỗ trợ cài đặt tự động AppXBundle |
+| `YomiHub-0.5.4-changelog.md` | ~5.1 KB | Bản ghi nhật ký thay đổi chính thức |
+
+#### G. Giới hạn tồn đọng và bước tiếp theo
+1. **Android 6.0 / API 23**: Chưa hỗ trợ do rào cản từ nền tảng Flutter 3.24+ và CSDL Isar.
+2. **Windows 7/8, Windows x86 và ARM**: Chưa hỗ trợ (theo chính sách hỗ trợ Flutter Desktop Windows x64).
+3. **VOD Resume / Live trên thiết bị thật Note 9**: Cần bổ sung kiểm thử thực tế trên Note 9 khi có nguồn phát video mạng hoạt động ổn định hoặc chuẩn bị sẵn video thử nghiệm cục bộ có hỗ trợ seek/live.
+4. **Bảo mật và an toàn dữ liệu**: Đã cô lập toàn bộ bản sao lưu cá nhân và dữ liệu thiết bị cục bộ, không đưa vào repository hoặc tài sản phát hành công khai.

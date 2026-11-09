@@ -11,6 +11,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/app_identity.dart';
 import 'package:mangayomi/yomihub/mes/yomi_mes.dart';
@@ -19,6 +20,15 @@ import 'package:path/path.dart' as p;
 
 class WinDiag {
   WinDiag._();
+
+  /// Checks whether software decoding fallback is supported or active.
+  static bool verifySoftwareDecodingFallback({required bool hwAccel, required String hwdec}) {
+    if (!hwAccel || hwdec == 'no') {
+      return true; // Software decoding mode explicitly selected
+    }
+    // In 'auto' or 'auto-safe' mode, libmpv attempts hardware decoding and falls back to software if unsupported
+    return hwdec == 'auto' || hwdec == 'auto-safe' || hwdec == 'd3d11va-copy';
+  }
 
   /// Result of the last run (shown in tests / logs).
   static final List<String> problems = [];
@@ -100,6 +110,15 @@ class WinDiag {
         '[Windows] Chẩn đoán: $summary',
         logLevel: LogLevel.info, always: true,
       );
+      if (cpu.toLowerCase().contains('ryzen') || cpu.toLowerCase().contains('amd')) {
+        final s = await settingsRepository.currentAsync;
+        final hwdec = s?.hwdecMode ?? 'auto';
+        final hwAccel = s?.enableHardwareAcceleration ?? true;
+        AppLogger.log(
+          '[Windows] Phát hiện vi xử lý AMD ($cpu - ${Platform.numberOfProcessors} luồng): Thiết lập video hiện tại hwdec=$hwdec, tăng tốc phần cứng=${hwAccel ? "bật" : "tắt (fallback phần mềm)"}. Nếu GPU/driver gặp sự cố giải mã Direct3D 11, chuyển Tăng tốc phần cứng sang Tắt để kích hoạt fallback giải mã CPU đa luồng.',
+          logLevel: LogLevel.info, always: true,
+        );
+      }
       for (final m in problems) {
         AppLogger.log('[Windows] Thiếu thành phần: $m', logLevel: LogLevel.warning);
       }

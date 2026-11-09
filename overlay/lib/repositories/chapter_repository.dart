@@ -7,6 +7,7 @@ import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/history.dart';
 import 'package:mangayomi/models/update.dart';
 import 'package:mangayomi/repositories/db_write_queue.dart';
+import 'package:mangayomi/utils/log/logger.dart';
 
 class ChapterRepository {
   Chapter getById(int id) => isar.chapters.getSync(id)!;
@@ -111,26 +112,26 @@ class ChapterRepository {
   // Stamps updatedAt for callers that just want to persist a mutated Chapter
   // they already hold, without setting the timestamp themselves.
   Future<void> save(Chapter chapter) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
+    isar.writeTxnSync(() {
       chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
       isar.chapters.putSync(chapter);
     });
   });
 
   void saveSync(Chapter chapter) {
-    try {
-      isar.writeTxnSyncSafe(() {
-        chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
-        isar.chapters.putSync(chapter);
-      });
-    } catch (_) {
-      unawaited(save(chapter));
-    }
+    unawaited(
+      save(chapter).catchError((Object err, StackTrace errSt) {
+        AppLogger.log(
+          '[ChapterRepo] Lỗi khi lưu chapter ${chapter.id}: $err\n$errSt',
+          logLevel: LogLevel.error,
+        );
+      }),
+    );
   }
 
   /// Moving a chapter must update both its indexed parent ID and Isar link.
   Future<void> saveWithMangaLink(Chapter chapter) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
+    isar.writeTxnSync(() {
       chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
       isar.chapters.putSync(chapter);
       chapter.manga.saveSync();

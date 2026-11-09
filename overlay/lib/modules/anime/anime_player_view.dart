@@ -19,6 +19,7 @@ import 'package:mangayomi/eval/model/m_bridge.dart';
 import 'package:mangayomi/main.dart';
 import 'package:mangayomi/repositories/chapter_repository.dart';
 import 'package:mangayomi/repositories/custom_button_repository.dart';
+import 'package:mangayomi/repositories/db_write_queue.dart';
 import 'package:mangayomi/models/chapter.dart';
 import 'package:mangayomi/models/custom_button.dart';
 import 'package:mangayomi/yomihub/share/lan_share.dart';
@@ -392,7 +393,6 @@ class _AnimeStreamPageState extends riv.ConsumerState<AnimeStreamPage>
       config: true,
       configDir: useMpvConfig ? widget.mpvDirectory?.path ?? "" : "",
       options: {
-        "force-seekable": "yes",
         if (debandingType == DebandingType.cpu) "vf": "gradfun=radius=12",
         if (debandingType == DebandingType.gpu) "deband": "yes",
         if (useYUV420P) "vf": "format=yuv420p",
@@ -521,6 +521,11 @@ class _AnimeStreamPageState extends riv.ConsumerState<AnimeStreamPage>
       .duration
       .listen((duration) {
         _currentTotalDuration.value = duration;
+        if (duration > Duration.zero &&
+            !_hasResumeTargetCompleted &&
+            _initialResumeTarget > Duration.zero) {
+          unawaited(_yhCoordinateResume(_mediaSessionId, trigger: 'durationStream'));
+        }
         discordRpc?.updateChapterTimestamp(_currentPosition.value, duration);
       });
 
@@ -933,6 +938,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   }
 
   Future<void> pushToNewEpisode(BuildContext context, Chapter episode) async {
+    _mediaSessionId++;
     if (_routeExitInProgress) return;
     _routeExitInProgress = true;
     widget.desktopFullScreenPlayer.call(ref.read(fullscreenProvider));
@@ -1271,6 +1277,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   StreamSubscription<bool>? _yhBufSub;
   StreamSubscription<String>? _yhErrSub;
   bool _yhLiveStream = false;
+  int _mediaSessionId = 0;
   bool _yhSwitching = false;
 
   void _yhInitAutoSwitch() {
@@ -1373,7 +1380,98 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     }
   }
 
+  bool _yhResumeInProgress = false;
+
+  Future<String?> _querySeekable() async {
+    try {
+      final p = _player.platform;
+      if (p is NativePlayer) {
+        final res = await p.getProperty('seekable');
+        if (res != null) return res.toString().trim().toLowerCase();
+      }
+    } catch (_) {}
+    return null;
+  }
+
+  /// 0.5.4: Single-flight coordinator for media resume and seekability verification.
+  /// Unifies all resume triggers (openMedia, durationStream, playingStream) into
+  /// a single sequential workflow per media session.
+  Future<void> _yhCoordinateResume(int sessionId, {String trigger = 'init'}) async {
+    if (!mounted || _mediaSessionId != sessionId) return;
+    if (_hasResumeTargetCompleted || _initialResumeTarget <= Duration.zero) return;
+    if (_yhResumeInProgress) return; // Single-flight: ignore duplicate concurrent triggers
+
+    _yhResumeInProgress = true;
+    try {
+      final start = _initialResumeTarget;
+
+      // 1. Query the actual seekability property from the native engine
+      String? seekable = await _querySeekable();
+
+      // 2. Wait up to 5 seconds if demuxer is indexing (duration == 0 or seekable not yet known)
+      for (var i = 0; i < 10 && mounted && _mediaSessionId == sessionId; i++) {
+        final dur = _player.state.duration > Duration.zero
+            ? _player.state.duration
+            : (_currentTotalDuration.value ?? Duration.zero);
+        if (dur > Duration.zero && seekable == 'yes') {
+          break; // Fully initialized seekable VOD
+        }
+        if (seekable == 'no' && _player.state.playing && _player.state.position > Duration.zero) {
+          break; // Confirmed non-seekable live stream
+        }
+        await Future<void>.delayed(const Duration(milliseconds: 500));
+        seekable = await _querySeekable();
+      }
+      if (!mounted || _mediaSessionId != sessionId) return;
+
+      // Always re-read seekable after waiting
+      seekable = await _querySeekable();
+
+      final hasKnownDuration = _player.state.duration > Duration.zero ||
+          (_currentTotalDuration.value != null && _currentTotalDuration.value! > Duration.zero);
+
+      // Check live stream according to project policy:
+      // Even if duration > 0 (e.g. live stream with sliding DVR buffer), if seekable is 'no',
+      // or if duration is 0 and playing, it is a LIVE stream.
+      // Live stream policy: never seek, drop stored resume timestamp, play from live edge,
+      // and do NOT show resume toast.
+      final isLive = (seekable == 'no') ||
+          (!hasKnownDuration && _player.state.playing && _player.state.position > Duration.zero);
+
+      if (isLive) {
+        _yhLiveStream = true;
+        _initialResumeTarget = Duration.zero;
+        _hasResumeTargetCompleted = true;
+        AppLogger.logOnce(
+          'player-live',
+          '[Trình phát] Luồng trực tiếp (nguồn không tua được) – bỏ qua mốc cũ ${start.inSeconds}s, phát từ đầu',
+          logLevel: LogLevel.info,
+        );
+        return;
+      }
+
+      // If duration is not yet known (slow VOD still buffering/indexing):
+      // do NOT mark live permanently; leave _hasResumeTargetCompleted = false
+      // so when duration arrives, the coordinator will be called again.
+      if (!hasKnownDuration) {
+        return;
+      }
+
+      // If we confirmed duration > 0 and seekable != 'no', ensure live flag is cleared
+      if (_yhLiveStream) {
+        _yhLiveStream = false;
+      }
+
+      // 3. Delegate to _yhResumeTo, which waits for playback to stabilize at target
+      // for 3 seconds before marking completed, showing toast, and logging success.
+      await _yhResumeTo(start, sessionId);
+    } finally {
+      _yhResumeInProgress = false;
+    }
+  }
+
   Future<void> _openMedia(VideoPrefs prefs, [Duration? position]) async {
+    final sessionId = ++_mediaSessionId;
     final initialPos =
         position ??
         YomiMiniPlayer.takeResume(widget.episode.id) ??
@@ -1400,83 +1498,21 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
         url: prefs.videoTrack!.id,
       );
     }
+    // Only local files on disk are guaranteed seekable on open.
+    // Network streams open at Duration.zero and seek via verified doSeek only after
+    // demuxer confirms seekability.
+    final openStart = widget.isLocal ? start : Duration.zero;
     await _player.open(
       playbackMedia(
         prefs.videoTrack!.id,
         isLocal: widget.isLocal,
         httpHeaders: YomiSponsorBlock.clean(prefs.headers),
-        start: start,
+        start: openStart,
       ),
     );
-    if (!mounted) return;
+    if (!mounted || _mediaSessionId != sessionId) return;
     if (start > Duration.zero) {
-      bool hasSeeked = false;
-      Future<void> doSeek([bool force = false]) async {
-        if (!force && hasSeeked) return;
-        if (!mounted) return;
-        hasSeeked = true;
-        // 0.4.5 (kiểm thử Xiaomi 15T, VTVgo › VTV1): a live HLS channel is not
-        // seekable; restoring "46s" made mpv report "Cannot seek in this
-        // stream", which was logged as ERROR and switched servers 4 times.
-        // 0.4.9 (Note 9, RoPhim HLS qua proxy yh_hls, 03/11/2026): the toast
-        // "Tiếp tục phát từ 05:00" appeared but playback restarted at 0:00 –
-        // mpv ignores a seek sent before the HLS playlist is indexed, and it
-        // reports seekable=no for a few seconds, which 0.4.5 took for a live
-        // channel (resume skipped AND position saving disabled). Now only a
-        // stream without a known duration counts as live, and the seek is
-        // verified and retried until the position really moved.
-        String seekable = 'yes';
-        try {
-          seekable = '${await (_player.platform as NativePlayer).getProperty('seekable')}';
-        } catch (_) {}
-        if (seekable == 'no' && _player.state.duration <= Duration.zero) {
-          for (var i = 0; i < 10 && mounted && _player.state.duration <= Duration.zero; i++) {
-            await Future<void>.delayed(const Duration(milliseconds: 500));
-          }
-        }
-        if (!mounted) return;
-        if (seekable == 'no' && _player.state.duration <= Duration.zero) {
-          _yhLiveStream = true;
-          _initialResumeTarget = Duration.zero;
-          _hasResumeTargetCompleted = true;
-          AppLogger.logOnce('player-live',
-              '[Trình phát] Luồng trực tiếp (không tua được) – bỏ qua vị trí đã lưu ${start.inSeconds}s',
-              logLevel: LogLevel.info);
-          return;
-        }
-        if (!mounted) return;
-        unawaited(_yhResumeTo(start));
-        AppLogger.log(
-          "[Trình phát] Tiếp tục xem video tại ${start.inSeconds}s",
-          logLevel: LogLevel.info,
-        );
-        final mins = start.inMinutes;
-        final secs = start.inSeconds % 60;
-        final timeFmt =
-            '${mins.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
-        botToast(tr('Tiếp tục phát từ {p0}', {'p0': timeFmt}), second: 2);
-      }
-
-      if (_player.state.duration > Duration.zero) {
-        doSeek();
-      } else {
-        unawaited(
-          _player.stream.duration
-              .firstWhere((d) => d > Duration.zero)
-              .timeout(const Duration(seconds: 10))
-              .then((_) => doSeek(true))
-              .catchError((_) {}),
-        );
-        unawaited(
-          _player.stream.playing
-              .firstWhere((p) => p)
-              .then(
-                (_) =>
-                    Future.delayed(const Duration(milliseconds: 300), () => doSeek(true)),
-              )
-              .catchError((_) {}),
-        );
-      }
+      unawaited(_yhCoordinateResume(sessionId, trigger: 'openMedia'));
     }
     unawaited(_syncActiveAudioTrackFromMpv());
     unawaited(_syncActiveSubtitleTrackFromMpv());
@@ -1487,6 +1523,8 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     _yhPauseSub ??= _player.stream.playing.listen((p) {
       if (!p && mounted && _currentPosition.value > Duration.zero) {
         _setCurrentPosition(true);
+      } else if (p && mounted && !_hasResumeTargetCompleted && _initialResumeTarget > Duration.zero) {
+        unawaited(_yhCoordinateResume(_mediaSessionId, trigger: 'playingStream'));
       }
     });
   }
@@ -1497,13 +1535,13 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   /// Player.seek can wait behind the open() lock. The resume now waits until
   /// the stream really plays, seeks through mpv directly (with a timeout) and
   /// only stops once playback has stayed at the target for 3 s.
-  Future<void> _yhResumeTo(Duration start) async {
+  Future<void> _yhResumeTo(Duration start, int sessionId) async {
     final until = DateTime.now().add(const Duration(seconds: 45));
     var tries = 0;
     DateTime? okSince;
-    while (mounted && DateTime.now().isBefore(until) && tries < 8) {
+    while (mounted && _mediaSessionId == sessionId && DateTime.now().isBefore(until) && tries < 8) {
       await Future<void>.delayed(const Duration(milliseconds: 500));
-      if (!mounted) return;
+      if (!mounted || _mediaSessionId != sessionId) return;
       final st = _player.state;
       final diff = st.position - start;
       final near = diff.abs() <= const Duration(seconds: 10) ||
@@ -1512,7 +1550,17 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
         if (st.playing && !st.buffering) {
           okSince ??= DateTime.now();
           if (DateTime.now().difference(okSince) >= const Duration(seconds: 3)) {
+            if (_mediaSessionId != sessionId || !mounted) return;
             _hasResumeTargetCompleted = true;
+            AppLogger.log(
+              "[Trình phát] Đã tiếp tục xem video tại ${start.inSeconds}s thành công",
+              logLevel: LogLevel.info,
+            );
+            final mins = start.inMinutes;
+            final secs = start.inSeconds % 60;
+            final timeFmt =
+                '${mins.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
+            botToast(tr('Tiếp tục phát từ {p0}', {'p0': timeFmt}), second: 2);
             return;
           }
         }
@@ -1548,7 +1596,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       }
       await Future<void>.delayed(const Duration(seconds: 2));
     }
-    if (!mounted || _hasResumeTargetCompleted) return;
+    if (!mounted || _mediaSessionId != sessionId || _hasResumeTargetCompleted) return;
     // give up: keep saving the real position from here on
     _hasResumeTargetCompleted = true;
     AppLogger.log(
@@ -2041,6 +2089,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
 
   @override
   void dispose() {
+    _mediaSessionId++;
     _revealControls.dispose();
     _tvVideoFocus.dispose();
     _tvPanelFocus.dispose();
@@ -2054,6 +2103,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     _subSettingsSub?.close();
     WidgetsBinding.instance.removeObserver(this);
     _setCurrentPosition(true, saveWatchTime: true);
+    unawaited(dbWriteQueue.flush());
     final playerCleanup = disposePlaybackSession(
       listenerCancellations: [
         _completed.cancel(),
@@ -2112,10 +2162,14 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     // 0.4.5: a live channel has no position to resume – only the watch time
     // is recorded (a stored "46s" made the next open try to seek a live stream).
     if (_yhLiveStream) {
-      _streamController.setHistoryUpdate(
-        elapsedSeconds: saveWatchTime ? _watchStopwatch.elapsed.inSeconds : 0,
-      );
-      return;
+      if (_currentTotalDuration.value != null && _currentTotalDuration.value! > Duration.zero) {
+        _yhLiveStream = false;
+      } else {
+        _streamController.setHistoryUpdate(
+          elapsedSeconds: saveWatchTime ? _watchStopwatch.elapsed.inSeconds : 0,
+        );
+        return;
+      }
     }
     if (!_hasResumeTargetCompleted && _initialResumeTarget > Duration.zero) {
       if (_currentPosition.value <

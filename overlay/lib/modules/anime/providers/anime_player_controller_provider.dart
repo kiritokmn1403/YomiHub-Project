@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/misc.dart';
 import 'package:mangayomi/repositories/chapter_repository.dart';
+import 'package:mangayomi/repositories/db_write_queue.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/repositories/track_repository.dart';
 import 'package:mangayomi/models/chapter.dart';
@@ -106,17 +109,16 @@ class AnimeStreamController extends _$AnimeStreamController
           AppLogger.logOnce(
             'save_ep_pos_err_${ep.id}',
             '[Trình phát] Lỗi không lưu được vị trí đã xem của tập "${ep.name}": $e',
-            logLevel: LogLevel.error,
+            logLevel: LogLevel.warning,
           );
         });
         episode.lastPageRead = ep.lastPageRead;
         episode.duration = ep.duration;
         episode.isRead = ep.isRead;
-      } catch (e) {
-        AppLogger.logOnce(
-          'save_ep_pos_err_${ep.id}',
-          '[Trình phát] Lỗi không lưu được vị trí đã xem của tập "${ep.name}": $e',
-          logLevel: LogLevel.error,
+      } catch (e, st) {
+        AppLogger.log(
+          '[Trình phát] Lỗi khi gửi vị trí tập "${ep.name}" vào hàng đợi: $e',
+          logLevel: LogLevel.warning,
         );
       }
       if (isWatch && !wasRead) {
@@ -138,6 +140,7 @@ class AnimeStreamController extends _$AnimeStreamController
         : Duration(milliseconds: int.tryParse(episode.lastPageRead ?? '') ?? 0);
     setCurrentPosition(completedPosition, totalDuration, save: true);
     await setHistoryUpdate(elapsedSeconds: elapsedSeconds);
+    await dbWriteQueue.flush();
   }
 
   // ---------------------------------------------------------------------------

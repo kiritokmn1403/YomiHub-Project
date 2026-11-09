@@ -89,6 +89,10 @@ class AppLogger {
     final important =
         logLevel == LogLevel.error || logLevel == LogLevel.warning;
     if (!important && !always && !verbose) return;
+
+    // 0.5.4: Phân loại nguồn lỗi rõ ràng (nguồn 404/403/Cloudflare vs Tor timeout vs ứng dụng)
+    message = classifyMessage(message, logLevel);
+
     // 0.5.2: one line may not exceed 16 000 characters. A failed restore
     // printed its whole provider argument (the decoded backup) - ~30 MB per
     // line, logs.txt + crash_reports.json grew to 133 MB on the Note 9.
@@ -114,6 +118,61 @@ class AppLogger {
     if (important) _wantFlush = true;
     _drain();
   }
+
+  static final RegExp _appErrorRegex = RegExp(
+    r'\b(fluttererror|bad\s+state|null\s+check\s+operator|isarerror|rangeerror|nosuchmethoderror|unhandled\s+exception|lateinitializationerror)\b|type\s+.+\s+is\s+not\s+a\s+subtype\s+of\s+type',
+    caseSensitive: false,
+  );
+
+  static final RegExp _http404Regex = RegExp(
+    r'\b(http\s*(?:status|error)?\s*[:=]?\s*404|status(?:code)?\s*[:=]?\s*404|code\s*[:=]?\s*404|404\s+(?:not\s+found|error))\b',
+    caseSensitive: false,
+  );
+
+  static final RegExp _http403Regex = RegExp(
+    r'\b(http\s*(?:status|error)?\s*[:=]?\s*403|status(?:code)?\s*[:=]?\s*403|code\s*[:=]?\s*403|403\s+forbidden|cloudflare|turnstile|cf_clearance)\b',
+    caseSensitive: false,
+  );
+
+  static final RegExp _networkTorRegex = RegExp(
+    r'\b(tor|warp|timeout|timed\s*out|socketexception|connection\s+(?:closed|refused|reset|error|aborted)|tls\s+handshake)\b',
+    caseSensitive: false,
+  );
+
+  /// 0.5.4: Tự động phân loại lỗi để dễ dàng kiểm thử và khoanh vùng sự cố.
+  static String classifyMessage(String msg, LogLevel level) {
+    if (level != LogLevel.error && level != LogLevel.warning) return msg;
+    if (msg.startsWith('[Lỗi Nguồn') ||
+        msg.startsWith('[Lỗi Mạng') ||
+        msg.startsWith('[Lỗi Ứng Dụng]') ||
+        msg.startsWith('[Hiệu năng]')) {
+      return msg;
+    }
+
+    // 1. Kiểm tra Lỗi Ứng Dụng trước tiên để tránh bắt nhầm (ví dụ: operator trong Null check operator)
+    if (_appErrorRegex.hasMatch(msg)) {
+      return '[Lỗi Ứng Dụng] $msg';
+    }
+
+    // 2. Kiểm tra HTTP 404 dựa trên status code thực tế, không bắt số 404 ngẫu nhiên trong URL
+    if (_http404Regex.hasMatch(msg)) {
+      return '[Lỗi Nguồn 404] $msg';
+    }
+
+    // 3. Kiểm tra HTTP 403 / Cloudflare Turnstile
+    if (_http403Regex.hasMatch(msg)) {
+      return '[Lỗi Nguồn 403 / Cloudflare] $msg';
+    }
+
+    // 4. Kiểm tra Lỗi Mạng / Tor Timeout với ranh giới từ nguyên (\b)
+    if (_networkTorRegex.hasMatch(msg)) {
+      return '[Lỗi Mạng / Tor Timeout] $msg';
+    }
+
+    return msg;
+  }
+
+
 
   static final List<String> _queue = [];
   static bool _draining = false;
