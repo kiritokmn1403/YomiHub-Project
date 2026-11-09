@@ -107,3 +107,9 @@ audit-0.3.9/test-tools/
 /find_imported.ps1
 /find_xml.ps1
 /sync_054.ps1
+
+# -- 0.5.5 (10/11/2026): local QA media, device dumps, private backups --
+/audit-0.5.5/qa/
+/audit-0.5.5/backup/
+/audit-0.5.5/*.ps1
+/audit-0.5.5/extracted_requirements.txt

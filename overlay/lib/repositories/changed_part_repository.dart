@@ -60,7 +60,7 @@ class ChangedPartRepository {
     }
 
     if (writeTxn) {
-      dbWriteQueue.run(() => isar.writeTxnSyncSafe(putChangedPart));
+      isar.writeTxnSyncDirect(putChangedPart);
     } else {
       putChangedPart();
     }
@@ -123,9 +123,7 @@ class ChangedPartRepository {
 
   void clearAll(bool txn) {
     if (txn) {
-      dbWriteQueue.run(
-        () => isar.writeTxnSyncSafe(() => isar.changedParts.clearSync()),
-      );
+      isar.writeTxnSyncDirect(() => isar.changedParts.clearSync());
     } else {
       isar.changedParts.clearSync();
     }

@@ -115,31 +115,27 @@ class HistoryRepository {
   // Stamps updatedAt for callers that just want to persist a mutated History
   // they already hold, without setting the timestamp themselves. Also saves
   // its chapter link, since every current caller needs that too.
-  Future<void> save(History history) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      history.updatedAt = DateTime.now().millisecondsSinceEpoch;
-      isar.historys.putSync(history);
-      history.chapter.saveSync();
-    });
+  Future<void> save(History history) => isar.writeTxnSyncSafe(() {
+    history.updatedAt = DateTime.now().millisecondsSinceEpoch;
+    isar.historys.putSync(history);
+    history.chapter.saveSync();
   });
 
   Future<void> deleteAll(List<int> ids) =>
       dbWriteQueue.run(() => isar.writeTxnQ(() => isar.historys.deleteAll(ids)));
 
-  Future<void> delete(WidgetRef ref, int id) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      final clientId = isar.historys.getSync(id)?.clientId;
-      isar.historys.deleteSync(id);
-      ref
-          .read(synchingProvider(syncId: 1).notifier)
-          .addChangedPart(
-            ActionType.removeHistory,
-            id,
-            "{}",
-            false,
-            clientId: clientId,
-          );
-    });
+  Future<void> delete(WidgetRef ref, int id) => isar.writeTxnSyncSafe(() {
+    final clientId = isar.historys.getSync(id)?.clientId;
+    isar.historys.deleteSync(id);
+    ref
+        .read(synchingProvider(syncId: 1).notifier)
+        .addChangedPart(
+          ActionType.removeHistory,
+          id,
+          "{}",
+          false,
+          clientId: clientId,
+        );
   });
 
   // Sync primitives below are for callers already inside a write transaction
@@ -164,7 +160,7 @@ class HistoryRepository {
 
   // Same, but opens the write transaction too, so callers never touch isar.
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
+      isar.writeTxnSyncSafe(body);
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
       dbWriteQueue.run(() => isar.writeTxnQ(body));

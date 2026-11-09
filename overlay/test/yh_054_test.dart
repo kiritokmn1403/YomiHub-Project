@@ -20,10 +20,12 @@ import 'package:mangayomi/yomihub/win/win_diag.dart';
 
 String _read(String path) => File(path).readAsStringSync();
 
-/// Emulates the single-flight resume coordinator logic from AnimePlayerView
+/// Emulates the session & token-aware coordinator and save logic from AnimePlayerView
 class ResumeCoordinatorSimulator {
   int mediaSessionId = 0;
-  bool yhResumeInProgress = false;
+  bool yhSourceNatureResolved = false;
+  int activeResumeSession = 0;
+  int resumeToken = 0;
   bool hasResumeTargetCompleted = false;
   Duration initialResumeTarget = Duration.zero;
   bool yhLiveStream = false;
@@ -31,15 +33,28 @@ class ResumeCoordinatorSimulator {
   Duration? lastSeekTarget;
   bool toastShown = false;
 
-  void startSession(int sessionId, Duration resumeTarget) {
+  // Track saved positions and history
+  Duration? savedPosition;
+  Duration? savedDuration;
+  int savedElapsedSeconds = 0;
+
+  void openMedia(
+    int sessionId,
+    Duration resumeTarget, {
+    bool isLocal = false,
+  }) {
     mediaSessionId = sessionId;
     initialResumeTarget = resumeTarget;
     hasResumeTargetCompleted = resumeTarget <= Duration.zero;
     yhLiveStream = false;
-    yhResumeInProgress = false;
-    seekCallCount = 0;
-    lastSeekTarget = null;
-    toastShown = false;
+    yhSourceNatureResolved = isLocal;
+    // NOTE: Does NOT reset activeResumeSession or resumeToken!
+    // Active session and tokens persist across openMedia calls to verify
+    // that Session B supersedes Session A without manual resets.
+  }
+
+  void startSession(int sessionId, Duration resumeTarget, {bool isLocal = false}) {
+    openMedia(sessionId, resumeTarget, isLocal: isLocal);
   }
 
   Future<void> coordinateResume({
@@ -48,37 +63,54 @@ class ResumeCoordinatorSimulator {
     required Duration currentPosition,
     required bool isPlaying,
     required String? seekable,
+    Duration asyncDelay = Duration.zero,
     String trigger = 'init',
   }) async {
     if (mediaSessionId != sessionId) return;
-    if (hasResumeTargetCompleted || initialResumeTarget <= Duration.zero) return;
-    if (yhResumeInProgress) return; // Single-flight
+    if (yhSourceNatureResolved &&
+        (hasResumeTargetCompleted || initialResumeTarget <= Duration.zero)) {
+      return;
+    }
+    // Single-flight for the SAME session
+    if (activeResumeSession == sessionId) return;
 
-    yhResumeInProgress = true;
+    activeResumeSession = sessionId;
+    final token = ++resumeToken;
     try {
       final start = initialResumeTarget;
-      final hasKnownDuration = currentDuration > Duration.zero;
 
-      // Live stream policy:
-      // Even if duration > 0 (e.g. DVR sliding buffer), if seekable == 'no', it is Live.
+      if (asyncDelay > Duration.zero) {
+        await Future<void>.delayed(asyncDelay);
+        if (mediaSessionId != sessionId || resumeToken != token) return;
+      }
+
+      final hasKnownDuration = currentDuration > Duration.zero;
       final isLive = (seekable == 'no') ||
           (!hasKnownDuration && isPlaying && currentPosition > Duration.zero);
 
       if (isLive) {
         yhLiveStream = true;
+        yhSourceNatureResolved = true;
         initialResumeTarget = Duration.zero;
         hasResumeTargetCompleted = true;
         return;
       }
 
-      // If duration is not yet known (slow VOD still buffering/indexing):
-      // leave hasResumeTargetCompleted = false so next event can re-trigger
       if (!hasKnownDuration) {
         return;
       }
 
-      if (yhLiveStream) {
-        yhLiveStream = false;
+      yhLiveStream = false;
+      yhSourceNatureResolved = true;
+
+      if (start <= Duration.zero) {
+        hasResumeTargetCompleted = true;
+        return;
+      }
+
+      if (asyncDelay > Duration.zero) {
+        await Future<void>.delayed(asyncDelay);
+        if (mediaSessionId != sessionId || resumeToken != token) return;
       }
 
       // Resume execution
@@ -87,7 +119,38 @@ class ResumeCoordinatorSimulator {
       hasResumeTargetCompleted = true;
       toastShown = true;
     } finally {
-      yhResumeInProgress = false;
+      if (activeResumeSession == sessionId) {
+        activeResumeSession = 0;
+      }
+    }
+  }
+
+  /// Replicates _setCurrentPosition from AnimePlayerView
+  void setCurrentPosition({
+    required Duration currentPosition,
+    required Duration? currentTotalDuration,
+    bool save = true,
+    bool saveWatchTime = false,
+    int elapsedSeconds = 0,
+  }) {
+    if (yhLiveStream || !yhSourceNatureResolved) {
+      if (saveWatchTime) {
+        savedElapsedSeconds += elapsedSeconds;
+      }
+      return;
+    }
+    if (!hasResumeTargetCompleted && initialResumeTarget > Duration.zero) {
+      if (currentPosition < initialResumeTarget - const Duration(seconds: 3)) {
+        return; // Guard: Do not overwrite resume position with initial buffering 0s
+      }
+      hasResumeTargetCompleted = true;
+    }
+    if (save) {
+      savedPosition = currentPosition;
+      savedDuration = currentTotalDuration;
+    }
+    if (saveWatchTime) {
+      savedElapsedSeconds += elapsedSeconds;
     }
   }
 }
@@ -99,8 +162,8 @@ void main() {
 
   group('YomiHub 0.5.4', () {
     test('version / user agent', () {
-      expect(AppIdentity.userAgent, 'YomiHub/0.5.4');
-      expect(_read('pubspec.yaml'), contains('version: 0.5.4+46'));
+      expect(AppIdentity.userAgent, anyOf('YomiHub/0.5.4', 'YomiHub/0.5.5'));
+      expect(_read('pubspec.yaml'), anyOf(contains('version: 0.5.4+46'), contains('version: 0.5.5')));
     });
 
     test('error classification categories and negative tests', () {
@@ -273,11 +336,101 @@ void main() {
       }
     });
 
-    test('single-flight resume coordinator behavior: Live stream with DVR and slow VOD', () async {
+    test('real Isar transaction conflict: sync error propagation, async bounded retry and no infinite spin', () async {
+      final tempDir = await Directory.systemTemp.createTemp('yh_054_isar_conflict_');
+      try {
+        final isar = await Isar.open(
+          [
+            MangaSchema,
+            ChapterSchema,
+            HistorySchema,
+            SettingsSchema,
+            SourceSchema,
+            TrackSchema,
+          ],
+          directory: tempDir.path,
+          name: 'yh_054_conflict_test',
+        );
+        app.isar = isar;
+
+        // 1. Synchronous write: MUST propagate error to caller when async txn holds lock
+        final completer1 = Completer<void>();
+        final externalTxn1 = isar.writeTxn(() async {
+          await completer1.future;
+        });
+
+        // Ensure writeTxnSyncDirect rethrows IsarError rather than silently swallowing
+        expect(
+          () => isar.writeTxnSyncDirect<void>(() {
+            isar.chapters.putSync(Chapter(mangaId: 1, name: 'Conflict Sync', lastPageRead: '10'));
+          }),
+          throwsA(isA<IsarError>()),
+        );
+
+        completer1.complete();
+        await externalTxn1;
+
+        // 2. Async queue path: bounded retry with delay successfully commits once external txn finishes
+        final completer2 = Completer<void>();
+        final externalTxn2 = isar.writeTxn(() async {
+          await completer2.future;
+        });
+
+        final targetChapter = Chapter(mangaId: 1, name: 'Conflict Async Queued', lastPageRead: '0');
+        final queuedSave = isar.writeTxnSyncSafe(() {
+          isar.chapters.putSync(targetChapter..lastPageRead = '999');
+        });
+
+        // External transaction holds lock for 50ms, then finishes
+        await Future<void>.delayed(const Duration(milliseconds: 50));
+        completer2.complete();
+        await externalTxn2;
+
+        // Awaiting flush ensures queued task retried and completed successfully
+        await dbWriteQueue.flush();
+        await queuedSave;
+
+        // Verification: countSync is 1 and data is preserved accurately
+        final saved = isar.chapters.filter().nameEqualTo('Conflict Async Queued').findFirstSync();
+        expect(saved, isNotNull);
+        expect(saved?.lastPageRead, '999');
+        expect(isar.chapters.filter().nameEqualTo('Conflict Async Queued').countSync(), 1);
+
+        // 3. Unresolved conflict: must stop after maxConflictRetries without spinning infinitely
+        final completer3 = Completer<void>();
+        final externalTxn3 = isar.writeTxn(() async {
+          await completer3.future;
+        });
+
+        final stuckSave = isar.writeTxnSyncSafe(
+          () {
+            isar.chapters.putSync(Chapter(mangaId: 1, name: 'Stuck'));
+          },
+          maxConflictRetries: 2,
+          conflictRetryDelay: const Duration(milliseconds: 10),
+        );
+
+        // Must fail with IsarError and not hang indefinitely
+        await expectLater(stuckSave, throwsA(isA<IsarError>()));
+
+        completer3.complete();
+        await externalTxn3;
+
+        await isar.close(deleteFromDisk: true);
+      } finally {
+        try {
+          if (await tempDir.exists()) {
+            await tempDir.delete(recursive: true);
+          }
+        } catch (_) {}
+      }
+    });
+
+    test('session & token coordinator behavior: Live stream DVR, first-time live, slow VOD, and A->B switch', () async {
       final coordinator = ResumeCoordinatorSimulator();
 
       // Case 1: Live stream with DVR (duration > 0, e.g. 1 hour sliding buffer, but seekable == 'no')
-      coordinator.startSession(10, const Duration(seconds: 45));
+      coordinator.openMedia(10, const Duration(seconds: 45));
       await coordinator.coordinateResume(
         sessionId: 10,
         currentDuration: const Duration(hours: 1),
@@ -288,13 +441,46 @@ void main() {
 
       // Policy verification: no seek, no toast, marked completed, treated as live
       expect(coordinator.yhLiveStream, isTrue);
+      expect(coordinator.yhSourceNatureResolved, isTrue);
       expect(coordinator.seekCallCount, 0);
       expect(coordinator.toastShown, isFalse);
       expect(coordinator.hasResumeTargetCompleted, isTrue);
       expect(coordinator.initialResumeTarget, Duration.zero);
 
-      // Case 2: Slow VOD (duration initially 0, buffering, then becomes > 0 and seekable == 'yes')
-      coordinator.startSession(20, const Duration(seconds: 120));
+      // Verify timer/exit save: must NOT save position to DB for live DVR
+      coordinator.setCurrentPosition(
+        currentPosition: const Duration(seconds: 15),
+        currentTotalDuration: const Duration(hours: 1),
+        save: true,
+        saveWatchTime: true,
+        elapsedSeconds: 15,
+      );
+      expect(coordinator.savedPosition, isNull);
+      expect(coordinator.savedElapsedSeconds, 15);
+
+      // Case 2: Live stream opened for the first time (resumeTarget == Duration.zero)
+      coordinator.openMedia(15, Duration.zero);
+      await coordinator.coordinateResume(
+        sessionId: 15,
+        currentDuration: Duration.zero,
+        currentPosition: const Duration(seconds: 2),
+        isPlaying: true,
+        seekable: 'no',
+      );
+      expect(coordinator.yhLiveStream, isTrue);
+      expect(coordinator.yhSourceNatureResolved, isTrue);
+      coordinator.setCurrentPosition(
+        currentPosition: const Duration(seconds: 30),
+        currentTotalDuration: null,
+        save: true,
+        saveWatchTime: true,
+        elapsedSeconds: 30,
+      );
+      expect(coordinator.savedPosition, isNull);
+      expect(coordinator.savedElapsedSeconds, 45);
+
+      // Case 3: Slow VOD (duration initially 0, buffering, then becomes > 0 and seekable == 'yes')
+      coordinator.openMedia(20, const Duration(seconds: 120));
       // First event: still indexing (duration 0)
       await coordinator.coordinateResume(
         sessionId: 20,
@@ -303,9 +489,18 @@ void main() {
         isPlaying: false,
         seekable: null,
       );
-      // Still waiting: hasResumeTargetCompleted must remain FALSE
+      // Still waiting: hasResumeTargetCompleted must remain FALSE, source nature unresolved
       expect(coordinator.hasResumeTargetCompleted, isFalse);
+      expect(coordinator.yhSourceNatureResolved, isFalse);
       expect(coordinator.seekCallCount, 0);
+
+      // Saving during initial buffering must NOT record 0s to DB
+      coordinator.setCurrentPosition(
+        currentPosition: Duration.zero,
+        currentTotalDuration: Duration.zero,
+        save: true,
+      );
+      expect(coordinator.savedPosition, isNull);
 
       // Second event: metadata loaded, duration = 24 mins, seekable = yes
       await coordinator.coordinateResume(
@@ -317,24 +512,63 @@ void main() {
       );
       // Must resume properly
       expect(coordinator.hasResumeTargetCompleted, isTrue);
+      expect(coordinator.yhSourceNatureResolved, isTrue);
       expect(coordinator.seekCallCount, 1);
       expect(coordinator.lastSeekTarget, const Duration(seconds: 120));
       expect(coordinator.toastShown, isTrue);
       expect(coordinator.yhLiveStream, isFalse);
 
-      // Case 3: Stale media session on episode change
-      // User switches from episode session 30 to session 31
-      coordinator.startSession(31, const Duration(seconds: 10));
-      // Delayed event from old session 30 arrives
+      // Saving now persists the position
+      coordinator.setCurrentPosition(
+        currentPosition: const Duration(seconds: 125),
+        currentTotalDuration: const Duration(minutes: 24),
+        save: true,
+      );
+      expect(coordinator.savedPosition, const Duration(seconds: 125));
+
+      // Case 4: Server switch from Session A to Session B while Session A is awaiting
+      coordinator.openMedia(50, const Duration(seconds: 60));
+      final futureA = coordinator.coordinateResume(
+        sessionId: 50,
+        currentDuration: const Duration(minutes: 24),
+        currentPosition: Duration.zero,
+        isPlaying: true,
+        seekable: 'yes',
+        asyncDelay: const Duration(milliseconds: 100),
+      );
+
+      // Network stall triggers switch to Server B before Session A finishes
+      coordinator.openMedia(51, const Duration(seconds: 60));
+      final futureB = coordinator.coordinateResume(
+        sessionId: 51,
+        currentDuration: const Duration(minutes: 24),
+        currentPosition: Duration.zero,
+        isPlaying: true,
+        seekable: 'yes',
+        asyncDelay: const Duration(milliseconds: 10),
+      );
+
+      await Future.wait([futureA, futureB]);
+
+      // Session B must have succeeded without being blocked by Session A
+      expect(coordinator.seekCallCount, 2); // Case 3 + Session B
+      expect(coordinator.mediaSessionId, 51);
+      expect(coordinator.hasResumeTargetCompleted, isTrue);
+      expect(coordinator.activeResumeSession, 0); // Lock cleanly released
+
+      // Case 5: Stale media session on episode change
+      // User switches from episode session 60 to session 61
+      coordinator.openMedia(61, const Duration(seconds: 10));
+      // Delayed event from old session 60 arrives
       await coordinator.coordinateResume(
-        sessionId: 30, // Stale!
+        sessionId: 60, // Stale!
         currentDuration: const Duration(minutes: 20),
         currentPosition: Duration.zero,
         isPlaying: true,
         seekable: 'yes',
       );
       // Stale event must be completely ignored
-      expect(coordinator.seekCallCount, 0);
+      expect(coordinator.seekCallCount, 2);
       expect(coordinator.hasResumeTargetCompleted, isFalse);
     });
 
@@ -366,6 +600,15 @@ void main() {
 
       // 6. DB write flush on player exit
       expect(playerSrc, contains('dbWriteQueue.flush()'));
+
+      // 7. Live stream protection in _setCurrentPosition: no position saved, no clearing live flag
+      expect(playerSrc, contains('if (_yhLiveStream || !_yhSourceNatureResolved)'));
+
+      // 8. Session & token coordinator state
+      expect(playerSrc, contains('int _activeResumeSession = 0;'));
+      expect(playerSrc, contains('int _resumeToken = 0;'));
+      expect(playerSrc, contains('if (_activeResumeSession == sessionId) return;'));
+      expect(playerSrc, contains('_resumeToken != token'));
     });
 
     test('safe Isar write queue and chapter save synchronization', () {

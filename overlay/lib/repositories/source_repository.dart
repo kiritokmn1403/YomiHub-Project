@@ -224,18 +224,16 @@ class SourceRepository {
 
   // Stamps updatedAt for callers that just want to persist a mutated Source
   // they already hold, without setting the timestamp themselves.
-  Future<void> save(Source source) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      source.updatedAt = DateTime.now().millisecondsSinceEpoch;
-      isar.sources.putSync(source);
-    });
+  Future<void> save(Source source) => isar.writeTxnSyncSafe(() {
+    source.updatedAt = DateTime.now().millisecondsSinceEpoch;
+    isar.sources.putSync(source);
   });
 
   Future<void> delete(int id) =>
       dbWriteQueue.run(() => isar.writeTxnQ(() => isar.sources.delete(id)));
 
   Future<void> clearAll() =>
-      dbWriteQueue.run(() => isar.writeTxnSyncSafe(() => isar.sources.clearSync()));
+      isar.writeTxnSyncSafe(() => isar.sources.clearSync());
 
   // Sync primitive below is for callers already inside a write transaction
   // opened by another repository's transaction()/writeTransaction() (e.g.
@@ -261,9 +259,8 @@ class SourceRepository {
         await isar.sources.putAll(updated);
       }));
 
-  Future<void> putAll(List<Source> sources) => dbWriteQueue.run(
-    () => isar.writeTxnSyncSafe(() => isar.sources.putAllSync(sources)),
-  );
+  Future<void> putAll(List<Source> sources) =>
+      isar.writeTxnSyncSafe(() => isar.sources.putAllSync(sources));
 
   Future<void> deleteAll(List<int> ids) =>
       dbWriteQueue.run(() => isar.writeTxnQ(() => isar.sources.deleteAll(ids)));
@@ -273,7 +270,7 @@ class SourceRepository {
   // back to "not installed" without losing its browse-list entry. Either way
   // its preferences (both value tables) are wiped, since they're meaningless
   // once the source is gone or has no code to read them.
-  Future<void> uninstall(WidgetRef ref, Source source) => dbWriteQueue.run(() {
+  Future<void> uninstall(WidgetRef ref, Source source) => dbWriteQueue.run(() async {
     final sourcePrefsIds = isar.sourcePreferences
         .filter()
         .sourceIdEqualTo(source.id!)
@@ -284,7 +281,7 @@ class SourceRepository {
         .sourceIdEqualTo(source.id!)
         .idProperty()
         .findAllSync();
-    isar.writeTxnSyncSafe(() {
+    await isar.writeTxnSyncSafe(() {
       if ((source.isObsolete ?? false) || (source.isLocal ?? false)) {
         isar.sources.deleteSync(source.id!);
         ref

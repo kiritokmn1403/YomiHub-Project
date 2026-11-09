@@ -47,8 +47,7 @@ class SyncEntityApplier {
   /// depends on them.
   Future<bool> apply(Map<String, dynamic> response) async {
     var settingsChanged = false;
-    await dbWriteQueue.run(() {
-      isar.writeTxnSyncSafe(() {
+    await isar.writeTxnSyncSafe(() {
         final remaps = _MangaChapterRemaps(
           manga: (response['mangaClientIdRemap'] as Map?)?.map(
             (k, v) => MapEntry(int.parse(k as String), v as int),
@@ -87,7 +86,6 @@ class SyncEntityApplier {
         final tombstones = response['tombstones'] as Map<String, dynamic>?;
         if (tombstones != null) _applyTombstones(tombstones);
       });
-    });
     return settingsChanged;
   }
 

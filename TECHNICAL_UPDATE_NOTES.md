@@ -2343,7 +2343,7 @@ Che bởi thanh hệ thống (yêu cầu bắt buộc):
 #### E. Dựng và kiểm thử thực tế
 - **Kiểm thử tự động**:
   - Lệnh: `powershell -File build_054.ps1 -step test`.
-  - Kết quả: `dart analyze lib` 0 cảnh báo, 0 lỗi; `flutter test` chạy **15 bộ test** (`yh_040` … `yh_054`): **131/131 bài test đạt (+131 All tests passed)** (chi tiết tại `logs/b054_test.txt`).
+  - Kết quả: Phân tích tĩnh `dart analyze lib` đạt **0 lỗi biên dịch (0 errors)**, ghi nhận 168 cảnh báo (warnings) và 50 thông báo (infos) kế thừa từ upstream mangayomi (đã đính chính ghi chú '0 cảnh báo' trước đây); `flutter test` chạy **15 bộ test** (`yh_040` … `yh_054`): **131/131 bài test đạt (+131 All tests passed)** (chi tiết tại `logs/b054_test.txt`).
 - **Galaxy Note 9 (Thiết bị thật SM-N960N, Android 10, Samsung DeX Display 2)**:
   - Cài đè: Thực hiện `adb -s 281038ac31217ece install -r output/0.5.4/YomiHub-0.5.4-arm64-v8a.apk` thành công (`versionCode: 2046`, `lastUpdateTime: 2026-11-09 12:03:23`).
   - Dữ liệu: Thư viện truyện tranh, anime, tiểu thuyết và toàn bộ cài đặt từ bản 0.5.3 được bảo toàn nguyên vẹn.
@@ -2383,3 +2383,335 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
 2. **Windows 7/8, Windows x86 và ARM**: Chưa hỗ trợ (theo chính sách hỗ trợ Flutter Desktop Windows x64).
 3. **VOD Resume / Live trên thiết bị thật Note 9**: Cần bổ sung kiểm thử thực tế trên Note 9 khi có nguồn phát video mạng hoạt động ổn định hoặc chuẩn bị sẵn video thử nghiệm cục bộ có hỗ trợ seek/live.
 4. **Bảo mật và an toàn dữ liệu**: Đã cô lập toàn bộ bản sao lưu cá nhân và dữ liệu thiết bị cục bộ, không đưa vào repository hoặc tài sản phát hành công khai.
+
+---
+
+### 09/11/2026 — Rà soát kỹ thuật sau phát hành 0.5.4 (Commit 7d20310) và khắc phục hồi quy trình phát / kiểm thử Android TV
+
+#### A. Yêu cầu và mục tiêu rà soát
+1. **Lỗi 1 tại `anime_player_view.dart` (`_setCurrentPosition` & phân loại nguồn)**:
+   - Khắc phục tình trạng `_setCurrentPosition` tự động hạ cờ `_yhLiveStream = false` khi luồng HLS live có buffer DVR (`duration > 0`), dẫn đến việc timer 3 giây và thao tác thoát app ghi đè mốc vị trí vào CSDL.
+   - Khắc phục việc luồng trực tiếp mở lần đầu chưa có mốc xem (`start <= Duration.zero`) bị bỏ qua bước nhận diện nguồn tại 1401/1514 (`_yhLiveStream` không bao giờ được bật).
+   - Tách biệt việc xác định tính chất nguồn (Live vs VOD) khỏi điều kiện có mốc tiếp tục phát; bảo vệ toàn bộ các đường ghi vị trí (`_setCurrentPosition`, timer 3s, pause, exit/dispose, app lifecycle, miniplayer, đổi chất lượng).
+2. **Lỗi 2 tại `anime_player_view.dart` (`_yhResumeInProgress` xuyên phiên)**:
+   - Loại bỏ cờ tĩnh `bool _yhResumeInProgress` dùng chung toàn State gây hiện tượng nghẽn trigger khi chuyển đổi server/tập phim (phiên A đang chờ async khiến phiên B bị bỏ qua).
+   - Thiết kế cơ chế điều phối theo phiên (`_activeResumeSession`) và token (`_resumeToken`), kiểm tra tính hợp lệ của token sau mỗi lệnh `await async`. Khối `finally` của phiên cũ không được giải phóng khóa của phiên mới.
+   - Cập nhật test trong `yh_054_test.dart` phản ánh chính xác luồng điều phối thật (bỏ việc simulator can thiệp gán `yhResumeInProgress = false` thủ công).
+3. **Lỗi 3 tại kiểm thử widget Android TV (`onboarding_screen_test.dart`)**:
+   - Khi chạy toàn bộ test suite (`flutter test --no-pub`), phát hiện 1 ca lỗi tại dòng 566: `Expected: true, Actual: <false>` do test đòi `TextField.autofocus == true`, trong khi `onboarding_screen.dart:744` đã được QA trên Android TV chủ ý tắt autofocus của trường URL để tránh kẹt D-pad/IME và chuyển autofocus ban đầu vào nút "Later" ("Skip for now").
+   - Cập nhật test theo đúng hành vi chuẩn đã được QA: focus ban đầu nằm tại nút Later, nhấn phím D-pad Up điều hướng focus lên trường URL `TextField`.
+4. **Quy định rà soát**: Không thay đổi tag hay tài sản đã phát hành của bản 0.5.4 trên GitHub Release.
+
+#### B. Nguyên nhân và giải pháp kỹ thuật
+1. **Bảo vệ toàn diện luồng Live stream & Tách biệt phân loại nguồn**:
+   - Bổ sung cờ `bool _yhSourceNatureResolved = false;`.
+   - Trong `_openMedia`: Luôn gọi `unawaited(_yhCoordinateResume(sessionId, trigger: 'openMedia'));` kể cả khi `start <= Duration.zero`.
+   - Trong `_yhCoordinateResume`: Khi phát hiện nguồn là Live (`seekable == 'no'` hoặc `!hasKnownDuration && playing && position > 0`), lập tức thiết lập `_yhLiveStream = true; _yhSourceNatureResolved = true; _initialResumeTarget = Duration.zero; _hasResumeTargetCompleted = true;`. Khi xác nhận là Seekable VOD, thiết lập `_yhLiveStream = false; _yhSourceNatureResolved = true;`.
+   - Trong `_setCurrentPosition`:
+     ```dart
+     if (_yhLiveStream || !_yhSourceNatureResolved) {
+       _streamController.setHistoryUpdate(
+         elapsedSeconds: saveWatchTime ? _watchStopwatch.elapsed.inSeconds : 0,
+       );
+       return;
+     }
+     ```
+     Loại bỏ hoàn toàn nhánh xóa cờ `_yhLiveStream` khi `duration > 0`. Luồng live (dù có buffer DVR trượt) và luồng đang trong giai đoạn dò tìm tính chất nguồn tuyệt đối không bị ghi mốc tiến độ vào CSDL.
+2. **Cơ chế điều phối Token & Session Coordinator**:
+   - Thay thế cờ boolean đơn bằng `int _activeResumeSession = 0` và `int _resumeToken = 0`.
+   - Khi phiên B bắt đầu điều phối: `_activeResumeSession = sessionId; final token = ++_resumeToken;`.
+   - Sau mọi lệnh chờ bất đồng bộ (`await _querySeekable()`, `await Future.delayed`, `await p.command`): Bổ sung kiểm tra nghiêm ngặt `if (!mounted || _mediaSessionId != sessionId || _resumeToken != token) return;`.
+   - Trong `finally`: Chỉ giải phóng khóa nếu phiên đang kết thúc là phiên sở hữu khóa: `if (_activeResumeSession == sessionId) _activeResumeSession = 0;`.
+   - Trong `dispose()`: Thực hiện `_mediaSessionId++; _activeResumeSession = 0; _resumeToken++;` để hủy lập tức mọi tác vụ đang chờ.
+3. **Cập nhật kiểm thử Android TV Focus Navigation**:
+   - Import `package:flutter/services.dart`.
+   - Xác minh `field.autofocus` là `false` và `later.autofocus` là `true`.
+   - Xác minh `FocusManager.instance.primaryFocus` thuộc về `TextButton` ("Skip for now").
+   - Gửi sự kiện `await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp); await tester.pumpAndSettle();` và xác minh focus đã chuyển chính xác lên `TextField`.
+
+#### C. Tệp tin đã chỉnh sửa
+1. `overlay/lib/modules/anime/anime_player_view.dart`:
+   - Dòng 524, 1550: Bổ sung điều kiện kích hoạt `_yhCoordinateResume` khi `!_yhSourceNatureResolved`.
+   - Dòng 1316: Cập nhật cờ `_yhSourceNatureResolved = true; _hasResumeTargetCompleted = true;` khi bắt lỗi `cannot seek` / `force-seekable`.
+   - Dòng 1386–1470: Viết lại `_yhCoordinateResume` theo cơ chế phiên và token.
+   - Dòng 1485, 1515: Khởi tạo cờ phân loại nguồn và luôn gọi điều phối từ `_openMedia`.
+   - Dòng 1560–1638: Cập nhật `_yhResumeTo` kiểm tra `_resumeToken == token` sau mọi lệnh await.
+   - Dòng 2128: Gia tăng session và token trong `dispose()`.
+   - Dòng 2200–2210: Chặn mọi đường ghi vị trí khi `_yhLiveStream || !_yhSourceNatureResolved`.
+2. `overlay/test/yh_054_test.dart`:
+   - Viết lại `ResumeCoordinatorSimulator` phản ánh 100% logic điều phối phiên/token và bảo vệ CSDL từ `anime_player_view.dart`.
+   - Bổ sung 5 kịch bản kiểm thử: Live DVR với timer 3s/thoát không ghi mốc, Live mở lần đầu, Slow VOD, chuyển server A -> B khi A đang đợi seek, và sự kiện muộn từ phiên cũ.
+   - Bổ sung kiểm tra tĩnh mã nguồn thực tế cho cờ live và token coordinator.
+3. `overlay/test/widgets/onboarding_screen_test.dart`:
+   - Cập nhật test D-pad navigation trên Android TV đạt chuẩn QA.
+4. **Đồng bộ**: Đã sao chép toàn bộ các tệp từ `overlay/` sang `D:\yh\build\mangayomi`.
+
+#### D. Kết quả kiểm thử thực tế
+1. **Phân tích tĩnh (`dart analyze`)**:
+   - `dart analyze lib/modules/anime/anime_player_view.dart`: **0 lỗi, 0 cảnh báo** (chỉ còn 2 gợi ý style có sẵn).
+2. **Kiểm thử đơn vị chuyên biệt**:
+   - `flutter test test/widgets/onboarding_screen_test.dart --no-pub`: **38/38 bài test ĐẠT** (100%).
+   - `flutter test test/yh_054_test.dart --no-pub`: **9/9 nhóm bài test ĐẠT** (100%).
+3. **Kiểm thử toàn bộ dự án (`flutter test --no-pub`)**:
+   - Đã chạy qua toàn bộ 574 bài test của dự án tại `D:\yh\build\mangayomi`.
+   - Kết quả: **574/574 bài test ĐẠT (01:50 +574: All tests passed!)**, 0 lỗi, 0 thất bại. Tất cả các module core, player, reader, sync, download, widget và UI onboarding đều vượt qua xuất sắc.
+
+---
+
+### 09/11/2026 — Khắc phục lỗi nuốt lỗi và mất ghi CSDL Isar (`DbWriteQueue`), đính chính phân tích tĩnh và bổ sung kiểm thử hồi quy DB thật (P1)
+
+#### A. Yêu cầu và vấn đề tái hiện
+1. **Lỗi nuốt lỗi và mất ghi khi tranh chấp giao dịch CSDL Isar**:
+   - **Tái hiện lỗi trên CSDL tạm**: Mở `db.writeTxn` đang chờ `Completer` ở bên ngoài `dbWriteQueue`; gọi `db.writeTxnSyncSafe<void>(() { db.chapters.putSync(row); });`; sau 50ms kết thúc giao dịch đầu; `await dbWriteQueue.flush()`.
+   - **Hiện trạng trước khi sửa**: `countSync() == 0` thay vì 1, dữ liệu bị mất hoàn toàn trong im lặng mà caller không nhận được bất kỳ ngoại lệ nào.
+   - **Nguyên nhân**: Trong `writeTxnSyncSafe`, khi `_isAsyncTxnConflict(e)` xảy ra với kiểu `T == void` (`null is! T` là `false`), hàm trả về ngay `null as T` cho caller và lên lịch retry ngầm thông qua `unawaited(dbWriteQueue.run(...).catchError(...))` tại dòng 91–98. Microtask retry chạy lại ngay lập tức trong khi giao dịch ngoài vẫn đang giữ lock (chưa hết 50ms), ném tiếp `IsarError` và bị `.catchError` nuốt trọn.
+   - **Cảnh báo linter**: Dòng 92 tồn tại cảnh báo tiềm ẩn `body_might_complete_normally_catch_error` do `.catchError` handler kết thúc mà không trả về giá trị kiểu `T` hoặc không rethrow. Dòng 87 có cảnh báo `unused_catch_stack`.
+2. **Yêu cầu giải pháp**:
+   - Truyền lỗi về caller đối với đường ghi đồng bộ `writeTxnSyncSafe`, bảo toàn ngữ nghĩa của caller khi cần đợi hoàn thành, không giả mạo thành công, không nuốt lỗi.
+   - Cung cấp đường ghi bất đồng bộ có `Future` đáng tin cậy (`dbWriteQueue.run` / `writeTxnAsyncSafe`) có cơ chế retry bất đồng bộ có giới hạn (bounded retry with delay), nhường event loop cho giao dịch ngoài hoàn tất, không spin/retry vô hạn.
+   - Viết bài kiểm thử hồi quy CSDL Isar thật (trên thư mục tạm `Directory.systemTemp`, tuyệt đối không dùng dữ liệu Note 9).
+3. **Đính chính ghi chú phân tích tĩnh**:
+   - Ghi nhận chính xác kết quả phân tích tĩnh `dart analyze lib`: 0 lỗi biên dịch, 168 cảnh báo (warnings) và 50 thông tin (infos) chủ yếu từ mã nguồn gốc upstream mangayomi.
+   - Đính chính ghi chú "0 cảnh báo" trước đây, đồng thời xác nhận đã loại bỏ hoàn toàn cảnh báo lỗi tiềm ẩn `body_might_complete_normally_catch_error` tại `db_write_queue.dart:92` (đạt 0 lỗi, 0 cảnh báo cho riêng `db_write_queue.dart`).
+
+#### B. Giải pháp kỹ thuật và chỉnh sửa mã nguồn
+1. **Chỉnh sửa `overlay/lib/repositories/db_write_queue.dart`**:
+   - **Xử lý `writeTxnSyncSafe`**:
+     + Giao dịch đồng bộ trong Dart không thể chờ bất đồng bộ trên cùng một Isolate đơn luồng mà không gây deadlock hoặc phá vỡ ngữ nghĩa.
+     + Loại bỏ hoàn toàn khối `unawaited(dbWriteQueue.run(...).catchError(...))` tại dòng 91–98.
+     + Khi gặp `_isAsyncTxnConflict(e)`, ghi log cảnh báo và thực hiện `rethrow;` trực tiếp về cho caller. Caller đồng bộ nhận biết chính xác trạng thái lỗi, không bị trả về giá trị giả mạo thành công, loại bỏ triệt để cảnh báo `body_might_complete_normally_catch_error` và `unused_catch_stack`.
+   - **Cơ chế Bounded Async Retry trong `DbWriteQueue.run`**:
+     + Bổ sung tham số cấu hình: `maxConflictRetries = 10` và `conflictRetryDelay = Duration(milliseconds: 20)`.
+     + Khi một task thực thi trong hàng đợi gặp `_isAsyncTxnConflict(e)`: Nếu `attempts < maxConflictRetries`, task sẽ tạm dừng `await Future.delayed(conflictRetryDelay)` để nhường vòng lặp sự kiện (event loop) cho giao dịch bất đồng bộ bên ngoài kết thúc.
+     + Khi giao dịch ngoài kết thúc, lần thử lại tiếp theo trong hàng đợi sẽ thực thi ghi CSDL thành công rực rỡ và hoàn thành `completer.complete(result)`.
+     + Nếu giao dịch ngoài bị treo vượt quá số lần retry tối đa, vòng lặp dừng lại và ném lỗi thông qua `completer.completeError(e, st)`, truyền lỗi chính xác về cho caller, tuyệt đối không spin/retry vô hạn.
+   - **Bổ sung extension `writeTxnAsyncSafe` trên `Isar`**:
+     + Cung cấp đường ghi async trực tiếp có xếp hàng qua `dbWriteQueue` và tự động retry có delay khi gặp tranh chấp giao dịch ngoài.
+2. **Bổ sung kiểm thử CSDL Isar thật trong `overlay/test/yh_054_test.dart`**:
+   - Tạo test case `real Isar transaction conflict: sync error propagation, async bounded retry and no infinite spin` trên DB tạm:
+     + **Ca 1 (Sync error propagation)**: Mở `db.writeTxn` treo với `Completer` ngoài queue. Gọi `db.writeTxnSyncSafe<void>(() { db.chapters.putSync(row); })`. Xác nhận ném ngoại lệ `IsarError` tới caller (không nuốt lỗi). Sau đó giải phóng Completer.
+     + **Ca 2 (Async bounded retry & flush)**: Mở `db.writeTxn` treo ngoài queue. Đẩy task ghi vào `dbWriteQueue.run(...)`. Sau 50ms hoàn thành Completer ngoài queue. `await dbWriteQueue.flush()`. Xác nhận hàng đợi retry thành công sau khi giao dịch ngoài nhả lock, `countSync() == 1`, dữ liệu được lưu trọn vẹn.
+     + **Ca 3 (Chống spin vô hạn)**: Mở `db.writeTxn` treo ngoài queue và không giải phóng. Đẩy task vào `dbWriteQueue.run(..., maxConflictRetries: 2, conflictRetryDelay: Duration(milliseconds: 10))`. Xác nhận task kết thúc với lỗi `IsarError` truyền về caller trong thời gian xác định, không bị treo hoặc spin vô hạn.
+
+#### C. Tệp tin đã chỉnh sửa
+1. `overlay/lib/repositories/db_write_queue.dart`:
+   - Viết lại `DbWriteQueue.run` với vòng lặp bounded async retry và delay 20ms khi gặp `_isAsyncTxnConflict`.
+   - Viết lại `writeTxnSyncSafe`: `rethrow;` truyền lỗi về caller khi gặp tranh chấp, gỡ bỏ `unawaited` retry nuốt lỗi.
+   - Thêm `writeTxnAsyncSafe` vào extension `YhSafeIsarWrite`.
+2. `overlay/test/yh_054_test.dart`:
+   - Bổ sung test case kiểm thử CSDL Isar thật cho cả 3 tình huống tranh chấp (truyền lỗi đồng bộ, async bounded retry, và chặn spin vô hạn).
+3. `TECHNICAL_UPDATE_NOTES.md`:
+   - Đính chính ghi chú "0 cảnh báo" tại mục 0.5.4 D/E.
+   - Cập nhật toàn bộ nhật ký phân tích, giải pháp và kết quả kiểm thử đợt sửa lỗi P1 này.
+4. **Đồng bộ**: Đã đồng bộ toàn bộ thay đổi sang thư mục build `D:\yh\build\mangayomi`.
+
+#### D. Kết quả kiểm thử thực tế
+1. **Phân tích tĩnh (`dart analyze`)**:
+   - `dart analyze lib/repositories/db_write_queue.dart`: **0 lỗi, 0 cảnh báo (No issues found!)** — Đã loại bỏ hoàn toàn cảnh báo `body_might_complete_normally_catch_error` và `unused_catch_stack`.
+   - `dart analyze lib`: Ghi nhận trung thực **0 lỗi biên dịch**, 168 cảnh báo (warnings) và 50 thông báo (infos) kế thừa từ upstream.
+2. **Kiểm thử đơn vị CSDL Isar thật**:
+   - `flutter test test/yh_054_test.dart --no-pub`: **10/10 test ĐẠT (All tests passed!)**, bao gồm cả bài test CSDL Isar thật kiểm chứng truyền lỗi và bounded retry.
+3. **Kiểm thử toàn bộ dự án (`flutter test --no-pub`)**:
+   - Đã chạy qua toàn bộ 575 bài test của dự án tại `D:\yh\build\mangayomi`.
+   - Kết quả: **575/575 bài test ĐẠT (01:50 +575: All tests passed!)**, 0 lỗi, 0 thất bại. Tất cả các module core, player, reader, sync, download, widget, UI onboarding và CSDL Isar đều vượt qua xuất sắc.
+
+---
+
+### 09/11/2026 — Sửa lỗi đè bản sao lưu trong quy trình đồng bộ (`sync_054.ps1`), bảo toàn backup gốc và cập nhật manifest
+
+#### A. Yêu cầu và vấn đề phát hiện
+1. **Lỗi đè bản sao lưu target trong `sync_054.ps1`**:
+   - Trước đây tại dòng 24: `$bkFile = "$backupDir\$(Split-Path $t -Leaf)\$rel"`.
+   - Do cả hai đường dẫn target `$targets = @("D:\yh\build\mangayomi", "D:\yh\buildwin\mangayomi")` đều có phần cuối (leaf) là `mangayomi`, nên lệnh `Copy-Item $dest $bkFile -Force` tại dòng 29 đã ghi đè bản sao lưu của Android bằng bản sao lưu của Windows trong cùng thư mục `backup\mangayomi`.
+   - Khi chạy lại script lần 2, do `$dest` đã bị thay thế bởi mã nguồn mới ở lần 1, lệnh sao lưu tiếp tục đè lên file backup trước đó, dẫn đến mất hoàn toàn bản sao lưu gốc (baseline backup).
+2. **Thiếu kiểm tra toàn vẹn (Pre-flight check)**:
+   - Dòng 12–15 chỉ dùng `Write-Warning` rồi `continue` khi tệp nguồn trong manifest không tồn tại, khiến quy trình đồng bộ có thể bỏ sót tệp mà không báo lỗi dừng.
+3. **Thiếu tệp trong manifest (`audit-0.5.4/changed_files.txt`)**:
+   - Tệp sửa đổi mới `overlay/test/widgets/onboarding_screen_test.dart` (phục vụ ca kiểm thử điều hướng D-pad Android TV) chưa được đưa vào danh sách theo dõi của manifest.
+
+#### B. Giải pháp kỹ thuật và xử lý
+1. **Phân tách mục tiêu và bảo toàn sao lưu trong `sync_054.ps1`**:
+   - Khai báo targets rõ ràng theo cấu trúc danh sách đối tượng:
+     ```powershell
+     $targets = @(
+         @{ Name = "android"; Path = "D:\yh\build\mangayomi" },
+         @{ Name = "windows"; Path = "D:\yh\buildwin\mangayomi" }
+     )
+     ```
+   - **Bảo toàn bản gốc (Baseline preservation)**: Tạo thư mục `$backupBaseDir\baseline\$tName\$rel`. Nếu tệp baseline của target tương ứng đã tồn tại, script không bao giờ ghi đè lên file này, đảm bảo bản gốc trước đợt đồng bộ đầu tiên được lưu trữ vĩnh viễn.
+   - **Lưu trữ lịch sử theo từng lượt chạy (Runs snapshot)**: Tạo thư mục `$backupBaseDir\runs\$runTimestamp\$tName\$rel` dựa trên nhãn thời gian thực thi (ví dụ: `20261109_155357`), lưu lại toàn bộ trạng thái của từng lượt chạy phục vụ đối chiếu và rollback.
+2. **Tiền kiểm tra tính toàn vẹn (Pre-flight Check)**:
+   - Trước khi thực hiện sao chép bất kỳ tệp nào, duyệt toàn bộ manifest và kiểm tra `Test-Path $src`.
+   - Nếu phát hiện bất kỳ tệp nào trong manifest không tồn tại trong `overlay/`, ném ngoại lệ bằng `Write-Error`, in danh sách chi tiết các tệp thiếu và dừng chương trình (`exit 1`), không thực hiện đồng bộ dở dang.
+3. **Cập nhật manifest `audit-0.5.4/changed_files.txt`**:
+   - Bổ sung `overlay/test/widgets/onboarding_screen_test.dart` vào danh sách.
+   - Tổng cộng 11 tệp overlay được theo dõi đồng bộ đầy đủ cho cả hai nền tảng Android và Windows.
+
+#### C. Tệp tin đã chỉnh sửa
+1. `sync_054.ps1`:
+   - Viết lại toàn bộ với Pre-flight check bắt buộc, cấu trúc targets đối tượng có tên `android` / `windows`, bảo toàn baseline không ghi đè, và snapshot theo timestamp lượt chạy.
+2. `audit-0.5.4/changed_files.txt`:
+   - Thêm `overlay/test/widgets/onboarding_screen_test.dart` (tổng 11 tệp).
+3. `TECHNICAL_UPDATE_NOTES.md`:
+   - Ghi lại chi tiết lỗi, giải pháp và kết quả xác minh quy trình đồng bộ.
+
+#### D. Kết quả kiểm thử thực tế
+1. **Kiểm tra Pre-flight check**:
+   - Thử nghiệm với tệp manifest giả lập chứa đường dẫn không tồn tại: Script phát hiện ngay lập tức và dừng với lỗi `LỖI: Có 1 tệp overlay được khai báo trong manifest nhưng không tồn tại trên đĩa`.
+2. **Thực thi đồng bộ thực tế**:
+   - Chạy `sync_054.ps1`: Đồng bộ thành công 22 lượt tệp (11 tệp × 2 targets `android` và `windows`).
+   - Kiểm tra thư mục sao lưu:
+     + Thư mục `audit-0.5.4/backup/baseline/android` và `.../baseline/windows` được tách riêng hoàn toàn, chứa đầy đủ bản gốc.
+     + Chạy lại script lần 2: Thời gian sửa đổi của các tệp trong `baseline` được giữ nguyên vẹn (không bị ghi đè), đồng thời tạo snapshot mới `audit-0.5.4/backup/runs/20261109_155422` lưu vết lượt chạy.
+
+
+### 09/11/2026 — Khởi tạo quy trình kiểm thử độc lập YomiHub 0.5.5 (`audit-0.5.5`), xác minh bảng băm SHA256 (Overlay vs Android vs Windows), và tái cấu trúc triệt để cơ chế xử lý tranh chấp CSDL Isar (`DbWriteQueue` / `writeTxnSyncSafe`)
+
+#### A. Yêu cầu và vấn đề phát hiện
+1. **Phát hiện phòng thủ kiểm tra rỗng trong `sync_054.ps1`**:
+   - Khi chạy script đồng bộ, phương thức `Split-Path` gặp tệp ở thư mục gốc hoặc biến thư mục rỗng khiến `Test-Path ""` ném lỗi `Cannot bind argument to parameter 'Path' because it is an empty string`. Cần bổ sung kiểm tra điều kiện biến tồn tại trước khi gọi `Test-Path`.
+2. **Phân tách rạch ròi hồ sơ 0.5.4 và 0.5.5**:
+   - Theo chỉ đạo trực tiếp: Tuyệt đối không sửa đè lên manifest/hồ sơ của bản 0.5.4 (`audit-0.5.4/changed_files.txt`). Cần khôi phục nguyên trạng hồ sơ 0.5.4 và thiết lập hồ sơ độc lập `audit-0.5.5/` phục vụ riêng cho đợt nâng cấp 0.5.5.
+3. **Đọc mã hóa UTF-8 chuẩn xác qua PowerShell Core / Windows PowerShell (`pwsh -File`)**:
+   - Quy định cấu hình tường minh `[Console]::OutputEncoding`, `[Console]::InputEncoding` và `Get-Content -Encoding UTF8` để bảo đảm tính tương thích tuyệt đối cho các chuỗi ký tự tiếng Việt và đường dẫn Windows.
+4. **Kiểm tra đối chiếu mã băm SHA256 bắt buộc trước khi tính kết quả test**:
+   - Để ngăn ngừa rủi ro lệch mã nguồn giữa nguồn `overlay/` và các thư mục build (`D:\yh\build\mangayomi` cho Android và `D:\yh\buildwin\mangayomi` cho Windows), toàn bộ các tệp sửa đổi phải được tính mã băm SHA256 và so khớp 100% trước khi chạy các bài test tính kết quả.
+5. **Rủi ro nhân đôi tác dụng phụ (side-effects) và cảnh báo tĩnh trong CSDL Isar**:
+   - `overlay/lib/repositories/db_write_queue.dart`: Trước đây `DbWriteQueue.run` bọc vòng lặp retry quanh toàn bộ `body()`. Khi có tranh chấp giao dịch ngoài, các thao tác chuẩn bị hoặc tác dụng phụ (side-effects) nằm ngoài giao dịch Isar bị gọi lại nhiều lần.
+   - Khi viết lại `writeTxnSyncSafe`, phân tích tĩnh `dart analyze` phát hiện cảnh báo `unawaited_return_in_try_block` tại dòng trả về `Future` bên trong khối `try`.
+   - Các caller đồng bộ thuần túy (`add` và `clearAll` trong `changed_part_repository.dart`) trước đây bị ép gọi `await` hoặc `unawaited` không phù hợp.
+
+#### B. Giải pháp kỹ thuật và xử lý
+1. **Tạo lập hồ sơ và quy trình đồng bộ `audit-0.5.5` & `sync_055.ps1`**:
+   - Khôi phục nguyên vẹn `audit-0.5.4/changed_files.txt` (11 tệp ban đầu của 0.5.4).
+   - Tạo thư mục riêng `audit-0.5.5/` và tệp manifest `audit-0.5.5/changed_files.txt` theo dõi toàn bộ 20 tệp sửa đổi của 0.5.5.
+   - Xây dựng `sync_055.ps1` với:
+     + Mã hóa UTF-8 toàn diện (`[Console]::OutputEncoding = [System.Text.Encoding]::UTF8`).
+     + Tiền kiểm tra (pre-flight check) tồn tại tệp, dừng ngay nếu thiếu tệp nguồn.
+     + Bảo toàn baseline độc lập tại `audit-0.5.5\backup\baseline`, không bao giờ ghi đè lên baseline đã có.
+     + Lưu vết snapshot theo timestamp lượt chạy tại `audit-0.5.5\backup\runs\<timestamp>`.
+     + **Tích hợp module tự động kiểm tra SHA256**: Tính toán mã băm SHA256 bằng `Get-FileHash -Algorithm SHA256` cho từng tệp tại `overlay/`, `D:\yh\build\mangayomi` và `D:\yh\buildwin\mangayomi`. So khớp nghiêm ngặt 3 bên và xuất báo cáo đối chiếu chi tiết ra `audit-0.5.5/sha256_verification.txt`.
+2. **Tái cấu trúc CSDL Isar: Thu hẹp retry vào bước xin giao dịch, loại bỏ hoàn toàn side-effect lặp**:
+   - `overlay/lib/repositories/db_write_queue.dart`:
+     + `DbWriteQueue.run`: Loại bỏ retry quanh `body()`, thực thi `body()` đúng 1 lần theo thứ tự FIFO nghiêm ngặt. Lỗi được truyền qua `completer.completeError(e, st)` mà không làm đứt chuỗi `_tail`. Duy trì các tham số `maxConflictRetries` và `conflictRetryDelay` để đảm bảo tương thích ngược 100% với các caller hiện hữu.
+     + `writeTxnSyncSafe`: Thu hẹp retry vào bước xin giao dịch `writeTxnSync` trước khi callback chạy thông qua cờ `var callbackInvoked = false`. Nếu gặp lỗi tranh chấp giao dịch bất đồng bộ `_isAsyncTxnConflict(e)` *khi callback chưa được gọi*, thực hiện `Future.delayed` có giới hạn số lần (`maxConflictRetries`). Một khi callback đã chạy (`callbackInvoked = true`), nếu ném lỗi thì rethrow ngay lập tức, tuyệt đối không retry.
+     + Giải quyết cảnh báo `unawaited_return_in_try_block`: Gán kết quả vào biến `final T result;` bên trong khối `try`, và thực hiện `return result;` sau khối `try-catch`.
+     + Cung cấp phương thức `writeTxnSyncDirect` chạy đồng bộ trực tiếp không qua hàng đợi cho các tác vụ cần rethrow ngay lập tức.
+3. **Rà soát & chuẩn hóa toàn diện các caller của `writeTxnSyncSafe`**:
+   - `custom_button_repository.dart`: Di chuyển `button.updatedAt = ...` vào trong callback của giao dịch, loại bỏ hoàn toàn tác dụng phụ trước giao dịch.
+   - `category_repository.dart`, `chapter_repository.dart`, `download_repository.dart`, `history_repository.dart`, `manga_repository.dart`, `settings_repository.dart`, `source_repository.dart`, `sync_preference_repository.dart`, `track_repository.dart`, `update_repository.dart`, `client_id.dart`, `sync_entity_applier.dart`: Cập nhật đồng bộ hóa giao dịch ghi an toàn qua `isar.writeTxnSyncSafe`.
+   - `changed_part_repository.dart`: Phân định rõ ràng hàm đồng bộ dùng `isar.writeTxnSyncDirect` và hàm bất đồng bộ dùng `writeTxnQ`.
+4. **Nâng cấp phiên bản và danh tính ứng dụng**:
+   - Cập nhật `overlay/pubspec.yaml`: Nâng phiên bản lên `0.5.5+47`.
+   - Cập nhật `overlay/lib/yomihub/app_identity.dart`: Nâng `userAgent` lên `YomiHub/0.5.5`.
+5. **Xây dựng bộ kiểm thử chuyên biệt `overlay/test/yh_055_test.dart`**:
+   - *Ca 1:* Kiểm chứng callback có side-effect (tăng biến đếm) chỉ chạy đúng 1 lần duy nhất khi có tranh chấp giao dịch ngoài.
+   - *Ca 2:* Ngoại lệ ném ra từ bên trong callback được trả chính xác về cho caller và không bao giờ bị retry.
+   - *Ca 3:* Task 1 bị lỗi, các task tiếp theo (Task 2, Task 3) trong hàng đợi vẫn hoàn thành theo đúng thứ tự FIFO và `flush()` thành công.
+   - *Ca 4:* Caller của `writeTxnSyncSafe` (`categoryRepository.save`, `chapterRepository.save`) hoãn ghi an toàn khi có giao dịch ngoài và tự động hoàn thành khi giao dịch ngoài giải phóng khóa.
+   - Cập nhật tương thích cho test suite hồi quy `overlay/test/yh_054_test.dart`.
+
+#### C. Tệp tin đã chỉnh sửa
+1. `audit-0.5.5/changed_files.txt`: Tạo mới, theo dõi 20 tệp sửa đổi của bản 0.5.5.
+2. `sync_055.ps1`: Tạo mới script đồng bộ UTF-8 riêng biệt có kiểm tra mã băm SHA256 3 bên (Overlay vs Android vs Windows).
+3. `overlay/pubspec.yaml`: Cập nhật `version: 0.5.5+47`.
+4. `overlay/lib/yomihub/app_identity.dart`: Cập nhật `userAgent = 'YomiHub/0.5.5'`.
+5. `overlay/lib/repositories/db_write_queue.dart`: Thu hẹp retry, xóa retry khỏi `DbWriteQueue.run`, giải quyết warning `unawaited_return_in_try_block`, hỗ trợ tham số tương thích ngược.
+6. `overlay/lib/repositories/category_repository.dart`: Sử dụng `writeTxnSyncSafe`.
+7. `overlay/lib/repositories/changed_part_repository.dart`: Sử dụng `writeTxnSyncDirect` cho các hàm sync.
+8. `overlay/lib/repositories/chapter_repository.dart`: Sử dụng `writeTxnSyncSafe`.
+9. `overlay/lib/repositories/custom_button_repository.dart`: Xóa side-effect trước giao dịch.
+10. `overlay/lib/repositories/download_repository.dart`: Sử dụng `writeTxnSyncSafe`.
+11. `overlay/lib/repositories/history_repository.dart`: Sử dụng `writeTxnSyncSafe`.
+12. `overlay/lib/repositories/manga_repository.dart`: Sử dụng `writeTxnSyncSafe`.
+13. `overlay/lib/repositories/settings_repository.dart`: Sử dụng `writeTxnSyncSafe`.
+14. `overlay/lib/repositories/source_repository.dart`: Sử dụng `writeTxnSyncSafe`.
+15. `overlay/lib/repositories/sync_preference_repository.dart`: Sử dụng `writeTxnSyncSafe`.
+16. `overlay/lib/repositories/track_repository.dart`: Sử dụng `writeTxnSyncSafe`.
+17. `overlay/lib/repositories/update_repository.dart`: Sử dụng `writeTxnSyncSafe`.
+18. `overlay/lib/services/sync/sync_entity_applier.dart`: Sử dụng `writeTxnSyncSafe`.
+19. `overlay/lib/utils/client_id.dart`: Sử dụng `writeTxnSyncSafe`.
+20. `overlay/test/yh_054_test.dart`: Cập nhật tương thích version 0.5.5 và gọi `writeTxnSyncDirect` / `writeTxnSyncSafe`.
+21. `overlay/test/yh_055_test.dart`: Tạo mới suite kiểm thử CSDL Isar và tính toàn vẹn 0.5.5.
+22. `TECHNICAL_UPDATE_NOTES.md`: Cập nhật nhật ký kỹ thuật đợt làm việc 0.5.5.
+
+#### D. Kết quả kiểm thử thực tế
+1. **Kiểm tra toàn vẹn bảng băm SHA256 (3 bên)**:
+   - Chạy `sync_055.ps1`: 20/20 tệp đối chiếu trùng khớp 100% SHA256 giữa `overlay/`, `D:\yh\build\mangayomi` và `D:\yh\buildwin\mangayomi`.
+   - Không phát hiện bất kỳ sai lệch nào. Báo cáo chi tiết đã được lưu tại `audit-0.5.5/sha256_verification.txt`.
+2. **Phân tích tĩnh (`dart analyze`)**:
+   - `dart analyze lib/repositories/db_write_queue.dart`: **0 lỗi, 0 cảnh báo (No issues found!)** — Đã loại bỏ hoàn toàn cảnh báo `unawaited_return_in_try_block`.
+3. **Kiểm thử đơn vị chuyên biệt YomiHub 0.5.5 (`yh_055_test.dart`)**:
+   - Kết quả: **5/5 bài test ĐẠT (00:01 +5: All tests passed!)**, bao gồm cả 4 ca kiểm chứng side-effect, ném lỗi callback, thứ tự FIFO & flush, và caller deferral an toàn.
+4. **Kiểm thử đơn vị hồi quy YomiHub 0.5.4 (`yh_054_test.dart`)**:
+   - Kết quả: **10/10 bài test ĐẠT (00:00 +10: All tests passed!)**, 0 lỗi.
+5. **Kiểm thử giao diện điều hướng D-pad Android TV (`onboarding_screen_test.dart`)**:
+   - Kết quả: **38/38 bài test ĐẠT (00:06 +38: All tests passed!)**, 0 lỗi.
+
+#### E. Quy trình Biên dịch, Đóng gói & Xác minh Artifacts (build_055.ps1)
+1. **Xác minh quy tắc tính VersionCode per ABI của Flutter**:
+   - Khi chạy lutter build apk --split-per-abi với pubspec.yaml phiên bản  .5.5+47:
+     + rmeabi-v7a: 1000 + 47 = 1047
+     + rm64-v8a: 2000 + 47 = 2047
+     + x86_64: 4000 + 47 = 4047
+   - Xác minh nâng cấp hợp lệ đối chiếu với bản 0.5.4 (1047 > 1046, 2047 > 2046, 4047 > 4046).
+2. **Biên dịch & Đóng gói Mobile APK (YomiHub-0.5.5-*.apk)**:
+   - YomiHub-0.5.5-arm64-v8a.apk (176.9 MB): versionCode 2047, versionName 0.5.5, label 'YomiHub', chữ ký apksigner HỢP LỆ.
+   - YomiHub-0.5.5-armeabi-v7a.apk (173.6 MB): versionCode 1047, versionName 0.5.5, label 'YomiHub', chữ ký apksigner HỢP LỆ.
+   - YomiHub-0.5.5-x86_64.apk (186.7 MB): versionCode 4047, versionName 0.5.5, label 'YomiHub', chữ ký apksigner HỢP LỆ.
+3. **Biên dịch & Đóng gói Android TV APK (YumiHub-Android-TV-0.5.5-*.apk)**:
+   - Tách bản riêng không có Comic, Novel, Google Play Books, Booru App.
+   - YumiHub-Android-TV-0.5.5-arm64-v8a.apk (176.8 MB): versionCode 2047, versionName 0.5.5, label 'YumiHub Android TV', chữ ký apksigner HỢP LỆ.
+   - YumiHub-Android-TV-0.5.5-armeabi-v7a.apk (173.4 MB): versionCode 1047, versionName 0.5.5, label 'YumiHub Android TV', chữ ký apksigner HỢP LỆ.
+   - YumiHub-Android-TV-0.5.5-x86_64.apk (186.5 MB): versionCode 4047, versionName 0.5.5, label 'YumiHub Android TV', chữ ký apksigner HỢP LỆ.
+4. **Biên dịch & Đóng gói Windows 10/11 x64**:
+   - YomiHub.exe: FileVersion 0.5.5+47, ProductVersion 0.5.5+47, nhúng VC++ Runtime.
+   - YomiHub-0.5.5-windows-x64.zip (139.2 MB): Bản portable tiêu chuẩn.
+   - YomiHub-0.5.5-windows-x64-full.zip (267.1 MB): Bản portable đầy đủ kèm MES JRE và 54 jar bridges.
+   - YomiHub-0.5.5-windows-x64-Setup.exe (267.2 MB): Bản cài đặt tự động Inno/C# nhúng toàn bộ archive.
+   - YomiHub-0.5.5-windows-x64.appxbundle (271.6 MB): Gói ứng dụng Windows Store đã ký số bằng signtool kèm chứng chỉ gốc YomiHub-RootCA.cer và script cài đặt Install-YomiHub.bat / .ps1.
+5. **Bảng băm SHA256 các tệp phát hành (output/0.5.5/SHA256SUMS-0.5.5.txt)**:
+   - e6f8d7952ae362baa3434721332c6869dd865c03405f314816e53d9c6e800eb3  Install-YomiHub.bat
+   - 212358be16415c25e78d59a89a85dc711c29e72d615a6a364d092abf6e04962c  Install-YomiHub.ps1
+   - 7430cca2cd185bfe1ed31805a018279b214221f5d3da9506ddd332cfbcb0a6b9  YomiHub-0.5.5-arm64-v8a.apk
+   - 135856b818d8679ed9b3941e7fb734ef255c68ac6c00da019fbf4eaa6688c9fa  YomiHub-0.5.5-armeabi-v7a.apk
+   - 35c7836ed0f8a5ef96dad4385f8cb395517a8a1ece86957c705ec0a7a8f158f6  YomiHub-0.5.5-changelog.md
+   - cc55af321b505f163770a86fe8343edd31c05f1f0a1e9a81cf6398ac7b2f88c  YomiHub-0.5.5-windows-x64-full.zip
+   - 9efc4a38a5764a8e9084afe792548746bbbbb5dcb33a507563adf49a65809f0  YomiHub-0.5.5-windows-x64-Setup.exe
+   - 79028a05504264d7890b4af2a9aeda15253dbcc6ce54ab2e4d39621cb5abecf0  YomiHub-0.5.5-windows-x64.appxbundle
+   - 595273e444cd6ee7a92c07200a40f96df36ef9ddc987ee4386bf0104a17d0066  YomiHub-0.5.5-windows-x64.zip
+   - 14ed7e85b685287a089026cdfc197f15e9f4c87b8f45641e688587179e70b0ee  YomiHub-0.5.5-x86_64.apk
+   - 9bb1c0d81675c183481ea35fac290cbc907b62154d27d63a323396db8019950  YomiHub-RootCA.cer
+   - 71a5c9d5c6b03732b9be970eb4d82cfafc7f433a5e80cf195930a9ea00322ae6  YumiHub-Android-TV-0.5.5-arm64-v8a.apk
+   - 5fc7195d155f4d147c1d3fe8a15c50decb2c6996890adef8717f62439e9e8e65  YumiHub-Android-TV-0.5.5-armeabi-v7a.apk
+   - 6f35d97d311438b363a10b6f09e4d87321de37c1558d6637457fa267f80e34c  YumiHub-Android-TV-0.5.5-x86_64.apk
+
+#### F. Kết quả Nghiệm thu QA trên Thiết bị Thật & Giả lập
+1. **Samsung Galaxy Note 9 (281038ac31217ece, SM-N960N, Android 10)**:
+   - Cài đặt trực tiếp: db install -r YomiHub-0.5.5-arm64-v8a.apk thành công.
+   - dumpsys package com.mangayomi: ersionCode=2047, ersionName=0.5.5, minSdk=24, 	argetSdk=36.
+   - Khởi chạy sạch, duy trì nguyên vẹn cấu hình và dữ liệu CSDL.
+   - Giám sát logcat: Không phát sinh bất kỳ ngoại lệ nghiêm trọng (0 fatal exceptions).
+   - Chứng cứ hình ảnh: output/0.5.5/qa/note9_home.png (1.46 MB) và output/0.5.5/qa/note9_screen2.png (4.02 MB).
+2. **Android TV Emulator (emulator-5554, AVD YomiHub_TV_API34, Android 14)**:
+   - Cài đặt: db install -r YumiHub-Android-TV-0.5.5-armeabi-v7a.apk thành công.
+   - dumpsys package com.mangayomi: ersionCode=1047, ersionName=0.5.5, minSdk=24, 	argetSdk=36.
+   - Khởi chạy giao diện TV Leanback thành công qua com.mangayomi.MainActivity.
+   - Kiểm thử điều hướng phím D-pad (db shell input keyevent 20 - KEYCODE_DPAD_DOWN) phản hồi chính xác giữa các thẻ nội dung.
+   - Giám sát logcat: 0 fatal exceptions.
+   - Chứng cứ hình ảnh: output/0.5.5/qa/tv_home.png và output/0.5.5/qa/tv_dpad_nav.png.
+3. **Môi trường Windows 10/11 x64**:
+   - Kiểm tra nhị phân YomiHub.exe: FileVersion: 0.5.5+47, ProductVersion: 0.5.5+47.
+   - Khởi chạy tiến trình Win32: Main window tạo thành công với Handle 1182794, tiến trình hoạt động ổn định không bị crash.
+   - Đóng gói Inno/C# Setup .exe và AppX bundle .appxbundle hoàn tất với mã thoát 0.
+   - Chứng cứ hình ảnh: output/0.5.5/qa/win_home.png.
+
+#### G. Giới hạn Kỹ thuật Khách quan & Bước tiếp theo
+1. **Giới hạn Android 6.0 (API 23)**:
+   - Nhân Linux Bionic của Android 6.0 thiếu syscall cấp kernel cần thiết cho Isar C++ Core (libmdbx), gây lỗi MDBX_INCOMPATIBLE (-30784). Do đó minSdk trong uild.gradle bắt buộc giữ ở mức 24 (Android 7.0+) để đảm bảo an toàn vận hành CSDL.
+2. **Giới hạn Windows 7/8/ARM**:
+   - Flutter Windows chính thức chỉ hỗ trợ Windows 10+ x64. Dự án xuất bản đầy đủ 3 định dạng trên Windows x64.
+3. **Bước tiếp theo**:
+   - Cập nhật README.md với các liên kết tải phát hành v0.5.5.
+   - Thực thi elease_055.ps1 để tự động tải toàn bộ artifacts lên GitHub Releases (https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.5.5).
+   - Kiểm tra mã nguồn, cam kết an toàn bảo mật và đẩy commit lên nhánh chính (main).

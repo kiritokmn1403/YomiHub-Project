@@ -138,41 +138,35 @@ class TrackRepository {
       .findFirstSync()
       ?.mediaId;
 
-  Future<void> savePreference(TrackPreference preference) => dbWriteQueue.run(
-    () => isar.writeTxnSyncSafe(() => isar.trackPreferences.putSync(preference)),
-  );
+  Future<void> savePreference(TrackPreference preference) =>
+      isar.writeTxnSyncSafe(() => isar.trackPreferences.putSync(preference));
 
   Future<void> putAllPreferences(List<TrackPreference> preferences) =>
       dbWriteQueue.run(
         () => isar.writeTxnQ(() => isar.trackPreferences.putAll(preferences)),
       );
 
-  Future<void> deletePreference(int syncId) => dbWriteQueue.run(
-    () => isar.writeTxnSyncSafe(() => isar.trackPreferences.deleteSync(syncId)),
-  );
+  Future<void> deletePreference(int syncId) =>
+      isar.writeTxnSyncSafe(() => isar.trackPreferences.deleteSync(syncId));
 
   // Stamps updatedAt for callers that just want to persist a mutated Track
   // they already hold, without setting the timestamp themselves.
-  Future<void> save(Track track) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      track.updatedAt = DateTime.now().millisecondsSinceEpoch;
-      isar.tracks.putSync(track);
-    });
+  Future<void> save(Track track) => isar.writeTxnSyncSafe(() {
+    track.updatedAt = DateTime.now().millisecondsSinceEpoch;
+    isar.tracks.putSync(track);
   });
 
-  Future<void> delete(Ref ref, Track track) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      isar.tracks.deleteSync(track.id!);
-      ref
-          .read(synchingProvider(syncId: 1).notifier)
-          .addChangedPart(
-            ActionType.removeTrack,
-            track.id,
-            "{}",
-            false,
-            clientId: track.clientId,
-          );
-    });
+  Future<void> delete(Ref ref, Track track) => isar.writeTxnSyncSafe(() {
+    isar.tracks.deleteSync(track.id!);
+    ref
+        .read(synchingProvider(syncId: 1).notifier)
+        .addChangedPart(
+          ActionType.removeTrack,
+          track.id,
+          "{}",
+          false,
+          clientId: track.clientId,
+        );
   });
 
   // Async primitives below are for callers already inside a write
@@ -196,7 +190,7 @@ class TrackRepository {
       dbWriteQueue.run(body);
 
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
+      isar.writeTxnSyncSafe(body);
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
       dbWriteQueue.run(() => isar.writeTxnQ(body));

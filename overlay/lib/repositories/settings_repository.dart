@@ -26,25 +26,21 @@ class SettingsRepository {
       .watch(fireImmediately: true)
       .map((l) => l.first);
 
-  Future<void> update(void Function(Settings s) mutate) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      // A damaged/partially-created database must not turn every settings
-      // control into a null-check crash. Recreate the singleton row with its
-      // model defaults and apply the requested change in the same transaction.
-      final s = currentOrNull ?? Settings();
-      mutate(s);
-      s.updatedAt = DateTime.now().millisecondsSinceEpoch;
-      isar.settings.putSync(s);
-    });
+  Future<void> update(void Function(Settings s) mutate) => isar.writeTxnSyncSafe(() {
+    // A damaged/partially-created database must not turn every settings
+    // control into a null-check crash. Recreate the singleton row with its
+    // model defaults and apply the requested change in the same transaction.
+    final s = currentOrNull ?? Settings();
+    mutate(s);
+    s.updatedAt = DateTime.now().millisecondsSinceEpoch;
+    isar.settings.putSync(s);
   });
 
   // For callers that already hold the Settings instance to mutate (e.g. a family
   // provider's cached param) rather than wanting a freshly-fetched one.
-  Future<void> save(Settings s) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      s.updatedAt = DateTime.now().millisecondsSinceEpoch;
-      isar.settings.putSync(s);
-    });
+  Future<void> save(Settings s) => isar.writeTxnSyncSafe(() {
+    s.updatedAt = DateTime.now().millisecondsSinceEpoch;
+    isar.settings.putSync(s);
   });
 
   // Sync primitive below is for callers already inside a write transaction
@@ -65,7 +61,7 @@ class SettingsRepository {
 
   // Same, but opens the write transaction too, so callers never touch isar.
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
+      isar.writeTxnSyncSafe(body);
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
       dbWriteQueue.run(() => isar.writeTxnQ(body));

@@ -26,9 +26,9 @@ class CustomButtonRepository {
 
   // Stamps updatedAt for callers that just want to persist a mutated
   // CustomButton they already hold, without setting the timestamp themselves.
-  Future<void> save(CustomButton button) => dbWriteQueue.run(() {
+  Future<void> save(CustomButton button) => isar.writeTxnQ(() async {
     button.updatedAt = DateTime.now().millisecondsSinceEpoch;
-    return isar.writeTxnQ(() => isar.customButtons.put(button));
+    await isar.customButtons.put(button);
   });
 
   Future<void> putAll(List<CustomButton> buttons) => dbWriteQueue.run(

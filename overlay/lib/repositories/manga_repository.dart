@@ -338,16 +338,14 @@ class MangaRepository {
 
   // Local archives get fully wiped (via wipeManga); everything else just unfavorites.
   Future<void> removeFromLibrary(WidgetRef ref, Manga manga) =>
-      dbWriteQueue.run(() {
-        isar.writeTxnSyncSafe(() {
-          if (manga.isLocalArchive ?? false) {
-            wipeManga(ref, manga);
-          } else {
-            manga.favorite = false;
-            manga.updatedAt = DateTime.now().millisecondsSinceEpoch;
-            isar.mangas.putSync(manga);
-          }
-        });
+      isar.writeTxnSyncSafe(() {
+        if (manga.isLocalArchive ?? false) {
+          wipeManga(ref, manga);
+        } else {
+          manga.favorite = false;
+          manga.updatedAt = DateTime.now().millisecondsSinceEpoch;
+          isar.mangas.putSync(manga);
+        }
       });
 
   Future<void> putAll(List<Manga> mangas) =>
@@ -364,13 +362,8 @@ class MangaRepository {
 
   // Plain put, no updatedAt stamping — for callers that already set it (or
   // deliberately don't) and need the generated id back.
-  Future<int> put(Manga manga) => dbWriteQueue.run(() {
-    late final int id;
-    isar.writeTxnSyncSafe(() {
-      id = isar.mangas.putSync(manga);
-    });
-    return id;
-  });
+  Future<int> put(Manga manga) =>
+      isar.writeTxnSyncSafe(() => isar.mangas.putSync(manga));
 
   Future<void> delete(int id) =>
       dbWriteQueue.run(() => isar.writeTxnQ(() => isar.mangas.delete(id)));
@@ -396,7 +389,7 @@ class MangaRepository {
 
   // Same, but opens the write transaction too, so callers never touch isar.
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
+      isar.writeTxnSyncSafe(body);
 
   // Async variant, for bodies that need to await other async isar calls
   // inside the same transaction.
@@ -406,12 +399,10 @@ class MangaRepository {
   // Queued, transacted wipeManga for callers with a batch of mangas and no
   // other work to fold into the same transaction.
   Future<void> wipeMangas(WidgetRef ref, List<Manga> mangas) =>
-      dbWriteQueue.run(() {
-        isar.writeTxnSyncSafe(() {
-          for (final manga in mangas) {
-            wipeManga(ref, manga);
-          }
-        });
+      isar.writeTxnSyncSafe(() {
+        for (final manga in mangas) {
+          wipeManga(ref, manga);
+        }
       });
 
   // Deletes every Isar record tied to a manga: history, updates, downloads,
@@ -476,9 +467,8 @@ class MangaRepository {
     int? removeSourceId,
     bool keepHistory = false,
     bool keepDownloads = false,
-  }) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      for (final manga in mangaList) {
+  }) => isar.writeTxnSyncSafe(() {
+    for (final manga in mangaList) {
         final chapterIds = chapterRepository
             .getAllByMangaId(manga.id)
             .map((c) => c.id!)
@@ -506,7 +496,6 @@ class MangaRepository {
         isar.sources.deleteSync(removeSourceId);
       }
     });
-  });
 
   // Folds each of `others` into `primary`: chapters/history/updates/tracks
   // that don't already exist on primary (matched by chapter url, then track
@@ -514,8 +503,7 @@ class MangaRepository {
   // primary's copy (keeping read state if only the dropped copy had it), and
   // each of `others` is deleted once its rows are gone.
   Future<void> mergeGroup(Manga primary, List<Manga> others) =>
-      dbWriteQueue.run(() {
-        isar.writeTxnSyncSafe(() {
+      isar.writeTxnSyncSafe(() {
           final primaryByUrl = <String, Chapter>{
             for (final c in chapterRepository.getAllByMangaId(primary.id))
               ?_chapterDedupKey(c): c,
@@ -609,7 +597,6 @@ class MangaRepository {
             isar.mangas.deleteSync(otherId);
           }
         });
-      });
 }
 
 String? _chapterDedupKey(Chapter c) => (c.url ?? '').isNotEmpty

@@ -111,11 +111,9 @@ class ChapterRepository {
 
   // Stamps updatedAt for callers that just want to persist a mutated Chapter
   // they already hold, without setting the timestamp themselves.
-  Future<void> save(Chapter chapter) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
-      chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
-      isar.chapters.putSync(chapter);
-    });
+  Future<void> save(Chapter chapter) => isar.writeTxnSyncSafe(() {
+    chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
+    isar.chapters.putSync(chapter);
   });
 
   void saveSync(Chapter chapter) {
@@ -130,28 +128,26 @@ class ChapterRepository {
   }
 
   /// Moving a chapter must update both its indexed parent ID and Isar link.
-  Future<void> saveWithMangaLink(Chapter chapter) => dbWriteQueue.run(() {
-    isar.writeTxnSync(() {
-      chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
-      isar.chapters.putSync(chapter);
-      chapter.manga.saveSync();
-      final history = isar.historys
-          .filter()
-          .chapterIdEqualTo(chapter.id)
-          .findAllSync();
-      for (final entry in history) {
-        entry.mangaId = chapter.mangaId;
-      }
-      isar.historys.putAllSync(history);
-      final updates = isar.updates
-          .filter()
-          .chapter((q) => q.idEqualTo(chapter.id))
-          .findAllSync();
-      for (final entry in updates) {
-        entry.mangaId = chapter.mangaId;
-      }
-      isar.updates.putAllSync(updates);
-    });
+  Future<void> saveWithMangaLink(Chapter chapter) => isar.writeTxnSyncSafe(() {
+    chapter.updatedAt = DateTime.now().millisecondsSinceEpoch;
+    isar.chapters.putSync(chapter);
+    chapter.manga.saveSync();
+    final history = isar.historys
+        .filter()
+        .chapterIdEqualTo(chapter.id)
+        .findAllSync();
+    for (final entry in history) {
+      entry.mangaId = chapter.mangaId;
+    }
+    isar.historys.putAllSync(history);
+    final updates = isar.updates
+        .filter()
+        .chapter((q) => q.idEqualTo(chapter.id))
+        .findAllSync();
+    for (final entry in updates) {
+      entry.mangaId = chapter.mangaId;
+    }
+    isar.updates.putAllSync(updates);
   });
 
   Future<void> putAll(List<Chapter> chapters) => dbWriteQueue.run(

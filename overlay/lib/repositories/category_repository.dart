@@ -53,19 +53,14 @@ class CategoryRepository {
       .forItemTypeEqualTo(itemType)
       .watch(fireImmediately: true);
 
-  Future<void> setHidden(Category category, bool hidden) => dbWriteQueue.run(
-    () {
+  Future<void> setHidden(Category category, bool hidden) =>
       isar.writeTxnSyncSafe(() => isar.categorys.putSync(category..hide = hidden));
-    },
-  );
 
   // Stamps updatedAt for callers that just want to persist a mutated Category
   // they already hold, without setting the timestamp themselves.
-  Future<void> save(Category category) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      category.updatedAt = DateTime.now().millisecondsSinceEpoch;
-      isar.categorys.putSync(category);
-    });
+  Future<void> save(Category category) => isar.writeTxnSyncSafe(() {
+    category.updatedAt = DateTime.now().millisecondsSinceEpoch;
+    isar.categorys.putSync(category);
   });
 
   Future<void> putAll(List<Category> categories) => dbWriteQueue.run(
@@ -90,17 +85,15 @@ class CategoryRepository {
     }),
   );
 
-  Future<void> create(Category category) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      isar.categorys.putSync(category..pos = category.id);
-      final nulls = isar.categorys.filter().posIsNull().findAllSync();
-      for (final c in nulls) {
-        c.pos = c.id;
-      }
-      if (nulls.isNotEmpty) {
-        isar.categorys.putAllSync(nulls);
-      }
-    });
+  Future<void> create(Category category) => isar.writeTxnSyncSafe(() {
+    isar.categorys.putSync(category..pos = category.id);
+    final nulls = isar.categorys.filter().posIsNull().findAllSync();
+    for (final c in nulls) {
+      c.pos = c.id;
+    }
+    if (nulls.isNotEmpty) {
+      isar.categorys.putAllSync(nulls);
+    }
   });
 
   // Sync/async primitives below are for callers already inside a write
@@ -122,7 +115,7 @@ class CategoryRepository {
       dbWriteQueue.run(body);
 
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
+      isar.writeTxnSyncSafe(body);
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
       dbWriteQueue.run(() => isar.writeTxnQ(body));

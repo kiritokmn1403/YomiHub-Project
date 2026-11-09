@@ -3,16 +3,21 @@ import 'dart:async';
 import 'package:isar_community/isar.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 
-/// YomiHub 0.4.9 / 0.5.4: single serial FIFO lane for every Isar write on this isolate.
+/// YomiHub 0.4.9 / 0.5.4 / 0.5.5: single serial FIFO lane for every Isar write on this isolate.
 ///
 /// Prevents "An async write transaction is already in progress in this isolate"
 /// errors and ensures watch position / library updates are strictly serialized
 /// in FIFO order without race conditions or data loss.
 ///
-/// 0.5.4:
+/// 0.5.5:
 /// - Provides [flush] so callers (player exit, episode switch, DB backup) can await all queued writes.
 /// - Strict FIFO execution: every task passed to [run] is chained behind the serial lane.
-/// - Propagates errors to the caller while allowing subsequent tasks in the queue to continue.
+/// - [run] executes [body] strictly once without retrying [body]. Side effects prior to
+///   the transaction are never duplicated on transaction conflict.
+/// - Transaction acquisition conflicts are retried specifically at the transaction acquisition
+///   step (in [writeTxnAsyncSafe] and [writeTxnSyncSafe]) BEFORE any caller callback begins execution.
+/// - Once a callback begins executing, it is never retried; callback errors are propagated with full fidelity.
+/// - Propagates errors to the caller while allowing subsequent tasks in the queue and [flush] to continue.
 class DbWriteQueue {
   static final _currentQueueKey = Object();
 
@@ -32,7 +37,16 @@ class DbWriteQueue {
   ///
   /// Nested calls to [run] originating from within an active task on this queue
   /// are re-entrant to prevent deadlocks.
-  Future<T> run<T>(FutureOr<T> Function() body) {
+  ///
+  /// Note: [run] does NOT retry [body]. Any transaction-level retry on conflict
+  /// is narrowed to the transaction acquisition step before caller callbacks execute.
+  /// Optional parameters [maxConflictRetries] and [conflictRetryDelay] are
+  /// accepted for backwards compatibility with callers.
+  Future<T> run<T>(
+    FutureOr<T> Function() body, {
+    int maxConflictRetries = 10,
+    Duration conflictRetryDelay = const Duration(milliseconds: 20),
+  }) {
     if (Zone.current[_currentQueueKey] == this) {
       return Future<T>.sync(body);
     }
@@ -69,34 +83,93 @@ bool _isAsyncTxnConflict(Object e) =>
 extension YhSafeIsarWrite on Isar {
   /// Queued async write transaction (replaces direct `writeTxn`).
   Future<T> writeTxnQ<T>(Future<T> Function() callback, {bool silent = false}) =>
-      dbWriteQueue.run(() => writeTxn(callback, silent: silent));
+      writeTxnAsyncSafe(callback, silent: silent);
 
-  /// Sync write with conflict recovery.
+  /// Async write transaction with bounded retry on transaction acquisition conflict.
   ///
-  /// If a conflicting async write transaction is in progress on this isolate:
-  /// - A void/nullable write is serialized through [dbWriteQueue] so it executes
-  ///   via an async [writeTxn] once preceding transactions finish, preserving FIFO order.
-  /// - Errors are logged rather than silently discarded.
-  /// - Non-nullable writes whose synchronous return value is required are rethrown.
-  T writeTxnSyncSafe<T>(
+  /// Serializes the write through [dbWriteQueue]. If another async transaction
+  /// holds the lock, retries acquiring the transaction with backoff BEFORE
+  /// [callback] is invoked. Once [callback] begins execution, it is executed
+  /// at most once and never retried on failure.
+  Future<T> writeTxnAsyncSafe<T>(
+    Future<T> Function() callback, {
+    bool silent = false,
+    int maxConflictRetries = 10,
+    Duration conflictRetryDelay = const Duration(milliseconds: 20),
+  }) =>
+      dbWriteQueue.run(() async {
+        int attempts = 0;
+        while (true) {
+          var callbackInvoked = false;
+          try {
+            return await writeTxn(() async {
+              callbackInvoked = true;
+              return await callback();
+            }, silent: silent);
+          } catch (e, st) {
+            if (!callbackInvoked &&
+                _isAsyncTxnConflict(e) &&
+                attempts < maxConflictRetries) {
+              attempts++;
+              await Future.delayed(conflictRetryDelay);
+              continue;
+            }
+            Error.throwWithStackTrace(e, st);
+          }
+        }
+      });
+
+  /// Queued synchronous write transaction with bounded retry on acquisition conflict.
+  ///
+  /// Serializes the synchronous write through [dbWriteQueue]. If an async transaction
+  /// is in progress on this isolate, retries acquiring the sync transaction with backoff
+  /// BEFORE [callback] is invoked. Once [callback] begins execution, it is executed
+  /// at most once and never retried on failure.
+  Future<T> writeTxnSyncSafe<T>(
+    T Function() callback, {
+    bool silent = false,
+    int maxConflictRetries = 10,
+    Duration conflictRetryDelay = const Duration(milliseconds: 20),
+  }) =>
+      dbWriteQueue.run(() async {
+        int attempts = 0;
+        while (true) {
+          var callbackInvoked = false;
+          final T result;
+          try {
+            result = writeTxnSync(() {
+              callbackInvoked = true;
+              return callback();
+            }, silent: silent);
+          } catch (e, st) {
+            if (!callbackInvoked &&
+                _isAsyncTxnConflict(e) &&
+                attempts < maxConflictRetries) {
+              attempts++;
+              await Future.delayed(conflictRetryDelay);
+              continue;
+            }
+            Error.throwWithStackTrace(e, st);
+          }
+          return result;
+        }
+      });
+
+  /// Direct synchronous write without queueing or async retry backoff.
+  T writeTxnSyncDirect<T>(
     T Function() callback, {
     bool silent = false,
   }) {
     try {
       return writeTxnSync(callback, silent: silent);
-    } catch (e, st) {
-      if (!_isAsyncTxnConflict(e)) rethrow;
-      if (null is! T) rethrow;
-
-      unawaited(
-        dbWriteQueue.run(() => writeTxnSync(callback, silent: silent)).catchError((err, errSt) {
-          AppLogger.log(
-            '[Isar Safe] Lỗi khi thực hiện ghi sau tranh chấp: $err\n$errSt',
-            logLevel: LogLevel.error,
-          );
-        }),
-      );
-      return null as T;
+    } catch (e) {
+      if (_isAsyncTxnConflict(e)) {
+        AppLogger.log(
+          '[Isar Direct] Tranh chấp async write transaction khi ghi đồng bộ: $e',
+          logLevel: LogLevel.warning,
+        );
+      }
+      rethrow;
     }
   }
 }

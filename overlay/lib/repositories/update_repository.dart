@@ -96,25 +96,21 @@ class UpdateRepository {
   // Notifies the sync provider for each id first (its own transaction,
   // matching the original two-step shape), then deletes the rows.
   Future<void> deleteAll(WidgetRef ref, List<int> ids) async {
-    await dbWriteQueue.run(() {
-      isar.writeTxnSyncSafe(() {
-        for (var id in ids) {
-          final clientId = isar.updates.getSync(id)?.clientId;
-          ref
-              .read(synchingProvider(syncId: 1).notifier)
-              .addChangedPart(
-                ActionType.removeUpdate,
-                id,
-                "{}",
-                false,
-                clientId: clientId,
-              );
-        }
-      });
+    await isar.writeTxnSyncSafe(() {
+      for (var id in ids) {
+        final clientId = isar.updates.getSync(id)?.clientId;
+        ref
+            .read(synchingProvider(syncId: 1).notifier)
+            .addChangedPart(
+              ActionType.removeUpdate,
+              id,
+              "{}",
+              false,
+              clientId: clientId,
+            );
+      }
     });
-    await dbWriteQueue.run(
-      () => isar.writeTxnQ(() => isar.updates.deleteAll(ids)),
-    );
+    await isar.writeTxnQ(() => isar.updates.deleteAll(ids));
   }
 
   // Sync primitive below is for callers already inside a write transaction
@@ -141,7 +137,7 @@ class UpdateRepository {
 
   // Same, but opens the write transaction too, so callers never touch isar.
   Future<T> writeTransaction<T>(T Function() body) =>
-      dbWriteQueue.run(() => isar.writeTxnSyncSafe(body));
+      isar.writeTxnSyncSafe(body);
 
   Future<T> writeTransactionAsync<T>(Future<T> Function() body) =>
       dbWriteQueue.run(() => isar.writeTxnQ(body));

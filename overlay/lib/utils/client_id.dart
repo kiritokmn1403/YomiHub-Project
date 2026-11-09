@@ -78,8 +78,7 @@ Future<void> backfillMissingClientIds() async {
     return;
   }
 
-  await dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
+  await isar.writeTxnSyncSafe(() {
       for (final row in categories) {
         categoryRepository.putSync(row..clientId = generateClientId());
       }
@@ -99,5 +98,4 @@ Future<void> backfillMissingClientIds() async {
         updateRepository.putSync(row..clientId = generateClientId());
       }
     });
-  });
-}
+  }

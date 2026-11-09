@@ -69,48 +69,42 @@ class DownloadRepository {
   // No updatedAt stamping - Download has no such field.
   /// Atomically appends a chapter to the queue. Repeated requests preserve
   /// completed and active entries, while failed entries become retryable.
-  Future<void> enqueue(Chapter chapter) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      final existing = isar.downloads.getSync(chapter.id!);
-      if (existing?.isDownload == true || existing?.isStartDownload == true) {
-        return;
-      }
-      final download =
-          existing ??
-          Download(
-            id: chapter.id,
-            total: 100,
-            succeeded: 0,
-            failed: 0,
-            isDownload: false,
-            isStartDownload: true,
-          );
-      download
-        ..succeeded = 0
-        ..failed = 0
-        ..total = 100
-        ..isDownload = false
-        ..isStartDownload = true
-        ..chapter.value = chapter;
-      isar.downloads.putSync(download);
-      download.chapter.saveSync();
-    });
+  Future<void> enqueue(Chapter chapter) => isar.writeTxnSyncSafe(() {
+    final existing = isar.downloads.getSync(chapter.id!);
+    if (existing?.isDownload == true || existing?.isStartDownload == true) {
+      return;
+    }
+    final download =
+        existing ??
+        Download(
+          id: chapter.id,
+          total: 100,
+          succeeded: 0,
+          failed: 0,
+          isDownload: false,
+          isStartDownload: true,
+        );
+    download
+      ..succeeded = 0
+      ..failed = 0
+      ..total = 100
+      ..isDownload = false
+      ..isStartDownload = true
+      ..chapter.value = chapter;
+    isar.downloads.putSync(download);
+    download.chapter.saveSync();
   });
 
-  Future<void> save(Download download) => dbWriteQueue.run(
-    () => isar.writeTxnSyncSafe(() => isar.downloads.putSync(download)),
-  );
+  Future<void> save(Download download) =>
+      isar.writeTxnSyncSafe(() => isar.downloads.putSync(download));
 
-  Future<void> delete(int id) => dbWriteQueue.run(
-    () => isar.writeTxnSyncSafe(() => isar.downloads.deleteSync(id)),
-  );
+  Future<void> delete(int id) =>
+      isar.writeTxnSyncSafe(() => isar.downloads.deleteSync(id));
 
-  Future<void> deleteAll(List<int> ids) => dbWriteQueue.run(() {
-    isar.writeTxnSyncSafe(() {
-      for (final id in ids) {
-        isar.downloads.deleteSync(id);
-      }
-    });
+  Future<void> deleteAll(List<int> ids) => isar.writeTxnSyncSafe(() {
+    for (final id in ids) {
+      isar.downloads.deleteSync(id);
+    }
   });
 
   // Escape hatch for download-rooted read transactions too specific to name.

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mangayomi/l10n/generated/app_localizations.dart';
@@ -558,12 +559,36 @@ void main() {
       expect(hidden, isNot(contains('/AnimeLibrary')));
     });
 
-    testWidgets('the url field takes focus, so OK opens the keyboard', (
+    testWidgets('the url field takes focus on d-pad navigation, avoiding IME trap on entry', (
       tester,
     ) async {
       await pump(tester);
+      await tester.pumpAndSettle();
+
       final field = tester.widget<TextField>(find.byType(TextField));
-      expect(field.autofocus, isTrue);
+      expect(field.autofocus, isFalse);
+
+      final laterFinder = find.widgetWithText(TextButton, 'Skip for now');
+      expect(laterFinder, findsOneWidget);
+      final later = tester.widget<TextButton>(laterFinder);
+      expect(later.autofocus, isTrue);
+
+      // Verify that primary focus is on the Later button
+      final primaryBefore = FocusManager.instance.primaryFocus;
+      expect(primaryBefore?.context?.findAncestorWidgetOfExactType<TextButton>(), isNotNull);
+
+      // Navigate Up using d-pad towards the URL TextField
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
+      await tester.pumpAndSettle();
+
+      var currentFocused = FocusManager.instance.primaryFocus;
+      if (currentFocused?.context?.findAncestorWidgetOfExactType<TextField>() == null) {
+        await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
+        await tester.pumpAndSettle();
+      }
+
+      currentFocused = FocusManager.instance.primaryFocus;
+      expect(currentFocused?.context?.findAncestorWidgetOfExactType<TextField>(), isNotNull);
     });
 
     testWidgets('says the repository can be added later instead', (

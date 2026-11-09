@@ -1,0 +1,27 @@
+﻿BÁO CÁO ĐỐI CHIẾU MÃ BĂM SHA256 - YOMIHUB 0.5.5
+Thời gian: 2026-11-09 23:13:13
+------------------------------------------------------------------------------------------------------------------------
+Tệp tin                                       | Mã băm SHA256 (Overlay)                                          | Kết quả so khớp
+------------------------------------------------------------------------------------------------------------------------
+pubspec.yaml                                  | 390BDF38CA2685B7B24BCD295ED3FE5B43BCFB96227D8473FE7D66635BDB4E88 | KHỚP 100% (Android & Windows)
+lib/yomihub/app_identity.dart                 | 3D9EB11EC82FD93CBDBBB1A22022BF45BAA5ACEA584CC3D096F6BA761DCD83A8 | KHỚP 100% (Android & Windows)
+lib/modules/anime/anime_player_view.dart      | 320CB3F8F8F6A381756A952AC526D2BE487D4FB1CDAE411A341B297CC3ED61A4 | KHỚP 100% (Android & Windows)
+lib/repositories/db_write_queue.dart          | 08886C1EEB4E16023FF4C94E1B8B11B2E3D34DF6B4CC79F22A1C607900D564EA | KHỚP 100% (Android & Windows)
+lib/repositories/category_repository.dart     | 0B2A8B37FF7A4D7573640719F4C005E0B2098D1C02D6638CA2E9BB85CF7C012B | KHỚP 100% (Android & Windows)
+lib/repositories/changed_part_repository.dart | DB10AA4839A441D1565991945047CDE5907D2E654560FA2AC8A2EF73153AAAA3 | KHỚP 100% (Android & Windows)
+lib/repositories/chapter_repository.dart      | E6E9B7AFE3B721A37F825938F7E434460DC2CFB1FF8DE00A35FD50B8EDD3B84B | KHỚP 100% (Android & Windows)
+lib/repositories/custom_button_repository.dart | B4625C896F47F8C7CD124D36C8781481D6A5BC4870E33623DE1BF3D8C1FAE6B4 | KHỚP 100% (Android & Windows)
+lib/repositories/download_repository.dart     | 239C11E92D774FCDCFB5E3688CD18C10E51BF123CD24C71F7B4ED45E84C839A1 | KHỚP 100% (Android & Windows)
+lib/repositories/history_repository.dart      | 82CEA7F2BCF6AEE8FEB172FA06AECEFAA70C133EA448A9B4869452BAEB0298B8 | KHỚP 100% (Android & Windows)
+lib/repositories/manga_repository.dart        | 3D1A93AA7F5376D5E1F64A20C72D7618155BE6C2367BEF5AD85D369A5BA7753C | KHỚP 100% (Android & Windows)
+lib/repositories/settings_repository.dart     | B35E2F3080A5679C03DBFAF8D61ED28672876D97A9AC82EADFCAEFE6D889A5A4 | KHỚP 100% (Android & Windows)
+lib/repositories/source_repository.dart       | 7D4B4D4FE17D69125B8AE121EB82C1AB0EE309B8945AE9B4227D95A0F07FEF05 | KHỚP 100% (Android & Windows)
+lib/repositories/sync_preference_repository.dart | 33D64C4FF64FA2F85300BF8AC73FFC54AFED5354E3ABC0895FD8D0FE63CD0A36 | KHỚP 100% (Android & Windows)
+lib/repositories/track_repository.dart        | CF5BCFEAFD2871BD6959B3CF425143D7E1856FC10EF6393E2F67EFCABDFA9E54 | KHỚP 100% (Android & Windows)
+lib/repositories/update_repository.dart       | FDBA285A6A61644BB7B7442931F825ABBB12A3668CE5E5527BE19572D4CE8EF2 | KHỚP 100% (Android & Windows)
+lib/services/sync/sync_entity_applier.dart    | 972D153345CEAD9C185499CC760D49939E080FB4DFBD97D072C82787271D38D5 | KHỚP 100% (Android & Windows)
+lib/utils/client_id.dart                      | 8D32FBE3CE349D79A2C332F97AB81365F6F56B61336D674079CC7B8A717FAB63 | KHỚP 100% (Android & Windows)
+test/widgets/onboarding_screen_test.dart      | 6F32A29D944796DB91C78052FBD8FE73C48C9DA4892B356E695DEA5C68A6398D | KHỚP 100% (Android & Windows)
+test/yh_054_test.dart                         | EC90B6CB4A82DFA49A71BD4F6FCD8B34332006B963BC9A3370EAED2D7E5650CB | KHỚP 100% (Android & Windows)
+test/yh_055_test.dart                         | BE628E5089F4BAA980AAC98F662BA37F9A57E97B76EC3E71622071186CA6CA83 | KHỚP 100% (Android & Windows)
+------------------------------------------------------------------------------------------------------------------------
