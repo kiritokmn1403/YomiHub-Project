@@ -1,4 +1,4 @@
-﻿# YomiHub — Ghi chú kỹ thuật cập nhật
+# YomiHub — Ghi chú kỹ thuật cập nhật
 
 **BẮT BUỘC ĐỌC TRƯỚC MỖI LẦN CẬP NHẬT.**
 
@@ -2880,3 +2880,11 @@ Theo góp ý của người dùng về việc tách biệt API đồng bộ và 
 5. **Đồng bộ Tài liệu & Bảng băm**:
    - Đồng bộ `TECHNICAL_UPDATE_NOTES.md` vào `output/0.5.5/TECHNICAL_UPDATE_NOTES.md`.
    - Cập nhật lại mã băm SHA256 trong `output/0.5.5/SHA256SUMS-0.5.5.txt`.
+
+6. **Hiệu chỉnh Thông số Tài liệu theo Mã nguồn Tag 1aea29a**:
+   - Phát hiện sai sót trong `YomiHub-0.5.5-changelog.md` và phần mô tả phát hành: ghi nhầm `maxConflictRetries = 12`.
+   - Trong mã nguồn gốc tại tag `1aea29a` (`overlay/lib/repositories/db_write_queue.dart`), giá trị mặc định của `writeTxnSyncSafe` là `int maxConflictRetries = 10`.
+   - Đã hiệu chỉnh chính xác thành `maxConflictRetries = 10` theo đúng mã nguồn tag.
+   - Cập nhật mã băm SHA256 mới của `YomiHub-0.5.5-changelog.md`:
+     `ef03b77943d64aab16e5a6a553dcaa41b59c6a85424880bffc70886bb451bd97`.
+   - Cập nhật lại toàn bộ bảng băm `SHA256SUMS-0.5.5.txt` và đồng bộ lên GitHub Releases.
