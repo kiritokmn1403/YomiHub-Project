@@ -1,10 +1,12 @@
-# YomiHub — Ghi chú kỹ thuật cập nhật
+﻿# YomiHub — Ghi chú kỹ thuật cập nhật
 
 **BẮT BUỘC ĐỌC TRƯỚC MỖI LẦN CẬP NHẬT.**
 
 Chủ dự án yêu cầu tạo và duy trì tài liệu này ngày 25/10/2026. Quy định được ghi thêm trong `AGENTS.md` ở gốc dự án. Mỗi người hoặc tác nhân tự động cập nhật ứng dụng phải đọc toàn bộ tài liệu, kiểm tra trạng thái và bổ sung kết quả sau khi làm việc.
 
 ## 1. Trạng thái hiện tại
+
+- **10/11/2026 – 0.5.5 (0.5.5+47) đã dựng, kiểm thử và phát hành (GitHub Release `v0.5.5`):** Khắc phục lỗi tranh chấp CSDL Isar `async write transaction already in progress` thông qua hàng đợi ghi an toàn `db_write_queue.dart` kết hợp cờ bảo vệ `callbackInvoked`; tách biệt rõ ràng quy tắc mã nguồn sau tag; manifest 21 tệp overlay được đồng bộ và kiểm tra bảng băm SHA256 khớp 100%; nạp DLL Isar cục bộ cho kiểm thử tự động offline; sửa triệt để lỗi mã hóa CP1252 trên PowerShell 5 bằng UTF-8 BOM cho các script dựng `sync_055.ps1`, `build_055.ps1`; toàn bộ 17 tệp kiểm thử tự động (gồm `yh_055_test.dart`, `yh_054_test.dart`, `onboarding_screen_test.dart`) đạt 100%. Đã đóng gói đủ 3 APK Android Mobile, 3 APK YumiHub Android TV, Windows Setup.exe, .appxbundle và portable .zip/-full.zip trong `output/0.5.5`. Chi tiết: mục "10/11/2026 — Cập nhật phiên bản 0.5.5" cuối tài liệu.
 
 - **06/11/2026 – 0.5.3 (0.5.3+45) đã dựng, kiểm thử và phát hành (GitHub Release `v0.5.3`):** 29 tiện ích website chuyển sang kho Kiritokmn Extension Repo (ứng dụng chỉ tự thêm kho, tiện ích đã cài nhận cập nhật từ kho); mục "Sao Lưu & Đồng Bộ" ở Cài đặt và Thêm (kèm sao lưu Booru App); công tắc Google Play Books / Booru App trong "Bật/Tắt tính năng & Nguồn mở rộng"; xuất danh sách MyAnimeList (XML), tracker không bị thanh hệ thống/bàn phím che; Cài đặt › Chẩn đoán Windows; sửa lỗi trong `logs 3.txt` (treo khi tự sao lưu, EPUB hỏng báo lặp, trình phát/Shorts qua VPN, sao lưu vào đường dẫn Android trên Windows); 19 liên kết dự án GitHub. `dart analyze` 0 lỗi, 122/122 test. Chi tiết: mục "06/11/2026 — Cập nhật phiên bản 0.5.3" cuối tài liệu.
 - **06/11/2026 – 0.5.2 (0.5.2+44) đã dựng, kiểm thử và phát hành (GitHub Release `v0.5.2`):** 3 APK Android 7.0+, 3 APK `YumiHub Android TV` (không Comic/Novel/Play Books/Booru), Windows 10/11 x64 `Setup.exe` (gói đầy đủ, kèm VC++ runtime + Java/M-Extension-Server), `.appxbundle`, portable `.zip`/`-full.zip`. Sao lưu/khôi phục nhanh và không treo (TachiyomiMi 12 MB: 45 s → 8 s; Mangayomi 22 MB → 8–11 s trên Galaxy Note 9), Gộp giữ nguồn + cài tiện ích có trong bản sao lưu + thêm chương còn thiếu, chẩn đoán Windows trong nhật ký, WARP tự đổi cổng UDP và không báo kết nối giả, sửa lỗi trong `logs 2.txt`. Chi tiết: mục "05/11/2026 – 06/11/2026 — Cập nhật phiên bản 0.5.2" cuối tài liệu.
@@ -2650,7 +2652,7 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
 
 #### E. Quy trình Biên dịch, Đóng gói & Xác minh Artifacts (build_055.ps1)
 1. **Xác minh quy tắc tính VersionCode per ABI của Flutter**:
-   - Khi chạy lutter build apk --split-per-abi với pubspec.yaml phiên bản  .5.5+47:
+   - Khi chạy lutter build apk --split-per-abi với pubspec.yaml phiên bản 0.5.5+47:
      + rmeabi-v7a: 1000 + 47 = 1047
      + rm64-v8a: 2000 + 47 = 2047
      + x86_64: 4000 + 47 = 4047
@@ -2736,7 +2738,7 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
 
 #### B. Nguyên nhân Kỹ thuật & Biện pháp Khắc phục
 1. **Sai lệch hash changelog trong SHA256SUMS-0.5.5.txt**:
-   - *Nguyên nhân:* File YomiHub-0.5.5-changelog.md được tinh chỉnh nội dung sau khi script băm uild_055.ps1 chạy lần đầu, dẫn đến mã băm trong file tổng kết không phản ánh bản changelog cuối cùng.
+   - *Nguyên nhân:* File YomiHub-0.5.5-changelog.md được tinh chỉnh nội dung sau khi script băm build_055.ps1 chạy lần đầu, dẫn đến mã băm trong file tổng kết không phản ánh bản changelog cuối cùng.
    - *Khắc phục:* Viết script tính lại SHA256 chính xác của cả 15 tệp phân phối, cập nhật output/0.5.5/SHA256SUMS-0.5.5.txt, dùng GitHub API xóa asset cũ và upload asset mới thành công (HTTP 201). Kiểm chứng tải lại từ GitHub URL và đối chiếu với local: **TRÙNG KHỚP 100% (Match: True)**.
 2. **Lỗi ảnh PNG bị corrupt với header FF FE FD FF (UTF-16 BOM)**:
    - *Nguyên nhân:* Lệnh PowerShell db exec-out screencap -p > file.png chuyển hướng output dạng text Unicode UTF-16 của PowerShell 5.1, làm hỏng nhị phân của file PNG.
@@ -2755,14 +2757,14 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
 
 #### C. Kết quả Kiểm thử & Nghiệm thu Chi tiết
 1. **Kiểm thử Android TV (AVD YomiHub_TV_API34 - x86, Android 14)**:
-   - Cài đặt thành công YumiHub-Android-TV-0.5.5-armeabi-v7a.apk (Package: com.yomihub.app, versionCode: 1047, versionName:  .5.5, Label: 'YumiHub Android TV').
+   - Cài đặt thành công YumiHub-Android-TV-0.5.5-armeabi-v7a.apk (Package: com.yomihub.app, versionCode: 1047, versionName: 0.5.5, Label: 'YumiHub Android TV').
    - Giao diện Leanback hoàn toàn sạch: Loại bỏ 100% Comic, Novel, Google Play Books, Booru App.
    - Điều hướng D-pad qua NavigationRail và danh sách nguồn phản hồi mượt mà, tiêu điểm focus hiển thị rõ ràng.
    - Mở thử danh mục extension HotPhim hiển thị đầy đủ chip filter (Phổ biến, Mới nhất, Bộ lọc) và layout card.
    - Giám sát logcat: 0 fatal exceptions.
    - Bằng chứng lưu tại: output/0.5.5/qa/tv_home.png, 	v_browse.png, 	v_dpad_nav.png, 	v_more.png, 	v_demo.mp4.
 2. **Kiểm thử Các Gói Cài đặt Windows 10/11 x64**:
-   - **Gói Portable (YomiHub-0.5.5-windows-x64.zip):** Giải nén thử nghiệm thành công, YomiHub.exe có FileVersion:  .5.5+47, ProductVersion:  .5.5+47. Chứa đủ 40 DLLs phụ thuộc (lutter_windows.dll, libisar.dll, libmpv-2.dll, lutter_qjs_plugin.dll, VC++ runtime...).
+   - **Gói Portable (YomiHub-0.5.5-windows-x64.zip):** Giải nén thử nghiệm thành công, YomiHub.exe có FileVersion: 0.5.5+47, ProductVersion: 0.5.5+47. Chứa đủ 40 DLLs phụ thuộc (lutter_windows.dll, libisar.dll, libmpv-2.dll, lutter_qjs_plugin.dll, VC++ runtime...).
    - **Gói Full (YomiHub-0.5.5-windows-x64-full.zip):** Chứa 461 entries, tích hợp đầy đủ MES JRE runtime và 54 JAR bridges.
    - **Gói AppX Bundle (YomiHub-0.5.5-windows-x64.appxbundle):** Xác minh chữ ký số qua signtool.exe verify /pa /v có Primary Signature hợp lệ, Signing Certificate Chain có SHA1 Thumbprint: 4C62D3C542A9EE3B0136F9AE49E65C0E38652A49 trùng khớp 100% với chứng chỉ gốc phân phối YomiHub-RootCA.cer. Đi kèm Install-YomiHub.bat và .ps1 để cài đặt tự động vào Trust Store.
 3. **Thiết bị Samsung Galaxy Note 9 (SM-N960N)**:
@@ -2800,8 +2802,8 @@ ote9_screen2.png, win_home.png).
      **Một phần (Đã xác minh Leanback & D-pad Navigation - Chờ QA phát video thực tế)**.
    - Ghi nhận rõ: Đã nghiệm thu giao diện Leanback TV loại bỏ 4 mục Comic/Novel/Play Books/Booru, điều hướng D-pad highlight trên thẻ nguồn HotPhim và mở danh mục extension. Chưa hoàn tất nghiệm thu luồng phát video anime/phim và phụ đề chuyên sâu.
 6. **Tách biệt Rõ ràng giữa Xác minh Cấu trúc Gói vs Cài đặt/Chạy Thực tế (Windows)**:
-   - **Xác minh cấu trúc gói:** FileVersion  .5.5+47, Portable .zip 40 DLLs, Full .zip 461 entries nhúng JRE. Gói AppX .appxbundle có cấu trúc hợp lệ và chữ ký số SHA1 4C62D3C542A9EE3B0136F9AE49E65C0E38652A49 khớp YomiHub-RootCA.cer.
-   - **Cài đặt & Chạy thực tế:** Giải thích rõ tại sao signtool verify /pa báo oot certificate is not trusted (do Root CA tự ký chưa nằm trong Trust Store mặc định của Windows). Người dùng bắt buộc phải chạy Install-YomiHub.bat hoặc .ps1 để import chứng chỉ vào máy trước khi cài đặt AppX. Bản Portable chạy trực tiếp không cần chứng chỉ.
+   - **Xác minh cấu trúc gói:** FileVersion 0.5.5+47, Portable .zip 40 DLLs, Full .zip 461 entries nhúng JRE. Gói AppX .appxbundle có cấu trúc hợp lệ và chữ ký số SHA1 4C62D3C542A9EE3B0136F9AE49E65C0E38652A49 khớp YomiHub-RootCA.cer.
+   - **Cài đặt & Chạy thực tế:** Giải thích rõ tại sao signtool verify /pa báo root certificate is not trusted (do Root CA tự ký chưa nằm trong Trust Store mặc định của Windows). Người dùng bắt buộc phải chạy Install-YomiHub.bat hoặc .ps1 để import chứng chỉ vào máy trước khi cài đặt AppX. Bản Portable chạy trực tiếp không cần chứng chỉ.
    - Chưa có ảnh chụp cửa sổ độc lập (không đưa ảnh desktop môi trường làm việc vào tài liệu).
 7. **Liệt kê Cụ thể Các Ca Bị Chặn (Blocked Test Cases)**:
    - Android 6.0 (API 23): Bị chặn cấp OS do Linux kernel thiếu syscall cho Isar libmdbx.
@@ -2817,3 +2819,36 @@ ote9_screen2.png, win_home.png).
 2. **Cập nhật output/0.5.5/SHA256SUMS-0.5.5.txt**: Đã cập nhật dòng changelog mới, đối chiếu cả 15 tệp phân phối đều khớp 100%.
 3. **Cập nhật README.md**: Đồng bộ đường dẫn bảng theo dõi QA_FEATURE_CHECK_TRACKER.md và hướng dẫn script dựng 0.5.5.
 4. **Cập nhật Artifact QA_FEATURE_CHECK_055.md**: Đồng bộ đầy đủ 43 mục Feature Check và 11 mục YomiHub Update.
+
+### 10/11/2026 (Đợt 2) — Đồng bộ Manifest 21 tệp, Khắc phục Mã hóa Script PowerShell 5 UTF-8 BOM, Nạp Isar DLL Cục bộ & Kiểm chứng Hồi quy Toàn diện
+
+#### A. Yêu cầu & Chỉ đạo Kỹ thuật Bổ sung từ Người dùng
+1. **Bổ sung Manifest & Đối chiếu Thay đổi (21 tệp)**:
+   - Rà soát các tệp test có diff giữa v0.5.4 và v0.5.5 nhưng chưa nằm trong danh sách theo dõi. Bổ sung test/widgets/onboarding_screen_test.dart và test/yh_054_test.dart vào manifest thay đổi 0.5.5, nâng tổng số file overlay được quản lý và bảo toàn lên 21 tệp.
+   - Chạy đồng bộ sync_055.ps1 và xác minh bảng băm SHA256 khớp 100% giữa overlay/, D:\yh\build\mangayomi, và D:\yh\buildwin\mangayomi.
+2. **Khắc phục Triệt để Lỗi Parser Mã hóa CP1252 trên Windows PowerShell 5**:
+   - Xác định nguyên nhân gốc rễ khiến sync_055.ps1 và build_055.ps1 bị lỗi cú pháp (Cannot bind argument to parameter 'Path' because it is null và Unexpected token 'MB' in expression or statement) trên PowerShell 5.1 mặc định của Windows.
+   - Lưu trữ script với định dạng chuẩn **UTF-8 with BOM** ([System.Text.UTF8Encoding]::new(True)), đảm bảo tokenizer của PowerShell 5.1 nhận diện đúng toàn bộ các ký tự tiếng Việt đa byte, bảo toàn cấu trúc cú pháp và phép gán biến $tName/$tPath ngay sau checkout.
+3. **Nạp Thư viện libisar.dll Cục bộ (Zero Network Download)**:
+   - Trong overlay/test/yh_055_test.dart và overlay/test/yh_054_test.dart, cấu hình nạp DLL thông qua Isar.initializeIsarCore(libraries: {Abi.windowsX64: localDllPath}, download: false).
+   - Trỏ đường dẫn ưu tiên đến libisar.dll (996,352 bytes) có sẵn trong dự án và cache pub local (isar_community_flutter_libs-3.3.2), loại bỏ hoàn toàn việc phụ thuộc vào kết nối mạng tải binary runtime khi chạy kiểm thử.
+4. **Linh hoạt hóa Nhận diện Phiên bản trong yh_054_test.dart**:
+   - Sửa kiểm tra phiên bản cứng 0.5.4+46 tại dòng 165–166 thành biểu thức so khớp linh hoạt anyOf('YomiHub/0.5.4', 'YomiHub/0.5.5', startsWith('YomiHub/0.5.')) và pubspec.yaml kiểm tra linh hoạt 0.5.4+46, 0.5.5+47 hoặc 0.5.5 để bộ test hồi quy có thể chạy thông suốt trên cả hai phiên bản.
+5. **Chứng minh Tuyệt đối Cơ chế callbackInvoked trong writeTxnSyncSafe**:
+   - Tại Case 2 trong yh_055_test.dart, callback ném trực tiếp ngoại lệ IsarError('An async write transaction is already in progress').
+   - Chứng minh rằng ngay cả khi ngoại lệ ném ra mang nội dung tranh chấp giao dịch (_isAsyncTxnConflict(e) == true), cờ bảo vệ callbackInvoked == true lập tức ngăn chặn vòng lặp retry (continue), rethrow ngoại lệ về phía caller và bảo đảm callback chỉ chạy đúng 1 lần duy nhất (expect(callbackRunCount, 1)).
+6. **Khắc phục Lỗi Ký tự Null (0x00) trong TECHNICAL_UPDATE_NOTES.md**:
+   - Phát hiện và khắc phục 5 ký tự null byte (0x00) tồn tại tại các vị trí ghi số 0 của phiên bản (chuyển 0x00 thành ASCII 0x30 '0'), khôi phục hoàn toàn định dạng văn bản UTF-8 thuần túy cho tài liệu kỹ thuật.
+
+#### B. Kết quả Thực thi & Kiểm chứng Thực tế
+1. **Đồng bộ hóa 21 Tệp Overlay**:
+   - Chạy powershell -ExecutionPolicy Bypass -File .\sync_055.ps1.
+   - Toàn bộ 21 tệp overlay đã được copy và kiểm tra bảng băm SHA256 khớp 100% qua cả 3 thư mục (overlay/, D:\yh\build\mangayomi, D:\yh\buildwin\mangayomi). Báo cáo lưu tại audit-0.5.5/sha256_verification.txt.
+2. **Kiểm thử Đơn vị Chuyên sâu**:
+   - **test/yh_055_test.dart**: Nạp libisar.dll local (IsarCore using libmdbx: v0.13.8-temp-upstream-fix). Vượt qua toàn bộ 5/5 ca kiểm thử trong 2 giây. Case 2 kiểm chứng thành công ngoại lệ conflict không bị retry lặp lại (callbackRunCount: 1).
+   - **test/yh_054_test.dart**: Nạp libisar.dll local. Vượt qua toàn bộ 10/10 nhóm kiểm thử hồi quy bao gồm hàng đợi ghi Isar, CPU Ryzen fallback, khung hình watchdog.
+   - **test/widgets/onboarding_screen_test.dart**: Vượt qua toàn bộ 38/38 ca kiểm thử giao diện Onboarding và TV Leanback.
+   - **Toàn bộ bộ kiểm thử 17 tệp (build_055.ps1 -step unit)**: Chạy và vượt qua 100% không phát sinh bất kỳ lỗi nào (QUY TRÌNH BUILD YOMIHUB 0.5.5 HOÀN TẤT THÀNH CÔNG).
+3. **Trạng thái Mã nguồn & Cam kết Quản lý**:
+   - Toàn bộ thay đổi được lưu tại overlay/ làm nguồn chân lý duy nhất.
+   - Các script sync_055.ps1 và build_055.ps1 tương thích hoàn toàn với PowerShell 5.1 và PowerShell 7+.

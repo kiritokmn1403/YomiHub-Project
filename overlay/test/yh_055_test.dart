@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -20,7 +21,30 @@ import 'package:mangayomi/yomihub/app_identity.dart';
 
 void main() {
   setUpAll(() async {
-    await Isar.initializeIsarCore(download: true);
+    // Resolve local DLL for Isar Community on Windows to avoid runtime downloads
+    if (Platform.isWindows) {
+      final candidates = [
+        'libisar.dll',
+        r'build\windows\x64\runner\Release\libisar.dll',
+        r'D:\yh\buildwin\mangayomi\build\windows\x64\runner\Release\libisar.dll',
+        r'C:\Users\nguye\AppData\Local\Pub\Cache\hosted\pub.dev\isar_community_flutter_libs-3.3.2\windows\libisar.dll',
+      ];
+      String? localDll;
+      for (final path in candidates) {
+        if (File(path).existsSync()) {
+          localDll = File(path).absolute.path;
+          break;
+        }
+      }
+      if (localDll != null) {
+        await Isar.initializeIsarCore(
+          libraries: {Abi.windowsX64: localDll},
+          download: false,
+        );
+        return;
+      }
+    }
+    await Isar.initializeIsarCore(download: false);
   });
 
   group('YomiHub 0.5.5 Core & Database Integrity', () {
@@ -81,7 +105,7 @@ void main() {
       }
     });
 
-    test('Case 2: Callback exception is returned to caller and never retried', () async {
+    test('Case 2: Callback exception (even with conflict message) is returned to caller and never retried', () async {
       final tempDir = await Directory.systemTemp.createTemp('yh_055_isar_err_');
       try {
         final isar = await Isar.open(
@@ -104,15 +128,22 @@ void main() {
         int callbackRunCount = 0;
         final failureFuture = isar.writeTxnSyncSafe(() {
           callbackRunCount++;
-          throw const FormatException('custom_db_callback_error');
-        });
+          // Ném chính IsarError có nội dung tranh chấp để chứng minh callbackInvoked
+          // chặn đứng việc retry lặp lại callback
+          throw IsarError('An async write transaction is already in progress');
+        }, maxConflictRetries: 5, conflictRetryDelay: const Duration(milliseconds: 10));
 
         await expectLater(
           failureFuture,
-          throwsA(isA<FormatException>().having((e) => e.message, 'message', 'custom_db_callback_error')),
+          throwsA(isA<IsarError>().having(
+            (e) => e.message,
+            'message',
+            contains('async write transaction is already in progress'),
+          )),
         );
 
-        // Lỗi từ bên trong callback không bao giờ kích hoạt retry
+        // QUAN TRỌNG: Dù lỗi là conflict IsarError, callbackInvoked == true
+        // đảm bảo callback chỉ chạy ĐÚNG 1 LẦN, tuyệt đối không bị retry lặp lại!
         expect(callbackRunCount, 1);
 
         await isar.close();

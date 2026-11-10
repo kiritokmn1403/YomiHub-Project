@@ -1,4 +1,4 @@
-# sync_055.ps1 - Synchronize overlay changes for YomiHub 0.5.5 with SHA256 verification and baseline protection
+﻿# sync_055.ps1 - Synchronize overlay changes for YomiHub 0.5.5 with SHA256 verification and baseline protection
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8

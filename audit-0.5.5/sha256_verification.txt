@@ -1,5 +1,5 @@
 ﻿BÁO CÁO ĐỐI CHIẾU MÃ BĂM SHA256 - YOMIHUB 0.5.5
-Thời gian: 2026-11-09 23:13:13
+Thời gian: 2026-11-10 08:03:09
 ------------------------------------------------------------------------------------------------------------------------
 Tệp tin                                       | Mã băm SHA256 (Overlay)                                          | Kết quả so khớp
 ------------------------------------------------------------------------------------------------------------------------
@@ -22,6 +22,6 @@ lib/repositories/update_repository.dart       | FDBA285A6A61644BB7B7442931F825AB
 lib/services/sync/sync_entity_applier.dart    | 972D153345CEAD9C185499CC760D49939E080FB4DFBD97D072C82787271D38D5 | KHỚP 100% (Android & Windows)
 lib/utils/client_id.dart                      | 8D32FBE3CE349D79A2C332F97AB81365F6F56B61336D674079CC7B8A717FAB63 | KHỚP 100% (Android & Windows)
 test/widgets/onboarding_screen_test.dart      | 6F32A29D944796DB91C78052FBD8FE73C48C9DA4892B356E695DEA5C68A6398D | KHỚP 100% (Android & Windows)
-test/yh_054_test.dart                         | EC90B6CB4A82DFA49A71BD4F6FCD8B34332006B963BC9A3370EAED2D7E5650CB | KHỚP 100% (Android & Windows)
-test/yh_055_test.dart                         | BE628E5089F4BAA980AAC98F662BA37F9A57E97B76EC3E71622071186CA6CA83 | KHỚP 100% (Android & Windows)
+test/yh_054_test.dart                         | C9077CD18F8C77FE2E4BA634DD93A95AA7268921B27934721B2A1394561F243B | KHỚP 100% (Android & Windows)
+test/yh_055_test.dart                         | ECA6BD8FE0C0861F68A7F322E917BE1D5F0BCE26E015126EE780F9FD0E71A50F | KHỚP 100% (Android & Windows)
 ------------------------------------------------------------------------------------------------------------------------
