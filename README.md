@@ -48,7 +48,7 @@ Kiểm tra toàn vẹn: [SHA256SUMS-0.5.5.txt](https://github.com/kiritokmn1403/
 | `overlay/` | **Mã nguồn YomiHub đầy đủ**: `lib`, `android`, `windows`, `assets`, `packages`, `test`, `pubspec.yaml`. Thư mục này được chép đè lên nền Mangayomi để dựng. |
 | `src/mangayomi/` | Mã Mangayomi gốc (upstream) dùng làm nền. Xem `src/BASE_VERSION.txt`. |
 | `build_055.ps1`, `sync_055.ps1`, `build_054.ps1`, `common.ps1`, `make_installer_exe.ps1`, `make_appxbundle.ps1`, `run_jobs*.ps1`, `*.bat` | Bộ script dựng APK, APK TV, Windows và đóng gói. |
-| `audit-0.5.5/`, `audit-0.5.4/` | Kế hoạch, danh sách tệp thay đổi và tài liệu kiểm thử 0.5.4. |
+| `audit-0.5.5/`, `audit-0.5.4/` | Kế hoạch, danh sách tệp thay đổi và tài liệu kiểm thử 0.5.4/0.5.5 (bảng theo dõi `QA_FEATURE_CHECK_TRACKER.md`). |
 | `audit-0.3.9/` … `audit-0.5.3/` | Ghi chú, danh sách tệp đã sửa, ảnh kiểm thử của từng đợt trước. |
 | `AGENTS.md`, `TECHNICAL_UPDATE_NOTES.md` | Quy định và nhật ký kỹ thuật bắt buộc đọc trước mỗi lần cập nhật. |
 
@@ -68,5 +68,5 @@ Các tệp sau được loại qua `.gitignore`:
 Xem phần 7 và mục 19 của `TECHNICAL_UPDATE_NOTES.md`. Các bước:
 
 1. Chép `overlay/` đè lên `src/mangayomi` vào thư mục dựng.
-2. Chạy `build_054.ps1 -step test|apk|tv|win|pack` (Flutter 3.47.6, Dart 3.13.5).
+2. Chạy `build_055.ps1 -step test|apk|tv|win|pack` (hoặc `build_054.ps1`) (Flutter 3.47.6, Dart 3.13.5).
 3. Dựng APK cần khoá ký riêng của bạn trong `android/key.properties`. Tệp này không có trong repo.

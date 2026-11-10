@@ -2774,3 +2774,46 @@ Theo góp ý của người dùng về việc tách biệt API đồng bộ và 
 2. Thiết kế hàm riêng writeTxnSyncQ<T> trả về Future<T> cho các tác vụ cần xếp hàng đợi chống nghẽn ghi đồng thời.
 3. Bổ sung bài kiểm thử tự động chứng minh hàm lush() sau write có tranh chấp phải đợi transaction commit thực tế vào CSDL Isar.
 4. *Lưu ý:* Các cải tiến này sẽ được áp dụng và đóng gói trong phiên bản v0.5.6 tiếp theo, không làm xáo trộn bản phát hành v0.5.5 đã hoàn tất.
+
+### Đợt cập nhật 10/11/2026 (Phiên rà soát nghiệm thu cuối & Hoàn thiện kiểm chứng)
+
+#### A. Yêu cầu & Chỉ đạo Kỹ thuật Khẩn cấp
+1. **Khắc phục ngay sự cố ảnh 
+ote9_home.png**:
+   - Phát hiện ảnh chụp trước đó bị dính giao diện ứng dụng Điện thoại / bàn phím số của Samsung do mất focus.
+   - Hành động khẩn cấp: Xóa vĩnh viễn 
+ote9_home.png khỏi thư mục output/0.5.5/qa/, loại bỏ khỏi toàn bộ hồ sơ, không upload lên GitHub, tuyệt đối không gửi bất kỳ thao tác nào lên bàn phím gọi.
+2. **Quy tắc Kiểm tra Foreground Package Bắt buộc trước Thao tác ADB**:
+   - Trước MỌI thao tác ADB / chụp ảnh / quay video, BẮT BUỘC thực thi lệnh kiểm tra:
+     db shell "dumpsys window | grep mCurrentFocus"
+   - Chỉ được phép thao tác khi foreground package chính xác là com.yomihub.app và trên đúng display chính; nếu phát hiện sai lệch phải DỪNG NGAY LẬP TỨC.
+3. **Kiểm chứng Giao diện Mobile Sạch trên Máy ảo Android Phone (emulator-5556)**:
+   - Khởi động máy ảo điện thoại Medium_Phone_API_37.0 (x86_64, Android 15/API 37) để kiểm thử giao diện Mobile độc lập hoàn toàn với sự chập chờn của cáp USB vật lý.
+   - Cài đặt gói YomiHub-0.5.5-x86_64.apk (versionCode: 4047). Xác minh foreground app trước khi chụp. Chụp ảnh màn hình Trang chủ (phone_home.png 65 KB) và Duyệt nguồn (phone_browse.png 232 KB) đảm bảo 100% sạch, 0 dữ liệu cá nhân.
+4. **Đồng bộ Changelog Public & Bỏ Tham chiếu Ảnh Cục bộ**:
+   - Rà soát output/0.5.5/YomiHub-0.5.5-changelog.md: loại bỏ toàn bộ các đường dẫn dẫn đến ảnh cục bộ đã xóa (
+ote9_home.png, 
+ote9_screen2.png, win_home.png).
+   - Cập nhật mô tả kết quả kiểm chứng khách quan, trung thực cho cả Mobile, TV và Windows.
+5. **Chuẩn hóa Trạng thái Android TV trong Tracker**:
+   - Thay đổi trạng thái của mục 10 và C4 từ "ĐẠT 100%" thành:
+     **Một phần (Đã xác minh Leanback & D-pad Navigation - Chờ QA phát video thực tế)**.
+   - Ghi nhận rõ: Đã nghiệm thu giao diện Leanback TV loại bỏ 4 mục Comic/Novel/Play Books/Booru, điều hướng D-pad highlight trên thẻ nguồn HotPhim và mở danh mục extension. Chưa hoàn tất nghiệm thu luồng phát video anime/phim và phụ đề chuyên sâu.
+6. **Tách biệt Rõ ràng giữa Xác minh Cấu trúc Gói vs Cài đặt/Chạy Thực tế (Windows)**:
+   - **Xác minh cấu trúc gói:** FileVersion  .5.5+47, Portable .zip 40 DLLs, Full .zip 461 entries nhúng JRE. Gói AppX .appxbundle có cấu trúc hợp lệ và chữ ký số SHA1 4C62D3C542A9EE3B0136F9AE49E65C0E38652A49 khớp YomiHub-RootCA.cer.
+   - **Cài đặt & Chạy thực tế:** Giải thích rõ tại sao signtool verify /pa báo oot certificate is not trusted (do Root CA tự ký chưa nằm trong Trust Store mặc định của Windows). Người dùng bắt buộc phải chạy Install-YomiHub.bat hoặc .ps1 để import chứng chỉ vào máy trước khi cài đặt AppX. Bản Portable chạy trực tiếp không cần chứng chỉ.
+   - Chưa có ảnh chụp cửa sổ độc lập (không đưa ảnh desktop môi trường làm việc vào tài liệu).
+7. **Liệt kê Cụ thể Các Ca Bị Chặn (Blocked Test Cases)**:
+   - Android 6.0 (API 23): Bị chặn cấp OS do Linux kernel thiếu syscall cho Isar libmdbx.
+   - Windows 7/8/ARM: Bị chặn cấp nền tảng do Flutter Windows chỉ hỗ trợ Windows 10+ x64.
+   - Cáp USB Note 9: Chập chờn phần cứng và nguy cơ nhảy focus.
+   - Ảnh cửa sổ Windows độc lập: Bị chặn do DirectComposition swapchain trong môi trường unattended.
+   - Bypass Cloudflare: Phụ thuộc vào chính sách Turnstile của từng website ngoại vi.
+   - Đồng bộ Đám mây: Cần tài khoản WebDAV/Google Drive thực tế.
+
+#### B. Cập nhật Bảng băm & Đồng bộ Phát hành
+1. **Mã băm SHA256 mới của YomiHub-0.5.5-changelog.md**:
+   - 29387b383bf0a4949d556f24a08f178e0168772eabcd4f9b49ebfbd87ea49106
+2. **Cập nhật output/0.5.5/SHA256SUMS-0.5.5.txt**: Đã cập nhật dòng changelog mới, đối chiếu cả 15 tệp phân phối đều khớp 100%.
+3. **Cập nhật README.md**: Đồng bộ đường dẫn bảng theo dõi QA_FEATURE_CHECK_TRACKER.md và hướng dẫn script dựng 0.5.5.
+4. **Cập nhật Artifact QA_FEATURE_CHECK_055.md**: Đồng bộ đầy đủ 43 mục Feature Check và 11 mục YomiHub Update.
