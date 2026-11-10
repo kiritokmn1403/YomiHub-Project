@@ -1,4 +1,4 @@
-﻿# build_055.ps1 - YomiHub 0.5.5 build & packaging script with strict artifact, ABI, versionCode, and signature verification.
+# build_055.ps1 - YomiHub 0.5.5 build & packaging script with strict artifact, ABI, versionCode, and signature verification.
 param([string]$step = 'all')
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8

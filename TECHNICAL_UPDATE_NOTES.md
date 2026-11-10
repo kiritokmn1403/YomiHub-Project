@@ -2715,3 +2715,62 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
    - Cập nhật README.md với các liên kết tải phát hành v0.5.5.
    - Thực thi elease_055.ps1 để tự động tải toàn bộ artifacts lên GitHub Releases (https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.5.5).
    - Kiểm tra mã nguồn, cam kết an toàn bảo mật và đẩy commit lên nhánh chính (main).
+
+### Đợt cập nhật 10/11/2026: Kiểm chứng Độc lập sau Phát hành v0.5.5, Khắc phục Bảng băm, Kiểm thử Chuyên sâu Android TV D-pad & Xác minh Gói Windows
+
+#### A. Yêu cầu & Chỉ đạo Kỹ thuật (Sáng 10/11/2026)
+1. **Đối chiếu digest Release 16 assets & khắc phục bảng băm**: Kiểm tra toàn bộ 16 assets trên GitHub Release v0.5.5, phát hiện và sửa sai lệch mã băm YomiHub-0.5.5-changelog.md trong SHA256SUMS-0.5.5.txt, re-upload lên GitHub Release và kiểm chứng tải về khớp 100%.
+2. **Khắc phục lỗi định dạng ảnh UTF-16 & xử lý ảnh TV trùng lặp**:
+   - Khắc phục lỗi chuyển hướng luồng stdout PowerShell làm các file ảnh PNG bị chèn BOM UTF-16 (FF FE FD FF).
+   - Chuyển toàn bộ quy trình chụp màn hình thiết bị Android sang: db shell screencap -p /sdcard/... -> db pull -> db shell rm.
+   - Kiểm tra mở và đối chiếu trực quan từng ảnh; giải quyết triệt để vấn đề ảnh TV bị lặp nội dung bằng cách kiểm tra D-pad focus highlight và chuyển tab thực tế; quay video thao tác thật 	v_demo.mp4.
+3. **Tuân thủ Tuyệt đối Quy tắc Bảo mật & Quyền riêng tư (Windows QA)**:
+   - File win_home.png (139 KB) trước đó có chứa cửa sổ môi trường làm việc của hệ thống (Explorer, IDE); TUYỆT ĐỐI KHÔNG ĐƯỢC ĐƯA LÊN GITHUB.
+   - Đã xóa triệt để file win_home.png khỏi thư mục bàn giao output/0.5.5/qa/.
+   - Nguyên tắc: Nếu chưa chụp được ảnh cửa sổ Win32 độc lập không dính màn hình nền, phải loại bỏ ảnh và ghi nhận trung thực là chưa có bằng chứng ảnh cửa sổ độc lập.
+4. **Ghi nhận Trung thực Tình trạng Thiết bị Samsung Galaxy Note 9**:
+   - Thiết bị SM-N960N bị ngắt kết nối cáp USB vật lý trong quá trình truyền tải APK nặng 176MB; ghi nhận trung thực tình trạng chờ kết nối lại thiết bị thật.
+5. **Cập nhật Bảng theo dõi QA & Quy tắc Phiên bản sau Tag**:
+   - Sửa QA_FEATURE_CHECK_TRACKER.md: loại bỏ hoàn toàn các ghi chú cũ ghi "đang build", phân định rõ ràng giữa khởi động app vs kiểm thử tính năng sâu.
+   - Khẳng định quy tắc sau Tag: Bản phát hành v0.5.5 (commit 1aea29a) đã đóng gói và phát hành. Mọi cải tiến mã nguồn tiếp theo (như tách API writeTxnSyncSafe đồng bộ và writeTxnSyncQ bất đồng bộ) thuộc phạm vi của đợt phát hành tiếp theo (v0.5.6/patch1) và sẽ yêu cầu quy trình build/tag mới; không coi gói đã phát hành là chứa sửa đổi sau tag.
+
+#### B. Nguyên nhân Kỹ thuật & Biện pháp Khắc phục
+1. **Sai lệch hash changelog trong SHA256SUMS-0.5.5.txt**:
+   - *Nguyên nhân:* File YomiHub-0.5.5-changelog.md được tinh chỉnh nội dung sau khi script băm uild_055.ps1 chạy lần đầu, dẫn đến mã băm trong file tổng kết không phản ánh bản changelog cuối cùng.
+   - *Khắc phục:* Viết script tính lại SHA256 chính xác của cả 15 tệp phân phối, cập nhật output/0.5.5/SHA256SUMS-0.5.5.txt, dùng GitHub API xóa asset cũ và upload asset mới thành công (HTTP 201). Kiểm chứng tải lại từ GitHub URL và đối chiếu với local: **TRÙNG KHỚP 100% (Match: True)**.
+2. **Lỗi ảnh PNG bị corrupt với header FF FE FD FF (UTF-16 BOM)**:
+   - *Nguyên nhân:* Lệnh PowerShell db exec-out screencap -p > file.png chuyển hướng output dạng text Unicode UTF-16 của PowerShell 5.1, làm hỏng nhị phân của file PNG.
+   - *Khắc phục:* Dùng db shell screencap -p /sdcard/snap.png, sau đó db pull /sdcard/snap.png local.png và db shell rm /sdcard/snap.png. Kết quả: Magic bytes chuẩn PNG 89 50 4E 47 0D 0A 1A 0A.
+3. **Lỗi ảnh TV trùng lặp nội dung**:
+   - *Nguyên nhân:* D-pad keyevent chỉ di chuyển focus nếu widget đang lắng nghe; khi focus ở ngoài danh sách, lệnh không kích hoạt chuyển tab.
+   - *Khắc phục:* Điều hướng chính xác theo cấu trúc NavigationRail và danh sách nguồn:
+     + Chụp 	v_home.png (45 KB): Màn hình Thư viện Phim & Điện ảnh trống, thanh điều hướng chỉ có 4 mục.
+     + Chụp 	v_browse.png (103 KB): Màn hình Duyệt (Browse) hiển thị danh sách các nguồn video anime/phim (HotPhim, YouTube, AVSub, Anime47...).
+     + Chụp 	v_dpad_nav.png (131 KB): Màn hình Duyệt với vệt sáng D-pad focus highlight màu xanh nhạt bao quanh thẻ nguồn HotPhim.
+     + Chụp 	v_more.png (75 KB): Màn hình Thêm (More / Settings) hiển thị các tùy chọn "Chỉ mục đã tải", "Chế độ ẩn danh", "Lịch sử", "Trình duyệt", v.v.
+     + Quay video thực tế 	v_demo.mp4 (160 KB) bằng db shell screenrecord.
+4. **Vấn đề Chụp ảnh Cửa sổ Win32 Desktop**:
+   - *Nguyên nhân:* Flutter Desktop trên Windows render thông qua DirectX/DirectComposition swapchain, PrintWindow API trả về bitmap trắng hoặc chụp đè cửa sổ khác nếu không có compositing độc lập.
+   - *Khắc phục:* Tuân thủ quy định bảo mật: Xóa triệt để ảnh desktop dính môi trường khỏi thư mục bàn giao, không upload lên git/release, và ghi nhận trung thực tình trạng chưa có ảnh cửa sổ độc lập.
+
+#### C. Kết quả Kiểm thử & Nghiệm thu Chi tiết
+1. **Kiểm thử Android TV (AVD YomiHub_TV_API34 - x86, Android 14)**:
+   - Cài đặt thành công YumiHub-Android-TV-0.5.5-armeabi-v7a.apk (Package: com.yomihub.app, versionCode: 1047, versionName:  .5.5, Label: 'YumiHub Android TV').
+   - Giao diện Leanback hoàn toàn sạch: Loại bỏ 100% Comic, Novel, Google Play Books, Booru App.
+   - Điều hướng D-pad qua NavigationRail và danh sách nguồn phản hồi mượt mà, tiêu điểm focus hiển thị rõ ràng.
+   - Mở thử danh mục extension HotPhim hiển thị đầy đủ chip filter (Phổ biến, Mới nhất, Bộ lọc) và layout card.
+   - Giám sát logcat: 0 fatal exceptions.
+   - Bằng chứng lưu tại: output/0.5.5/qa/tv_home.png, 	v_browse.png, 	v_dpad_nav.png, 	v_more.png, 	v_demo.mp4.
+2. **Kiểm thử Các Gói Cài đặt Windows 10/11 x64**:
+   - **Gói Portable (YomiHub-0.5.5-windows-x64.zip):** Giải nén thử nghiệm thành công, YomiHub.exe có FileVersion:  .5.5+47, ProductVersion:  .5.5+47. Chứa đủ 40 DLLs phụ thuộc (lutter_windows.dll, libisar.dll, libmpv-2.dll, lutter_qjs_plugin.dll, VC++ runtime...).
+   - **Gói Full (YomiHub-0.5.5-windows-x64-full.zip):** Chứa 461 entries, tích hợp đầy đủ MES JRE runtime và 54 JAR bridges.
+   - **Gói AppX Bundle (YomiHub-0.5.5-windows-x64.appxbundle):** Xác minh chữ ký số qua signtool.exe verify /pa /v có Primary Signature hợp lệ, Signing Certificate Chain có SHA1 Thumbprint: 4C62D3C542A9EE3B0136F9AE49E65C0E38652A49 trùng khớp 100% với chứng chỉ gốc phân phối YomiHub-RootCA.cer. Đi kèm Install-YomiHub.bat và .ps1 để cài đặt tự động vào Trust Store.
+3. **Thiết bị Samsung Galaxy Note 9 (SM-N960N)**:
+   - Trạng thái: Tạm dừng kiểm thử do cáp USB vật lý bị ngắt kết nối. Đã loại bỏ 2 file ảnh lỗi format UTF-16 trước đó. Sẽ thực hiện cài đặt và chụp ảnh kiểm chứng bổ sung ngay khi kết nối lại thiết bị.
+
+#### D. Kế hoạch Kiến trúc CSDL cho Phiên bản Tiếp theo (v0.5.6)
+Theo góp ý của người dùng về việc tách biệt API đồng bộ và hàng đợi bất đồng bộ:
+1. Giữ nguyên API writeTxnSyncSafe<T> trả về T đồng bộ cho các caller cần nhận giá trị tức thì mà không cần await Future.
+2. Thiết kế hàm riêng writeTxnSyncQ<T> trả về Future<T> cho các tác vụ cần xếp hàng đợi chống nghẽn ghi đồng thời.
+3. Bổ sung bài kiểm thử tự động chứng minh hàm lush() sau write có tranh chấp phải đợi transaction commit thực tế vào CSDL Isar.
+4. *Lưu ý:* Các cải tiến này sẽ được áp dụng và đóng gói trong phiên bản v0.5.6 tiếp theo, không làm xáo trộn bản phát hành v0.5.5 đã hoàn tất.
