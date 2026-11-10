@@ -24,7 +24,12 @@ function Log($m) { $line = "[{0}] {1}" -f (Get-Date -Format HH:mm:ss), $m; Write
 
 $files = @(Get-ChildItem $out -File | Sort-Object Name)
 $extra = @("$root\TECHNICAL_UPDATE_NOTES.md")
-foreach ($e in $extra) { if (Test-Path $e) { $files += Get-Item $e } }
+foreach ($e in $extra) {
+    if ((Test-Path $e) -and -not ($files | Where-Object { $_.Name -eq (Split-Path $e -Leaf) })) {
+        $files += Get-Item $e
+    }
+}
+$files = @($files | Sort-Object Name)
 # ReadAllText: Get-Content -Raw adds PSPath note properties that ConvertTo-Json would serialize
 [string]$body = [IO.File]::ReadAllText("$out\YomiHub-0.5.5-changelog.md", [Text.Encoding]::UTF8)
 

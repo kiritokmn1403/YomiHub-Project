@@ -2652,9 +2652,9 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
 
 #### E. Quy trình Biên dịch, Đóng gói & Xác minh Artifacts (build_055.ps1)
 1. **Xác minh quy tắc tính VersionCode per ABI của Flutter**:
-   - Khi chạy lutter build apk --split-per-abi với pubspec.yaml phiên bản 0.5.5+47:
-     + rmeabi-v7a: 1000 + 47 = 1047
-     + rm64-v8a: 2000 + 47 = 2047
+   - Khi chạy `flutter build apk --split-per-abi` với pubspec.yaml phiên bản 0.5.5+47:
+     + armeabi-v7a: 1000 + 47 = 1047
+     + arm64-v8a: 2000 + 47 = 2047
      + x86_64: 4000 + 47 = 4047
    - Xác minh nâng cấp hợp lệ đối chiếu với bản 0.5.4 (1047 > 1046, 2047 > 2046, 4047 > 4046).
 2. **Biên dịch & Đóng gói Mobile APK (YomiHub-0.5.5-*.apk)**:
@@ -2678,28 +2678,28 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
    - 7430cca2cd185bfe1ed31805a018279b214221f5d3da9506ddd332cfbcb0a6b9  YomiHub-0.5.5-arm64-v8a.apk
    - 135856b818d8679ed9b3941e7fb734ef255c68ac6c00da019fbf4eaa6688c9fa  YomiHub-0.5.5-armeabi-v7a.apk
    - 35c7836ed0f8a5ef96dad4385f8cb395517a8a1ece86957c705ec0a7a8f158f6  YomiHub-0.5.5-changelog.md
-   - cc55af321b505f163770a86fe8343edd31c05f1f0a1e9a81cf6398ac7b2f88c  YomiHub-0.5.5-windows-x64-full.zip
-   - 9efc4a38a5764a8e9084afe792548746bbbbb5dcb33a507563adf49a65809f0  YomiHub-0.5.5-windows-x64-Setup.exe
+   - fcc55af321b505f163770a86fe8343edd31c05f1f0a1e9a81cf6398ac7b2f88c  YomiHub-0.5.5-windows-x64-full.zip
+   - a9efc4a38a5764a8e9084afe792548746bbbbb5dcb33a507563adf49a65809f0  YomiHub-0.5.5-windows-x64-Setup.exe
    - 79028a05504264d7890b4af2a9aeda15253dbcc6ce54ab2e4d39621cb5abecf0  YomiHub-0.5.5-windows-x64.appxbundle
    - 595273e444cd6ee7a92c07200a40f96df36ef9ddc987ee4386bf0104a17d0066  YomiHub-0.5.5-windows-x64.zip
    - 14ed7e85b685287a089026cdfc197f15e9f4c87b8f45641e688587179e70b0ee  YomiHub-0.5.5-x86_64.apk
-   - 9bb1c0d81675c183481ea35fac290cbc907b62154d27d63a323396db8019950  YomiHub-RootCA.cer
+   - a9bb1c0d81675c183481ea35fac290cbc907b62154d27d63a323396db8019950  YomiHub-RootCA.cer
    - 71a5c9d5c6b03732b9be970eb4d82cfafc7f433a5e80cf195930a9ea00322ae6  YumiHub-Android-TV-0.5.5-arm64-v8a.apk
    - 5fc7195d155f4d147c1d3fe8a15c50decb2c6996890adef8717f62439e9e8e65  YumiHub-Android-TV-0.5.5-armeabi-v7a.apk
-   - 6f35d97d311438b363a10b6f09e4d87321de37c1558d6637457fa267f80e34c  YumiHub-Android-TV-0.5.5-x86_64.apk
+   - a6f35d97d311438b363a10b6f09e4d87321de37c1558d6637457fa267f80e34c  YumiHub-Android-TV-0.5.5-x86_64.apk
 
 #### F. Kết quả Nghiệm thu QA trên Thiết bị Thật & Giả lập
 1. **Samsung Galaxy Note 9 (281038ac31217ece, SM-N960N, Android 10)**:
-   - Cài đặt trực tiếp: db install -r YomiHub-0.5.5-arm64-v8a.apk thành công.
-   - dumpsys package com.mangayomi: ersionCode=2047, ersionName=0.5.5, minSdk=24, 	argetSdk=36.
+   - Cài đặt trực tiếp: adb install -r YomiHub-0.5.5-arm64-v8a.apk thành công.
+   - dumpsys package com.mangayomi: versionCode=2047, versionName=0.5.5, minSdk=24, targetSdk=36.
    - Khởi chạy sạch, duy trì nguyên vẹn cấu hình và dữ liệu CSDL.
    - Giám sát logcat: Không phát sinh bất kỳ ngoại lệ nghiêm trọng (0 fatal exceptions).
    - Chứng cứ hình ảnh: output/0.5.5/qa/note9_home.png (1.46 MB) và output/0.5.5/qa/note9_screen2.png (4.02 MB).
 2. **Android TV Emulator (emulator-5554, AVD YomiHub_TV_API34, Android 14)**:
-   - Cài đặt: db install -r YumiHub-Android-TV-0.5.5-armeabi-v7a.apk thành công.
-   - dumpsys package com.mangayomi: ersionCode=1047, ersionName=0.5.5, minSdk=24, 	argetSdk=36.
+   - Cài đặt: adb install -r YumiHub-Android-TV-0.5.5-armeabi-v7a.apk thành công.
+   - dumpsys package com.mangayomi: versionCode=1047, versionName=0.5.5, minSdk=24, targetSdk=36.
    - Khởi chạy giao diện TV Leanback thành công qua com.mangayomi.MainActivity.
-   - Kiểm thử điều hướng phím D-pad (db shell input keyevent 20 - KEYCODE_DPAD_DOWN) phản hồi chính xác giữa các thẻ nội dung.
+   - Kiểm thử điều hướng phím D-pad (adb shell input keyevent 20 - KEYCODE_DPAD_DOWN) phản hồi chính xác giữa các thẻ nội dung.
    - Giám sát logcat: 0 fatal exceptions.
    - Chứng cứ hình ảnh: output/0.5.5/qa/tv_home.png và output/0.5.5/qa/tv_dpad_nav.png.
 3. **Môi trường Windows 10/11 x64**:
@@ -2710,12 +2710,12 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
 
 #### G. Giới hạn Kỹ thuật Khách quan & Bước tiếp theo
 1. **Giới hạn Android 6.0 (API 23)**:
-   - Nhân Linux Bionic của Android 6.0 thiếu syscall cấp kernel cần thiết cho Isar C++ Core (libmdbx), gây lỗi MDBX_INCOMPATIBLE (-30784). Do đó minSdk trong uild.gradle bắt buộc giữ ở mức 24 (Android 7.0+) để đảm bảo an toàn vận hành CSDL.
+   - Nhân Linux Bionic của Android 6.0 thiếu syscall cấp kernel cần thiết cho Isar C++ Core (libmdbx), gây lỗi MDBX_INCOMPATIBLE (-30784). Do đó minSdk trong build.gradle bắt buộc giữ ở mức 24 (Android 7.0+) để đảm bảo an toàn vận hành CSDL.
 2. **Giới hạn Windows 7/8/ARM**:
    - Flutter Windows chính thức chỉ hỗ trợ Windows 10+ x64. Dự án xuất bản đầy đủ 3 định dạng trên Windows x64.
 3. **Bước tiếp theo**:
    - Cập nhật README.md với các liên kết tải phát hành v0.5.5.
-   - Thực thi elease_055.ps1 để tự động tải toàn bộ artifacts lên GitHub Releases (https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.5.5).
+   - Thực thi release_055.ps1 để tự động tải toàn bộ artifacts lên GitHub Releases (https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.5.5).
    - Kiểm tra mã nguồn, cam kết an toàn bảo mật và đẩy commit lên nhánh chính (main).
 
 ### Đợt cập nhật 10/11/2026: Kiểm chứng Độc lập sau Phát hành v0.5.5, Khắc phục Bảng băm, Kiểm thử Chuyên sâu Android TV D-pad & Xác minh Gói Windows
@@ -2724,8 +2724,8 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
 1. **Đối chiếu digest Release 16 assets & khắc phục bảng băm**: Kiểm tra toàn bộ 16 assets trên GitHub Release v0.5.5, phát hiện và sửa sai lệch mã băm YomiHub-0.5.5-changelog.md trong SHA256SUMS-0.5.5.txt, re-upload lên GitHub Release và kiểm chứng tải về khớp 100%.
 2. **Khắc phục lỗi định dạng ảnh UTF-16 & xử lý ảnh TV trùng lặp**:
    - Khắc phục lỗi chuyển hướng luồng stdout PowerShell làm các file ảnh PNG bị chèn BOM UTF-16 (FF FE FD FF).
-   - Chuyển toàn bộ quy trình chụp màn hình thiết bị Android sang: db shell screencap -p /sdcard/... -> db pull -> db shell rm.
-   - Kiểm tra mở và đối chiếu trực quan từng ảnh; giải quyết triệt để vấn đề ảnh TV bị lặp nội dung bằng cách kiểm tra D-pad focus highlight và chuyển tab thực tế; quay video thao tác thật 	v_demo.mp4.
+   - Chuyển toàn bộ quy trình chụp màn hình thiết bị Android sang: adb shell screencap -p /sdcard/... -> adb pull -> adb shell rm.
+   - Kiểm tra mở và đối chiếu trực quan từng ảnh; giải quyết triệt để vấn đề ảnh TV bị lặp nội dung bằng cách kiểm tra D-pad focus highlight và chuyển tab thực tế; quay video thao tác thật tv_demo.mp4.
 3. **Tuân thủ Tuyệt đối Quy tắc Bảo mật & Quyền riêng tư (Windows QA)**:
    - File win_home.png (139 KB) trước đó có chứa cửa sổ môi trường làm việc của hệ thống (Explorer, IDE); TUYỆT ĐỐI KHÔNG ĐƯỢC ĐƯA LÊN GITHUB.
    - Đã xóa triệt để file win_home.png khỏi thư mục bàn giao output/0.5.5/qa/.
@@ -2741,16 +2741,16 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
    - *Nguyên nhân:* File YomiHub-0.5.5-changelog.md được tinh chỉnh nội dung sau khi script băm build_055.ps1 chạy lần đầu, dẫn đến mã băm trong file tổng kết không phản ánh bản changelog cuối cùng.
    - *Khắc phục:* Viết script tính lại SHA256 chính xác của cả 15 tệp phân phối, cập nhật output/0.5.5/SHA256SUMS-0.5.5.txt, dùng GitHub API xóa asset cũ và upload asset mới thành công (HTTP 201). Kiểm chứng tải lại từ GitHub URL và đối chiếu với local: **TRÙNG KHỚP 100% (Match: True)**.
 2. **Lỗi ảnh PNG bị corrupt với header FF FE FD FF (UTF-16 BOM)**:
-   - *Nguyên nhân:* Lệnh PowerShell db exec-out screencap -p > file.png chuyển hướng output dạng text Unicode UTF-16 của PowerShell 5.1, làm hỏng nhị phân của file PNG.
-   - *Khắc phục:* Dùng db shell screencap -p /sdcard/snap.png, sau đó db pull /sdcard/snap.png local.png và db shell rm /sdcard/snap.png. Kết quả: Magic bytes chuẩn PNG 89 50 4E 47 0D 0A 1A 0A.
+   - *Nguyên nhân:* Lệnh PowerShell adb exec-out screencap -p > file.png chuyển hướng output dạng text Unicode UTF-16 của PowerShell 5.1, làm hỏng nhị phân của file PNG.
+   - *Khắc phục:* Dùng adb shell screencap -p /sdcard/snap.png, sau đó adb pull /sdcard/snap.png local.png và adb shell rm /sdcard/snap.png. Kết quả: Magic bytes chuẩn PNG 89 50 4E 47 0D 0A 1A 0A.
 3. **Lỗi ảnh TV trùng lặp nội dung**:
    - *Nguyên nhân:* D-pad keyevent chỉ di chuyển focus nếu widget đang lắng nghe; khi focus ở ngoài danh sách, lệnh không kích hoạt chuyển tab.
    - *Khắc phục:* Điều hướng chính xác theo cấu trúc NavigationRail và danh sách nguồn:
-     + Chụp 	v_home.png (45 KB): Màn hình Thư viện Phim & Điện ảnh trống, thanh điều hướng chỉ có 4 mục.
-     + Chụp 	v_browse.png (103 KB): Màn hình Duyệt (Browse) hiển thị danh sách các nguồn video anime/phim (HotPhim, YouTube, AVSub, Anime47...).
-     + Chụp 	v_dpad_nav.png (131 KB): Màn hình Duyệt với vệt sáng D-pad focus highlight màu xanh nhạt bao quanh thẻ nguồn HotPhim.
-     + Chụp 	v_more.png (75 KB): Màn hình Thêm (More / Settings) hiển thị các tùy chọn "Chỉ mục đã tải", "Chế độ ẩn danh", "Lịch sử", "Trình duyệt", v.v.
-     + Quay video thực tế 	v_demo.mp4 (160 KB) bằng db shell screenrecord.
+     + Chụp tv_home.png (45 KB): Màn hình Thư viện Phim & Điện ảnh trống, thanh điều hướng chỉ có 4 mục.
+     + Chụp tv_browse.png (103 KB): Màn hình Duyệt (Browse) hiển thị danh sách các nguồn video anime/phim (HotPhim, YouTube, AVSub, Anime47...).
+     + Chụp tv_dpad_nav.png (131 KB): Màn hình Duyệt với vệt sáng D-pad focus highlight màu xanh nhạt bao quanh thẻ nguồn HotPhim.
+     + Chụp tv_more.png (75 KB): Màn hình Thêm (More / Settings) hiển thị các tùy chọn "Chỉ mục đã tải", "Chế độ ẩn danh", "Lịch sử", "Trình duyệt", v.v.
+     + Quay video thực tế tv_demo.mp4 (160 KB) bằng adb shell screenrecord.
 4. **Vấn đề Chụp ảnh Cửa sổ Win32 Desktop**:
    - *Nguyên nhân:* Flutter Desktop trên Windows render thông qua DirectX/DirectComposition swapchain, PrintWindow API trả về bitmap trắng hoặc chụp đè cửa sổ khác nếu không có compositing độc lập.
    - *Khắc phục:* Tuân thủ quy định bảo mật: Xóa triệt để ảnh desktop dính môi trường khỏi thư mục bàn giao, không upload lên git/release, và ghi nhận trung thực tình trạng chưa có ảnh cửa sổ độc lập.
@@ -2762,9 +2762,9 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
    - Điều hướng D-pad qua NavigationRail và danh sách nguồn phản hồi mượt mà, tiêu điểm focus hiển thị rõ ràng.
    - Mở thử danh mục extension HotPhim hiển thị đầy đủ chip filter (Phổ biến, Mới nhất, Bộ lọc) và layout card.
    - Giám sát logcat: 0 fatal exceptions.
-   - Bằng chứng lưu tại: output/0.5.5/qa/tv_home.png, 	v_browse.png, 	v_dpad_nav.png, 	v_more.png, 	v_demo.mp4.
+   - Bằng chứng lưu tại: output/0.5.5/qa/tv_home.png, tv_browse.png, tv_dpad_nav.png, tv_more.png, tv_demo.mp4.
 2. **Kiểm thử Các Gói Cài đặt Windows 10/11 x64**:
-   - **Gói Portable (YomiHub-0.5.5-windows-x64.zip):** Giải nén thử nghiệm thành công, YomiHub.exe có FileVersion: 0.5.5+47, ProductVersion: 0.5.5+47. Chứa đủ 40 DLLs phụ thuộc (lutter_windows.dll, libisar.dll, libmpv-2.dll, lutter_qjs_plugin.dll, VC++ runtime...).
+   - **Gói Portable (YomiHub-0.5.5-windows-x64.zip):** Giải nén thử nghiệm thành công, YomiHub.exe có FileVersion: 0.5.5+47, ProductVersion: 0.5.5+47. Chứa đủ 40 DLLs phụ thuộc (flutter_windows.dll, libisar.dll, libmpv-2.dll, flutter_qjs_plugin.dll, VC++ runtime...).
    - **Gói Full (YomiHub-0.5.5-windows-x64-full.zip):** Chứa 461 entries, tích hợp đầy đủ MES JRE runtime và 54 JAR bridges.
    - **Gói AppX Bundle (YomiHub-0.5.5-windows-x64.appxbundle):** Xác minh chữ ký số qua signtool.exe verify /pa /v có Primary Signature hợp lệ, Signing Certificate Chain có SHA1 Thumbprint: 4C62D3C542A9EE3B0136F9AE49E65C0E38652A49 trùng khớp 100% với chứng chỉ gốc phân phối YomiHub-RootCA.cer. Đi kèm Install-YomiHub.bat và .ps1 để cài đặt tự động vào Trust Store.
 3. **Thiết bị Samsung Galaxy Note 9 (SM-N960N)**:
@@ -2774,28 +2774,24 @@ Chi tiết các tệp trong `output/0.5.4/` và tệp đối chiếu `SHA256SUMS
 Theo góp ý của người dùng về việc tách biệt API đồng bộ và hàng đợi bất đồng bộ:
 1. Giữ nguyên API writeTxnSyncSafe<T> trả về T đồng bộ cho các caller cần nhận giá trị tức thì mà không cần await Future.
 2. Thiết kế hàm riêng writeTxnSyncQ<T> trả về Future<T> cho các tác vụ cần xếp hàng đợi chống nghẽn ghi đồng thời.
-3. Bổ sung bài kiểm thử tự động chứng minh hàm lush() sau write có tranh chấp phải đợi transaction commit thực tế vào CSDL Isar.
+3. Bổ sung bài kiểm thử tự động chứng minh hàm flush() sau write có tranh chấp phải đợi transaction commit thực tế vào CSDL Isar.
 4. *Lưu ý:* Các cải tiến này sẽ được áp dụng và đóng gói trong phiên bản v0.5.6 tiếp theo, không làm xáo trộn bản phát hành v0.5.5 đã hoàn tất.
 
 ### Đợt cập nhật 10/11/2026 (Phiên rà soát nghiệm thu cuối & Hoàn thiện kiểm chứng)
 
 #### A. Yêu cầu & Chỉ đạo Kỹ thuật Khẩn cấp
-1. **Khắc phục ngay sự cố ảnh 
-ote9_home.png**:
+1. **Khắc phục ngay sự cố ảnh note9_home.png**:
    - Phát hiện ảnh chụp trước đó bị dính giao diện ứng dụng Điện thoại / bàn phím số của Samsung do mất focus.
-   - Hành động khẩn cấp: Xóa vĩnh viễn 
-ote9_home.png khỏi thư mục output/0.5.5/qa/, loại bỏ khỏi toàn bộ hồ sơ, không upload lên GitHub, tuyệt đối không gửi bất kỳ thao tác nào lên bàn phím gọi.
+   - Hành động khẩn cấp: Xóa vĩnh viễn note9_home.png khỏi thư mục output/0.5.5/qa/, loại bỏ khỏi toàn bộ hồ sơ, không upload lên GitHub, tuyệt đối không gửi bất kỳ thao tác nào lên bàn phím gọi.
 2. **Quy tắc Kiểm tra Foreground Package Bắt buộc trước Thao tác ADB**:
    - Trước MỌI thao tác ADB / chụp ảnh / quay video, BẮT BUỘC thực thi lệnh kiểm tra:
-     db shell "dumpsys window | grep mCurrentFocus"
+     adb shell "dumpsys window | grep mCurrentFocus"
    - Chỉ được phép thao tác khi foreground package chính xác là com.yomihub.app và trên đúng display chính; nếu phát hiện sai lệch phải DỪNG NGAY LẬP TỨC.
 3. **Kiểm chứng Giao diện Mobile Sạch trên Máy ảo Android Phone (emulator-5556)**:
    - Khởi động máy ảo điện thoại Medium_Phone_API_37.0 (x86_64, Android 15/API 37) để kiểm thử giao diện Mobile độc lập hoàn toàn với sự chập chờn của cáp USB vật lý.
    - Cài đặt gói YomiHub-0.5.5-x86_64.apk (versionCode: 4047). Xác minh foreground app trước khi chụp. Chụp ảnh màn hình Trang chủ (phone_home.png 65 KB) và Duyệt nguồn (phone_browse.png 232 KB) đảm bảo 100% sạch, 0 dữ liệu cá nhân.
 4. **Đồng bộ Changelog Public & Bỏ Tham chiếu Ảnh Cục bộ**:
-   - Rà soát output/0.5.5/YomiHub-0.5.5-changelog.md: loại bỏ toàn bộ các đường dẫn dẫn đến ảnh cục bộ đã xóa (
-ote9_home.png, 
-ote9_screen2.png, win_home.png).
+   - Rà soát output/0.5.5/YomiHub-0.5.5-changelog.md: loại bỏ toàn bộ các đường dẫn dẫn đến ảnh cục bộ đã xóa (note9_home.png, note9_screen2.png, win_home.png).
    - Cập nhật mô tả kết quả kiểm chứng khách quan, trung thực cho cả Mobile, TV và Windows.
 5. **Chuẩn hóa Trạng thái Android TV trong Tracker**:
    - Thay đổi trạng thái của mục 10 và C4 từ "ĐẠT 100%" thành:
@@ -2803,7 +2799,7 @@ ote9_screen2.png, win_home.png).
    - Ghi nhận rõ: Đã nghiệm thu giao diện Leanback TV loại bỏ 4 mục Comic/Novel/Play Books/Booru, điều hướng D-pad highlight trên thẻ nguồn HotPhim và mở danh mục extension. Chưa hoàn tất nghiệm thu luồng phát video anime/phim và phụ đề chuyên sâu.
 6. **Tách biệt Rõ ràng giữa Xác minh Cấu trúc Gói vs Cài đặt/Chạy Thực tế (Windows)**:
    - **Xác minh cấu trúc gói:** FileVersion 0.5.5+47, Portable .zip 40 DLLs, Full .zip 461 entries nhúng JRE. Gói AppX .appxbundle có cấu trúc hợp lệ và chữ ký số SHA1 4C62D3C542A9EE3B0136F9AE49E65C0E38652A49 khớp YomiHub-RootCA.cer.
-   - **Cài đặt & Chạy thực tế:** Giải thích rõ tại sao signtool verify /pa báo root certificate is not trusted (do Root CA tự ký chưa nằm trong Trust Store mặc định của Windows). Người dùng bắt buộc phải chạy Install-YomiHub.bat hoặc .ps1 để import chứng chỉ vào máy trước khi cài đặt AppX. Bản Portable chạy trực tiếp không cần chứng chỉ.
+   - **Cài đặt & Chạy thực tế:** Giải thích rõ tại sao signtool verify /pa báo root certificate is not trusted (do Root CA tự ký chưa nằm trong Trust Store mặc định của Windows). Người dùng bắt buộc phải chạy Install-YomiHub.bat hoặc .ps1 để import chứng chỉ vào máy trước khi cài đặt AppX. Bản Portable chạy trực tiếp không cần chứng chỉ.
    - Chưa có ảnh chụp cửa sổ độc lập (không đưa ảnh desktop môi trường làm việc vào tài liệu).
 7. **Liệt kê Cụ thể Các Ca Bị Chặn (Blocked Test Cases)**:
    - Android 6.0 (API 23): Bị chặn cấp OS do Linux kernel thiếu syscall cho Isar libmdbx.
@@ -2828,7 +2824,7 @@ ote9_screen2.png, win_home.png).
    - Chạy đồng bộ sync_055.ps1 và xác minh bảng băm SHA256 khớp 100% giữa overlay/, D:\yh\build\mangayomi, và D:\yh\buildwin\mangayomi.
 2. **Khắc phục Triệt để Lỗi Parser Mã hóa CP1252 trên Windows PowerShell 5**:
    - Xác định nguyên nhân gốc rễ khiến sync_055.ps1 và build_055.ps1 bị lỗi cú pháp (Cannot bind argument to parameter 'Path' because it is null và Unexpected token 'MB' in expression or statement) trên PowerShell 5.1 mặc định của Windows.
-   - Lưu trữ script với định dạng chuẩn **UTF-8 with BOM** ([System.Text.UTF8Encoding]::new(True)), đảm bảo tokenizer của PowerShell 5.1 nhận diện đúng toàn bộ các ký tự tiếng Việt đa byte, bảo toàn cấu trúc cú pháp và phép gán biến $tName/$tPath ngay sau checkout.
+   - Lưu trữ script với định dạng chuẩn **UTF-8 with BOM** ([System.Text.UTF8Encoding]::new($true)), đảm bảo tokenizer của PowerShell 5.1 nhận diện đúng toàn bộ các ký tự tiếng Việt đa byte, bảo toàn cấu trúc cú pháp và phép gán biến $tName/$tPath ngay sau checkout.
 3. **Nạp Thư viện libisar.dll Cục bộ (Zero Network Download)**:
    - Trong overlay/test/yh_055_test.dart và overlay/test/yh_054_test.dart, cấu hình nạp DLL thông qua Isar.initializeIsarCore(libraries: {Abi.windowsX64: localDllPath}, download: false).
    - Trỏ đường dẫn ưu tiên đến libisar.dll (996,352 bytes) có sẵn trong dự án và cache pub local (isar_community_flutter_libs-3.3.2), loại bỏ hoàn toàn việc phụ thuộc vào kết nối mạng tải binary runtime khi chạy kiểm thử.
@@ -2852,3 +2848,35 @@ ote9_screen2.png, win_home.png).
 3. **Trạng thái Mã nguồn & Cam kết Quản lý**:
    - Toàn bộ thay đổi được lưu tại overlay/ làm nguồn chân lý duy nhất.
    - Các script sync_055.ps1 và build_055.ps1 tương thích hoàn toàn với PowerShell 5.1 và PowerShell 7+.
+
+### 10/11/2026 (Đợt 3) — Khắc phục Triệt để Byte Điều Khiển, Chuẩn hóa param/catch và Xác minh Nội dung Thực tế (Verify Package)
+
+#### A. Yêu cầu & Chỉ đạo Kỹ thuật Bổ sung từ Người dùng
+1. **Khắc phục Triệt để Byte Điều Khiển trong TECHNICAL_UPDATE_NOTES.md**:
+   - Nguyên nhân gốc rễ: Khi ghi nối nội dung bằng PowerShell trong chuỗi nháy kép hoặc here-string `@"..."@`, các ký hiệu backtick Markdown (`) đứng trước các ký tự `a`, `b`, `f`, `v`, `r`, `0` bị bộ nội suy chuỗi PowerShell hiểu nhầm là escape sequence (`a -> BEL 0x07, `b -> BS 0x08, `f -> FF 0x0C, `v -> VT 0x0B, `r -> CR 0x0D, `0 -> NUL 0x00).
+   - Biện pháp xử lý: Khôi phục chính xác chữ cái đầu của các tên file, lệnh và mã băm; chuyển đổi phương thức ghi sang literal here-string (`@'...'@`), bảo đảm 100% không bị nội suy chuỗi và loại bỏ hoàn toàn các ký tự điều khiển (0 byte lỗi).
+2. **Khắc phục Khối catch trong build_054.ps1 & build_055.ps1**:
+   - Đảm bảo khi gặp lỗi, script không được nuốt ngoại lệ hoặc chỉ ghi log mà phải thoát với mã lỗi non-zero:
+     `if ($host -and $host.SetShouldExit) { $host.SetShouldExit(1) } exit 1`.
+3. **Chuyển param() lên Dòng Đầu & Bổ sung ValidateSet trong build_055.ps1**:
+   - Đặt `[CmdletBinding()]` và `param(...)` lên dòng đầu tiên của script (trước các câu lệnh OutputEncoding) để PowerShell 5.1 nhận diện đúng tham số dòng lệnh thay vì coi param() là lệnh gọi thông thường.
+   - Thêm `[ValidateSet('all', 'test', 'unit', 'apk', 'tv', 'win', 'pack', 'verify', 'verify-package', 'verify_package', 'none')]`. Kiểm thử tham số sai bị PowerShell chặn ngay từ khâu parse và trả exit code 1.
+4. **Xác minh Nội dung Thực tế Từng Gói (Verify Package)**:
+   - Viết hàm `Verify-ApkDetails` mở ZIP đọc các entry: `AndroidManifest.xml`, `classes.dex`, `lib/<abi>/libapp.so`, `lib/<abi>/libflutter.so`, `assets/flutter_assets/`.
+   - Viết hàm `Verify-WindowsPackageContent` kiểm tra: YomiHub.exe, PE header `MZ`, số lượng DLLs $\ge 30$, Full ZIP tích hợp đầy đủ MES JRE runtime, AppxBundle chứa Manifest, Signature, inner .appx, và Thumbprint chứng chỉ Root CA khớp `4C62D3C542A9EE3B0136F9AE49E65C0E38652A49`.
+5. **Kiểm chứng Giả lập Thiếu File (Simulated Missing File)**:
+   - Xây dựng kịch bản kiểm thử `audit-0.5.5/test_simulated_missing_file.ps1` kiểm chứng 4 ca lỗi giả định (thiếu file APK, APK thiếu libapp.so, Windows ZIP thiếu libisar.dll, thiếu cert Root CA). Toàn bộ 4 ca đều bắt lỗi chính xác và trả exit code non-zero.
+
+#### B. Kết quả Thực thi & Kiểm chứng Thực tế
+1. **Kiểm tra Byte Điều khiển trong Toàn bộ TECHNICAL_UPDATE_NOTES.md**:
+   - Quét toàn diện 2850+ dòng: 0 NUL, 0 BEL, 0 FF, 0 VT, 0 BS. Tệp hoàn toàn ở định dạng văn bản UTF-8 thuần túy.
+2. **Kiểm thử Đơn vị Thực tế (build_055.ps1 -step unit)**:
+   - Toàn bộ 17 tệp test tự động gồm 175 bài kiểm thử vượt qua 100% trong 4 phút (00:20 +175: All tests passed!).
+3. **Xác minh Nội dung Thực tế Toàn bộ Gói (build_055.ps1 -step verify)**:
+   - Toàn bộ 6 APK (3 Mobile + 3 TV) và toàn bộ các gói Windows (Portable zip, Full zip, Setup exe, AppxBundle, Root CA cer, Install scripts, SHA256SUMS) đều được xác minh cấu trúc thực tế và đạt 100%.
+4. **Kiểm thử Ca Giả lập Thiếu File**:
+   - Chạy `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\audit-0.5.5\test_simulated_missing_file.ps1`.
+   - 4/4 ca kiểm thử đều phát hiện đúng lỗi và trả mã lỗi 1.
+5. **Đồng bộ Tài liệu & Bảng băm**:
+   - Đồng bộ `TECHNICAL_UPDATE_NOTES.md` vào `output/0.5.5/TECHNICAL_UPDATE_NOTES.md`.
+   - Cập nhật lại mã băm SHA256 trong `output/0.5.5/SHA256SUMS-0.5.5.txt`.

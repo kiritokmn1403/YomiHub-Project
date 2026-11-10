@@ -1,6 +1,10 @@
-﻿# build_055.ps1 - YomiHub 0.5.5 build & packaging script with strict artifact, ABI, versionCode, and signature verification.
-param([string]$step = 'all')
+[CmdletBinding()]
+param(
+    [ValidateSet('all', 'test', 'unit', 'apk', 'tv', 'win', 'pack', 'verify', 'verify-package', 'verify_package', 'none')]
+    [string]$step = 'all'
+)
 
+# build_055.ps1 - YomiHub 0.5.5 build & packaging script with strict artifact, ABI, versionCode, and signature verification.
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
@@ -107,7 +111,35 @@ function Verify-ApkDetails([string]$apkPath, [string]$expectedLabel, [string]$ex
         throw "LỖI KIẾN TRÚC ABI: '$abiLine' không chứa ABI '$expectedAbi' trong $apkPath"
     }
 
-    # 2. Kiểm tra nâng cấp tương thích từ 0.5.4 -> 0.5.5 cho ABI này
+    # 2. Kiểm tra nội dung thực bên trong tệp APK (ZIP entries)
+    Add-Type -AssemblyName System.IO.Compression.FileSystem -ErrorAction SilentlyContinue
+    $zip = [System.IO.Compression.ZipFile]::OpenRead($apkPath)
+    try {
+        $entryNames = $zip.Entries | ForEach-Object { $_.FullName }
+        if (-not ($entryNames -contains "AndroidManifest.xml")) {
+            throw "LỖI NỘI DUNG APK: $apkPath thiếu AndroidManifest.xml"
+        }
+        if (-not ($entryNames -contains "classes.dex")) {
+            throw "LỖI NỘI DUNG APK: $apkPath thiếu classes.dex"
+        }
+        $appSo = $zip.Entries | Where-Object { $_.FullName -eq "lib/$expectedAbi/libapp.so" }
+        if (-not $appSo -or $appSo.Length -le 0) {
+            throw "LỖI NỘI DUNG APK: $apkPath thiếu thư viện mã máy lib/$expectedAbi/libapp.so hoặc tệp 0 byte"
+        }
+        $flutterSo = $zip.Entries | Where-Object { $_.FullName -eq "lib/$expectedAbi/libflutter.so" }
+        if (-not $flutterSo -or $flutterSo.Length -le 0) {
+            throw "LỖI NỘI DUNG APK: $apkPath thiếu thư viện động lib/$expectedAbi/libflutter.so hoặc tệp 0 byte"
+        }
+        $assetCount = ($zip.Entries | Where-Object { $_.FullName -like "assets/flutter_assets/*" }).Count
+        if ($assetCount -le 0) {
+            throw "LỖI NỘI DUNG APK: $apkPath thiếu thư mục tài nguyên assets/flutter_assets/"
+        }
+        Say ("Nội dung thực APK hợp lệ: libapp.so ({0:N1} MB), libflutter.so ({1:N1} MB), $assetCount assets" -f ($appSo.Length / 1MB), ($flutterSo.Length / 1MB))
+    } finally {
+        $zip.Dispose()
+    }
+
+    # 3. Kiểm tra nâng cấp tương thích từ 0.5.4 -> 0.5.5 cho ABI này
     $fileName = Split-Path $apkPath -Leaf
     $prevFileName = $fileName.Replace("-$expectedVer-", "-0.5.4-")
     $prevApkPath = Join-Path $KIT "output\0.5.4\$prevFileName"
@@ -126,14 +158,170 @@ function Verify-ApkDetails([string]$apkPath, [string]$expectedLabel, [string]$ex
         Say "Lưu ý: Không tìm thấy tệp 0.5.4 đối chiếu ($prevFileName) để so sánh nâng cấp versionCode"
     }
 
-    # 3. Xác minh chữ ký số bằng apksigner
+    # 4. Xác minh chữ ký số bằng apksigner
     Say "Kiểm tra chữ ký số bằng apksigner..."
     $sigOutput = & cmd.exe /c "`"$apksigner`" verify --verbose `"$apkPath`" 2>&1"
     if ($LASTEXITCODE -ne 0) {
         throw "LỖI CHỮ KÝ APK: Chữ ký số không hợp lệ trong $apkPath`n$($sigOutput -join "`n")"
     }
 
-    Say "XÁC MINH THÀNH CÔNG: $(Split-Path $apkPath -Leaf) | Label: $expectedLabel | ABI: $expectedAbi | Ver: $expectedVer ($expectedCode) | Chữ ký: HỢP LỆ ({0:N1} MB)" -f ($len / 1MB)
+    Say ("XÁC MINH THÀNH CÔNG: $(Split-Path $apkPath -Leaf) | Label: $expectedLabel | ABI: $expectedAbi | Ver: $expectedVer ($expectedCode) | Chữ ký: HỢP LỆ ({0:N1} MB)" -f ($len / 1MB))
+}
+
+function Verify-WindowsPackageContent([string]$outDir, [string]$ver) {
+    Say "--- Kiểm tra toàn diện nội dung thực các gói Windows ---"
+    Add-Type -AssemblyName System.IO.Compression.FileSystem -ErrorAction SilentlyContinue
+
+    # 1. Kiểm tra Portable ZIP
+    $zipPath = "$outDir\YomiHub-$ver-windows-x64.zip"
+    if (-not (Test-Path $zipPath)) { throw "LỖI ARTIFACT THIẾU: Không tìm thấy $zipPath" }
+    $zip = [System.IO.Compression.ZipFile]::OpenRead($zipPath)
+    try {
+        $entries = $zip.Entries | ForEach-Object { $_.FullName }
+        if (-not ($entries -contains "YomiHub.exe")) {
+            throw "LỖI NỘI DUNG WINDOWS ZIP: $zipPath thiếu YomiHub.exe"
+        }
+        if (-not ($entries -contains "flutter_windows.dll")) {
+            throw "LỖI NỘI DUNG WINDOWS ZIP: $zipPath thiếu flutter_windows.dll"
+        }
+        if (-not ($entries -contains "libisar.dll")) {
+            throw "LỖI NỘI DUNG WINDOWS ZIP: $zipPath thiếu libisar.dll"
+        }
+        $appSo = $zip.Entries | Where-Object { $_.FullName -like "*data/app.so*" -or $_.FullName -like "*data\app.so*" }
+        if (-not $appSo -or $appSo.Length -le 0) {
+            throw "LỖI NỘI DUNG WINDOWS ZIP: $zipPath thiếu data/app.so hoặc tệp 0 byte"
+        }
+        $dllCount = ($zip.Entries | Where-Object { $_.FullName -like "*.dll" }).Count
+        if ($dllCount -lt 30) {
+            throw "LỖI NỘI DUNG WINDOWS ZIP: $zipPath chỉ chứa $dllCount DLLs, kỳ vọng tối thiểu 30 DLLs"
+        }
+        Say ("Xác minh Portable ZIP thành công: YomiHub.exe, flutter_windows.dll, libisar.dll, data/app.so, $dllCount DLLs ({0:N1} MB)" -f ((Get-Item $zipPath).Length / 1MB))
+    } finally {
+        $zip.Dispose()
+    }
+
+    # 2. Kiểm tra Full ZIP (kèm MES JRE)
+    $fullZipPath = "$outDir\YomiHub-$ver-windows-x64-full.zip"
+    if (-not (Test-Path $fullZipPath)) { throw "LỖI ARTIFACT THIẾU: Không tìm thấy $fullZipPath" }
+    $fullZip = [System.IO.Compression.ZipFile]::OpenRead($fullZipPath)
+    try {
+        $hasJar = ($fullZip.Entries | Where-Object { $_.FullName -like "*yomihub_bin/mes/*.jar*" -or $_.FullName -like "*yomihub_bin\mes\*.jar*" }).Count -gt 0
+        if (-not $hasJar) {
+            throw "LỖI NỘI DUNG WINDOWS FULL ZIP: $fullZipPath thiếu MExtensionServer JAR trong yomihub_bin/mes/"
+        }
+        $hasJava = ($fullZip.Entries | Where-Object { $_.FullName -like "*yomihub_bin/mes/jre*java.exe*" -or $_.FullName -like "*yomihub_bin\mes\jre*java.exe*" }).Count -gt 0
+        if (-not $hasJava) {
+            throw "LỖI NỘI DUNG WINDOWS FULL ZIP: $fullZipPath thiếu Java JRE nhúng trong yomihub_bin/mes/jre"
+        }
+        Say ("Xác minh Full ZIP thành công: Đầy đủ MExtensionServer và nhúng JRE ({0:N1} MB)" -f ((Get-Item $fullZipPath).Length / 1MB))
+    } finally {
+        $fullZip.Dispose()
+    }
+
+    # 3. Kiểm tra Inno Setup .exe
+    $setupExe = "$outDir\YomiHub-$ver-windows-x64-Setup.exe"
+    if (-not (Test-Path $setupExe)) { throw "LỖI ARTIFACT THIẾU: Không tìm thấy $setupExe" }
+    $setupLen = (Get-Item $setupExe).Length
+    if ($setupLen -lt 50MB) {
+        throw "LỖI ARTIFACT HỎNG: $setupExe có dung lượng bất thường ({0:N1} MB < 50 MB)" -f ($setupLen / 1MB)
+    }
+    # Kiểm tra PE header (MZ)
+    $fs = [System.IO.File]::OpenRead($setupExe)
+    $buf = New-Object byte[] 2
+    $fs.Read($buf, 0, 2) | Out-Null
+    $fs.Close()
+    if ($buf[0] -ne 0x4D -or $buf[1] -ne 0x5A) {
+        throw "LỖI ĐỊNH DẠNG SETUP: $setupExe không có PE executable header (MZ)"
+    }
+    Say ("Xác minh Setup.exe thành công: PE header MZ hợp lệ ({0:N1} MB)" -f ($setupLen / 1MB))
+
+    # 4. Kiểm tra AppxBundle
+    $appxBundle = "$outDir\YomiHub-$ver-windows-x64.appxbundle"
+    if (-not (Test-Path $appxBundle)) { throw "LỖI ARTIFACT THIẾU: Không tìm thấy $appxBundle" }
+    $appxZip = [System.IO.Compression.ZipFile]::OpenRead($appxBundle)
+    try {
+        $appxEntries = $appxZip.Entries | ForEach-Object { $_.FullName }
+        if (-not ($appxEntries -contains "AppxMetadata/AppxBundleManifest.xml")) {
+            throw "LỖI NỘI DUNG APPX: $appxBundle thiếu AppxMetadata/AppxBundleManifest.xml"
+        }
+        if (-not ($appxEntries -contains "AppxSignature.p7x")) {
+            throw "LỖI NỘI DUNG APPX: $appxBundle thiếu AppxSignature.p7x"
+        }
+        $innerAppx = $appxZip.Entries | Where-Object { $_.FullName -like "*.appx" }
+        if (-not $innerAppx -or $innerAppx.Length -le 0) {
+            throw "LỖI NỘI DUNG APPX: $appxBundle thiếu gói con .appx bên trong"
+        }
+        Say ("Xác minh AppxBundle thành công: Manifest, AppxSignature.p7x, và payload .appx ({0:N1} MB)" -f ((Get-Item $appxBundle).Length / 1MB))
+    } finally {
+        $appxZip.Dispose()
+    }
+
+    # 5. Kiểm tra Certificate Root CA
+    $certPath = "$outDir\YomiHub-RootCA.cer"
+    if (-not (Test-Path $certPath)) { throw "LỖI ARTIFACT THIẾU: Không tìm thấy $certPath" }
+    $cert = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new($certPath)
+    if ($cert.Thumbprint -ne '4C62D3C542A9EE3B0136F9AE49E65C0E38652A49') {
+        throw "LỖI CHỨNG CHỈ: Thumbprint nhận được '$($cert.Thumbprint)', kỳ vọng '4C62D3C542A9EE3B0136F9AE49E65C0E38652A49'"
+    }
+    Say "Xác minh Chứng chỉ YomiHub-RootCA.cer thành công: Thumbprint 4C62D3C542A9EE3B0136F9AE49E65C0E38652A49"
+
+    # 6. Kiểm tra Script cài đặt
+    foreach ($scriptName in 'Install-YomiHub.bat', 'Install-YomiHub.ps1') {
+        $sp = "$outDir\$scriptName"
+        if (-not (Test-Path $sp) -or (Get-Item $sp).Length -le 0) {
+            throw "LỖI SCRIPT THIẾU: Không tìm thấy script cài đặt $sp hoặc tệp 0 byte"
+        }
+    }
+    Say "Xác minh Script cài đặt Install-YomiHub.bat và Install-YomiHub.ps1 thành công"
+
+    # 7. Kiểm tra SHA256SUMS.txt
+    $sumsPath = "$outDir\SHA256SUMS-$ver.txt"
+    if (-not (Test-Path $sumsPath)) { throw "LỖI ARTIFACT THIẾU: Không tìm thấy $sumsPath" }
+    $sumsContent = Get-Content $sumsPath
+    $expectedFiles = @(
+        "YomiHub-$ver-arm64-v8a.apk",
+        "YomiHub-$ver-armeabi-v7a.apk",
+        "YomiHub-$ver-x86_64.apk",
+        "YumiHub-Android-TV-$ver-arm64-v8a.apk",
+        "YumiHub-Android-TV-$ver-armeabi-v7a.apk",
+        "YumiHub-Android-TV-$ver-x86_64.apk",
+        "YomiHub-$ver-windows-x64.zip",
+        "YomiHub-$ver-windows-x64-full.zip",
+        "YomiHub-$ver-windows-x64-Setup.exe",
+        "YomiHub-$ver-windows-x64.appxbundle",
+        "YomiHub-RootCA.cer",
+        "Install-YomiHub.bat",
+        "Install-YomiHub.ps1"
+    )
+    foreach ($ef in $expectedFiles) {
+        if (-not ($sumsContent | Select-String "\s+$ef$")) {
+            throw "LỖI BẢNG BĂM: $sumsPath thiếu mục kiểm tra cho $ef"
+        }
+    }
+    Say "Xác minh Bảng băm SHA256SUMS-$ver.txt thành công: Đầy đủ các gói phân phối"
+}
+
+function Verify-AllPackages([string]$outDir, [string]$ver, [string]$code) {
+    Say "=== BẮT ĐẦU XÁC MINH NỘI DUNG THỰC TOÀN BỘ CÁC GÓI ĐÃ ĐÓNG GÓI (VERIFY PACKAGE) ==="
+    # 1. Xác minh 3 APK Mobile
+    foreach ($abi in @('arm64-v8a', 'armeabi-v7a', 'x86_64')) {
+        $apk = "$outDir\YomiHub-$ver-$abi.apk"
+        $expectedCode = Get-ExpectedVersionCode -abi $abi -baseCode ([int]$code)
+        Verify-ApkDetails $apk 'YomiHub' $abi $ver $expectedCode
+    }
+    # 2. Xác minh 3 APK Android TV
+    foreach ($abi in @('arm64-v8a', 'armeabi-v7a', 'x86_64')) {
+        $apk = "$outDir\YumiHub-Android-TV-$ver-$abi.apk"
+        $expectedCode = Get-ExpectedVersionCode -abi $abi -baseCode ([int]$code)
+        Verify-ApkDetails $apk 'YumiHub Android TV' $abi $ver $expectedCode
+    }
+    # 3. Xác minh toàn bộ các gói Windows
+    Verify-WindowsPackageContent $outDir $ver
+    Say "=== TẤT CẢ GÓI APK VÀ WINDOWS ĐÃ ĐƯỢC XÁC MINH NỘI DUNG THỰC THÀNH CÔNG (100% ĐẠT) ==="
+}
+
+if ($step -eq 'none') {
+    return
 }
 
 $out = Join-Path $KIT "output\0.5.5"
@@ -383,10 +571,18 @@ try {
         Say "Bảng băm SHA256SUMS-$ver.txt đã được tạo thành công!"
     }
 
+    # BƯỚC 6: XÁC MINH TOÀN DIỆN NỘI DUNG THỰC CÁC GÓI ĐÃ ĐÓNG GÓI (VERIFY PACKAGE)
+    if ($step -in 'all', 'verify', 'verify-package', 'verify_package') {
+        Verify-AllPackages -outDir $out -ver $ver -code $code
+    }
+
     Say "=== QUY TRÌNH BUILD YOMIHUB 0.5.5 HOÀN TẤT THÀNH CÔNG (step=$step) ==="
 } catch {
     Say "LỖI NGHIÊM TRỌNG: $($_.Exception.Message)"
-    throw $_
+    if ($host -and $host.SetShouldExit) {
+        $host.SetShouldExit(1)
+    }
+    exit 1
 } finally {
     Pop-Location -ErrorAction SilentlyContinue
     Stop-Transcript | Out-Null

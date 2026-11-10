@@ -182,5 +182,7 @@ try {
   Say "BUILD 0.5.4 DONE step=$step"
 } catch {
   Say "ERROR: $($_.Exception.Message)"
+  if ($host -and $host.SetShouldExit) { $host.SetShouldExit(1) }
+  exit 1
 } finally { Pop-Location -ErrorAction SilentlyContinue; Stop-Transcript | Out-Null }
 
