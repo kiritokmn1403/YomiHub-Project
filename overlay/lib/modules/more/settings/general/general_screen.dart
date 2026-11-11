@@ -134,7 +134,7 @@ class _GeneralStateScreen extends ConsumerState<GeneralScreen> {
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const CloudScraperScreen()),
               ),
-              title: const Text('Cloudflare Bypass Setting'),
+              title: Text(tr('Cài đặt vượt Cloudflare')),
               subtitle: Text(
                 tr('Đã gộp proxy vượt Cloudflare và CloudScraper'),
                 style: TextStyle(fontSize: 11, color: context.secondaryColor),

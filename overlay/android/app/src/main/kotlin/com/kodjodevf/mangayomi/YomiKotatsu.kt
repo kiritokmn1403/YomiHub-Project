@@ -282,7 +282,14 @@ object YomiKotatsu {
 
     @Synchronized
     fun start() {
-        if (server != null) return
+        // 0.5.6: a server whose socket died must be replaced, not kept
+        // (logs 31/10/2026 "Cầu nối Kotatsu chưa chạy").
+        val old = server
+        if (old != null) {
+            if (old.isAlive) return
+            try { old.stop() } catch (e: Throwable) {}
+            server = null
+        }
         for (s in MangaParserSource.values()) {
             sources[s.name] = s
             sourceRepo[s.name] = "Kotatsu-Redo"

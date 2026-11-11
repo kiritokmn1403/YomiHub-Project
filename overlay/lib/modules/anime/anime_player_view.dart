@@ -67,6 +67,7 @@ import 'package:mangayomi/utils/language.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:mangayomi/yomihub/player/yomi_pip.dart';
+import 'package:mangayomi/yomihub/player/rejected_seek.dart';
 import 'package:mangayomi/yomihub/player/sponsorblock.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/player/yomi_mini_player.dart';
@@ -987,13 +988,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
 
   void _setCurrentAudSub(Duration position, int secs) {
     final totalSecs = _player.state.duration.inSeconds;
-    _isCompleted.value = (totalSecs - secs) <= 10;
-    if (!_hasResumeTargetCompleted && _initialResumeTarget > Duration.zero) {
-      if (position < _initialResumeTarget - const Duration(seconds: 3)) {
-        return; // Guard: Do not overwrite resume position with initial buffering 0s
-      }
-      _hasResumeTargetCompleted = true;
-    }
+    _isCompleted.value = totalSecs > 0 && (totalSecs - secs) <= 10;
     _currentPosition.value = position;
     if (_initSubtitleAndAudio) {
       _initSubtitleAndAudio = false;
@@ -1306,21 +1301,15 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       }
     });
     _yhErrSub = _player.stream.error.listen((e) {
-      if (!YomiPrefs.autoServerSwitch) return;
+      if (!mounted) return;
       final msg = e.trim();
       if (msg.isEmpty || isAudioDecoderInitializationError(msg)) return;
       final lower = msg.toLowerCase();
       if (lower.contains('subtitle') || lower.contains('font')) return;
       // 0.4.5: a failed seek (live stream, server without range support) is
       // not a broken source – never switch servers or log an ERROR for it.
-      if (lower.contains('cannot seek') || lower.contains('force-seekable')) {
-        _yhLiveStream = true;
-        _yhSourceNatureResolved = true;
-        _initialResumeTarget = Duration.zero;
-        _hasResumeTargetCompleted = true;
-        AppLogger.logOnce('player-noseek', '[Trình phát] Máy chủ không cho tua video: $msg', logLevel: LogLevel.info);
-        return;
-      }
+      if (_handleRejectedSeek(msg)) return;
+      if (!YomiPrefs.autoServerSwitch) return;
       AppLogger.log(
         "[Trình phát] Lỗi video không tải được: $msg",
         logLevel: LogLevel.error,
@@ -1386,6 +1375,21 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   bool _yhSourceNatureResolved = false;
   int _activeResumeSession = 0;
   int _resumeToken = 0;
+
+  bool _handleRejectedSeek(String message) {
+    final reason = rejectedSeekReason(message);
+    if (reason == null) return false;
+    // mpv can reject a seek asynchronously, after command() has returned.
+    // Invalidate the pending retry even when server switching is disabled.
+    _resumeToken++;
+    _yhLiveStream = true;
+    _yhSourceNatureResolved = true;
+    _initialResumeTarget = Duration.zero;
+    _hasResumeTargetCompleted = true;
+    AppLogger.logOnce('player-noseek-$reason', '[Trình phát] Máy chủ không cho tua video: $reason',
+        logLevel: LogLevel.info);
+    return true;
+  }
 
   Future<String?> _querySeekable() async {
     try {
@@ -1525,6 +1529,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     // Network streams open at Duration.zero and seek via verified doSeek only after
     // demuxer confirms seekability.
     final openStart = widget.isLocal ? start : Duration.zero;
+    if (!mounted || _mediaSessionId != sessionId) return;
     await _player.open(
       playbackMedia(
         prefs.videoTrack!.id,
@@ -1572,8 +1577,11 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       if (!mounted || _mediaSessionId != sessionId || _resumeToken != token) return;
       final st = _player.state;
       final diff = st.position - start;
-      final near = diff.abs() <= const Duration(seconds: 10) ||
-          (diff > Duration.zero && diff <= const Duration(seconds: 60));
+      // Allow forward playback after the first matching sample, without
+      // accepting a position almost a minute ahead as a successful resume.
+      final observed = okSince == null ? Duration.zero : DateTime.now().difference(okSince);
+      final near = diff >= const Duration(seconds: -2) &&
+          diff <= const Duration(seconds: 2) + observed * st.rate;
       if (near) {
         if (st.playing && !st.buffering) {
           okSince ??= DateTime.now();
@@ -1591,6 +1599,8 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
             botToast(tr('Tiếp tục phát từ {p0}', {'p0': timeFmt}), second: 2);
             return;
           }
+        } else {
+          okSince = null;
         }
         continue;
       }
@@ -1614,10 +1624,10 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
           await _player.seek(start).timeout(const Duration(seconds: 3));
         }
       } catch (error) {
+        if (!mounted || _mediaSessionId != sessionId || _resumeToken != token) return;
+        if (_handleRejectedSeek(error.toString())) return;
         final msg = error.toString().toLowerCase();
-        if (!(msg.contains('cannot seek') ||
-            msg.contains('force-seekable') ||
-            msg.contains('timeout'))) {
+        if (!msg.contains('timeout')) {
           AppLogger.log('[Trình phát] Không thể khôi phục vị trí xem: $error',
               logLevel: LogLevel.error);
         }
@@ -2017,9 +2027,11 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   }
 
   Future<void> _recoverFromAudioDecoderError(String message) async {
+    final session = _mediaSessionId;
     _audioFallbackInProgress = true;
     try {
       final failedTrack = await _activeAudioTrackFn();
+      if (!mounted || session != _mediaSessionId) return;
       final failedCodec = audioDecoderCodecFromError(message);
       if (_isVideoDecoderError(failedCodec, failedTrack)) return;
 
@@ -2032,6 +2044,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
           _requestedAudioLanguage ??
           _preferredAudioLanguage() ??
           await _nativePreferredAudioLanguage();
+      if (!mounted || session != _mediaSessionId) return;
       final candidates = audioTrackFallbackCandidates(
         failedTrack: failedTrack,
         availableTracks: _audioTracksForFallback(),
@@ -2056,7 +2069,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       );
     } finally {
       _audioFallbackInProgress = false;
-      if (_audioFallbackErrorQueued) {
+      if (mounted && session == _mediaSessionId && _audioFallbackErrorQueued) {
         _audioFallbackErrorQueued = false;
         unawaited(_recoverFromAudioDecoderError(message));
       }
@@ -2202,13 +2215,9 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       );
       return;
     }
-    if (!_hasResumeTargetCompleted && _initialResumeTarget > Duration.zero) {
-      if (_currentPosition.value <
-          _initialResumeTarget - const Duration(seconds: 3)) {
-        return; // Guard: Do not overwrite resume position with initial buffering 0s
-      }
-      _hasResumeTargetCompleted = true;
-    }
+    // A backend can briefly report the seek target and then restart from zero.
+    // Only the resume coordinator can confirm stable playback or time out.
+    if (!_hasResumeTargetCompleted && _initialResumeTarget > Duration.zero) return;
     _streamController.setCurrentPosition(
       _currentPosition.value,
       _currentTotalDuration.value,

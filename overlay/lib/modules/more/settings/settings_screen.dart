@@ -85,7 +85,7 @@ class SettingsScreen extends StatelessWidget {
               onTap: () => context.push('/downloads'),
             ),
             ListTileWidget(
-              title: 'Cloudflare Bypass Setting',
+              title: tr('Cài đặt vượt Cloudflare'),
               icon: Icons.shield_outlined,
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const CloudScraperScreen()),

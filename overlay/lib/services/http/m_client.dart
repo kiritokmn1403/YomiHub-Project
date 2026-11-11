@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:mangayomi/yomihub/cloudflare/clearance_cookie.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +15,7 @@ import 'dart:io';
 
 import 'package:mangayomi/eval/model/m_source.dart';
 import 'package:mangayomi/main.dart';
+import 'package:mangayomi/router/router.dart' show navigatorKey;
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart'
     as flutter_inappwebview;
@@ -219,7 +221,7 @@ class MClient {
   // domain "example.com" a source actually scrapes, leaving Cloudflare
   // looking "unresolved" even right after a successful manual bypass.
   static bool _hostsMatch(String a, String b) {
-    return a == b || a.endsWith('.$b') || b.endsWith('.$a') || a.contains(b);
+    return b.isNotEmpty && (a == b || a.endsWith('.$b') || b.endsWith('.$a'));
   }
 
   static Map<String, String> getCookiesPref(String url) {
@@ -281,14 +283,14 @@ class MClient {
     if (cookies.isNotEmpty) {
       final host = Uri.parse(url).host;
       final newCookie = cookies.join("; ");
-      final existingCookies = settingsRepository.current.cookiesList ?? [];
-      final filteredCookies = removeCookiesForHost(existingCookies, host);
-      filteredCookies.add(
-        MCookie()
-          ..host = host
-          ..cookie = newCookie,
-      );
-      await settingsRepository.update((s) => s.cookiesList = filteredCookies);
+      await settingsRepository.update((s) {
+        s.cookiesList = [
+          ...?s.cookiesList?.where((entry) => entry.host != host),
+          MCookie()
+            ..host = host
+            ..cookie = newCookie,
+        ];
+      });
       if (newCookie.contains('cf_clearance=')) YomiCf.rememberUa(host, ua);
     }
     if (ua.isNotEmpty) {
@@ -369,18 +371,7 @@ class MCookieManager extends InterceptorContract {
               request.headers['Cookie'];
         } catch (_) {}
 
-        if (own == null || own.isEmpty) {
-          try {
-            request.headers.addAll(cookie);
-          } catch (_) {}
-        } else if (!own.contains('cf_clearance=')) {
-          final cf = RegExp(r'cf_clearance=[^;]+').firstMatch(stored)?.group(0);
-          if (cf != null) {
-            try {
-              request.headers[HttpHeaders.cookieHeader] = '$own; $cf';
-            } catch (_) {}
-          }
-        }
+        request.headers[HttpHeaders.cookieHeader] = mergeClearanceCookie(own ?? '', stored);
 
         String? currentCookies;
         try {
@@ -448,8 +439,7 @@ class LoggerInterceptor extends InterceptorContract {
   @override
   Future<BaseRequest> interceptRequest({required BaseRequest request}) async {
     CloudScraper.applyTo(request.headers);
-    final content =
-        "----- Request -----\n${request.toString()}\nheaders: ${request.headers.toString()}";
+    final content = "----- Request -----\n${request.method} ${request.url.host}";
 
     if (kDebugMode || useLogger) {
       // ignore: avoid_print
@@ -467,7 +457,7 @@ class LoggerInterceptor extends InterceptorContract {
     if (showCloudFlareError) {
       final cloudflare = isCloudflare(response);
       final content =
-          "----- Response -----\n${response.request?.method}: ${response.request?.url}, statusCode: ${response.statusCode} ${cloudflare ? "Failed to bypass Cloudflare" : ""}";
+          "----- Response -----\n${response.request?.method}: ${response.request?.url.host}, statusCode: ${response.statusCode} ${cloudflare ? "Failed to bypass Cloudflare" : ""}";
 
       if (kDebugMode || useLogger) {
         // ignore: avoid_print
@@ -486,6 +476,14 @@ class LoggerInterceptor extends InterceptorContract {
         // and that is enough to land here.
         final noResolverAvailable =
             Platform.isLinux && CfProxyStore.url.trim().isEmpty;
+        final uri = response.request?.url;
+        final message = 'Giải CloudFlare thất bại (HTTP ${response.statusCode}): '
+            'không mở được giao diện xác minh.';
+        Never failWithoutUi() {
+          AppLogger.log('[Cloudflare] ${uri?.host ?? ""} $message', logLevel: LogLevel.error);
+          throw HttpException(message);
+        }
+        if (uri == null || navigatorKey.currentState?.mounted != true) failWithoutUi();
         try {
           botToast(
             noResolverAvailable
@@ -495,13 +493,12 @@ class LoggerInterceptor extends InterceptorContract {
                 : "${response.statusCode} Failed to bypass Cloudflare",
             // The button opens the webview resolver, which does nothing here.
             hasCloudFlare: cloudflare && !noResolverAvailable,
-            url: response.request!.url.toString(),
+            url: uri.toString(),
           );
-        } catch (e) {
-          throw noResolverAvailable
-              ? "Blocked by Cloudflare.\n\n\nThe in-app resolver is not available on Linux. Set a FlareSolverr or Byparr URL in Settings > General.\n\n\nstatusCode: ${response.statusCode}"
-              : "Failed to bypass Cloudflare.\n\n\nYou can try to bypass it manually in the webview \n\n\nstatusCode: ${response.statusCode}";
+        } catch (_) {
+          failWithoutUi();
         }
+        if (noResolverAvailable) failWithoutUi();
       }
     }
 

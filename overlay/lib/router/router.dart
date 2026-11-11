@@ -128,17 +128,24 @@ class RouterCurrentLocationState extends _$RouterCurrentLocationState {
 
   void _listener() {
     final router = ref.read(routerProvider);
+    void publish() {
+      final RouteMatchList matches = router.routerDelegate.currentConfiguration;
+      if (matches.isEmpty) return;
+      final RouteMatch lastMatch = matches.last;
+      final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
+          ? lastMatch.matches
+          : matches;
+      state = matchList.uri.toString();
+    }
+
     router.routerDelegate.addListener(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        final RouteMatchList matches =
-            router.routerDelegate.currentConfiguration;
-        final RouteMatch lastMatch = matches.last;
-        final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
-            ? lastMatch.matches
-            : matches;
-        state = matchList.uri.toString();
-      });
+      WidgetsBinding.instance.addPostFrameCallback((_) => publish());
     });
+    // YomiHub 0.5.6 (R22): the first screen is opened before this listener
+    // exists and `go()` to the very same location sends no notification, so
+    // the location stayed null on a cold start (no Library sub-tab strip,
+    // no swipe) until the user changed screen. Publish it right now.
+    publish();
   }
 
   void refresh() {

@@ -157,17 +157,16 @@ class MTorrentServer {
     List<String> webseeds = const [],
   }) async {
     try {
-      final torrentByte = isFilePath
-          ? File(url).readAsBytesSync()
-          : (await http.get(Uri.parse(url))).bodyBytes;
+      final file = isFilePath
+          ? await MultipartFile.fromPath('file', url, filename: 'file.torrent')
+          : MultipartFile.fromBytes('file', (await http.get(Uri.parse(url))).bodyBytes,
+              filename: 'file.torrent');
       var request = MultipartRequest(
         'POST',
         Uri.parse('$_baseUrl/torrent/add'),
       );
 
-      request.files.add(
-        MultipartFile.fromBytes('file', torrentByte, filename: 'file.torrent'),
-      );
+      request.files.add(file);
       request.fields.addAll({
         for (final source in sources) 'source': source,
         for (final webseed in webseeds) 'webseed': webseed,

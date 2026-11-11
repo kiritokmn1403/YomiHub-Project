@@ -74,8 +74,8 @@ Future<(List<Video>, bool, List<String>, Directory?)> getVideoList(
         p.join('${chapterDirectory.path}_subtitles'),
       );
       List<Track> subtitles = [];
-      if (subtitlesDir.existsSync()) {
-        for (var element in subtitlesDir.listSync()) {
+      if (await subtitlesDir.exists()) {
+        await for (final element in subtitlesDir.list()) {
           if (element is File) {
             final subtitle = Track(
               label: element.uri.pathSegments.last.replaceAll('.srt', ''),

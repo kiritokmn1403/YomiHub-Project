@@ -30,7 +30,7 @@ class AppIdentity {
   /// Folder name the app used before 0.1.5 on desktop.
   static const legacyDirName = 'Mangayomi';
 
-  static const userAgent = 'YomiHub/0.5.5';
+  static const userAgent = 'YomiHub/0.5.6';
 
   /// URL scheme registered on Windows (Android declares its schemes in the
   /// manifest). `mangayomi://` is no longer claimed on desktop.

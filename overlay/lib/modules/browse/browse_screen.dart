@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +16,7 @@ import 'package:mangayomi/modules/main_view/providers/tv_mode_provider.dart';
 import 'package:mangayomi/modules/library/widgets/search_text_form_field.dart';
 import 'package:mangayomi/modules/widgets/tv_pill.dart';
 import 'package:mangayomi/services/fetch_sources_list.dart';
+import 'package:mangayomi/services/fetch_item_sources.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:mangayomi/modules/browse/providers/browse_initial_tab_provider.dart';
 import 'package:mangayomi/modules/more/settings/browse/providers/browse_state_provider.dart';
@@ -166,6 +168,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen>
   }
 
   bool _isSearch = false;
+  bool _checkingExtensions = false;
 
   /// The top-bar action icons, which differ per tab (see #729): Sources =
   /// global-search + filter; Extensions = add + search + language filter.
@@ -204,6 +207,38 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen>
                     },
                     icon: Icon(
                       Icons.add_outlined,
+                      color: Theme.of(context).hintColor,
+                    ),
+                  ),
+                if (isExtensionTab)
+                  IconButton(
+                    tooltip: tr('Kiểm Tra Cập Nhật'),
+                    splashRadius: 20,
+                    focusColor: Theme.of(context).colorScheme.primary
+                        .withValues(alpha: 0.4),
+                    onPressed: _checkingExtensions ? null : () async {
+                      setState(() => _checkingExtensions = true);
+                      BotToast.showText(text: tr('Đang kiểm tra cập nhật tiện ích…'));
+                      try {
+                        final repos = ref.read(extensionsRepoStateProvider(tabType));
+                        final proxy = ref.read(androidProxyServerStateProvider);
+                        final autoUpdate = ref.read(autoUpdateExtensionsStateProvider);
+                        final result = await refreshExtensionRepos(repos, (repo) => fetchSourcesList(
+                          repo: repo, refresh: true, id: null, itemType: tabType,
+                          androidProxyServer: proxy, autoUpdateExtensions: autoUpdate,
+                        ));
+                        if (!mounted) return;
+                        BotToast.showText(text: tr('Kho thành công: {p0}. Kho lỗi: {p1}.',
+                            {'p0': result.ok, 'p1': result.failed}));
+                      } catch (e) {
+                        if (!mounted) return;
+                        BotToast.showText(text: tr('Lỗi kiểm tra cập nhật: {p0}', {'p0': '$e'}));
+                      } finally {
+                        if (mounted) setState(() => _checkingExtensions = false);
+                      }
+                    },
+                    icon: Icon(
+                      Icons.system_update_alt_rounded,
                       color: Theme.of(context).hintColor,
                     ),
                   ),

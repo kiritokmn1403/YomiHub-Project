@@ -20,6 +20,12 @@ final hwdecs = {
   "crystalhd": ["all"],
 };
 
+String resolveHwdecMode(String requested, String platform) {
+  final supported = hwdecs[requested] ?? const [];
+  if (supported.contains('all') || supported.contains(platform)) return requested;
+  return platform == 'android' ? 'auto-safe' : 'auto';
+}
+
 @riverpod
 class HwdecModeState extends _$HwdecModeState {
   @override
@@ -28,12 +34,7 @@ class HwdecModeState extends _$HwdecModeState {
     if (rawValue) {
       return hwdecMode;
     }
-    final hwdecSupport = hwdecs[hwdecMode] ?? [];
-    if (!hwdecSupport.contains("all") &&
-        !hwdecSupport.contains(Platform.operatingSystem)) {
-      return Platform.isAndroid ? "auto-safe" : "auto";
-    }
-    return hwdecMode;
+    return resolveHwdecMode(hwdecMode, Platform.operatingSystem);
   }
 
   void set(String value) {

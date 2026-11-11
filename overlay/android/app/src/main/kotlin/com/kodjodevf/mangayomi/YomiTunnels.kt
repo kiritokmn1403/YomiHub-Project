@@ -141,6 +141,7 @@ class YomiTunnels(private val activity: Activity, messenger: BinaryMessenger) {
                             })
                             ovpn = helper
                         }
+                        synchronized(ovpnLog) { ovpnLog.clear() }
                         h.startVPN(config, user, pass, name, ArrayList(bypass))
                         result.success(true)
                     } catch (e: Throwable) {

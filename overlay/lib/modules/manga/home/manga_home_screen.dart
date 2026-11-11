@@ -631,7 +631,7 @@ class _MangaHomeScreenState extends ConsumerState<MangaHomeScreen> {
                 child: SuperListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: YomiShorts.supports(source) ? 4 : 3,
+                  itemCount: YomiShorts.supports(source, filters: filters) ? 4 : 3,
                   itemBuilder: (context, index) {
                     if (index == 3) {
                       return MangasCardSelector(

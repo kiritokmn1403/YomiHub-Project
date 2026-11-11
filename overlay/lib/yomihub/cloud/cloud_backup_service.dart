@@ -868,6 +868,8 @@ class MediaFireProvider extends CloudProvider {
 // ───────────────────────────── Telegram ─────────────────────────────
 
 class TelegramProvider extends CloudProvider {
+  TelegramProvider({http.Client? client}) : _clientOverride = client;
+  final http.Client? _clientOverride;
   // 0.4.5 (sheet "YomiHub Update": "Kiểm tra lỗi của tính năng sao lưu bằng
   // Telegram"). Faults found in the 0.4.4 code:
   //  1. Bot API limits: sendDocument accepts ≤ 50 MB and getFile only serves
@@ -913,7 +915,7 @@ class TelegramProvider extends CloudProvider {
   String get _chat => (config['chat_id'] ?? '').trim();
   String _api(String method) => 'https://api.telegram.org/bot$_token/$method';
 
-  http.Client get _tg => MClient.init(reqcopyWith: {'useDartHttpClient': true});
+  http.Client get _tg => _clientOverride ?? MClient.init(reqcopyWith: {'useDartHttpClient': true});
 
   /// Removes the bot token from any text that may reach the UI or the log.
   String _mask(Object e) => maskToken('$e', _token);
@@ -954,6 +956,7 @@ class TelegramProvider extends CloudProvider {
       hint = tr('Bot token sai hoặc đã bị thu hồi – lấy lại token từ @BotFather.');
     } else if (l.contains('chat not found')) {
       hint = tr('Không tìm thấy Chat ID – nhắn /start cho bot (hoặc thêm bot vào nhóm/kênh) và kiểm tra lại Chat ID.');
+      hint += '\n${tr('Để trống để tự lấy sau khi nhắn /start cho bot')}';
     } else if (l.contains('chat_id is empty') || l.contains('chat_id is required')) {
       hint = tr('Chat ID đang để trống – vui lòng nhập Chat ID cá nhân hoặc nhóm/kênh trong Cài đặt Sao lưu.');
     } else if (l.contains('bot was blocked') || l.contains('forbidden')) {
@@ -989,19 +992,11 @@ class TelegramProvider extends CloudProvider {
         }
         config['chat_id'] = found;
       }
-      try {
-        _tgJson(
-            await _tg
-                .get(Uri.parse('${_api('getChat')}?chat_id=${Uri.encodeQueryComponent(_chat)}'))
-                .timeout(const Duration(seconds: 30)),
-            'Telegram getChat');
-      } catch (e) {
-        final found = '$e'.toLowerCase().contains('chat not found') ? await _detectChatId() : null;
-        if (found == null || found == _chat) rethrow;
-        AppLogger.log('[Đồng bộ đám mây] Telegram: Chat ID đã nhập không hợp lệ – dùng Chat ID tự phát hiện từ tin nhắn gần nhất của bot.',
-            logLevel: LogLevel.warning);
-        config['chat_id'] = found;
-      }
+      _tgJson(
+          await _tg
+              .get(Uri.parse('${_api('getChat')}?chat_id=${Uri.encodeQueryComponent(_chat)}'))
+              .timeout(const Duration(seconds: 30)),
+          'Telegram getChat');
     } catch (e) {
       config['ok'] = '0';
       if (e is Exception && '$e'.contains('Telegram get')) rethrow;
@@ -1111,7 +1106,10 @@ class TelegramProvider extends CloudProvider {
 
   @override
   Future<void> upload(File file) async {
-    if (_token.isEmpty || _chat.isEmpty) throw Exception(tr('Nhập đủ Bot token và Chat ID.'));
+    if (_token.isEmpty) throw Exception(tr('Nhập Bot token (lấy từ @BotFather).'));
+    if (_chat.isEmpty) {
+      throw Exception(tr('Chat ID đang để trống – vui lòng nhập Chat ID cá nhân hoặc nhóm/kênh trong Cài đặt Sao lưu.'));
+    }
     final fileName = p.basename(file.path);
     final total = await file.length();
     final stamp = DateTime.now().toLocal().toString().split('.').first;

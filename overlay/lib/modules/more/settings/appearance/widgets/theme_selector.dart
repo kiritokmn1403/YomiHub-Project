@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,6 +56,7 @@ class _ThemeSelectorState extends ConsumerState<ThemeSelector> {
                           children: [
                             FlexThemeModeOptionButton(
                               flexSchemeColor: color,
+                              semanticLabel: tr('Nút chọn chế độ màu giao diện'),
                               selected: selected == index,
                               selectedBorder: BorderSide(
                                 color: theme.primaryColorLight,

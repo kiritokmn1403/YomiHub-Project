@@ -17,24 +17,29 @@ Future<void> fetchItemSourcesList(
     final repos = ref.watch(extensionsRepoStateProvider(itemType));
     final proxyServer = ref.watch(androidProxyServerStateProvider);
     final autoUpdate = ref.watch(autoUpdateExtensionsStateProvider);
-    for (Repo repo in repos) {
-      try {
-        await fetchSourcesList(
-          repo: repo,
-          refresh: reFresh,
-          id: id,
-          androidProxyServer: proxyServer,
-          autoUpdateExtensions: autoUpdate,
-          itemType: itemType,
-        );
-      } catch (e, st) {
-        if (e is YomiLoggedError) continue; // 0.2.2: logged once already
-        // The user just sees no sources for the repo.
-        AppLogger.log(
-          'fetchItemSources: repo fetch failed: $e\n$st',
-          logLevel: LogLevel.error,
-        );
+    await refreshExtensionRepos(repos, (repo) => fetchSourcesList(
+      repo: repo, refresh: reFresh, id: id, androidProxyServer: proxyServer,
+      autoUpdateExtensions: autoUpdate, itemType: itemType,
+    ));
+  }
+}
+
+Future<({int ok, int failed})> refreshExtensionRepos(
+  Iterable<Repo> repos, Future<void> Function(Repo) fetch,
+) async {
+  var ok = 0;
+  var failed = 0;
+  for (final repo in repos) {
+    try {
+      await fetch(repo);
+      ok++;
+    } catch (e) {
+      failed++;
+      if (e is! YomiLoggedError) {
+        final host = Uri.tryParse(repo.jsonUrl ?? '')?.host ?? '';
+        AppLogger.log('[Tiện ích] Không cập nhật được kho $host (${e.runtimeType})', logLevel: LogLevel.error);
       }
     }
   }
+  return (ok: ok, failed: failed);
 }

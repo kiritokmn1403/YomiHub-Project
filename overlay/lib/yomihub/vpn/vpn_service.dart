@@ -359,7 +359,7 @@ class YomiVpnService extends ChangeNotifier {
     _channel.setMethodCallHandler((call) async {
       switch (call.method) {
         case 'torStatus':
-          torStatus = call.arguments as String;
+          torStatus = YomiVpnState.torEnabled ? call.arguments as String : 'OFF';
           if (torStatus == 'OFF') {
             YomiVpnState.torRunning = false;
             YomiVpnState.bump();
@@ -430,8 +430,10 @@ class YomiVpnService extends ChangeNotifier {
 
   /// 0.4.4: adopts a Tor connection that came up after [startTor] returned.
   Future<void> _onTorLateOn() async {
+    final generation = _torGeneration;
     try {
       final info = Map<String, dynamic>.from(await _channel.invokeMethod('torStatus') as Map);
+      if (!YomiVpnState.torEnabled || generation != _torGeneration || info['status'] != 'ON') return;
       final http = (info['httpPort'] as num?)?.toInt() ?? 0;
       if (http <= 0) return;
       YomiVpnState.torHttpPort = http;
@@ -524,18 +526,33 @@ class YomiVpnService extends ChangeNotifier {
     }
   }
 
-  Future<void> startTor() async {
+  int _torGeneration = 0;
+  Future<void>? _pendingTorStart;
+
+  Future<void> startTor() {
+    final pending = _pendingTorStart;
+    if (pending != null) return pending;
+    final generation = ++_torGeneration;
+    return _pendingTorStart = _startTor(generation).whenComplete(() {
+      if (generation == _torGeneration) _pendingTorStart = null;
+    });
+  }
+
+  Future<void> _startTor(int generation) async {
     if (!supported) return;
     torStatus = 'STARTING';
     notifyListeners();
-    if (Platform.isWindows && WinVpnBackend.instance.xrayPurpose == 'proxy') {
-      await WinVpnBackend.instance.proxyBridge(null);
-    }
-    await _writeTorrc();
-    await _armTorGuard();
-    await _sendTorBridges();
     try {
+      if (Platform.isWindows && WinVpnBackend.instance.xrayPurpose == 'proxy') {
+        await WinVpnBackend.instance.proxyBridge(null);
+      }
+      await _writeTorrc();
+      if (generation != _torGeneration) return;
+      await _armTorGuard();
+      await _sendTorBridges();
+      if (generation != _torGeneration) return;
       final info = Map<String, dynamic>.from(await _channel.invokeMethod('torStart') as Map);
+      if (generation != _torGeneration) return;
       YomiVpnState.torHttpPort = (info['httpPort'] as num?)?.toInt() ?? 0;
       YomiVpnState.torSocksPort = (info['socksPort'] as num?)?.toInt() ?? 0;
       torStatus = '${info['status']}';
@@ -549,12 +566,13 @@ class YomiVpnService extends ChangeNotifier {
           ? null
           : (pct == null
               ? tr('Tor chưa kết nối được (có thể mạng đang chặn Tor).')
-              : (Platform.isAndroid && torBridge.isNotEmpty
+              : (Platform.isAndroid && torBridge == 'auto'
                   ? tr('Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – YomiHub đang thử cầu nối (Snowflake/obfs4/meek) ở nền và sẽ tự dùng Tor khi kết nối xong.',
                       {'p0': pct, 'p1': sum == null ? '' : ': $sum'})
                   : tr('Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – Tor vẫn tiếp tục thử ở nền; nếu mạng chặn Tor hãy dùng WARP.',
                       {'p0': pct, 'p1': sum == null ? '' : ': $sum'})));
     } catch (e) {
+      if (generation != _torGeneration) return;
       lastError = e is PlatformException ? (e.message ?? e.code) : '$e';
       torStatus = 'OFF';
       YomiVpnState.torRunning = false;
@@ -602,6 +620,12 @@ class YomiVpnService extends ChangeNotifier {
 
   Future<void> stopTor() async {
     if (!supported) return;
+    _torGeneration++;
+    _pendingTorStart = null;
+    torStatus = 'OFF';
+    YomiVpnState.torRunning = false;
+    YomiVpnState.bump();
+    notifyListeners();
     try {
       await _channel.invokeMethod('torVpnStop');
     } catch (_) {}
@@ -609,9 +633,6 @@ class YomiVpnService extends ChangeNotifier {
     try {
       await _channel.invokeMethod('torStop');
     } catch (_) {}
-    YomiVpnState.torRunning = false;
-    torStatus = 'OFF';
-    YomiVpnState.bump();
     await _applyBrowserProxy();
     if (Platform.isWindows) await _applyWinProxyBridge();
     notifyListeners();

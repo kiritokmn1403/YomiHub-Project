@@ -289,10 +289,11 @@ bool isLibraryUpdateDue({
 /// the same Stop button the manual update uses, and its failures land in the
 /// Updates tab's error screen like any other run's.
 Future<void> autoUpdateLibraryIfDue(WidgetRef ref) async {
+  final container = ProviderScope.containerOf(ref.context, listen: false);
   // Behind the app lock, nothing should be happening yet. Checked before the
   // timestamp below is written, so a launch that stops at the lock screen
   // leaves the refresh due rather than burning the interval on it.
-  if (!ref.read(appUnlockedStateProvider)) return;
+  if (!container.read(appUnlockedStateProvider)) return;
 
   final settings = settingsRepository.current;
   if (!isLibraryUpdateDue(
@@ -306,8 +307,8 @@ Future<void> autoUpdateLibraryIfDue(WidgetRef ref) async {
   // Never fight a run the user started themselves. Claimed here, before the
   // first await, so that a launch and a resume arriving together can't both
   // get past this check and start a run each.
-  if (ref.read(libraryUpdateProvider).running) return;
-  ref.read(libraryUpdateProvider.notifier).begin();
+  if (container.read(libraryUpdateProvider).running) return;
+  container.read(libraryUpdateProvider.notifier).begin();
 
   try {
     if (settings.autoLibraryUpdateWifiOnly ?? true) {
@@ -341,16 +342,16 @@ Future<void> autoUpdateLibraryIfDue(WidgetRef ref) async {
       "Starting scheduled library update (${entries.length} entries)...",
     );
     final failures = await _runUpdate(
-      container: ProviderScope.containerOf(ref as BuildContext, listen: false),
+      container: container,
       mangaList: entries,
       itemtype: "Library",
     );
-    ref.read(updateErrorsProvider.notifier).set(failures);
+    container.read(updateErrorsProvider.notifier).set(failures);
     AppLogger.log(
       "Scheduled library update finished, ${failures.length} of "
       "${entries.length} failed.",
     );
   } finally {
-    ref.read(libraryUpdateProvider.notifier).end();
+    container.read(libraryUpdateProvider.notifier).end();
   }
 }

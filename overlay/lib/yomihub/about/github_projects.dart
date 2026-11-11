@@ -77,13 +77,25 @@ const yomiGithubProjects = <YomiGhGroup>[
   YomiGhGroup('Ứng dụng', [
     YomiGhProject('Aidoku', ['https://github.com/Aidoku/Aidoku']),
     YomiGhProject('Anikku', ['https://github.com/komikku-app/anikku']),
-    YomiGhProject('Aniyomi', ['https://github.com/aniyomiorg/aniyomi']),
-    YomiGhProject('Kotatsu', ['https://github.com/KotatsuApp']),
+    YomiGhProject('Aniyomi', [
+      'https://github.com/aniyomiorg/aniyomi',
+      'https://aniyomi.org/',
+    ]),
+    YomiGhProject('Kotatsu', [
+      'https://github.com/KotatsuApp',
+      'https://github.com/KotatsuApp/plugin-sdk',
+      'https://github.com/KotatsuApp/kotatsu-syncserver',
+      'https://github.com/KotatsuApp/kotatsu-parsers',
+      'https://github.com/KotatsuApp/subsampling-scale-image-view',
+    ]),
     YomiGhProject('Kotatsu Multi Parsers', [
       'https://github.com/Shebyyy/kotatsu-multi-parsers',
     ]),
     YomiGhProject('Miyomi', ['https://github.com/dazedcat19/FMD2']),
-    YomiGhProject('Mangayomi', ['https://github.com/kodjodevf/mangayomi']),
+    YomiGhProject('Mangayomi', [
+      'https://github.com/kodjodevf/mangayomi',
+      'https://mangayomi.org/',
+    ]),
     YomiGhProject('Mangayomi Extension Server', [
       'https://github.com/kodjodevf/M-Extension-Server',
     ]),
@@ -136,6 +148,7 @@ const yomiGithubProjects = <YomiGhGroup>[
     YomiGhProject('LeechText (0.4.9)', [
       'https://github.com/haipham22/LeechText/releases',
       'https://github.com/haipham22/LeechText',
+      'https://github.com/haipham22/LeechText/releases?fbclid=IwY2xjawVSRf1leHRuA2FlbQIxMQBwZG9mA3NydGMGYXBwX2lkATAAAR8JrC_5cgbIIzjBOQRemYXYXuh3LzAM2yvZ6Dl1OyXRApxw5mUeGav1pvjrLg_aem_14NBLJ_UQePgctVXdULJtA',
     ]),
     // 0.5.3: projects added to Project GitHub.xlsx (YomiHub Update mục 3, 6).
     YomiGhProject('Mangayomi Server (0.5.3)', [
@@ -249,6 +262,16 @@ const yomiGithubProjects = <YomiGhGroup>[
     YomiGhProject('Donut Browser (0.5.3)', [
       'https://github.com/donutbrowser/donutbrowser',
     ]),
+    YomiGhProject('Anti-bot Signature Project', [
+      'https://github.com/anonympins/fingerprint',
+      'https://gist.github.com/0xdevalias/b34feb567bd50b37161293694066dd53',
+      'https://github.com/fail2ban/fail2ban',
+      'https://github.com/crowdsecurity/crowdsec',
+      'https://github.com/omkarcloud/botasaurus',
+      'https://github.com/topics/anti-bot',
+      'https://github.com/altcha-org/altcha',
+      'https://github.com/sauravbhattacharya001/gif-captcha',
+    ]),
   ]),
   YomiGhGroup('Cloudflare & Cloudflare Bypass', [
     YomiGhProject('Cloudflare', ['https://github.com/cloudflare']),
@@ -334,6 +357,27 @@ const yomiGithubProjects = <YomiGhGroup>[
       'https://copthuy.github.io/amlich/',
       'https://github.com/lwlsw/Chinese-Lunar-Calendar-ics',
     ]),
+    YomiGhProject('GIF Viewer', [
+      'https://github.com/ata4/gifiddle',
+      'https://github.com/Cutta/GifView',
+      'https://github.com/valentinpi/gif-viewer',
+      'https://github.com/voidtools/voidImageViewer/',
+      'https://github.com/CaptainCodeman/gif-player',
+      'https://github.com/morrow/gif-viewer',
+      'https://github.com/egeDevelops/GifViewer-Modern',
+    ]),
+    YomiGhProject('Isar libmdbx', [
+      'https://github.com/isar/isar',
+      'https://blog.gitcode.com/9798bc7f1c3f32af4677f172c066be38.html',
+      'https://deepwiki.com/isar-community/isar-community/4.3-android-configuration',
+      'https://github.com/isar/isar/issues/1420',
+      'https://sourceforge.net/projects/libmdbx.mirror/',
+      'https://www.altusintel.com/public-yychh0/',
+      'https://github.com/isar-community/isar-community/issues/64',
+      'https://blog.stackademic.com/isar-flutter-database-a-lifesaver-for-my-project-7ab6d4f1b5ce?gi=5a97c3cba361',
+      'https://github.com/isar/isar/issues/1068',
+      'https://deepwiki.com/isar/isar/5.1-native-implementation',
+    ]),
   ]),
   YomiGhGroup('Liquid Glass', [
     YomiGhProject('Liquid Glass', [
@@ -372,6 +416,9 @@ const yomiGithubProjects = <YomiGhGroup>[
     ]),
     YomiGhProject('Pix2Pix Image Translation', [
       'https://atikul-islam-sajib.github.io/pix2pix-deploy/',
+    ]),
+    YomiGhProject('Frank Yomik', [
+      'https://github.com/akitaonrails/FrankYomik',
     ]),
   ]),
   YomiGhGroup('Tải Video (Video Downloader)', [
@@ -477,6 +524,9 @@ const yomiGithubProjects = <YomiGhGroup>[
     YomiGhProject('AutoXL & Excel Financial', [
       'https://github.com/MatrixFun/AutoXL',
       'https://fsprojects.github.io/ExcelFinancialFunctions/',
+    ]),
+    YomiGhProject('Excel Functions', [
+      'https://exceljet.net/functions#:~:text=Complete%20reference%20for%20400%2B%20built-in%20Excel%20functions%2C%20each,1000%2B%20Formulas%2C%20101%20Functions%2C%20and%20New%20Excel%20Functions.',
     ]),
   ]),
   YomiGhGroup('Sức khỏe & Quản lý thời gian (Health Connect)', [
@@ -824,9 +874,6 @@ const yomiGithubProjects = <YomiGhGroup>[
     ]),
     YomiGhProject("cac-ham-trong-excel", [
       "https://itgo.vn/cac-ham-trong-excel",
-    ]),
-    YomiGhProject("functions", [
-      "https://exceljet.net/functions#:~:text=Complete%20reference%20for%20400%2B%20built-in%20Excel%20functions%2C%20each,1000%2B%20Formulas%2C%20101%20Functions%2C%20and%20New%20Excel%20Functions.",
     ]),
     YomiGhProject("cac-ham-trong-excel", [
       "https://www.ketoan.vn/kien-thuc-excel/cac-ham-trong-excel/",
@@ -1382,6 +1429,7 @@ class _GithubProjectsScreenState extends State<GithubProjectsScreen> {
           ),
           for (final (g, items) in groups)
             ExpansionTile(
+              key: ValueKey((g.title, q.isNotEmpty)),
               initiallyExpanded:
                   q.isNotEmpty || identical(g, yomiGithubProjects.first),
               title: Text(
@@ -1395,6 +1443,16 @@ class _GithubProjectsScreenState extends State<GithubProjectsScreen> {
                     dense: true,
                     leading: const Icon(Icons.code),
                     title: Text(tr(p.name)),
+                    trailing: p.urls.length > 1
+                        ? PopupMenuButton<String>(
+                            icon: const Icon(Icons.link),
+                            onSelected: _open,
+                            itemBuilder: (_) => [
+                              for (final url in p.urls)
+                                PopupMenuItem(value: url, child: Text(url)),
+                            ],
+                          )
+                        : null,
                     subtitle: Text(
                       p.urls.join('\n'),
                       style: const TextStyle(fontSize: 11),

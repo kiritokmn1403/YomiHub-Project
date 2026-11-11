@@ -21,20 +21,20 @@ import 'package:path/path.dart' as p;
 class WinDiag {
   WinDiag._();
 
-  /// Checks whether software decoding fallback is supported or active.
-  static bool verifySoftwareDecodingFallback({required bool hwAccel, required String hwdec}) {
-    if (!hwAccel || hwdec == 'no') {
-      return true; // Software decoding mode explicitly selected
-    }
-    // In 'auto' or 'auto-safe' mode, libmpv attempts hardware decoding and falls back to software if unsupported
-    return hwdec == 'auto' || hwdec == 'auto-safe' || hwdec == 'd3d11va-copy';
-  }
-
   /// Result of the last run (shown in tests / logs).
   static final List<String> problems = [];
 
   /// 0.5.3: the last "[Windows] Chẩn đoán" line, shown in Settings.
   static String summary = '';
+
+  /// Detected CPU string
+  static String detectedCpu = '';
+
+  static bool get isAmdCpu =>
+      detectedCpu.toLowerCase().contains('amd') ||
+      detectedCpu.toLowerCase().contains('ryzen');
+
+  static bool get isHighThreadCount => Platform.numberOfProcessors >= 12;
 
   static Future<String> _reg(String key, String value) async {
     try {
@@ -89,6 +89,7 @@ class WinDiag {
       final exeDir = p.dirname(Platform.resolvedExecutable);
       final cpu = (await _reg(r'HKLM\HARDWARE\DESCRIPTION\System\CentralProcessor\0', 'ProcessorNameString'))
           .ifEmpty(env['PROCESSOR_IDENTIFIER'] ?? '?');
+      detectedCpu = cpu;
       final arch = env['PROCESSOR_ARCHITEW6432'] ?? env['PROCESSOR_ARCHITECTURE'] ?? '?';
       final gpu = await _gpu();
       final wv2 = (await _reg(r'HKLM\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}', 'pv'))

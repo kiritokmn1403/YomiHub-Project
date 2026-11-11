@@ -108,7 +108,8 @@ Future<void> doBackUp(
     }
   } catch (e, stack) {
     AppLogger.log('[Sao lưu] Tạo bản sao lưu thất bại ($path): $e\n$stack', logLevel: LogLevel.error);
-    if (context?.mounted ?? false) {
+    if (context == null) rethrow;
+    if (context.mounted) {
       BotToast.showNotification(
         animationDuration: const Duration(milliseconds: 200),
         animationReverseDuration: const Duration(milliseconds: 200),
@@ -251,9 +252,11 @@ Future<String> writeMangayomiBackupZip({
     final file = File(backupFilePath);
     await file.writeAsString(jsonEncode(datas));
     final zipEncoder = ZipFileEncoder(password: pw);
-    zipEncoder.create(zipPath, level: level);
+    final pending = File('$zipPath.partial');
+    zipEncoder.create(pending.path, level: level);
     await zipEncoder.addFile(file);
     await zipEncoder.close();
+    await pending.rename(zipPath);
     await file.delete();
   });
   return zipPath;

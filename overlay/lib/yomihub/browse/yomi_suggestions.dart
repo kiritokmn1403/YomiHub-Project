@@ -48,7 +48,7 @@ class YomiSuggestion {
 ///     how many of the user's tags they share, the source's weight in the
 ///     user's reading, and their rank in the source's list.
 class YomiSuggestionEngine {
-  static final Map<ItemType, (DateTime, List<YomiSuggestion>, List<String>)>
+  static final Map<(ItemType, bool), (DateTime, List<YomiSuggestion>, List<String>)>
   _cache = {};
 
   static String _norm(String s) => s
@@ -144,8 +144,9 @@ class YomiSuggestionEngine {
     bool showNsfw = true,
     void Function(List<YomiSuggestion>, List<String>)? progress,
   }) async {
-    final cached = _cache[type];
-    if (!force && showNsfw &&
+    final cacheKey = (type, showNsfw);
+    final cached = _cache[cacheKey];
+    if (!force &&
         cached != null &&
         DateTime.now().difference(cached.$1) < const Duration(hours: 6)) {
       progress?.call(cached.$2, cached.$3);
@@ -269,7 +270,12 @@ class YomiSuggestionEngine {
           })),
     );
     final result = out.values.toList()..sort((a, b) => b.score.compareTo(a.score));
-    _cache[type] = (DateTime.now(), result, top);
+    // A batch of offline or timed-out sources must be retried when connectivity returns.
+    if (result.isNotEmpty) {
+      _cache[cacheKey] = (DateTime.now(), result, top);
+    } else {
+      _cache.remove(cacheKey);
+    }
     return result;
   }
 }

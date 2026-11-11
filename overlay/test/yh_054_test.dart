@@ -17,7 +17,7 @@ import 'package:mangayomi/repositories/db_write_queue.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/app_identity.dart';
 import 'package:mangayomi/yomihub/player/player_net.dart';
-import 'package:mangayomi/yomihub/win/win_diag.dart';
+import 'package:mangayomi/modules/more/settings/player/providers/player_decoder_state_provider.dart';
 
 String _read(String path) => File(path).readAsStringSync();
 
@@ -188,7 +188,7 @@ void main() {
     test('version / user agent', () {
       expect(AppIdentity.userAgent, anyOf('YomiHub/0.5.4', 'YomiHub/0.5.5', startsWith('YomiHub/0.5.')));
       if (File('pubspec.yaml').existsSync()) {
-        expect(_read('pubspec.yaml'), anyOf(contains('version: 0.5.4+46'), contains('version: 0.5.5+47'), contains('version: 0.5.5')));
+        expect(_read('pubspec.yaml'), anyOf(contains('version: 0.5.4+46'), contains('version: 0.5.5+47'), contains('version: 0.5.5'), contains('version: 0.5.6')));
       }
     });
 
@@ -649,8 +649,10 @@ void main() {
     });
 
     test('Windows CPU architecture and AMD Ryzen recognition with fallback', () {
-      expect(WinDiag.verifySoftwareDecodingFallback(hwAccel: true, hwdec: 'auto'), isTrue);
-      expect(WinDiag.verifySoftwareDecodingFallback(hwAccel: false, hwdec: 'no'), isTrue);
+      expect(resolveHwdecMode('no', 'windows'), 'no');
+      expect(resolveHwdecMode('d3d11va-copy', 'windows'), 'd3d11va-copy');
+      expect(resolveHwdecMode('mediacodec', 'windows'), 'auto');
+      expect(resolveHwdecMode('d3d11va-copy', 'android'), 'auto-safe');
 
       final diagSrc = _read('lib/yomihub/win/win_diag.dart');
       expect(diagSrc, contains('Phát hiện vi xử lý AMD'));

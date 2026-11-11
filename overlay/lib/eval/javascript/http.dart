@@ -9,6 +9,8 @@ import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
 import 'package:http/http.dart' as http;
 import 'package:mangayomi/yomihub/extensions/url_override.dart';
+import 'package:mangayomi/yomihub/kotatsu/kotatsu_bridge.dart';
+import 'package:mangayomi/utils/log/logger.dart';
 
 class JsHttpClient {
   late JavascriptRuntime runtime;
@@ -109,7 +111,31 @@ class Client {
   }
 }
 
+/// YomiHub 0.5.6: requests to the Kotatsu loopback bridge first make sure
+/// the bridge answers, and are sent once more after restarting it when the
+/// connection fails ("Cầu nối Kotatsu chưa chạy", logs 31/10/2026).
 Future<String> _toHttpResponse(Client client, String method, List args, [int? sourceId, String? fallbackBaseUrl]) async {
+  final raw = (args[2] as String? ?? '').trim();
+  if (!KotatsuBridge.isBridgeUrl(raw)) {
+    return _sendJsRequest(client, method, args, sourceId, fallbackBaseUrl);
+  }
+  await KotatsuBridge.ensureAlive();
+  try {
+    return await _sendJsRequest(client, method, args, sourceId, fallbackBaseUrl);
+  } catch (e) {
+    KotatsuBridge.markDead();
+    final revived = await KotatsuBridge.ensureAlive();
+    AppLogger.log(
+      '[Kotatsu] Cầu nối không trả lời (${e.toString().split('\n').first}); '
+      '${revived ? 'đã khởi động lại, gửi lại yêu cầu' : 'khởi động lại thất bại'}',
+      logLevel: revived ? LogLevel.warning : LogLevel.error,
+    );
+    if (!revived) rethrow;
+    return _sendJsRequest(client, method, args, sourceId, fallbackBaseUrl);
+  }
+}
+
+Future<String> _sendJsRequest(Client client, String method, List args, [int? sourceId, String? fallbackBaseUrl]) async {
   var rawUrl = (args[2] as String? ?? '').trim();
   final rawHeaders = args.length > 3 ? args[3] : null;
 

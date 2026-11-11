@@ -335,6 +335,71 @@ class DataAndStorage extends ConsumerWidget {
                 style: TextStyle(fontSize: 11, color: context.secondaryColor),
               ),
             ),
+            ValueListenableBuilder<int>(
+              valueListenable: YomiPrefs.changes,
+              builder: (context, _, _) {
+                final maxCount = YomiPrefs.get<int>('backupMaxCount', 0);
+                return ListTile(
+                  title: Text(tr('Số lượng bản sao lưu')),
+                  subtitle: Text(
+                    maxCount <= 0
+                        ? tr('Không giới hạn')
+                        : tr('{p0} bản gần nhất (tự động dọn dẹp các bản cũ hơn)', {'p0': '$maxCount'}),
+                    style: TextStyle(fontSize: 11, color: context.secondaryColor),
+                  ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        const options = [1, 2, 3, 5, 10, 20, 0];
+                        return AlertDialog(
+                          title: Text(tr('Số lượng bản sao lưu')),
+                          content: SizedBox(
+                            width: context.width(0.8),
+                            child: RadioGroup<int>(
+                              groupValue: maxCount,
+                              onChanged: (value) async {
+                                if (value != null) {
+                                  final locations = ref.read(autoBackupLocationStateProvider);
+                                  final dir = automaticBackupDirectory(
+                                    locations.$2.isEmpty ? locations.$1 : locations.$2,
+                                  );
+                                  await YomiPrefs.set('backupMaxCount', value);
+                                  if (dir != null) await pruneOldBackups(dir.path, maxRetentionCount: value);
+                                }
+                                if (context.mounted) Navigator.pop(context);
+                              },
+                              child: SuperListView.builder(
+                                shrinkWrap: true,
+                                itemCount: options.length,
+                                itemBuilder: (context, index) {
+                                  final val = options[index];
+                                  final label = val <= 0
+                                      ? tr('Không giới hạn')
+                                      : tr('{p0} bản gần nhất', {'p0': '$val'});
+                                  return RadioListTile<int>(
+                                    dense: true,
+                                    contentPadding: const EdgeInsets.all(0),
+                                    value: val,
+                                    title: Text(label),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: Text(l10n.cancel, style: TextStyle(color: context.primaryColor)),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            ),
             SwitchListTile(
               title: Text(l10n.encrypt_backups),
               subtitle: Text(

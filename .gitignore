@@ -113,3 +113,14 @@ audit-0.3.9/test-tools/
 /audit-0.5.5/backup/
 /audit-0.5.5/*.ps1
 /audit-0.5.5/extracted_requirements.txt
+
+# 0.5.6: upstream tham khảo và bằng chứng kiểm thử nặng (không commit)
+src/mangayomi-0.9.95/
+audit-0.5.6/evidence/*
+audit-0.5.6/backup/
+audit-0.5.6/inputs/
+audit-0.5.6/jobsrc/
+audit-0.5.6/status/
+!audit-0.5.6/evidence/QA2/
+audit-0.5.6/evidence/QA2/*
+!audit-0.5.6/evidence/QA2/RESULTS_QA2.md

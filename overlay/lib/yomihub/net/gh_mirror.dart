@@ -13,32 +13,34 @@ class GhMirror {
   /// Mirror URLs for [url] (empty when it is not a GitHub raw URL).
   static List<Uri> mirrorsOf(Uri url) {
     final seg = url.pathSegments.where((e) => e.isNotEmpty).toList();
-    String? owner, repo, branch;
-    List<String> rest = const [];
+    int branchIndex;
     if (url.host == 'raw.githubusercontent.com' && seg.length >= 4) {
-      owner = seg[0];
-      repo = seg[1];
-      if (seg.length >= 6 && seg[2] == 'refs' && (seg[3] == 'heads' || seg[3] == 'tags')) {
-        branch = seg[4];
-        rest = seg.sublist(5);
-      } else {
-        branch = seg[2];
-        rest = seg.sublist(3);
-      }
+      branchIndex = 2;
     } else if (url.host == 'github.com' && seg.length >= 5 && (seg[2] == 'raw' || seg[2] == 'blob')) {
-      owner = seg[0];
-      repo = seg[1];
-      branch = seg[3];
-      rest = seg.sublist(4);
+      branchIndex = 3;
+    } else {
+      return const [];
     }
-    if (owner == null || rest.isEmpty) return const [];
-    final path = rest.join('/');
+    if (seg[branchIndex] == 'refs' &&
+        {'heads', 'tags'}.contains(seg[branchIndex + 1])) {
+      branchIndex += 2;
+    }
+    if (branchIndex + 1 >= seg.length) return const [];
+    final owner = Uri.encodeComponent(seg[0]);
+    final repo = Uri.encodeComponent(seg[1]);
+    final branch = Uri.encodeComponent(seg[branchIndex]);
+    final path = seg.skip(branchIndex + 1).map(Uri.encodeComponent).join('/');
     return [
       Uri.parse('https://cdn.jsdelivr.net/gh/$owner/$repo@$branch/$path'),
       Uri.parse('https://fastly.jsdelivr.net/gh/$owner/$repo@$branch/$path'),
       Uri.parse('https://cdn.statically.io/gh/$owner/$repo/$branch/$path'),
     ];
   }
+
+  static Map<String, String>? _mirrorHeaders(Map<String, String>? headers) =>
+      headers == null ? null : Map.fromEntries(headers.entries.where(
+        (e) => {'accept', 'user-agent', 'range'}.contains(e.key.toLowerCase()),
+      ));
 
   static bool _isNetworkError(Object e) {
     final t = e.toString().toLowerCase();
@@ -74,7 +76,7 @@ class GhMirror {
     }
     for (final m in mirrorsOf(url)) {
       try {
-        final r = await client.get(m, headers: headers).timeout(timeout);
+        final r = await client.get(m, headers: _mirrorHeaders(headers)).timeout(timeout);
         if (r.statusCode == 200 && r.bodyBytes.isNotEmpty) return r;
       } catch (_) {}
     }
@@ -98,7 +100,7 @@ class GhMirror {
     if (first.statusCode == 200 && isValid(first)) return first;
     for (final m in mirrorsOf(url)) {
       try {
-        final r = await client.get(m, headers: headers).timeout(timeout);
+        final r = await client.get(m, headers: _mirrorHeaders(headers)).timeout(timeout);
         if (r.statusCode == 200 && isValid(r)) return r;
       } catch (_) {}
     }

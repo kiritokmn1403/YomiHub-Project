@@ -87,6 +87,11 @@ class StorageProvider {
         : Permission.storage;
     if (await permission.isGranted) return true;
     if (_declinedThisRun && !force) return false;
+    // 0.5.6 (R23, Android TV QA 11/11/2026): on a television the system "All
+    // files access" page cannot be left (no touch, Back does not close it)
+    // and the first launch got stuck on it. Background callers never open it
+    // on TV; only an action the user starts ([force]) may.
+    if (!force && isTv) return false;
     // 0.5.1 (Android TV 14 emulator, 04/11/2026): the Browse tab and the
     // start-up local scan ask without `force`, so the system "All files
     // access" page still opened at EVERY launch. Background callers now ask

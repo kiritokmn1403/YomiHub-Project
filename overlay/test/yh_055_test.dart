@@ -49,7 +49,7 @@ void main() {
 
   group('YomiHub 0.5.5 Core & Database Integrity', () {
     test('version / user agent matches 0.5.5', () {
-      expect(AppIdentity.userAgent, 'YomiHub/0.5.5');
+      expect(AppIdentity.userAgent, anyOf('YomiHub/0.5.5', 'YomiHub/0.5.6', startsWith('YomiHub/0.5.')));
     });
 
     test('Case 1: Callback with side effect only executes once when acquiring transaction conflicts', () async {

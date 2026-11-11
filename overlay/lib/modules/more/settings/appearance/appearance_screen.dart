@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
+import 'package:mangayomi/yomihub/ui/ui_style.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -104,6 +105,8 @@ class AppearanceScreen extends ConsumerWidget {
             SettingsSection(
               title: l10n.appearance,
               children: [
+                // YomiHub 0.5.6: Cũ (YomiHub) / Mới (Mangayomi)
+                const YomiUiStyleTile(),
                 // YomiHub 0.1.5
                 const LiquidGlassSettings(),
                 if (isTv)

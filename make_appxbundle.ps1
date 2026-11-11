@@ -139,9 +139,9 @@ Say "Signed .appx package"
 # 6) Bundle into .appxbundle
 $bundleFile = "$out\YomiHub-$ver-windows-x64.appxbundle"
 if (Test-Path $bundleFile) { Remove-Item $bundleFile -Force }
-& $makeappx bundle /d $bundleDir /p $bundleFile /o
+& $makeappx bundle /d $bundleDir /p $bundleFile /bv $verQuad /o
 if ($LASTEXITCODE -ne 0) { throw "makeappx bundle failed with exit code $LASTEXITCODE" }
-Say "Created bundle: $bundleFile"
+Say "Created bundle: $bundleFile (Version: $verQuad)"
 
 # Sign .appxbundle
 & $signtool sign /fd SHA256 /a /f $pfxPath /p $pfxPass $bundleFile

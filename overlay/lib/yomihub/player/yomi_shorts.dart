@@ -9,6 +9,7 @@ import 'package:mangayomi/eval/model/filter.dart';
 import 'package:mangayomi/eval/model/m_manga.dart';
 import 'package:mangayomi/eval/model/m_pages.dart';
 import 'package:mangayomi/models/source.dart';
+import 'package:mangayomi/models/manga.dart' show ItemType;
 import 'package:mangayomi/models/video.dart' as vid;
 import 'package:mangayomi/modules/more/settings/browse/providers/browse_state_provider.dart';
 import 'package:mangayomi/modules/widgets/manga_image_card_widget.dart';
@@ -41,10 +42,25 @@ class YomiShorts {
   // YomiHub 0.2.0: every bundled extension flagged `shorts` (Pornhub
   // Shorties, Tik.Porn, Kwiky, xFree, FapReel…), plus YouTube / FikFap
   // copies from repositories.
-  static bool supports(Source s) {
+  static int shortsOption(SelectFilter filter) => filter.values.indexWhere(
+    (o) => o is SelectFilterOption &&
+        [o.value, o.name].any((v) => const {'shorts', 'short video', 'short videos', 'video ngắn'}
+            .contains(v.trim().toLowerCase())),
+  );
+
+  static Iterable<SelectFilter> selectFilters(List<dynamic> filters) sync* {
+    for (final filter in filters) {
+      if (filter is SelectFilter) yield filter;
+      if (filter is GroupFilter) yield* selectFilters(filter.state);
+    }
+  }
+
+  static bool supports(Source s, {List<dynamic> filters = const []}) {
+    if (s.itemType != ItemType.anime) return false;
     if (BuiltinExtensions.shortsIds.contains(s.id)) return true;
     final n = (s.name ?? '').toLowerCase();
-    return n.startsWith('youtube') || n.startsWith('fikfap');
+    return n.startsWith('youtube') || n.startsWith('fikfap') ||
+        selectFilters(filters).any((f) => shortsOption(f) >= 0);
   }
 
   static bool isYouTube(Source s) => s.id == youtubeId || (s.name ?? '').toLowerCase().startsWith('youtube');
@@ -137,13 +153,11 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
     // 0.2.0: any select filter offering a "shorts" option (YouTube cat,
     // Pornhub/Tik.Porn/xFree… "feed") switches the source to its vertical feed
     var picked = false;
-    for (final x in f) {
-      if (x is SelectFilter) {
-        final i = x.values.indexWhere((o) => o is SelectFilterOption && o.value == 'shorts');
-        if (i >= 0) {
-          x.state = i;
-          picked = true;
-        }
+    for (final x in YomiShorts.selectFilters(f)) {
+      final i = YomiShorts.shortsOption(x);
+      if (i >= 0) {
+        x.state = i;
+        picked = true;
       }
     }
     if (!picked && !YomiShorts.isYouTube(widget.source)) {
@@ -269,29 +283,37 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
     return c.video;
   }
 
-  Future<void> _load(int slot, int index) async {
-    if (index < 0 || index >= _clips.length) return;
-    if (_loaded[slot] == index) return;
+  final _pendingLoads = <Player, Future<void>>{};
+
+  Future<void> _load(int slot, int index) {
+    if (index < 0 || index >= _clips.length) return Future.value();
+    final player = _players[slot];
+    if (_loaded[slot] == index) return _pendingLoads[player] ?? Future.value();
     _loaded[slot] = index;
+    return _pendingLoads[player] = _prepareClip(player, index);
+  }
+
+  Future<void> _prepareClip(Player p, int index) async {
+    bool current() => mounted && _loaded[_players.indexOf(p)] == index;
     final v = await _resolve(_clips[index]);
-    if (v == null || _loaded[slot] != index) return;
-    final p = _players[slot];
+    if (!current() || v == null) return;
     // 0.5.3: same network route (Tor / Mihon Proxy / custom proxy) as the
     // extension that produced the URL – tokenised CDN links failed otherwise
     final media = Media(v.url, httpHeaders: YomiSponsorBlock.clean(v.headers));
     final proxied = await YomiPlayerNet.apply(p, widget.source.id, url: v.url);
-    if (_loaded[slot] != index || !mounted) return;
+    if (!current()) return;
     if (proxied) {
       _proxiedMedia[p] = media;
     } else {
       _proxiedMedia.remove(p);
     }
     await p.open(media, play: false);
+    if (!current()) return;
     final audios = v.audios ?? const [];
     if (audios.isNotEmpty) {
       await p.setAudioTrack(AudioTrack.uri(audios.first.file!, title: audios.first.label));
     }
-    await p.setVolume(_muted ? 0 : 100);
+    if (current()) await p.setVolume(_muted ? 0 : 100);
   }
 
   Future<void> _show(int index) async {
@@ -307,9 +329,15 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
       _loaded.insert(0, _loaded.removeAt(1));
     }
     await _players[1].pause();
+    if (!mounted || _index != index) return;
     await _load(0, index);
-    await _players[0].seek(Duration.zero);
+    if (!mounted || _index != index || _clips[index].video == null) return;
+    if (_players[0].state.position > Duration.zero) {
+      await _players[0].seek(Duration.zero);
+      if (!mounted || _index != index) return;
+    }
     await _players[0].play();
+    if (!mounted || _index != index) return;
     unawaited(_audioCheck(index));
     _completed?.cancel();
     _completed = _players[0].stream.completed.listen((done) {

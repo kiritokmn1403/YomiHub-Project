@@ -107,6 +107,74 @@ class KotatsuBridge {
     return await start();
   }
 
+  // ───────── 0.5.6: health check + restart ─────────
+  // Logs 31/10/2026: "Cầu nối Kotatsu chưa chạy … IncompleteMessage". The
+  // extension runtime only *fired* ensureStarted() (not awaited), and a
+  // bridge that had stopped answering kept `_started == true`, so nothing
+  // ever restarted it. Requests to the bridge now wait for [ensureAlive].
+
+  /// Whether [url] is a request to the loopback bridge.
+  static bool isBridgeUrl(String url) =>
+      url.startsWith('http://127.0.0.1:$port/') ||
+      url.startsWith('http://localhost:$port/');
+
+  /// How long a successful ping is trusted before the next check.
+  static const aliveTtl = Duration(seconds: 15);
+  static DateTime? _aliveAt;
+  static Future<bool>? _reviving;
+
+  /// Test seams (the real ones talk to the platform).
+  static Future<bool> Function() pingImpl = _httpPing;
+  static Future<bool> Function() startImpl = start;
+  static DateTime Function() clock = DateTime.now;
+
+  static Future<bool> _httpPing() async {
+    try {
+      final r = await http
+          .get(Uri.parse('$_host/ping'))
+          .timeout(const Duration(seconds: 2));
+      return r.statusCode == 200;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Forgets that the bridge answered (after a failed request).
+  static void markDead() {
+    _aliveAt = null;
+    _started = false;
+  }
+
+  /// Makes sure the bridge answers: a recent successful ping is trusted,
+  /// otherwise it is pinged and (re)started, waiting up to ~6 s for the
+  /// first answer. Concurrent callers share one attempt.
+  static Future<bool> ensureAlive() {
+    final at = _aliveAt;
+    if (at != null && clock().difference(at) < aliveTtl) {
+      return Future.value(true);
+    }
+    return _reviving ??= _revive().whenComplete(() => _reviving = null);
+  }
+
+  static Future<bool> _revive() async {
+    try {
+      if (await pingImpl()) {
+        _aliveAt = clock();
+        return true;
+      }
+      _started = false;
+      if (!await startImpl()) return false;
+      for (var i = 0; i < 20; i++) {
+        if (await pingImpl()) {
+          _aliveAt = clock();
+          return true;
+        }
+        await Future<void>.delayed(const Duration(milliseconds: 300));
+      }
+    } catch (_) {}
+    return false;
+  }
+
   /// Called at startup: only spins the bridge up when a Kotatsu source is installed.
   static Future<void> startIfNeeded() async {
     if (!supported) return;

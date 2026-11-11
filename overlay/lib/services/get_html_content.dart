@@ -84,8 +84,8 @@ Future<(String, EpubNovel?)> getHtmlContent(
       // A folder holds exactly one file, so a glob is correct regardless of
       // which sanitiser wrote it. See #817.
       File? localFile;
-      if (chapterDirectory.existsSync()) {
-        for (final entity in chapterDirectory.listSync()) {
+      if (await chapterDirectory.exists()) {
+        await for (final entity in chapterDirectory.list()) {
           if (entity is File && entity.path.toLowerCase().endsWith('.html')) {
             localFile = entity;
             break;

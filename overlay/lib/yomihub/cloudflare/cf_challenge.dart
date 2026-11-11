@@ -74,6 +74,10 @@ class YomiCf {
   static Future<void> forget(String host) async {
     final h = _key(host);
     _ua.remove(h);
+    _solvedAt.remove(h);
+    _redirect.remove(h);
+    _failed.remove(h);
+    _declined.remove(h);
     await _box?.delete(h);
     await MClient.deleteAllCookies('https://$h/');
     try {
@@ -128,14 +132,7 @@ class YomiCf {
     await MClient.setCookie(origUrl, ua, c);
     if (cur != null && cur.host.isNotEmpty && _key(cur.host) != _key(orig.host)) {
       try {
-        final cs = await CookieManager.instance(webViewEnvironment: webViewEnvironment)
-            .getCookies(url: cur, webViewController: c);
-        final joined = cs.map((e) => '${e.name}=${e.value}').join(', ');
         await MClient.setCookie(cur.toString(), ua, c);
-        if (joined.isNotEmpty) {
-          // requests to the old host carry the new host's clearance too
-          await MClient.setCookie(origUrl, ua, null, cookie: joined);
-        }
       } catch (_) {}
       _redirect[_key(orig.host)] = _key(cur.host);
       rememberUa(cur.host, ua);
@@ -153,6 +150,10 @@ class YomiCf {
 
   static Future<void> forgetAll() async {
     _ua.clear();
+    _solvedAt.clear();
+    _redirect.clear();
+    _failed.clear();
+    _declined.clear();
     await _box?.clear();
   }
 
@@ -218,6 +219,7 @@ class _CfChallengePageState extends State<CfChallengePage> {
   InAppWebViewController? _c;
   Timer? _poll;
   bool _done = false;
+  bool _checking = false;
   double _progress = 0;
   final _webKey = GlobalKey();
   int _clicks = 0;
@@ -241,20 +243,30 @@ class _CfChallengePageState extends State<CfChallengePage> {
   }
 
   Future<void> _check() async {
-    if (_done || _c == null) return;
+    final controller = _c;
+    if (_done || _checking || !mounted || controller == null) return;
+    _checking = true;
     try {
-      if (!await YomiCf.hasClearance(widget.url, _c!)) {
-        unawaited(_humanize());
+      if (!await YomiCf.hasClearance(widget.url, controller)) {
+        if (mounted) unawaited(_humanize());
         return;
       }
-      final title = await _c!.getTitle() ?? '';
+      final title = await controller.getTitle() ?? '';
       if (title.contains('Just a moment') || title.contains('Một chút')) {
         return;
       }
+      if (!mounted) return;
+      await YomiCf.saveFromWebView(widget.url, controller);
+      if (!mounted || ModalRoute.of(context)?.isCurrent != true) return;
       _done = true;
-      await YomiCf.saveFromWebView(widget.url, _c!);
-      if (mounted) Navigator.of(context).pop(true);
-    } catch (_) {}
+      Navigator.of(context).pop(true);
+    } catch (_) {
+      if (mounted) AppLogger.logOnce('cf-check-${Uri.tryParse(widget.url)?.host}',
+          '[Cloudflare] Chưa đọc hoặc lưu được phiên xác minh WebView.',
+          logLevel: LogLevel.warning);
+    } finally {
+      _checking = false;
+    }
   }
 
   @override

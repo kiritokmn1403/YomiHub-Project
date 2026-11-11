@@ -1,6 +1,11 @@
 import 'package:mangayomi/yomihub/perf/perf_watchdog.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
+import 'package:mangayomi/yomihub/library/library_hub.dart';
+import 'package:mangayomi/yomihub/library/library_hub_bar.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:mangayomi/yomihub/ui/ui_style.dart';
+import 'package:mangayomi/yomihub/ui/shiori/shiori_nav_bar.dart';
 import 'dart:async';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -160,6 +165,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   void initState() {
     super.initState();
 
+    YomiPrefs.changes.addListener(_onPrefsChanged);
     _navigationOrder = ref.read(navigationOrderStateProvider);
     final hiddenItems = ref.read(hideItemsStateProvider);
 
@@ -286,6 +292,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
 
   @override
   void dispose() {
+    YomiPrefs.changes.removeListener(_onPrefsChanged);
     _backupTimer?.cancel();
     _syncTimer?.cancel();
     discordRpc?.disconnect();
@@ -294,6 +301,68 @@ class _MainScreenState extends ConsumerState<MainScreen> {
 
   int currentIndex = 0;
   bool isLibSwitch = false;
+
+  // YomiHub 0.5.6: "Giao diện ứng dụng: Cũ / Mới" – applied at once, no
+  // restart (the choice lives in YomiPrefs).
+  YomiUiStyle _uiStyle = YomiUi.style;
+
+  void _onPrefsChanged() {
+    final style = YomiUi.style;
+    if (!mounted || style == _uiStyle) return;
+    _clearCache();
+    setState(() {
+      _uiStyle = style;
+      isLibSwitch = false;
+    });
+  }
+
+  static String? _routerLocation(GoRouter router) {
+    final m = router.routerDelegate.currentConfiguration;
+    return m.isEmpty ? null : m.uri.toString();
+  }
+
+  /// One sub-tab of "Thư Viện" (label and icons of the old nav entries).
+  LibraryHubTab _hubTab(BuildContext context, String route) {
+    final l10n = context.l10n;
+    return switch (route) {
+      '/MangaLibrary' => LibraryHubTab(
+        route: route,
+        label: l10n.manga,
+        icon: Icons.collections_bookmark_outlined,
+        selectedIcon: Icons.collections_bookmark,
+      ),
+      '/AnimeLibrary' => LibraryHubTab(
+        route: route,
+        label: l10n.anime,
+        icon: Icons.video_collection_outlined,
+        selectedIcon: Icons.video_collection,
+      ),
+      '/NovelLibrary' => LibraryHubTab(
+        route: route,
+        label: l10n.novel,
+        icon: Icons.local_library_outlined,
+        selectedIcon: Icons.local_library,
+      ),
+      '/updates' => LibraryHubTab(
+        route: route,
+        label: l10n.updates,
+        icon: Icons.new_releases_outlined,
+        selectedIcon: Icons.new_releases,
+      ),
+      '/history' => LibraryHubTab(
+        route: route,
+        label: l10n.history,
+        icon: Icons.history_outlined,
+        selectedIcon: Icons.history,
+      ),
+      _ => LibraryHubTab(
+        route: route,
+        label: tr('Play Books'),
+        icon: Icons.auto_stories_outlined,
+        selectedIcon: Icons.auto_stories,
+      ),
+    };
+  }
   @override
   Widget build(BuildContext context) {
     ref.listen<Locale>(l10nLocaleStateProvider, (previous, next) {
@@ -312,8 +381,10 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     final route = GoRouter.of(context);
     final navigationOrder = ref.watch(navigationOrderStateProvider);
     final hideItems = ref.watch(hideItemsStateProvider);
-    final mergeLibraryNavMobile = ref.watch(mergeLibraryNavMobileStateProvider);
-    final location = ref.watch(routerCurrentLocationStateProvider);
+    // R22: never null once the router has a page (see the provider).
+    final location =
+        ref.watch(routerCurrentLocationStateProvider) ??
+        _routerLocation(route);
     YomiPerf.route = location ?? '';
 
     return ref
@@ -322,75 +393,82 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           data: (_) => Consumer(
             builder: (context, ref, child) {
               final isReadingScreen = _isReadingScreen(location);
-              bool uniqueSwitch = false;
-              List<String> dest = !context.isTablet && isLibSwitch
-                  ? [
-                      "_disableLibSwitch",
-                      ...navigationOrder.where(
-                        (nav) => libLocationRegex.hasMatch(nav),
-                      ),
-                    ].where((nav) => !_isNavHidden(nav, hideItems)).toList()
-                  : navigationOrder
-                        .where((nav) => !_isNavHidden(nav, hideItems))
-                        .toList();
-              // 0.4.3: History only from "More" (not a bottom tab)
-              dest = dest.where((nav) => nav != '/history').toList();
+              // YomiHub 0.5.6 (sheet "YomiHub Update" rows 12-13): Comic,
+              // Film & Movie, Novel and Play Books are one "Thư Viện" entry;
+              // the Mangayomi layout also folds Updates + History into
+              // "Hoạt động" (Mangayomi 0.9.95 nav groups). The rules live in
+              // yomihub/library/library_hub.dart.
+              // 0.4.3: History only from "More" in the classic layout.
+              final tvOnly =
+                  isTv || kIsTvBuild || ref.watch(animeOnlyTvModeProvider);
+              final uiModern = _uiStyle == YomiUiStyle.modern;
+              final hubTabs = libraryHubTabs(
+                order: navigationOrder,
+                hidden: hideItems,
+                tv: tvOnly,
+              );
+              YomiLibraryHub.tabs = hubTabs;
+              YomiLibraryHub.activity = activityTabs(
+                order: navigationOrder,
+                hidden: hideItems,
+                tv: tvOnly,
+                modern: uiModern,
+              );
+              YomiLibraryHub.visit(location);
+              final List<String> dest = buildMainNav(
+                order: navigationOrder,
+                hidden: hideItems,
+                tv: tvOnly,
+                modern: uiModern,
+              );
 
-              // Anime-only TV layout: drop the manga & novel library tabs.
-              if (isTv || kIsTvBuild || ref.watch(animeOnlyTvModeProvider)) {
-                dest = dest.where(_isNotHiddenLibOnTv).toList();
+              // Auto-redirect if the selected library is hidden (feature
+              // switched off, or a manga/novel library on the TV layout).
+              if (location != null &&
+                  dest.isNotEmpty &&
+                  (_isNavHidden(location, hideItems) ||
+                      (isLibraryHubRoute(location) &&
+                          !hubTabs.contains(location)))) {
+                final target = YomiLibraryHub.resolve(dest.first);
+                if (target != null && target != location) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    if (mounted) context.go(target);
+                  });
+                }
               }
 
-              // Auto-redirect if currently selected library is hidden
-              if (location != null && _isNavHidden(location, hideItems) && dest.isNotEmpty) {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  if (mounted) context.go(dest.first);
-                });
-              }
-
-              if (mergeLibraryNavMobile && !context.isTablet && !isLibSwitch) {
-                dest = dest
-                    .map((nav) {
-                      if ([
-                        "/MangaLibrary",
-                        "/AnimeLibrary",
-                        "/NovelLibrary",
-                      ].contains(nav)) {
-                        if (uniqueSwitch) return null;
-                        uniqueSwitch = true;
-                        return "_enableLibSwitch";
-                      }
-                      return nav;
-                    })
-                    .nonNulls
-                    .toList();
-              }
-
-              if (isLibSwitch &&
-                  (currentIndex >= dest.length ||
-                      !libLocationRegex.hasMatch(location ?? ""))) {
+              final navKey = navKeyForLocation(
+                location ?? _defaultLocation,
+                dest,
+              );
+              final currentIdx = navKey == null ? -1 : dest.indexOf(navKey);
+              if (currentIdx != -1) {
+                currentIndex = currentIdx;
+              } else if (currentIndex >= dest.length) {
                 currentIndex = 0;
-              } else {
-                String? libLocation;
-                if (mergeLibraryNavMobile &&
-                    !context.isTablet &&
-                    !isLibSwitch) {
-                  libLocation = location?.replaceAll(
-                    libLocationRegex,
-                    "_enableLibSwitch",
-                  );
-                }
-                int currentIdx = dest.indexOf(
-                  libLocation ?? location ?? _defaultLocation,
-                );
-                if (currentIdx != -1) {
-                  currentIndex = currentIdx;
-                }
               }
 
               final incognitoMode = ref.watch(incognitoModeStateProvider);
               final downloadedOnly = ref.watch(downloadedOnlyStateProvider);
               final isLongPressed = ref.watch(isLongPressedStateProvider);
+
+              // The strip of library sub-tabs. The Column keeps the same
+              // shape with or without it so the routed pages keep their
+              // state when the strip appears / disappears.
+              final stripTabs = isLongPressed
+                  ? const <String>[]
+                  : YomiLibraryHub.stripFor(location);
+              // Mangayomi 0.9.95: a sideways swipe opens the next / previous
+              // member of the group (not on TV: the D-pad uses the strip).
+              final Widget shellChild = YomiHubShell(
+                stripTabs: stripTabs,
+                location: location,
+                pill: uiModern,
+                swipe: !isTv,
+                tabFor: (r) => _hubTab(context, r),
+                onGo: route.go,
+                child: widget.child,
+              );
 
               return Column(
                 children: [
@@ -413,9 +491,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                               ref: ref,
                               buildNavigationWidgetsDesktop:
                                   _buildNavigationWidgetsDesktop,
-                              child: widget.child,
+                              child: shellChild,
                             )
-                          : widget.child,
+                          : shellChild,
                       bottomNavigationBar: context.isTablet
                           ? null
                           : _MobileBottomNavigation(
@@ -444,8 +522,14 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                     _lastMobileNavTapTime,
                                     now,
                                   );
+                                  // 0.5.6: a group opens the member
+                                  // used last (Mangayomi 0.9.95).
+                                  final target =
+                                      YomiLibraryHub.resolve(destination) ??
+                                      destination;
                                   if (isDoubleTap &&
-                                      destination == '/history') {
+                                      (target == '/history' ||
+                                          destination == kActivityNav)) {
                                     _lastMobileNavDest = null;
                                     _lastMobileNavTapTime = null;
                                     final activeType = ref.read(
@@ -457,7 +541,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                     return;
                                   }
                                   final itemType = _itemTypeForNavDest(
-                                    destination,
+                                    target,
                                   );
                                   if (isDoubleTap && itemType != null) {
                                     _lastMobileNavDest = null;
@@ -470,7 +554,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                   }
                                   _lastMobileNavDest = destination;
                                   _lastMobileNavTapTime = now;
-                                  route.go(destination);
+                                  if (!target.startsWith('_')) {
+                                    route.go(target);
+                                  }
                                 }
                               },
                             ),
@@ -523,6 +609,34 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       null,
     );
 
+    if (dest.contains(kLibraryHubNav)) {
+      destinations[dest.indexOf(kLibraryHubNav)] = NavigationRailDestination(
+        padding: isTv ? const EdgeInsets.symmetric(vertical: 6) : null,
+        selectedIcon: const Icon(Icons.collections_bookmark),
+        icon: const Icon(Icons.collections_bookmark_outlined),
+        label: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Text(l10n.library),
+        ),
+      );
+    }
+    if (dest.contains(kActivityNav)) {
+      destinations[dest.indexOf(kActivityNav)] = NavigationRailDestination(
+        padding: isTv ? const EdgeInsets.symmetric(vertical: 6) : null,
+        selectedIcon: _UpdatesBadgeWidget(
+          icon: const Icon(Icons.new_releases),
+          ref: ref,
+        ),
+        icon: _UpdatesBadgeWidget(
+          icon: const Icon(Icons.new_releases_outlined),
+          ref: ref,
+        ),
+        label: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Text(tr('Hoạt động')),
+        ),
+      );
+    }
     if (dest.contains("/MangaLibrary")) {
       destinations[dest.indexOf("/MangaLibrary")] = NavigationRailDestination(
         // Even breathing room between tabs on TV; null off-TV.
@@ -588,9 +702,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         padding: isTv ? const EdgeInsets.symmetric(vertical: 6) : null,
         selectedIcon: const Icon(Icons.auto_stories),
         icon: const Icon(Icons.auto_stories_outlined),
-        label: const Padding(
-          padding: EdgeInsets.only(top: 5),
-          child: Text('Play Books'),
+        label: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Text(tr('Play Books')),
         ),
       );
     }
@@ -713,6 +827,26 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         label: l10n.go_back,
       );
     }
+    if (dest.contains(kLibraryHubNav)) {
+      destinations[dest.indexOf(kLibraryHubNav)] = NavigationDestination(
+        selectedIcon: const Icon(Icons.collections_bookmark),
+        icon: const Icon(Icons.collections_bookmark_outlined),
+        label: l10n.library,
+      );
+    }
+    if (dest.contains(kActivityNav)) {
+      destinations[dest.indexOf(kActivityNav)] = NavigationDestination(
+        selectedIcon: _UpdatesBadgeWidget(
+          icon: const Icon(Icons.new_releases),
+          ref: ref,
+        ),
+        icon: _UpdatesBadgeWidget(
+          icon: const Icon(Icons.new_releases_outlined),
+          ref: ref,
+        ),
+        label: tr('Hoạt động'),
+      );
+    }
     if (dest.contains("_enableLibSwitch")) {
       destinations[dest.indexOf("_enableLibSwitch")] = NavigationDestination(
         selectedIcon: const Icon(Icons.collections_bookmark),
@@ -745,10 +879,10 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       );
     }
     if (dest.contains("/playBooks")) {
-      destinations[dest.indexOf("/playBooks")] = const NavigationDestination(
-        selectedIcon: Icon(Icons.auto_stories),
-        icon: Icon(Icons.auto_stories_outlined),
-        label: 'Play Books',
+      destinations[dest.indexOf("/playBooks")] = NavigationDestination(
+        selectedIcon: const Icon(Icons.auto_stories),
+        icon: const Icon(Icons.auto_stories_outlined),
+        label: tr('Play Books'),
       );
     }
     if (dest.contains("/booru")) {
@@ -953,8 +1087,10 @@ class _TabletLayoutState extends State<_TabletLayout> {
       now,
     );
 
-    final dest = widget.dest[newIndex];
-    if (isDoubleTap && dest == '/history') {
+    // 0.5.6: a group opens the member used last (Mangayomi 0.9.95).
+    final nav = widget.dest[newIndex];
+    final dest = YomiLibraryHub.resolve(nav) ?? nav;
+    if (isDoubleTap && (dest == '/history' || nav == kActivityNav)) {
       _lastNavTapIndex = null;
       _lastNavTapTime = null;
       final activeType = widget.ref.read(activeHistoryItemTypeStateProvider);
@@ -972,7 +1108,7 @@ class _TabletLayoutState extends State<_TabletLayout> {
 
     _lastNavTapIndex = newIndex;
     _lastNavTapTime = now;
-    widget.route.go(widget.dest[newIndex]);
+    if (!dest.startsWith('_')) widget.route.go(dest);
   }
 
   @override
@@ -1177,10 +1313,39 @@ class _MobileBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = _getBottomNavigationHeight(isLongPressed, location);
+    if (height == 0) return const SizedBox.shrink();
+
+    // YomiHub 0.5.6 U12: When modern Shiori UI style is selected, use Shiori floating nav bar
+    if (YomiUi.isModern && !isTv) {
+      final navWidgets = buildNavigationWidgetsMobile(ref, dest, context);
+      final shioriDestinations = navWidgets.whereType<NavigationDestination>().map((d) {
+        return ShioriNavDestination(
+          icon: d.icon,
+          selectedIcon: d.selectedIcon,
+          label: d.label,
+          tooltip: d.tooltip,
+        );
+      }).toList();
+
+      return SafeArea(
+        top: false,
+        child: ShioriFloatingNavBar(
+          destinations: shioriDestinations,
+          selectedIndex: currentIndex.clamp(0, shioriDestinations.isEmpty ? 0 : shioriDestinations.length - 1),
+          onDestinationSelected: (newIndex) {
+            if (newIndex >= 0 && newIndex < dest.length) {
+              onDestinationSelected(dest[newIndex]);
+            }
+          },
+        ),
+      );
+    }
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 0),
       width: context.width(1),
-      height: _getBottomNavigationHeight(isLongPressed, location),
+      height: height,
       child: NavigationBarTheme(
         data: NavigationBarThemeData(
           // YomiHub 0.1.5: keep the (Liquid Glass) translucent colour.

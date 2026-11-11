@@ -65,7 +65,7 @@ class _CloudScraperScreenState extends State<CloudScraperScreen> {
     final sites = YomiCf.all.keys.toList()..sort();
     final on = CloudScraper.enabled;
     return Scaffold(
-      appBar: AppBar(title: const Text('Cloudflare Bypass Setting')),
+      appBar: AppBar(title: Text(tr('Cài đặt vượt Cloudflare'))),
       body: ListView(
         children: [
           SwitchListTile(

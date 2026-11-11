@@ -32,7 +32,9 @@ Future<void> fetchSourcesList({
 }) async {
   final http = MClient.init(reqcopyWith: {'useDartHttpClient': true});
   final url = repo?.jsonUrl;
-  if (repo == null || url == null || url.trim().isEmpty) return;
+  if (repo == null || url == null || url.trim().isEmpty) {
+    throw const FormatException('Missing repository URL');
+  }
 
   if ((repo.name == null ||
           repo.name!.isEmpty ||
@@ -87,59 +89,60 @@ Future<void> fetchSourcesList({
             decoded = null;
           }
         }
-        if (decoded is List) {
-          sourceList = decoded
-              .expand((e) sync* {
-                if (e['id'] is String &&
-                    e['name'] != null &&
-                    e['site'] != null &&
-                    e['lang'] != null &&
-                    e['version'] != null &&
-                    e['url'] != null &&
-                    e['iconUrl'] != null) {
-                  final src = Source.fromJson(e)
-                    ..apiUrl = ''
-                    ..appMinVerReq = ''
-                    ..dateFormat = ''
-                    ..dateFormatLocale = ''
-                    ..hasCloudflare = false
-                    ..headers = ''
-                    ..isActive = true
-                    ..isAdded = false
-                    ..isFullData = false
-                    ..isNsfw = false
-                    ..isPinned = false
-                    ..lastUsed = false
-                    ..sourceCode = ''
-                    ..typeSource = ''
-                    ..versionLast = e['version'] ?? '0.0.1'
-                    ..isObsolete = false
-                    ..isLocal = false
-                    ..lang = _convertLang(e)
-                    ..baseUrl = e['site']
-                    ..sourceCodeUrl = e['url']
-                    ..sourceCodeLanguage = SourceCodeLanguage.lnreader
-                    ..itemType = ItemType.novel
-                    ..notes = "Performance might be poor due to limited engine";
-                  src.id =
-                      'lnreader-plugin-"${src.name}"."${src.lang}"'.hashCode;
-                  yield src;
-                } else if (e is Map<String, dynamic>) {
-                  try {
-                    yield Source.fromJson(e);
-                  } catch (_) {}
-                }
-              })
-              .where(
-                (source) =>
-                    source.itemType == itemType &&
-                    (source.appMinVerReq == null ||
-                        source.appMinVerReq!.isEmpty ||
-                        compareVersions(yomiEngineVersion(info.version), source.appMinVerReq!) >
-                            -1),
-              )
-              .toList();
-        }
+        if (decoded is! List) throw const FormatException('Invalid repository index');
+        sourceList = decoded
+            .expand((e) sync* {
+              if (e['id'] is String &&
+                  e['name'] != null &&
+                  e['site'] != null &&
+                  e['lang'] != null &&
+                  e['version'] != null &&
+                  e['url'] != null &&
+                  e['iconUrl'] != null) {
+                final src = Source.fromJson(e)
+                  ..apiUrl = ''
+                  ..appMinVerReq = ''
+                  ..dateFormat = ''
+                  ..dateFormatLocale = ''
+                  ..hasCloudflare = false
+                  ..headers = ''
+                  ..isActive = true
+                  ..isAdded = false
+                  ..isFullData = false
+                  ..isNsfw = false
+                  ..isPinned = false
+                  ..lastUsed = false
+                  ..sourceCode = ''
+                  ..typeSource = ''
+                  ..versionLast = e['version'] ?? '0.0.1'
+                  ..isObsolete = false
+                  ..isLocal = false
+                  ..lang = _convertLang(e)
+                  ..baseUrl = e['site']
+                  ..sourceCodeUrl = e['url']
+                  ..sourceCodeLanguage = SourceCodeLanguage.lnreader
+                  ..itemType = ItemType.novel
+                  ..notes = "Performance might be poor due to limited engine";
+                src.id =
+                    'lnreader-plugin-"${src.name}"."${src.lang}"'.hashCode;
+                yield src;
+              } else if (e is Map<String, dynamic>) {
+                try {
+                  yield Source.fromJson(e);
+                } catch (_) {}
+              }
+            })
+            .where(
+              (source) =>
+                  source.itemType == itemType &&
+                  (source.appMinVerReq == null ||
+                      source.appMinVerReq!.isEmpty ||
+                      compareVersions(yomiEngineVersion(info.version), source.appMinVerReq!) >
+                          -1),
+            )
+            .toList();
+      } else {
+        throw HttpException('Invalid repository response: HTTP ${req.statusCode}');
       }
     } catch (e, st) {
       // A failure here drops sources from the list with no sign of why.
@@ -161,6 +164,7 @@ Future<void> fetchSourcesList({
           logLevel: LogLevel.error,
         );
       }
+      throw YomiLoggedError(e);
     }
   }
   // YomiHub 0.2.2: some repos (kegareta-sauces) publish URLs with an
