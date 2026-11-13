@@ -1,0 +1,44 @@
+// YomiHub 0.5.6.1 A6 (chỉ có trong APK Android 6.0 - build23, do build_0561_android6.ps1 sinh ra).
+// Android 6 thiếu CA gốc mới (ISRG Root X1, GTS Root R1...) -> HttpClient của Dart báo
+// CERTIFICATE_VERIFY_FAILED. Khi SDK < 24, thêm bộ CA Mozilla đóng gói vào
+// SecurityContext.defaultContext (kho hệ thống vẫn giữ; không tắt kiểm tra chứng chỉ).
+// Gọi ở main() và ở đầu mỗi isolate có mạng (mỗi isolate có defaultContext riêng).
+// Nguồn CA: __CA_SOURCE__
+import 'dart:convert';
+import 'dart:io';
+
+bool _yhA6Done = false;
+
+int _yhA6Sdk() {
+  try {
+    final f = File('/system/build.prop');
+    if (!f.existsSync()) return 99;
+    for (final l in f.readAsLinesSync()) {
+      if (l.startsWith('ro.build.version.sdk=')) {
+        return int.tryParse(l.substring(21).trim()) ?? 99;
+      }
+    }
+  } catch (_) {}
+  return 99;
+}
+
+void yhA6InstallCa() {
+  if (_yhA6Done) return;
+  _yhA6Done = true;
+  if (!Platform.isAndroid || _yhA6Sdk() >= 24) return;
+  var ok = 0;
+  final ctx = SecurityContext.defaultContext;
+  for (final m in RegExp(
+    r'-----BEGIN CERTIFICATE-----[\s\S]+?-----END CERTIFICATE-----',
+  ).allMatches(_yhA6Pem)) {
+    try {
+      ctx.setTrustedCertificatesBytes(utf8.encode(m.group(0)!));
+      ok++;
+    } catch (_) {}
+  }
+  print('[YomiA6Tls] Dart: them $ok CA goc dong goi (SDK < 24)');
+}
+
+const String _yhA6Pem = r'''
+__PEM__
+''';

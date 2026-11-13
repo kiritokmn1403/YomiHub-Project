@@ -1575,5 +1575,6 @@
   "Tối ưu hóa cấu hình cho AMD Ryzen / CPU đa luồng": "AMD Ryzen 및 멀티스레드 CPU에 맞게 설정 최적화",
   "Đã kiểm tra cập nhật tiện ích hoàn tất.": "확장 기능 업데이트 확인을 마쳤습니다.",
   "Cài đặt vượt Cloudflare": "Cloudflare 우회 설정",
-  "Nút chọn chế độ màu giao diện": "테마 모드 옵션 버튼"
+  "Nút chọn chế độ màu giao diện": "테마 모드 옵션 버튼",
+  "Không bắt tay được với máy chủ WireGuard \"{p0}\" sau 15 giây – YomiHub đã gỡ đường hầm để máy không mất mạng. Hồ sơ có thể đã hết hạn (khoá hoặc endpoint cũ) hoặc mạng đang chặn UDP. Với Cloudflare hãy dùng mục Cloudflare WARP.": "15초가 지나도 WireGuard 서버 \"{p0}\"와(과) 핸드셰이크하지 못했습니다 – 기기의 연결이 끊기지 않도록 YomiHub가 터널을 제거했습니다. 프로필이 만료되었거나(오래된 키 또는 엔드포인트) 네트워크가 UDP를 차단하고 있을 수 있습니다. Cloudflare는 Cloudflare WARP 항목을 사용하세요."
 }

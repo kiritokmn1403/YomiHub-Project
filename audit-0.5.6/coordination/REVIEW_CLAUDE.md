@@ -194,3 +194,15 @@ Kết quả kiểm thử (QA2):
 Lỗi đã biết (ghi trong changelog): R21 cửa sổ trắng chập chờn trên máy Intel Iris Xe driver cũ (thử lại sau 1–2 phút / cập nhật driver); đổi cỡ cửa sổ có lúc không vẽ lại (nghi cùng họ R21); ảnh bìa không hiện ở một số nguồn truyện (do nguồn); nhãn tab bị cắt ở giao diện Mới trên điện thoại; giao diện Mới chưa có thẻ/chuyển cảnh Shiori; cài đặt "gộp thư viện trên di động" vô tác dụng; Android 6.0 và Windows 7/8/x86/ARM gốc KHÔNG hỗ trợ.
 Chưa kiểm: VPN, Tor, Telegram, tracker, Health Connect, AirDrop/Quick Share, PiP đầy đủ, Short Video, cài đè Setup.exe trên Windows.
 → Được phép chạy `release_056_publish.ps1 -Execute` (commit, tag v0.5.6, push, tạo Release, tải toàn bộ output/0.5.6).
+
+## [2026-11-12 01:08] PHÁT HÀNH v0.5.6 — kết quả
+- Commit `eae017d9073762c5e059e2c242655d13d57f7631` (main, "release: YomiHub 0.5.6 (0.5.6+48)"), tag annotated `v0.5.6` (b321b22). `git ls-remote origin`: main và v0.5.6^{} đều khớp local.
+- Release: https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.5.6 (draft=false), 16 asset, 0 sai lệch (tên + kích thước khớp output/0.5.6 + TECHNICAL_UPDATE_NOTES.md). Tổng output/0.5.6: 1.982.168.428 byte (~1,85 GiB).
+- Asset (byte): Install-YomiHub.bat 1094; Install-YomiHub.ps1 1189; SHA256SUMS-0.5.6.txt 1347; TECHNICAL_UPDATE_NOTES.md 456031; YomiHub-0.5.6-arm64-v8a.apk 177015291; -armeabi-v7a.apk 173675001; -x86_64.apk 186790740; YomiHub-0.5.6-changelog.md 12428; windows-x64.appxbundle 263898304; windows-x64.zip 125180727; windows-x64-full.zip 259269461; windows-x64-Setup.exe 259344896; YomiHub-RootCA.cer 822; YumiHub-Android-TV-0.5.6 arm64-v8a 176845355, armeabi-v7a 173502681, x86_64 186629092.
+- README trên GitHub có link tải; HEAD `.../releases/download/v0.5.6/YomiHub-0.5.6-arm64-v8a.apk` = 200 (177015291 byte), `...changelog.md` = 200 (12428).
+- Lưu ý: mục này ghi sau commit nên REVIEW_CLAUDE.md đang thay đổi chưa commit.
+
+## MỐC DUYỆT 0.5.6.1 — 13/11/2026 10:07 (chủ dự án duyệt trong phiên Cowork)
+- Bộ phát hành `output/0.5.6.1`: 17 tệp; 9 APK xác minh (Android 7.0+ 1049/2049/4049, TV, android6 minSdk 23, cùng chứng chỉ); 4 gói Windows xác minh (YomiHub.exe ProductVersion `0.5.6.1+49`, appxbundle 0.5.6.1); test 298/298 (Android) + test Windows đạt.
+- Chủ dự án chọn: phát hành APK Android 6.0 kèm lỗi đã biết (ảnh Booru, CBZ, QuickJS); cửa sổ trắng Windows (R21) vẫn mở, tái hiện cả khi không dùng điều khiển màn hình.
+- `release_0561_publish.ps1` chạy khô 10:04 đạt (đã sửa ngoại lệ `jnilibs23/MANIFEST.txt`). Chạy thật: `-Execute -ReleaseDate 13/11/2026`.

@@ -1,0 +1,33 @@
+﻿13/11 07:26:32 === BAT DAU dung bo goi chinh 0.5.6.1 ===
+13/11 07:26:32 cho khoa: A6 07:24
+13/11 07:36:32 cho khoa: A6 07:24
+13/11 07:44:32 --> buoc sync
+13/11 07:44:37 <-- buoc sync exit=0 (0 phut)
+13/11 07:44:37 --> buoc test
+13/11 07:52:03 <-- buoc test exit=1 (7 phut)
+13/11 07:52:03 DUNG vi buoc test loi
+13/11 08:06:05 === BAT DAU dung bo goi chinh 0.5.6.1 ===
+13/11 08:06:05 --> buoc sync
+13/11 08:06:10 <-- buoc sync exit=0 (0 phut)
+13/11 08:06:10 --> buoc test
+13/11 08:09:35 <-- buoc test exit=0 (3 phut)
+13/11 08:09:35 --> buoc apk
+13/11 08:24:49 <-- buoc apk exit=0 (15 phut)
+13/11 08:24:49 --> buoc tv
+13/11 08:39:37 <-- buoc tv exit=0 (15 phut)
+13/11 08:39:37 --> buoc wintest
+13/11 08:42:57 <-- buoc wintest exit=0 (3 phut)
+13/11 08:42:57 --> buoc win
+13/11 08:53:38 <-- buoc win exit=0 (11 phut)
+13/11 08:53:38 --> buoc pack
+13/11 08:53:43 NGOAI LE buoc pack: LỖI ĐÓNG GÓI: make_installer_exe_0561.ps1 kết thúc với mã lỗi 1
+13/11 08:53:43 <-- buoc pack exit=99 (0 phut)
+13/11 08:53:43 DUNG vi buoc pack loi
+13/11 09:01:21 === BAT DAU dung bo goi chinh 0.5.6.1 (chi Windows) ===
+13/11 09:01:21 --> buoc sync
+13/11 09:01:27 <-- buoc sync exit=0 (0 phut)
+13/11 09:01:27 --> buoc win
+13/11 09:11:27 <-- buoc win exit=0 (10 phut)
+13/11 09:11:27 --> buoc pack
+13/11 09:13:05 <-- buoc pack exit=0 (2 phut)
+13/11 09:13:05 === XONG bo goi chinh 0.5.6.1 (chua co APK android6, chua verify toan bo) ===

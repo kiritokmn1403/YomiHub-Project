@@ -15,6 +15,42 @@ import 'package:mangayomi/yomihub/vpn/win/win_vpn.dart';
 /// Kinds of tunnels YomiHub 0.1.4 can bring up.
 enum TunnelType { openvpn, wireguard, softether, xray }
 
+/// 0.5.6.1 (V8): health of a WireGuard tunnel from GoBackend statistics.
+enum WgHealth { ok, waiting, failed }
+
+/// A WireGuard tunnel is only "connected" once a peer answered: a handshake
+/// time or bytes received. Without either after [limit] it has failed.
+WgHealth wgHealth({
+  required int handshakeMillis,
+  required int rxBytes,
+  required Duration waited,
+  Duration limit = const Duration(seconds: 15),
+}) {
+  if (handshakeMillis > 0 || rxBytes > 0) return WgHealth.ok;
+  return waited >= limit ? WgHealth.failed : WgHealth.waiting;
+}
+
+/// 0.5.6.1 (V7): what to do with the native WireGuard tunnel found running
+/// when the Dart side starts (e.g. after the app was swiped from recents and
+/// opened again while the process – and the tunnel – lived on).
+enum WgResume { none, adopt, orphan, clearSaved }
+
+/// 0.5.6.1 (V7): WARP at start-up. The switch is saved; the tunnel may still
+/// run (app re-opened, same process), be gone (process restarted), or run
+/// with the switch off (orphan).
+enum WarpResume { none, adopt, reconnect, orphan }
+
+WarpResume warpResume({required bool enabled, required bool nativeUp}) {
+  if (enabled) return nativeUp ? WarpResume.adopt : WarpResume.reconnect;
+  return nativeUp ? WarpResume.orphan : WarpResume.none;
+}
+
+WgResume wgResume({required bool nativeUp, String? savedId, required Iterable<String> wireguardIds}) {
+  final known = savedId != null && wireguardIds.contains(savedId);
+  if (nativeUp) return known ? WgResume.adopt : WgResume.orphan;
+  return savedId != null ? WgResume.clearSaved : WgResume.none;
+}
+
 extension TunnelTypeName on TunnelType {
   String get label => switch (this) {
     TunnelType.openvpn => 'OpenVPN',
@@ -221,11 +257,116 @@ class YomiTunnels extends ChangeNotifier {
           traffic = '⏱ ${_elapsed('${m['duration'] ?? ''}')} ↓ ${_bytes(m['in'])} ↑ ${_bytes(m['out'])}';
           notifyListeners();
         case 'wgState':
-          state = call.arguments == true ? 'connected' : 'disconnected';
+          // V8: "UP" only means the interface exists; "connected" waits for
+          // a handshake (_awaitWgHandshake).
+          if (call.arguments == true) {
+            if (_wgVerified && active?.type == TunnelType.wireguard) state = 'connected';
+          } else if (active?.type == TunnelType.wireguard && state != 'connecting') {
+            state = 'disconnected';
+          }
           notifyListeners();
       }
       return null;
     });
+    if (Platform.isAndroid) unawaited(_resumeWireGuard());
+  }
+
+  bool _wgVerified = false;
+  static const _wgLimit = Duration(seconds: 15);
+
+  /// V7: adopt / remove the WireGuard tunnel that is already running.
+  Future<void> _resumeWireGuard() async {
+    Map st;
+    try {
+      st = Map<String, dynamic>.from(await _channel.invokeMethod('wgStatus') as Map);
+    } catch (_) {
+      return;
+    }
+    final saved = _box?.get('activeWireGuard') as String?;
+    switch (wgResume(
+      nativeUp: st['up'] == true,
+      savedId: saved,
+      wireguardIds: profiles.where((p) => p.type == TunnelType.wireguard).map((p) => p.id),
+    )) {
+      case WgResume.adopt:
+        activeId = saved;
+        state = 'connecting';
+        notifyListeners();
+        if (await _awaitWgHandshake()) {
+          _wgVerified = true;
+          state = 'connected';
+          AppLogger.log('[VPN] Mở lại YomiHub: WireGuard "${active?.name}" vẫn đang chạy – đã đồng bộ trạng thái',
+              logLevel: LogLevel.info, always: true);
+          notifyListeners();
+        } else {
+          await _failWireGuard(active?.name ?? '');
+        }
+      case WgResume.orphan:
+        try {
+          await _channel.invokeMethod('wgDown');
+        } catch (_) {}
+        await _box?.delete('activeWireGuard');
+        AppLogger.log('[VPN] Đã gỡ đường hầm WireGuard mồ côi (không rõ hồ sơ) còn chạy từ phiên trước',
+            logLevel: LogLevel.warning);
+      case WgResume.clearSaved:
+        await _box?.delete('activeWireGuard');
+      case WgResume.none:
+        break;
+    }
+  }
+
+  /// V8: wait up to [_wgLimit] for a WireGuard handshake, nudging traffic
+  /// through the tunnel so the first handshake is sent.
+  Future<bool> _awaitWgHandshake() async {
+    final sw = Stopwatch()..start();
+    unawaited(_pokeTunnel());
+    var tick = 0;
+    while (true) {
+      await Future<void>.delayed(const Duration(seconds: 1));
+      Map st;
+      try {
+        st = Map<String, dynamic>.from(await _channel.invokeMethod('wgStatus') as Map);
+      } catch (_) {
+        return true; // native side without wgStatus: do not block
+      }
+      if (st['up'] != true) return false;
+      final h = wgHealth(
+        handshakeMillis: (st['handshake'] as num?)?.toInt() ?? 0,
+        rxBytes: (st['rx'] as num?)?.toInt() ?? 0,
+        waited: sw.elapsed,
+        limit: _wgLimit,
+      );
+      if (h == WgHealth.ok) return true;
+      if (h == WgHealth.failed) return false;
+      if (++tick % 4 == 0) unawaited(_pokeTunnel());
+    }
+  }
+
+  Future<void> _pokeTunnel() async {
+    final c = HttpClient()..connectionTimeout = const Duration(seconds: 4);
+    try {
+      final rq = await c.getUrl(Uri.parse('http://www.gstatic.com/generate_204'));
+      final rs = await rq.close().timeout(const Duration(seconds: 4));
+      await rs.drain<void>();
+    } catch (_) {
+    } finally {
+      c.close(force: true);
+    }
+  }
+
+  /// V8: no handshake – take the tunnel down so the device keeps Internet.
+  Future<void> _failWireGuard(String name) async {
+    try {
+      await _channel.invokeMethod('wgDown');
+    } catch (_) {}
+    await _box?.delete('activeWireGuard');
+    _wgVerified = false;
+    activeId = null;
+    traffic = '';
+    error = tr('Không bắt tay được với máy chủ WireGuard "{p0}" sau 15 giây – YomiHub đã gỡ đường hầm để máy không mất mạng. Hồ sơ có thể đã hết hạn (khoá hoặc endpoint cũ) hoặc mạng đang chặn UDP. Với Cloudflare hãy dùng mục Cloudflare WARP.',
+        {'p0': name});
+    state = 'error';
+    notifyListeners();
   }
 
   /// YomiHub 0.2.0: Cloudflare WARP and WARP+ WireGuard profiles ship with
@@ -236,44 +377,30 @@ class YomiTunnels extends ChangeNotifier {
     'preset_warp_plus': ('Cloudflare WARP+ • YomiHub', 'assets/yomihub_vpn/CloudFlareWARP+.conf'),
   };
 
+  /// 0.5.6.1 (V8, AVD 13/11/2026): the bundled WARP / WARP+ WireGuard
+  /// profiles share one old Cloudflare account key; Cloudflare no longer
+  /// answers it ("Handshake did not complete" forever, device offline while
+  /// the UI said "Đã kết nối"). The Cloudflare WARP section registers the
+  /// user's own account and works, so the presets are no longer added and
+  /// copies added by older versions are removed once.
   Future<void> _seedPresets() async {
     try {
-      final seen = ((_box!.get('presetsSeen', defaultValue: <String>[]) as List)).cast<String>().toSet();
-      var changed = false;
-      for (final e in presets.entries) {
-        if (seen.contains(e.key)) continue;
-        seen.add(e.key);
-        if (profiles.any((p) => p.id == e.key)) continue;
-        final conf = await rootBundle.loadString(e.value.$2);
-        if (conf.trim().isEmpty) continue;
-        profiles.add(VpnProfile(id: e.key, name: e.value.$1, type: TunnelType.wireguard, config: conf));
-        changed = true;
-      }
+      if (_box!.get('presetsRetired', defaultValue: false) == true) return;
+      final before = profiles.length;
+      profiles.removeWhere((p) => presets.containsKey(p.id));
+      final seen = ((_box!.get('presetsSeen', defaultValue: <String>[]) as List)).cast<String>().toSet()
+        ..addAll(presets.keys);
       await _box!.put('presetsSeen', seen.toList());
-      if (changed) await _box!.put('profiles', jsonEncode(profiles.map((p) => p.toJson()).toList()));
+      await _box!.put('presetsRetired', true);
+      if (profiles.length != before) {
+        await _box!.put('profiles', jsonEncode(profiles.map((p) => p.toJson()).toList()));
+        AppLogger.log('[VPN] Đã bỏ hồ sơ WireGuard dựng sẵn "Cloudflare WARP/WARP+ • YomiHub" (khoá cũ không còn bắt tay) – dùng mục Cloudflare WARP thay thế',
+            logLevel: LogLevel.info, always: true);
+      }
     } catch (_) {}
   }
 
   static bool isPreset(String id) => presets.containsKey(id);
-
-  /// A WireGuard tunnel comes up even when the peer never answers, and then
-  /// swallows all traffic: probe once so the user can see it.
-  Future<void> _checkInternet(TunnelType type) async {
-    await Future.delayed(const Duration(seconds: 3));
-    final c = HttpClient()..connectionTimeout = const Duration(seconds: 10);
-    try {
-      final req = await c.getUrl(Uri.parse('http://www.gstatic.com/generate_204'));
-      final res = await req.close().timeout(const Duration(seconds: 12));
-      await res.drain<void>();
-    } catch (e) {
-      if (active?.type == type && state == 'connected') {
-        error = tr('Đường hầm đã bật nhưng không vào được Internet – máy chủ không phản hồi. Kiểm tra lại cấu hình hoặc bấm Ngắt.');
-        notifyListeners();
-      }
-    } finally {
-      c.close(force: true);
-    }
-  }
 
   /// Xray starts even when the server is wrong: probe through the local
   /// proxy so the user sees whether the profile actually works.
@@ -588,7 +715,17 @@ class YomiTunnels extends ChangeNotifier {
         case TunnelType.wireguard:
           if (!await _prepare()) throw tr('Bạn chưa cho phép YomiHub tạo VPN');
           final conf = await (wireguardScope?.call(p.config) ?? Future.value(p.config));
+          _wgVerified = false;
           await _channel.invokeMethod('wgUp', {'config': conf});
+          if (Platform.isAndroid) {
+            // V8: report the real state – wait for the handshake.
+            await _box?.put('activeWireGuard', p.id);
+            if (!await _awaitWgHandshake()) {
+              await _failWireGuard(p.name);
+              return error;
+            }
+            _wgVerified = true;
+          }
           state = 'connected';
           if (Platform.isWindows) {
             // Windows: WireGuard runs in Xray as a local proxy.
@@ -596,8 +733,6 @@ class YomiTunnels extends ChangeNotifier {
             YomiVpnState.xrayRunning = true;
             YomiVpnState.bump();
             unawaited(_checkXray());
-          } else {
-            unawaited(_checkInternet(TunnelType.wireguard));
           }
         case TunnelType.xray:
           final cfg = await XrayLinks.config(p.config);
@@ -628,6 +763,8 @@ class YomiTunnels extends ChangeNotifier {
         case TunnelType.softether:
           await _channel.invokeMethod('ovpnDown');
         case TunnelType.wireguard:
+          _wgVerified = false;
+          await _box?.delete('activeWireGuard');
           await _channel.invokeMethod('wgDown');
           if (Platform.isWindows) {
             YomiVpnState.xrayRunning = false;
@@ -684,7 +821,10 @@ class XrayLinks {
     final net = q['type'] ?? q['net'] ?? 'tcp';
     final security = q['security'] ?? q['tls'] ?? 'none';
     final s = <String, dynamic>{'network': net == 'h2' ? 'http' : net};
-    final sni = q['sni'] ?? q['peer'] ?? q['host'] ?? host;
+    // 0.5.7 (V1): a link often carries `sni=` / `"host":""` (empty): an empty
+    // serverName made Xray send the resolved IP as SNI and TLS failed.
+    String? nz(String? v) => (v == null || v.trim().isEmpty) ? null : v.trim();
+    final sni = nz(q['sni']) ?? nz(q['peer']) ?? nz(q['host']) ?? host;
     if (security == 'tls') {
       s['security'] = 'tls';
       s['tlsSettings'] = {
@@ -709,7 +849,9 @@ class XrayLinks {
       case 'ws':
         s['wsSettings'] = {
           'path': q['path'] ?? '/',
-          if ((q['host'] ?? '').isNotEmpty) 'headers': {'Host': q['host']},
+          // 0.5.7 (V1): config() swaps the server name for its IP, so name
+          // the Host explicitly (CDN fronted ws without TLS needs it).
+          'headers': {'Host': nz(q['host']) ?? host},
         };
       case 'grpc':
         s['grpcSettings'] = {

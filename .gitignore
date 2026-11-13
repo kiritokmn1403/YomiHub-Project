@@ -124,3 +124,15 @@ audit-0.5.6/status/
 !audit-0.5.6/evidence/QA2/
 audit-0.5.6/evidence/QA2/*
 !audit-0.5.6/evidence/QA2/RESULTS_QA2.md
+
+# 0.5.6.1 (13/11/2026): audit-0.5.7 - APK, bang chung, thu muc lam viec nang (giu *.md, *.py, *.ps1, build23_patch/)
+/audit-0.5.7/vpn/apk/
+/audit-0.5.7/vpn/evidence/
+/audit-0.5.7/android6/evidence/
+/audit-0.5.7/android6/work/
+/audit-0.5.7/android6/out/
+/audit-0.5.7/android6/orig_libisar/
+/audit-0.5.7/android6/patched_libisar/
+/audit-0.5.7/android6/patched_libtor/
+/audit-0.5.7/android6/tmp/
+/audit-0.5.7/backup/

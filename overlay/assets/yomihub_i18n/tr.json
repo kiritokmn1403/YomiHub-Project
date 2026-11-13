@@ -1575,5 +1575,6 @@
   "Tối ưu hóa cấu hình cho AMD Ryzen / CPU đa luồng": "AMD Ryzen ve çok iş parçacıklı işlemciler için ayarları iyileştir",
   "Đã kiểm tra cập nhật tiện ích hoàn tất.": "Eklenti güncellemelerinin denetimi tamamlandı.",
   "Cài đặt vượt Cloudflare": "Cloudflare Atlatma Ayarı",
-  "Nút chọn chế độ màu giao diện": "Tema modu seçenek düğmesi"
+  "Nút chọn chế độ màu giao diện": "Tema modu seçenek düğmesi",
+  "Không bắt tay được với máy chủ WireGuard \"{p0}\" sau 15 giây – YomiHub đã gỡ đường hầm để máy không mất mạng. Hồ sơ có thể đã hết hạn (khoá hoặc endpoint cũ) hoặc mạng đang chặn UDP. Với Cloudflare hãy dùng mục Cloudflare WARP.": "15 saniye sonra WireGuard sunucusu \"{p0}\" ile el sıkışma tamamlanamadı – cihazın bağlantısını kaybetmemesi için YomiHub tüneli kaldırdı. Profilin süresi dolmuş olabilir (eski anahtar veya uç nokta) ya da ağ UDP'yi engelliyor. Cloudflare için Cloudflare WARP bölümünü kullanın."
 }

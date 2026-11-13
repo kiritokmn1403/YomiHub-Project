@@ -1575,5 +1575,6 @@
   "Tối ưu hóa cấu hình cho AMD Ryzen / CPU đa luồng": "AMD Ryzen और मल्टीथ्रेडेड CPU के लिए सेटिंग अनुकूलित करें",
   "Đã kiểm tra cập nhật tiện ích hoàn tất.": "एक्सटेंशन अपडेट की जाँच पूरी हुई।",
   "Cài đặt vượt Cloudflare": "Cloudflare बाइपास सेटिंग",
-  "Nút chọn chế độ màu giao diện": "थीम मोड विकल्प बटन"
+  "Nút chọn chế độ màu giao diện": "थीम मोड विकल्प बटन",
+  "Không bắt tay được với máy chủ WireGuard \"{p0}\" sau 15 giây – YomiHub đã gỡ đường hầm để máy không mất mạng. Hồ sơ có thể đã hết hạn (khoá hoặc endpoint cũ) hoặc mạng đang chặn UDP. Với Cloudflare hãy dùng mục Cloudflare WARP.": "15 सेकंड बाद भी WireGuard सर्वर \"{p0}\" के साथ हैंडशेक पूरा नहीं हो सका – डिवाइस का कनेक्शन न टूटे, इसलिए YomiHub ने टनल हटा दी। प्रोफ़ाइल की अवधि समाप्त हो सकती है (पुरानी कुंजी या endpoint) या नेटवर्क UDP को ब्लॉक कर रहा है। Cloudflare के लिए Cloudflare WARP अनुभाग का उपयोग करें।"
 }

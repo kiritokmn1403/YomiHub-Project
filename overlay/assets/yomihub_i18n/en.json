@@ -1575,5 +1575,6 @@
   "Tối ưu hóa cấu hình cho AMD Ryzen / CPU đa luồng": "Optimize settings for AMD Ryzen / multithreaded CPUs",
   "Đã kiểm tra cập nhật tiện ích hoàn tất.": "Extension update check complete.",
   "Cài đặt vượt Cloudflare": "Cloudflare Bypass Setting",
-  "Nút chọn chế độ màu giao diện": "Theme mode option button"
+  "Nút chọn chế độ màu giao diện": "Theme mode option button",
+  "Không bắt tay được với máy chủ WireGuard \"{p0}\" sau 15 giây – YomiHub đã gỡ đường hầm để máy không mất mạng. Hồ sơ có thể đã hết hạn (khoá hoặc endpoint cũ) hoặc mạng đang chặn UDP. Với Cloudflare hãy dùng mục Cloudflare WARP.": "Could not complete a handshake with WireGuard server \"{p0}\" after 15 seconds – YomiHub removed the tunnel so the device does not lose its connection. The profile may have expired (old key or endpoint) or the network is blocking UDP. For Cloudflare, use the Cloudflare WARP section."
 }

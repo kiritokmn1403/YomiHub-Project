@@ -1575,5 +1575,6 @@
   "Tối ưu hóa cấu hình cho AMD Ryzen / CPU đa luồng": "AMD Ryzen আৰু মাল্টিথ্ৰেডেড CPUৰ বাবে ছেটিংছ অনুকূল কৰক",
   "Đã kiểm tra cập nhật tiện ích hoàn tất.": "এক্সটেনশ্যনৰ আপডেট পৰীক্ষা সম্পূৰ্ণ হ'ল।",
   "Cài đặt vượt Cloudflare": "Cloudflare বাইপাছ ছেটিং",
-  "Nút chọn chế độ màu giao diện": "থীম মোড বিকল্প বুটাম"
+  "Nút chọn chế độ màu giao diện": "থীম মোড বিকল্প বুটাম",
+  "Không bắt tay được với máy chủ WireGuard \"{p0}\" sau 15 giây – YomiHub đã gỡ đường hầm để máy không mất mạng. Hồ sơ có thể đã hết hạn (khoá hoặc endpoint cũ) hoặc mạng đang chặn UDP. Với Cloudflare hãy dùng mục Cloudflare WARP.": "১৫ ছেকেণ্ডৰ পিছতো WireGuard ছাৰ্ভাৰ \"{p0}\"ৰ সৈতে হেণ্ডশ্বেক সম্পূৰ্ণ কৰিব পৰা নগ'ল – ডিভাইচৰ সংযোগ নেহেৰুৱাবলৈ YomiHub-এ টানেলটো আঁতৰাই দিছে। প্ৰফাইলৰ ম্যাদ উকলি যাব পাৰে (পুৰণি কী বা endpoint) বা নেটৱৰ্কে UDP অৱৰোধ কৰিছে। Cloudflareৰ বাবে Cloudflare WARP অংশ ব্যৱহাৰ কৰক।"
 }

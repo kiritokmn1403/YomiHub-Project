@@ -57,13 +57,11 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
     private var torWaiters = mutableListOf<MethodChannel.Result>()
     private var pendingPrepare: MethodChannel.Result? = null
 
-    private val backend: GoBackend by lazy { GoBackend(ctx) }
-    private val warpTunnel = object : Tunnel {
-        override fun getName(): String = "yomihub-warp"
-        override fun onStateChange(newState: Tunnel.State) {
-            main.post { channel.invokeMethod("warpState", newState == Tunnel.State.UP) }
-        }
-    }
+    // 0.5.6.1 (V7): process-wide WireGuard engine + WARP tunnel (YomiWg), so
+    // an Activity re-created after "swipe from recents" still sees and can
+    // stop the running tunnel.
+    private val backend: GoBackend get() = YomiWg.backend(ctx)
+    private val warpTunnel: Tunnel get() = YomiWg.warp
 
     private val torReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -78,6 +76,13 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
     private val torConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             torService = (service as? TorService.LocalBinder)?.service
+            // 0.5.6.1 (V4): "off" arrived while the bind was still in flight –
+            // do not let tor run in the background behind an OFF switch.
+            if (torStopRequested) {
+                torDormant = true
+                holdTorDormant()
+                return
+            }
             if (bridgeMode.isNotEmpty() || bridgeApplied.isNotEmpty()) startBridgeWatcher()
         }
 
@@ -88,6 +93,7 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
 
     init {
         instance = this
+        YomiWg.warpListener = { up -> main.post { channel.invokeMethod("warpState", up) } }
         LocalBroadcastManager.getInstance(ctx)
             .registerReceiver(torReceiver, IntentFilter(TorService.ACTION_STATUS))
         channel.setMethodCallHandler { call, result ->
@@ -96,7 +102,12 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
                 "torStop" -> {
                     torStop(); result.success(true)
                 }
-                "torStatus" -> result.success(torInfo())
+                "torStatus" -> if (torStatus == TorService.STATUS_ON && (torService?.socksPort ?: 0) <= 0 && torSocksPort <= 0) {
+                    // V4b: late "on" after an early "off" – ports come from tor itself
+                    io.execute { refreshTorPorts(); main.post { result.success(torInfo()) } }
+                } else {
+                    result.success(torInfo())
+                }
                 "torDiag" -> io.execute {
                     // 0.4.5: proof of the path tor really uses (bridge or relay)
                     val c = torService?.torControlConnection
@@ -188,11 +199,7 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
                     main.post { result.success(true) }
                 }
                 "warpState" -> io.execute {
-                    val up = try {
-                        backend.getState(warpTunnel) == Tunnel.State.UP
-                    } catch (_: Exception) {
-                        false
-                    }
+                    val up = YomiWg.isUp(ctx, warpTunnel)
                     main.post { result.success(up) }
                 }
                 "installedApps" -> io.execute {
@@ -232,13 +239,33 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
 
     private fun torInfo(): Map<String, Any?> = mapOf(
         "status" to torStatus,
-        "socksPort" to (torService?.socksPort ?: 0),
-        "httpPort" to (torService?.httpTunnelPort ?: 0),
+        "socksPort" to ((torService?.socksPort ?: 0).takeIf { it > 0 } ?: torSocksPort),
+        "httpPort" to ((torService?.httpTunnelPort ?: 0).takeIf { it > 0 } ?: torHttpPort),
         // 0.4.4: last bootstrap phase, shown when tor is slow / blocked
         "bootstrap" to (if (torStatus == TorService.STATUS_ON) "" else torBoot),
         // 0.4.5: pluggable transport in use ("" = direct)
         "bridge" to bridgeApplied
     )
+
+    // 0.5.6.1 (V4b, AVD 13/11/2026): TorService reads its listener ports only
+    // once, right after the control port comes up. When "off" (DisableNetwork=1)
+    // lands before that – the early-off case of V4 – tor has no SOCKS/HTTP
+    // listeners at that moment, the ports stay 0, and the later "on" reported
+    // "Đã kết nối • HTTP 0 • SOCKS 0": no in-app proxy, no device VPN. Ask tor
+    // itself for its listeners instead (io thread only – control socket).
+    @Volatile private var torSocksPort = 0
+    @Volatile private var torHttpPort = 0
+
+    private fun refreshTorPorts() {
+        val c = torService?.torControlConnection ?: return
+        fun port(key: String): Int = try {
+            // e.g. "127.0.0.1:9050" or "[::1]:9050"; several listeners are space separated
+            (c.getInfo(key) ?: "").trim().split(Regex("\\s+")).first()
+                .trim('"').substringAfterLast(':').toIntOrNull() ?: 0
+        } catch (_: Exception) { 0 }
+        port("net/listeners/socks").takeIf { it > 0 }?.let { torSocksPort = it }
+        port("net/listeners/httptunnel").takeIf { it > 0 }?.let { torHttpPort = it }
+    }
 
     // ───────────── 0.4.5: Tor bridges (lyrebird) ─────────────
     // 30/10/2026 Xiaomi 15T: tor stopped at 50 % "Loading relay descriptors"
@@ -350,9 +377,20 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
             return
         }
         val svc = torService
+        // 0.5.6.1 (V4): "on" again while an earlier "off" is still pending
+        val stopPending = torStopRequested
+        torStopRequested = false
+        if (svc == null && stopPending && torEverStarted) {
+            // the bind from the first "on" is still in flight: just keep waiting for it
+            torWaiters.add(result)
+            scheduleTorWaiterTimeout(result)
+            return
+        }
         if (svc != null && torDormant) {
             io.execute {
-                val c = svc.torControlConnection
+                var c = svc.torControlConnection
+                // control port may not be up yet if "off" came very early
+                for (i in 0 until 60) { if (c != null) break; Thread.sleep(500); c = svc.torControlConnection }
                 try {
                     c?.setConf("DisableNetwork", "0")
                 } catch (_: Exception) {
@@ -372,6 +410,7 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
                     Thread.sleep(1000)
                 }
                 torStatus = if (ready) TorService.STATUS_ON else TorService.STATUS_STARTING
+                if (ready) refreshTorPorts()
                 main.post {
                     channel.invokeMethod("torStatus", torStatus)
                     result.success(torInfo())
@@ -390,7 +429,11 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
         torWaiters.add(result)
         val intent = Intent(ctx, TorService::class.java)
         ctx.bindService(intent, torConnection, Context.BIND_AUTO_CREATE)
-        // Give up after 90 s so the UI never hangs.
+        scheduleTorWaiterTimeout(result)
+    }
+
+    // Give up after 90 s so the UI never hangs.
+    private fun scheduleTorWaiterTimeout(result: MethodChannel.Result) {
         main.postDelayed({
             if (torWaiters.contains(result)) {
                 torWaiters.remove(result)
@@ -404,20 +447,50 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
         }, 90_000)
     }
 
+    // 0.5.6.1 (V4): "off" pressed while tor was still binding / booting (the
+    // control connection does not exist yet) used to be silently lost: tor then
+    // came up in the background while the app showed OFF. Now the stop is
+    // remembered and DisableNetwork=1 is applied as soon as the control port is
+    // up. tor cannot be restarted in-process, so the service is NOT unbound.
+    @Volatile private var torStopRequested = false
+
     private fun torStop() {
-        val svc = torService
-        if (svc == null) {
-            torStatus = TorService.STATUS_OFF
+        torStatus = TorService.STATUS_OFF
+        bridgeWatcher?.interrupt()
+        // release anybody still waiting for "on"
+        val waiting = torWaiters
+        torWaiters = mutableListOf()
+        if (waiting.isNotEmpty()) main.post { waiting.forEach { it.success(torInfo()) } }
+        if (torService == null) {
+            // bind still in flight: onServiceConnected will finish the job
+            if (torEverStarted) torStopRequested = true
             return
         }
         torDormant = true
-        torStatus = TorService.STATUS_OFF
-        io.execute {
-            try {
-                svc.torControlConnection?.setConf("DisableNetwork", "1")
-            } catch (_: Exception) {
+        holdTorDormant()
+    }
+
+    /** Apply DisableNetwork=1 once the control connection is available. */
+    private fun holdTorDormant() {
+        torStopRequested = true
+        val t = Thread {
+            for (i in 0 until 180) {
+                if (!torStopRequested) return@Thread // user pressed "on" again
+                val c = torService?.torControlConnection
+                if (c != null) {
+                    try {
+                        c.setConf("DisableNetwork", "1")
+                        torStopRequested = false
+                        return@Thread
+                    } catch (_: Exception) {
+                    }
+                }
+                try { Thread.sleep(500) } catch (_: InterruptedException) { return@Thread }
             }
+            torStopRequested = false
         }
+        t.isDaemon = true
+        t.start()
     }
 
     private fun vpnPrepare(result: MethodChannel.Result) {

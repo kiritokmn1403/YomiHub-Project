@@ -66,7 +66,12 @@ IDI_APP_ICON            ICON                    "resources\\app_icon.ico"
 #define VERSION_AS_NUMBER 1,0,0,0
 #endif
 
-#if defined(FLUTTER_VERSION)
+// YomiHub 0.5.6.1: Flutter Windows only accepts a 3-part build-name (0.5.6.1 became 1.0.0).
+// The build uses --build-name 0.5.6 --build-number 49 (FILEVERSION 0.5.6.49); for exactly that
+// build the ProductVersion string is "0.5.6.1+49", so package_info_plus (splits on '+') reports 0.5.6.1.
+#if defined(FLUTTER_VERSION_MAJOR) && FLUTTER_VERSION_MAJOR == 0 && FLUTTER_VERSION_MINOR == 5 && FLUTTER_VERSION_PATCH == 6 && FLUTTER_VERSION_BUILD == 49
+#define VERSION_AS_STRING "0.5.6.1+49"
+#elif defined(FLUTTER_VERSION)
 #define VERSION_AS_STRING FLUTTER_VERSION
 #else
 #define VERSION_AS_STRING "1.0.0"

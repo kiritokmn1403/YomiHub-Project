@@ -6,6 +6,7 @@ Chủ dự án yêu cầu tạo và duy trì tài liệu này ngày 25/10/2026. 
 
 ## 1. Trạng thái hiện tại
 
+- **`13/11/2026` – 0.5.6.1 (0.5.6+49), bản vá của 0.5.6:** sửa lỗi VPN (V1–V8: Xray SNI/Host rỗng, Tor danh sách ứng dụng rỗng, log "muộn" giả, tắt/bật Tor nhanh, WireGuard/WARP báo kết nối khi chưa bắt tay, lệch trạng thái sau khi vuốt app) và thêm 3 APK riêng cho Android 6.0 (`YomiHub-0.5.6.1-android6-*`); APK Android 7.0+ không đổi cấu hình. Kết quả VPN: ĐẠT trên máy ảo Android 14 x86_64 (12–13/11/2026): Tor toàn thiết bị (check.torproject.org), tắt/bật Tor nhanh (V4/V4b), WARP, VPN Gate, chuyển Tor→WARP, vuốt app rồi mở lại khi WARP/WireGuard đang bật (V7), WireGuard hồ sơ hỏng bị gỡ hầm + hồ sơ tốt bắt tay 0,4 s (V8); Xray chỉ có test đơn vị; chưa kiểm trên điện thoại thật. Kết quả Android 6.0: ĐẠT một phần trên máy ảo Android 6.0 x86_64 (API 23, 13/11/2026): mở app, CSDL Isar, HTTPS (bộ CA gốc đóng gói), WARP, Tor, mở lại sau khi bấm Back, nguồn cục bộ, EPUB, video, Play Books. Còn lỗi: ảnh xem trước Booru không hiện, trang ảnh CBZ báo "Không tải được ảnh này", tiện ích JavaScript (QuickJS) không chạy; bản ARM chưa thử trên máy Android 6 thật. Chi tiết: mục "13/11/2026 — YomiHub 0.5.6.1 (0.5.6+49)".
 - **11/11/2026 – 0.5.6 (0.5.6+48) đã dựng, đóng băng mã (Mốc 1b); phát hành 12/11/2026 (Mốc 2 duyệt 00:40):** 3 APK Android 7.0+, 3 APK `YumiHub Android TV`, Windows 10/11 x64 `Setup.exe`/`.appxbundle`/`.zip`/`-full.zip` trong `output/0.5.6`. Mới: mục Thư Viện gộp 4 thư viện, công tắc giao diện Cũ/Mới (điều hướng nổi + tab viên; thẻ/chuyển cảnh Shiori để 0.5.7), hạn mức sao lưu, nút Kiểm Tra Cập Nhật tiện ích; sửa hàng đợi ghi Isar, cầu nối Kotatsu, Cloudflare/Tor/Telegram, trình phát tiếp. Không đạt: Android 6.0, Windows 7/8/x86/ARM gốc; chưa tích hợp 6 mô-đun U5; lỗi đã biết: cửa sổ trắng chập chờn Windows (Intel Iris Xe driver cũ). 682/682 (Android) và 676/676 (Windows) test tự động đạt; QA2 12/11 đạt (ca ngày 11/11 12:48 đã bị hủy và làm lại). Chi tiết: mục "10–11/11/2026 — YomiHub 0.5.6".
 - **10/11/2026 – 0.5.5 (0.5.5+47) đã dựng, kiểm thử và phát hành (GitHub Release `v0.5.5`):** Khắc phục lỗi tranh chấp CSDL Isar `async write transaction already in progress` thông qua hàng đợi ghi an toàn `db_write_queue.dart` kết hợp cờ bảo vệ `callbackInvoked`; tách biệt rõ ràng quy tắc mã nguồn sau tag; manifest 21 tệp overlay được đồng bộ và kiểm tra bảng băm SHA256 khớp 100%; nạp DLL Isar cục bộ cho kiểm thử tự động offline; sửa triệt để lỗi mã hóa CP1252 trên PowerShell 5 bằng UTF-8 BOM cho các script dựng `sync_055.ps1`, `build_055.ps1`; toàn bộ 17 tệp kiểm thử tự động (gồm `yh_055_test.dart`, `yh_054_test.dart`, `onboarding_screen_test.dart`) đạt 100%. Đã đóng gói đủ 3 APK Android Mobile, 3 APK YumiHub Android TV, Windows Setup.exe, .appxbundle và portable .zip/-full.zip trong `output/0.5.5`. Chi tiết: mục "10/11/2026 — Cập nhật phiên bản 0.5.5" cuối tài liệu.
 
@@ -2949,3 +2950,49 @@ Kế hoạch 10/11/2026 10:15; Excel mới 22:00; Phần A/B/C chạy từ 10/11
 
 #### H. Việc còn lại
 0.5.7: nối thẻ/chuyển cảnh/rail Shiori, ẩn ô "gộp thư viện", cân nhắc nền v0.9.95, Android 6.0 với isar 3.4.1, nối hoặc bỏ 6 mô-đun tích hợp, xử lý R21.
+
+## 2026-11-12 — VPN 0.5.7 (đọc mã, chưa chạy thật)
+Chi tiết: `audit-0.5.7/vpn/VPN_FIX.md`. Sửa V1 (SNI/Host rỗng của link Xray), V2 (Tor VPN danh sách ứng dụng rỗng → cả máy), V3 (log "kết nối muộn" giả) trong overlay; thêm `test/yh_057_vpn_test.dart`. Runner công việc không chạy nên chưa test/analyze/dựng APK; tác vụ `jobs/pending/vpn057_build.ps1` đã chờ sẵn. V4 (tắt Tor lúc đang bind) chưa sửa.
+
+## 2026-11-13 — VPN 0.5.6.1: kiểm thử AVD + sửa V4/V4b
+Chi tiết: `audit-0.5.7/vpn/VPN_FIX.md` mục "Kết quả AVD 12–13/11/2026". AVD `YomiHub056_Phone_API34` (`-gpu host`; swiftshader làm qemu văng). ĐẠT: Tor toàn thiết bị (Chrome check.torproject.org "Congratulations"), V3 (không còn log "muộn"), V4 (tắt trong 0,3–1 s: tor dormant, không listener/kết nối), WARP (`warp=on`), VPN Gate (`public-vpn-127`, loc=JP), đổi Tor→WARP, vuốt app không văng, DoH bật/tắt. Lỗi mới V4b (bật lại sau khi tắt sớm → "HTTP 0 • SOCKS 0", không VPN) đã sửa trong `overlay/android/.../YomiVpn.kt` (`refreshTorPorts()` đọc `net/listeners/socks|httptunnel`), kiểm lại ĐẠT. Còn mở: V7 (vuốt app rồi mở lại → UI lệch trạng thái tunnel WARP/WireGuard do GoBackend theo từng Activity), V8 (WireGuard báo "Đã kết nối" khi chưa bắt tay; hồ sơ WARP-WG thử không bắt tay được). Xray: chỉ test đơn vị. APK thử cuối: `audit-0.5.7/vpn/apk/YomiHub-0.5.6.1-vpn-x86_64.apk` (SHA-256 `F1704210…356A62`; versionName vẫn 0.5.6/4048).
+
+## 2026-11-13 — 0.5.6.1: APK riêng cho Android 6.0 (A6)
+Chi tiết: `audit-0.5.7/android6/A6_FEASIBILITY.md`. Dựng: `build_0561_android6.ps1` (build23, giữ BUILD_LOCK) → `audit-0.5.7/android6/out/YomiHub-0.5.6.1-android6-{arm64-v8a,armeabi-v7a,x86_64}.apk`
+(minSdk 23, versionName 0.5.6.1, ký khóa phát hành, kiểm sha thư viện vá + chứng chỉ). APK Android 7.0+ chính không đổi.
+- MDBX_INCOMPATIBLE: libmdbx (Isar) đòi kernel ≥ 3.16 → hạ ngưỡng còn 3.0 trong libisar.so (4 ABI).
+- Vá thêm: libyhcompat (libflutter/libtor; libmpv armv7 `fseeko64/ftello64`), đệm 16 byte cuối ELF (linker 6.0), embedding Flutter thêm
+  AccessibilityBridge + MouseCursorPlugin (app chết khi có dịch vụ trợ năng), `vmSafeMode` (dex2oat 6.0 biên dịch sai handler VPN gộp → SIGSEGV),
+  tắt cargokit trong build23 (dùng librust của bản chính), sửa đường dẫn plugin trong `.flutter-plugins-dependencies`.
+- AVD API 23 x86_64: mở app, Isar, nguồn cục bộ, EPUB, video mpv, Play Books: ĐẠT. Tor: KHÔNG THỂ (tor-android dùng `FileObserver(File)` API 29) → giữ chặn.
+  Còn lỗi: HTTPS Dart `CERTIFICATE_VERIFY_FAILED` (CA gốc Android 6 cũ) làm hỏng WARP/Booru/nguồn online; trang ảnh CBZ cục bộ không hiện; chưa kiểm ARM thật, tải về, OCR, sao lưu/khôi phục chéo.
+
+
+## 2026-11-13 — VPN 0.5.6.1: sửa V7/V8 + kiểm AVD
+Chi tiết: `audit-0.5.7/vpn/VPN_FIX.md` mục "V7/V8 – sửa và kiểm AVD 13/11/2026". V7: một `GoBackend`/`Tunnel` dùng chung cả tiến trình (`YomiWg.kt` mới; `YomiVpn.kt`, `YomiTunnels.kt` dùng chung), Dart đồng bộ lúc khởi động (`wgResume`/`warpResume`) – vuốt app rồi mở lại, WARP và WireGuard hiện đúng "Đã kết nối" và nút "Tắt" gỡ được đường hầm. V8: WireGuard chỉ báo "Đã kết nối" khi có bắt tay (đọc `getStatistics`, chờ ≤15 s), không thì gỡ đường hầm + báo lỗi tiếng Việt; bỏ 2 hồ sơ WARP WireGuard dựng sẵn (khoá cũ chết). Test `test/yh_0561_vpn_resume_test.dart` (12) + VPN cũ: 18/18 đạt, analyze vpn sạch. AVD: hồi quy Tor + Tor→WARP đạt, V7 (WARP, WireGuard) đạt, V8 (hồ sơ hỏng → gỡ; hồ sơ tốt → bắt tay 0,4 s) đạt. APK thử: `audit-0.5.7/vpn/apk/YomiHub-0.5.6.1-vpn-x86_64.apk` (SHA-256 `7A86FFEB…C75A84`).
+
+## 2026-11-13 — 0.5.6.1: dựng bộ gói chính (sửa 2 lỗi chặn)
+- Lần 1 (07:44) dừng ở test: `yh_049` "every tr() text has an English translation" – chuỗi V8 WireGuard mới chưa có bản dịch. Đã thêm bản dịch vào 18 tệp `overlay/assets/yomihub_i18n/*.json` (sao lưu: `audit-0.5.7/backup/i18n_0561/`). Lần 2 (08:06): test **298/298 đạt**, 3 APK điện thoại 08:24, 3 APK TV 08:39, test Windows đạt 08:42, `flutter build windows` 08:53.
+- Bước pack dừng: `YomiHub.exe` có ProductVersion **1.0.0** – Flutter Windows chỉ nhận build-name dạng x.y.z, `--build-name 0.5.6.1` bị thay bằng 1.0.0. Hậu quả nếu phát hành: app Windows hiển thị 1.0.0 và Kiểm Tra Cập Nhật (so `PackageInfo.version`) không bao giờ thấy bản mới. Sửa: `build_0561.ps1` dựng Windows bằng `--build-name 0.5.6 --build-number 49` (FILEVERSION 0.5.6.49); `overlay/windows/runner/Runner.rc` ghi ProductVersion `"0.5.6.1+49"` chỉ khi đúng 0.5.6.49 (package_info_plus tách '+' → 0.5.6.1); `make_installer_exe_0561.ps1` nay bắt buộc ProductVersion = `0.5.6.1+49`. Khi lên 0.5.7 (3 phần) không cần gì thêm.
+- 09:01 chạy lại chỉ Windows (`run_0561_winonly.ps1`: sync → win → pack). Job `jobs/pending/a6_142_chain.ps1` chờ "XONG" rồi dựng APK Android 6.0 (build 49) và kiểm AVD API 23 (`audit-0.5.7/android6/tmp/j140.ps1`).
+- Thiết bị: chưa có điện thoại cắm vào máy (adb trống) → chưa kiểm trên máy thật.
+
+
+### 13/11/2026 — YomiHub 0.5.6.1 (0.5.6+49): sửa lỗi VPN + APK riêng cho Android 6.0
+
+#### A. Yêu cầu và quyết định
+- Chủ dự án (12/11/2026 21:00 và 23:18): số hiệu **0.5.6.1** = sửa VPN + APK Android 6.0 riêng bên cạnh APK Android 7.0+; 0.5.7 dành cho nền Mangayomi 0.9.95; không sửa tag/Release v0.5.6; phát hành sau "MỐC DUYỆT 0.5.6.1". Chi tiết: `audit-0.5.7/00_DECISIONS.md`.
+
+#### B. Sửa lỗi VPN (V1–V8)
+- Chi tiết, bằng chứng AVD và nguyên nhân: `audit-0.5.7/vpn/VPN_FIX.md`. Tệp: `lib/yomihub/vpn/vpn_tunnels.dart`, `vpn_service.dart`, `YomiVpn.kt`, `YomiTunnels.kt`, `YomiTorVpnService.kt`, `YomiWg.kt` (mới). Test: `test/yh_057_vpn_test.dart`, `test/yh_0561_vpn_resume_test.dart`.
+- Kết quả kiểm thử VPN: ĐẠT trên máy ảo Android 14 x86_64 (12–13/11/2026): Tor toàn thiết bị (check.torproject.org), tắt/bật Tor nhanh (V4/V4b), WARP, VPN Gate, chuyển Tor→WARP, vuốt app rồi mở lại khi WARP/WireGuard đang bật (V7), WireGuard hồ sơ hỏng bị gỡ hầm + hồ sơ tốt bắt tay 0,4 s (V8); Xray chỉ có test đơn vị; chưa kiểm trên điện thoại thật
+
+#### C. APK Android 6.0
+- Chi tiết: `audit-0.5.7/android6/A6_FEASIBILITY.md`; dựng bằng `build_0561_android6.ps1` (thư mục `D:\yh\build23`, build-number 49). Kết quả kiểm thử: ĐẠT một phần trên máy ảo Android 6.0 x86_64 (API 23, 13/11/2026): mở app, CSDL Isar, HTTPS (bộ CA gốc đóng gói), WARP, Tor, mở lại sau khi bấm Back, nguồn cục bộ, EPUB, video, Play Books. Còn lỗi: ảnh xem trước Booru không hiện, trang ảnh CBZ báo "Không tải được ảnh này", tiện ích JavaScript (QuickJS) không chạy; bản ARM chưa thử trên máy Android 6 thật
+
+#### D. Số hiệu và dựng/phát hành
+- `overlay/pubspec.yaml` `version: 0.5.6+49`; `--build-name 0.5.6.1 --build-number 49`; `AppIdentity.userAgent = 'YomiHub/0.5.6.1'`. versionCode: armeabi-v7a 1049, arm64-v8a 2049, x86_64 4049. Windows MSIX/appxbundle 0.5.6.1.
+- Script: `sync_0561.ps1`, `build_0561_android.ps1` (apk, tv, a6, verify), `build_0561.ps1` (test, win, pack, verify), `make_appxbundle_0561.ps1`, `make_installer_exe_0561.ps1`, `release_0561_publish.ps1`, `release_0561_fixed.ps1`. Thứ tự và thời gian: `audit-0.5.7/release/BUILD_PREP.md`.
+
+#### E. Việc còn lại
+- 0.5.7: chuyển nền Mangayomi 0.9.95. Android 6.0: ảnh Booru, trình đọc CBZ, `libqjs.so` (QuickJS), kiểm ARM thật. Windows: cửa sổ trắng (R21).

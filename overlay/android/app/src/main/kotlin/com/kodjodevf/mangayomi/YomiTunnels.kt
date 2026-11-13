@@ -51,12 +51,13 @@ class YomiTunnels(private val activity: Activity, messenger: BinaryMessenger) {
     init {
         try { VpnStatus.addLogListener(logListener) } catch (_: Throwable) {}
     }
-    private val backend: GoBackend by lazy { GoBackend(ctx) }
-    private val wgTunnel = object : Tunnel {
-        override fun getName(): String = "yomihub-wg"
-        override fun onStateChange(newState: Tunnel.State) {
-            main.post { channel.invokeMethod("wgState", newState == Tunnel.State.UP) }
-        }
+    // 0.5.6.1 (V7): process-wide engine + tunnel (see YomiWg); this Activity
+    // only receives the state changes.
+    private val backend: GoBackend get() = YomiWg.backend(ctx)
+    private val wgTunnel: Tunnel get() = YomiWg.wg
+
+    init {
+        YomiWg.wgListener = { up -> main.post { channel.invokeMethod("wgState", up) } }
     }
 
     // ───────────── Xray (separate process) ─────────────
@@ -172,6 +173,11 @@ class YomiTunnels(private val activity: Activity, messenger: BinaryMessenger) {
                             main.post { result.error("WG", e.message ?: e.toString(), null) }
                         }
                     }
+                }
+                // 0.5.6.1 (V7/V8): real state of the shared tunnel + handshake
+                "wgStatus" -> io.execute {
+                    val st = YomiWg.stats(ctx, wgTunnel)
+                    main.post { result.success(st) }
                 }
                 "wgDown" -> io.execute {
                     try {

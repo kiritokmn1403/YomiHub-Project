@@ -413,14 +413,33 @@ class YomiVpnService extends ChangeNotifier {
       // don't block startup
       startTor();
     }
-    if (warpEnabled) {
-      if (Platform.isWindows) {
-        // Windows: WARP runs in YomiHub's Xray, so bring it back up.
-        unawaited(setWarpEnabled(true));
-      } else {
-        try {
-          warpUp = await _channel.invokeMethod<bool>('warpState') ?? false;
-        } catch (_) {}
+    if (warpEnabled && Platform.isWindows) {
+      // Windows: WARP runs in YomiHub's Xray, so bring it back up.
+      unawaited(setWarpEnabled(true));
+    } else if (Platform.isAndroid) {
+      // 0.5.6.1 (V7): the WireGuard engine is shared by the whole process, so
+      // after "swipe from recents" + re-open the running tunnel is visible
+      // again. Adopt it, bring it back if the process was restarted (was:
+      // "Đang kết nối…" forever), or remove a tunnel nobody owns.
+      var up = false;
+      try {
+        up = await _channel.invokeMethod<bool>('warpState') ?? false;
+      } catch (_) {}
+      switch (warpResume(enabled: warpEnabled, nativeUp: up)) {
+        case WarpResume.adopt:
+          warpUp = true;
+          AppLogger.log('[VPN] Mở lại YomiHub: WARP vẫn đang chạy – đã đồng bộ trạng thái',
+              logLevel: LogLevel.info, always: true);
+        case WarpResume.reconnect:
+          warpUp = false;
+          unawaited(setWarpEnabled(true));
+        case WarpResume.orphan:
+          try {
+            await _channel.invokeMethod('warpDown');
+          } catch (_) {}
+          AppLogger.log('[VPN] Đã gỡ đường hầm WARP mồ côi (công tắc WARP đang tắt)', logLevel: LogLevel.warning);
+        case WarpResume.none:
+          break;
       }
     }
     if (Platform.isWindows) unawaited(_applyWinProxyBridge());
@@ -430,6 +449,16 @@ class YomiVpnService extends ChangeNotifier {
 
   /// 0.4.4: adopts a Tor connection that came up after [startTor] returned.
   Future<void> _onTorLateOn() async {
+    // 0.5.7 (V3): on a normal start the native "ON" arrives ~300 ms before
+    // torStart returns; wait for it so the usual start is not logged as a
+    // "late" connection (and the Tor path is not diagnosed twice).
+    final pending = _pendingTorStart;
+    if (pending != null) {
+      try {
+        await pending;
+      } catch (_) {}
+      if (YomiVpnState.torRunning || !YomiVpnState.torEnabled) return;
+    }
     final generation = _torGeneration;
     try {
       final info = Map<String, dynamic>.from(await _channel.invokeMethod('torStatus') as Map);

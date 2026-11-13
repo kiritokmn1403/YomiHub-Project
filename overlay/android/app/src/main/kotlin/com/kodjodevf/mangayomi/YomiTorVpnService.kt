@@ -96,8 +96,16 @@ class YomiTorVpnService : VpnService() {
             if (wanted.isEmpty()) {
                 b.addDisallowedApplication(own)
             } else {
+                var added = 0
                 for (p in wanted) {
-                    try { b.addAllowedApplication(p) } catch (_: Exception) {}
+                    try { b.addAllowedApplication(p); added++ } catch (_: Exception) {}
+                }
+                // 0.5.7 (V2): none of the chosen apps is installed any more →
+                // an empty allow-list means "every app, YomiHub included", and
+                // Tor's own traffic would loop into the tunnel.
+                if (added == 0) {
+                    lastError = "Không còn ứng dụng nào trong danh sách được cài trên máy"
+                    notify(false); return
                 }
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) b.setMetered(false)

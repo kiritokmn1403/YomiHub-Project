@@ -1,0 +1,1173 @@
+import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:mangayomi/utils/log/logger.dart';
+import 'dart:convert';
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart' show AppLifecycleListener;
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:hive/hive.dart';
+import 'package:http/http.dart' as http;
+import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
+import 'package:mangayomi/yomihub/mes/yomi_mes.dart';
+import 'package:mangayomi/yomihub/vpn/vpn_tunnels.dart';
+import 'package:mangayomi/yomihub/vpn/win/win_vpn.dart';
+
+/// "Ứng dụng bên ngoài / toàn bộ thiết bị": which apps a VPN tunnel
+/// (WARP, OpenVPN, WireGuard, SoftEther) carries. Kept under the old
+/// `warpMode` name/keys so 0.1.4 settings carry over.
+enum WarpMode { app, apps, device }
+
+/// The VPN services in "VPN & DNS › Dịch vụ VPN". Only one may be on.
+enum VpnKind { tor, warp, openvpn, wireguard, softether, xray, proxy, adguard, urban }
+
+extension VpnKindLabel on VpnKind {
+  String get label => switch (this) {
+        VpnKind.tor => 'Tor',
+        VpnKind.warp => 'Cloudflare WARP',
+        VpnKind.openvpn => 'OpenVPN',
+        VpnKind.wireguard => 'WireGuard',
+        VpnKind.softether => 'SoftEther VPN',
+        VpnKind.xray => 'Mihon Proxy (Xray)',
+        VpnKind.proxy => tr('Proxy riêng'),
+        VpnKind.adguard => 'AdGuard VPN',
+        VpnKind.urban => 'Urban VPN',
+      };
+
+  /// Proxy-type services only reach YomiHub's own connections.
+  bool get isProxy =>
+      this == VpnKind.tor || this == VpnKind.xray || this == VpnKind.proxy || this == VpnKind.adguard;
+}
+
+class InstalledApp {
+  final String package;
+  final String label;
+  final bool system;
+  InstalledApp(this.package, this.label, this.system);
+}
+
+/// YomiHub "VPN & DNS": one VPN service at a time (Tor, WARP, OpenVPN,
+/// WireGuard, SoftEther, Mihon Proxy, custom proxy), an in-app scope
+/// (extensions / WebView / browser), an outside-apps scope (YomiHub only,
+/// chosen apps, whole device) and the destination country.
+class YomiVpnService extends ChangeNotifier {
+  YomiVpnService._();
+  static final instance = YomiVpnService._();
+
+  static final _channel = VpnChannel('yomihub/vpn');
+  static const _boxName = 'yomihub_vpn';
+  Box? _box;
+
+  Timer? _rotationTimer;
+  bool _rotationBusy = false;
+  DateTime? _lastTorRotation;
+  DateTime? _lastSoftEtherRotation;
+
+  bool get autoTorIdentity => YomiPrefs.get('autoTorIdentity', false);
+  bool get autoSoftEtherServer => YomiPrefs.get('autoSoftEtherServer', false);
+  int get torIdentityMinutes => YomiPrefs.get('torIdentityMinutes', 10).clamp(1, 1440);
+  int get softEtherMinutes => YomiPrefs.get('softEtherMinutes', 30).clamp(1, 1440);
+
+  Future<void> setRotation(String key, Object value) async {
+    await YomiPrefs.set(key, value);
+    if (key == 'autoTorIdentity' || key == 'torIdentityMinutes') {
+      _lastTorRotation = null;
+    } else {
+      _lastSoftEtherRotation = null;
+    }
+    notifyListeners();
+  }
+
+  Future<void> _rotateConnections() async {
+    if (_rotationBusy) return;
+    _rotationBusy = true;
+    try {
+      final now = DateTime.now();
+      if (!autoTorIdentity || torStatus != 'ON') {
+        _lastTorRotation = null;
+      } else {
+        _lastTorRotation ??= now;
+        if (now.difference(_lastTorRotation!).inMinutes >= torIdentityMinutes) {
+          _lastTorRotation = now;
+          if (!await newIdentity()) {
+            AppLogger.log('Tor identity rotation failed', logLevel: LogLevel.warning);
+          }
+        }
+      }
+      final tunnels = YomiTunnels.instance;
+      if (!autoSoftEtherServer || tunnels.state != 'connected' ||
+          tunnels.active?.type != TunnelType.softether) {
+        _lastSoftEtherRotation = null;
+        return;
+      }
+      _lastSoftEtherRotation ??= now;
+      if (now.difference(_lastSoftEtherRotation!).inMinutes < softEtherMinutes) return;
+      _lastSoftEtherRotation = now;
+      final originalId = tunnels.activeId;
+      final country = tunnels.country;
+      if (originalId!.startsWith('vpngate_')) {
+        final servers = await tunnels.loadVpnGate();
+        // A user may have disabled rotation or changed connections while loading.
+        if (!autoSoftEtherServer || tunnels.activeId != originalId ||
+            tunnels.state != 'connected' || tunnels.country != country) {
+          return;
+        }
+        // cycle through the servers of the country instead of bouncing
+        // between the first two
+        final pool = servers.where((s) => s.ovpn.isNotEmpty &&
+            (country.isEmpty || s.countryCode.toUpperCase() == country.toUpperCase())).toList();
+        final cur = pool.indexWhere((s) => 'vpngate_${s.ip}' == originalId);
+        final next = pool.isEmpty
+            ? null
+            : pool.length == 1 && cur == 0
+            ? null
+            : pool[(cur + 1) % pool.length];
+        if (next == null) return;
+        final error = await tunnels.connectVpnGate(next);
+        if (error != null) AppLogger.log('SoftEther rotation failed: $error', logLevel: LogLevel.error);
+      } else {
+        final next = tunnels.profiles.where((p) => p.type == TunnelType.softether &&
+            p.id != originalId && !p.id.startsWith('vpngate_') &&
+            (country.isEmpty || p.country.toUpperCase() == country.toUpperCase())).firstOrNull;
+        if (next == null) return;
+        final error = await tunnels.connect(next);
+        if (error != null) AppLogger.log('SoftEther rotation failed: $error', logLevel: LogLevel.error);
+      }
+    } catch (error, stack) {
+      AppLogger.log('VPN rotation failed: $error\n$stack', logLevel: LogLevel.error);
+    } finally {
+      _rotationBusy = false;
+    }
+  }
+
+  @override
+  void dispose() {
+    _rotationTimer?.cancel();
+    super.dispose();
+  }
+
+  String torStatus = 'OFF';
+
+  /// 0.1.6: Tor tunnel for other apps / the whole device is up.
+  bool torVpnUp = false;
+  String? _torVpnError;
+  String? get torVpnError => _torVpnError;
+  set torVpnError(String? v) {
+    if (v != null && v.isNotEmpty && v != _torVpnError) yomiLogVpnError('Tor (toàn thiết bị)', v);
+    _torVpnError = v;
+  }
+  bool warpEnabled = false;
+  bool warpUp = false;
+  WarpMode warpMode = WarpMode.app;
+  List<String> warpApps = [];
+  String? _lastError;
+  String? get lastError => _lastError;
+  set lastError(String? v) {
+    // 0.2.3: VPN / Tor / WARP / proxy errors → app log
+    if (v != null && v.isNotEmpty && v != _lastError) yomiLogVpnError('VPN (Tor / WARP / proxy)', v);
+    _lastError = v;
+  }
+
+  /// 0.1.7: Windows too (tor.exe / xray.exe / OpenVPN GUI, see win_vpn.dart).
+  bool get supported => Platform.isAndroid || Platform.isWindows;
+
+  static bool get isWindows => Platform.isWindows;
+
+  /// Tor bridge ('' none, 'snowflake', 'obfs4', 'meek'; Android also 'auto').
+  /// 0.4.5: Android too – lyrebird from the Tor Expert Bundle 16.0 runs as
+  /// `liblyrebird.so`; 'auto' (default) starts direct and switches to
+  /// snowflake → obfs4 → meek when bootstrap stalls (network blocks Tor).
+  String get torBridge => WinVpnBackend.instance.torBridge;
+
+  /// Transport tor actually uses now (Android, '' = direct).
+  String torBridgeActive = '';
+
+  Future<void> setTorBridge(String v) async {
+    WinVpnBackend.instance.torBridge = v;
+    await _put('torBridge', v);
+    if (Platform.isAndroid) {
+      // applied live over the control port – no restart
+      await _sendTorBridges();
+      if (YomiVpnState.torEnabled) unawaited(_logTorPath(const Duration(seconds: 120)));
+    } else if (YomiVpnState.torEnabled) {
+      await stopTor();
+      await startTor();
+    }
+    notifyListeners();
+  }
+
+  Map<String, List<String>>? _ptBridges;
+
+  /// 0.4.5: writes which path tor really uses (bridge fingerprint / relay)
+  /// to the application log – the bridge setting can be verified from there.
+  Future<void> _logTorPath([Duration wait = Duration.zero]) async {
+    if (!Platform.isAndroid) return;
+    for (var i = 0; i <= wait.inSeconds ~/ 5; i++) {
+      if (i > 0) await Future.delayed(const Duration(seconds: 5));
+      try {
+        final m = Map<String, dynamic>.from(await _channel.invokeMethod('torDiag') as Map);
+        final hop = '${m['firstHop'] ?? ''}';
+        // tor answered on its control port with a consensus loaded: it is
+        // past the point where it used to exit() (0.4.3 guard).
+        if (RegExp(r'PROGRESS=([5-9]\d|100)').hasMatch('${m['bootstrap']}')) {
+          _clearTorGuard();
+        }
+        if (hop.isEmpty && i < wait.inSeconds ~/ 5) continue;
+        AppLogger.log(
+          '[VPN] Tor: UseBridges=${m['useBridges']} (${m['bridges']} cầu nối, kiểu "${m['applied']}"), '
+          'nút vào mạch hiện tại $hop, ${'${m['bootstrap']}'.replaceAll(RegExp(r'^NOTICE BOOTSTRAP '), '')}',
+          logLevel: LogLevel.info,
+        );
+        return;
+      } catch (e) {
+        if (i >= wait.inSeconds ~/ 5) {
+          AppLogger.log('[VPN] Không đọc được trạng thái mạch Tor: $e', logLevel: LogLevel.info);
+        }
+      }
+    }
+  }
+
+  Future<void> _sendTorBridges() async {
+    if (!Platform.isAndroid) return;
+    try {
+      if (_ptBridges == null) {
+        final j = jsonDecode(await rootBundle.loadString('assets/yomihub_vpn/tor_pt_config.json')) as Map;
+        _ptBridges = {
+          for (final e in ((j['bridges'] as Map?) ?? const {}).entries)
+            '${e.key}'.replaceAll('-azure', ''): [for (final l in e.value as List) '$l'],
+        };
+      }
+      await _channel.invokeMethod('torBridges', {'mode': torBridge, 'lines': _ptBridges});
+    } catch (e) {
+      AppLogger.log('[VPN] Không nạp được danh sách cầu nối Tor: $e', logLevel: LogLevel.warning);
+    }
+  }
+
+  /// Completes once the saved VPN settings are loaded (services may still be
+  /// starting). main.dart waits for it before creating WebView2.
+  final loaded = Completer<void>();
+
+  /// Windows: proxy given to WebView2 when it was created (it can't change
+  /// without restarting YomiHub).
+  String? webViewProxyAtStart;
+
+  /// Windows WebView2 argument for the saved VPN settings (null = direct).
+  String? windowsWebViewProxyArg() {
+    if (!Platform.isWindows) return null;
+    final wantWeb = YomiVpnState.scopeWebView || YomiVpnState.scopeBrowser;
+    final anyService = YomiVpnState.torEnabled ||
+        warpEnabled ||
+        (YomiVpnState.proxyEnabled && YomiVpnState.proxyUrl.isNotEmpty) ||
+        YomiTunnels.instance.activeId != null;
+    if (!wantWeb || !anyService) return null;
+    return '127.0.0.1:${WinVpnBackend.httpPort}';
+  }
+
+  /// Windows: WebView2 would need a restart to follow the current settings.
+  bool get webViewNeedsRestart =>
+      Platform.isWindows && windowsWebViewProxyArg() != webViewProxyAtStart;
+
+  /// Windows "Toàn bộ máy tính": system proxy → the local Xray front while a
+  /// proxy-type service is up; restored otherwise.
+  Future<void> applyWindowsSystemProxy() async {
+    if (!Platform.isWindows) return;
+    final b = WinVpnBackend.instance;
+    final up = b.xrayRunning && b.xrayPurpose.isNotEmpty;
+    final want = warpMode == WarpMode.device && up;
+    try {
+      await b.setSystemProxy(want ? '127.0.0.1:${WinVpnBackend.httpPort}' : null);
+    } catch (e) {
+      lastError = tr('Không đặt được proxy hệ thống: {p0}', {'p0': e});
+    }
+  }
+
+  /// Windows: the custom proxy also gets a local front (WebView2 / system
+  /// proxy can't use SOCKS passwords).
+  Future<void> _applyWinProxyBridge() async {
+    if (!Platform.isWindows) return;
+    final b = WinVpnBackend.instance;
+    final on = YomiVpnState.proxyEnabled && YomiVpnState.proxyUrl.isNotEmpty;
+    if (on && b.xrayPurpose.isEmpty) {
+      try {
+        await b.proxyBridge(YomiVpnState.proxyUrl);
+      } catch (e) {
+        lastError = '$e';
+      }
+    } else if (!on && b.xrayPurpose == 'proxy') {
+      await b.proxyBridge(null);
+    }
+    await applyWindowsSystemProxy();
+  }
+
+  String? _jvmProxy = '';
+
+  /// Keeps the built-in M-Extension-Server's JVM traffic on the same route
+  /// (Tor / custom proxy) when it is applied to every source.
+  void _syncJvmProxy() {
+    final p = YomiVpnState.proxyFor(null);
+    if (p == _jvmProxy) return;
+    _jvmProxy = p;
+    YomiMes.setJvmProxy(p);
+  }
+
+  Future<void> init() async {
+    if (_box != null) return;
+    addListener(_syncJvmProxy);
+    YomiTunnels.instance.addListener(() {
+      _syncJvmProxy();
+      _applyBrowserProxy();
+      applyWindowsSystemProxy();
+      notifyListeners();
+    });
+    YomiTunnels.bypassProvider = tunnelBypass;
+    YomiTunnels.wireguardScope = wireguardScoped;
+    unawaited(YomiTunnels.instance.init());
+    try {
+      _box = await YomiHive.open(_boxName);
+    } catch (_) {
+      if (!loaded.isCompleted) loaded.complete();
+      return;
+    }
+    final b = _box!;
+    YomiVpnState.torEnabled = b.get('torEnabled', defaultValue: false);
+    YomiVpnState.killSwitch = b.get('killSwitch', defaultValue: true);
+    YomiVpnState.proxyEnabled = b.get('proxyEnabled', defaultValue: false);
+    YomiVpnState.proxyUrl = b.get('proxyUrl', defaultValue: '');
+    _loadScope(b);
+    _syncJvmProxy();
+    warpEnabled = b.get('warpEnabled', defaultValue: false);
+    warpMode = WarpMode.values[(b.get('warpMode', defaultValue: 0) as int).clamp(0, 2)];
+    warpApps = (b.get('warpApps', defaultValue: <dynamic>[]) as List).cast<String>();
+    if (Platform.isAndroid) {
+      WinVpnBackend.instance.torBridge = b.get('torBridge', defaultValue: 'auto') as String;
+    }
+    if (Platform.isWindows) {
+      // "chosen apps" needs Android's per-app VPN; Windows has app / device.
+      if (warpMode == WarpMode.apps) warpMode = WarpMode.app;
+      WinVpnBackend.instance.torBridge = b.get('torBridge', defaultValue: '') as String;
+      // YomiHub may have been killed while it owned the system proxy.
+      await WinVpnBackend.instance.restoreSystemProxy();
+    }
+    YomiVpnState.bump();
+    if (!loaded.isCompleted) loaded.complete();
+    if (!supported) return;
+    _rotationTimer = Timer.periodic(const Duration(seconds: 30), (_) => unawaited(_rotateConnections()));
+    _channel.setMethodCallHandler((call) async {
+      switch (call.method) {
+        case 'torStatus':
+          torStatus = YomiVpnState.torEnabled ? call.arguments as String : 'OFF';
+          if (torStatus == 'OFF') {
+            YomiVpnState.torRunning = false;
+            YomiVpnState.bump();
+          } else if (torStatus == 'ON' && YomiVpnState.torEnabled && !YomiVpnState.torRunning) {
+            // 0.4.4: Tor often finishes bootstrapping after torStart gave up
+            // (90 s). Before, the late "ON" only changed the label: routing
+            // stayed on the kill switch (127.0.0.1:9) and every source failed
+            // with "Connection refused" (logs 1.txt 29/10) until restart.
+            unawaited(_onTorLateOn());
+          }
+          notifyListeners();
+        case 'torBridge':
+          torBridgeActive = '${call.arguments}';
+          // fixed mode = chosen by the user; "auto" = tor was blocked
+          AppLogger.log(
+              torBridge == 'auto'
+                  ? '[VPN] Tor chưa kết nối trực tiếp được – tự chuyển sang cầu nối "$torBridgeActive"'
+                  : '[VPN] Tor dùng cầu nối "$torBridgeActive" (theo cài đặt)',
+              logLevel: torBridge == 'auto' ? LogLevel.warning : LogLevel.info);
+          notifyListeners();
+          unawaited(_logTorPath(const Duration(seconds: 90)));
+        case 'torBridgeError':
+          AppLogger.log('[VPN] Không áp dụng được cầu nối Tor: ${call.arguments}', logLevel: LogLevel.warning);
+        case 'warpState':
+          warpUp = call.arguments as bool;
+          notifyListeners();
+        case 'torVpnState':
+          final m = Map<String, dynamic>.from(call.arguments as Map);
+          torVpnUp = m['up'] == true;
+          torVpnError = m['error'] as String?;
+          notifyListeners();
+      }
+      return null;
+    });
+    // 0.4.3: crash-loop guard. tor runs inside the app process and calls
+    // exit() when it rejects its consensus (e.g. a required protocol it does
+    // not support), killing YomiHub ~3 s after every launch (Xiaomi 15T,
+    // 29/10/2026). If the previous start never got past that window, keep
+    // the app alive: turn Tor off and say why instead of starting it again.
+    final torCrashed =
+        Platform.isAndroid && b.get('torStartPending', defaultValue: false) == true;
+    if (torCrashed) {
+      await _put('torStartPending', false);
+      YomiVpnState.torEnabled = false;
+      await _put('torEnabled', false);
+      YomiVpnState.bump();
+      lastError = tr('Tor đã làm ứng dụng thoát ở lần mở trước nên đã được tắt. Bật lại trong VPN & DNS nếu muốn thử lại.');
+      AppLogger.log('[VPN] Ứng dụng bị đóng trong lúc Tor đang khởi động (chưa tải xong dữ liệu mạng Tor) – đã tắt Tor để ứng dụng mở được; bật lại trong VPN & DNS', logLevel: LogLevel.error);
+    }
+    if (YomiVpnState.torEnabled) {
+      // don't block startup
+      startTor();
+    }
+    if (warpEnabled) {
+      if (Platform.isWindows) {
+        // Windows: WARP runs in YomiHub's Xray, so bring it back up.
+        unawaited(setWarpEnabled(true));
+      } else {
+        try {
+          warpUp = await _channel.invokeMethod<bool>('warpState') ?? false;
+        } catch (_) {}
+      }
+    }
+    if (Platform.isWindows) unawaited(_applyWinProxyBridge());
+  }
+
+  Future<void> _put(String k, Object v) async => _box?.put(k, v);
+
+  /// 0.4.4: adopts a Tor connection that came up after [startTor] returned.
+  Future<void> _onTorLateOn() async {
+    // 0.5.7 (V3): on a normal start the native "ON" arrives ~300 ms before
+    // torStart returns; wait for it so the usual start is not logged as a
+    // "late" connection (and the Tor path is not diagnosed twice).
+    final pending = _pendingTorStart;
+    if (pending != null) {
+      try {
+        await pending;
+      } catch (_) {}
+      if (YomiVpnState.torRunning || !YomiVpnState.torEnabled) return;
+    }
+    final generation = _torGeneration;
+    try {
+      final info = Map<String, dynamic>.from(await _channel.invokeMethod('torStatus') as Map);
+      if (!YomiVpnState.torEnabled || generation != _torGeneration || info['status'] != 'ON') return;
+      final http = (info['httpPort'] as num?)?.toInt() ?? 0;
+      if (http <= 0) return;
+      YomiVpnState.torHttpPort = http;
+      YomiVpnState.torSocksPort = (info['socksPort'] as num?)?.toInt() ?? 0;
+      YomiVpnState.torRunning = true;
+      lastError = null;
+      YomiVpnState.bump();
+      AppLogger.log('[VPN] Tor đã kết nối (muộn hơn thời gian chờ) – tiện ích đi qua Tor từ bây giờ', logLevel: LogLevel.info);
+      await _applyBrowserProxy();
+      await _applyTorVpn();
+      notifyListeners();
+    } catch (e) {
+      AppLogger.log('[VPN] Tor báo đã kết nối nhưng không đọc được cổng proxy: $e', logLevel: LogLevel.error);
+    }
+    unawaited(_logTorPath(const Duration(seconds: 30)));
+  }
+
+  /// 0.4.3: marks a Tor start in progress (Android). Cleared once the app has
+  /// survived the first seconds of tor loading its cached consensus; if the
+  /// process dies first, [init] finds the mark on the next launch.
+  Timer? _torGuardTimer;
+  AppLifecycleListener? _torGuardLife;
+
+  /// 0.5.2: the crash-loop guard fired falsely (logs 2, 04/11 09:01:46 →
+  /// 09:04:55): tor had loaded its consensus and reached 75 %
+  /// ("enough_dirinfo"), then YomiHub went to the background (onTrimMemory
+  /// 3 s later) and Android/the user closed it inside the 25 s window – the
+  /// next launch blamed Tor and switched it off. The guard is now dropped as
+  /// soon as tor has survived loading its consensus (circuit diagnostics
+  /// readable) or the app leaves the foreground, where a process death is
+  /// the system's doing, not tor's exit().
+  void _clearTorGuard() {
+    if (!(_torGuardTimer?.isActive ?? false)) return;
+    _torGuardTimer!.cancel();
+    unawaited(_put('torStartPending', false));
+  }
+
+  Future<void> _armTorGuard() async {
+    if (!Platform.isAndroid) return;
+    await _put('torStartPending', true);
+    try {
+      await _box?.flush();
+    } catch (_) {}
+    _torGuardTimer?.cancel();
+    _torGuardTimer = Timer(const Duration(seconds: 25), () {
+      unawaited(_put('torStartPending', false));
+    });
+    _torGuardLife ??= AppLifecycleListener(
+      onHide: _clearTorGuard,
+      onPause: _clearTorGuard,
+      onDetach: _clearTorGuard,
+    );
+  }
+
+  // ───────────── Tor ─────────────
+
+  Future<void> setTorEnabled(bool v) async {
+    YomiVpnState.torEnabled = v;
+    await _put('torEnabled', v);
+    YomiVpnState.bump();
+    notifyListeners();
+    if (v) {
+      await startTor();
+    } else {
+      await stopTor();
+    }
+  }
+
+  /// Extra torrc lines: exit country chosen in "Quốc gia đích đến".
+  Future<void> _writeTorrc() async {
+    final cc = YomiTunnels.instance.country.toLowerCase();
+    // StrictNodes 0: prefer exits in that country, but never leave Tor
+    // without a circuit when the country has few or no exit relays.
+    final text = cc.isEmpty ? '' : 'ExitNodes {$cc}\nStrictNodes 0\n';
+    try {
+      await VpnChannel('yomihub/tunnels').invokeMethod('torrc', {'text': text});
+    } catch (_) {}
+  }
+
+  /// Re-applies the destination country to Tor (restarts it when running).
+  Future<void> applyCountry() async {
+    if (!supported) return;
+    await _writeTorrc();
+    if (YomiVpnState.torEnabled && YomiVpnState.torRunning) {
+      // tor cannot be restarted inside the app process: change the exit
+      // country live through the control port instead.
+      try {
+        await _channel.invokeMethod('torExitNodes', {'country': YomiTunnels.instance.country});
+      } catch (_) {}
+    }
+  }
+
+  int _torGeneration = 0;
+  Future<void>? _pendingTorStart;
+
+  Future<void> startTor() {
+    final pending = _pendingTorStart;
+    if (pending != null) return pending;
+    final generation = ++_torGeneration;
+    return _pendingTorStart = _startTor(generation).whenComplete(() {
+      if (generation == _torGeneration) _pendingTorStart = null;
+    });
+  }
+
+  Future<void> _startTor(int generation) async {
+    if (!supported) return;
+    torStatus = 'STARTING';
+    notifyListeners();
+    try {
+      if (Platform.isWindows && WinVpnBackend.instance.xrayPurpose == 'proxy') {
+        await WinVpnBackend.instance.proxyBridge(null);
+      }
+      await _writeTorrc();
+      if (generation != _torGeneration) return;
+      await _armTorGuard();
+      await _sendTorBridges();
+      if (generation != _torGeneration) return;
+      final info = Map<String, dynamic>.from(await _channel.invokeMethod('torStart') as Map);
+      if (generation != _torGeneration) return;
+      YomiVpnState.torHttpPort = (info['httpPort'] as num?)?.toInt() ?? 0;
+      YomiVpnState.torSocksPort = (info['socksPort'] as num?)?.toInt() ?? 0;
+      torStatus = '${info['status']}';
+      YomiVpnState.torRunning = torStatus == 'ON' && YomiVpnState.torHttpPort > 0;
+      // 0.4.4: say where tor stopped ("Bootstrapped 45%: …") so blocked
+      // networks can be told apart from a slow first start.
+      final boot = '${info['bootstrap'] ?? ''}';
+      final pct = RegExp(r'PROGRESS=(\d+)').firstMatch(boot)?.group(1);
+      final sum = RegExp(r'SUMMARY="([^"]*)"').firstMatch(boot)?.group(1);
+      lastError = YomiVpnState.torRunning
+          ? null
+          : (pct == null
+              ? tr('Tor chưa kết nối được (có thể mạng đang chặn Tor).')
+              : (Platform.isAndroid && torBridge == 'auto'
+                  ? tr('Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – YomiHub đang thử cầu nối (Snowflake/obfs4/meek) ở nền và sẽ tự dùng Tor khi kết nối xong.',
+                      {'p0': pct, 'p1': sum == null ? '' : ': $sum'})
+                  : tr('Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – Tor vẫn tiếp tục thử ở nền; nếu mạng chặn Tor hãy dùng WARP.',
+                      {'p0': pct, 'p1': sum == null ? '' : ': $sum'})));
+    } catch (e) {
+      if (generation != _torGeneration) return;
+      lastError = e is PlatformException ? (e.message ?? e.code) : '$e';
+      torStatus = 'OFF';
+      YomiVpnState.torRunning = false;
+    }
+    YomiVpnState.bump();
+    await _applyBrowserProxy();
+    await _applyTorVpn();
+    notifyListeners();
+    if (YomiVpnState.torRunning) unawaited(_logTorPath());
+  }
+
+  /// 0.1.6: Tor for other apps / the whole device, following the outside
+  /// scope ("Ứng dụng ngoài / toàn thiết bị"). YomiHub itself keeps using
+  /// Tor through its in-app proxy scope.
+  Future<void> _applyTorVpn() async {
+    if (!supported) return;
+    if (Platform.isWindows) return applyWindowsSystemProxy();
+    final want = YomiVpnState.torEnabled &&
+        YomiVpnState.torRunning &&
+        warpMode != WarpMode.app &&
+        !(warpMode == WarpMode.apps && warpApps.isEmpty);
+    if (!want) {
+      if (torVpnUp) {
+        try {
+          await _channel.invokeMethod('torVpnStop');
+        } catch (_) {}
+        torVpnUp = false;
+      }
+      return;
+    }
+    try {
+      final granted = await _channel.invokeMethod<bool>('vpnPrepare') ?? false;
+      if (!granted) {
+        torVpnError = tr('Bạn chưa cho phép YomiHub tạo kết nối VPN.');
+        return;
+      }
+      await _channel.invokeMethod('torVpnStart', {
+        'apps': warpMode == WarpMode.device ? <String>[] : warpApps,
+        'socksPort': YomiVpnState.torSocksPort,
+      });
+    } catch (e) {
+      torVpnError = '$e';
+    }
+  }
+
+  Future<void> stopTor() async {
+    if (!supported) return;
+    _torGeneration++;
+    _pendingTorStart = null;
+    torStatus = 'OFF';
+    YomiVpnState.torRunning = false;
+    YomiVpnState.bump();
+    notifyListeners();
+    try {
+      await _channel.invokeMethod('torVpnStop');
+    } catch (_) {}
+    torVpnUp = false;
+    try {
+      await _channel.invokeMethod('torStop');
+    } catch (_) {}
+    await _applyBrowserProxy();
+    if (Platform.isWindows) await _applyWinProxyBridge();
+    notifyListeners();
+  }
+
+  Future<bool> newIdentity() async {
+    try {
+      return await _channel.invokeMethod<bool>('torNewIdentity') ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  // ───────────── Custom proxy ─────────────
+
+  /// Returns an error message, or null when saved.
+  Future<String?> setProxy({required bool enabled, required String url}) async {
+    final norm = YomiVpnState.normaliseProxy(url);
+    if (enabled && norm.isEmpty) {
+      return tr('Địa chỉ proxy không hợp lệ. Ví dụ: 1.2.3.4:8080, user:pass@host:3128, socks5://host:1080');
+    }
+    YomiVpnState.proxyEnabled = enabled;
+    YomiVpnState.proxyUrl = norm;
+    await _put('proxyEnabled', enabled);
+    await _put('proxyUrl', norm);
+    YomiVpnState.bump();
+    await _applyWinProxyBridge();
+    await _applyBrowserProxy();
+    notifyListeners();
+    return null;
+  }
+
+  /// Quick reachability test through the proxy (returns the exit IP).
+  Future<String> testProxy() async {
+    final url = YomiVpnState.proxyUrl;
+    if (url.isEmpty) return tr('Chưa nhập proxy');
+    final u = Uri.parse(url);
+    if (u.scheme.startsWith('socks')) {
+      return tr('Proxy SOCKS5 được dùng cho tiện ích; hãy mở thử một tiện ích để kiểm tra.');
+    }
+    final hc = HttpClient()..connectionTimeout = const Duration(seconds: 15);
+    hc.findProxy = (_) => 'PROXY ${u.host}:${u.port}';
+    if (u.userInfo.isNotEmpty) {
+      final parts = u.userInfo.split(':');
+      hc.addProxyCredentials(u.host, u.port, '', HttpClientBasicCredentials(
+        Uri.decodeComponent(parts.first),
+        parts.length > 1 ? Uri.decodeComponent(parts.sublist(1).join(':')) : '',
+      ));
+    }
+    try {
+      final req = await hc.getUrl(Uri.parse('https://api.ipify.org?format=json'));
+      final res = await req.close().timeout(const Duration(seconds: 20));
+      final body = await res.transform(utf8.decoder).join();
+      return tr('Kết nối được • IP ra ngoài: {p0}', {'p0': jsonDecode(body)['ip']});
+    } catch (e) {
+      yomiLogVpnError('Kiểm tra proxy riêng', e);
+      return tr('Không kết nối được: {p0}', {'p0': e});
+    } finally {
+      hc.close(force: true);
+    }
+  }
+
+  Future<void> setKillSwitch(bool v) async {
+    YomiVpnState.killSwitch = v;
+    await _put('killSwitch', v);
+    YomiVpnState.bump();
+    notifyListeners();
+  }
+
+  // ───────────── In-app scope (extensions / WebView / browser) ─────────────
+
+  void _loadScope(Box b) {
+    if (b.containsKey('scopeAll')) {
+      YomiVpnState.scopeAllSources = b.get('scopeAll') as bool;
+      YomiVpnState.scopeSources =
+          ((b.get('scopeSources', defaultValue: <dynamic>[]) as List).cast<int>()).toSet();
+      YomiVpnState.scopeAllBooru = b.get('scopeAllBooru', defaultValue: true) as bool;
+      YomiVpnState.scopeBooruSites =
+          ((b.get('scopeBooruSites', defaultValue: <dynamic>[]) as List).cast<String>()).toSet();
+      YomiVpnState.scopeWebView = b.get('scopeWebView', defaultValue: true) as bool;
+      YomiVpnState.scopeBrowser = b.get('scopeBrowser', defaultValue: true) as bool;
+      return;
+    }
+    // 0.1.4 → 0.1.5: merge the separate Tor / proxy / Xray choices.
+    final torOn = b.get('torEnabled', defaultValue: false) as bool;
+    final torAll = b.get('torAll', defaultValue: false) as bool;
+    final proxyAll = b.get('proxyAll', defaultValue: true) as bool;
+    final torSrc = (b.get('torSources', defaultValue: <dynamic>[]) as List).cast<int>();
+    final proxySrc = (b.get('proxySources', defaultValue: <dynamic>[]) as List).cast<int>();
+    final web = (b.get('torBrowser', defaultValue: false) as bool) ||
+        (b.get('proxyBrowser', defaultValue: false) as bool) ||
+        (b.get('xrayBrowser', defaultValue: true) as bool);
+    YomiVpnState.scopeAllSources = torOn ? torAll : proxyAll;
+    YomiVpnState.scopeSources = {...torSrc, ...proxySrc};
+    YomiVpnState.scopeAllBooru = true;
+    YomiVpnState.scopeBooruSites = {};
+    YomiVpnState.scopeWebView = web;
+    YomiVpnState.scopeBrowser = web;
+    _saveScope();
+  }
+
+  void _saveScope() {
+    _box?.put('scopeAll', YomiVpnState.scopeAllSources);
+    _box?.put('scopeSources', YomiVpnState.scopeSources.toList());
+    _box?.put('scopeAllBooru', YomiVpnState.scopeAllBooru);
+    _box?.put('scopeBooruSites', YomiVpnState.scopeBooruSites.toList());
+    _box?.put('scopeWebView', YomiVpnState.scopeWebView);
+    _box?.put('scopeBrowser', YomiVpnState.scopeBrowser);
+  }
+
+  Future<void> setScopeAll(bool v) async {
+    YomiVpnState.scopeAllSources = v;
+    _saveScope();
+    YomiVpnState.bump();
+    notifyListeners();
+  }
+
+  bool isSourceInScope(int id) => YomiVpnState.scopeSources.contains(id);
+
+  Future<void> setSourceInScope(int id, bool v) async {
+    v ? YomiVpnState.scopeSources.add(id) : YomiVpnState.scopeSources.remove(id);
+    _saveScope();
+    YomiVpnState.bump();
+    notifyListeners();
+  }
+
+  Future<void> setScopeAllBooru(bool v) async {
+    YomiVpnState.scopeAllBooru = v;
+    _saveScope();
+    YomiVpnState.bump();
+    notifyListeners();
+  }
+
+  bool isBooruSiteInScope(String id) => YomiVpnState.scopeBooruSites.contains(id);
+
+  Future<void> setBooruSiteInScope(String id, bool v) async {
+    v ? YomiVpnState.scopeBooruSites.add(id) : YomiVpnState.scopeBooruSites.remove(id);
+    _saveScope();
+    YomiVpnState.bump();
+    notifyListeners();
+  }
+
+  Future<void> setScopeWebView(bool v) async {
+    YomiVpnState.scopeWebView = v;
+    _saveScope();
+    await _applyBrowserProxy();
+    notifyListeners();
+  }
+
+  Future<void> setScopeBrowser(bool v) async {
+    YomiVpnState.scopeBrowser = v;
+    _saveScope();
+    await _applyBrowserProxy();
+    notifyListeners();
+  }
+
+  /// The in-app browser tells us when it is on screen: WebView proxying is
+  /// process-wide on Android, so the browser and "WebView mode" take turns.
+  bool _browserForeground = false;
+  Future<void> setBrowserForeground(bool v) async {
+    if (_browserForeground == v) return;
+    _browserForeground = v;
+    await _applyBrowserProxy();
+  }
+
+  // ───────────── One service at a time ─────────────
+
+  List<VpnKind> activeKinds() {
+    final t = YomiTunnels.instance.active;
+    return [
+      if (YomiVpnState.torEnabled) VpnKind.tor,
+      if (warpEnabled) VpnKind.warp,
+      if (t != null)
+        t.id.startsWith('urban_')
+            ? VpnKind.urban
+            : switch (t.type) {
+                TunnelType.openvpn => VpnKind.openvpn,
+                TunnelType.wireguard => VpnKind.wireguard,
+                TunnelType.softether => VpnKind.softether,
+                TunnelType.xray => VpnKind.xray,
+              },
+      if (YomiVpnState.proxyEnabled && YomiVpnState.proxyUrl.isNotEmpty)
+        YomiPrefs.get<String>('proxyOwner', '') == 'adguard' ? VpnKind.adguard : VpnKind.proxy,
+    ];
+  }
+
+  /// Services that would have to be switched off before [k] can start.
+  List<VpnKind> conflictsWith(VpnKind k) => activeKinds().where((a) => a != k).toList();
+
+  /// Turns every service except [keep] off.
+  Future<void> stopAllExcept(VpnKind keep) async {
+    for (final k in conflictsWith(keep)) {
+      switch (k) {
+        case VpnKind.tor:
+          await setTorEnabled(false);
+        case VpnKind.warp:
+          await setWarpEnabled(false);
+        case VpnKind.openvpn:
+        case VpnKind.wireguard:
+        case VpnKind.softether:
+        case VpnKind.xray:
+          await YomiTunnels.instance.disconnect();
+        case VpnKind.urban:
+          await YomiTunnels.instance.disconnect();
+        case VpnKind.proxy:
+        case VpnKind.adguard:
+          await setProxy(enabled: false, url: YomiVpnState.proxyUrl);
+          await YomiPrefs.set('proxyOwner', '');
+      }
+    }
+  }
+
+  // ───────────── Outside apps / whole device ─────────────
+
+  /// OpenVPN (ics-openvpn) takes a list of *excluded* packages: everything
+  /// except the chosen apps (or except YomiHub) is excluded.
+  Future<List<String>> tunnelBypass() async {
+    if (warpMode == WarpMode.device || !Platform.isAndroid) return const [];
+    final own = await _channel.invokeMethod<String>('packageName') ?? 'com.yomihub.app';
+    final keep = warpMode == WarpMode.app ? {own} : {own, ...warpApps};
+    final all = await installedApps(includeAll: true);
+    return all.map((a) => a.package).where((p) => !keep.contains(p)).toList();
+  }
+
+  /// WireGuard: add IncludedApplications to a user .conf that has none.
+  Future<String> wireguardScoped(String conf) async {
+    if (warpMode == WarpMode.device ||
+        !Platform.isAndroid ||
+        RegExp(r'^\s*(Included|Excluded)Applications', multiLine: true, caseSensitive: false)
+            .hasMatch(conf)) {
+      return conf;
+    }
+    final own = await _channel.invokeMethod<String>('packageName') ?? 'com.yomihub.app';
+    final apps = warpMode == WarpMode.app ? [own] : {own, ...warpApps}.toList();
+    final i = conf.indexOf(RegExp(r'^\s*\[Peer\]', multiLine: true));
+    final line = 'IncludedApplications = ${apps.join(', ')}\n';
+    return i < 0 ? '$conf\n$line' : conf.replaceRange(i, i, line);
+  }
+
+  /// Sends the in-app WebViews (browser / WebView mode) through the active
+  /// proxy-type service, following the in-app scope.
+  Future<void> _applyBrowserProxy() async {
+    // Windows: WebView2 takes its proxy when YomiHub starts (see
+    // windowsWebViewProxyArg); the VPN screen asks for a restart.
+    if (!Platform.isAndroid) return;
+    try {
+      final pc = ProxyController.instance();
+      final want = _browserForeground ? YomiVpnState.scopeBrowser : YomiVpnState.scopeWebView;
+      final useTor = want && YomiVpnState.torEnabled && YomiVpnState.torRunning;
+      final useXray = want && !useTor && YomiVpnState.xrayRunning;
+      final useProxy = want && !useTor && !useXray && YomiVpnState.proxyEnabled && YomiVpnState.proxyUrl.isNotEmpty;
+      if (useXray) {
+        await pc.setProxyOverride(
+          settings: ProxySettings(
+            proxyRules: [ProxyRule(url: '127.0.0.1:${YomiVpnState.xrayHttpPort}')],
+            bypassRules: ['localhost', '127.0.0.1'],
+          ),
+        );
+      } else if (useTor) {
+        await pc.setProxyOverride(
+          settings: ProxySettings(
+            proxyRules: [ProxyRule(url: '127.0.0.1:${YomiVpnState.torHttpPort}')],
+            bypassRules: ['localhost', '127.0.0.1'],
+          ),
+        );
+      } else if (useProxy) {
+        final u = Uri.parse(YomiVpnState.proxyUrl);
+        await pc.setProxyOverride(
+          settings: ProxySettings(
+            proxyRules: [ProxyRule(url: u.scheme.startsWith('socks') ? 'socks5://${u.host}:${u.port}' : '${u.host}:${u.port}')],
+            bypassRules: ['localhost', '127.0.0.1'],
+          ),
+        );
+      } else {
+        await pc.clearProxyOverride();
+      }
+    } catch (_) {}
+  }
+
+  // ───────────── WARP ─────────────
+
+  Map<String, dynamic>? get warpAccount {
+    final raw = _box?.get('warpAccount');
+    return raw == null ? null : Map<String, dynamic>.from(jsonDecode(raw as String));
+  }
+
+  /// Registers a free WARP device with Cloudflare (same API the official
+  /// client uses) and stores the WireGuard parameters it returns.
+  Future<Map<String, dynamic>> _registerWarp() async {
+    final keys = Map<String, dynamic>.from(await _channel.invokeMethod('warpKeyPair') as Map);
+    const api = 'https://api.cloudflareclient.com/v0a2158';
+    final headers = {
+      'User-Agent': 'okhttp/3.12.1',
+      'CF-Client-Version': 'a-6.30-3596',
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+    final r = await http.post(
+      Uri.parse('$api/reg'),
+      headers: headers,
+      body: jsonEncode({
+        'key': keys['public'],
+        'install_id': '',
+        'fcm_token': '',
+        'tos': DateTime.now().toUtc().toIso8601String(),
+        'model': 'YomiHub',
+        'type': 'Android',
+        'locale': 'vi_VN',
+      }),
+    );
+    if (r.statusCode >= 300) throw Exception(tr('WARP đăng ký lỗi: HTTP {p0}', {'p0': r.statusCode}));
+    final d = jsonDecode(r.body) as Map<String, dynamic>;
+    final id = d['id'], token = d['token'];
+    // make sure WARP (not just DNS) is on for this device
+    try {
+      await http.patch(
+        Uri.parse('$api/reg/$id'),
+        headers: {...headers, 'Authorization': 'Bearer $token'},
+        body: jsonEncode({'warp_enabled': true}),
+      );
+    } catch (_) {}
+    final cfg = d['config'] as Map<String, dynamic>;
+    final peer = (cfg['peers'] as List).first as Map<String, dynamic>;
+    final addrs = (cfg['interface'] as Map)['addresses'] as Map;
+    final acc = {
+      'id': id,
+      'token': token,
+      'private': keys['private'],
+      'peer': peer['public_key'],
+      'endpoint': (peer['endpoint'] as Map?)?['host'] ?? 'engage.cloudflareclient.com:2408',
+      'endpoint_v4': (peer['endpoint'] as Map?)?['v4'],
+      'v4': addrs['v4'],
+      'v6': addrs['v6'],
+    };
+    await _put('warpAccount', jsonEncode(acc));
+    return acc;
+  }
+
+  String _warpConfig(Map<String, dynamic> a, String ownPackage, {int? port}) {
+    String endpoint = '${a['endpoint']}';
+    final v4 = '${a['endpoint_v4'] ?? ''}';
+    // Prefer the literal IPv4 endpoint: avoids DNS lookups that may be blocked.
+    if (v4.isNotEmpty) {
+      final host = v4.split(':').first;
+      final p = endpoint.split(':').last;
+      endpoint = '$host:${port ?? (int.tryParse(p) == null ? 2408 : p)}';
+    } else if (port != null) {
+      endpoint = '${endpoint.split(':').first}:$port';
+    }
+    final apps = switch (warpMode) {
+      WarpMode.app => [ownPackage],
+      // 0.4.5 (kiểm tra ngoài ứng dụng trên Xiaomi 15T: `dumpsys
+      // connectivity` → VPN Uids chỉ có 2 ứng dụng đã chọn, không có YomiHub
+      // dù màn hình ghi "YomiHub + 2 ứng dụng"). WireGuard/OpenVPN đã gồm
+      // YomiHub ở chế độ này; WARP nay cũng vậy.
+      WarpMode.apps => {ownPackage, ...warpApps}.toList(),
+      WarpMode.device => <String>[],
+    };
+    final b = StringBuffer()
+      ..writeln('[Interface]')
+      ..writeln('PrivateKey = ${a['private']}')
+      ..writeln('Address = ${a['v4']}/32${(a['v6'] ?? '').toString().isEmpty ? '' : ', ${a['v6']}/128'}')
+      ..writeln('DNS = 1.1.1.1, 1.0.0.1, 2606:4700:4700::1111')
+      ..writeln('MTU = 1280');
+    if (apps.isNotEmpty) b.writeln('IncludedApplications = ${apps.join(', ')}');
+    b
+      ..writeln('[Peer]')
+      ..writeln('PublicKey = ${a['peer']}')
+      ..writeln('AllowedIPs = 0.0.0.0/0, ::/0')
+      ..writeln('Endpoint = $endpoint')
+      ..writeln('PersistentKeepalive = 25');
+    return b.toString();
+  }
+
+  Future<void> setWarpEnabled(bool v) async {
+    if (!supported) return;
+    lastError = null;
+    if (!v) {
+      warpEnabled = false;
+      await _put('warpEnabled', false);
+      try {
+        await _channel.invokeMethod('warpDown');
+      } catch (_) {}
+      warpUp = false;
+      if (Platform.isWindows) {
+        YomiVpnState.xrayRunning = false;
+        YomiVpnState.bump();
+        await applyWindowsSystemProxy();
+        await _applyWinProxyBridge();
+      }
+      notifyListeners();
+      return;
+    }
+    // Android runs one VPN at a time: stop an OpenVPN/WireGuard tunnel first.
+    final t = YomiTunnels.instance.active;
+    if (t != null && (t.type != TunnelType.xray || Platform.isWindows)) {
+      await YomiTunnels.instance.disconnect();
+    }
+    if (Platform.isWindows && WinVpnBackend.instance.xrayPurpose == 'proxy') {
+      await WinVpnBackend.instance.proxyBridge(null);
+    }
+    try {
+      final granted = await _channel.invokeMethod<bool>('vpnPrepare') ?? false;
+      if (!granted) {
+        lastError = tr('Bạn chưa cho phép YomiHub tạo kết nối VPN.');
+        notifyListeners();
+        return;
+      }
+      final acc = warpAccount ?? await _registerWarp();
+      final pkg = await _channel.invokeMethod<String>('packageName') ?? 'com.yomihub.app';
+      // 0.5.2 (Note 9 on an office Wi-Fi: "Đã kết nối" was shown while the
+      // WireGuard log repeated "Handshake did not complete" and no app had
+      // Internet): the tunnel is checked through Cloudflare's trace page;
+      // if UDP 2408 is blocked the other ports WARP answers on are tried.
+      // null = the account's own endpoint port (2408); the port that worked
+      // last time is tried first.
+      final saved = int.tryParse('${_box?.get('warpPort', defaultValue: '') ?? ''}');
+      final ports = <int?>{saved, null, 500, 4500, 1701, 854};
+      var reached = !Platform.isAndroid;
+      for (final port in Platform.isAndroid ? ports : const <int?>{null}) {
+        await _channel.invokeMethod('warpUp', {'config': _warpConfig(acc, pkg, port: port)});
+        if (!Platform.isAndroid) break;
+        if (await _warpReachable()) {
+          reached = true;
+          await _put('warpPort', port?.toString() ?? '');
+          AppLogger.log('[VPN] WARP đã bắt tay với Cloudflare (cổng ${port ?? 2408})',
+              logLevel: LogLevel.info, always: true);
+          break;
+        }
+        AppLogger.log('[VPN] WARP: không bắt tay được qua cổng UDP ${port ?? 2408}',
+            logLevel: LogLevel.warning);
+      }
+      if (!reached) {
+        // A tunnel without a handshake cuts every app in its scope off the
+        // Internet - take it down and say why.
+        try {
+          await _channel.invokeMethod('warpDown');
+        } catch (_) {}
+        warpEnabled = false;
+        warpUp = false;
+        await _put('warpEnabled', false);
+        lastError = tr('WARP đã bật nhưng không bắt tay được với máy chủ Cloudflare – mạng hiện tại có thể chặn UDP (cổng 2408, 500, 4500, 1701, 854). Hãy thử mạng khác, hoặc dùng Tor / WireGuard.');
+        AppLogger.log('[VPN] $lastError', logLevel: LogLevel.warning);
+        notifyListeners();
+        return;
+      }
+      warpEnabled = true;
+      warpUp = true;
+      await _put('warpEnabled', true);
+      if (Platform.isWindows) {
+        // Windows: WARP is a local proxy (Xray WireGuard outbound).
+        YomiVpnState.xrayHttpPort = WinVpnBackend.httpPort;
+        YomiVpnState.xrayRunning = true;
+        YomiVpnState.bump();
+        await applyWindowsSystemProxy();
+      }
+    } catch (e) {
+      lastError = e is PlatformException ? (e.message ?? e.code) : '$e';
+    }
+    notifyListeners();
+  }
+
+  /// True when YomiHub's own traffic (always inside the WARP tunnel's app
+  /// scope) comes out at Cloudflare with WARP on.
+  Future<bool> _warpReachable() async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    final c = HttpClient()..connectionTimeout = const Duration(seconds: 6);
+    try {
+      final rq = await c.getUrl(Uri.parse('https://www.cloudflare.com/cdn-cgi/trace'));
+      final rs = await rq.close().timeout(const Duration(seconds: 6));
+      final body = await rs.transform(utf8.decoder).join().timeout(const Duration(seconds: 4));
+      return body.contains('warp=on') || body.contains('warp=plus');
+    } catch (_) {
+      return false;
+    } finally {
+      c.close(force: true);
+    }
+  }
+
+  Future<void> setWarpMode(WarpMode m) async {
+    warpMode = m;
+    await _put('warpMode', m.index);
+    if (Platform.isWindows) {
+      await applyWindowsSystemProxy();
+      notifyListeners();
+      return;
+    }
+    if (warpEnabled) await setWarpEnabled(true);
+    await _reapplyTunnelScope();
+    await _applyTorVpn();
+    notifyListeners();
+  }
+
+  Future<void> setWarpApps(List<String> apps) async {
+    warpApps = apps;
+    await _put('warpApps', apps);
+    if (warpEnabled && warpMode == WarpMode.apps) await setWarpEnabled(true);
+    await _reapplyTunnelScope();
+    if (warpMode == WarpMode.apps) await _applyTorVpn();
+    notifyListeners();
+  }
+
+  /// A running OpenVPN / WireGuard / SoftEther tunnel picks up a new app
+  /// scope by reconnecting.
+  Future<void> _reapplyTunnelScope() async {
+    final t = YomiTunnels.instance.active;
+    if (t != null && t.type != TunnelType.xray) {
+      await YomiTunnels.instance.connect(t);
+    }
+  }
+
+  Future<void> resetWarpAccount() async {
+    await _box?.delete('warpAccount');
+    if (warpEnabled) await setWarpEnabled(true);
+  }
+
+  Future<List<InstalledApp>> installedApps({bool includeAll = false}) async {
+    if (!Platform.isAndroid) return const [];
+    final list = await _channel.invokeMethod<List>(
+          'installedApps',
+          includeAll ? {'all': true} : null,
+        ) ??
+        [];
+    return list
+        .map((e) => Map<String, dynamic>.from(e as Map))
+        .map((e) => InstalledApp(e['package'], e['label'], e['system'] == true))
+        .toList();
+  }
+}
