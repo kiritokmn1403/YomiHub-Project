@@ -210,7 +210,7 @@ class _MicroGScreenState extends State<MicroGScreen> {
       subtitle: Text(
         p == null
             ? tr('Chưa cài')
-            : '${p['package']} • ${p['version']}${p['microg'] == true ? ' • microG' : ''}${p['enabled'] == false ? ' • đang tắt' : ''}',
+            : '${p['package']} • ${p['version']}${p['microg'] == true ? ' • microG' : ''}${p['enabled'] == false ? ' • ${tr('đang tắt')}' : ''}',
       ),
       onTap: p == null
           ? null

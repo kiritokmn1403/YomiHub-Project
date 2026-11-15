@@ -16,6 +16,7 @@ import 'package:mangayomi/modules/manga/home/providers/state_provider.dart';
 import 'package:mangayomi/yomihub/filters/filter_sheet.dart';
 import 'package:mangayomi/yomihub/filters/latest_emulation.dart';
 import 'package:mangayomi/yomihub/player/yomi_shorts.dart';
+import 'package:mangayomi/yomihub/player/shorts_store.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/filters/filter_refresh.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
@@ -334,11 +335,27 @@ class _MangaHomeScreenState extends ConsumerState<MangaHomeScreen> {
         'title': '',
       };
       if (mounted) context.push("/mangawebview", extra: data);
+    } else if (value == 2) {
+      // YomiHub 0.5.7 (U9): "Ép chế độ Short" for this extension
+      final on = !ShortsStore.isForced(source);
+      await ShortsStore.setForced(source, on);
+      if (!mounted) return;
+      setState(() {});
+      botToast(
+        on
+            ? tr('Đã bật Ép chế độ Short cho nguồn này')
+            : tr('Đã tắt Ép chế độ Short cho nguồn này'),
+        second: 2,
+      );
     } else {
       final res = await context.push('/extension_detail', extra: source);
       if (res != null && mounted) setState(() => source = res as Source);
     }
   }
+
+  String get _forceShortLabel => ShortsStore.isForced(source)
+      ? tr('Tắt Ép chế độ Short')
+      : tr('Ép chế độ Short');
 
   @override
   Widget build(BuildContext context) {
@@ -598,6 +615,8 @@ class _MangaHomeScreenState extends ConsumerState<MangaHomeScreen> {
                     options: [
                       TvMenuOption(context.l10n.open_in_browser),
                       TvMenuOption(context.l10n.settings),
+                      if (source.itemType == ItemType.anime)
+                        TvMenuOption(_forceShortLabel),
                     ],
                   );
                   if (picked != null && mounted) _onSourceOverflow(picked);
@@ -616,6 +635,11 @@ class _MangaHomeScreenState extends ConsumerState<MangaHomeScreen> {
                       value: 1,
                       child: Text(context.l10n.settings),
                     ),
+                    if (source.itemType == ItemType.anime)
+                      PopupMenuItem<int>(
+                        value: 2,
+                        child: Text(_forceShortLabel),
+                      ),
                   ];
                 },
                 onSelected: _onSourceOverflow,

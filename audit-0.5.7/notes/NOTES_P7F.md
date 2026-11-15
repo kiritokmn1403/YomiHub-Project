@@ -1,0 +1,83 @@
+# NOTES_P7F (Fable) - YomiHub 0.5.7
+
+Bat dau: 2026-11-14 21:39 (Asia/Saigon)
+
+## Nhat ky
+- 21:48 Viec 1: da doc logs/b057_test.txt (dong 836), z057_t03_isar.log (3/3 dat khi chay rieng). Phan tich: LOI THAT trong hang doi (khong chi test): viec "bo lai" (timer 40 ms) no khi tac vu t1 CON chay (giao dich async-1 cua t1 chua xong vi may tai nang) -> bi coi la "long" -> writeTxnSync chen ngay vao giao dich async -> thu lai 10x20ms khong du vi t2 giu giao dich 500 ms.
+- Sua overlay/lib/repositories/db_write_queue.dart (sao luu backup/src_0571/lib/repositories/): them _Frame, _runNested, _afterTurn: lenh long cung cap chay lan luot; tac vu giu hang doi toi khi lenh long xong; cho co gioi han stallTimeout. Cong cu: audit-0.5.7/tools/p7f/q_patch.py
+- Test moi overlay/test/yh_057_p7f_test.dart (9 test, co test Isar that tat dinh). Job jobs/pending_fast/p7f_q1.ps1 (A: test moi tren hang doi cu -> ky vong truot; B: 5x p7f + 5x yh_056_a; C: nhom test lien quan).
+
+## TIEP TUC (phien 2, 22:16)
+- 22:20 VIEC 1 XONG - job `jobs/done/p7f_q1.log` (UTF-16; EXIT 0, 22:05:55):
+  * A. test moi tren hang doi CU 0.5.6.1: +3 -6 "Some tests failed" (dung ky vong: 6 test bat duoc loi, gom test Isar that "async write transaction is already in progress").
+  * B. hang doi MOI: `flutter analyze lib/repositories/db_write_queue.dart test/yh_057_p7f_test.dart` -> "No issues found!"; yh_057_p7f_test 5/5 lan "+9 All tests passed"; yh_056_a_test 5/5 lan "+50 All tests passed".
+  * C. yh_056_a + yh_057_p7f + yh_055 + yh_054 + yh_056 chay chung: "+85 All tests passed".
+- GIAI THICH LOI (so dong theo ban cu `audit-0.5.7/backup/src_0571/lib/repositories/db_write_queue.dart`):
+  1. `run()` dong 129-143: neu Zone hien tai mang _QueueTask va `current.active` thi coi la "lenh long" va chay NGAY `Future.sync(body)` (dong 139), khong xep hang, khong cho gi ca.
+  2. `task.active` chi ve false o `finally` dong 167, tuc la sau khi `await body()` (dong 159-162) xong. Trong suot thoi gian tac vu con dang `await` (vd dang o giua `isar.writeTxn` async cua chinh no - dong 323), moi callback tach roi ma tac vu de lai (Timer, `then` khong ai await, stream listener) deu thua huong Zone (zoneValues dong 161) va deu duoc coi la "long".
+  3. Vi vay khi callback tach roi (vd timer 40 ms ghi vi tri xem) no TRUOC khi giao dich async cua tac vu ket thuc (may tai nang: bo test chay song song, giao dich mat > 40 ms), `writeTxnSyncSafe` (dong 352-358) goi `writeTxnSync` ngay giua giao dich async dang mo -> IsarError "An async write transaction is already in progress in this isolate". Vong thu lai dong 363-368 chi cho 10 x 20 ms = 200 ms; neu giao dich cua tac vu (hoac tac vu ke tiep) giu > 200 ms thi loi noi len -> chinh la that bai chap chon cua yh_056_a trong logs/b057_test.txt (dong 836). Ban 0.5.6 chi xu ly truong hop callback no SAU khi tac vu ket thuc (active=false -> xep hang), bo sot truong hop no TRONG khi tac vu con chay.
+  4. Them nua (cung goc): tac vu tra hang doi o dong 167-172 ngay khi body xong, du lenh long no khong await con dang ghi -> tac vu ke tiep mo giao dich chong len.
+- CACH SUA (ban moi `overlay/lib/repositories/db_write_queue.dart`): Zone mang `_Frame` (dong 390-403) thay vi task; `_runNested` (dong 214-263) xep cac lenh long CUNG CAP thanh FIFO (`parent.tail`/`parent.pending`), lenh goi tu ben trong mot lenh long dang chay la CON cua no nen chay ngay (khong tu khoa); `execute.finally` (dong 176-181) giu hang doi toi khi moi lenh long cua tac vu xong; `_afterTurn` (dong 267-290) gioi han thoi gian cho bang stallTimeout/longStallTimeout (khong treo vinh vien).
+- Rui ro con lai (chua gap trong ma that): lenh long A await ket qua cua lenh long B cung cap duoc tao SAU A (vong cho) -> truoc day chay ngay, nay cho toi stallTimeout (120 s) roi moi chay ngoai luot + ghi canh bao.
+
+## PHIEN 3 (23:08) - kiem chung lai ban sua hang doi
+- 23:08 Ban sua overlay/lib/repositories/db_write_queue.dart khong doi tu 21:46 (18875 byte); sao luu goc: audit-0.5.7/backup/src_0571/lib/repositories/db_write_queue.dart. Xep job jobs/pending_fast/p7f_q2.ps1.
+- 23:17 p7f_q2 dang chay: yh_057_p7f '+9 All tests passed' EXIT 0; yh_056_a lan 1 '+50 All tests passed' EXIT 0.
+- 23:35 KET QUA job `jobs/done/p7f_q2.log` (UTF-16LE; "### P7F_Q2 XONG 2026-11-14T23:35:07", "### EXIT 0"):
+  * sync lib\repositories\db_write_queue.dart + test\yh_057_p7f_test.dart vao D:\yh\build\mangayomi.
+  * 1. yh_057_p7f_test: "00:02 +9: All tests passed!" / TEST EXIT 0 (gom test Isar that: sync write bo lai no khi giao dich async cua tac vu con mo -> khong va cham).
+  * 2. yh_056_a_test x5: lan 1 "00:14 +50", lan 2 "00:15 +50", lan 3 "00:14 +50", lan 4 "00:14 +50", lan 5 "00:15 +50" - deu "All tests passed!" / TEST EXIT 0. Khong con IsarError "async write transaction is already in progress".
+  * 3. yh_055_test: "00:01 +5: All tests passed!" / TEST EXIT 0.
+  * 4. flutter analyze --no-pub lib/repositories/db_write_queue.dart: "No issues found! (ran in 525.9s)" / ANALYZE EXIT 0 (cham vi may dang tai nang, khong phai loi).
+  * Khong phai sua gi them trong phien 3; tep overlay giu nguyen ban 21:46. Chua chay lai TOAN BO bo test release (chi cac tep tren).
+
+## VIEC 2 (U10 android6) - bat dau 23:36
+- 23:36 Doc tai lieu android6 + script build23.
+- 00:03 Chan doan tinh: APK 0.5.6.1-android6 x86_64 co lib/x86_64/libqjs.so (SONAME libqjs.so) va libsubsampling_scale_image_view.so (KHONG co SONAME), useLegacyPackaging true (thu vien duoc giai nen ra /data/app/.../lib/x86_64 - a6_150_diag.log). d1 maps: 2 thu vien nay chua bao gio duoc nap. Trinh doc CBZ dung FfiImageDecoder -> DynamicLibrary.open("libsubsampling_scale_image_view.so") trong isolate, loi bi nuot -> "Khong tai duoc anh nay". QuickJS: flutter_qjs lib/quickjs/ffi.dart:119 DynamicLibrary.open('libqjs.so').
+- Gia thuyet goc (b)+(c): Android 6 Runtime.doLoad() goi android_update_LD_LIBRARY_PATH(duong dan cua classloader dang nap) o MOI lan System.loadLibrary -> lop framework/WebView nap thu vien sau do se xoa thu muc lib cua app khoi LD_LIBRARY_PATH -> dlopen ten tran that bai "library not found" (Android 7+ dung namespace nen khong bi).
+- Booru: evidence57/d2_booru_45s.png (14/11, cung APK 4049) CO anh; d1 khong co -> chap chon; d1_p1 logcat co WebViewFactory nap 12 s sau khi bam Booru (nghi YomiCfFallback do 403).
+- 00:07 Phat hien: overlay ffi_image_decoder.dart da co ban va "legacy BMP" (0.5.7, 14/11 16:03): bo giai ma goc tren Android dung AImageDecoder (dlsym libjnigraphics, API 30+) -> Android 6-10 tra NULL; ban va chuyen trang sang BMP 32-bit. D:\yh\build\mangayomi CHUA co ban va nay (tep 22/09) -> thu muc build chua dong bo overlay moi nhat.
+- 00:07 BAN VA U10 (overlay, sao luu audit-0.5.7/backup/src_0571/...*.p7f_u10):
+  * MOI lib/yomihub/a6/a6_native.dart: yhA6LibDirFromMaps (/proc/self/maps -> thu muc libapp.so), yhOpenAndroidLib(name) (duong dan tuyet doi khi kIsA6Build, con lai ten tran nhu cu), yhA6PreloadNative() (nap truoc libqjs.so + libsubsampling...), yhA6Diag() (log chan doan chi android6).
+  * ffi_image_decoder.dart: DynamicLibrary.open("libsubsampling_scale_image_view.so") -> yhOpenAndroidLib(...).
+  * main.dart: goi yhA6PreloadNative() sau dong runWebViewTitleBarWidget (khong dung regex chen yhA6InstallCa cua script).
+  * custom_extended_image_provider.dart: yhA6Diag khi anh mang tra != 200 / nem loi (chan doan Booru).
+- 00:08 Xep job jobs/pending_fast/p7f_u10a.ps1 (nguon: audit-0.5.7/tools/p7f/p7f_u10a.src).
+- 00:10 p7f_u10a: STEP sync EXIT 0 (00:08:45), overlay->build23 34 tep khac, STEP patch EXIT 0 (00:09:09; main.dart co ca yhA6InstallCa va yhA6PreloadNative). Dang dung APK. Test moi overlay/test/yh_057_u10_test.dart.
+
+## VIEC 3 (U14/R21 Windows cua so trang) - bat dau 00:27
+
+## KIỂM THỬ R21 TRÊN MÁY CHỦ DỰ ÁN (Opus, 15/11/2026 08:51–09:00) – CHƯA KHẮC PHỤC
+- Máy: i5-11300H, Intel Iris Xe (27.20.100.9664) + NVIDIA GTX 1650 (32.0.16.1714). Cài `output/0.5.7/YomiHub-0.5.7-windows-x64-Setup.exe` đè lên 0.5.6.1+49 tại %LOCALAPPDATA%\YomiHub → exe 0.5.7+50, app tự mở.
+- Cửa sổ TRẮNG toàn bộ (ảnh computer-use 08:52, 08:53, 08:54, 08:58). yh_render: lần đầu thấy một màu → mở lại attempt=1 gpu=dgpu → ghi `result=ok` (color=000000) dù vẫn trắng ⇒ bộ phát hiện BitBlt đọc sai (màu đen), phán đoán "ok" sai.
+- Ép tay `win_render.ini`: `mode=igpu impeller=0` → trắng; `mode=igpu impeller=1` → trắng. ⇒ KHÔNG phụ thuộc GPU/trình kết xuất.
+- Dart vẫn chạy: Documents\YomiHub\logs.txt có log 08:54–08:55 (tải kho, ảnh bìa Thư Viện), Tor/xray ghi tệp, mangayomiDb.isar (608 MB) được ghi. Runner chỉ Show() sau SetNextFrameCallback ⇒ engine đã vẽ khung đầu.
+- Đổi kích thước/phóng to: vẫn trắng.
+- Giả thuyết tiếp: phụ thuộc DỮ LIỆU/CÀI ĐẶT người dùng (YomiPrefs: uiStyle/Liquid Glass/theme/WindowGeometry, hoặc một lớp phủ trắng toàn màn hình như splash không tắt trên Windows), hoặc trình chiếu ANGLE→DWM hỏng chung cho mọi chế độ. Cần: (1) chạy bản portable với hồ sơ dữ liệu sạch (KHÔNG xóa dữ liệu chủ dự án – cần cách trỏ thư mục dữ liệu khác hoặc chủ dự án đồng ý tạm đổi tên Documents\YomiHub), (2) so với bản 0.5.6 ok056 trên cùng máy, (3) log Dart route hiện tại + kích thước cửa sổ khi khởi động trên Windows.
+- Đã xóa `win_render.ini` (trả về tự động).
+
+## VIỆC R21 – PHIÊN 15/11 09:07 (P7F tìm nguyên nhân gốc)
+- 09:12 job p7f_r1 (jobs/done/p7f_r1.log): app tối giản D:\yh\hello_win (flutter create, dựng 30/10, cùng flutter_windows.dll 21 274 112 byte với YomiHub 0.5.7) mở lúc 09:09 → TRẮNG (ảnh đã xem: audit-0.5.7/evidence/windows/r21/r1_hello_8s.png; PrintWindow cũng trắng). YomiHub đã cài 0.5.7+50 trắng (r1_yomi_8s.png, r1_yomi_25s.png). ⇒ KHÔNG phải mã Dart/plugin của YomiHub; lỗi ở engine Flutter ↔ D3D/DWM/driver trên máy này.
+- Công cụ chụp: audit-0.5.7/tools/p7f/p7f_lib.ps1 (Snap = CopyFromScreen + PrintWindow).
+- 09:15 p7f_r2/r3 (jobs/done): hello_win trắng với GPU Intel phần cứng (nạp d3d11.dll, igd10iumd64.dll), Impeller OpenGLES; stderr engine chỉ có dòng "Using the Impeller rendering backend", không lỗi; đổi kích thước 900x600 vẫn trắng (r2_hello_resized.png); nguồn AC. FLUTTERVIEW con hiện, 1264x681. Cửa sổ phủ đang có: claude hwnd=309E4 Chrome_WidgetWin_1 0,0,1920,1080 ex=0x8280028 (TOPMOST|LAYERED|TRANSPARENT|NOREDIRECTIONBITMAP|NOACTIVATE) = viền sáng "Claude is using your computer"; NVIDIA Overlay 160x28.
+- 09:15 Viết audit-0.5.7/tools/p7f/angletest.cpp (ANGLE thuần qua libEGL/libGLESv2 của Flutter; mode 0 = thuộc tính giống engine Flutter, 1 = D3D11 thường, 2 = WARP, 3 = DirectComposition, 5 = cửa sổ cấp cao, 6 = 1 khung rồi nghỉ, 7 = không FIXED_SIZE). Job p7f_r4.
+- 09:22 KẾT QUẢ p7f_r4b (jobs/done/p7f_r4b.log, ảnh đã xem r4b_angle_m0/m2/m3.png): ANGLE thuần, KHÔNG có Flutter: mode 0 (thuộc tính y như engine: D3D11 + FIXED_SIZE, swapchain gắn HWND) TRẮNG; mode 1 trắng; mode 2 WARP (Microsoft Basic Render Driver) TRẮNG; mode 5/6/7 trắng; mode 3 (EGL_DIRECT_COMPOSITION_ANGLE) VẼ ĐÚNG (nền xanh + ô đỏ). glReadPixels trước khi swap = (0,153,51) đúng, eglSwapBuffers ok → KẾT XUẤT đúng, khâu TRÌNH CHIẾU swapchain kiểu bitblt gắn HWND (CreateSwapChainForHwnd, SWAP_EFFECT_SEQUENTIAL) không tới DWM. Không phải driver kết xuất Intel (WARP cũng trắng), không phải Flutter/YomiHub.
+- flutter_windows.dll KHÔNG import libEGL.dll (ANGLE liên kết tĩnh; libEGL/libGLESv2 trong gói là cho plugin) ⇒ không thể đổi thuộc tính surface của engine bằng shim/IAT. Release engine không nhận --enable-software-rendering.
+- 09:31 p7f_r5 (jobs/done/p7f_r5.log): lúc 09:25 lớp phủ toàn màn hình của Claude KHÔNG còn (chỉ còn NVIDIA GeForce Overlay CEF-OSC-WIDGET 0,0,1919x1080 topmost layered) nhưng mode 0 vẫn trắng; thêm topmost / WS_EX_LAYERED / swap interval 1 vẫn trắng; mode 3 DComp vẫn vẽ đúng. ⇒ loại giả thuyết lớp phủ computer-use. Tác nhân bật/tắt ở mức máy CHƯA xác định (nghi DWM bản Insider 26300 + driver Intel 2021 với swapchain bitblt; NVIDIA Overlay chưa loại trừ).
+- Hướng sửa: engine không cho đổi thuộc tính surface → móc vtable IDXGIFactory2::CreateSwapChainForHwnd (cục bộ trong tiến trình, từ runner) để đổi SWAP_EFFECT_SEQUENTIAL(bitblt) → FLIP_SEQUENTIAL. Thử trong angletest flag 8 (job p7f_r6), flag 16 = huỷ/tạo lại surface như khi Flutter đổi kích thước.
+- 09:36 KẾT QUẢ p7f_r6 (jobs/done/p7f_r6.log; ảnh đã xem r6_angle_m0_f24.png): ANGLE gọi CreateSwapChainForHwnd với SwapEffect=1 (SEQUENTIAL, bitblt) BufferCount=1 fmt=87 (log "hook: in effect=1 buffers=1"). Móc vtable (slot 15 của IDXGIFactory2) đổi thành FLIP_SEQUENTIAL + 2 buffer: hr=0, cửa sổ VẼ ĐÚNG (white=0%) ở mode 0 (như Flutter), mode 5, mode 6 (1 khung rồi nghỉ), mode 2 (WARP), và flag 24 (huỷ/tạo lại surface 2 lần như Flutter resize). DComp (mode 3) lại TRẮNG sau khi tạo lại surface → chọn flip-model HWND.
+- NGUYÊN NHÂN GỐC R21: trên máy này (Windows 11 Insider build 26300, Intel Iris Xe driver 27.20.100.9664 xuất hình) ảnh trình chiếu của swapchain DXGI kiểu bitblt gắn HWND không tới DWM; engine Flutter (ANGLE liên kết tĩnh) luôn dùng kiểu đó → cửa sổ trắng dù Dart/kết xuất chạy đúng. Flip-model thì hiển thị bình thường.
+- Mã vá: audit-0.5.7/tools/p7f/yh_present.inc (namespace yh_present::Install). Job p7f_r7: dựng D:\yh\hello_win với bản vá (main.cpp gốc lưu main.cpp.p7f_orig), so YOMIHUB_PRESENT=blt (cũ) với mặc định (flip), đổi kích thước/phóng to/thu nhỏ-khôi phục.
+- 09:39 KẾT QUẢ p7f_r7 (jobs/done/p7f_r7.log; ảnh đã xem r7_hello_flip_resized.png, r7_hello_blt.png): hello_win dựng lại với yh_present. Đối chứng cùng exe: YOMIHUB_PRESENT=blt → trắng 98 %; mặc định flip → white=0 %, thấy "Flutter Demo Home Page", bộ đếm, nút +; sau MoveWindow 1000x650, phóng to, thu nhỏ→khôi phục đều vẽ đúng (PrintWindow cũng đúng).
+- 09:39 ĐÃ SỬA overlay (sao lưu: audit-0.5.7/backup/src_0571/windows/runner/main.cpp.p7f_r21b, .../lib/yomihub/win/win_render.dart.p7f_r21b):
+  * overlay/windows/runner/main.cpp: thêm namespace yh_present (móc CreateSwapChainForHwnd → flip-model; gọi yh_present::Install() ngay sau yh_render::Init, trước khi tạo engine; tắt bằng YOMIHUB_PRESENT=blt hoặc present=blt trong win_render.ini). yh_render: CheckBlank đọc bằng PrintWindow(PW_RENDERFULLCONTENT) thay vì BitBlt màn hình (không còn bị lớp phủ/ cửa sổ khác đánh lừa, không cần cửa sổ ở foreground); tự mở lại đổi GPU = TẮT mặc định (chỉ bật khi auto=1 / YOMIHUB_RENDER_AUTO=1); không còn "nhớ" attempt cũ khi auto tắt; win_render_state.txt thêm present=, flip_swapchains=, flip_refused=.
+  * overlay/lib/yomihub/win/win_render.dart: autoRecover mặc định false (auto=1 mới bật), thêm trường present (flip|blt) để ghi/đọc ini không làm mất, describe() thêm present.
+- Job p7f_r8: đồng bộ 2 tệp vào D:\yh\buildwin\mangayomi (bản cũ lưu audit-0.5.7/backup/buildwin_before_p7f_r21), flutter build windows, chạy exe, chụp 12 s/26 s/đổi kích thước/phóng to/khôi phục + đối chứng blt.
+- 09:54 KẾT QUẢ p7f_r8 + p7f_r9 (jobs/done/p7f_r8.log, p7f_r9.log) – R21 ĐÃ SỬA, ĐÃ XEM ẢNH:
+  * flutter build windows trong D:\yh\buildwin\mangayomi: BUILD EXIT 0 (573 s), YomiHub.exe 09:48:36 143 360 byte.
+  * Mặc định (flip): r8_yomi_flip_12s/26s/resized/max/restored.png đều white=0 %; ảnh đã xem r8_yomi_flip_26s.png (Thư viện: tab Truyện tranh/Phim & Điện ảnh/Tiểu thuyết/Play Books, lưới truyện) và r8_yomi_flip_resized.png (1100x700). win_render_state.txt: result=ok, attempt=0, gpu=default, impeller=0, auto=0, present=flip, flip_swapchains=2, flip_refused=0.
+  * Đối chứng cùng exe, YOMIHUB_PRESENT=blt: trắng (r8_yomi_blt_24s.png, r9_yomi_blt_40s.png); sau 40 s state = result=blank, color=FFFFFF, present=blt; tiến trình vẫn chạy (không tự mở lại, không hộp thoại) ⇒ bộ phát hiện mới không còn báo "ok" khi trắng.
+  * Dữ liệu chủ dự án: chỉ mở app bình thường (Documents\YomiHub), không đổi/xoá gì; %APPDATA%\YomiHub\win_render_state.txt do app tự ghi. BUILD_LOCK đã trả. Bản đã cài ở %LOCALAPPDATA%\YomiHub vẫn là 0.5.7+50 CŨ (chưa có bản vá).
+- VIỆC CÒN LẠI cho bản phát hành: dựng lại Windows từ overlay (overlay/windows/runner/main.cpp + overlay/lib/yomihub/win/win_render.dart) rồi đóng gói lại zip / full zip / Setup.exe / appxbundle; cài Setup.exe mới và chụp lại. D:\yh\build\mangayomi (thư mục test) chưa đồng bộ 2 tệp này. Chưa chạy flutter analyze/test cho win_render.dart (không có test nào tham chiếu WinRenderConfig).
+- CHƯA xác định: vì sao trình chiếu bitblt hỏng lúc có lúc không trên máy này (11/11 có 45 lần chạy tốt). Đã loại: mã YomiHub, plugin, GPU Intel/NVIDIA, Impeller/Skia, WARP, lớp phủ computer-use, topmost/layered. Còn nghi: DWM Windows Insider 26300 + driver Intel 2021 / NVIDIA Overlay. Flip-model không phụ thuộc đường đó.
+- Rác thử nghiệm để lại: D:\yh\r21min (angletest), D:\yh\hello_win\windows\runner\main.cpp đã vá (gốc: main.cpp.p7f_orig) + yh_present.inc.

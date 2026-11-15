@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/cloudflare/cf_challenge.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
@@ -399,10 +400,13 @@ class MihonExtensionService implements ExtensionService {
           .post(
             Uri.parse('http://localhost:$cfPort/resolve_cf'),
             headers: {'content-type': 'application/json'},
-            body: jsonEncode({'url': url}),
+            // 0.5.7: same chain as the other engines (visible challenge
+            // page when the invisible WebView cannot pass)
+            body: jsonEncode({'url': url, 'interactive': true}),
           )
           .timeout(const Duration(seconds: 150));
-      final ok = r.statusCode == 200 && (jsonDecode(r.body) as Map)['result'] == true;
+      final solved = r.statusCode == 200 ? jsonDecode(r.body) as Map : const {};
+      final ok = solved['result'] == true;
       if (ok) {
         res = await YomiMes.dalvik(proxy, body, headers: getCookie());
         if (_isCf(res)) {
@@ -412,7 +416,11 @@ class MihonExtensionService implements ExtensionService {
           AppLogger.log(
             '[Cloudflare] Tiện ích "${source.name}" (${source.lang}): đã giải xong Cloudflare trên WebView '
             'nhưng vẫn không tải được trang ($host).'
-            '${moved != null ? ' Trang đã chuyển sang $moved – dùng "Đổi URL".' : ' Có thể trang kiểm tra dấu vân tay trình duyệt; mở bằng WebView hoặc bật VPN/WARP.'}',
+            '${moved != null ? ' Trang đã chuyển sang $moved – dùng "Đổi URL".' : (solved['page'] == 'blocked' ? ' WebView cũng chỉ nhận trang chặn của Cloudflare (Access denied) – trang chặn địa chỉ IP/quốc gia này chứ không phải bài xác minh; đổi VPN/WARP hoặc tên miền.' : ' Có thể trang kiểm tra dấu vân tay trình duyệt; mở bằng WebView hoặc bật VPN/WARP.')}'
+            // 0.5.7: which identity was sent + whether both sides share a route
+            ' [đã gửi: cf_clearance ${(getCookie()[HttpHeaders.cookieHeader] ?? '').contains('cf_clearance=') ? 'có' : 'KHÔNG'}, '
+            'User-Agent của WebView ${YomiCf.uaFor(host) != null ? 'có' : 'KHÔNG'}]'
+            '${YomiVpnState.routeNote(YomiVpnState.proxyFor(null))}',
             logLevel: LogLevel.error,
           );
         }

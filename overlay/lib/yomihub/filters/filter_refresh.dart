@@ -75,16 +75,28 @@ class YomiFilterRefresh {
       final mes = await YomiMes.ensure() ?? '';
       final client = MClient.init(reqcopyWith: {'useDartHttpClient': true});
       for (var attempt = 0; attempt < 3; attempt++) {
-        final fl = await fetchFilterListDalvik(client, source, mes)
-            .timeout(const Duration(seconds: 20), onTimeout: () => null);
-        if (fl != null && fl.filters.isEmpty && attempt >= 1) {
-          // asked twice, the extension answers with no filters at all
+        yomiLastFilterFetchError = null;
+        final fl = await fetchFilterListDalvik(client, source, mes).timeout(
+          const Duration(seconds: 20),
+          onTimeout: () {
+            yomiLastFilterFetchError = 'hết thời gian chờ 20 giây';
+            return null;
+          },
+        );
+        if (fl != null && fl.filters.isEmpty) {
+          // 0.5.7 (S1): the extension answered, with no filters at all: that
+          // is a valid answer, not a failure - no retry (logs 7: VinaHentai
+          // was asked 3 times and then logged as an error).
           noFilters.add(source.id!);
           lastError.remove(source.id);
           return const [];
         }
+        if (fl == null && yomiLastFilterFetchError != null) {
+          lastError[source.id!] = 'lỗi khi tải bộ lọc: $yomiLastFilterFetchError';
+        }
         if (fl != null && fl.filters.isNotEmpty && !needsLoad(fl.filters)) {
           source.filterList = jsonEncode(fl.toJson());
+          lastError.remove(source.id);
           final row = sourceRepository.getById(source.id!);
           if (row != null) {
             row.filterList = source.filterList;

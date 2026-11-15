@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mangayomi/eval/model/m_bridge.dart';
+import 'package:mangayomi/modules/more/data_and_storage/widgets/source_management_tiles.dart';
 import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/source.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
@@ -99,6 +101,48 @@ class _ExtensionMergeScreenState extends ConsumerState<ExtensionMergeScreen> {
               ),
               trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14),
               onTap: () => _pickAndMergeExtensions(context, allSources),
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // 0.5.7 (Feature Check 38): every merge setting lives on this
+          // screen – the three tools that used to sit under "Dữ liệu và bộ
+          // nhớ" and the way into "Hợp nhất nội dung".
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Text(
+              tr('Công cụ hợp nhất'),
+              style: theme.textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: cs.primary,
+              ),
+            ),
+          ),
+          Card(
+            key: const ValueKey('mergeTools'),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              children: [
+                const CustomMergeSourcesTile(),
+                const Divider(height: 1),
+                const MergeDuplicateMangaTile(),
+                const Divider(height: 1),
+                const ManualMergeMangaTile(),
+                const Divider(height: 1),
+                ListTile(
+                  leading: const Icon(Icons.auto_stories_rounded),
+                  title: Text(tr('Hợp nhất nội dung')),
+                  subtitle: Text(
+                    tr('Hợp nhất truyện tranh, tiểu thuyết, phim ảnh (tự động đề xuất, chọn thủ công, hủy hợp nhất)'),
+                    style: TextStyle(fontSize: 11, color: cs.onSurfaceVariant),
+                  ),
+                  trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14),
+                  onTap: () => context.push('/contentMerge'),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 16),

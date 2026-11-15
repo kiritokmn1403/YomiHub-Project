@@ -149,8 +149,14 @@ class AppLogger {
       return msg;
     }
 
+    // 0.5.7: an exception thrown by an extension ("Extension "NHentai" (en,
+    // engine: dart ...) search ...: Bad state: No element") is the extension's
+    // (source) error, not an app error - the generic "Bad state" rule must
+    // not claim it. It still falls through to the 404 / 403 / network rules.
+    final isExtension = msg.startsWith('Extension "');
+
     // 1. Kiểm tra Lỗi Ứng Dụng trước tiên để tránh bắt nhầm (ví dụ: operator trong Null check operator)
-    if (_appErrorRegex.hasMatch(msg)) {
+    if (!isExtension && _appErrorRegex.hasMatch(msg)) {
       return '[Lỗi Ứng Dụng] $msg';
     }
 
@@ -168,6 +174,8 @@ class AppLogger {
     if (_networkTorRegex.hasMatch(msg)) {
       return '[Lỗi Mạng / Tor Timeout] $msg';
     }
+
+    if (isExtension) return '[Lỗi Nguồn] $msg';
 
     return msg;
   }

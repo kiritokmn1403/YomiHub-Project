@@ -4,6 +4,8 @@ import 'package:mangayomi/yomihub/repos/extensions_repo_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mangayomi/yomihub/ui/shiori/shiori_transitions.dart';
+import 'package:mangayomi/yomihub/ui/ui_style.dart';
 import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/settings.dart';
 import 'package:mangayomi/models/source.dart';
@@ -430,6 +432,9 @@ class RouterNotifier extends ChangeNotifier {
     throw _MissingExtra(T.toString());
   }
 
+  /// True for the "Moi" UI style on non-Apple, non-TV builds (U11).
+  bool get shioriTransitions => !isApple && !isTv && YomiUi.isModern;
+
   GoRoute _genericRoute<T>({
     String? name,
     String? path,
@@ -456,6 +461,35 @@ class RouterNotifier extends ChangeNotifier {
                   ? builder(_extraOf<T>(state))
                   : child!;
               return transitionPage(key: state.pageKey, child: pageChild);
+            }
+          : shioriTransitions
+          ? (context, state) {
+              // YomiHub 0.5.7 (U11): "Moi" UI style -> Shiori shared-axis
+              // transition. Decided when the router is built (a restart
+              // applies a changed style); the classic style keeps the
+              // default page of go_router untouched.
+              Widget pageChild;
+              if (builder != null) {
+                try {
+                  pageChild = builder(_extraOf<T>(state));
+                } on _MissingExtra {
+                  pageChild = const _LostPage();
+                }
+              } else {
+                pageChild = child!;
+              }
+              return CustomTransitionPage<void>(
+                key: state.pageKey,
+                child: pageChild,
+                transitionDuration: ShioriPageTransition.duration,
+                reverseTransitionDuration: ShioriPageTransition.duration,
+                transitionsBuilder: (context, animation, secondary, c) =>
+                    ShioriPageTransition(
+                      animation: animation,
+                      secondaryAnimation: secondary,
+                      child: c,
+                    ),
+              );
             }
           : null,
     );

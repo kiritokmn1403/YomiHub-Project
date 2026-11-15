@@ -31,9 +31,11 @@ class ZenshinAnimeTracker {
 
     final patterns = [
       RegExp(r'\b(?:s\d+e|tập|tap|episode|ep|e)\s*(\d+)\b', caseSensitive: false),
-      RegExp(r'\[(\d{1,4})\]'),
-      RegExp(r'#(\d{1,4})'),
+      // 0.5.7: " - 05" before "[05]" – "Show - 05 [1080]" was episode 1080
       RegExp(r'\s[-–—]\s*(\d{1,4})(?:v\d+)?\b', caseSensitive: false),
+      // a bracketed number that is a resolution ([480] [720] [1080] [2160]) is not an episode
+      RegExp(r'\[(?!(?:360|480|540|576|720|1080|1440|2160|4320)\])(\d{1,4})\]'),
+      RegExp(r'#(\d{1,4})'),
       RegExp(r'[-\s_](\d{1,4})(?:v\d+)?(?:[\s_\.\[\(\]]|$)', caseSensitive: false),
     ];
 

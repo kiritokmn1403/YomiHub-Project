@@ -71,7 +71,11 @@ import 'package:mangayomi/src/rust/frb_generated.dart';
 import 'package:mangayomi/utils/discord_rpc.dart';
 import 'package:mangayomi/services/crash_native.dart';
 import 'package:mangayomi/services/crash_report.dart';
+import 'package:mangayomi/yomihub/health/health_connect_service.dart';
+import 'package:mangayomi/yomihub/a6/a6_notice.dart';
+import 'package:mangayomi/yomihub/a6/a6_native.dart';
 import 'package:mangayomi/utils/log/logger.dart';
+import 'package:mangayomi/utils/log/log_rate_limiter.dart';
 import 'package:mangayomi/utils/client_id.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:mangayomi/utils/url_protocol/api.dart';
@@ -102,6 +106,7 @@ void main(List<String> args) async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       if (Platform.isLinux && runWebViewTitleBarWidget(args)) return;
+      yhA6PreloadNative(); // 0.5.7 U10: chỉ APK android6 (libqjs.so / trình giải mã trang)
 
       // Cap the decoded image cache so a large library grid can't fill the
       // default 100 MB ceiling with full-resolution covers and OOM constrained
@@ -122,12 +127,11 @@ void main(List<String> args) async {
           // repo icon.png, favicon.ico, ic_launcher.png) are cosmetic – not worth a log line
           if (m.contains('/s2/favicons') || m.contains('apple-touch-icon') || m.contains('/icon.png') ||
               m.contains('favicon.ico') || m.contains('ic_launcher.png')) return;
-          AppLogger.logOnce(
-            'img:${_hostOf(details.exceptionAsString())}',
-            'Image/network load failed: ${details.exceptionAsString()}',
-            // 0.2.3: a cover that did not load is not an app error – only
-            // written when "Enable logs" (verbose) is on
-            logLevel: LogLevel.info,
+          // 0.5.7 (S1): one line per minute + a counter instead of one line per
+          // host and session (164 lines in logs 7); still INFO / verbose only.
+          _imageFailLog.record(
+            _hostOf(m),
+            'Image/network load failed: $m',
           );
           return;
         }
@@ -321,6 +325,20 @@ Future<void> _postLaunchInit(StorageProvider storage) async {
   unawaited(Future<void>.delayed(const Duration(seconds: 20), YomiRepoDiscovery.dailyScan));
   // 0.2.2: freeze / jank / memory-pressure watchdog
   YomiPerf.instance.start();
+  // 0.5.7: the Android 6.0 APK on an Android 7.0+ phone says so (logs 7)
+  unawaited(Future<void>.delayed(const Duration(seconds: 12), YomiA6Notice.check));
+  // 0.5.7 (Feature Check 35): 20-20-20 eye-care reminder while reading / watching
+  HealthConnectService.instance.startEyeCareWatch(
+    screen: () => CrashReports.screen,
+    foreground: () {
+      final s = WidgetsBinding.instance.lifecycleState;
+      return s == null || s == AppLifecycleState.resumed;
+    },
+    onEyeCareAlert: (minutes) => botToast(
+      tr('Bạn đã đọc/xem liên tục {p0} phút – hãy nhìn xa 20 giây để mắt nghỉ ngơi (quy tắc 20-20-20).', {'p0': '$minutes'}),
+      second: 8,
+    ),
+  );
   // 0.2.2: which extension local / downloaded titles belong to
   unawaited(Future<void>.delayed(const Duration(seconds: 25), YomiSourceAttribution.refresh));
   // YomiHub: VPN state (Tor / WARP) and the bundled extensions.
@@ -964,6 +982,12 @@ class AllowScrollBehavior extends MaterialScrollBehavior {
     PointerDeviceKind.unknown,
   };
 }
+
+final LogBurstAggregator _imageFailLog = LogBurstAggregator(
+  emit: (line) => AppLogger.log(line, logLevel: LogLevel.info),
+  summary: (n, hosts, text) =>
+      'Image/network load failed: thêm $n lần tương tự trong 1 phút qua từ $hosts máy chủ ($text)',
+);
 
 /// Host part of the first URL in [text] ("" when none), used to collapse
 /// repeated image-load failures from the same CDN into one log line.

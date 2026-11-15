@@ -44,6 +44,7 @@ class YomiUpdateSources {
     final ownsClient = client == null;
     final c = client ?? IOClient(yomiDartHttpClient());
     final errors = <String>[];
+    var runs = <Future<(String, String, String, List<dynamic>)?>>[];
     try {
       final steps = <(String, Future<(String, String, String, List<dynamic>)?> Function())>[
         ('GitHub Releases', () => _github(c, acceptsFile)),
@@ -52,20 +53,17 @@ class YomiUpdateSources {
         for (final key in mediafireFolders)
           ('MediaFire $key', () => _mediafire(c, key, acceptsFile)),
       ];
-      for (final (label, run) in steps) {
-        try {
-          final r = await run().timeout(const Duration(seconds: 75));
-          if (r != null && r.$4.isNotEmpty && compareVersions(current, r.$1) < 0) {
-            AppLogger.log('[Kiểm tra cập nhật] Có bản ${r.$1} trên $label');
-            return r;
-          }
-        } catch (e) {
-          errors.add('$label: $e');
-          AppLogger.logOnce(
-            'upd-src:$label',
-            '[Kiểm tra cập nhật] Không đọc được nguồn $label: $e',
-            logLevel: LogLevel.warning,
-          );
+      // 0.5.7 (S1): all 7 checks start at once (logs 7: sequential, one slow
+      // MediaFire/Drive folder cost 20-60 s each). Each retries once and never
+      // throws, so a slow secondary source cannot delay or break the primary
+      // GitHub answer: the result is still picked in the listed order, and a
+      // newer GitHub release is returned without waiting for the others.
+      runs = [for (final (label, run) in steps) _runSource(label, run, current, errors)];
+      for (var i = 0; i < runs.length; i++) {
+        final r = await runs[i];
+        if (r != null) {
+          AppLogger.log('[Kiểm tra cập nhật] Có bản ${r.$1} trên ${steps[i].$1}');
+          return r;
         }
       }
       if (errors.length == steps.length) {
@@ -73,9 +71,54 @@ class YomiUpdateSources {
       }
       return null;
     } finally {
-      if (ownsClient) c.close();
+      // the client stays open until every (possibly still running) source ends
+      if (ownsClient) {
+        Future.wait(runs).whenComplete(c.close).ignore();
+      }
     }
   }
+
+  /// Runs one source with a per-attempt timeout and one retry. Returns the
+  /// newer release or null; failures only go to [errors] and (as WARNING,
+  /// after the retry also failed) to the app log.
+  static Future<(String, String, String, List<dynamic>)?> _runSource(
+    String label,
+    Future<(String, String, String, List<dynamic>)?> Function() run,
+    String current,
+    List<String> errors, {
+    Duration timeout = const Duration(seconds: 75),
+    Duration retryDelay = const Duration(seconds: 2),
+  }) async {
+    Object? last;
+    for (var attempt = 0; attempt < 2; attempt++) {
+      try {
+        final r = await run().timeout(timeout);
+        if (r != null && r.$4.isNotEmpty && compareVersions(current, r.$1) < 0) return r;
+        return null;
+      } catch (e) {
+        last = e;
+        if ('$e'.contains('Failed host lookup')) break; // offline: retry is useless
+        if (attempt == 0) await Future<void>.delayed(retryDelay);
+      }
+    }
+    errors.add('$label: $last');
+    AppLogger.logOnce(
+      'upd-src:$label',
+      '[Kiểm tra cập nhật] Không đọc được nguồn $label (đã thử lại 1 lần): $last',
+      logLevel: LogLevel.warning,
+    );
+    return null;
+  }
+
+  /// Exposed for tests.
+  static Future<(String, String, String, List<dynamic>)?> runSourceForTest(
+    String label,
+    Future<(String, String, String, List<dynamic>)?> Function() run,
+    String current,
+    List<String> errors, {
+    Duration timeout = const Duration(milliseconds: 200),
+    Duration retryDelay = const Duration(milliseconds: 10),
+  }) => _runSource(label, run, current, errors, timeout: timeout, retryDelay: retryDelay);
 
   // ---------------------------------------------------------------- GitHub
   static Future<(String, String, String, List<dynamic>)?> _github(

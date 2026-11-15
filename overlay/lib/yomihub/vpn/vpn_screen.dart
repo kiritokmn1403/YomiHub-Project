@@ -11,6 +11,7 @@ import 'package:mangayomi/yomihub/booru/booru_models.dart';
 import 'package:mangayomi/yomihub/booru/booru_store.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_service.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
+import 'package:mangayomi/yomihub/vpn/tor_fallback.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_tunnels.dart';
 import 'package:mangayomi/yomihub/vpn/dns_section.dart';
 import 'package:mangayomi/yomihub/vpn/win/win_vpn.dart';
@@ -367,6 +368,15 @@ class _VpnScreenState extends State<VpnScreen> {
               ],
               onChanged: (v) => v == null ? null : _run(() => vpn.setTorBridge(v)),
             ),
+          ),
+        // 0.5.7: a fixed transport that stalls is replaced automatically
+        if (Platform.isAndroid && TorBridgeFallback.appliesTo(vpn.torBridge))
+          SwitchListTile(
+            secondary: const Icon(Icons.swap_calls),
+            title: Text(tr('Tự đổi cầu nối khi Tor bị kẹt')),
+            subtitle: Text(tr('Khi cầu nối đã chọn không tiến triển, YomiHub thử lần lượt các cầu nối còn lại rồi kết nối thẳng. Tắt để chỉ dùng đúng cầu nối đã chọn.')),
+            value: vpn.torBridgeFallback,
+            onChanged: (v) => vpn.setTorBridgeFallback(v),
           ),
       ]),
       _section(
@@ -772,7 +782,7 @@ class _VpnScreenState extends State<VpnScreen> {
                             for (final e in vpnCountries.entries)
                               SimpleDialogOption(
                                 onPressed: () => Navigator.pop(ctx, e.key),
-                                child: Text('${countryFlag(e.key)}  ${e.key.isEmpty ? 'Không rõ' : e.value}'),
+                                child: Text('${countryFlag(e.key)}  ${e.key.isEmpty ? tr('Không rõ') : e.value}'),
                               ),
                           ],
                         ),

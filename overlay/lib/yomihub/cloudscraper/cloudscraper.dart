@@ -147,9 +147,20 @@ class CloudScraper {
           }
         } catch (_) {}
       }
+      // 0.5.7: a request that carries cf_clearance already has the identity
+      // of the WebView that earned it (MCookieManager); this profile's
+      // client hints ("Google Chrome" v140) would contradict that
+      // User-Agent – for a Firefox/Safari identity there must be none.
+      var cleared = false;
+      try {
+        for (final e in requestHeaders.entries) {
+          if (e.key.toLowerCase() == 'cookie' && e.value.contains('cf_clearance=')) cleared = true;
+        }
+      } catch (_) {}
       headers.forEach((k, v) {
         final key = k.toLowerCase();
         if (key != 'user-agent' && key != 'accept-language' && !key.startsWith('sec-ch-ua')) return;
+        if (cleared && key.startsWith('sec-ch-ua')) return;
         if (!lower.contains(key)) {
           try {
             requestHeaders[k] = v;

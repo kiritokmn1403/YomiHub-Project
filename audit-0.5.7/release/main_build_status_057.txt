@@ -1,0 +1,122 @@
+﻿14/11 17:10:33 === BAT DAU dung bo goi chinh 0.5.7 ===
+14/11 17:10:33 --> buoc sync
+14/11 17:10:52 <-- buoc sync exit=0 (0 phut)
+14/11 17:10:52 --> buoc test
+14/11 17:21:44 <-- buoc test exit=1 (11 phut)
+14/11 17:21:44 DUNG vi buoc test loi
+15/11 06:23:05 === BAT DAU dung bo goi chinh 0.5.7 ===
+15/11 06:23:05 --> buoc sync
+15/11 06:23:25 <-- buoc sync exit=0 (0 phut)
+15/11 06:23:25 --> buoc test
+15/11 06:51:13 === BAT DAU dung bo goi chinh 0.5.7 ===
+15/11 06:51:13 --> buoc sync
+15/11 06:51:40 <-- buoc sync exit=0 (0 phut)
+15/11 06:51:40 --> buoc test
+15/11 06:58:29 <-- buoc test exit=0 (7 phut)
+15/11 06:58:29 --> buoc apk
+15/11 07:31:56 <-- buoc apk exit=0 (33 phut)
+15/11 07:31:56 --> buoc tv
+15/11 07:57:15 <-- buoc tv exit=0 (25 phut)
+15/11 07:57:15 --> buoc wintest
+15/11 08:01:14 <-- buoc wintest exit=0 (4 phut)
+15/11 08:01:14 --> buoc win
+15/11 08:13:07 <-- buoc win exit=0 (12 phut)
+15/11 08:13:07 --> buoc pack
+15/11 08:13:28 NGOAI LE buoc pack: LỖI ĐÓNG GÓI: make_appxbundle_057.ps1 kết thúc với mã lỗi 1
+15/11 08:13:28 <-- buoc pack exit=99 (0 phut)
+15/11 08:13:28 DUNG vi buoc pack loi
+15/11 08:45:35 === TIEP TUC dung 0.5.7 tu buoc pack ===
+15/11 08:45:35 --> buoc pack
+15/11 08:48:15 NGOAI LE buoc pack: LỖI PHIÊN BẢN APPX: AppxBundleManifest không có Version=0.5.7
+15/11 08:48:15 <-- buoc pack exit=99 (3 phut)
+15/11 08:48:15 DUNG vi buoc pack loi
+15/11 09:00:45 === TIEP TUC dung 0.5.7 tu buoc pack ===
+15/11 09:00:45 --> buoc pack
+15/11 09:02:42 NGOAI LE buoc pack: The process cannot access the file 'D:\Claude A.I\output\0.5.7\YomiHub-0.5.7-windows-x64-Setup.exe' because it is being used by another process.
+15/11 09:02:43 <-- buoc pack exit=99 (2 phut)
+15/11 09:02:43 DUNG vi buoc pack loi
+15/11 10:04:18 === BAT DAU dung lai TOAN BO 0.5.7 (sau QA3 + ban va R21) ===
+15/11 10:04:18 --> buoc sync
+15/11 10:04:42 <-- buoc sync exit=0 (0 phut)
+15/11 10:04:42 --> buoc test
+15/11 10:15:26 <-- buoc test exit=1 (11 phut)
+15/11 10:15:26 DUNG vi buoc test loi
+15/11 10:16:31 === TIEP TUC 0.5.7 sau buoc test (859/860 dat, 1 test mang yh_017 timeout 20 s) ===
+15/11 10:16:31 --> buoc test017
+15/11 10:16:31 NGOAI LE buoc test017: The term 'flutter.bat' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+15/11 10:16:31 <-- buoc test017 exit=99 (0 phut)
+15/11 10:16:31 DUNG vi buoc test017 loi
+15/11 10:19:21 === TIEP TUC 0.5.7 sau buoc test (859/860 dat, 1 test mang yh_017 timeout 20 s) ===
+15/11 10:19:21 --> buoc apk
+15/11 10:37:54 <-- buoc apk exit=0 (19 phut)
+15/11 10:37:54 --> buoc tv
+15/11 10:57:34 <-- buoc tv exit=0 (20 phut)
+15/11 10:57:34 --> buoc wintest
+15/11 11:00:11 <-- buoc wintest exit=0 (3 phut)
+15/11 11:00:11 --> buoc win
+15/11 11:12:15 <-- buoc win exit=0 (12 phut)
+15/11 11:12:15 --> buoc pack
+15/11 11:15:03 <-- buoc pack exit=0 (3 phut)
+15/11 11:15:03 --> buoc a6build
+15/11 11:52:30 <-- buoc a6build exit=0 (37 phut)
+15/11 11:52:30 --> buoc a6copy
+15/11 11:52:53 <-- buoc a6copy exit=0 (0 phut)
+15/11 11:52:53 --> buoc verify
+15/11 11:55:17 <-- buoc verify exit=0 (2 phut)
+15/11 11:55:17 === XONG bo goi chinh 0.5.7 (gom APK android6 + verify) ===
+15/11 12:41:20 === BAT DAU dung bo goi chinh 0.5.7 ===
+15/11 12:41:20 --> buoc sync
+15/11 12:41:41 <-- buoc sync exit=0 (0 phut)
+15/11 12:41:41 --> buoc test
+15/11 12:47:53 <-- buoc test exit=0 (6 phut)
+15/11 12:47:53 --> buoc apk
+15/11 13:03:58 <-- buoc apk exit=0 (16 phut)
+15/11 13:03:59 --> buoc tv
+15/11 13:24:22 <-- buoc tv exit=0 (20 phut)
+15/11 13:24:22 --> buoc wintest
+15/11 13:27:16 <-- buoc wintest exit=0 (3 phut)
+15/11 13:27:16 --> buoc win
+15/11 13:40:36 <-- buoc win exit=0 (13 phut)
+15/11 13:40:36 --> buoc pack
+15/11 13:44:43 <-- buoc pack exit=0 (4 phut)
+15/11 13:44:43 --> buoc a6build
+15/11 14:05:16 <-- buoc a6build exit=0 (21 phut)
+15/11 14:05:16 --> buoc a6copy
+15/11 14:05:36 <-- buoc a6copy exit=0 (0 phut)
+15/11 14:05:36 --> buoc verify
+15/11 14:08:05 <-- buoc verify exit=0 (2 phut)
+15/11 14:08:06 === XONG bo goi chinh 0.5.7 (gom APK android6 + verify) ===
+15/11 14:37:31 === BAT DAU dung bo goi chinh 0.5.7 ===
+15/11 14:37:31 --> buoc sync
+15/11 14:37:50 <-- buoc sync exit=0 (0 phut)
+15/11 14:37:50 --> buoc test
+15/11 14:45:53 <-- buoc test exit=0 (8 phut)
+15/11 14:45:53 --> buoc apk
+15/11 15:13:26 <-- buoc apk exit=0 (28 phut)
+15/11 15:13:26 --> buoc tv
+15/11 15:27:23 === BAT DAU dung bo goi chinh 0.5.7 ===
+15/11 15:27:24 --> buoc sync
+15/11 15:28:24 <-- buoc sync exit=0 (1 phut)
+15/11 15:28:24 --> buoc test
+15/11 15:43:49 <-- buoc test exit=1 (15 phut)
+15/11 15:43:49 DUNG vi buoc test loi
+15/11 15:46:19 === TIEP TUC 0.5.7 sau buoc test (859/860 dat, 1 test mang yh_017 timeout 20 s) ===
+15/11 15:46:19 --> buoc apk
+15/11 16:33:19 <-- buoc apk exit=0 (47 phut)
+15/11 16:33:19 --> buoc tv
+15/11 19:17:02 === TIEP TUC 0.5.7 tu buoc tv (apk x12 da xong 16:33; may ngu luc dung tv) ===
+15/11 19:17:02 --> buoc tv
+15/11 19:33:16 <-- buoc tv exit=0 (16 phut)
+15/11 19:33:16 --> buoc wintest
+15/11 19:42:10 <-- buoc wintest exit=0 (9 phut)
+15/11 19:42:10 --> buoc win
+15/11 19:57:41 <-- buoc win exit=0 (16 phut)
+15/11 19:57:41 --> buoc pack
+15/11 20:01:06 <-- buoc pack exit=0 (3 phut)
+15/11 20:01:06 --> buoc a6build
+15/11 20:26:12 <-- buoc a6build exit=0 (25 phut)
+15/11 20:26:12 --> buoc a6copy
+15/11 20:27:04 <-- buoc a6copy exit=0 (1 phut)
+15/11 20:27:04 --> buoc verify
+15/11 20:28:09 <-- buoc verify exit=0 (1 phut)
+15/11 20:28:09 === XONG bo goi chinh 0.5.7 (gom APK android6 + verify) ===

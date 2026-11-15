@@ -48,3 +48,11 @@
 -dontwarn app.cash.quickjs.**
 -keep class nl.adaptivity.** { *; }
 -dontwarn nl.adaptivity.**
+
+# YomiHub 0.5.7 (video đen trên Android <= 10, Galaxy Note 9): MainActivity bật
+# FlutterRenderer.debugForceSurfaceProducerGlTextures bằng reflection để dùng
+# SurfaceTexture thay ImageReader. R8 đã đổi tên/gỡ trường này trong bản release
+# (logcat: NoSuchFieldException) -> giữ nguyên tên.
+-keepclassmembers class io.flutter.embedding.engine.renderer.FlutterRenderer {
+    public static boolean debugForceSurfaceProducerGlTextures;
+}

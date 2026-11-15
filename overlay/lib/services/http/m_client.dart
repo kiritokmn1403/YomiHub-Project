@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:http_interceptor/http_interceptor.dart';
 import 'package:mangayomi/yomihub/extensions/url_override.dart';
 import 'package:mangayomi/yomihub/net/chunk_proxy.dart';
+import 'package:mangayomi/yomihub/net/loopback_bypass.dart';
 import 'package:mangayomi/yomihub/cloudflare/cloak_solver.dart';
 import 'package:mangayomi/yomihub/net/media_sniffer.dart';
 import 'package:mangayomi/eval/model/m_bridge.dart';
@@ -31,6 +32,7 @@ import 'package:mangayomi/services/http/doh/doh_custom_store.dart';
 import 'package:mangayomi/services/http/cf_proxy_store.dart';
 import 'package:mangayomi/yomihub/cloudscraper/cloudscraper.dart';
 import 'package:mangayomi/yomihub/cloudflare/cf_challenge.dart';
+import 'package:mangayomi/yomihub/cloudflare/cf_identity.dart';
 import 'package:mangayomi/yomihub/cloudflare/cf_webfetch.dart';
 import 'package:mangayomi/utils/localized_message.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
@@ -116,14 +118,21 @@ class MClient {
         final rawClient = rhttpPool.putIfAbsent(key, () {
           return rhttp.RhttpCompatibleClient.createSync(settings: s);
         });
-        return _PooledClientWrapper(rawClient, key, s, baseUrl ?? (reqcopyWith?['baseUrl'] as String?));
+        final pooled = _PooledClientWrapper(rawClient, key, s, baseUrl ?? (reqcopyWith?['baseUrl'] as String?));
+        // 0.5.7: the app's own loopback servers (Kotatsu / IReader bridge,
+        // WebView helper…) are never reached through Tor / the kill switch.
+        return torProxy == null
+            ? pooled
+            : YomiLoopbackBypassClient(pooled, defaultClient, proxy: torProxy);
       } catch (_) {}
     }
     if (torProxy != null && !torProxy.startsWith('socks')) {
-      return _dartProxyClients.putIfAbsent(torProxy, () {
+      final proxied = _dartProxyClients.putIfAbsent(torProxy, () {
         final hc = HttpClient();
         final pu = Uri.parse(torProxy);
-        hc.findProxy = (_) => 'PROXY ${pu.host}:${pu.port}';
+        hc.findProxy = (uri) => YomiVpnState.isLoopbackHost(uri.host)
+            ? 'DIRECT'
+            : 'PROXY ${pu.host}:${pu.port}';
         if (pu.userInfo.isNotEmpty) {
           final parts = pu.userInfo.split(':');
           hc.addProxyCredentials(
@@ -138,6 +147,7 @@ class MClient {
         }
         return IOClient(hc);
       });
+      return YomiLoopbackBypassClient(proxied, defaultClient, proxy: torProxy);
     }
     return defaultClient;
   }
@@ -207,7 +217,8 @@ class MClient {
         YomiUrlRewriteInterceptor(),
         MCookieManager(reqcopyWith),
         // YomiHub 0.4.1: Must run BEFORE LoggerInterceptor so WebView fallback can convert 403 into 200 before logging/error
-        YomiCfFallbackInterceptor(showCloudFlareError),
+        YomiCfFallbackInterceptor(showCloudFlareError,
+            sourceId: source?.id ?? (reqcopyWith?['yomihubSourceId'] as int?)),
         LoggerInterceptor(showCloudFlareError),
       ],
     );
@@ -384,11 +395,18 @@ class MCookieManager extends InterceptorContract {
             : null;
         if (cfUa != null) {
           try {
-            request.headers.removeWhere(
-              (k, _) => k.toLowerCase() == HttpHeaders.userAgentHeader,
-            );
-            request.headers[HttpHeaders.userAgentHeader] = cfUa;
-          } catch (_) {}
+            // 0.5.7: the whole identity of the WebView that earned the
+            // clearance (User-Agent + matching sec-ch-ua / language), not the
+            // User-Agent alone with the CloudScraper profile's client hints.
+            (YomiCf.identityFor(request.url.host) ?? CfIdentity(ua: cfUa)).applyTo(request.headers);
+          } catch (_) {
+            try {
+              request.headers.removeWhere(
+                (k, _) => k.toLowerCase() == HttpHeaders.userAgentHeader,
+              );
+              request.headers[HttpHeaders.userAgentHeader] = cfUa;
+            } catch (_) {}
+          }
         } else if (userAgent != null && userAgent.isNotEmpty) {
           try {
             final hasUa = request.headers.keys
@@ -689,10 +707,6 @@ Future<void> stopwebviewServer() async {
 }
 
 void _handleResolveCf(HttpRequest request) async {
-  int time = 0;
-  bool timeOut = false;
-  bool solved = false;
-  bool savedDone = false;
   try {
     final body = await utf8.decoder.bind(request).join();
     final data = jsonDecode(body) as Map<String, dynamic>;
@@ -706,59 +720,24 @@ void _handleResolveCf(HttpRequest request) async {
       return;
     }
 
-    final webUri = flutter_inappwebview.WebUri(url);
+    // 0.5.7: `interactive: true` (APK extensions) runs the same chain as
+    // every other engine – one solve per host, then the visible challenge
+    // page when the invisible WebView cannot pass. Before, APK extensions
+    // only ever got the invisible attempt.
+    var page = CfPageState.ok;
+    Future<bool> headless() async {
+      final r = await _headlessResolveCf(url);
+      page = r.$2;
+      return r.$1;
+    }
 
-    // Whether the challenge actually passed is determined by Cloudflare's
-    // own cf_clearance cookie, which it only sets once the challenge is
-    // solved. The previous check (a string search for '#challenge-success-
-    // text' in document.head.innerHTML) is unreliable: Cloudflare's
-    // challenge template references that id in a <style> block in <head>
-    // from the very first load, pass or fail, so the search was true
-    // immediately and the resolver silently ran out the clock without ever
-    // saving cookies.
-    flutter_inappwebview.HeadlessInAppWebView? headlessWebView;
-    headlessWebView = flutter_inappwebview.HeadlessInAppWebView(
-      webViewEnvironment: webViewEnvironment,
-      initialUrlRequest: flutter_inappwebview.URLRequest(url: webUri),
-      onLoadStop: (controller, _) async {
-        // 0.2.2: the clearance may be on the host the page redirected to
-        solved = await YomiCf.hasClearance(url, controller);
-
-        await Future.doWhile(() async {
-          if (!timeOut && !solved) {
-            solved = await YomiCf.hasClearance(url, controller);
-          }
-          if (!solved) {
-            await Future.delayed(const Duration(milliseconds: 300));
-          }
-          return !solved && !timeOut;
-        });
-
-        if (solved) {
-          await YomiCf.saveFromWebView(url, controller);
-          savedDone = true;
-        }
-      },
-    );
-
-    headlessWebView.run();
-
-    await Future.doWhile(() async {
-      timeOut = time == 20;
-      if ((solved && savedDone) || timeOut) {
-        return false;
-      }
-      await Future.delayed(const Duration(seconds: 1));
-      time++;
-      return true;
-    });
-    try {
-      headlessWebView.dispose();
-    } catch (_) {}
+    final solved = data['interactive'] == true
+        ? await YomiCf.solve(url, headless)
+        : await headless();
 
     request.response
       ..headers.contentType = ContentType.json
-      ..write(jsonEncode({'result': solved}))
+      ..write(jsonEncode({'result': solved, 'page': page.name}))
       ..close();
   } catch (e) {
     request.response
@@ -766,6 +745,77 @@ void _handleResolveCf(HttpRequest request) async {
       ..write(jsonEncode({'error': 'Invalid JSON'}))
       ..close();
   }
+}
+
+/// Invisible WebView attempt at the Cloudflare challenge of [url]: true once
+/// Cloudflare has handed out `cf_clearance` AND the WebView has left the
+/// challenge page; the cookies + browser identity are then stored. Also
+/// returns what the WebView showed last (challenge / block page / site).
+Future<(bool, CfPageState)> _headlessResolveCf(String url) async {
+  int time = 0;
+  bool timeOut = false;
+  bool solved = false;
+  bool savedDone = false;
+  var page = CfPageState.ok;
+  final webUri = flutter_inappwebview.WebUri(url);
+
+  // Whether the challenge actually passed is determined by Cloudflare's
+  // own cf_clearance cookie, which it only sets once the challenge is
+  // solved. The previous check (a string search for '#challenge-success-
+  // text' in document.head.innerHTML) is unreliable: Cloudflare's
+  // challenge template references that id in a <style> block in <head>
+  // from the very first load, pass or fail, so the search was true
+  // immediately and the resolver silently ran out the clock without ever
+  // saving cookies.
+  //
+  // 0.5.7 (logs 7, CBHentai): the cookie alone is not enough either. A
+  // cf_clearance left in the WebView from an earlier visit (expired, or
+  // earned on another IP – VPN on/off) made this report "solved" within a
+  // second while the page was still the challenge; the extension was then
+  // retried with the useless cookie and failed again ("đã giải xong
+  // Cloudflare trên WebView nhưng vẫn không tải được trang"). The WebView
+  // must also have left the challenge page (YomiCf.passed).
+  flutter_inappwebview.HeadlessInAppWebView? headlessWebView;
+  headlessWebView = flutter_inappwebview.HeadlessInAppWebView(
+    webViewEnvironment: webViewEnvironment,
+    initialUrlRequest: flutter_inappwebview.URLRequest(url: webUri),
+    onLoadStop: (controller, _) async {
+      await Future.doWhile(() async {
+        if (!timeOut && !solved) {
+          // 0.2.2: the clearance may be on the host the page redirected to
+          try {
+            page = await YomiCf.pageState(controller);
+            solved = page != CfPageState.challenge && await YomiCf.hasClearance(url, controller);
+          } catch (_) {}
+        }
+        if (!solved) {
+          await Future.delayed(const Duration(milliseconds: 300));
+        }
+        return !solved && !timeOut;
+      });
+
+      if (solved && !savedDone) {
+        await YomiCf.saveFromWebView(url, controller);
+        savedDone = true;
+      }
+    },
+  );
+
+  headlessWebView.run();
+
+  await Future.doWhile(() async {
+    timeOut = time == 20;
+    if ((solved && savedDone) || timeOut) {
+      return false;
+    }
+    await Future.delayed(const Duration(seconds: 1));
+    time++;
+    return true;
+  });
+  try {
+    headlessWebView.dispose();
+  } catch (_) {}
+  return (solved && savedDone, page);
 }
 
 Future<void> _evaluateJavascriptViaWebview(HttpRequest request) async {

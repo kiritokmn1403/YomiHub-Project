@@ -16,7 +16,7 @@ class YomiIntegrations {
     {
       'project': 'Yomikiru',
       'url': 'https://github.com/mienaiyami/yomikiru',
-      'status': 'Chưa tích hợp',
+      'status': 'Đã tích hợp một phần: phím tắt A/D/Space/Home/End trong reader_view.dart (công tắc Cài đặt > Trình đọc, mặc định tắt). Ghép trang đôi và kiểu căn trang: bỏ vì trình đọc đã có sẵn (trang đôi tự động, scale type)',
       'taken': 'Mã thử nghiệm: Thuật toán ghép trang đôi (dual-page spread) cho màn hình lớn, 4 chế độ căn chỉnh trang (Smart, Width, Height, 1:1), phím tắt bàn phím desktop (Left/Right, A/D, Space, PageUp/Down, Home/End), bộ lọc hình ảnh.',
       'notTaken': 'Runtime Electron/Node.js cồng kềnh.',
       'reason': 'YomiHub sử dụng Flutter Native Engine tối ưu hiệu năng và bộ nhớ, không cần phụ thuộc framework Electron.',
@@ -24,7 +24,7 @@ class YomiIntegrations {
     {
       'project': 'Yomihon',
       'url': 'https://miyomi.app/software/yomihon',
-      'status': 'Chưa tích hợp',
+      'status': 'Đã tích hợp một phần: preset giãn dòng và thời gian đọc ước tính theo WPM trong novel_reader_view.dart (công tắc Cài đặt > Trình đọc tiểu thuyết, mặc định tắt). Chế độ dọc (Tate-gaki): chưa làm',
       'taken': 'Mã thử nghiệm: Quy chuẩn typography (Compact, Standard, Relaxed), hỗ trợ bố cục văn bản dọc (Tate-gaki CJK), bộ tính toán thời lượng đọc ước tính theo từ/phút (WPM).',
       'notTaken': 'Giao diện web HTML riêng biệt của Yomihon.',
       'reason': 'YomiHub đã có sẵn trình đọc tiểu thuyết tích hợp Material 3 và hiệu ứng Liquid Glass.',
@@ -40,7 +40,7 @@ class YomiIntegrations {
     {
       'project': 'Nyora',
       'url': 'https://github.com/Nyora-Manga',
-      'status': 'Chưa tích hợp',
+      'status': 'Không tích hợp: manifest Nyora chỉ là siêu dữ liệu nguồn, không có gói mã cài được và khác định dạng index của repo_importer; nối vào sẽ không dùng được',
       'taken': 'Mã thử nghiệm: Bộ phân tích cấu trúc kho nguồn data-driven (Nyora manifest parser), cơ chế chuẩn hóa metadata đa nguồn mở rộng.',
       'notTaken': 'Mã giao diện Android Kotlin nguyên bản.',
       'reason': 'YomiHub phát triển trên Flutter để chia sẻ 100% mã nguồn giữa Android và Windows.',
@@ -56,7 +56,7 @@ class YomiIntegrations {
     {
       'project': 'GIF Viewer',
       'url': 'https://github.com/ata4/gifiddle',
-      'status': 'Chưa tích hợp',
+      'status': 'Không tích hợp: ứng dụng không có màn xem ảnh/GIF độc lập (trình đọc dùng ExtendedImage tự phát GIF); điều khiển từng khung cần viewer riêng, chưa dựng',
       'taken': 'Mã thử nghiệm: Bộ điều khiển GifViewerController: dừng/phát, chuyển từng khung hình tới/lui, đảo chiều phát, điều chỉnh tốc độ từ 0.25x đến 4.0x, chế độ lặp vô tận.',
       'notTaken': 'Mã nguồn C++ Win32 cũ.',
       'reason': 'Được hiện thực lại hoàn toàn bằng Dart hướng đối tượng, hỗ trợ hoàn hảo trên cả Android và Windows.',

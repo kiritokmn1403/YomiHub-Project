@@ -15,6 +15,10 @@ import 'package:mangayomi/utils/constant.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:mangayomi/utils/headers.dart';
 import 'package:mangayomi/utils/extensions/manga_extensions.dart';
+import 'package:mangayomi/utils/platform_utils.dart';
+import 'package:mangayomi/yomihub/ui/shiori/shiori_badge.dart';
+import 'package:mangayomi/yomihub/ui/shiori/shiori_tokens.dart';
+import 'package:mangayomi/yomihub/ui/ui_style.dart';
 
 /// Resolves the correct [ImageProvider] for a manga entry, preferring a custom
 /// local cover over the remote URL. Remote covers are wrapped in
@@ -104,6 +108,14 @@ class EntryBadgeChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // YomiHub 0.5.7 (U11): Shiori badge in the "Moi" UI style.
+    if (!isTv && YomiUi.isModern) {
+      return ShioriBadge(
+        count: 0,
+        label: label,
+        kind: icon == null ? ShioriStatusKind.read : ShioriStatusKind.newChapter,
+      );
+    }
     return Container(
       decoration: BoxDecoration(
         borderRadius: borderRadius,
@@ -176,6 +188,39 @@ class LibraryBadgeWidget extends ConsumerWidget {
     // If there is nothing to show (no local, no download, no unread, not merged), return empty
     if (!hasLocal && downloadCount == 0 && unreadCount == 0 && !isMerged) {
       return const SizedBox.shrink();
+    }
+
+    // YomiHub 0.5.7 (U11): in the "Moi" UI style the combined badge is a row
+    // of Shiori pills (merged / local / downloaded / unread).
+    if (!isTv && YomiUi.isModern) {
+      return Wrap(
+        spacing: 3,
+        runSpacing: 3,
+        children: [
+          if (isMerged)
+            const ShioriBadge(
+              count: 0,
+              label: 'Hợp nhất',
+              kind: ShioriStatusKind.newChapter,
+            ),
+          if (hasLocal)
+            ShioriBadge(
+              count: 0,
+              label: _withOrigin('Local'),
+              kind: ShioriStatusKind.offline,
+            ),
+          if (downloadCount > 0)
+            ShioriBadge(
+              count: 0,
+              label: hasLocal
+                  ? downloadCount.toString()
+                  : _withOrigin('↓$downloadCount'),
+              kind: ShioriStatusKind.downloaded,
+            ),
+          if (unreadCount > 0)
+            ShioriBadge(count: unreadCount, kind: ShioriStatusKind.unread),
+        ],
+      );
     }
 
     return Container(

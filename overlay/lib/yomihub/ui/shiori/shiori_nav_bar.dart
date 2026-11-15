@@ -151,7 +151,7 @@ class _ShioriFloatingNavBarState extends State<ShioriFloatingNavBar> {
             child: AnimatedContainer(
               duration: ShioriMotion.standard,
               curve: ShioriMotion.standardCurve,
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
               decoration: BoxDecoration(
                 color: isSelected
                     ? activeColor.withValues(alpha: ShioriAlphas.accentTint)
@@ -184,14 +184,19 @@ class _ShioriFloatingNavBarState extends State<ShioriFloatingNavBar> {
                   ),
                   if (widget.showLabels) ...[
                     const SizedBox(height: 2),
-                    Text(
-                      destination.label,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 10.5,
-                        fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                        color: isSelected ? activeColor : inactiveColor,
+                    // QA3 0.5.7: "Hoạt động" was cut to "Hoạt độ..." – shrink
+                    // the label to the cell instead of ellipsizing it.
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        destination.label,
+                        maxLines: 1,
+                        softWrap: false,
+                        style: TextStyle(
+                          fontSize: 10.5,
+                          fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                          color: isSelected ? activeColor : inactiveColor,
+                        ),
                       ),
                     ),
                   ],

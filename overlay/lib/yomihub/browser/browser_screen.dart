@@ -3,6 +3,7 @@ import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/app_identity.dart';
 import 'dart:io';
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:mangayomi/providers/l10n_providers.dart';
 import 'package:mangayomi/services/http/m_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mangayomi/yomihub/browser/adblock.dart';
+import 'package:mangayomi/yomihub/browser/anti_fingerprint.dart';
 import 'package:mangayomi/yomihub/browser/userscripts_screen.dart';
 import 'package:mangayomi/yomihub/browser/gecko_view.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
@@ -437,6 +439,15 @@ class _BrowserScreenState extends State<BrowserScreen> {
       windowId: t.windowId,
       initialUrlRequest: t.windowId == null ? URLRequest(url: WebUri(t.url)) : null,
       initialSettings: _settings(t),
+      // 0.5.7: the "Bảo vệ dấu vân tay" switch finally does something
+      initialUserScripts: UnmodifiableListView([
+        if (YomiAntiFingerprint.enabled)
+          UserScript(
+            source: YomiAntiFingerprint.scriptOrEmpty(),
+            injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START,
+            forMainFrameOnly: false,
+          ),
+      ]),
       onWebViewCreated: (c) {
         t.c = c;
         c.addJavaScriptHandler(
@@ -901,9 +912,14 @@ class _BrowserScreenState extends State<BrowserScreen> {
                     title: Text(tr('Bảo vệ dấu vân tay (Anti-Fingerprinting)')),
                     subtitle: Text(tr('Chống thu thập Fingerprint Canvas, WebGL, AudioContext và che giấu thông số thiết bị')),
                     onChanged: (v) async {
-                      await YomiPrefs.set('browser_fingerprint_protection', v);
+                      await YomiPrefs.set(YomiAntiFingerprint.prefKey, v);
                       set(() {});
                       _toast(v ? tr('Đã bật bảo vệ dấu vân tay') : tr('Đã tắt bảo vệ dấu vân tay'));
+                      // 0.5.7: the script is set when a tab is created –
+                      // reload the open tab so the change applies at once
+                      try {
+                        await _tab.c?.reload();
+                      } catch (_) {}
                     },
                   ),
                   const Divider(),

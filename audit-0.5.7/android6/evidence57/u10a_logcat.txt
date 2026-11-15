@@ -1,0 +1,2454 @@
+﻿--------- beginning of main
+
+11-15 00:55:25.939 I/Icing   ( 2371): Indexing done com.google.android.gms-internal.3p:MobileApplication
+
+11-15 00:55:26.497 D/AndroidRuntime( 3235): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:55:26.498 D/AndroidRuntime( 3235): CheckJNI is OFF
+
+11-15 00:55:26.509 D/ICU     ( 3235): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:55:26.534 E/memtrack( 3235): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:55:26.534 E/android.os.Debug( 3235): failed to load memtrack module: -2
+
+11-15 00:55:26.535 I/Radio-JNI( 3235): register_android_hardware_Radio DONE
+
+11-15 00:55:26.539 D/AndroidRuntime( 3235): Calling main entry com.android.commands.am.Am
+
+--------- beginning of system
+
+11-15 00:55:26.577 I/ActivityManager( 1620): Force stopping com.yomihub.app appid=10083 user=0: from pid 3235
+
+11-15 00:55:26.578 D/AndroidRuntime( 3235): Shutting down VM
+
+11-15 00:55:26.910 D/AndroidRuntime( 3244): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:55:26.911 D/AndroidRuntime( 3244): CheckJNI is OFF
+
+11-15 00:55:26.918 D/ICU     ( 3244): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:55:26.935 E/memtrack( 3244): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:55:26.935 E/android.os.Debug( 3244): failed to load memtrack module: -2
+
+11-15 00:55:26.936 I/Radio-JNI( 3244): register_android_hardware_Radio DONE
+
+11-15 00:55:26.941 D/AndroidRuntime( 3244): Calling main entry com.android.commands.input.Input
+
+11-15 00:55:26.942 I/Input   ( 3244): injectKeyEvent: KeyEvent { action=ACTION_DOWN, keyCode=KEYCODE_WAKEUP, scanCode=0, metaState=0, flags=0x0, repeatCount=0, eventTime=63399, downTime=63399, deviceId=-1, source=0x101 }
+
+11-15 00:55:26.946 I/Input   ( 3244): injectKeyEvent: KeyEvent { action=ACTION_UP, keyCode=KEYCODE_WAKEUP, scanCode=0, metaState=0, flags=0x0, repeatCount=0, eventTime=63399, downTime=63399, deviceId=-1, source=0x101 }
+
+11-15 00:55:26.947 D/AndroidRuntime( 3244): Shutting down VM
+
+11-15 00:55:27.292 D/AndroidRuntime( 3253): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:55:27.293 D/AndroidRuntime( 3253): CheckJNI is OFF
+
+11-15 00:55:27.301 D/ICU     ( 3253): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:55:27.315 E/memtrack( 3253): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:55:27.315 E/android.os.Debug( 3253): failed to load memtrack module: -2
+
+11-15 00:55:27.316 I/Radio-JNI( 3253): register_android_hardware_Radio DONE
+
+11-15 00:55:27.319 D/AndroidRuntime( 3253): Calling main entry com.android.commands.am.Am
+
+11-15 00:55:27.330 I/ActivityManager( 1620): START u0 {flg=0x10000000 cmp=com.yomihub.app/com.kodjodevf.mangayomi.MainActivity} from uid 0 on display 0
+
+11-15 00:55:27.358 D/AndroidRuntime( 3253): Shutting down VM
+
+11-15 00:55:27.376 I/ActivityManager( 1620): Start proc 3262:com.yomihub.app/u0a83 for activity com.yomihub.app/com.kodjodevf.mangayomi.MainActivity
+
+11-15 00:55:27.389 D/hwcomposer( 1258): hw_composer sent 245 syncs in 61s
+
+11-15 00:55:27.422 D/gralloc_ranchu( 1258): gralloc_alloc: Creating ashmem region of size 8294400
+
+11-15 00:55:27.483 D/EGL_emulation( 1993): eglMakeCurrent: 0x7fcdcd9a1fa0: ver 2 0 (tinfo 0x7fcdcd982be0)
+
+11-15 00:55:27.485 E/Surface ( 1993): getSlotFromBufferLocked: unknown buffer: 0x7fcdcd9a2cc0
+
+11-15 00:55:27.597 D/skia    ( 3262): [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+
+11-15 00:55:27.631 I/flutter ( 3262): [IMPORTANT:flutter/shell/common/shell.cc(528)] [Action Required]: Impeller opt-out deprecated.
+
+11-15 00:55:27.631 I/flutter ( 3262):     The application opted out of Impeller by either using the
+
+11-15 00:55:27.631 I/flutter ( 3262):     `--no-enable-impeller` flag or the
+
+11-15 00:55:27.631 I/flutter ( 3262):     `io.flutter.embedding.android.EnableImpeller` `AndroidManifest.xml` entry.
+
+11-15 00:55:27.631 I/flutter ( 3262):     These options are going to go away in an upcoming Flutter release. Remove
+
+11-15 00:55:27.631 I/flutter ( 3262):     the explicit opt-out. If you need to opt-out, please report a bug describing
+
+11-15 00:55:27.631 I/flutter ( 3262):     the issue.
+
+11-15 00:55:27.631 I/flutter ( 3262): 
+
+11-15 00:55:27.631 I/flutter ( 3262):     https://github.com/flutter/flutter/issues/new?template=02_bug.yml
+
+11-15 00:55:27.631 I/flutter ( 3262): 
+
+11-15 00:55:27.632 D/        ( 3262): HostConnection::get() New Host Connection established 0x7fcdbdfd2600, tid 3262
+
+11-15 00:55:27.647 D/EGL_emulation( 3262): eglCreateContext: 0x7fcdc9ec8f20: maj 2 min 0 rcv 2
+
+11-15 00:55:27.649 D/EGL_emulation( 3262): eglCreateContext: 0x7fcdc9ec9740: maj 2 min 0 rcv 2
+
+11-15 00:55:27.651 D/        ( 3262): HostConnection::get() New Host Connection established 0x7fcdbdfd2840, tid 3278
+
+11-15 00:55:27.654 D/EGL_emulation( 3262): eglMakeCurrent: 0x7fcdc9ec9740: ver 2 0 (tinfo 0x7fcdbdff26e0)
+
+11-15 00:55:27.704 I/YomiA6Tls( 3262): TMPDIR = /data/user/0/com.yomihub.app/cache
+
+11-15 00:55:27.765 I/YomiA6Tls( 3262): Android 23: thêm 121 CA gốc đóng gói vào kho tin cậy Java
+
+11-15 00:55:27.766 I/art     ( 3262): Background sticky concurrent mark sweep GC freed 11269(1316KB) AllocSpace objects, 0(0B) LOS objects, 14% free, 5MB/6MB, paused 5.802ms total 15.901ms
+
+11-15 00:55:27.795 I/TextToSpeech( 3262): Sucessfully bound to com.svox.pico
+
+11-15 00:55:27.806 V/SynthProxy( 3191): About to load libttspico.so, applyFilter=true
+
+11-15 00:55:27.816 I/media_kit( 3262): package:media_kit_libs_android_video attached.
+
+11-15 00:55:27.817 D/media_kit( 3262): Android
+
+11-15 00:55:27.817 D/media_kit( 3262): generic_x86_64
+
+11-15 00:55:27.817 D/media_kit( 3262): Android/sdk_google_phone_x86_64/generic_x86_64:6.0/MASTER/6695544:userdebug/test-keys
+
+11-15 00:55:27.817 D/media_kit( 3262): ranchu
+
+11-15 00:55:27.817 D/media_kit( 3262): Android SDK built for x86_64
+
+11-15 00:55:27.817 D/media_kit( 3262): unknown
+
+11-15 00:55:27.817 D/media_kit( 3262): sdk_google_phone_x86_64
+
+11-15 00:55:27.818 I/media_kit( 3262): Saved application context.
+
+11-15 00:55:27.831 I/SVOX Pico Engine( 3191): loaded en-US successfully
+
+11-15 00:55:27.956 E/SurfaceFlinger( 1258): ro.sf.lcd_density must be defined as a build property
+
+11-15 00:55:27.957 D/OpenGLRenderer( 3262): Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+
+11-15 00:55:28.005 I/flutter ( 3262): [YomiA6Tls] Dart: them 121 CA goc dong goi (SDK < 24)
+
+11-15 00:55:28.015 W/linker  ( 3262): /data/app/com.yomihub.app-1/lib/x86_64/libsubsampling_scale_image_view.so: unused DT entry: type 0x1d arg 0xac
+
+11-15 00:55:28.016 I/flutter ( 3262): [YomiA6Native] thu muc lib = /data/app/com.yomihub.app-1/lib/x86_64; da nap truoc: libqjs.so, libsubsampling_scale_image_view.so
+
+11-15 00:55:28.019 I/TextToSpeech( 3262): Connected to ComponentInfo{com.svox.pico/com.svox.pico.PicoService}
+
+11-15 00:55:28.023 I/TextToSpeech( 3262): Set up connection to ComponentInfo{com.svox.pico/com.svox.pico.PicoService}
+
+11-15 00:55:28.030 I/art     ( 3262): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.DistinctElementSidecarCallback>
+
+11-15 00:55:28.030 I/art     ( 3262): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.DistinctElementSidecarCallback>
+
+11-15 00:55:28.030 I/art     ( 3262): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.SidecarCompat$TranslatingCallback>
+
+11-15 00:55:28.030 I/art     ( 3262): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.SidecarCompat$TranslatingCallback>
+
+11-15 00:55:28.105 I/OpenGLRenderer( 3262): Initialized EGL, version 1.4
+
+11-15 00:55:28.105 D/        ( 3262): HostConnection::get() New Host Connection established 0x7fcdba09e060, tid 3285
+
+11-15 00:55:28.113 D/EGL_emulation( 3262): eglCreateContext: 0x7fcdba0610a0: maj 2 min 0 rcv 2
+
+11-15 00:55:28.114 D/EGL_emulation( 3262): eglMakeCurrent: 0x7fcdba0610a0: ver 2 0 (tinfo 0x7fcdba27c120)
+
+11-15 00:55:28.120 D/EGL_emulation( 3262): eglMakeCurrent: 0x7fcdba0610a0: ver 2 0 (tinfo 0x7fcdba27c120)
+
+11-15 00:55:28.169 D/        ( 3262): HostConnection::get() New Host Connection established 0x7fcdc9e433e0, tid 3277
+
+11-15 00:55:28.172 D/EGL_emulation( 3262): eglMakeCurrent: 0x7fcdc9ec8f20: ver 2 0 (tinfo 0x7fcdbdff2620)
+
+11-15 00:55:28.177 D/EGL_emulation( 3262): eglCreateContext: 0x7fcdcd9a2040: maj 2 min 0 rcv 2
+
+11-15 00:55:28.178 D/EGL_emulation( 3262): eglMakeCurrent: 0x7fcdcd9a2040: ver 2 0 (tinfo 0x7fcdbdff2620)
+
+11-15 00:55:28.178 D/EGL_emulation( 3262): eglMakeCurrent: 0x7fcdc9ec8f20: ver 2 0 (tinfo 0x7fcdbdff2620)
+
+11-15 00:55:28.194 D/EGL_emulation( 3262): eglMakeCurrent: 0x7fcdc9ec8f20: ver 2 0 (tinfo 0x7fcdbdff2620)
+
+11-15 00:55:28.220 I/flutter ( 3262): IsarCore using libmdbx: v0.13.8-temp-upstream-fix
+
+11-15 00:55:28.323 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:55:28.564 D/        ( 2649): HostConnection::get() New Host Connection established 0x7fcdcda16ea0, tid 2783
+
+11-15 00:55:28.657 D/EGL_emulation( 2649): eglCreateContext: 0x7fcdcd9a3a80: maj 2 min 0 rcv 2
+
+11-15 00:55:28.711 D/EGL_emulation( 2649): eglMakeCurrent: 0x7fcdcd9a3a80: ver 2 0 (tinfo 0x7fcdb672b1a0)
+
+11-15 00:55:29.204 I/ActivityManager( 1620): Displayed com.yomihub.app/com.kodjodevf.mangayomi.MainActivity: +1s844ms
+
+11-15 00:55:29.244 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:55:29.244 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:55:29.269 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:55:29.270 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:55:29.287 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:55:29.287 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:55:29.305 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:55:29.305 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:55:29.332 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:55:29.332 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:55:29.343 W/Conscrypt( 1964): Could not set socket write timeout: java.net.SocketException: Socket closed
+
+11-15 00:55:29.343 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk:classes3.dex for method void com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(int)
+
+11-15 00:55:29.343 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315):2)
+
+11-15 00:55:29.343 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:55:29.364 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:55:29.364 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:55:29.403 W/Conscrypt( 1964): Could not set socket write timeout: java.net.SocketException: Socket closed
+
+11-15 00:55:29.403 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk:classes3.dex for method void com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(int)
+
+11-15 00:55:29.403 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315):2)
+
+11-15 00:55:29.403 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:55:29.480 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): [AppCertManager] Failed to get security token.
+
+11-15 00:55:29.480 W/GLSUser ( 1964): java.io.IOException: Invalid scope
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at adiw.b(:com.google.android.gms@202414023@20.24.14 (040800-319035315):23)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at adiw.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):18)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at adiw.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):11)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at hwy.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):17)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at hww.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):45)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at hwr.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at hwu.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):10)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at gbi.call(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at soy.b(:com.google.android.gms@202414023@20.24.14 (040800-319035315):12)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at soy.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):7)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1113)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at sux.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:55:29.480 W/GLSUser ( 1964): 	at java.lang.Thread.run(Thread.java:818)
+
+11-15 00:55:29.486 W/art     ( 1964): No such thread id for suspend: 22
+
+11-15 00:55:29.489 I/Auth    ( 1964): [ReflectiveChannelBinder] Successfully bound channel!
+
+11-15 00:55:29.549 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:55:29.554 W/Conscrypt( 1964): Could not set socket write timeout: java.net.SocketException: Socket closed
+
+11-15 00:55:29.554 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk:classes3.dex for method void com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(int)
+
+11-15 00:55:29.557 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+
+11-15 00:55:29.557 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315):2)
+
+11-15 00:55:29.557 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:55:29.637 W/Conscrypt( 1964): Could not set socket write timeout: java.net.SocketException: Socket closed
+
+11-15 00:55:29.637 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk:classes3.dex for method void com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(int)
+
+11-15 00:55:29.637 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+
+11-15 00:55:29.638 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315):2)
+
+11-15 00:55:29.638 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:55:29.719 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): [AppCertManager] IOException while requesting key: 
+
+11-15 00:55:29.719 W/GLSUser ( 1964): java.io.IOException: Invalid device key response.
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at hwy.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):49)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at hww.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):45)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at hwr.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at hwu.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):10)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at gbi.call(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at soy.b(:com.google.android.gms@202414023@20.24.14 (040800-319035315):12)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at soy.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):7)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1113)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at sux.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:55:29.719 W/GLSUser ( 1964): 	at java.lang.Thread.run(Thread.java:818)
+
+11-15 00:55:30.413 I/flutter ( 3262): [LocalLibraryScanner] _scanDirectory start: name=local, path=/storage/emulated/0/YomiHub/local, platform=android, platformVersion=sdk_google_phone_x86_64-userdebug 6.0 MASTER 6695544 test-keys, configuredFolders=1
+
+11-15 00:55:30.413 I/flutter ( 3262): [LocalLibraryScanner] configured local folders: name=local, path=/storage/emulated/0/YomiHub/local
+
+11-15 00:55:30.417 I/flutter ( 3262): [LocalLibraryScanner] _scanDirectory directory probe [initial]: path=/storage/emulated/0/YomiHub/local, absolutePath=/storage/emulated/0/YomiHub/local, normalizedPath=/storage/emulated/0/YomiHub/local, parent=/storage/emulated/0/YomiHub, exists=true, parentExists=true, statType=directory, statMode=rwxrwx---, modified=2026-11-15T00:55:26.125
+
+11-15 00:55:30.423 I/flutter ( 3262): [LocalLibraryScanner] _scanDirectory root entries: path=/storage/emulated/0/YomiHub/local, total=4, folders=0, preview=_File:A6 Test Manga.cbz, _File:A6 Test Novel.epub, _File:A6 Test Video.mp4, _File:A6 Test Manga JPEG.cbz
+
+11-15 00:55:30.424 I/flutter ( 3262): [LocalLibraryScanner] title folders: top=0, titles=0
+
+11-15 00:55:30.424 I/flutter ( 3262): [LocalLibraryScanner] _scanDirectory scan summary: folder=/storage/emulated/0/YomiHub/local, processedMangas=4, newMangas=4, newChapters=4
+
+11-15 00:55:32.333 I/ContentMaintenance( 2371): Internal cache bytes used: 0; limit: 100000000; download size: 0
+
+11-15 00:55:32.342 I/RealtimeCacheCleanup( 2371): Beginning Realtime garbage collection.
+
+11-15 00:55:32.342 I/RealtimeCacheCleanup( 2371): Finished Realtime garbage collection.
+
+11-15 00:55:34.706 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:55:34.706 I/Vision  ( 2371): Exceeded maximum feature download tries for ocr
+
+11-15 00:55:34.706 W/Vision  ( 2371): Request of optional module download of ocr failed.
+
+11-15 00:55:34.719 I/Vision  ( 2371): Checking for download completion for 81177 -- ocr
+
+11-15 00:55:35.517 W/ChimeraConfigurator( 2371): Error syncing flags: qoq: COMMIT_TIMEOUT
+
+11-15 00:55:35.517 I/ChmraDebugLogger( 2371): [79] COMMIT_TIMEOUT
+
+11-15 00:55:35.536 I/ChmraDebugLogger( 2371): [52] null
+
+11-15 00:55:35.547 W/ChimeraConfigService( 2371): Retry attempt was throttled.
+
+11-15 00:55:35.548 W/art     ( 2371): Long monitor contention event with owner method=void java.lang.Thread.sleep!(java.lang.Object, long, int) from Thread.java:4294967294 waiters=0 for 39.807s
+
+11-15 00:55:35.548 I/ChimeraConfigurator( 2371): Starting update, reason: 3 urgentFeatures: 
+
+11-15 00:55:35.567 I/ChmraDebugLogger( 2371): [52] null
+
+11-15 00:55:35.595 W/ChimeraConfigService( 2371): Retry attempt was throttled.
+
+11-15 00:55:37.758 W/art     ( 3262): Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[16,tid=3297,Native,Thread*=0x7fcdb793b800,peer=0x132a90a0,"Thread-149"]
+
+11-15 00:55:38.951 I/MediaFocusControl( 1620):  AudioFocus  abandonAudioFocus() from android.media.AudioManager@31e54a0com.android.music.MediaPlaybackService$3@572f859
+
+11-15 00:55:44.724 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:55:44.727 I/Vision  ( 2371): Checking for download completion for 91185 -- ocr
+
+11-15 00:55:44.734 I/ChimeraConfigurator( 2371): Starting update, reason: 4 urgentFeatures: vision.ocr:-1
+
+11-15 00:55:54.732 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:55:54.732 I/Vision  ( 2371): Checking for download completion for 101190 -- ocr
+
+11-15 00:55:57.903 D/AndroidRuntime( 4083): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:55:57.904 D/AndroidRuntime( 4083): CheckJNI is OFF
+
+11-15 00:55:57.913 D/ICU     ( 4083): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:55:57.940 E/memtrack( 4083): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:55:57.940 E/android.os.Debug( 4083): failed to load memtrack module: -2
+
+11-15 00:55:57.940 I/Radio-JNI( 4083): register_android_hardware_Radio DONE
+
+11-15 00:55:57.946 D/AndroidRuntime( 4083): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:55:59.047 W/AccessibilityNodeInfoDumper( 4083): Fetch time: 3ms
+
+11-15 00:55:59.047 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@6e49cc7
+
+11-15 00:55:59.068 D/AndroidRuntime( 4083): Shutting down VM
+
+11-15 00:55:59.527 E/SurfaceFlinger( 1258): ro.sf.lcd_density must be defined as a build property
+
+11-15 00:55:59.528 D/gralloc_ranchu( 1258): gralloc_alloc: Creating ashmem region of size 8294400
+
+11-15 00:55:59.533 D/        ( 4110): HostConnection::get() New Host Connection established 0x7f6ccd912480, tid 4110
+
+11-15 00:55:59.754 D/AndroidRuntime( 4115): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:55:59.756 D/AndroidRuntime( 4115): CheckJNI is OFF
+
+11-15 00:55:59.767 D/ICU     ( 4115): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:55:59.787 E/memtrack( 4115): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:55:59.787 E/android.os.Debug( 4115): failed to load memtrack module: -2
+
+11-15 00:55:59.789 I/Radio-JNI( 4115): register_android_hardware_Radio DONE
+
+11-15 00:55:59.796 D/AndroidRuntime( 4115): Calling main entry com.android.commands.am.Am
+
+11-15 00:55:59.804 D/MediaScannerReceiver( 1755): action: android.intent.action.MEDIA_SCANNER_SCAN_FILE path: /storage/emulated/0/q.png
+
+11-15 00:55:59.807 D/AndroidRuntime( 4115): Shutting down VM
+
+11-15 00:56:00.086 I/TelephonySpam( 2371): TelephonySpamChimeraService - Running Telephony Spam Chimera Service
+
+11-15 00:56:00.177 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.330 D/AndroidRuntime( 4132): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:56:00.331 D/AndroidRuntime( 4132): CheckJNI is OFF
+
+11-15 00:56:00.339 D/ICU     ( 4132): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:56:00.353 W/Conscrypt( 1964): Could not set socket write timeout: java.net.SocketException: Socket closed
+
+11-15 00:56:00.353 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk:classes3.dex for method void com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(int)
+
+11-15 00:56:00.353 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315):2)
+
+11-15 00:56:00.353 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:56:00.356 E/memtrack( 4132): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:56:00.356 E/android.os.Debug( 4132): failed to load memtrack module: -2
+
+11-15 00:56:00.357 I/Radio-JNI( 4132): register_android_hardware_Radio DONE
+
+11-15 00:56:00.361 D/AndroidRuntime( 4132): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:56:00.426 W/Conscrypt( 1964): Could not set socket write timeout: java.net.SocketException: Socket closed
+
+11-15 00:56:00.426 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk:classes3.dex for method void com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(int)
+
+11-15 00:56:00.426 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315):2)
+
+11-15 00:56:00.426 W/Conscrypt( 1964): 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:56:00.507 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.510 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.511 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.513 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.516 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.518 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.519 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.521 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.522 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.524 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.524 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.684 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.687 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.689 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.691 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.696 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.698 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.700 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.701 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.704 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.705 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.721 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.723 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.725 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.727 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:00.728 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:01.411 W/AccessibilityNodeInfoDumper( 4132): Fetch time: 2ms
+
+11-15 00:56:01.413 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@fdec48d
+
+11-15 00:56:01.427 D/AndroidRuntime( 4132): Shutting down VM
+
+11-15 00:56:02.093 D/AndroidRuntime( 4150): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:56:02.093 D/AndroidRuntime( 4150): CheckJNI is OFF
+
+11-15 00:56:02.100 D/ICU     ( 4150): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:56:02.113 E/memtrack( 4150): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:56:02.113 E/android.os.Debug( 4150): failed to load memtrack module: -2
+
+11-15 00:56:02.113 I/Radio-JNI( 4150): register_android_hardware_Radio DONE
+
+11-15 00:56:02.117 D/AndroidRuntime( 4150): Calling main entry com.android.commands.input.Input
+
+11-15 00:56:02.123 I/Input   ( 4150): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=324.0, y[0]=1815.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=98577, downTime=98577, deviceId=0, source=0x1002 }
+
+11-15 00:56:02.129 I/Input   ( 4150): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=324.0, y[0]=1815.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=98577, downTime=98577, deviceId=0, source=0x1002 }
+
+11-15 00:56:02.131 D/AndroidRuntime( 4150): Shutting down VM
+
+11-15 00:56:02.139 W/AudioTrack( 1620): AUDIO_OUTPUT_FLAG_FAST denied by client; transfer 4, track 48000 Hz, output 44100 Hz
+
+11-15 00:56:04.742 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:56:04.742 I/Vision  ( 2371): Checking for download completion for 111200 -- ocr
+
+11-15 00:56:05.308 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 273554 , only wrote 137488
+
+11-15 00:56:08.545 I/art     ( 3262): Note: end time exceeds epoch: 
+
+11-15 00:56:08.580 I/art     ( 3262): Note: end time exceeds epoch: 
+
+11-15 00:56:08.585 I/WebViewFactory( 3262): Loading com.android.webview version 44.0.2403.119 (code 246011960)
+
+11-15 00:56:08.615 W/System  ( 3262): ClassLoader referenced unknown path: /system/app/webview/lib/x86_64
+
+11-15 00:56:08.645 I/LibraryLoader( 3262): Time to load native libraries: 8 ms (timestamps 5095-5103)
+
+11-15 00:56:08.645 I/LibraryLoader( 3262): Expected native library version number "",actual native library version number ""
+
+11-15 00:56:08.650 V/WebViewChromiumFactoryProvider( 3262): Binding Chromium to main looper Looper (main, tid 1) {f5e51fe}
+
+11-15 00:56:08.651 I/LibraryLoader( 3262): Expected native library version number "",actual native library version number ""
+
+11-15 00:56:08.655 I/chromium( 3262): [INFO:library_loader_hooks.cc(120)] Chromium logging enabled: level = 0, default verbosity = 0
+
+11-15 00:56:08.659 I/BrowserStartupController( 3262): Initializing chromium process, singleProcess=true
+
+11-15 00:56:08.663 E/SysUtils( 3262): ApplicationContext is null in ApplicationStatus
+
+11-15 00:56:08.705 W/chromium( 3262): [WARNING:resource_bundle.cc(285)] locale_file_path.empty()
+
+11-15 00:56:08.710 E/libEGL  ( 3262): validate_display:255 error 3008 (EGL_BAD_DISPLAY)
+
+11-15 00:56:08.710 E/libEGL  ( 3262): validate_display:255 error 3008 (EGL_BAD_DISPLAY)
+
+11-15 00:56:08.716 D/EGL_emulation( 3262): eglCreateContext: 0x7fcdb7503a40: maj 2 min 0 rcv 2
+
+11-15 00:56:08.717 D/EGL_emulation( 3262): eglMakeCurrent: 0x7fcdb7503a40: ver 2 0 (tinfo 0x7fcdbdff2500)
+
+11-15 00:56:08.780 E/DataReductionProxySettingListener( 3262): No DRP key due to exception:java.lang.ClassNotFoundException: com.android.webview.chromium.Drp
+
+11-15 00:56:08.787 E/BluetoothAdapter( 3262): Bluetooth binder is null
+
+11-15 00:56:09.442 I/art     ( 3262): Note: end time exceeds epoch: 
+
+11-15 00:56:10.925 I/CastDatabase( 2371): Saving the database
+
+11-15 00:56:10.935 I/SQLiteCastStore( 2371): [CastNetworkInfo] saved: 0, skipped: 0, [CastDeviceInfo]: saved 0, skipped 0, [Paired Guest Mode DeviceInfo] saved: 0, skipped: 0. [ProbedNetworks]: saved 0, skipped: 0, [ProbedSocketAddress]: saved 0, skipped: 0, [Network-Device pairs]: saved: 0
+
+11-15 00:56:14.746 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:56:14.746 I/Vision  ( 2371): Checking for download completion for 121204 -- ocr
+
+11-15 00:56:24.753 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:56:24.753 I/Vision  ( 2371): Checking for download completion for 131211 -- ocr
+
+11-15 00:56:25.069 W/ChimeraConfigurator( 2371): Error syncing flags: qoq: COMMIT_TIMEOUT
+
+11-15 00:56:25.069 I/ChmraDebugLogger( 2371): [79] COMMIT_TIMEOUT
+
+11-15 00:56:25.072 I/ChmraDebugLogger( 2371): [52] null
+
+11-15 00:56:25.074 W/ChimeraConfigService( 2371): Retry attempt was throttled.
+
+11-15 00:56:30.016 I/GmscoreIpa( 2371): how are you::
+
+11-15 00:56:30.339 D/hwcomposer( 1258): hw_composer sent 402 syncs in 63s
+
+11-15 00:56:34.758 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:56:34.758 I/Vision  ( 2371): Exceeded maximum feature download tries for ocr
+
+11-15 00:56:34.758 W/Vision  ( 2371): Request of optional module download of ocr failed.
+
+11-15 00:56:34.758 I/Vision  ( 2371): Checking for download completion for 141216 -- ocr
+
+11-15 00:56:41.802 I/ActivityManager( 1620): Killing 2136:com.android.music/u0a40 (adj 15): empty #17
+
+11-15 00:56:44.767 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:56:44.770 I/Vision  ( 2371): Checking for download completion for 151228 -- ocr
+
+11-15 00:56:44.779 I/ChimeraConfigurator( 2371): Starting update, reason: 4 urgentFeatures: vision.ocr:-1
+
+11-15 00:56:47.487 E/SurfaceFlinger( 1258): ro.sf.lcd_density must be defined as a build property
+
+11-15 00:56:47.490 D/gralloc_ranchu( 1258): gralloc_alloc: Creating ashmem region of size 8294400
+
+11-15 00:56:47.492 D/        ( 4210): HostConnection::get() New Host Connection established 0x7f96f8552480, tid 4210
+
+11-15 00:56:48.227 D/AndroidRuntime( 4215): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:56:48.228 D/AndroidRuntime( 4215): CheckJNI is OFF
+
+11-15 00:56:48.238 D/ICU     ( 4215): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:56:48.254 E/memtrack( 4215): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:56:48.254 E/android.os.Debug( 4215): failed to load memtrack module: -2
+
+11-15 00:56:48.255 I/Radio-JNI( 4215): register_android_hardware_Radio DONE
+
+11-15 00:56:48.260 D/AndroidRuntime( 4215): Calling main entry com.android.commands.am.Am
+
+11-15 00:56:48.268 D/MediaScannerReceiver( 1755): action: android.intent.action.MEDIA_SCANNER_SCAN_FILE path: /storage/emulated/0/q.png
+
+11-15 00:56:48.270 D/AndroidRuntime( 4215): Shutting down VM
+
+11-15 00:56:48.491 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:48.526 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:56:48.759 D/EGL_emulation( 2649): eglCreateContext: 0x7fcdcd9a1be0: maj 2 min 0 rcv 2
+
+11-15 00:56:48.761 D/EGL_emulation( 2649): eglMakeCurrent: 0x7fcdcd9a1be0: ver 2 0 (tinfo 0x7fcdd273ba80)
+
+11-15 00:56:48.994 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): [AppCertManager] Failed to get security token.
+
+11-15 00:56:48.994 W/GLSUser ( 1964): java.io.IOException: Invalid scope
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at adiw.b(:com.google.android.gms@202414023@20.24.14 (040800-319035315):23)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at adiw.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):18)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at adiw.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):11)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at hwy.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):17)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at hww.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):45)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at hwr.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at hwu.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):10)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at gbi.call(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at soy.b(:com.google.android.gms@202414023@20.24.14 (040800-319035315):12)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at soy.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):7)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1113)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at sux.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:56:48.994 W/GLSUser ( 1964): 	at java.lang.Thread.run(Thread.java:818)
+
+11-15 00:56:49.089 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): [AppCertManager] IOException while requesting key: 
+
+11-15 00:56:49.089 W/GLSUser ( 1964): java.io.IOException: Invalid device key response.
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at hwy.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):49)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at hww.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):45)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at hwr.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at hwu.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):10)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at gbi.call(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at soy.b(:com.google.android.gms@202414023@20.24.14 (040800-319035315):12)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at soy.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):7)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1113)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at sux.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:56:49.089 W/GLSUser ( 1964): 	at java.lang.Thread.run(Thread.java:818)
+
+11-15 00:56:54.770 W/ActivityManager( 1620): Unable to start service Intent { act=com.google.android.gms.drive.ApiService.RESET_AFTER_BOOT flg=0x4 cmp=com.google.android.gms/.drive.api.ApiService (has extras) } U=0: not found
+
+11-15 00:56:54.774 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:56:54.774 I/Vision  ( 2371): Checking for download completion for 161232 -- ocr
+
+11-15 00:57:04.784 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:57:04.785 I/Vision  ( 2371): Checking for download completion for 171242 -- ocr
+
+11-15 00:57:14.790 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:57:14.790 I/Vision  ( 2371): Checking for download completion for 181248 -- ocr
+
+11-15 00:57:18.497 I/GmscoreIpa( 2371): how are you::
+
+11-15 00:57:19.021 E/SurfaceFlinger( 1258): ro.sf.lcd_density must be defined as a build property
+
+11-15 00:57:19.022 D/gralloc_ranchu( 1258): gralloc_alloc: Creating ashmem region of size 8294400
+
+11-15 00:57:19.025 D/        ( 4242): HostConnection::get() New Host Connection established 0x7f0dc0252480, tid 4242
+
+11-15 00:57:19.661 D/AndroidRuntime( 4247): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:57:19.663 D/AndroidRuntime( 4247): CheckJNI is OFF
+
+11-15 00:57:19.670 D/ICU     ( 4247): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:57:19.689 E/memtrack( 4247): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:57:19.689 E/android.os.Debug( 4247): failed to load memtrack module: -2
+
+11-15 00:57:19.690 I/Radio-JNI( 4247): register_android_hardware_Radio DONE
+
+11-15 00:57:19.697 D/AndroidRuntime( 4247): Calling main entry com.android.commands.am.Am
+
+11-15 00:57:19.705 D/MediaScannerReceiver( 1755): action: android.intent.action.MEDIA_SCANNER_SCAN_FILE path: /storage/emulated/0/q.png
+
+11-15 00:57:19.707 D/AndroidRuntime( 4247): Shutting down VM
+
+11-15 00:57:20.405 D/AndroidRuntime( 4265): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:57:20.406 D/AndroidRuntime( 4265): CheckJNI is OFF
+
+11-15 00:57:20.414 D/ICU     ( 4265): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:57:20.428 E/memtrack( 4265): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:57:20.428 E/android.os.Debug( 4265): failed to load memtrack module: -2
+
+11-15 00:57:20.429 I/Radio-JNI( 4265): register_android_hardware_Radio DONE
+
+11-15 00:57:20.433 D/AndroidRuntime( 4265): Calling main entry com.android.commands.am.Am
+
+11-15 00:57:20.439 I/ActivityManager( 1620): Force stopping com.yomihub.app appid=10083 user=0: from pid 4265
+
+11-15 00:57:20.440 I/ActivityManager( 1620): Killing 3262:com.yomihub.app/u0a83 (adj 0): stop com.yomihub.app
+
+11-15 00:57:20.448 W/InputDispatcher( 1620): channel 'f6a3d0b com.yomihub.app/com.kodjodevf.mangayomi.MainActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+
+11-15 00:57:20.448 E/InputDispatcher( 1620): channel 'f6a3d0b com.yomihub.app/com.kodjodevf.mangayomi.MainActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+
+11-15 00:57:20.449 I/WindowState( 1620): WIN DEATH: Window{fb9f720 u0 SurfaceView}
+
+11-15 00:57:20.450 D/GraphicsStats( 1620): Buffer count: 2
+
+11-15 00:57:20.455 I/WindowState( 1620): WIN DEATH: Window{f6a3d0b u0 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity}
+
+11-15 00:57:20.455 W/InputDispatcher( 1620): Attempted to unregister already unregistered input channel 'f6a3d0b com.yomihub.app/com.kodjodevf.mangayomi.MainActivity (server)'
+
+11-15 00:57:20.477 W/ActivityManager( 1620): Force removing ActivityRecord{b180d59 u0 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity t36}: app died, no saved state
+
+11-15 00:57:20.485 W/ActivityManager( 1620): Spurious death for ProcessRecord{3ccaed0 0:com.yomihub.app/u0a83}, curProc for 3262: null
+
+11-15 00:57:20.486 D/AndroidRuntime( 4265): Shutting down VM
+
+11-15 00:57:20.520 D/EGL_emulation( 1993): eglMakeCurrent: 0x7fcdcd9a1fa0: ver 2 0 (tinfo 0x7fcdcd982be0)
+
+11-15 00:57:20.523 W/InputMethodManagerService( 1620): Got RemoteException sending setActive(false) notification to pid 3262 uid 10083
+
+11-15 00:57:20.625 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:20.625 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:20.643 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:20.643 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:20.661 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:20.661 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:20.680 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:20.680 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:20.698 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:20.698 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:20.727 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:20.727 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:20.756 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:20.756 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:20.913 D/AndroidRuntime( 4276): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:57:20.914 D/AndroidRuntime( 4276): CheckJNI is OFF
+
+11-15 00:57:20.921 D/ICU     ( 4276): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:57:20.935 E/memtrack( 4276): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:57:20.935 E/android.os.Debug( 4276): failed to load memtrack module: -2
+
+11-15 00:57:20.935 I/Radio-JNI( 4276): register_android_hardware_Radio DONE
+
+11-15 00:57:20.939 D/AndroidRuntime( 4276): Calling main entry com.android.commands.input.Input
+
+11-15 00:57:20.942 I/Input   ( 4276): injectKeyEvent: KeyEvent { action=ACTION_DOWN, keyCode=KEYCODE_WAKEUP, scanCode=0, metaState=0, flags=0x0, repeatCount=0, eventTime=177399, downTime=177399, deviceId=-1, source=0x101 }
+
+11-15 00:57:20.943 I/Input   ( 4276): injectKeyEvent: KeyEvent { action=ACTION_UP, keyCode=KEYCODE_WAKEUP, scanCode=0, metaState=0, flags=0x0, repeatCount=0, eventTime=177399, downTime=177399, deviceId=-1, source=0x101 }
+
+11-15 00:57:20.944 D/AndroidRuntime( 4276): Shutting down VM
+
+11-15 00:57:21.284 D/AndroidRuntime( 4285): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:57:21.285 D/AndroidRuntime( 4285): CheckJNI is OFF
+
+11-15 00:57:21.292 D/ICU     ( 4285): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:57:21.306 E/memtrack( 4285): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:57:21.306 E/android.os.Debug( 4285): failed to load memtrack module: -2
+
+11-15 00:57:21.306 I/Radio-JNI( 4285): register_android_hardware_Radio DONE
+
+11-15 00:57:21.310 D/AndroidRuntime( 4285): Calling main entry com.android.commands.am.Am
+
+11-15 00:57:21.315 I/ActivityManager( 1620): START u0 {flg=0x10000000 cmp=com.yomihub.app/com.kodjodevf.mangayomi.MainActivity} from uid 0 on display 0
+
+11-15 00:57:21.326 D/AndroidRuntime( 4285): Shutting down VM
+
+11-15 00:57:21.353 I/ActivityManager( 1620): Start proc 4294:com.yomihub.app/u0a83 for activity com.yomihub.app/com.kodjodevf.mangayomi.MainActivity
+
+11-15 00:57:21.378 D/gralloc_ranchu( 1258): gralloc_alloc: Creating ashmem region of size 8294400
+
+11-15 00:57:21.437 D/EGL_emulation( 1993): eglMakeCurrent: 0x7fcdcd9a1fa0: ver 2 0 (tinfo 0x7fcdcd982be0)
+
+11-15 00:57:21.440 E/Surface ( 1993): getSlotFromBufferLocked: unknown buffer: 0x7fcdcb7e68a0
+
+11-15 00:57:21.534 D/skia    ( 4294): [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+
+11-15 00:57:21.560 I/flutter ( 4294): [IMPORTANT:flutter/shell/common/shell.cc(528)] [Action Required]: Impeller opt-out deprecated.
+
+11-15 00:57:21.560 I/flutter ( 4294):     The application opted out of Impeller by either using the
+
+11-15 00:57:21.560 I/flutter ( 4294):     `--no-enable-impeller` flag or the
+
+11-15 00:57:21.560 I/flutter ( 4294):     `io.flutter.embedding.android.EnableImpeller` `AndroidManifest.xml` entry.
+
+11-15 00:57:21.560 I/flutter ( 4294):     These options are going to go away in an upcoming Flutter release. Remove
+
+11-15 00:57:21.560 I/flutter ( 4294):     the explicit opt-out. If you need to opt-out, please report a bug describing
+
+11-15 00:57:21.560 I/flutter ( 4294):     the issue.
+
+11-15 00:57:21.560 I/flutter ( 4294): 
+
+11-15 00:57:21.560 I/flutter ( 4294):     https://github.com/flutter/flutter/issues/new?template=02_bug.yml
+
+11-15 00:57:21.560 I/flutter ( 4294): 
+
+11-15 00:57:21.561 D/        ( 4294): HostConnection::get() New Host Connection established 0x7fcdc9777780, tid 4294
+
+11-15 00:57:21.566 D/EGL_emulation( 4294): eglCreateContext: 0x7fcdc9ec6220: maj 2 min 0 rcv 2
+
+11-15 00:57:21.570 D/EGL_emulation( 4294): eglCreateContext: 0x7fcdc9ec6900: maj 2 min 0 rcv 2
+
+11-15 00:57:21.573 D/        ( 4294): HostConnection::get() New Host Connection established 0x7fcdc97779c0, tid 4310
+
+11-15 00:57:21.581 D/EGL_emulation( 4294): eglMakeCurrent: 0x7fcdc9ec6900: ver 2 0 (tinfo 0x7fcdc97bc380)
+
+11-15 00:57:21.619 I/YomiA6Tls( 4294): TMPDIR = /data/user/0/com.yomihub.app/cache
+
+11-15 00:57:21.661 I/YomiA6Tls( 4294): Android 23: thêm 121 CA gốc đóng gói vào kho tin cậy Java
+
+11-15 00:57:21.679 I/TextToSpeech( 4294): Sucessfully bound to com.svox.pico
+
+11-15 00:57:21.681 V/SynthProxy( 3191): About to load libttspico.so, applyFilter=true
+
+11-15 00:57:21.692 I/SVOX Pico Engine( 3191): loaded en-US successfully
+
+11-15 00:57:21.694 I/media_kit( 4294): package:media_kit_libs_android_video attached.
+
+11-15 00:57:21.695 D/media_kit( 4294): Android
+
+11-15 00:57:21.695 D/media_kit( 4294): generic_x86_64
+
+11-15 00:57:21.695 D/media_kit( 4294): Android/sdk_google_phone_x86_64/generic_x86_64:6.0/MASTER/6695544:userdebug/test-keys
+
+11-15 00:57:21.695 D/media_kit( 4294): ranchu
+
+11-15 00:57:21.695 D/media_kit( 4294): Android SDK built for x86_64
+
+11-15 00:57:21.695 D/media_kit( 4294): unknown
+
+11-15 00:57:21.695 D/media_kit( 4294): sdk_google_phone_x86_64
+
+11-15 00:57:21.695 I/media_kit( 4294): Saved application context.
+
+11-15 00:57:21.786 E/SurfaceFlinger( 1258): ro.sf.lcd_density must be defined as a build property
+
+11-15 00:57:21.787 D/OpenGLRenderer( 4294): Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+
+11-15 00:57:21.835 I/flutter ( 4294): [YomiA6Tls] Dart: them 121 CA goc dong goi (SDK < 24)
+
+11-15 00:57:21.838 W/linker  ( 4294): /data/app/com.yomihub.app-1/lib/x86_64/libsubsampling_scale_image_view.so: unused DT entry: type 0x1d arg 0xac
+
+11-15 00:57:21.838 I/flutter ( 4294): [YomiA6Native] thu muc lib = /data/app/com.yomihub.app-1/lib/x86_64; da nap truoc: libqjs.so, libsubsampling_scale_image_view.so
+
+11-15 00:57:21.843 I/TextToSpeech( 4294): Connected to ComponentInfo{com.svox.pico/com.svox.pico.PicoService}
+
+11-15 00:57:21.845 I/TextToSpeech( 4294): Set up connection to ComponentInfo{com.svox.pico/com.svox.pico.PicoService}
+
+11-15 00:57:21.849 I/art     ( 4294): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.DistinctElementSidecarCallback>
+
+11-15 00:57:21.849 I/art     ( 4294): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.DistinctElementSidecarCallback>
+
+11-15 00:57:21.849 I/art     ( 4294): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.SidecarCompat$TranslatingCallback>
+
+11-15 00:57:21.849 I/art     ( 4294): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.SidecarCompat$TranslatingCallback>
+
+11-15 00:57:21.955 I/OpenGLRenderer( 4294): Initialized EGL, version 1.4
+
+11-15 00:57:21.955 D/        ( 4294): HostConnection::get() New Host Connection established 0x7fcdba05e060, tid 4317
+
+11-15 00:57:21.961 D/EGL_emulation( 4294): eglCreateContext: 0x7fcdba0570a0: maj 2 min 0 rcv 2
+
+11-15 00:57:21.962 D/EGL_emulation( 4294): eglMakeCurrent: 0x7fcdba0570a0: ver 2 0 (tinfo 0x7fcdba0a7940)
+
+11-15 00:57:21.978 D/EGL_emulation( 4294): eglMakeCurrent: 0x7fcdba0570a0: ver 2 0 (tinfo 0x7fcdba0a7940)
+
+11-15 00:57:22.024 D/        ( 4294): HostConnection::get() New Host Connection established 0x7fcdc9e43560, tid 4309
+
+11-15 00:57:22.028 D/EGL_emulation( 4294): eglMakeCurrent: 0x7fcdc9ec6220: ver 2 0 (tinfo 0x7fcdc97abfe0)
+
+11-15 00:57:22.032 D/EGL_emulation( 4294): eglCreateContext: 0x7fcdcd9aaac0: maj 2 min 0 rcv 2
+
+11-15 00:57:22.032 D/EGL_emulation( 4294): eglMakeCurrent: 0x7fcdcd9aaac0: ver 2 0 (tinfo 0x7fcdc97abfe0)
+
+11-15 00:57:22.033 D/EGL_emulation( 4294): eglMakeCurrent: 0x7fcdc9ec6220: ver 2 0 (tinfo 0x7fcdc97abfe0)
+
+11-15 00:57:22.037 D/EGL_emulation( 4294): eglMakeCurrent: 0x7fcdc9ec6220: ver 2 0 (tinfo 0x7fcdc97abfe0)
+
+11-15 00:57:22.047 I/flutter ( 4294): IsarCore using libmdbx: v0.13.8-temp-upstream-fix
+
+11-15 00:57:22.759 I/ActivityManager( 1620): Displayed com.yomihub.app/com.kodjodevf.mangayomi.MainActivity: +1s432ms
+
+11-15 00:57:22.784 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:22.784 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:22.801 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:22.801 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:22.814 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:22.814 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:22.846 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:22.846 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:22.878 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:22.878 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:22.912 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:57:22.912 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:57:24.236 I/flutter ( 4294): [LocalLibraryScanner] _scanDirectory start: name=local, path=/storage/emulated/0/YomiHub/local, platform=android, platformVersion=sdk_google_phone_x86_64-userdebug 6.0 MASTER 6695544 test-keys, configuredFolders=1
+
+11-15 00:57:24.237 I/flutter ( 4294): [LocalLibraryScanner] configured local folders: name=local, path=/storage/emulated/0/YomiHub/local
+
+11-15 00:57:24.240 I/flutter ( 4294): [LocalLibraryScanner] _scanDirectory directory probe [initial]: path=/storage/emulated/0/YomiHub/local, absolutePath=/storage/emulated/0/YomiHub/local, normalizedPath=/storage/emulated/0/YomiHub/local, parent=/storage/emulated/0/YomiHub, exists=true, parentExists=true, statType=directory, statMode=rwxrwx---, modified=2026-11-15T00:55:26.125
+
+11-15 00:57:24.253 I/flutter ( 4294): [LocalLibraryScanner] _scanDirectory root entries: path=/storage/emulated/0/YomiHub/local, total=4, folders=0, preview=_File:A6 Test Manga.cbz, _File:A6 Test Novel.epub, _File:A6 Test Video.mp4, _File:A6 Test Manga JPEG.cbz
+
+11-15 00:57:24.253 I/flutter ( 4294): [LocalLibraryScanner] title folders: top=0, titles=0
+
+11-15 00:57:24.253 I/flutter ( 4294): [LocalLibraryScanner] _scanDirectory scan summary: folder=/storage/emulated/0/YomiHub/local, processedMangas=4, newMangas=0, newChapters=0
+
+11-15 00:57:24.798 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:57:24.798 I/Vision  ( 2371): Checking for download completion for 191256 -- ocr
+
+11-15 00:57:25.136 W/ChimeraConfigurator( 2371): Error syncing flags: qoq: COMMIT_TIMEOUT
+
+11-15 00:57:25.136 I/ChmraDebugLogger( 2371): [79] COMMIT_TIMEOUT
+
+11-15 00:57:25.137 I/ChmraDebugLogger( 2371): [52] null
+
+11-15 00:57:25.139 W/ChimeraConfigService( 2371): Retry attempt was throttled.
+
+11-15 00:57:30.539 W/art     ( 4294): Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[16,tid=4325,Native,Thread*=0x7fcdb793b800,peer=0x1329a0a0,"Thread-153"]
+
+11-15 00:57:34.805 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:57:34.805 I/Vision  ( 2371): Exceeded maximum feature download tries for ocr
+
+11-15 00:57:34.805 W/Vision  ( 2371): Request of optional module download of ocr failed.
+
+11-15 00:57:34.806 I/Vision  ( 2371): Checking for download completion for 201263 -- ocr
+
+11-15 00:57:35.547 D/hwcomposer( 1258): hw_composer sent 396 syncs in 66s
+
+11-15 00:57:41.838 W/art     ( 2371): No such thread id for suspend: 15
+
+11-15 00:57:43.937 D/AndroidRuntime( 4356): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:57:43.938 D/AndroidRuntime( 4356): CheckJNI is OFF
+
+11-15 00:57:43.946 D/ICU     ( 4356): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:57:43.965 E/memtrack( 4356): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:57:43.965 E/android.os.Debug( 4356): failed to load memtrack module: -2
+
+11-15 00:57:43.965 I/Radio-JNI( 4356): register_android_hardware_Radio DONE
+
+11-15 00:57:43.973 D/AndroidRuntime( 4356): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:57:44.811 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:57:44.817 I/Vision  ( 2371): Checking for download completion for 211275 -- ocr
+
+11-15 00:57:44.826 I/ChimeraConfigurator( 2371): Starting update, reason: 4 urgentFeatures: vision.ocr:-1
+
+11-15 00:57:45.026 W/AccessibilityNodeInfoDumper( 4356): Fetch time: 1ms
+
+11-15 00:57:45.028 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@cee5cbd
+
+11-15 00:57:45.047 D/AndroidRuntime( 4356): Shutting down VM
+
+11-15 00:57:45.499 D/AndroidRuntime( 4372): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:57:45.499 D/AndroidRuntime( 4372): CheckJNI is OFF
+
+11-15 00:57:45.507 D/ICU     ( 4372): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:57:45.520 E/memtrack( 4372): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:57:45.521 E/android.os.Debug( 4372): failed to load memtrack module: -2
+
+11-15 00:57:45.521 I/Radio-JNI( 4372): register_android_hardware_Radio DONE
+
+11-15 00:57:45.528 D/AndroidRuntime( 4372): Calling main entry com.android.commands.input.Input
+
+11-15 00:57:45.532 I/Input   ( 4372): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=756.0, y[0]=1815.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=201988, downTime=201988, deviceId=0, source=0x1002 }
+
+11-15 00:57:45.536 I/Input   ( 4372): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=756.0, y[0]=1815.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=201988, downTime=201988, deviceId=0, source=0x1002 }
+
+11-15 00:57:45.537 D/AndroidRuntime( 4372): Shutting down VM
+
+11-15 00:57:48.687 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 411980 , only wrote 275637
+
+11-15 00:57:49.897 D/AndroidRuntime( 4381): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:57:49.897 D/AndroidRuntime( 4381): CheckJNI is OFF
+
+11-15 00:57:49.905 D/ICU     ( 4381): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:57:49.922 E/memtrack( 4381): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:57:49.922 E/android.os.Debug( 4381): failed to load memtrack module: -2
+
+11-15 00:57:49.923 I/Radio-JNI( 4381): register_android_hardware_Radio DONE
+
+11-15 00:57:49.925 I/GmscoreIpa( 2371): how are you::
+
+11-15 00:57:49.928 D/AndroidRuntime( 4381): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:57:50.988 W/AccessibilityNodeInfoDumper( 4381): Fetch time: 1ms
+
+11-15 00:57:50.989 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@cc96675
+
+11-15 00:57:51.007 D/AndroidRuntime( 4381): Shutting down VM
+
+11-15 00:57:51.397 D/AndroidRuntime( 4395): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:57:51.398 D/AndroidRuntime( 4395): CheckJNI is OFF
+
+11-15 00:57:51.406 D/ICU     ( 4395): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:57:51.421 E/memtrack( 4395): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:57:51.421 E/android.os.Debug( 4395): failed to load memtrack module: -2
+
+11-15 00:57:51.422 I/Radio-JNI( 4395): register_android_hardware_Radio DONE
+
+11-15 00:57:51.426 D/AndroidRuntime( 4395): Calling main entry com.android.commands.input.Input
+
+11-15 00:57:51.429 I/Input   ( 4395): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=194.0, y[0]=415.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=207885, downTime=207885, deviceId=0, source=0x1002 }
+
+11-15 00:57:51.431 I/Input   ( 4395): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=194.0, y[0]=415.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=207885, downTime=207885, deviceId=0, source=0x1002 }
+
+11-15 00:57:51.432 D/AndroidRuntime( 4395): Shutting down VM
+
+11-15 00:57:54.607 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 551483 , only wrote 414447
+
+11-15 00:57:54.821 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:57:54.821 I/Vision  ( 2371): Checking for download completion for 221279 -- ocr
+
+11-15 00:57:54.867 D/AndroidRuntime( 4404): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:57:54.868 D/AndroidRuntime( 4404): CheckJNI is OFF
+
+11-15 00:57:54.874 D/ICU     ( 4404): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:57:54.892 E/memtrack( 4404): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:57:54.892 E/android.os.Debug( 4404): failed to load memtrack module: -2
+
+11-15 00:57:54.892 I/Radio-JNI( 4404): register_android_hardware_Radio DONE
+
+11-15 00:57:54.899 D/AndroidRuntime( 4404): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:57:55.966 W/AccessibilityNodeInfoDumper( 4404): Fetch time: 1ms
+
+11-15 00:57:55.967 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@276760a
+
+11-15 00:57:55.984 D/AndroidRuntime( 4404): Shutting down VM
+
+11-15 00:57:56.402 D/AndroidRuntime( 4416): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:57:56.403 D/AndroidRuntime( 4416): CheckJNI is OFF
+
+11-15 00:57:56.412 D/ICU     ( 4416): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:57:56.426 E/memtrack( 4416): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:57:56.426 E/android.os.Debug( 4416): failed to load memtrack module: -2
+
+11-15 00:57:56.427 I/Radio-JNI( 4416): register_android_hardware_Radio DONE
+
+11-15 00:57:56.431 D/AndroidRuntime( 4416): Calling main entry com.android.commands.input.Input
+
+11-15 00:57:56.435 I/Input   ( 4416): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=300.0, y[0]=1240.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=212891, downTime=212891, deviceId=0, source=0x1002 }
+
+11-15 00:57:56.437 I/Input   ( 4416): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=300.0, y[0]=1240.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=212891, downTime=212891, deviceId=0, source=0x1002 }
+
+11-15 00:57:56.439 D/AndroidRuntime( 4416): Shutting down VM
+
+11-15 00:57:59.591 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 688898 , only wrote 552596
+
+11-15 00:58:04.829 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:58:04.829 I/Vision  ( 2371): Checking for download completion for 231287 -- ocr
+
+11-15 00:58:06.870 D/AndroidRuntime( 4440): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:06.871 D/AndroidRuntime( 4440): CheckJNI is OFF
+
+11-15 00:58:06.882 D/ICU     ( 4440): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:06.902 E/memtrack( 4440): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:06.902 E/android.os.Debug( 4440): failed to load memtrack module: -2
+
+11-15 00:58:06.904 I/Radio-JNI( 4440): register_android_hardware_Radio DONE
+
+11-15 00:58:06.911 D/AndroidRuntime( 4440): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:58:07.967 W/AccessibilityNodeInfoDumper( 4440): Fetch time: 4ms
+
+11-15 00:58:07.968 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@a237e7b
+
+11-15 00:58:07.987 D/AndroidRuntime( 4440): Shutting down VM
+
+11-15 00:58:08.371 D/AndroidRuntime( 4452): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:08.371 D/AndroidRuntime( 4452): CheckJNI is OFF
+
+11-15 00:58:08.378 D/ICU     ( 4452): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:08.391 E/memtrack( 4452): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:08.391 E/android.os.Debug( 4452): failed to load memtrack module: -2
+
+11-15 00:58:08.392 I/Radio-JNI( 4452): register_android_hardware_Radio DONE
+
+11-15 00:58:08.397 D/AndroidRuntime( 4452): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:58:09.430 W/AccessibilityNodeInfoDumper( 4452): Fetch time: 3ms
+
+11-15 00:58:09.431 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@fc88498
+
+11-15 00:58:09.452 D/AndroidRuntime( 4452): Shutting down VM
+
+11-15 00:58:09.889 D/AndroidRuntime( 4464): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:09.890 D/AndroidRuntime( 4464): CheckJNI is OFF
+
+11-15 00:58:09.897 D/ICU     ( 4464): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:09.913 E/memtrack( 4464): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:09.913 E/android.os.Debug( 4464): failed to load memtrack module: -2
+
+11-15 00:58:09.913 I/Radio-JNI( 4464): register_android_hardware_Radio DONE
+
+11-15 00:58:09.917 D/AndroidRuntime( 4464): Calling main entry com.android.commands.input.Input
+
+11-15 00:58:09.920 I/Input   ( 4464): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=810.0, y[0]=808.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=226376, downTime=226376, deviceId=0, source=0x1002 }
+
+11-15 00:58:09.922 I/Input   ( 4464): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=810.0, y[0]=808.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=226376, downTime=226376, deviceId=0, source=0x1002 }
+
+11-15 00:58:09.924 D/AndroidRuntime( 4464): Shutting down VM
+
+11-15 00:58:13.087 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 828476 , only wrote 691406
+
+11-15 00:58:14.834 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:58:14.834 I/Vision  ( 2371): Checking for download completion for 241292 -- ocr
+
+11-15 00:58:16.349 D/AndroidRuntime( 4476): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:16.350 D/AndroidRuntime( 4476): CheckJNI is OFF
+
+11-15 00:58:16.357 D/ICU     ( 4476): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:16.375 E/memtrack( 4476): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:16.375 E/android.os.Debug( 4476): failed to load memtrack module: -2
+
+11-15 00:58:16.376 I/Radio-JNI( 4476): register_android_hardware_Radio DONE
+
+11-15 00:58:16.379 D/AndroidRuntime( 4476): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:58:17.441 W/AccessibilityNodeInfoDumper( 4476): Fetch time: 3ms
+
+11-15 00:58:17.441 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@656f4f1
+
+11-15 00:58:17.456 D/AndroidRuntime( 4476): Shutting down VM
+
+11-15 00:58:17.879 D/AndroidRuntime( 4488): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:17.880 D/AndroidRuntime( 4488): CheckJNI is OFF
+
+11-15 00:58:17.889 D/ICU     ( 4488): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:17.904 E/memtrack( 4488): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:17.904 E/android.os.Debug( 4488): failed to load memtrack module: -2
+
+11-15 00:58:17.905 I/Radio-JNI( 4488): register_android_hardware_Radio DONE
+
+11-15 00:58:17.909 D/AndroidRuntime( 4488): Calling main entry com.android.commands.input.Input
+
+11-15 00:58:17.913 I/Input   ( 4488): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=540.0, y[0]=1505.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=234369, downTime=234369, deviceId=0, source=0x1002 }
+
+11-15 00:58:17.916 I/Input   ( 4488): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=540.0, y[0]=1505.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=234369, downTime=234369, deviceId=0, source=0x1002 }
+
+11-15 00:58:17.918 D/AndroidRuntime( 4488): Shutting down VM
+
+11-15 00:58:17.946 I/flutter ( 4294): [LocalLibraryScanner] resolveLocalArchivePath directory probe [initial]: path=/storage/emulated/0/YomiHub/local, absolutePath=/storage/emulated/0/YomiHub/local, normalizedPath=/storage/emulated/0/YomiHub/local, parent=/storage/emulated/0/YomiHub, exists=true, parentExists=true, statType=directory, statMode=rwxrwx---, modified=2026-11-15T00:55:26.125
+
+11-15 00:58:21.066 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 965876 , only wrote 829555
+
+11-15 00:58:24.856 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:58:24.856 I/Vision  ( 2371): Checking for download completion for 251314 -- ocr
+
+11-15 00:58:25.128 W/ChimeraConfigurator( 2371): Error syncing flags: qoq: COMMIT_TIMEOUT
+
+11-15 00:58:25.128 I/ChmraDebugLogger( 2371): [79] COMMIT_TIMEOUT
+
+11-15 00:58:25.137 I/ChmraDebugLogger( 2371): [52] null
+
+11-15 00:58:25.140 W/ChimeraConfigService( 2371): Retry attempt was throttled.
+
+11-15 00:58:32.373 E/SurfaceFlinger( 1258): ro.sf.lcd_density must be defined as a build property
+
+11-15 00:58:32.383 D/gralloc_ranchu( 1258): gralloc_alloc: Creating ashmem region of size 8294400
+
+11-15 00:58:32.385 D/        ( 4509): HostConnection::get() New Host Connection established 0x7ffa50bd2480, tid 4509
+
+11-15 00:58:32.803 D/AndroidRuntime( 4514): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:32.804 D/AndroidRuntime( 4514): CheckJNI is OFF
+
+11-15 00:58:32.815 D/ICU     ( 4514): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:32.839 E/memtrack( 4514): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:32.839 E/android.os.Debug( 4514): failed to load memtrack module: -2
+
+11-15 00:58:32.841 I/Radio-JNI( 4514): register_android_hardware_Radio DONE
+
+11-15 00:58:32.854 D/AndroidRuntime( 4514): Calling main entry com.android.commands.am.Am
+
+11-15 00:58:32.864 D/MediaScannerReceiver( 1755): action: android.intent.action.MEDIA_SCANNER_SCAN_FILE path: /storage/emulated/0/q.png
+
+11-15 00:58:32.866 D/AndroidRuntime( 4514): Shutting down VM
+
+11-15 00:58:34.073 D/AndroidRuntime( 4524): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:34.074 D/AndroidRuntime( 4524): CheckJNI is OFF
+
+11-15 00:58:34.088 D/ICU     ( 4524): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:34.108 E/memtrack( 4524): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:34.108 E/android.os.Debug( 4524): failed to load memtrack module: -2
+
+11-15 00:58:34.109 I/Radio-JNI( 4524): register_android_hardware_Radio DONE
+
+11-15 00:58:34.117 D/AndroidRuntime( 4524): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:58:34.865 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:58:34.865 I/Vision  ( 2371): Exceeded maximum feature download tries for ocr
+
+11-15 00:58:34.865 W/Vision  ( 2371): Request of optional module download of ocr failed.
+
+11-15 00:58:34.865 I/Vision  ( 2371): Checking for download completion for 261323 -- ocr
+
+11-15 00:58:35.175 W/AccessibilityNodeInfoDumper( 4524): Fetch time: 3ms
+
+11-15 00:58:35.175 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@be5129
+
+11-15 00:58:35.209 D/AndroidRuntime( 4524): Shutting down VM
+
+11-15 00:58:35.546 D/hwcomposer( 1258): hw_composer sent 1136 syncs in 60s
+
+11-15 00:58:35.934 D/AndroidRuntime( 4540): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:35.935 D/AndroidRuntime( 4540): CheckJNI is OFF
+
+11-15 00:58:35.945 D/ICU     ( 4540): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:35.969 E/memtrack( 4540): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:35.969 E/android.os.Debug( 4540): failed to load memtrack module: -2
+
+11-15 00:58:35.970 I/Radio-JNI( 4540): register_android_hardware_Radio DONE
+
+11-15 00:58:35.976 D/AndroidRuntime( 4540): Calling main entry com.android.commands.am.Am
+
+11-15 00:58:35.982 I/ActivityManager( 1620): Force stopping com.yomihub.app appid=10083 user=0: from pid 4540
+
+11-15 00:58:35.982 I/ActivityManager( 1620): Killing 4294:com.yomihub.app/u0a83 (adj 0): stop com.yomihub.app
+
+11-15 00:58:36.067 W/InputDispatcher( 1620): channel '7cef205 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+
+11-15 00:58:36.067 E/InputDispatcher( 1620): channel '7cef205 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+
+11-15 00:58:36.070 D/GraphicsStats( 1620): Buffer count: 2
+
+11-15 00:58:36.070 I/WindowState( 1620): WIN DEATH: Window{7cef205 u0 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity}
+
+11-15 00:58:36.070 W/InputDispatcher( 1620): Attempted to unregister already unregistered input channel '7cef205 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity (server)'
+
+11-15 00:58:36.070 W/WindowManager( 1620): Force-removing child win Window{cb00a4f u0 SurfaceView} from container Window{7cef205 u0 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity}
+
+11-15 00:58:36.075 W/ActivityManager( 1620): Force removing ActivityRecord{19b617f u0 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity t37}: app died, no saved state
+
+11-15 00:58:36.079 W/WindowManager( 1620): Failed looking up window
+
+11-15 00:58:36.079 W/WindowManager( 1620): java.lang.IllegalArgumentException: Requested window android.os.BinderProxy@5b8c25a does not exist
+
+11-15 00:58:36.079 W/WindowManager( 1620): 	at com.android.server.wm.WindowManagerService.windowForClientLocked(WindowManagerService.java:8733)
+
+11-15 00:58:36.079 W/WindowManager( 1620): 	at com.android.server.wm.WindowManagerService.windowForClientLocked(WindowManagerService.java:8724)
+
+11-15 00:58:36.079 W/WindowManager( 1620): 	at com.android.server.wm.WindowState$DeathRecipient.binderDied(WindowState.java:1209)
+
+11-15 00:58:36.079 W/WindowManager( 1620): 	at android.os.BinderProxy.sendDeathNotice(Binder.java:558)
+
+11-15 00:58:36.079 I/WindowState( 1620): WIN DEATH: null
+
+11-15 00:58:36.086 D/AndroidRuntime( 4540): Shutting down VM
+
+11-15 00:58:36.087 W/art     ( 1620): Long monitor contention event with owner method=void com.android.server.am.ActivityManagerService.forceStopPackage(java.lang.String, int) from ActivityManagerService.java:5254 waiters=0 for 103ms
+
+11-15 00:58:36.094 W/ActivityManager( 1620): Spurious death for ProcessRecord{ae19502 0:com.yomihub.app/u0a83}, curProc for 4294: null
+
+11-15 00:58:36.132 D/EGL_emulation( 1993): eglMakeCurrent: 0x7fcdcd9a1fa0: ver 2 0 (tinfo 0x7fcdcd982be0)
+
+11-15 00:58:36.134 W/InputMethodManagerService( 1620): Got RemoteException sending setActive(false) notification to pid 4294 uid 10083
+
+11-15 00:58:36.230 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:36.230 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:36.251 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:36.251 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:36.265 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:36.265 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:36.283 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:36.283 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:36.307 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:36.307 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:36.328 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:36.328 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:36.356 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:36.356 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:36.616 D/AndroidRuntime( 4550): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:36.617 D/AndroidRuntime( 4550): CheckJNI is OFF
+
+11-15 00:58:36.624 D/ICU     ( 4550): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:36.635 E/memtrack( 4550): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:36.635 E/android.os.Debug( 4550): failed to load memtrack module: -2
+
+11-15 00:58:36.635 I/Radio-JNI( 4550): register_android_hardware_Radio DONE
+
+11-15 00:58:36.641 D/AndroidRuntime( 4550): Calling main entry com.android.commands.input.Input
+
+11-15 00:58:36.644 I/Input   ( 4550): injectKeyEvent: KeyEvent { action=ACTION_DOWN, keyCode=KEYCODE_WAKEUP, scanCode=0, metaState=0, flags=0x0, repeatCount=0, eventTime=253101, downTime=253101, deviceId=-1, source=0x101 }
+
+11-15 00:58:36.645 I/Input   ( 4550): injectKeyEvent: KeyEvent { action=ACTION_UP, keyCode=KEYCODE_WAKEUP, scanCode=0, metaState=0, flags=0x0, repeatCount=0, eventTime=253101, downTime=253101, deviceId=-1, source=0x101 }
+
+11-15 00:58:36.646 D/AndroidRuntime( 4550): Shutting down VM
+
+11-15 00:58:36.984 D/AndroidRuntime( 4559): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:36.985 D/AndroidRuntime( 4559): CheckJNI is OFF
+
+11-15 00:58:36.991 D/ICU     ( 4559): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:37.006 E/memtrack( 4559): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:37.006 E/android.os.Debug( 4559): failed to load memtrack module: -2
+
+11-15 00:58:37.007 I/Radio-JNI( 4559): register_android_hardware_Radio DONE
+
+11-15 00:58:37.010 D/AndroidRuntime( 4559): Calling main entry com.android.commands.am.Am
+
+11-15 00:58:37.014 I/ActivityManager( 1620): START u0 {flg=0x10000000 cmp=com.yomihub.app/com.kodjodevf.mangayomi.MainActivity} from uid 0 on display 0
+
+11-15 00:58:37.026 D/AndroidRuntime( 4559): Shutting down VM
+
+11-15 00:58:37.036 I/ActivityManager( 1620): Start proc 4568:com.yomihub.app/u0a83 for activity com.yomihub.app/com.kodjodevf.mangayomi.MainActivity
+
+11-15 00:58:37.069 D/gralloc_ranchu( 1258): gralloc_alloc: Creating ashmem region of size 8294400
+
+11-15 00:58:37.145 D/EGL_emulation( 1993): eglMakeCurrent: 0x7fcdcd9a1fa0: ver 2 0 (tinfo 0x7fcdcd982be0)
+
+11-15 00:58:37.146 E/Surface ( 1993): getSlotFromBufferLocked: unknown buffer: 0x7fcdcb7e68a0
+
+11-15 00:58:37.254 D/skia    ( 4568): [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+
+11-15 00:58:37.286 I/flutter ( 4568): [IMPORTANT:flutter/shell/common/shell.cc(528)] [Action Required]: Impeller opt-out deprecated.
+
+11-15 00:58:37.286 I/flutter ( 4568):     The application opted out of Impeller by either using the
+
+11-15 00:58:37.286 I/flutter ( 4568):     `--no-enable-impeller` flag or the
+
+11-15 00:58:37.286 I/flutter ( 4568):     `io.flutter.embedding.android.EnableImpeller` `AndroidManifest.xml` entry.
+
+11-15 00:58:37.286 I/flutter ( 4568):     These options are going to go away in an upcoming Flutter release. Remove
+
+11-15 00:58:37.286 I/flutter ( 4568):     the explicit opt-out. If you need to opt-out, please report a bug describing
+
+11-15 00:58:37.286 I/flutter ( 4568):     the issue.
+
+11-15 00:58:37.286 I/flutter ( 4568): 
+
+11-15 00:58:37.286 I/flutter ( 4568):     https://github.com/flutter/flutter/issues/new?template=02_bug.yml
+
+11-15 00:58:37.286 I/flutter ( 4568): 
+
+11-15 00:58:37.287 D/        ( 4568): HostConnection::get() New Host Connection established 0x7fcdbdfd7600, tid 4568
+
+11-15 00:58:37.293 D/EGL_emulation( 4568): eglCreateContext: 0x7fcdc9ec91a0: maj 2 min 0 rcv 2
+
+11-15 00:58:37.304 D/EGL_emulation( 4568): eglCreateContext: 0x7fcdc9ec99c0: maj 2 min 0 rcv 2
+
+11-15 00:58:37.306 D/        ( 4568): HostConnection::get() New Host Connection established 0x7fcdbdfd7840, tid 4584
+
+11-15 00:58:37.308 D/EGL_emulation( 4568): eglMakeCurrent: 0x7fcdc9ec99c0: ver 2 0 (tinfo 0x7fcdbdff57a0)
+
+11-15 00:58:37.351 I/YomiA6Tls( 4568): TMPDIR = /data/user/0/com.yomihub.app/cache
+
+11-15 00:58:37.393 I/YomiA6Tls( 4568): Android 23: thêm 121 CA gốc đóng gói vào kho tin cậy Java
+
+11-15 00:58:37.413 I/TextToSpeech( 4568): Sucessfully bound to com.svox.pico
+
+11-15 00:58:37.416 V/SynthProxy( 3191): About to load libttspico.so, applyFilter=true
+
+11-15 00:58:37.423 I/SVOX Pico Engine( 3191): loaded en-US successfully
+
+11-15 00:58:37.427 I/media_kit( 4568): package:media_kit_libs_android_video attached.
+
+11-15 00:58:37.428 D/media_kit( 4568): Android
+
+11-15 00:58:37.428 D/media_kit( 4568): generic_x86_64
+
+11-15 00:58:37.428 D/media_kit( 4568): Android/sdk_google_phone_x86_64/generic_x86_64:6.0/MASTER/6695544:userdebug/test-keys
+
+11-15 00:58:37.428 D/media_kit( 4568): ranchu
+
+11-15 00:58:37.428 D/media_kit( 4568): Android SDK built for x86_64
+
+11-15 00:58:37.428 D/media_kit( 4568): unknown
+
+11-15 00:58:37.428 D/media_kit( 4568): sdk_google_phone_x86_64
+
+11-15 00:58:37.428 I/media_kit( 4568): Saved application context.
+
+11-15 00:58:37.571 E/SurfaceFlinger( 1258): ro.sf.lcd_density must be defined as a build property
+
+11-15 00:58:37.572 D/OpenGLRenderer( 4568): Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+
+11-15 00:58:37.643 I/flutter ( 4568): [YomiA6Tls] Dart: them 121 CA goc dong goi (SDK < 24)
+
+11-15 00:58:37.647 W/linker  ( 4568): /data/app/com.yomihub.app-1/lib/x86_64/libsubsampling_scale_image_view.so: unused DT entry: type 0x1d arg 0xac
+
+11-15 00:58:37.648 I/flutter ( 4568): [YomiA6Native] thu muc lib = /data/app/com.yomihub.app-1/lib/x86_64; da nap truoc: libqjs.so, libsubsampling_scale_image_view.so
+
+11-15 00:58:37.653 I/TextToSpeech( 4568): Connected to ComponentInfo{com.svox.pico/com.svox.pico.PicoService}
+
+11-15 00:58:37.655 I/TextToSpeech( 4568): Set up connection to ComponentInfo{com.svox.pico/com.svox.pico.PicoService}
+
+11-15 00:58:37.659 I/art     ( 4568): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.DistinctElementSidecarCallback>
+
+11-15 00:58:37.659 I/art     ( 4568): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.DistinctElementSidecarCallback>
+
+11-15 00:58:37.659 I/art     ( 4568): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.SidecarCompat$TranslatingCallback>
+
+11-15 00:58:37.659 I/art     ( 4568): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.SidecarCompat$TranslatingCallback>
+
+11-15 00:58:37.719 I/OpenGLRenderer( 4568): Initialized EGL, version 1.4
+
+11-15 00:58:37.719 D/        ( 4568): HostConnection::get() New Host Connection established 0x7fcdba067060, tid 4591
+
+11-15 00:58:37.731 D/EGL_emulation( 4568): eglCreateContext: 0x7fcdba07a0a0: maj 2 min 0 rcv 2
+
+11-15 00:58:37.733 D/EGL_emulation( 4568): eglMakeCurrent: 0x7fcdba07a0a0: ver 2 0 (tinfo 0x7fcdba27ca20)
+
+11-15 00:58:37.737 D/EGL_emulation( 4568): eglMakeCurrent: 0x7fcdba07a0a0: ver 2 0 (tinfo 0x7fcdba27ca20)
+
+11-15 00:58:37.782 D/        ( 4568): HostConnection::get() New Host Connection established 0x7fcdc9e42e40, tid 4583
+
+11-15 00:58:37.789 D/EGL_emulation( 4568): eglMakeCurrent: 0x7fcdc9ec91a0: ver 2 0 (tinfo 0x7fcdbdff56c0)
+
+11-15 00:58:37.794 D/EGL_emulation( 4568): eglCreateContext: 0x7fcdcd9a1dc0: maj 2 min 0 rcv 2
+
+11-15 00:58:37.794 D/EGL_emulation( 4568): eglMakeCurrent: 0x7fcdcd9a1dc0: ver 2 0 (tinfo 0x7fcdbdff56c0)
+
+11-15 00:58:37.795 D/EGL_emulation( 4568): eglMakeCurrent: 0x7fcdc9ec91a0: ver 2 0 (tinfo 0x7fcdbdff56c0)
+
+11-15 00:58:37.809 D/EGL_emulation( 4568): eglMakeCurrent: 0x7fcdc9ec91a0: ver 2 0 (tinfo 0x7fcdbdff56c0)
+
+11-15 00:58:37.819 I/flutter ( 4568): IsarCore using libmdbx: v0.13.8-temp-upstream-fix
+
+11-15 00:58:38.463 I/ActivityManager( 1620): Displayed com.yomihub.app/com.kodjodevf.mangayomi.MainActivity: +1s437ms
+
+11-15 00:58:38.489 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:38.489 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:38.509 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:38.509 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:38.525 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:38.525 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:38.551 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:38.551 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:38.583 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:38.583 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:38.614 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:58:38.614 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:58:39.988 I/flutter ( 4568): [LocalLibraryScanner] _scanDirectory start: name=local, path=/storage/emulated/0/YomiHub/local, platform=android, platformVersion=sdk_google_phone_x86_64-userdebug 6.0 MASTER 6695544 test-keys, configuredFolders=1
+
+11-15 00:58:39.988 I/flutter ( 4568): [LocalLibraryScanner] configured local folders: name=local, path=/storage/emulated/0/YomiHub/local
+
+11-15 00:58:39.995 I/flutter ( 4568): [LocalLibraryScanner] _scanDirectory directory probe [initial]: path=/storage/emulated/0/YomiHub/local, absolutePath=/storage/emulated/0/YomiHub/local, normalizedPath=/storage/emulated/0/YomiHub/local, parent=/storage/emulated/0/YomiHub, exists=true, parentExists=true, statType=directory, statMode=rwxrwx---, modified=2026-11-15T00:55:26.125
+
+11-15 00:58:40.019 I/flutter ( 4568): [LocalLibraryScanner] _scanDirectory root entries: path=/storage/emulated/0/YomiHub/local, total=4, folders=0, preview=_File:A6 Test Manga.cbz, _File:A6 Test Novel.epub, _File:A6 Test Video.mp4, _File:A6 Test Manga JPEG.cbz
+
+11-15 00:58:40.019 I/flutter ( 4568): [LocalLibraryScanner] title folders: top=0, titles=0
+
+11-15 00:58:40.019 I/flutter ( 4568): [LocalLibraryScanner] _scanDirectory scan summary: folder=/storage/emulated/0/YomiHub/local, processedMangas=4, newMangas=0, newChapters=0
+
+11-15 00:58:44.873 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:58:44.876 I/Vision  ( 2371): Checking for download completion for 271334 -- ocr
+
+11-15 00:58:44.885 I/ChimeraConfigurator( 2371): Starting update, reason: 4 urgentFeatures: vision.ocr:-1
+
+11-15 00:58:46.275 W/art     ( 4568): Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[16,tid=4599,Native,Thread*=0x7fcdb9e7c800,peer=0x1328b0a0,"Thread-157"]
+
+11-15 00:58:54.881 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:58:54.881 I/Vision  ( 2371): Checking for download completion for 281339 -- ocr
+
+11-15 00:58:59.405 D/AndroidRuntime( 4629): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:58:59.406 D/AndroidRuntime( 4629): CheckJNI is OFF
+
+11-15 00:58:59.413 D/ICU     ( 4629): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:58:59.430 E/memtrack( 4629): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:58:59.430 E/android.os.Debug( 4629): failed to load memtrack module: -2
+
+11-15 00:58:59.431 I/Radio-JNI( 4629): register_android_hardware_Radio DONE
+
+11-15 00:58:59.436 D/AndroidRuntime( 4629): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:59:00.494 W/AccessibilityNodeInfoDumper( 4629): Fetch time: 2ms
+
+11-15 00:59:00.494 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@62e423c
+
+11-15 00:59:00.513 D/AndroidRuntime( 4629): Shutting down VM
+
+11-15 00:59:00.913 D/AndroidRuntime( 4641): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:00.914 D/AndroidRuntime( 4641): CheckJNI is OFF
+
+11-15 00:59:00.921 D/ICU     ( 4641): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:00.935 E/memtrack( 4641): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:00.935 E/android.os.Debug( 4641): failed to load memtrack module: -2
+
+11-15 00:59:00.936 I/Radio-JNI( 4641): register_android_hardware_Radio DONE
+
+11-15 00:59:00.939 D/AndroidRuntime( 4641): Calling main entry com.android.commands.input.Input
+
+11-15 00:59:00.943 I/Input   ( 4641): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=756.0, y[0]=1815.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=277401, downTime=277401, deviceId=0, source=0x1002 }
+
+11-15 00:59:00.947 I/Input   ( 4641): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=756.0, y[0]=1815.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=277401, downTime=277401, deviceId=0, source=0x1002 }
+
+11-15 00:59:00.948 D/AndroidRuntime( 4641): Shutting down VM
+
+11-15 00:59:03.084 I/GmscoreIpa( 2371): how are you::
+
+11-15 00:59:04.116 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 1105468 , only wrote 968365
+
+11-15 00:59:04.889 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:59:04.889 I/Vision  ( 2371): Checking for download completion for 291347 -- ocr
+
+11-15 00:59:05.320 D/AndroidRuntime( 4652): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:05.321 D/AndroidRuntime( 4652): CheckJNI is OFF
+
+11-15 00:59:05.328 D/ICU     ( 4652): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:05.348 E/memtrack( 4652): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:05.348 E/android.os.Debug( 4652): failed to load memtrack module: -2
+
+11-15 00:59:05.349 I/Radio-JNI( 4652): register_android_hardware_Radio DONE
+
+11-15 00:59:05.353 D/AndroidRuntime( 4652): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:59:06.405 W/AccessibilityNodeInfoDumper( 4652): Fetch time: 3ms
+
+11-15 00:59:06.406 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@2a5591a
+
+11-15 00:59:06.421 D/AndroidRuntime( 4652): Shutting down VM
+
+11-15 00:59:06.840 D/AndroidRuntime( 4664): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:06.841 D/AndroidRuntime( 4664): CheckJNI is OFF
+
+11-15 00:59:06.850 D/ICU     ( 4664): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:06.864 E/memtrack( 4664): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:06.865 E/android.os.Debug( 4664): failed to load memtrack module: -2
+
+11-15 00:59:06.866 I/Radio-JNI( 4664): register_android_hardware_Radio DONE
+
+11-15 00:59:06.869 D/AndroidRuntime( 4664): Calling main entry com.android.commands.input.Input
+
+11-15 00:59:06.873 I/Input   ( 4664): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=194.0, y[0]=415.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=283329, downTime=283329, deviceId=0, source=0x1002 }
+
+11-15 00:59:06.875 I/Input   ( 4664): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=194.0, y[0]=415.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=283329, downTime=283329, deviceId=0, source=0x1002 }
+
+11-15 00:59:06.876 D/AndroidRuntime( 4664): Shutting down VM
+
+11-15 00:59:10.026 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 1242965 , only wrote 1106514
+
+11-15 00:59:10.257 D/AndroidRuntime( 4674): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:10.258 D/AndroidRuntime( 4674): CheckJNI is OFF
+
+11-15 00:59:10.268 D/ICU     ( 4674): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:10.286 E/memtrack( 4674): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:10.286 E/android.os.Debug( 4674): failed to load memtrack module: -2
+
+11-15 00:59:10.287 I/Radio-JNI( 4674): register_android_hardware_Radio DONE
+
+11-15 00:59:10.294 D/AndroidRuntime( 4674): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:59:11.342 W/AccessibilityNodeInfoDumper( 4674): Fetch time: 2ms
+
+11-15 00:59:11.343 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@5a90c4b
+
+11-15 00:59:11.357 D/AndroidRuntime( 4674): Shutting down VM
+
+11-15 00:59:11.751 D/AndroidRuntime( 4686): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:11.751 D/AndroidRuntime( 4686): CheckJNI is OFF
+
+11-15 00:59:11.760 D/ICU     ( 4686): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:11.776 E/memtrack( 4686): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:11.776 E/android.os.Debug( 4686): failed to load memtrack module: -2
+
+11-15 00:59:11.777 I/Radio-JNI( 4686): register_android_hardware_Radio DONE
+
+11-15 00:59:11.782 D/AndroidRuntime( 4686): Calling main entry com.android.commands.input.Input
+
+11-15 00:59:11.785 I/Input   ( 4686): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=300.0, y[0]=1240.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=288242, downTime=288242, deviceId=0, source=0x1002 }
+
+11-15 00:59:11.788 I/Input   ( 4686): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=300.0, y[0]=1240.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=288242, downTime=288242, deviceId=0, source=0x1002 }
+
+11-15 00:59:11.789 D/AndroidRuntime( 4686): Shutting down VM
+
+11-15 00:59:14.896 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:59:14.896 I/Vision  ( 2371): Checking for download completion for 301354 -- ocr
+
+11-15 00:59:14.952 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 1382333 , only wrote 1245324
+
+11-15 00:59:22.170 D/AndroidRuntime( 4699): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:22.170 D/AndroidRuntime( 4699): CheckJNI is OFF
+
+11-15 00:59:22.178 D/ICU     ( 4699): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:22.194 E/memtrack( 4699): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:22.194 E/android.os.Debug( 4699): failed to load memtrack module: -2
+
+11-15 00:59:22.194 I/Radio-JNI( 4699): register_android_hardware_Radio DONE
+
+11-15 00:59:22.199 D/AndroidRuntime( 4699): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:59:23.259 W/AccessibilityNodeInfoDumper( 4699): Fetch time: 2ms
+
+11-15 00:59:23.259 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@7bb4628
+
+11-15 00:59:23.273 D/AndroidRuntime( 4699): Shutting down VM
+
+11-15 00:59:23.684 D/AndroidRuntime( 4711): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:23.685 D/AndroidRuntime( 4711): CheckJNI is OFF
+
+11-15 00:59:23.693 D/ICU     ( 4711): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:23.716 E/memtrack( 4711): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:23.716 E/android.os.Debug( 4711): failed to load memtrack module: -2
+
+11-15 00:59:23.716 I/Radio-JNI( 4711): register_android_hardware_Radio DONE
+
+11-15 00:59:23.723 D/AndroidRuntime( 4711): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:59:24.779 W/AccessibilityNodeInfoDumper( 4711): Fetch time: 3ms
+
+11-15 00:59:24.779 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@50d3f41
+
+11-15 00:59:24.796 D/AndroidRuntime( 4711): Shutting down VM
+
+11-15 00:59:24.903 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:59:24.903 I/Vision  ( 2371): Checking for download completion for 311361 -- ocr
+
+11-15 00:59:25.243 W/ChimeraConfigurator( 2371): Error syncing flags: qoq: COMMIT_TIMEOUT
+
+11-15 00:59:25.243 I/ChmraDebugLogger( 2371): [79] COMMIT_TIMEOUT
+
+11-15 00:59:25.245 I/ChmraDebugLogger( 2371): [52] null
+
+11-15 00:59:25.245 W/ChimeraConfigService( 2371): Retry attempt was throttled.
+
+11-15 00:59:25.269 D/AndroidRuntime( 4725): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:25.270 D/AndroidRuntime( 4725): CheckJNI is OFF
+
+11-15 00:59:25.277 D/ICU     ( 4725): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:25.294 E/memtrack( 4725): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:25.294 E/android.os.Debug( 4725): failed to load memtrack module: -2
+
+11-15 00:59:25.295 I/Radio-JNI( 4725): register_android_hardware_Radio DONE
+
+11-15 00:59:25.301 D/AndroidRuntime( 4725): Calling main entry com.android.commands.input.Input
+
+11-15 00:59:25.304 I/Input   ( 4725): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=270.0, y[0]=808.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=301760, downTime=301760, deviceId=0, source=0x1002 }
+
+11-15 00:59:25.306 I/Input   ( 4725): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=270.0, y[0]=808.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=301760, downTime=301760, deviceId=0, source=0x1002 }
+
+11-15 00:59:25.307 D/AndroidRuntime( 4725): Shutting down VM
+
+11-15 00:59:28.456 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 1520051 , only wrote 1383473
+
+11-15 00:59:31.711 D/AndroidRuntime( 4736): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:31.711 D/AndroidRuntime( 4736): CheckJNI is OFF
+
+11-15 00:59:31.719 D/ICU     ( 4736): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:31.736 E/memtrack( 4736): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:31.736 E/android.os.Debug( 4736): failed to load memtrack module: -2
+
+11-15 00:59:31.737 I/Radio-JNI( 4736): register_android_hardware_Radio DONE
+
+11-15 00:59:31.744 D/AndroidRuntime( 4736): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:59:32.802 W/AccessibilityNodeInfoDumper( 4736): Fetch time: 3ms
+
+11-15 00:59:32.803 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@77a2227
+
+11-15 00:59:32.816 D/AndroidRuntime( 4736): Shutting down VM
+
+11-15 00:59:33.216 D/AndroidRuntime( 4748): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:33.216 D/AndroidRuntime( 4748): CheckJNI is OFF
+
+11-15 00:59:33.224 D/ICU     ( 4748): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:33.240 E/memtrack( 4748): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:33.240 E/android.os.Debug( 4748): failed to load memtrack module: -2
+
+11-15 00:59:33.240 I/Radio-JNI( 4748): register_android_hardware_Radio DONE
+
+11-15 00:59:33.246 D/AndroidRuntime( 4748): Calling main entry com.android.commands.input.Input
+
+11-15 00:59:33.249 I/Input   ( 4748): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=540.0, y[0]=1505.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=309705, downTime=309705, deviceId=0, source=0x1002 }
+
+11-15 00:59:33.252 I/Input   ( 4748): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=540.0, y[0]=1505.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=309705, downTime=309705, deviceId=0, source=0x1002 }
+
+11-15 00:59:33.254 D/AndroidRuntime( 4748): Shutting down VM
+
+11-15 00:59:33.294 I/flutter ( 4568): [LocalLibraryScanner] resolveLocalArchivePath directory probe [initial]: path=/storage/emulated/0/YomiHub/local, absolutePath=/storage/emulated/0/YomiHub/local, normalizedPath=/storage/emulated/0/YomiHub/local, parent=/storage/emulated/0/YomiHub, exists=true, parentExists=true, statType=directory, statMode=rwxrwx---, modified=2026-11-15T00:55:26.125
+
+11-15 00:59:34.915 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:59:34.915 I/Vision  ( 2371): Exceeded maximum feature download tries for ocr
+
+11-15 00:59:34.915 W/Vision  ( 2371): Request of optional module download of ocr failed.
+
+11-15 00:59:34.915 I/Vision  ( 2371): Checking for download completion for 321373 -- ocr
+
+11-15 00:59:35.545 D/hwcomposer( 1258): hw_composer sent 688 syncs in 60s
+
+11-15 00:59:36.421 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 1659362 , only wrote 1522283
+
+11-15 00:59:41.964 W/art     ( 2371): No such thread id for suspend: 13
+
+11-15 00:59:44.926 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:59:44.930 I/Vision  ( 2371): Checking for download completion for 331388 -- ocr
+
+11-15 00:59:44.946 I/ChimeraConfigurator( 2371): Starting update, reason: 4 urgentFeatures: vision.ocr:-1
+
+11-15 00:59:45.783 E/SurfaceFlinger( 1258): ro.sf.lcd_density must be defined as a build property
+
+11-15 00:59:45.786 D/gralloc_ranchu( 1258): gralloc_alloc: Creating ashmem region of size 8294400
+
+11-15 00:59:45.797 D/        ( 4771): HostConnection::get() New Host Connection established 0x7fe361d52480, tid 4771
+
+11-15 00:59:46.223 D/AndroidRuntime( 4776): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:46.224 D/AndroidRuntime( 4776): CheckJNI is OFF
+
+11-15 00:59:46.240 D/ICU     ( 4776): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:46.261 E/memtrack( 4776): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:46.261 E/android.os.Debug( 4776): failed to load memtrack module: -2
+
+11-15 00:59:46.262 I/Radio-JNI( 4776): register_android_hardware_Radio DONE
+
+11-15 00:59:46.286 D/AndroidRuntime( 4776): Calling main entry com.android.commands.am.Am
+
+11-15 00:59:46.299 D/MediaScannerReceiver( 1755): action: android.intent.action.MEDIA_SCANNER_SCAN_FILE path: /storage/emulated/0/q.png
+
+11-15 00:59:46.301 D/AndroidRuntime( 4776): Shutting down VM
+
+11-15 00:59:46.593 I/AccountManagerService( 1620): getTypesVisibleToCaller: isPermitted? true
+
+11-15 00:59:46.953 D/EGL_emulation( 2649): eglCreateContext: 0x7fcdcd9a2180: maj 2 min 0 rcv 2
+
+11-15 00:59:46.957 D/EGL_emulation( 2649): eglMakeCurrent: 0x7fcdcd9a2180: ver 2 0 (tinfo 0x7fcdd273ba80)
+
+11-15 00:59:47.336 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): [AppCertManager] Failed to get security token.
+
+11-15 00:59:47.336 W/GLSUser ( 1964): java.io.IOException: Invalid scope
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at adiw.b(:com.google.android.gms@202414023@20.24.14 (040800-319035315):23)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at adiw.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):18)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at adiw.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):11)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at hwy.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):17)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at hww.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):45)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at hwr.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at hwu.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):10)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at gbi.call(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at soy.b(:com.google.android.gms@202414023@20.24.14 (040800-319035315):12)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at soy.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):7)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1113)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at sux.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:59:47.336 W/GLSUser ( 1964): 	at java.lang.Thread.run(Thread.java:818)
+
+11-15 00:59:47.432 E/art     ( 1964): invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): [AppCertManager] IOException while requesting key: 
+
+11-15 00:59:47.432 W/GLSUser ( 1964): java.io.IOException: Invalid device key response.
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at hwy.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):49)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at hww.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):45)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at hwr.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315))
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at hwu.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):10)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at gbi.call(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at soy.b(:com.google.android.gms@202414023@20.24.14 (040800-319035315):12)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at soy.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):7)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1113)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at sux.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+
+11-15 00:59:47.432 W/GLSUser ( 1964): 	at java.lang.Thread.run(Thread.java:818)
+
+11-15 00:59:47.679 D/AndroidRuntime( 4789): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:47.681 D/AndroidRuntime( 4789): CheckJNI is OFF
+
+11-15 00:59:47.693 D/ICU     ( 4789): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:47.723 E/memtrack( 4789): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:47.723 E/android.os.Debug( 4789): failed to load memtrack module: -2
+
+11-15 00:59:47.724 I/Radio-JNI( 4789): register_android_hardware_Radio DONE
+
+11-15 00:59:47.732 D/AndroidRuntime( 4789): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 00:59:48.800 W/AccessibilityNodeInfoDumper( 4789): Fetch time: 1ms
+
+11-15 00:59:48.801 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@b27d646
+
+11-15 00:59:48.827 D/AndroidRuntime( 4789): Shutting down VM
+
+11-15 00:59:54.937 I/Vision  ( 2371): Requesting optional module download of ocr.
+
+11-15 00:59:56.270 D/AndroidRuntime( 4817): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:56.271 D/AndroidRuntime( 4817): CheckJNI is OFF
+
+11-15 00:59:56.284 D/ICU     ( 4817): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:56.316 E/memtrack( 4817): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:56.316 E/android.os.Debug( 4817): failed to load memtrack module: -2
+
+11-15 00:59:56.317 I/Radio-JNI( 4817): register_android_hardware_Radio DONE
+
+11-15 00:59:56.325 D/AndroidRuntime( 4817): Calling main entry com.android.commands.am.Am
+
+11-15 00:59:56.326 I/ActivityManager( 1620): Force stopping com.yomihub.app appid=10083 user=0: from pid 4817
+
+11-15 00:59:56.327 I/ActivityManager( 1620): Killing 4568:com.yomihub.app/u0a83 (adj 0): stop com.yomihub.app
+
+11-15 00:59:56.374 W/InputDispatcher( 1620): channel 'de22ef8 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+
+11-15 00:59:56.374 E/InputDispatcher( 1620): channel 'de22ef8 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+
+11-15 00:59:56.377 D/GraphicsStats( 1620): Buffer count: 2
+
+11-15 00:59:56.377 I/WindowState( 1620): WIN DEATH: Window{de22ef8 u0 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity}
+
+11-15 00:59:56.377 W/InputDispatcher( 1620): Attempted to unregister already unregistered input channel 'de22ef8 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity (server)'
+
+11-15 00:59:56.377 W/WindowManager( 1620): Force-removing child win Window{2651534 u0 SurfaceView} from container Window{de22ef8 u0 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity}
+
+11-15 00:59:56.383 W/ActivityManager( 1620): Force removing ActivityRecord{30cfc6b u0 com.yomihub.app/com.kodjodevf.mangayomi.MainActivity t38}: app died, no saved state
+
+11-15 00:59:56.390 W/WindowManager( 1620): Failed looking up window
+
+11-15 00:59:56.390 W/WindowManager( 1620): java.lang.IllegalArgumentException: Requested window android.os.BinderProxy@f6dbfd1 does not exist
+
+11-15 00:59:56.390 W/WindowManager( 1620): 	at com.android.server.wm.WindowManagerService.windowForClientLocked(WindowManagerService.java:8733)
+
+11-15 00:59:56.390 W/WindowManager( 1620): 	at com.android.server.wm.WindowManagerService.windowForClientLocked(WindowManagerService.java:8724)
+
+11-15 00:59:56.390 W/WindowManager( 1620): 	at com.android.server.wm.WindowState$DeathRecipient.binderDied(WindowState.java:1209)
+
+11-15 00:59:56.390 W/WindowManager( 1620): 	at android.os.BinderProxy.sendDeathNotice(Binder.java:558)
+
+11-15 00:59:56.390 I/WindowState( 1620): WIN DEATH: null
+
+11-15 00:59:56.399 D/AndroidRuntime( 4817): Shutting down VM
+
+11-15 00:59:56.400 W/ActivityManager( 1620): Spurious death for ProcessRecord{830d699 0:com.yomihub.app/u0a83}, curProc for 4568: null
+
+11-15 00:59:56.447 D/EGL_emulation( 1993): eglMakeCurrent: 0x7fcdcd9a1fa0: ver 2 0 (tinfo 0x7fcdcd982be0)
+
+11-15 00:59:56.450 W/InputMethodManagerService( 1620): Got RemoteException sending setActive(false) notification to pid 4568 uid 10083
+
+11-15 00:59:56.568 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:56.568 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:56.586 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:56.586 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:56.604 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:56.604 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:56.622 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:56.622 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:56.639 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:56.639 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:56.656 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:56.657 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:56.682 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:56.682 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:56.971 D/AndroidRuntime( 4826): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:56.972 D/AndroidRuntime( 4826): CheckJNI is OFF
+
+11-15 00:59:56.981 D/ICU     ( 4826): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:57.001 E/memtrack( 4826): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:57.001 E/android.os.Debug( 4826): failed to load memtrack module: -2
+
+11-15 00:59:57.002 I/Radio-JNI( 4826): register_android_hardware_Radio DONE
+
+11-15 00:59:57.009 D/AndroidRuntime( 4826): Calling main entry com.android.commands.input.Input
+
+11-15 00:59:57.013 I/Input   ( 4826): injectKeyEvent: KeyEvent { action=ACTION_DOWN, keyCode=KEYCODE_WAKEUP, scanCode=0, metaState=0, flags=0x0, repeatCount=0, eventTime=333469, downTime=333469, deviceId=-1, source=0x101 }
+
+11-15 00:59:57.015 I/Input   ( 4826): injectKeyEvent: KeyEvent { action=ACTION_UP, keyCode=KEYCODE_WAKEUP, scanCode=0, metaState=0, flags=0x0, repeatCount=0, eventTime=333469, downTime=333469, deviceId=-1, source=0x101 }
+
+11-15 00:59:57.016 D/AndroidRuntime( 4826): Shutting down VM
+
+11-15 00:59:57.388 D/AndroidRuntime( 4836): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 00:59:57.389 D/AndroidRuntime( 4836): CheckJNI is OFF
+
+11-15 00:59:57.399 D/ICU     ( 4836): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 00:59:57.416 E/memtrack( 4836): Couldn't load memtrack module (No such file or directory)
+
+11-15 00:59:57.416 E/android.os.Debug( 4836): failed to load memtrack module: -2
+
+11-15 00:59:57.417 I/Radio-JNI( 4836): register_android_hardware_Radio DONE
+
+11-15 00:59:57.421 D/AndroidRuntime( 4836): Calling main entry com.android.commands.am.Am
+
+11-15 00:59:57.426 I/ActivityManager( 1620): START u0 {flg=0x10000000 cmp=com.yomihub.app/com.kodjodevf.mangayomi.MainActivity} from uid 0 on display 0
+
+11-15 00:59:57.435 D/AndroidRuntime( 4836): Shutting down VM
+
+11-15 00:59:57.446 I/ActivityManager( 1620): Start proc 4845:com.yomihub.app/u0a83 for activity com.yomihub.app/com.kodjodevf.mangayomi.MainActivity
+
+11-15 00:59:57.498 D/gralloc_ranchu( 1258): gralloc_alloc: Creating ashmem region of size 8294400
+
+11-15 00:59:57.556 D/EGL_emulation( 1993): eglMakeCurrent: 0x7fcdcd9a1fa0: ver 2 0 (tinfo 0x7fcdcd982be0)
+
+11-15 00:59:57.558 E/Surface ( 1993): getSlotFromBufferLocked: unknown buffer: 0x7fcdcb7e68a0
+
+11-15 00:59:57.650 D/skia    ( 4845): [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+
+11-15 00:59:57.690 I/flutter ( 4845): [IMPORTANT:flutter/shell/common/shell.cc(528)] [Action Required]: Impeller opt-out deprecated.
+
+11-15 00:59:57.690 I/flutter ( 4845):     The application opted out of Impeller by either using the
+
+11-15 00:59:57.690 I/flutter ( 4845):     `--no-enable-impeller` flag or the
+
+11-15 00:59:57.690 I/flutter ( 4845):     `io.flutter.embedding.android.EnableImpeller` `AndroidManifest.xml` entry.
+
+11-15 00:59:57.690 I/flutter ( 4845):     These options are going to go away in an upcoming Flutter release. Remove
+
+11-15 00:59:57.690 I/flutter ( 4845):     the explicit opt-out. If you need to opt-out, please report a bug describing
+
+11-15 00:59:57.690 I/flutter ( 4845):     the issue.
+
+11-15 00:59:57.690 I/flutter ( 4845): 
+
+11-15 00:59:57.690 I/flutter ( 4845):     https://github.com/flutter/flutter/issues/new?template=02_bug.yml
+
+11-15 00:59:57.690 I/flutter ( 4845): 
+
+11-15 00:59:57.692 D/        ( 4845): HostConnection::get() New Host Connection established 0x7fcdc9e43b00, tid 4845
+
+11-15 00:59:57.698 D/EGL_emulation( 4845): eglCreateContext: 0x7fcdc9ec91a0: maj 2 min 0 rcv 2
+
+11-15 00:59:57.703 D/EGL_emulation( 4845): eglCreateContext: 0x7fcdc9ec99c0: maj 2 min 0 rcv 2
+
+11-15 00:59:57.705 D/        ( 4845): HostConnection::get() New Host Connection established 0x7fcdc9e43d40, tid 4861
+
+11-15 00:59:57.710 D/EGL_emulation( 4845): eglMakeCurrent: 0x7fcdc9ec99c0: ver 2 0 (tinfo 0x7fcdbdfad880)
+
+11-15 00:59:57.758 I/YomiA6Tls( 4845): TMPDIR = /data/user/0/com.yomihub.app/cache
+
+11-15 00:59:57.800 I/YomiA6Tls( 4845): Android 23: thêm 121 CA gốc đóng gói vào kho tin cậy Java
+
+11-15 00:59:57.820 I/TextToSpeech( 4845): Sucessfully bound to com.svox.pico
+
+11-15 00:59:57.821 V/SynthProxy( 3191): About to load libttspico.so, applyFilter=true
+
+11-15 00:59:57.824 I/SVOX Pico Engine( 3191): loaded en-US successfully
+
+11-15 00:59:57.834 I/media_kit( 4845): package:media_kit_libs_android_video attached.
+
+11-15 00:59:57.835 D/media_kit( 4845): Android
+
+11-15 00:59:57.835 D/media_kit( 4845): generic_x86_64
+
+11-15 00:59:57.835 D/media_kit( 4845): Android/sdk_google_phone_x86_64/generic_x86_64:6.0/MASTER/6695544:userdebug/test-keys
+
+11-15 00:59:57.835 D/media_kit( 4845): ranchu
+
+11-15 00:59:57.835 D/media_kit( 4845): Android SDK built for x86_64
+
+11-15 00:59:57.835 D/media_kit( 4845): unknown
+
+11-15 00:59:57.835 D/media_kit( 4845): sdk_google_phone_x86_64
+
+11-15 00:59:57.835 I/media_kit( 4845): Saved application context.
+
+11-15 00:59:57.883 I/art     ( 4845): Background sticky concurrent mark sweep GC freed 10612(637KB) AllocSpace objects, 8(480KB) LOS objects, 0% free, 7MB/7MB, paused 7.550ms total 16.319ms
+
+11-15 00:59:58.004 E/SurfaceFlinger( 1258): ro.sf.lcd_density must be defined as a build property
+
+11-15 00:59:58.005 D/OpenGLRenderer( 4845): Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+
+11-15 00:59:58.077 I/flutter ( 4845): [YomiA6Tls] Dart: them 121 CA goc dong goi (SDK < 24)
+
+11-15 00:59:58.083 W/linker  ( 4845): /data/app/com.yomihub.app-1/lib/x86_64/libsubsampling_scale_image_view.so: unused DT entry: type 0x1d arg 0xac
+
+11-15 00:59:58.083 I/flutter ( 4845): [YomiA6Native] thu muc lib = /data/app/com.yomihub.app-1/lib/x86_64; da nap truoc: libqjs.so, libsubsampling_scale_image_view.so
+
+11-15 00:59:58.087 I/TextToSpeech( 4845): Connected to ComponentInfo{com.svox.pico/com.svox.pico.PicoService}
+
+11-15 00:59:58.088 I/TextToSpeech( 4845): Set up connection to ComponentInfo{com.svox.pico/com.svox.pico.PicoService}
+
+11-15 00:59:58.094 I/art     ( 4845): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.DistinctElementSidecarCallback>
+
+11-15 00:59:58.094 I/art     ( 4845): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.DistinctElementSidecarCallback>
+
+11-15 00:59:58.094 I/art     ( 4845): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.SidecarCompat$TranslatingCallback>
+
+11-15 00:59:58.094 I/art     ( 4845): Rejecting re-init on previously-failed class java.lang.Class<androidx.window.layout.adapter.sidecar.SidecarCompat$TranslatingCallback>
+
+11-15 00:59:58.157 I/OpenGLRenderer( 4845): Initialized EGL, version 1.4
+
+11-15 00:59:58.157 D/        ( 4845): HostConnection::get() New Host Connection established 0x7fcdba07a1e0, tid 4868
+
+11-15 00:59:58.239 D/EGL_emulation( 4845): eglCreateContext: 0x7fcdb9e750a0: maj 2 min 0 rcv 2
+
+11-15 00:59:58.240 D/EGL_emulation( 4845): eglMakeCurrent: 0x7fcdb9e750a0: ver 2 0 (tinfo 0x7fcdba24cb00)
+
+11-15 00:59:58.256 D/EGL_emulation( 4845): eglMakeCurrent: 0x7fcdb9e750a0: ver 2 0 (tinfo 0x7fcdba24cb00)
+
+11-15 00:59:58.352 D/        ( 4845): HostConnection::get() New Host Connection established 0x7fcdd2638d20, tid 4860
+
+11-15 00:59:58.402 D/EGL_emulation( 4845): eglMakeCurrent: 0x7fcdc9ec91a0: ver 2 0 (tinfo 0x7fcdbdfad7a0)
+
+11-15 00:59:58.406 D/EGL_emulation( 4845): eglCreateContext: 0x7fcdcd9a1dc0: maj 2 min 0 rcv 2
+
+11-15 00:59:58.406 D/EGL_emulation( 4845): eglMakeCurrent: 0x7fcdcd9a1dc0: ver 2 0 (tinfo 0x7fcdbdfad7a0)
+
+11-15 00:59:58.407 D/EGL_emulation( 4845): eglMakeCurrent: 0x7fcdc9ec91a0: ver 2 0 (tinfo 0x7fcdbdfad7a0)
+
+11-15 00:59:58.413 D/EGL_emulation( 4845): eglMakeCurrent: 0x7fcdc9ec91a0: ver 2 0 (tinfo 0x7fcdbdfad7a0)
+
+11-15 00:59:58.423 I/flutter ( 4845): IsarCore using libmdbx: v0.13.8-temp-upstream-fix
+
+11-15 00:59:59.262 I/ActivityManager( 1620): Displayed com.yomihub.app/com.kodjodevf.mangayomi.MainActivity: +1s827ms
+
+11-15 00:59:59.304 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:59.304 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:59.321 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:59.321 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:59.353 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:59.353 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:59.390 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:59.390 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 00:59:59.426 W/PathParser( 1728): Points are too far apart 4.030360828967057
+
+11-15 00:59:59.426 W/PathParser( 1728): Points are too far apart 4.030360538880159
+
+11-15 01:00:00.501 I/flutter ( 4845): [LocalLibraryScanner] _scanDirectory start: name=local, path=/storage/emulated/0/YomiHub/local, platform=android, platformVersion=sdk_google_phone_x86_64-userdebug 6.0 MASTER 6695544 test-keys, configuredFolders=1
+
+11-15 01:00:00.501 I/flutter ( 4845): [LocalLibraryScanner] configured local folders: name=local, path=/storage/emulated/0/YomiHub/local
+
+11-15 01:00:00.505 I/flutter ( 4845): [LocalLibraryScanner] _scanDirectory directory probe [initial]: path=/storage/emulated/0/YomiHub/local, absolutePath=/storage/emulated/0/YomiHub/local, normalizedPath=/storage/emulated/0/YomiHub/local, parent=/storage/emulated/0/YomiHub, exists=true, parentExists=true, statType=directory, statMode=rwxrwx---, modified=2026-11-15T00:55:26.125
+
+11-15 01:00:00.515 I/flutter ( 4845): [LocalLibraryScanner] _scanDirectory root entries: path=/storage/emulated/0/YomiHub/local, total=4, folders=0, preview=_File:A6 Test Manga.cbz, _File:A6 Test Novel.epub, _File:A6 Test Video.mp4, _File:A6 Test Manga JPEG.cbz
+
+11-15 01:00:00.515 I/flutter ( 4845): [LocalLibraryScanner] title folders: top=0, titles=0
+
+11-15 01:00:00.515 I/flutter ( 4845): [LocalLibraryScanner] _scanDirectory scan summary: folder=/storage/emulated/0/YomiHub/local, processedMangas=4, newMangas=0, newChapters=0
+
+11-15 01:00:01.013 I/ActivityManager( 1620): Start proc 4892:com.android.deskclock/u0a26 for broadcast com.android.deskclock/com.android.alarmclock.DigitalAppWidgetProvider
+
+11-15 01:00:01.041 W/System  ( 4892): ClassLoader referenced unknown path: /system/app/DeskClock/lib/x86_64
+
+11-15 01:00:06.858 W/art     ( 4845): Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[16,tid=4876,Native,Thread*=0x7fcd74e29000,peer=0x1328b0a0,"Thread-161"]
+
+11-15 01:00:16.554 I/GmscoreIpa( 2371): how are you::
+
+11-15 01:00:20.448 D/AndroidRuntime( 4917): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 01:00:20.449 D/AndroidRuntime( 4917): CheckJNI is OFF
+
+11-15 01:00:20.458 D/ICU     ( 4917): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 01:00:20.474 E/memtrack( 4917): Couldn't load memtrack module (No such file or directory)
+
+11-15 01:00:20.474 E/android.os.Debug( 4917): failed to load memtrack module: -2
+
+11-15 01:00:20.475 I/Radio-JNI( 4917): register_android_hardware_Radio DONE
+
+11-15 01:00:20.479 D/AndroidRuntime( 4917): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 01:00:21.546 W/AccessibilityNodeInfoDumper( 4917): Fetch time: 2ms
+
+11-15 01:00:21.547 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@b75ae8
+
+11-15 01:00:21.561 D/AndroidRuntime( 4917): Shutting down VM
+
+11-15 01:00:22.016 D/AndroidRuntime( 4929): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 01:00:22.017 D/AndroidRuntime( 4929): CheckJNI is OFF
+
+11-15 01:00:22.027 D/ICU     ( 4929): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 01:00:22.045 E/memtrack( 4929): Couldn't load memtrack module (No such file or directory)
+
+11-15 01:00:22.045 E/android.os.Debug( 4929): failed to load memtrack module: -2
+
+11-15 01:00:22.045 I/Radio-JNI( 4929): register_android_hardware_Radio DONE
+
+11-15 01:00:22.052 D/AndroidRuntime( 4929): Calling main entry com.android.commands.input.Input
+
+11-15 01:00:22.056 I/Input   ( 4929): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=756.0, y[0]=1815.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=358511, downTime=358511, deviceId=0, source=0x1002 }
+
+11-15 01:00:22.059 I/Input   ( 4929): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=756.0, y[0]=1815.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=358511, downTime=358511, deviceId=0, source=0x1002 }
+
+11-15 01:00:22.061 D/AndroidRuntime( 4929): Shutting down VM
+
+11-15 01:00:25.215 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 1796938 , only wrote 1660432
+
+11-15 01:00:25.300 W/ChimeraConfigurator( 2371): Error syncing flags: qoq: COMMIT_TIMEOUT
+
+11-15 01:00:25.300 I/ChmraDebugLogger( 2371): [79] COMMIT_TIMEOUT
+
+11-15 01:00:25.301 I/ChmraDebugLogger( 2371): [52] null
+
+11-15 01:00:25.304 W/ChimeraConfigService( 2371): Retry attempt was throttled.
+
+11-15 01:00:27.429 D/AndroidRuntime( 4941): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 01:00:27.430 D/AndroidRuntime( 4941): CheckJNI is OFF
+
+11-15 01:00:27.439 D/ICU     ( 4941): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 01:00:27.457 E/memtrack( 4941): Couldn't load memtrack module (No such file or directory)
+
+11-15 01:00:27.457 E/android.os.Debug( 4941): failed to load memtrack module: -2
+
+11-15 01:00:27.458 I/Radio-JNI( 4941): register_android_hardware_Radio DONE
+
+11-15 01:00:27.463 D/AndroidRuntime( 4941): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 01:00:28.508 W/AccessibilityNodeInfoDumper( 4941): Fetch time: 2ms
+
+11-15 01:00:28.509 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@28fefa6
+
+11-15 01:00:28.522 D/AndroidRuntime( 4941): Shutting down VM
+
+11-15 01:00:28.939 D/AndroidRuntime( 4953): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 01:00:28.940 D/AndroidRuntime( 4953): CheckJNI is OFF
+
+11-15 01:00:28.950 D/ICU     ( 4953): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 01:00:28.968 E/memtrack( 4953): Couldn't load memtrack module (No such file or directory)
+
+11-15 01:00:28.968 E/android.os.Debug( 4953): failed to load memtrack module: -2
+
+11-15 01:00:28.968 I/Radio-JNI( 4953): register_android_hardware_Radio DONE
+
+11-15 01:00:28.973 D/AndroidRuntime( 4953): Calling main entry com.android.commands.input.Input
+
+11-15 01:00:28.976 I/Input   ( 4953): injectMotionEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=540.0, y[0]=415.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=365432, downTime=365432, deviceId=0, source=0x1002 }
+
+11-15 01:00:28.978 I/Input   ( 4953): injectMotionEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=540.0, y[0]=415.0, toolType[0]=TOOL_TYPE_UNKNOWN, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=365432, downTime=365432, deviceId=0, source=0x1002 }
+
+11-15 01:00:28.980 D/AndroidRuntime( 4953): Shutting down VM
+
+11-15 01:00:32.143 W/audio_hw_generic( 1344): Not supplying enough data to HAL, expected position 1936385 , only wrote 1799242
+
+11-15 01:00:32.330 I/ActivityManager( 1620): Killing 2468:com.android.messaging/u0a52 (adj 15): empty #17
+
+11-15 01:00:37.336 E/SurfaceFlinger( 1258): ro.sf.lcd_density must be defined as a build property
+
+11-15 01:00:37.337 D/gralloc_ranchu( 1258): gralloc_alloc: Creating ashmem region of size 8294400
+
+11-15 01:00:37.339 D/        ( 5020): HostConnection::get() New Host Connection established 0x7f30d9f92480, tid 5020
+
+11-15 01:00:37.568 D/AndroidRuntime( 5025): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 01:00:37.569 D/AndroidRuntime( 5025): CheckJNI is OFF
+
+11-15 01:00:37.581 D/ICU     ( 5025): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 01:00:37.604 E/memtrack( 5025): Couldn't load memtrack module (No such file or directory)
+
+11-15 01:00:37.604 E/android.os.Debug( 5025): failed to load memtrack module: -2
+
+11-15 01:00:37.605 I/Radio-JNI( 5025): register_android_hardware_Radio DONE
+
+11-15 01:00:37.612 D/AndroidRuntime( 5025): Calling main entry com.android.commands.am.Am
+
+11-15 01:00:37.622 D/MediaScannerReceiver( 1755): action: android.intent.action.MEDIA_SCANNER_SCAN_FILE path: /storage/emulated/0/q.png
+
+11-15 01:00:37.624 D/AndroidRuntime( 5025): Shutting down VM
+
+11-15 01:00:38.176 D/AndroidRuntime( 5035): >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+
+11-15 01:00:38.177 D/AndroidRuntime( 5035): CheckJNI is OFF
+
+11-15 01:00:38.186 D/ICU     ( 5035): No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+
+11-15 01:00:38.205 E/memtrack( 5035): Couldn't load memtrack module (No such file or directory)
+
+11-15 01:00:38.205 E/android.os.Debug( 5035): failed to load memtrack module: -2
+
+11-15 01:00:38.206 I/Radio-JNI( 5035): register_android_hardware_Radio DONE
+
+11-15 01:00:38.211 D/AndroidRuntime( 5035): Calling main entry com.android.commands.uiautomator.Launcher
+
+11-15 01:00:38.252 D/hwcomposer( 1258): hw_composer sent 1625 syncs in 62s
+
+11-15 01:00:39.305 W/AccessibilityNodeInfoDumper( 5035): Fetch time: 13ms
+
+11-15 01:00:39.305 W/WindowManager( 1620): Attempted to remove non-existing token: android.os.Binder@ec36183
+
+11-15 01:00:39.324 D/AndroidRuntime( 5035): Shutting down VM
+

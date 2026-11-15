@@ -21,6 +21,7 @@ import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/player/sponsorblock.dart';
 import 'package:mangayomi/yomihub/player/player_net.dart';
 import 'package:mangayomi/yomihub/player/shorts_store.dart';
+import 'package:mangayomi/yomihub/player/shorts_detect.dart';
 import 'package:mangayomi/modules/manga/download/providers/download_provider.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:mangayomi/yomihub/share/share_link.dart';
@@ -42,11 +43,7 @@ class YomiShorts {
   // YomiHub 0.2.0: every bundled extension flagged `shorts` (Pornhub
   // Shorties, Tik.Porn, Kwiky, xFree, FapReel…), plus YouTube / FikFap
   // copies from repositories.
-  static int shortsOption(SelectFilter filter) => filter.values.indexWhere(
-    (o) => o is SelectFilterOption &&
-        [o.value, o.name].any((v) => const {'shorts', 'short video', 'short videos', 'video ngắn'}
-            .contains(v.trim().toLowerCase())),
-  );
+  static int shortsOption(SelectFilter filter) => ShortsDetect.selectOption(filter);
 
   static Iterable<SelectFilter> selectFilters(List<dynamic> filters) sync* {
     for (final filter in filters) {
@@ -55,13 +52,23 @@ class YomiShorts {
     }
   }
 
-  static bool supports(Source s, {List<dynamic> filters = const []}) {
-    if (s.itemType != ItemType.anime) return false;
-    if (BuiltinExtensions.shortsIds.contains(s.id)) return true;
-    final n = (s.name ?? '').toLowerCase();
-    return n.startsWith('youtube') || n.startsWith('fikfap') ||
-        selectFilters(filters).any((f) => shortsOption(f) >= 0);
-  }
+  /// 0.5.7 (U9 / FC26): every external extension that offers short-form
+  /// video – see [ShortsDetect] – plus the per-extension override
+  /// "Ép chế độ Short".
+  static String? supportReason(Source s, {List<dynamic> filters = const []}) =>
+      ShortsDetect.reason(
+        isVideoSource: s.itemType == ItemType.anime,
+        forced: ShortsStore.isForced(s),
+        builtin: BuiltinExtensions.shortsIds.contains(s.id),
+        name: s.name,
+        baseUrl: s.baseUrl,
+        additionalParams: s.additionalParams,
+        notes: s.notes,
+        filters: filters,
+      );
+
+  static bool supports(Source s, {List<dynamic> filters = const []}) =>
+      supportReason(s, filters: filters) != null;
 
   static bool isYouTube(Source s) => s.id == youtubeId || (s.name ?? '').toLowerCase().startsWith('youtube');
 }
@@ -152,14 +159,8 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
     } catch (_) {}
     // 0.2.0: any select filter offering a "shorts" option (YouTube cat,
     // Pornhub/Tik.Porn/xFree… "feed") switches the source to its vertical feed
-    var picked = false;
-    for (final x in YomiShorts.selectFilters(f)) {
-      final i = YomiShorts.shortsOption(x);
-      if (i >= 0) {
-        x.state = i;
-        picked = true;
-      }
-    }
+    // 0.5.7: also check boxes, tri-states and sort entries, at any depth
+    final picked = ShortsDetect.scanFilters(f, apply: true).isNotEmpty;
     if (!picked && !YomiShorts.isYouTube(widget.source)) {
       for (final x in f) {
         if (x is SelectFilter && x.type == 'sort') {

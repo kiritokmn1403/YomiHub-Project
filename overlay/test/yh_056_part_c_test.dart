@@ -148,6 +148,9 @@ void main() {
       expect(ZenshinAnimeTracker.parseEpisodeNumber('Series One 100 - 05'), 5);
       expect(ZenshinAnimeTracker.parseEpisodeNumber('Show S02E07'), 7);
       expect(ZenshinAnimeTracker.parseEpisodeNumber('#25 - Grand Finale'), equals(25));
+      // 0.5.7 (MATRIX U5): a resolution in brackets is not the episode
+      expect(ZenshinAnimeTracker.parseEpisodeNumber('Show - 05 [1080]'), 5);
+      expect(ZenshinAnimeTracker.parseEpisodeNumber('Show [720] [12]'), 12);
     });
 
     test('Watch threshold triggers at >= 85%', () {

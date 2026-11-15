@@ -11,7 +11,10 @@ class YomiExtErrors {
   static final RegExp _setup = RegExp(
     r'(in (the )?extension settings|select (a )?library|enter (drive )?path|'
     r'set (up|the) (server|url|address)|api key|login required|please log ?in|'
-    r'not configured|chưa cấu hình|trong cài đặt (của )?tiện ích|đăng nhập)',
+    r'not configured|chưa cấu hình|trong cài đặt (của )?tiện ích|đăng nhập|'
+    // 0.5.7 (logs 7, 12/11 16:18: Kavita "OPDS URL required / Please configure
+    // your Kavita server connection" was an ERROR with a native stack)
+    r'(opds )?url required|please configure)',
     caseSensitive: false,
   );
   static final Set<String> _needsSetup = {};
@@ -66,7 +69,11 @@ class YomiExtErrors {
     r'(unable to resolve host|no address associated|failed host lookup|'
     r'unknownhost|connection (closed|reset|refused|abort)|software caused connection abort|'
     r'socketexception|handshakeexception|network (error|is unreachable)|timed? ?out|'
-    r'http error 5(2[0-9]|0[234])|status(code)?[=: ]+5(2[0-9]|0[234])\b|'
+    // 0.5.7: + 530 (Cloudflare: origin unreachable – logs 7 HentaiVN.plus,
+    // Phim Nhựa), "HTTP 5xx <url>" and "HTTP 0 <url>" (no answer at all) as
+    // written by the JavaScript extensions of the Kiritokmn repo
+    r'http (error )?5(2[0-9]|30|0[234])\b|status(code)?[=: ]+5(2[0-9]|30|0[234])\b|'
+    r'\bhttp 0 https?://|'
     r'failed to bypass cloudflare|cloudflare|certpathvalidatorexception|trust anchor|'
     r'missing madara post id|brotli stream decoding|sourceerror: network|'
     // 0.4.4: rhttp (Rust client) wording - "Connection error", proxy tunnel
@@ -114,11 +121,49 @@ class YomiExtErrors {
       return tr('Tên miền không phân giải được: trang có thể đã đổi tên miền hoặc bị nhà mạng chặn. '
           'Thử bật DNS/VPN trong "VPN & DNS", hoặc dùng "Đổi URL" trong trang tiện ích.');
     }
-    if (RegExp(r'\b52[0-9]\b').hasMatch(s)) {
+    if (RegExp(r'\b5(2[0-9]|30)\b').hasMatch(s)) {
       return tr('Máy chủ của trang đang lỗi (Cloudflare 52x) – thử lại sau.');
     }
     return null;
   }
+
+  // ---- 0.5.7 (logs 7, 12-14/11/2026) -----------------------------------
+  /// The APK extension needs a class / method that the extension runner of
+  /// this build does not have (logs 7, 14/11 07:38 "MiMi": `abstract method
+  /// "… GeneratedSerializer.typeParametersSerializers()"`). Seen with the
+  /// separate Android 6.0 APK, whose libraries cannot keep interface default
+  /// methods; never an error a stack trace of the app helps with.
+  static final RegExp _incompatible = RegExp(
+    r'(abstract method "|abstractmethoderror|nosuchmethoderror|noclassdeffounderror|'
+    r'incompatibleclasschangeerror|no (static|virtual|direct|interface) method )',
+    caseSensitive: false,
+  );
+  static bool isIncompatible(Object e) => _incompatible.hasMatch(e.toString());
+
+  static String incompatibleHint() => tr(
+      'Tiện ích này cần thư viện mới hơn bộ chạy tiện ích APK của bản cài hiện tại: hãy cập nhật YomiHub; nếu đang dùng bản APK dành cho Android 6.0 trên máy Android 7.0 trở lên, hãy cài bản APK thường.');
+
+  /// The source answered, but not with what the extension expects (Aidoku
+  /// "SourceError: missing result / JSON parse error", an empty body, a
+  /// missing CSRF token …): the site changed or blocked the request. One
+  /// warning line; the native stack of the app says nothing about it.
+  static final RegExp _sourceData = RegExp(
+    r'(sourceerror: (missing result|json parse error|[a-z ]{3,40}$)|csrf token not found|'
+    r'end of input at character 0|no value for [a-z_]+$|method not allowed)',
+    caseSensitive: false,
+    multiLine: true,
+  );
+  static bool isSourceDataError(Object e) => _sourceData.hasMatch(short(e));
+
+  /// An extension its repository marks as discontinued ("… (Ngừng hoạt
+  /// động)"): its site is gone, every call fails – noted once per run.
+  static bool isDiscontinued(String? name) {
+    final n = (name ?? '').toLowerCase();
+    return n.contains('(ngừng hoạt động)') || n.contains('(discontinued)') || n.contains('(dead)');
+  }
+
+  static final Set<String> _discontinuedNoted = {};
+  static bool noteDiscontinuedOnce(String? name, String? lang) => _discontinuedNoted.add(_key(name, lang));
 
   /// One-line, user-readable form of an extension error (no stack, no
   /// "statusCode: 500" padding added by the APK bridge).

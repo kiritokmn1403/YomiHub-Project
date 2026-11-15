@@ -14,8 +14,10 @@ import 'dart:io';
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/app_identity.dart';
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/mes/yomi_mes.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:mangayomi/yomihub/win/win_render.dart';
 import 'package:path/path.dart' as p;
 
 class WinDiag {
@@ -67,15 +69,15 @@ class WinDiag {
     final sys32 = p.join(Platform.environment['SystemRoot'] ?? r'C:\Windows', 'System32');
     for (final dll in ['vcruntime140.dll', 'vcruntime140_1.dll', 'msvcp140.dll']) {
       if (!has(dll) && !File(p.join(sys32, dll)).existsSync()) {
-        out.add('thiếu $dll (VC++ 2015-2022) – lõi Rust, cơ sở dữ liệu, torrent, trình phát có thể không chạy');
+        out.add(tr('thiếu {p0} (VC++ 2015-2022) – lõi Rust, cơ sở dữ liệu, torrent, trình phát có thể không chạy', {'p0': dll}));
       }
     }
-    if (!has(p.join('yomihub_bin', 'xray.exe'))) out.add('thiếu yomihub_bin\\xray.exe – WARP/VPN & DNS không chạy');
-    if (!has(p.join('yomihub_bin', 'tor', 'tor.exe'))) out.add('thiếu yomihub_bin\\tor\\tor.exe – Tor không chạy');
+    if (!has(p.join('yomihub_bin', 'xray.exe'))) out.add(tr('thiếu {p0} – WARP/VPN & DNS không chạy', {'p0': r'yomihub_bin\xray.exe'}));
+    if (!has(p.join('yomihub_bin', 'tor', 'tor.exe'))) out.add(tr('thiếu {p0} – Tor không chạy', {'p0': r'yomihub_bin\tor\tor.exe'}));
     if (!Directory(p.join(exeDir, 'yomihub_bin', 'bridge', 'lib')).existsSync()) {
-      out.add('thiếu yomihub_bin\\bridge – nguồn Kotatsu / IReader không chạy');
+      out.add(tr('thiếu {p0} – nguồn Kotatsu / IReader không chạy', {'p0': r'yomihub_bin\bridge'}));
     }
-    if (!has('libmpv-2.dll')) out.add('thiếu libmpv-2.dll – không phát được video');
+    if (!has('libmpv-2.dll')) out.add(tr('thiếu libmpv-2.dll – không phát được video'));
     return out;
   }
 
@@ -99,14 +101,20 @@ class WinDiag {
         ..clear()
         ..addAll(checkFiles(exeDir));
       if (wv2.isEmpty || wv2 == '0.0.0.0') {
-        problems.add('chưa có Microsoft Edge WebView2 Runtime – trình duyệt trong app, vượt Cloudflare, đăng nhập tiện ích không chạy (cài từ go.microsoft.com/fwlink/p/?LinkId=2124703)');
+        problems.add(tr('chưa có Microsoft Edge WebView2 Runtime – trình duyệt trong app, vượt Cloudflare, đăng nhập tiện ích không chạy (cài từ go.microsoft.com/fwlink/p/?LinkId=2124703)'));
       }
       if (!java) {
-        problems.add('chưa có Java của M-Extension-Server – tiện ích Mihon/Aniyomi (ApkBridge), Kotatsu, IReader không chạy (Cài đặt › Duyệt › M-Extension-Server › Cài tự động, hoặc dùng gói Setup/-full)');
+        problems.add(tr('chưa có Java của M-Extension-Server – tiện ích Mihon/Aniyomi (ApkBridge), Kotatsu, IReader không chạy (Cài đặt › Duyệt › M-Extension-Server › Cài tự động, hoặc dùng gói Setup/-full)'));
       }
-      summary = '${Platform.operatingSystemVersion} • CPU $cpu ($arch, ${Platform.numberOfProcessors} luồng)'
-          '${gpu.isEmpty ? '' : ' • GPU $gpu'} • WebView2 ${wv2.isEmpty ? 'không có' : wv2}'
-          ' • Java ${java ? 'có' : 'không'} • thư mục $exeDir';
+      final head = tr('{p0} • CPU {p1} ({p2}, {p3} luồng)', {
+        'p0': Platform.operatingSystemVersion,
+        'p1': cpu,
+        'p2': arch,
+        'p3': Platform.numberOfProcessors,
+      });
+      summary = '$head'
+          '${gpu.isEmpty ? '' : ' • GPU $gpu'} • WebView2 ${wv2.isEmpty ? tr('không có') : wv2}'
+          ' • Java ${java ? tr('có') : tr('không')} • ${tr('thư mục {p0}', {'p0': exeDir})}';
       AppLogger.log(
         '[Windows] Chẩn đoán: $summary',
         logLevel: LogLevel.info, always: true,
@@ -119,6 +127,11 @@ class WinDiag {
           '[Windows] Phát hiện vi xử lý AMD ($cpu - ${Platform.numberOfProcessors} luồng): Thiết lập video hiện tại hwdec=$hwdec, tăng tốc phần cứng=${hwAccel ? "bật" : "tắt (fallback phần mềm)"}. Nếu GPU/driver gặp sự cố giải mã Direct3D 11, chuyển Tăng tốc phần cứng sang Tắt để kích hoạt fallback giải mã CPU đa luồng.',
           logLevel: LogLevel.info, always: true,
         );
+      }
+      // 0.5.7 (R21): what the runner's blank-window watchdog recorded.
+      final render = WinRender.describe(WinRender.readState());
+      if (render.isNotEmpty) {
+        AppLogger.log('[Windows] Kết xuất: $render', logLevel: LogLevel.info, always: true);
       }
       for (final m in problems) {
         AppLogger.log('[Windows] Thiếu thành phần: $m', logLevel: LogLevel.warning);

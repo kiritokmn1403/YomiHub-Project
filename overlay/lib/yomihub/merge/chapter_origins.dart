@@ -100,6 +100,65 @@ class ChapterOrigins {
         '${origin?['source'] ?? manga?.source}|${origin?['lang'] ?? manga?.lang}';
   }
 
+  // ---- 0.5.7 (sheet "Merge" / Feature Check 37) -------------------------
+  // "Thêm cài đặt chọn nguồn để đọc sau khi hợp nhất": the source picked
+  // under "Đề xuất / Liên quan" is remembered per title (backed-up
+  // preferences box) and decides which copy of a chapter the reader opens
+  // when several merged sources carry the same chapter number.
+  static const _readKey = 'mergedReadSource';
+
+  /// The remembered source key ([sourceKey]) of a merged title, or null
+  /// ("Tất cả": no preference).
+  static String? preferredSource(int? mangaId) {
+    if (mangaId == null || !YomiPrefs.isOpen) return null;
+    final v = YomiPrefs.get<Map>(_readKey, const {})['$mangaId'];
+    return v is String && v.isNotEmpty ? v : null;
+  }
+
+  static Future<void> setPreferredSource(int? mangaId, String? key) async {
+    if (mangaId == null || !YomiPrefs.isOpen) return;
+    final all = Map<String, dynamic>.from(YomiPrefs.get<Map>(_readKey, const {}));
+    if (key == null || key.isEmpty) {
+      if (!all.containsKey('$mangaId')) return;
+      all.remove('$mangaId');
+    } else {
+      if (all['$mangaId'] == key) return;
+      all['$mangaId'] = key;
+    }
+    await YomiPrefs.set(_readKey, all);
+  }
+
+  /// One chapter per chapter number for sequential reading. [chapters] is in
+  /// reading order, [numberOf] gives the chapter number (null = no number:
+  /// never collapsed). Without a preference the first copy wins (the old
+  /// behaviour); with one, the copy of the preferred source wins and the
+  /// other sources only fill in the chapters the preferred source lacks, so
+  /// a source that stopped updating never hides newer chapters.
+  static List<Chapter> pickForReading(
+    List<Chapter> chapters,
+    double? Function(Chapter c) numberOf, {
+    Manga? owner,
+    String? preferred,
+  }) {
+    final chosen = <double, Chapter>{};
+    final preferredHit = <double>{};
+    for (final c in chapters) {
+      final n = numberOf(c);
+      if (n == null) continue;
+      if (!chosen.containsKey(n)) {
+        chosen[n] = c;
+        if (preferred != null && sourceKey(c, owner) == preferred) preferredHit.add(n);
+      } else if (preferred != null && !preferredHit.contains(n) && sourceKey(c, owner) == preferred) {
+        chosen[n] = c;
+        preferredHit.add(n);
+      }
+    }
+    return [
+      for (final c in chapters)
+        if (numberOf(c) == null || identical(chosen[numberOf(c)], c)) c,
+    ];
+  }
+
   static Source? sourceFor(Chapter chapter) {
     final origin = of(chapter);
     final manga = chapter.manga.value;

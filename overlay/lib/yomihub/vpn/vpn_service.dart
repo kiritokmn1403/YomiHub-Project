@@ -13,6 +13,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
+import 'package:mangayomi/yomihub/vpn/tor_fallback.dart';
 import 'package:mangayomi/yomihub/mes/yomi_mes.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_tunnels.dart';
 import 'package:mangayomi/yomihub/vpn/win/win_vpn.dart';
@@ -191,8 +192,11 @@ class YomiVpnService extends ChangeNotifier {
     await _put('torBridge', v);
     if (Platform.isAndroid) {
       // applied live over the control port – no restart
+      _torFallbackKind = null;
       await _sendTorBridges();
       if (YomiVpnState.torEnabled) unawaited(_logTorPath(const Duration(seconds: 120)));
+      // 0.5.7: watch the newly chosen transport too
+      if (YomiVpnState.torEnabled && !YomiVpnState.torRunning) _startTorStallWatch(_torGeneration);
     } else if (YomiVpnState.torEnabled) {
       await stopTor();
       await startTor();
@@ -201,6 +205,106 @@ class YomiVpnService extends ChangeNotifier {
   }
 
   Map<String, List<String>>? _ptBridges;
+
+  // ───────── 0.5.7: fallback when the chosen bridge stalls ─────────
+  // logs 7 (12–13/11/2026): bridge fixed to "snowflake", bootstrap stayed at
+  // 45–50 % ten times; nothing else was tried because only "auto" changed
+  // transport. With this switch on (default) a fixed transport whose
+  // bootstrap percentage stops increasing is replaced by the next one
+  // (other transports, then a direct connection) – see tor_fallback.dart.
+  // Off = the old behaviour: keep the chosen transport whatever happens.
+  bool get torBridgeFallback => _box?.get('torBridgeFallback', defaultValue: true) as bool? ?? true;
+
+  Future<void> setTorBridgeFallback(bool v) async {
+    await _put('torBridgeFallback', v);
+    if (!v) {
+      _torWatchId++;
+      if (_torFallbackKind != null) {
+        _torFallbackKind = null;
+        await _sendTorBridges();
+      }
+    } else if (YomiVpnState.torEnabled && !YomiVpnState.torRunning) {
+      _startTorStallWatch(_torGeneration);
+    }
+    notifyListeners();
+  }
+
+  /// Transport the fallback switched to (null = the user's choice is in use).
+  String? _torFallbackKind;
+  int _torWatchId = 0;
+
+  /// Poll interval of the stall watch (tests shorten it).
+  @visibleForTesting
+  static Duration torWatchInterval = const Duration(seconds: 5);
+
+  void _startTorStallWatch(int generation) {
+    final id = ++_torWatchId;
+    if (!Platform.isAndroid || !torBridgeFallback || !TorBridgeFallback.appliesTo(torBridge)) return;
+    unawaited(_torStallWatch(generation, id));
+  }
+
+  Future<void> _torStallWatch(int generation, int id) async {
+    final chosen = torBridge;
+    final tracker = TorStallTracker(
+      TorBridgeFallback.order(chosen, (_ptBridges ?? const {}).keys),
+      DateTime.now(),
+    );
+    bool live() => id == _torWatchId && generation == _torGeneration && YomiVpnState.torEnabled && torBridge == chosen;
+    while (live() && !tracker.finished) {
+      await Future.delayed(torWatchInterval);
+      if (!live()) return;
+      String boot = '';
+      try {
+        final m = Map<String, dynamic>.from(await _channel.invokeMethod('torDiag') as Map);
+        boot = '${m['bootstrap'] ?? ''}';
+      } catch (_) {}
+      if (!live()) return;
+      final step = tracker.update(TorBridgeFallback.progressOf(boot), DateTime.now());
+      final sum = TorBridgeFallback.summaryOf(boot);
+      final where = '${step.percent}%${sum.isEmpty ? '' : ' – $sum'}';
+      switch (step.kind) {
+        case TorStallKind.none:
+          break;
+        case TorStallKind.done:
+          if (tracker.onFallback) {
+            AppLogger.log(
+              '[VPN] Tor đã kết nối qua ${TorBridgeFallback.label(step.from)} sau khi cầu nối đã chọn "$chosen" bị kẹt. '
+              'Cài đặt cầu nối vẫn là "$chosen"; có thể đổi hẳn trong VPN & DNS › Tor › Cầu nối.',
+              logLevel: LogLevel.info,
+            );
+          }
+        case TorStallKind.switchTo:
+          AppLogger.log(
+            '[VPN] Tor kẹt ở $where suốt ${step.stalled.inSeconds} giây với ${TorBridgeFallback.label(step.from)} '
+            '– tự chuyển sang ${TorBridgeFallback.label(step.to)} (lần thử ${step.attempt}/${step.total}). '
+            'Tắt "Tự đổi cầu nối khi Tor bị kẹt" trong VPN & DNS nếu chỉ muốn dùng "$chosen".',
+            logLevel: LogLevel.warning,
+          );
+          await _applyTorFallback(step.to);
+        case TorStallKind.exhausted:
+          AppLogger.log(
+            '[VPN] Tor không kết nối được bằng cách nào (đã thử lần lượt: '
+            '${tracker.tried.map(TorBridgeFallback.label).join(' → ')}; lần cuối kẹt ở $where suốt ${step.stalled.inSeconds} giây) '
+            '– quay lại cầu nối đã chọn "$chosen", Tor vẫn thử ở nền. Mạng này có thể chặn Tor hoàn toàn: hãy dùng Cloudflare WARP.',
+            logLevel: LogLevel.error,
+          );
+          await _applyTorFallback(null);
+      }
+    }
+  }
+
+  /// Applies [kind] live over the control port (null = back to the setting).
+  Future<void> _applyTorFallback(String? kind) async {
+    _torFallbackKind = kind;
+    try {
+      await _channel.invokeMethod('torBridges', {'mode': kind ?? torBridge, 'lines': _ptBridges ?? const {}});
+      // native reports a transport through "torBridge"; direct has no callback
+      if (kind != null && kind.isEmpty) torBridgeActive = '';
+    } catch (e) {
+      AppLogger.log('[VPN] Không đổi được cầu nối Tor: $e', logLevel: LogLevel.warning);
+    }
+    notifyListeners();
+  }
 
   /// 0.4.5: writes which path tor really uses (bridge fingerprint / relay)
   /// to the application log – the bridge setting can be verified from there.
@@ -309,6 +413,10 @@ class YomiVpnService extends ChangeNotifier {
   /// (Tor / custom proxy) when it is applied to every source.
   void _syncJvmProxy() {
     final p = YomiVpnState.proxyFor(null);
+    // 0.5.7: the Kotatsu / IReader bridges run in this JVM on Android and
+    // follow its proxy; the loopback bypass uses this to refuse a request
+    // that would leave outside the VPN (Windows bridges are never proxied).
+    YomiVpnState.jvmBridgeProxy = Platform.isAndroid ? p : null;
     if (p == _jvmProxy) return;
     _jvmProxy = p;
     YomiMes.setJvmProxy(p);
@@ -373,12 +481,15 @@ class YomiVpnService extends ChangeNotifier {
           notifyListeners();
         case 'torBridge':
           torBridgeActive = '${call.arguments}';
-          // fixed mode = chosen by the user; "auto" = tor was blocked
-          AppLogger.log(
-              torBridge == 'auto'
-                  ? '[VPN] Tor chưa kết nối trực tiếp được – tự chuyển sang cầu nối "$torBridgeActive"'
-                  : '[VPN] Tor dùng cầu nối "$torBridgeActive" (theo cài đặt)',
-              logLevel: torBridge == 'auto' ? LogLevel.warning : LogLevel.info);
+          // fixed mode = chosen by the user; "auto" = tor was blocked;
+          // 0.5.7: a fallback transport is logged by the stall watch itself
+          if (_torFallbackKind == null || _torFallbackKind != torBridgeActive) {
+            AppLogger.log(
+                torBridge == 'auto'
+                    ? '[VPN] Tor chưa kết nối trực tiếp được – tự chuyển sang cầu nối "$torBridgeActive"'
+                    : '[VPN] Tor dùng cầu nối "$torBridgeActive" (theo cài đặt)',
+                logLevel: torBridge == 'auto' ? LogLevel.warning : LogLevel.info);
+          }
           notifyListeners();
           unawaited(_logTorPath(const Duration(seconds: 90)));
         case 'torBridgeError':
@@ -578,8 +689,12 @@ class YomiVpnService extends ChangeNotifier {
       await _writeTorrc();
       if (generation != _torGeneration) return;
       await _armTorGuard();
+      _torFallbackKind = null;
       await _sendTorBridges();
       if (generation != _torGeneration) return;
+      // 0.5.7: runs beside torStart – changes transport when the bootstrap
+      // percentage stops increasing (not after a fixed time)
+      _startTorStallWatch(generation);
       final info = Map<String, dynamic>.from(await _channel.invokeMethod('torStart') as Map);
       if (generation != _torGeneration) return;
       YomiVpnState.torHttpPort = (info['httpPort'] as num?)?.toInt() ?? 0;
@@ -595,7 +710,7 @@ class YomiVpnService extends ChangeNotifier {
           ? null
           : (pct == null
               ? tr('Tor chưa kết nối được (có thể mạng đang chặn Tor).')
-              : (Platform.isAndroid && torBridge == 'auto'
+              : (Platform.isAndroid && (torBridge == 'auto' || (torBridgeFallback && TorBridgeFallback.appliesTo(torBridge)))
                   ? tr('Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – YomiHub đang thử cầu nối (Snowflake/obfs4/meek) ở nền và sẽ tự dùng Tor khi kết nối xong.',
                       {'p0': pct, 'p1': sum == null ? '' : ': $sum'})
                   : tr('Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – Tor vẫn tiếp tục thử ở nền; nếu mạng chặn Tor hãy dùng WARP.',
@@ -650,6 +765,8 @@ class YomiVpnService extends ChangeNotifier {
   Future<void> stopTor() async {
     if (!supported) return;
     _torGeneration++;
+    _torWatchId++;
+    _torFallbackKind = null;
     _pendingTorStart = null;
     torStatus = 'OFF';
     YomiVpnState.torRunning = false;

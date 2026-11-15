@@ -11,6 +11,7 @@ import 'package:mangayomi/router/router.dart' show navigatorKey;
 import 'package:mangayomi/services/http/m_client.dart';
 import 'package:mangayomi/yomihub/cloudscraper/cloudscraper.dart';
 import 'package:mangayomi/yomihub/cloudflare/cf_humanize.dart';
+import 'package:mangayomi/yomihub/cloudflare/cf_identity.dart';
 import 'package:mangayomi/yomihub/cloudflare/cloak_solver.dart';
 
 /// YomiHub 0.1.6: Cloudflare challenge handling shared by every extension.
@@ -42,7 +43,14 @@ class YomiCf {
       _box = await YomiHive.open(_boxName);
       for (final k in _box!.keys) {
         final v = _box!.get(k);
-        if (v is String) _ua['$k'] = v;
+        if (v is! String) continue;
+        // 0.5.7: "id:<host>" = full browser identity (client hints, languages)
+        if ('$k'.startsWith(_idPrefix)) {
+          final id = CfIdentity.parse(v);
+          if (id != null) _identity['$k'.substring(_idPrefix.length)] = id;
+        } else {
+          _ua['$k'] = v;
+        }
       }
     } catch (_) {}
   }
@@ -67,6 +75,58 @@ class YomiCf {
     final h = _key(host);
     _ua[h] = ua;
     _box?.put(h, ua);
+    // an identity saved for another User-Agent no longer applies
+    if (_identity[h] != null && _identity[h]!.ua != ua) {
+      _identity.remove(h);
+      _box?.delete('$_idPrefix$h');
+    }
+  }
+
+  // ---- YomiHub 0.5.7: whole browser identity, not only the User-Agent ----
+  static const _idPrefix = 'id:';
+  static final Map<String, CfIdentity> _identity = {};
+
+  static void rememberIdentity(String host, CfIdentity id) {
+    if (id.ua.isEmpty) return;
+    final h = _key(host);
+    _identity[h] = id;
+    _box?.put('$_idPrefix$h', id.encode());
+  }
+
+  /// Identity of the browser that solved the challenge for [host] (or a
+  /// parent domain); built from the stored User-Agent alone for clearances
+  /// saved before 0.5.7. Null when the host has no clearance User-Agent.
+  static CfIdentity? identityFor(String host) {
+    final ua = uaFor(host);
+    if (ua == null) return null;
+    var h = _key(host);
+    while (true) {
+      final v = _identity[h];
+      if (v != null && v.ua == ua) return v;
+      final i = h.indexOf('.');
+      if (i < 0 || h.indexOf('.', i + 1) < 0) break;
+      h = h.substring(i + 1);
+    }
+    return CfIdentity(ua: ua);
+  }
+
+  /// What the WebView currently shows: the site, Cloudflare's challenge or
+  /// Cloudflare's block page.
+  static Future<CfPageState> pageState(InAppWebViewController c) async {
+    try {
+      final r = await c.evaluateJavascript(source: cfPageProbeScript);
+      return cfPageState(r?.toString());
+    } catch (_) {
+      return CfPageState.ok;
+    }
+  }
+
+  /// The challenge is really over: the clearance cookie exists AND the
+  /// WebView has left Cloudflare's challenge page (0.5.7 – a stale cookie
+  /// alone used to count as "solved").
+  static Future<bool> passed(String origUrl, InAppWebViewController c) async {
+    if (!await hasClearance(origUrl, c)) return false;
+    return await pageState(c) != CfPageState.challenge;
   }
 
   static Map<String, String> get all => Map.unmodifiable(_ua);
@@ -74,11 +134,13 @@ class YomiCf {
   static Future<void> forget(String host) async {
     final h = _key(host);
     _ua.remove(h);
+    _identity.remove(h);
     _solvedAt.remove(h);
     _redirect.remove(h);
     _failed.remove(h);
     _declined.remove(h);
     await _box?.delete(h);
+    await _box?.delete('$_idPrefix$h');
     await MClient.deleteAllCookies('https://$h/');
     try {
       await CookieManager.instance(
@@ -123,7 +185,16 @@ class YomiCf {
   /// Stores the WebView's cookies + User-Agent for the requested host and,
   /// after a redirect, also for the host the WebView ended on.
   static Future<void> saveFromWebView(String origUrl, InAppWebViewController c) async {
-    final ua = (await c.evaluateJavascript(source: 'navigator.userAgent'))?.toString() ?? '';
+    var ua = (await c.evaluateJavascript(source: 'navigator.userAgent'))?.toString() ?? '';
+    // 0.5.7: client hints + languages of the WebView that passed
+    CfIdentity? identity;
+    try {
+      identity = CfIdentity.parse(
+        (await c.evaluateJavascript(source: CfIdentity.captureScript))?.toString(),
+        fallbackUa: ua,
+      );
+      if (ua.isEmpty && identity != null) ua = identity.ua;
+    } catch (_) {}
     final orig = Uri.parse(origUrl);
     WebUri? cur;
     try {
@@ -136,6 +207,7 @@ class YomiCf {
       } catch (_) {}
       _redirect[_key(orig.host)] = _key(cur.host);
       rememberUa(cur.host, ua);
+      if (identity != null) rememberIdentity(cur.host, identity);
       AppLogger.logOnce(
         'cfredir:${orig.host}',
         '[Cloudflare] ${orig.host} chuyển hướng sang ${cur.host} sau khi xác minh – '
@@ -144,12 +216,14 @@ class YomiCf {
       );
     }
     rememberUa(orig.host, ua);
+    if (identity != null) rememberIdentity(orig.host, identity);
     _solvedAt[_key(orig.host)] = DateTime.now();
     if (cur != null) _solvedAt[_key(cur.host)] = DateTime.now();
   }
 
   static Future<void> forgetAll() async {
     _ua.clear();
+    _identity.clear();
     _solvedAt.clear();
     _redirect.clear();
     _failed.clear();
@@ -251,8 +325,8 @@ class _CfChallengePageState extends State<CfChallengePage> {
         if (mounted) unawaited(_humanize());
         return;
       }
-      final title = await controller.getTitle() ?? '';
-      if (title.contains('Just a moment') || title.contains('Một chút')) {
+      // 0.5.7: page markers too, not only the (localised) title
+      if (await YomiCf.pageState(controller) == CfPageState.challenge) {
         return;
       }
       if (!mounted) return;

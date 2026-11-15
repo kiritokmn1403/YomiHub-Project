@@ -170,7 +170,8 @@ class Savior extends ChangeNotifier {
     final proxy = YomiVpnState.proxyFor(null);
     if (proxy != null && proxy.startsWith('http')) {
       final u = Uri.parse(proxy);
-      c.findProxy = (_) => 'PROXY ${u.host}:${u.port}';
+      // 0.5.7: loopback (chunk proxy, local bridges) never goes through the proxy
+      c.findProxy = (uri) => YomiVpnState.isLoopbackHost(uri.host) ? 'DIRECT' : 'PROXY ${u.host}:${u.port}';
     }
     c.badCertificateCallback = (_, _, _) => true;
     return c;

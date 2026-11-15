@@ -15,8 +15,10 @@ import 'package:url_launcher/url_launcher.dart';
 ///
 /// Features authentic Material 3 UI inspired by the Google Play Books Android app:
 /// - Material 3 Top Search Bar ("Tìm kiếm trên Play Sách")
-/// - Filter Chips (Ebook, Sách nói, Truyện tranh, Bán chạy, Miễn phí)
-/// - Bottom Navigation Bar (Trang chủ, Thư viện, Cửa hàng, Sách nói)
+/// - Bottom Navigation Bar giống ứng dụng Google Play Sách (0.5.7, FC36):
+///   Trang chủ, Thư viện, Danh sách yêu thích, Cửa hàng
+/// - Trang chủ có hai tab "Sách điện tử | Sách nói" (như ảnh mẫu); tab Cửa hàng
+///   giữ dải chip lọc (Ebook, Sách nói, Truyện tranh, Bán chạy, Miễn phí)
 /// - Dedicated Play Books Settings access
 /// - Embedded WebView with desktop/mobile toggle, persistent session & safe back navigation.
 class PlayBooksScreen extends StatefulWidget {
@@ -37,6 +39,8 @@ class _PlayBooksScreenState extends State<PlayBooksScreen>
       'https://play.google.com/store/books/category/comics';
   static const _freeUrl = 'https://play.google.com/store/search?q=free&c=books';
   static const _topUrl = 'https://play.google.com/store/books/top';
+  // 0.5.7 (FC36): mục "Danh sách yêu thích" của thanh điều hướng mẫu.
+  static const _wishlistUrl = 'https://play.google.com/store/wishlist';
 
   static const _ua =
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36';
@@ -47,6 +51,7 @@ class _PlayBooksScreenState extends State<PlayBooksScreen>
   bool _desktopMode = YomiPrefs.get<bool>('playBooksDesktop', true);
   late final String _start = YomiPrefs.get<String>('playBooksLast', _homeUrl);
   int _navIndex = 0;
+  int _homeTab = 0; // 0 = Sách điện tử, 1 = Sách nói (Trang chủ)
   String _activeChip = '';
 
   @override
@@ -108,7 +113,9 @@ class _PlayBooksScreenState extends State<PlayBooksScreen>
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(108),
+        preferredSize: Size.fromHeight(
+          (_navIndex == 0 || _navIndex == 3) ? 108 : 70,
+        ),
         child: SafeArea(
           bottom: false,
           child: Column(
@@ -227,8 +234,12 @@ class _PlayBooksScreenState extends State<PlayBooksScreen>
                 ),
               ),
 
-              // Filter Chips row (Ebook, Sách nói, Truyện tranh, Bán chạy nhất, Miễn phí)
-              SizedBox(
+              // Trang chủ: tab Sách điện tử | Sách nói (ảnh mẫu 1-3);
+              // Cửa hàng: dải chip lọc.
+              if (_navIndex == 0)
+                _homeTabs(cs)
+              else if (_navIndex == 3)
+                SizedBox(
                 height: 38,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
@@ -312,6 +323,7 @@ class _PlayBooksScreenState extends State<PlayBooksScreen>
           setState(() {
             _navIndex = idx;
             _activeChip = '';
+            if (idx == 0) _homeTab = 0;
           });
           switch (idx) {
             case 0:
@@ -319,9 +331,9 @@ class _PlayBooksScreenState extends State<PlayBooksScreen>
             case 1:
               _go(_libraryUrl);
             case 2:
-              _go(_shopUrl);
+              _go(_wishlistUrl);
             case 3:
-              _go(_audiobooksUrl);
+              _go(_shopUrl);
           }
         },
         destinations: [
@@ -336,15 +348,70 @@ class _PlayBooksScreenState extends State<PlayBooksScreen>
             label: tr('Thư viện'),
           ),
           NavigationDestination(
+            icon: const Icon(Icons.bookmark_add_outlined),
+            selectedIcon: const Icon(Icons.bookmark_add),
+            // QA3 0.5.7: the long label wrapped over its icon on a phone;
+            // short label + full name as tooltip.
+            label: tr('Yêu thích'),
+            tooltip: tr('Danh sách yêu thích'),
+          ),
+          NavigationDestination(
             icon: const Icon(Icons.storefront_outlined),
             selectedIcon: const Icon(Icons.storefront),
             label: tr('Cửa hàng'),
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.headphones_outlined),
-            selectedIcon: const Icon(Icons.headphones),
-            label: tr('Sách nói'),
+        ],
+      ),
+    );
+  }
+
+  /// Hai tab của Trang chủ trong ứng dụng Google Play Sách: Sách điện tử | Sách nói.
+  Widget _homeTabs(ColorScheme cs) {
+    Widget tab(int i, String label, String url) {
+      final sel = _homeTab == i;
+      return Expanded(
+        child: InkWell(
+          onTap: () {
+            setState(() => _homeTab = i);
+            _go(url);
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                tr(label),
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: sel ? cs.primary : cs.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Container(
+                height: 3,
+                width: 56,
+                decoration: BoxDecoration(
+                  color: sel ? cs.primary : Colors.transparent,
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(3),
+                  ),
+                ),
+              ),
+            ],
           ),
+        ),
+      );
+    }
+
+    return Container(
+      height: 38,
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: cs.outlineVariant)),
+      ),
+      child: Row(
+        children: [
+          tab(0, 'Sách điện tử', _homeUrl),
+          tab(1, 'Sách nói', _audiobooksUrl),
         ],
       ),
     );

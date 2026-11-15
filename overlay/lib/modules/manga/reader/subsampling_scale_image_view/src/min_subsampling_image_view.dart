@@ -13,6 +13,8 @@ import 'package:mangayomi/modules/more/settings/reader/reader_screen.dart';
 import 'package:mangayomi/providers/l10n_providers.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:mangayomi/utils/extensions/others.dart';
+import 'package:mangayomi/utils/image_load_timeout.dart';
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/modules/manga/reader/subsampling_scale_image_view/subsampling_scale_image_view.dart';
 import 'package:mangayomi/modules/manga/reader/widgets/reader_interactive_region.dart';
 
@@ -55,6 +57,8 @@ class _MinSubsamplingImageState extends ConsumerState<MinSubsamplingImage> {
   ImageStreamListener? _streamListener;
   ImageStream? _imageStream;
   ImageChunkEvent? _loadingProgress;
+  String? _loadError;
+  Timer? _loadTimer;
 
   // YomiHub 0.1.9: reload this page when its translation ("Dịch ảnh") is
   // ready, or when translation is switched off
@@ -129,6 +133,8 @@ class _MinSubsamplingImageState extends ConsumerState<MinSubsamplingImage> {
   }
 
   void _cleanStream() {
+    _loadTimer?.cancel();
+    _loadTimer = null;
     if (_streamListener != null && _imageStream != null) {
       _imageStream!.removeListener(_streamListener!);
     }
@@ -174,6 +180,7 @@ class _MinSubsamplingImageState extends ConsumerState<MinSubsamplingImage> {
       setState(() {
         _isLoading = true;
         _hasError = false;
+        _loadError = null;
         _loadingProgress = null;
       });
     }
@@ -236,17 +243,52 @@ class _MinSubsamplingImageState extends ConsumerState<MinSubsamplingImage> {
               _hasError = true;
               _isLoading = false;
               _loadingProgress = null;
+              _loadError = describeImageLoadError(
+                err,
+                translate: (vi, a) => tr(vi, a),
+              );
             });
             widget.failedToLoadImage(true);
           }
         },
       );
       _imageStream!.addListener(_streamListener!);
+      // Backstop: the provider reports its own 30 s timeout first.
+      _loadTimer = Timer(kImageLoadBackstop, () {
+        _cleanStream();
+        if (!mounted) return;
+        setState(() {
+          _hasError = true;
+          _isLoading = false;
+          _loadingProgress = null;
+          _loadError = describeImageLoadError(
+            ImageLoadTimeoutException('', kImageLoadBackstop, phase: 'decode'),
+            translate: (vi, a) => tr(vi, a),
+          );
+        });
+        widget.failedToLoadImage(true);
+      });
     }
   }
 
   Future<void> _loadFromPath(String path) async {
     if (!mounted) return;
+
+    // 0.5.7 (P8F): decoding backstop - never spin forever on a page that is
+    // already on disk.
+    _loadTimer?.cancel();
+    _loadTimer = Timer(kImageDecodeBackstop, () {
+      if (!mounted || !_isLoading) return;
+      setState(() {
+        _hasError = true;
+        _isLoading = false;
+        _loadingProgress = null;
+        _loadError = tr('Không giải mã được ảnh sau {sec} giây', {
+          'sec': kImageDecodeBackstop.inSeconds,
+        });
+      });
+      widget.failedToLoadImage(true);
+    });
 
     try {
       final dims = await ffiImageDecoder.getImageDimensionsAsync(
@@ -304,6 +346,32 @@ class _MinSubsamplingImageState extends ConsumerState<MinSubsamplingImage> {
       );
 
       if (result == null || result.error == 'Cancelled') {
+        return;
+      }
+
+      // 0.5.7 (P8F): Android < 11 - the page arrives as a ready ui.Image.
+      final direct = result.image;
+      if (direct != null) {
+        _loadTimer?.cancel();
+        if (mounted) {
+          widget.data.resolvedFilePath = path;
+          widget.data.decodedImage?.dispose();
+          widget.data.decodedImage = direct.clone();
+          final old = _uiImage;
+          setState(() {
+            _uiImage = direct;
+            _isLoading = false;
+            _hasError = false;
+          });
+          old?.dispose();
+          widget.failedToLoadImage(false);
+          widget.onImageLoaded?.call(
+            croppedWidth.toDouble(),
+            croppedHeight.toDouble(),
+          );
+        } else {
+          direct.dispose();
+        }
         return;
       }
 
@@ -385,6 +453,7 @@ class _MinSubsamplingImageState extends ConsumerState<MinSubsamplingImage> {
           ? LoadState.failed
           : LoadState.completed,
       loadingProgress: _loadingProgress,
+      errorMessage: _loadError,
       reLoadCallback: () {
         widget.failedToLoadImage(false);
         _loadImage(refresh: true, evictCache: true);
@@ -441,6 +510,18 @@ class _MinSubsamplingImageState extends ConsumerState<MinSubsamplingImage> {
               l10n.image_loading_error,
               style: TextStyle(color: Colors.white.withValues(alpha: 0.7)),
             ),
+            if (_loadError != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+                child: Text(
+                  _loadError!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white.withValues(alpha: 0.5),
+                    fontSize: 12,
+                  ),
+                ),
+              ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ReaderInteractiveRegion(

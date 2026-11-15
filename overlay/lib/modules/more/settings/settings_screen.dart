@@ -176,16 +176,11 @@ class SettingsScreen extends StatelessWidget {
                 icon: Icons.android,
                 onTap: () => context.push('/microg'),
               ),
-            // YomiHub 0.3.3: Hợp nhất nội dung & Hợp nhất tiện ích
-            ListTileWidget(
-              title: tr('Hợp nhất nội dung'),
-              subtitle: tr('Hợp nhất truyện tranh, tiểu thuyết, phim ảnh (tự động đề xuất, chọn thủ công, hủy hợp nhất)'),
-              icon: Icons.auto_stories_rounded,
-              onTap: () => context.push('/contentMerge'),
-            ),
+            // YomiHub 0.3.3 / 0.5.7 (Feature Check 38): "Hợp nhất nội dung" is now a
+            // sub-entry of this screen (it used to be a second entry here)
             ListTileWidget(
               title: tr('Hợp nhất tiện ích'),
-              subtitle: tr('Tự chọn các tiện ích để hợp nhất với nhau vào tiện ích đích'),
+              subtitle: tr('Hợp nhất bộ trùng, tự chọn bộ, hợp nhất tiện ích theo lựa chọn'),
               icon: Icons.hub_rounded,
               onTap: () => context.push('/mergeExtensions'),
             ),

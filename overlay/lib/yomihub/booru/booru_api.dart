@@ -110,7 +110,13 @@ class BooruApi {
               ? BooruError.needsKey
               : (lower.contains('cloudflare') ? BooruError.cloudflare : BooruError.format));
     }
-    return parsePosts(s, jsonDecode(body));
+    final dynamic json;
+    try {
+      json = jsonDecode(body);
+    } on FormatException catch (e) {
+      throw BooruException(s, 'JSON không hợp lệ (${e.message})', BooruError.format);
+    }
+    return parsePosts(s, json);
   }
 
   /// Parses a posts response of any family. Entries without a usable image
@@ -299,7 +305,11 @@ class BooruApi {
     if (res.statusCode != 200) return const [];
     final body = utf8.decode(res.bodyBytes, allowMalformed: true).trim();
     if (body.isEmpty || body.startsWith('<')) return const [];
-    return parseTags(jsonDecode(body));
+    try {
+      return parseTags(jsonDecode(body));
+    } on FormatException catch (e) {
+      throw BooruException(s, 'JSON gợi ý thẻ không hợp lệ (${e.message})', BooruError.format);
+    }
   }
 
   static List<BooruTag> parseTags(dynamic json) {

@@ -8,6 +8,7 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:typed_data';
 
+import 'package:http/http.dart' as http;
 import 'package:http_interceptor/http_interceptor.dart';
 import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/proto/mihon_extension_store.pb.dart';
@@ -30,7 +31,64 @@ class ExtensionStoreFetchResult {
   });
 }
 
+/// 0.5.7 (S1): why a repository index could not be read, so callers
+/// (fetchSourcesList) can say it instead of a generic "Invalid repository index".
+class StoreFailure {
+  final String message;
+  final bool logged; // already written to the app log by fetchStore
+  const StoreFailure(this.message, {this.logged = false});
+  @override
+  String toString() => message;
+}
+
 class ExtensionStoreService {
+  /// Last failure per index URL (cleared by a successful fetch).
+  static final Map<String, StoreFailure> lastFailure = {};
+
+  /// Per-attempt timeouts of an index download (first try / the single retry).
+  /// Mutable only so tests do not wait 25+60 s.
+  static Duration indexTimeout = const Duration(seconds: 25);
+  static Duration indexRetryTimeout = const Duration(seconds: 60);
+
+  /// 0.5.7 (S1): true when [bytes] is an HTML page (Cloudflare "Just a moment",
+  /// ISP block page, login/redirect page) instead of an index.
+  static bool looksLikeHtml(List<int> bytes) {
+    var i = 0;
+    if (bytes.length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF) i = 3;
+    while (i < bytes.length && (bytes[i] == 0x20 || bytes[i] == 0x0A || bytes[i] == 0x0D || bytes[i] == 0x09)) {
+      i++;
+    }
+    if (i >= bytes.length || bytes[i] != 0x3C) return false; // '<'
+    final head = String.fromCharCodes(
+      bytes.sublist(i, bytes.length < i + 400 ? bytes.length : i + 400),
+    ).toLowerCase();
+    return head.startsWith('<!doctype html') || head.startsWith('<html') ||
+        head.contains('<head') || head.contains('<body') || head.contains('<title');
+  }
+
+  /// Vietnamese explanation for an HTML answer to an index request.
+  static String htmlMessage(List<int> bytes) {
+    final t = String.fromCharCodes(bytes.length > 4000 ? bytes.sublist(0, 4000) : bytes).toLowerCase();
+    if (t.contains('just a moment') || t.contains('cloudflare') || t.contains('cf-chl') || t.contains('attention required')) {
+      return 'máy chủ trả về trang xác minh Cloudflare thay vì chỉ mục tiện ích (kho này đang bị Cloudflare chặn; thử VPN/WARP hoặc kho khác)';
+    }
+    return 'máy chủ trả về trang HTML (chuyển hướng, nhà mạng/DNS chặn hoặc kho đã ngừng) thay vì chỉ mục tiện ích';
+  }
+
+  /// GET an index; one retry with a longer timeout when the first attempt
+  /// timed out or the connection dropped (logs 7: x.noz.one timed out at 25 s).
+  static Future<http.Response> _getIndex(InterceptedClient client, Uri url) async {
+    try {
+      return await GhMirror.get(client, url, timeout: indexTimeout);
+    } catch (e) {
+      final t = e.toString().toLowerCase();
+      if (t.contains('host lookup')) rethrow; // no network: retrying cannot help
+      if (!(e is TimeoutException || YomiExtErrors.isNetworkError(e) || t.contains('connection'))) rethrow;
+      await Future<void>.delayed(const Duration(milliseconds: 800));
+      return await GhMirror.get(client, url, timeout: indexRetryTimeout);
+    }
+  }
+
   /// 0.4.3: large indexes (keiyoushi, aniyomi…) are decoded off the UI isolate.
   static Future<dynamic> _decodeJsonBytes(List<int> bytes) {
     if (bytes.length < 64 * 1024) {
@@ -67,13 +125,28 @@ class ExtensionStoreService {
         throw StateError('Extension repository redirect loop: $indexUrl');
       }
       var currentUrl = indexUrl;
-      final response = await GhMirror.get(client, Uri.parse(currentUrl));
+      final response = await _getIndex(client, Uri.parse(currentUrl));
       if (response.statusCode != 200 || response.bodyBytes.isEmpty) {
+        lastFailure[indexUrl] = StoreFailure(
+          response.statusCode != 200
+              ? 'máy chủ trả về HTTP ${response.statusCode}'
+              : 'máy chủ trả về nội dung rỗng',
+        );
         return null;
       }
 
       var bytes = _decompressIfGzipped(response.bodyBytes);
       if (bytes.isEmpty) return null;
+      if (looksLikeHtml(bytes)) {
+        final msg = htmlMessage(bytes);
+        lastFailure[indexUrl] = StoreFailure(msg, logged: true);
+        AppLogger.logOnce(
+          'store-html:$indexUrl',
+          '[Kho tiện ích] $indexUrl: $msg',
+          logLevel: LogLevel.warning,
+        );
+        return null;
+      }
 
       // JSON may contain a UTF-8 BOM or leading whitespace. Do not strip
       // arbitrary protobuf bytes (its first tag can also be a newline).
@@ -181,9 +254,19 @@ class ExtensionStoreService {
       }
 
       // 3. Binary Protobuf: NetworkExtensionStore
-      return await _parseProtobufStore(currentUrl, bytes, client);
+      final pb = await _parseProtobufStore(currentUrl, bytes, client);
+      if (pb != null) {
+        lastFailure.remove(indexUrl);
+      } else {
+        lastFailure.putIfAbsent(indexUrl, () => const StoreFailure('nội dung tải về không phải chỉ mục protobuf hợp lệ'));
+      }
+      return pb;
     } catch (error) {
       final e = '$error';
+      lastFailure[indexUrl] = StoreFailure(
+        error is TimeoutException ? 'hết thời gian chờ (đã thử lại 1 lần)' : YomiExtErrors.short(error),
+        logged: true,
+      );
       if (e.contains('Failed host lookup') || e.contains('SocketException')) {
         // 0.4.3: no network / DNS blocked – one short line per host and
         // session instead of an error for every repository.
@@ -201,7 +284,8 @@ class ExtensionStoreService {
         final net = YomiExtErrors.isNetworkError(error) || e.contains('Connection closed');
         AppLogger.logOnce(
           'store-fail:$indexUrl',
-          '[Kho tiện ích] Không tải được kho $indexUrl: ${e.length > 200 ? e.substring(0, 200) : e}',
+          '[Kho tiện ích] Không tải được kho $indexUrl: ${e.length > 200 ? e.substring(0, 200) : e}'
+          '${error is TimeoutException ? ' (đã thử lại 1 lần với thời gian chờ dài hơn)' : ''}',
           logLevel: net ? LogLevel.warning : LogLevel.error,
         );
       }

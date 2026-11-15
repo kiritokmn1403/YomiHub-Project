@@ -41,7 +41,9 @@ class _AirDropQuickShareScreenState extends State<AirDropQuickShareScreen> {
           _google = m['google'] == true;
           _samsung = m['samsung'] == true;
         });
-      }).catchError((_) {});
+      }).catchError((Object e) {
+        YomiShareLog.warn('Quick Share', 'Không đọc được danh sách ứng dụng Quick Share', error: e);
+      });
     }
     _tick = Timer.periodic(const Duration(seconds: 15), (_) {
       if (mounted) setState(() {});
@@ -87,6 +89,7 @@ class _AirDropQuickShareScreenState extends State<AirDropQuickShareScreen> {
       try {
         await _lan.start();
       } catch (e) {
+        YomiShareLog.error('Wi-Fi/LAN', 'Bật chế độ nhận', error: e);
         if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Không bật được chế độ nhận: {p0}', {'p0': e}))));
       }
     } else {
@@ -98,7 +101,15 @@ class _AirDropQuickShareScreenState extends State<AirDropQuickShareScreen> {
   Future<void> _offer() async {
     final files = await _pick();
     if (files.isEmpty) return;
-    if (!_lan.isRunning) await _lan.start();
+    if (!_lan.isRunning) {
+      try {
+        await _lan.start();
+      } catch (e) {
+        YomiShareLog.error('Wi-Fi/LAN', 'Bật chế độ nhận để chia sẻ tệp', files: files, error: e);
+        if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Không bật được chế độ nhận: {p0}', {'p0': e}))));
+        return;
+      }
+    }
     _lan.offered.addAll(files.where((f) => !_lan.offered.contains(f)));
     await _refresh();
   }

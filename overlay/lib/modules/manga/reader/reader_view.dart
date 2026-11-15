@@ -10,6 +10,7 @@ import 'package:mangayomi/modules/manga/archive_reader/providers/archive_reader_
 import 'package:mangayomi/modules/library/providers/file_scanner.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:mangayomi/yomihub/share/lan_share.dart';
+import 'package:mangayomi/yomihub/integrations/yomikiru_reader_enhancer.dart';
 import 'package:mangayomi/modules/manga/reader/subsampling_scale_image_view/subsampling_scale_image_view.dart'
     as ssiv;
 import 'package:flutter/foundation.dart';
@@ -612,6 +613,10 @@ class _MangaChapterPageGalleryState
     });
 
     return ReaderKeyboardHandler(
+      // YomiHub 0.5.7 (Yomikiru): A/D/Space/Home/End, công tắc mặc định tắt
+      extraKeys: YomikiruReaderEnhancer.extraKeysEnabled,
+      onFirstPage: () => _yhJumpEdgePage(last: false),
+      onLastPage: () => _yhJumpEdgePage(last: true),
       onPreviousPage: () {
         if (_isCurrentPageZoomed &&
             _doublePageControllers[_currentIndex] != null) {
@@ -996,6 +1001,20 @@ class _MangaChapterPageGalleryState
     setState(() {
       preloadManager.splitPage(index, page1, page2);
     });
+  }
+
+  /// YomiHub 0.5.7 (Yomikiru): phím Home/End nhảy tới trang đầu/cuối.
+  void _yhJumpEdgePage({required bool last}) {
+    if (!mounted || pages.isEmpty) return;
+    final mode = ref.read(_currentReaderMode);
+    if (mode == null) return;
+    final actual = last ? pages.length - 1 : 0;
+    final idx = _isDoublePageActive ? _actualToPageViewIndex(actual) : actual;
+    setState(() {
+      _currentIndex = idx;
+      _currentPageViewIndex.value = idx;
+    });
+    navigationService.jumpToPage(index: idx, readerMode: mode);
   }
 
   void _handlePageNavigation({required bool forward}) {

@@ -20,6 +20,39 @@ import android.util.Rational
 
 class MainActivity: FlutterFragmentActivity() {
 
+    // YomiHub 0.5.7 (P8F-2): "video has sound but a black picture" on the
+    // Galaxy Note 9 (Android 10, Exynos 9810 / Mali-G72). mpv decoded and
+    // rendered every frame (its own window screenshot showed the film), the
+    // picture was lost afterwards: from Android 10 on Flutter backs video
+    // textures with ImageReader / HardwareBuffer, which is defective on some
+    // Android <= 10 devices (Flutter itself already avoids it for Huawei
+    // <= API 29, flutter/flutter#166481, #156459, #154068). On Android <= 10
+    // YomiHub therefore uses the classic SurfaceTexture path for every
+    // device. SurfaceTexture is only defined for the OpenGL renderers, so
+    // Impeller (which may pick Vulkan) is switched off there as well - the
+    // same renderer Android 9 and older already get.
+    private fun yhUseLegacyVideoTextures() {
+        if (Build.VERSION.SDK_INT > 29) return
+        try {
+            val f = Class.forName("io.flutter.embedding.engine.renderer.FlutterRenderer")
+                .getField("debugForceSurfaceProducerGlTextures")
+            f.setBoolean(null, true)
+            if (intent != null && !intent.hasExtra("enable-impeller")) {
+                intent.putExtra("enable-impeller", false)
+            }
+            android.util.Log.i("YomiHub", "Android <= 10: SurfaceTexture video textures, Impeller off")
+        } catch (e: Throwable) {
+            android.util.Log.w("YomiHub", "legacy video textures not available: $e")
+        }
+    }
+
+    override fun onCreate(savedInstanceState: android.os.Bundle?) {
+        // must run before super.onCreate(): the Flutter fragment reads the
+        // shell arguments from the intent when it is created.
+        yhUseLegacyVideoTextures()
+        super.onCreate(savedInstanceState)
+    }
+
     // YomiHub 0.1.8: system Picture-in-Picture for the web player (servers
     // that only play in the site's own player, e.g. AVSub DU/HDX). The mpv
     // player keeps using the media_kit PiP controller.

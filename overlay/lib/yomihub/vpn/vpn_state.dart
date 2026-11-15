@@ -80,6 +80,71 @@ class YomiVpnState {
     return activeProxy();
   }
 
+  // ── YomiHub 0.5.7: Cloudflare clearance vs. route ──
+
+  /// Proxy the in-app WebViews (Cloudflare solver, WebView mode) use on
+  /// Android, null = direct. Mirrors YomiVpnService._applyBrowserProxy.
+  static String? webViewProxy() {
+    if (!scopeWebView) return null;
+    if (torEnabled && torRunning && torHttpPort > 0) return 'http://127.0.0.1:$torHttpPort';
+    if (xrayRunning && xrayHttpPort > 0) return 'http://127.0.0.1:$xrayHttpPort';
+    if (proxyEnabled && proxyUrl.isNotEmpty) return proxyUrl;
+    return null;
+  }
+
+  /// `cf_clearance` is bound to the IP address that solved the challenge.
+  /// Returns a Vietnamese note for the log when the WebView and the
+  /// extension ([extensionProxy], null = direct) leave through different
+  /// routes, '' when they share one.
+  static String routeNote(String? extensionProxy) {
+    final w = webViewProxy() ?? '';
+    final e = extensionProxy ?? '';
+    if (w == e) return '';
+    String name(String p) => p.isEmpty
+        ? 'đi thẳng'
+        : (p.endsWith(':9') ? 'bị Kill switch chặn (Tor chưa kết nối)' : 'qua VPN/proxy $p');
+    return ' Lưu ý: WebView ${name(w)} còn tiện ích ${name(e)} – cf_clearance gắn với địa chỉ IP đã xác minh '
+        'nên không dùng chung được giữa hai đường mạng; trong VPN & DNS › Phạm vi hãy bật (hoặc tắt) cùng lúc "WebView" và tiện ích này.';
+  }
+
+  // ── YomiHub 0.5.7: loopback never goes through a proxy ──
+
+  /// Whether [host] is this device itself (localhost, 127.0.0.0/8, ::1).
+  /// Requests to it must never be sent to Tor / the kill switch / a proxy.
+  static bool isLoopbackHost(String host) {
+    var h = host.trim().toLowerCase();
+    if (h.startsWith('[') && h.endsWith(']')) h = h.substring(1, h.length - 1);
+    if (h.endsWith('.')) h = h.substring(0, h.length - 1);
+    if (h.isEmpty) return false;
+    if (h == 'localhost' || h.endsWith('.localhost')) return true;
+    if (h == '::1' || h == '0:0:0:0:0:0:0:1') return true;
+    if (h.startsWith('::ffff:')) h = h.substring(7);
+    final m = RegExp(r'^127\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$').firstMatch(h);
+    if (m == null) return false;
+    for (var i = 1; i <= 3; i++) {
+      if (int.parse(m.group(i)!) > 255) return false;
+    }
+    return true;
+  }
+
+  /// Loopback servers that fetch web pages themselves, inside the app's JVM
+  /// (Kotatsu 47350, IReader 47360). Their traffic follows [jvmBridgeProxy],
+  /// not the HTTP client of the extension that calls them.
+  static const Set<int> jvmBridgePorts = {47350, 47360};
+
+  /// Proxy the in-process JVM bridges currently use for their own traffic
+  /// (Android: follows the VPN when it covers every source), null = direct.
+  static String? jvmBridgeProxy;
+
+  /// True when a request routed through [proxy] targets a JVM bridge whose
+  /// own traffic would NOT take that route - sending it on would reach the
+  /// site with the real IP although the source is switched to VPN/Tor.
+  static bool bridgeWouldLeak(Uri url, String? proxy) {
+    if (proxy == null || proxy.isEmpty) return false;
+    if (!isLoopbackHost(url.host) || !jvmBridgePorts.contains(url.port)) return false;
+    return jvmBridgeProxy != proxy;
+  }
+
   /// Normalises "host:port", "user:pass@host:port", "socks5://…".
   static String normaliseProxy(String input) {
     var t = input.trim();

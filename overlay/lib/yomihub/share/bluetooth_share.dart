@@ -64,8 +64,9 @@ class YomiBluetoothShare extends ChangeNotifier {
       granted = m['granted'] == true;
       listening = m['listening'] == true;
       name = m['name'] as String?;
-    } catch (_) {
+    } catch (e) {
       supported = false;
+      YomiShareLog.warn('Bluetooth', 'Không đọc được trạng thái Bluetooth', error: e);
     }
     notifyListeners();
   }
@@ -74,33 +75,56 @@ class YomiBluetoothShare extends ChangeNotifier {
     if (!Platform.isAndroid) return true;
     await refresh();
     if (!granted) {
-      await _ch.invokeMethod('requestPermissions');
+      try {
+        await _ch.invokeMethod('requestPermissions');
+      } catch (e) {
+        YomiShareLog.warn('Bluetooth', 'Không xin được quyền Bluetooth', error: e);
+      }
       await Future<void>.delayed(const Duration(seconds: 2));
       await refresh();
-      if (!granted) return false;
+      if (!granted) {
+        YomiShareLog.warn('Bluetooth', 'Quyền Bluetooth/thiết bị lân cận bị từ chối – cấp quyền trong Cài đặt hệ thống');
+        return false;
+      }
     }
     if (!enabled) {
-      await _ch.invokeMethod('enable');
+      try {
+        await _ch.invokeMethod('enable');
+      } catch (e) {
+        YomiShareLog.warn('Bluetooth', 'Không bật được Bluetooth', error: e);
+      }
       for (var i = 0; i < 15 && !enabled; i++) {
         await Future<void>.delayed(const Duration(seconds: 1));
         await refresh();
       }
+      if (!enabled) YomiShareLog.warn('Bluetooth', 'Bluetooth vẫn tắt sau 15 giây – người dùng chưa bật hoặc bị từ chối');
     }
     return enabled;
   }
 
   Future<List<Map<String, String>>> paired() async {
-    final l = await _ch.invokeListMethod<dynamic>('paired') ?? const [];
-    return l.map((e) => Map<String, String>.from(e as Map)).toList();
+    try {
+      final l = await _ch.invokeListMethod<dynamic>('paired') ?? const [];
+      final out = l.map((e) => Map<String, String>.from(e as Map)).toList();
+      if (out.isEmpty) YomiShareLog.warn('Bluetooth', 'Không có thiết bị nào đã ghép đôi – ghép đôi trong Cài đặt Bluetooth trước');
+      return out;
+    } catch (e) {
+      YomiShareLog.error('Bluetooth', 'Đọc danh sách thiết bị đã ghép đôi', error: e);
+      return const [];
+    }
   }
 
   Future<void> listen(bool on) async {
-    if (on) {
-      if (!await ensureReady()) return;
-      await _ch.invokeMethod('listen', {});
-      await _ch.invokeMethod('discoverable');
-    } else {
-      await _ch.invokeMethod('stop');
+    try {
+      if (on) {
+        if (!await ensureReady()) return;
+        await _ch.invokeMethod('listen', {});
+        await _ch.invokeMethod('discoverable');
+      } else {
+        await _ch.invokeMethod('stop');
+      }
+    } catch (e) {
+      YomiShareLog.error('Bluetooth', on ? 'Bật chế độ nhận' : 'Tắt chế độ nhận', error: e);
     }
     await refresh();
   }
@@ -135,7 +159,9 @@ class YomiBluetoothShare extends ChangeNotifier {
       YomiShareLog.error('Bluetooth (Windows)', send ? 'Gửi tệp' : 'Nhận tệp', error: e);
       try {
         await Process.start('cmd', ['/c', 'start', '', 'ms-settings:bluetooth'], mode: ProcessStartMode.detached);
-      } catch (_) {}
+      } catch (e2) {
+        YomiShareLog.warn('Bluetooth (Windows)', 'Không mở được cài đặt Bluetooth', error: e2);
+      }
       return false;
     }
   }

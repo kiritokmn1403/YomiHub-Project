@@ -24,7 +24,12 @@ class YomiUi {
   static YomiUiStyle parse(Object? raw) =>
       raw == 'modern' ? YomiUiStyle.modern : YomiUiStyle.classic;
 
-  static YomiUiStyle get style => parse(YomiPrefs.get<Object?>(prefKey, null));
+  /// Test hook: forces a style without an open prefs box.
+  @visibleForTesting
+  static YomiUiStyle? debugOverride;
+
+  static YomiUiStyle get style =>
+      debugOverride ?? parse(YomiPrefs.get<Object?>(prefKey, null));
 
   static bool get isModern => style == YomiUiStyle.modern;
 

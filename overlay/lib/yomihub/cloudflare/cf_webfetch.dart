@@ -8,6 +8,9 @@ import 'package:http_interceptor/http_interceptor.dart';
 import 'package:mangayomi/main.dart' show webViewEnvironment;
 import 'package:mangayomi/services/http/m_client.dart';
 import 'package:mangayomi/utils/log/logger.dart';
+import 'package:mangayomi/yomihub/cloudflare/cf_challenge.dart';
+import 'package:mangayomi/yomihub/cloudflare/cf_identity.dart';
+import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
 
 /// YomiHub 0.2.2 – "Có vài extension sau khi giải xong Cloudflare trên
 /// Webview vẫn không truy cập được".
@@ -23,8 +26,12 @@ import 'package:mangayomi/utils/log/logger.dart';
 /// "still blocked after solving" case and a failing WebView load are written
 /// to the app log.
 class YomiCfFallbackInterceptor extends InterceptorContract {
-  YomiCfFallbackInterceptor(this.enabled);
+  YomiCfFallbackInterceptor(this.enabled, {this.sourceId});
   final bool enabled;
+
+  /// 0.5.7: source the client belongs to (null = app request) – used to say
+  /// in the log when WebView and extension leave through different routes.
+  final int? sourceId;
 
   static final Map<String, DateTime> _failedHost = {};
   static final Map<String, DateTime> _loggedHost = {};
@@ -64,7 +71,8 @@ class YomiCfFallbackInterceptor extends InterceptorContract {
         _loggedHost[host] = DateTime.now();
         AppLogger.log(
           '[Cloudflare] $host: đã giải xong Cloudflare trên WebView nhưng tiện ích vẫn bị chặn '
-          '(HTTP ${response.statusCode}, cookie cf_clearance đã gửi) – chuyển sang tải trang qua WebView. URL: $url',
+          '(HTTP ${response.statusCode}, cookie cf_clearance đã gửi) – chuyển sang tải trang qua WebView. URL: $url'
+          '${YomiVpnState.routeNote(YomiVpnState.proxyFor(sourceId))}',
           logLevel: LogLevel.error,
         );
       }
@@ -133,6 +141,8 @@ Future<void> yomiHandleWebFetch(HttpRequest request) async {
       if (title.contains('Just a moment') || title.contains('Một chút') || title.contains('Attention Required')) {
         return; // still on the challenge – wait for the next load
       }
+      // 0.5.7: challenge markers as well (the title is localised)
+      if (await YomiCf.pageState(c) != CfPageState.ok) return;
       final res = await c.evaluateJavascript(source: '''
 (function(){
   var ct = document.contentType || 'text/html';

@@ -10,6 +10,7 @@ import 'package:mangayomi/repositories/source_repository.dart';
 import 'package:http/http.dart' as http;
 import 'package:mangayomi/yomihub/extensions/url_override.dart';
 import 'package:mangayomi/yomihub/kotatsu/kotatsu_bridge.dart';
+import 'package:mangayomi/yomihub/net/loopback_bypass.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 
 class JsHttpClient {
@@ -123,6 +124,9 @@ Future<String> _toHttpResponse(Client client, String method, List args, [int? so
   try {
     return await _sendJsRequest(client, method, args, sourceId, fallbackBaseUrl);
   } catch (e) {
+    // 0.5.7: stopped on purpose by the VPN leak guard - the bridge is fine,
+    // restarting it would only cut the other Kotatsu sources' requests.
+    if (YomiRouteBlocked.caused(e)) rethrow;
     KotatsuBridge.markDead();
     final revived = await KotatsuBridge.ensureAlive();
     AppLogger.log(

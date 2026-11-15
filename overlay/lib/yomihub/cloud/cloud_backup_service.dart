@@ -999,6 +999,7 @@ class TelegramProvider extends CloudProvider {
           'Telegram getChat');
     } catch (e) {
       config['ok'] = '0';
+      AppLogger.log('[Đồng bộ đám mây] Telegram: kết nối thất bại: ${_mask(e)}', logLevel: LogLevel.warning);
       if (e is Exception && '$e'.contains('Telegram get')) rethrow;
       _fail('Telegram', e);
     }
@@ -1060,7 +1061,9 @@ class TelegramProvider extends CloudProvider {
       if (raw != null && raw.isNotEmpty) {
         return List<Map<String, dynamic>>.from(jsonDecode(raw));
       }
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.log('[Đồng bộ đám mây] Telegram: lịch sử sao lưu đã lưu bị hỏng, bỏ qua: ${_mask(e)}', logLevel: LogLevel.warning);
+    }
     return [];
   }
 
@@ -1192,8 +1195,12 @@ class TelegramProvider extends CloudProvider {
             ordered.first!['date'] as DateTime?,
           ));
         });
+      } else {
+        AppLogger.log('[Đồng bộ đám mây] Telegram: getUpdates trả HTTP ${r.statusCode} – chỉ hiện lịch sử đã lưu', logLevel: LogLevel.warning);
       }
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.log('[Đồng bộ đám mây] Telegram: không đọc được danh sách tệp từ bot: ${_mask(e)}', logLevel: LogLevel.warning);
+    }
     items.sort((a, b) => (b.modified ?? DateTime(0)).compareTo(a.modified ?? DateTime(0)));
     return items;
   }
@@ -1233,12 +1240,16 @@ class TelegramProvider extends CloudProvider {
         sink.add(await _getFileBytes(id));
       }
       await sink.flush();
+    } catch (e) {
+      AppLogger.log('[Đồng bộ đám mây] Telegram: tải "${file.name}" thất bại: ${_mask(e)}', logLevel: LogLevel.error);
+      rethrow;
     } finally {
       await sink.close();
     }
     if (file.size > 0) {
       final got = await dest.length();
       if (got != file.size) {
+        AppLogger.log('[Đồng bộ đám mây] Telegram: "${file.name}" tải về $got/${file.size} B – không đủ dung lượng', logLevel: LogLevel.error);
         throw Exception('Telegram: ${tr('tệp tải về không đủ dung lượng')} ($got/${file.size} B)');
       }
     }

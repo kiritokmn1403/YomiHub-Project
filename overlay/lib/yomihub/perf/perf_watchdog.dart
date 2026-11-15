@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:mangayomi/eval/lib.dart';
 import 'package:mangayomi/services/download_manager/download_isolate_pool.dart';
 import 'package:mangayomi/services/isolate_service.dart';
+import 'package:mangayomi/services/crash_report.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 
 /// YomiHub 0.2.2 – "Ứng dụng rất hay bị treo, lag, bị văng".
@@ -57,6 +58,14 @@ class YomiPerf with WidgetsBindingObserver {
   /// frame so a slow screen can be found from the log alone (Xiaomi 15T:
   /// "dựng 855–1195ms" right after leaving a pushed page).
   static String route = '';
+  /// 0.5.7 (S1): screen for the freeze message. The navigator observer
+  /// ([CrashReports.screen], first path segment only) also sees pushed pages
+  /// (reader, detail…), which [route] (set by MainScreen) does not.
+  static String get currentScreen {
+    final s = CrashReports.screen;
+    return (s != null && s.isNotEmpty) ? s : route;
+  }
+
   static void activity(String label) => _lastActivity = label;
   static void activityDone(String label) {
     if (_lastActivity == label) _lastActivity = '';
@@ -90,7 +99,8 @@ class YomiPerf with WidgetsBindingObserver {
           now.difference(_lastFreezeLog).inSeconds > 30) {
         _lastFreezeLog = now;
         AppLogger.log(
-          '[Hiệu năng] Giao diện bị treo ${(gap / 1000).toStringAsFixed(1)} giây (luồng UI bị chặn)${_lastActivity.isEmpty ? '' : ' • đang chạy: $_lastActivity'}',
+          '[Hiệu năng] Giao diện bị treo ${(gap / 1000).toStringAsFixed(1)} giây (luồng UI bị chặn)'
+          '${currentScreen.isEmpty ? '' : ' • màn hình: $currentScreen'}${_lastActivity.isEmpty ? '' : ' • đang chạy: $_lastActivity'}',
           logLevel: LogLevel.warning,
         );
       }

@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:mangayomi/modules/widgets/tv_pill.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:mangayomi/yomihub/ui/shiori/shiori_tokens.dart';
+import 'package:mangayomi/yomihub/ui/ui_style.dart';
 
 class CoverViewWidget extends StatefulWidget {
   final List<Widget> children;
@@ -64,11 +67,24 @@ class _CoverViewWidgetState extends State<CoverViewWidget> {
     // user switches to touch input while a card is focused (it must never show
     // for touch), not only when focus is lost.
     FocusManager.instance.addHighlightModeListener(_onHighlightModeChanged);
+    _modern = _isModernCover;
+    YomiPrefs.changes.addListener(_onUiStyleChanged);
+  }
+
+  // YomiHub 0.5.7 (U11): Shiori look only for the "Moi" UI style and never on
+  // Android TV; the classic card is untouched.
+  bool _modern = false;
+  static bool get _isModernCover => !isTv && YomiUi.isModern;
+
+  void _onUiStyleChanged() {
+    final m = _isModernCover;
+    if (mounted && m != _modern) setState(() => _modern = m);
   }
 
   @override
   void dispose() {
     FocusManager.instance.removeHighlightModeListener(_onHighlightModeChanged);
+    YomiPrefs.changes.removeListener(_onUiStyleChanged);
     super.dispose();
   }
 
@@ -104,6 +120,8 @@ class _CoverViewWidgetState extends State<CoverViewWidget> {
         widget.isComfortableGrid && widget.bottomTextWidget != null;
     // Matrix4.scale is deprecated in favour of the explicit per-axis form.
     final pop = _focused ? 1.06 : 1.0;
+    final modern = _modern;
+    final innerRadius = modern ? ShioriShape.cover : 5.0;
     // An InkWell's keyboard activation only ever fires onTap, so a remote
     // could not reach the long-press actions at all (library multi-select,
     // most importantly). On TV, when a long-press exists, intercept the select
@@ -124,7 +142,18 @@ class _CoverViewWidgetState extends State<CoverViewWidget> {
               decoration: BoxDecoration(
                 // Outer radius = inner clip radius (5) + border width (3) so the
                 // ring's corners stay concentric with the card and don't clip.
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(innerRadius + 3),
+                boxShadow: modern
+                    ? [
+                        BoxShadow(
+                          color: Colors.black.withValues(
+                            alpha: _focused ? 0.20 : 0.10,
+                          ),
+                          blurRadius: _focused ? 12 : 6,
+                          offset: const Offset(0, 2),
+                        ),
+                      ]
+                    : null,
                 border: Border.all(
                   color: _focused ? context.primaryColor : Colors.transparent,
                   width: 3,
@@ -139,7 +168,7 @@ class _CoverViewWidgetState extends State<CoverViewWidget> {
                   if (widget.image != null)
                     Positioned.fill(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(innerRadius),
                         child: ColoredBox(
                           color: Theme.of(context)
                               .colorScheme
@@ -158,7 +187,7 @@ class _CoverViewWidgetState extends State<CoverViewWidget> {
                       ),
                     ),
                   Material(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(innerRadius),
                 color: Colors.transparent,
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(

@@ -136,3 +136,5 @@ audit-0.5.6/evidence/QA2/*
 /audit-0.5.7/android6/patched_libtor/
 /audit-0.5.7/android6/tmp/
 /audit-0.5.7/backup/
+# 0.5.7 (15/11/2026): bang chung QA (UI dump, nhat ky, logcat co thong tin thu vien/thiet bi rieng) giu tren may build
+/audit-0.5.7/evidence/

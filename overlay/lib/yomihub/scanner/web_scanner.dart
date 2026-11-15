@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:mangayomi/yomihub/browser/adblock.dart';
+import 'package:mangayomi/utils/log/logger.dart';
 
 /// YomiHub 0.1.7 – Web Scanner (Sucuri SiteCheck / "website scanner" style,
 /// passive only): looks at what a site sends to a normal visitor and
@@ -111,14 +112,30 @@ class YomiWebScanner {
       }
     } on HandshakeException catch (e) {
       rep.findings.add(ScanFinding(ScanLevel.bad, tr('Chứng chỉ HTTPS không hợp lệ'), '$e'));
+      // 0.5.7 (Feature Check 32): scan failures go to the application log
+      logScanFailure(url, 'chứng chỉ HTTPS không hợp lệ', e);
     } catch (e) {
       rep.findings.add(ScanFinding(ScanLevel.bad, tr('Không tải được trang'), '$e'));
+      logScanFailure(url, 'không tải được trang', e);
     } finally {
       client.close(force: true);
     }
     if (res != null) _analyse(rep, res, cert, body);
     rep.took = sw.elapsed;
     return rep;
+  }
+
+  /// 0.5.7 (Feature Check 32): one warning line per failed scan.
+  static String scanFailureLine(String url, String what, Object error) {
+    var why = '$error'.split('\n').first.trim();
+    if (why.length > 300) why = '${why.substring(0, 300)}…';
+    return '[Web Scanner] Quét $url thất bại – $what: $why';
+  }
+
+  static void logScanFailure(String url, String what, Object error) {
+    try {
+      AppLogger.log(scanFailureLine(url, what, error), logLevel: LogLevel.warning);
+    } catch (_) {}
   }
 
   static void _analyse(ScanReport rep, HttpClientResponse res, X509Certificate? cert, String body) {

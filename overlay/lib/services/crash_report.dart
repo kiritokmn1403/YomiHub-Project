@@ -308,6 +308,9 @@ class CrashReports {
   /// The route the app is on, fed by [CrashRouteObserver].
   static set screen(String? value) => _screen = value;
 
+  /// 0.5.7: read by the UI-freeze watchdog ([YomiPerf.currentScreen]).
+  static String? get screen => _screen;
+
   /// Everything kept, newest last.
   static List<CrashReport> get reports => List.unmodifiable(_reports);
 

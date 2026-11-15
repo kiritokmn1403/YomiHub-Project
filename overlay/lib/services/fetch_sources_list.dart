@@ -66,6 +66,23 @@ Future<void> fetchSourcesList({
                   compareVersions(yomiEngineVersion(info.version), source.appMinVerReq!) > -1),
         )
         .toList();
+  } else if (url.toLowerCase().endsWith('.pb') ||
+      (storeResult == null && ExtensionStoreService.lastFailure[url]?.logged == true)) {
+    // 0.5.7 (S1): a .pb index can only be read by ExtensionStoreService; the
+    // JSON fallback below always ended in "FormatException: Invalid
+    // repository index" (logs 7: x.noz.one/yuzono/cursed/index.pb, the first
+    // download had simply timed out). Say what really happened instead.
+    final f = ExtensionStoreService.lastFailure[url];
+    final reason = f?.message ??
+        (storeResult != null ? 'chỉ mục không có tiện ích nào' : 'không đọc được chỉ mục');
+    if (f == null || !f.logged) {
+      AppLogger.logOnce(
+        'repo-idx:$url',
+        '[Kho tiện ích] $url: $reason',
+        logLevel: LogLevel.warning,
+      );
+    }
+    throw YomiLoggedError(FormatException('Không đọc được kho $url: $reason'));
   } else {
     // Fallback parsing for non-Mihon direct JSON lists (LNReader or custom format)
     try {
@@ -316,13 +333,19 @@ void _logUpdateFailure(
   }
   final installed = from ?? (source.id == null ? null : sourceRepository.getById(source.id!)?.version);
   final msg = e.toString().replaceAll(RegExp(r'\s*statusCode:\s*\d+\s*$'), '').trim();
+  // 0.5.7 (S1): the reason is on the first line too (logs 7: "DocTruyen3Q
+  // 1.6.42 → 1.6.43" was an ERROR line without a cause; the cause - a 25 s
+  // download timeout - was only on line 3). A timeout / dropped connection is
+  // a network problem, not an app error.
+  final isNet = e is TimeoutException || YomiExtErrors.isNetworkError(e);
+  final shortMsg = msg.split('\n').first;
   AppLogger.log(
     '[Cập nhật tiện ích] "${source.name}" (${source.lang}, ${source.sourceCodeLanguage.name}) '
     '${installed != null && installed == source.version ? 'cài lại ${source.version}' : '${installed ?? '?'} → ${source.version ?? '?'}'}'
-    ' • kho: ${repo?.name ?? repo?.jsonUrl ?? '?'}\n'
+    ' • kho: ${repo?.name ?? repo?.jsonUrl ?? '?'} • lỗi: ${shortMsg.length > 160 ? '${shortMsg.substring(0, 160)}…' : shortMsg}\n'
     'URL: ${source.sourceCodeUrl ?? ''}\n'
-    'Lỗi: $msg${e is TimeoutException || YomiExtErrors.isNetworkError(e) ? '' : '\n$st'}',
-    logLevel: LogLevel.error,
+    'Lỗi: $msg${isNet ? '' : '\n$st'}',
+    logLevel: isNet ? LogLevel.warning : LogLevel.error,
   );
 }
 
@@ -621,6 +644,10 @@ Future<bool> fetchSupportLatestDalvik(
   }
 }
 
+/// 0.5.7 (S1): why the last [fetchFilterListDalvik] returned null (exception
+/// text), so the filter loader can tell "no filters" from "failed to load".
+String? yomiLastFilterFetchError;
+
 Future<FilterList?> fetchFilterListDalvik(
   InterceptedClient client,
   Source source,
@@ -639,8 +666,10 @@ Future<FilterList?> fetchFilterListDalvik(
     );
     final data = jsonDecode(res.body) as List;
 
+    yomiLastFilterFetchError = null;
     return FilterList(filtersFromJson(data));
-  } catch (_) {
+  } catch (e) {
+    yomiLastFilterFetchError = YomiExtErrors.short(e);
     return null;
   }
 }

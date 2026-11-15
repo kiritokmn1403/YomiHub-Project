@@ -46,4 +46,43 @@ class NuvioMediaHub {
     // Android PiP supports aspect ratios between 0.418 and 2.39
     return ratio.clamp(0.42, 2.39);
   }
+
+  /// 0.5.7: size handed to Android's Picture-in-Picture. A missing / zero
+  /// size becomes 16:9 and the ratio is kept inside what Android accepts
+  /// (it throws IllegalArgumentException outside 0.418…2.39).
+  static (double, double) pipVideoSize(int? videoWidth, int? videoHeight) {
+    final ratio = getOptimalPipAspectRatio(
+      videoWidth?.toDouble(),
+      videoHeight?.toDouble(),
+    );
+    final h = (videoHeight != null && videoHeight > 0) ? videoHeight.toDouble() : 360.0;
+    return ((h * ratio).roundToDouble(), h);
+  }
+
+  /// 0.5.7: new brightness / volume (0…1) after a vertical drag of [dy]
+  /// pixels. Null when that side's gesture is switched off in the settings.
+  static double? applySwipe({
+    required bool leftSide,
+    required double current,
+    required double dy,
+    required double screenHeight,
+    double? travel,
+  }) {
+    if (leftSide ? !swipeBrightnessEnabled : !swipeVolumeEnabled) return null;
+    // [travel]: pixels of drag for the full 0…1 range (the player keeps its
+    // historical 500 px); default = 70 % of the screen height.
+    final h = travel != null && travel > 0 ? travel / 0.7 : screenHeight;
+    final delta = leftSide
+        ? computeBrightnessDelta(dy, h)
+        : computeVolumeDelta(dy, h);
+    return (current + delta).clamp(0.0, 1.0);
+  }
+
+  /// 0.5.7: double-tap seek length. The player's own setting
+  /// (Cài đặt > Trình phát > "Double tap to skip") stays the source of truth;
+  /// the Nuvio key only overrides it when it was set explicitly.
+  static int resolveDoubleTapSeconds(int playerSetting) {
+    final v = YomiPrefs.get<int>(prefDoubleTapSeekSec, 0);
+    return v > 0 ? v : playerSetting;
+  }
 }

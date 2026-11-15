@@ -220,11 +220,11 @@ class _HealthConnectScreenState extends State<HealthConnectScreen> {
                     trailing: DropdownButton<int>(
                       value: _reminderInterval,
                       underline: const SizedBox.shrink(),
-                      items: const [
-                        DropdownMenuItem(value: 20, child: Text('20 phút')),
-                        DropdownMenuItem(value: 30, child: Text('30 phút')),
-                        DropdownMenuItem(value: 45, child: Text('45 phút')),
-                        DropdownMenuItem(value: 60, child: Text('60 phút')),
+                      items: [
+                        DropdownMenuItem(value: 20, child: Text(tr('{p0} phút', {'p0': 20}))),
+                        DropdownMenuItem(value: 30, child: Text(tr('{p0} phút', {'p0': 30}))),
+                        DropdownMenuItem(value: 45, child: Text(tr('{p0} phút', {'p0': 45}))),
+                        DropdownMenuItem(value: 60, child: Text(tr('{p0} phút', {'p0': 60}))),
                       ],
                       onChanged: (v) {
                         if (v != null) {
@@ -242,12 +242,12 @@ class _HealthConnectScreenState extends State<HealthConnectScreen> {
                   trailing: DropdownButton<int>(
                     value: _goalMinutes,
                     underline: const SizedBox.shrink(),
-                    items: const [
-                      DropdownMenuItem(value: 60, child: Text('60 phút')),
-                      DropdownMenuItem(value: 90, child: Text('90 phút')),
-                      DropdownMenuItem(value: 120, child: Text('120 phút')),
-                      DropdownMenuItem(value: 180, child: Text('180 phút')),
-                      DropdownMenuItem(value: 240, child: Text('240 phút')),
+                    items: [
+                      DropdownMenuItem(value: 60, child: Text(tr('{p0} phút', {'p0': 60}))),
+                      DropdownMenuItem(value: 90, child: Text(tr('{p0} phút', {'p0': 90}))),
+                      DropdownMenuItem(value: 120, child: Text(tr('{p0} phút', {'p0': 120}))),
+                      DropdownMenuItem(value: 180, child: Text(tr('{p0} phút', {'p0': 180}))),
+                      DropdownMenuItem(value: 240, child: Text(tr('{p0} phút', {'p0': 240}))),
                     ],
                     onChanged: (v) {
                       if (v != null) {

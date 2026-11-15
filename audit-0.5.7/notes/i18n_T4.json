@@ -1,0 +1,42 @@
+{
+  "Tiện ích này cần thư viện mới hơn bộ chạy tiện ích APK của bản cài hiện tại: hãy cập nhật YomiHub; nếu đang dùng bản APK dành cho Android 6.0 trên máy Android 7.0 trở lên, hãy cài bản APK thường.": {
+    "ar": "هذه الإضافة تحتاج إلى مكتبات أحدث من مشغّل إضافات APK في هذه النسخة: حدّث YomiHub؛ وإذا كنت تستخدم نسخة APK الخاصة بأندرويد 6.0 على هاتف يعمل بأندرويد 7.0 أو أحدث فثبّت نسخة APK العادية.",
+    "as": "এই এক্সটেনশ্যনক এই সংস্কৰণৰ APK এক্সটেনশ্যন ৰানাৰতকৈ নতুন লাইব্ৰেৰীৰ প্ৰয়োজন: YomiHub আপডেট কৰক; যদি Android 7.0 বা তাতকৈ নতুন ফোনত Android 6.0-ৰ APK ব্যৱহাৰ কৰিছে, তেন্তে সাধাৰণ APK ইনষ্টল কৰক।",
+    "de": "Diese Erweiterung braucht neuere Bibliotheken, als die APK-Erweiterungsumgebung dieser Version mitbringt: Aktualisiere YomiHub; wenn du die Android-6.0-APK auf einem Gerät mit Android 7.0 oder neuer nutzt, installiere die normale APK.",
+    "en": "This extension needs newer libraries than the APK extension runner of this build has: update YomiHub; if you are using the Android 6.0 APK on a phone with Android 7.0 or later, install the regular APK.",
+    "es": "Esta extensión necesita bibliotecas más recientes que las del ejecutor de extensiones APK de esta versión: actualiza YomiHub; si usas el APK para Android 6.0 en un teléfono con Android 7.0 o posterior, instala el APK normal.",
+    "es_419": "Esta extensión necesita bibliotecas más recientes que las del ejecutor de extensiones APK de esta versión: actualiza YomiHub; si usas el APK para Android 6.0 en un teléfono con Android 7.0 o posterior, instala el APK normal.",
+    "fr": "Cette extension a besoin de bibliothèques plus récentes que celles du moteur d'extensions APK de cette version : mettez YomiHub à jour ; si vous utilisez l'APK pour Android 6.0 sur un téléphone sous Android 7.0 ou plus récent, installez l'APK standard.",
+    "hi": "इस एक्सटेंशन को इस बिल्ड के APK एक्सटेंशन रनर से नई लाइब्रेरी चाहिए: YomiHub अपडेट करें; यदि आप Android 7.0 या नए फ़ोन पर Android 6.0 वाला APK चला रहे हैं, तो सामान्य APK इंस्टॉल करें।",
+    "id": "Ekstensi ini memerlukan pustaka yang lebih baru daripada runner ekstensi APK pada versi ini: perbarui YomiHub; jika Anda memakai APK untuk Android 6.0 di ponsel Android 7.0 atau lebih baru, pasang APK biasa.",
+    "it": "Questa estensione richiede librerie più recenti di quelle del runner di estensioni APK di questa versione: aggiorna YomiHub; se usi l'APK per Android 6.0 su un telefono con Android 7.0 o successivo, installa l'APK normale.",
+    "ja": "この拡張機能には、このビルドの APK 拡張機能ランナーより新しいライブラリが必要です。YomiHub を更新してください。Android 7.0 以降の端末で Android 6.0 用 APK を使っている場合は、通常版 APK をインストールしてください。",
+    "ko": "이 확장 프로그램은 현재 빌드의 APK 확장 실행기보다 최신 라이브러리가 필요합니다. YomiHub를 업데이트하세요. Android 7.0 이상 기기에서 Android 6.0용 APK를 사용 중이라면 일반 APK를 설치하세요.",
+    "pt": "Esta extensão precisa de bibliotecas mais recentes do que as do executor de extensões APK desta versão: atualize o YomiHub; se estiver a usar o APK para Android 6.0 num telemóvel com Android 7.0 ou posterior, instale o APK normal.",
+    "pt_BR": "Esta extensão precisa de bibliotecas mais recentes do que as do executor de extensões APK desta versão: atualize o YomiHub; se você estiver usando o APK para Android 6.0 em um celular com Android 7.0 ou posterior, instale o APK normal.",
+    "ru": "Этому расширению нужны более новые библиотеки, чем есть в среде запуска APK-расширений этой сборки: обновите YomiHub; если вы используете APK для Android 6.0 на телефоне с Android 7.0 или новее, установите обычный APK.",
+    "th": "ส่วนขยายนี้ต้องใช้ไลบรารีที่ใหม่กว่าตัวรันส่วนขยาย APK ของเวอร์ชันนี้: โปรดอัปเดต YomiHub หากคุณใช้ APK สำหรับ Android 6.0 บนโทรศัพท์ Android 7.0 ขึ้นไป ให้ติดตั้ง APK ปกติ",
+    "tr": "Bu eklenti, bu sürümdeki APK eklenti çalıştırıcısından daha yeni kitaplıklara ihtiyaç duyuyor: YomiHub'ı güncelleyin; Android 7.0 veya üzeri bir telefonda Android 6.0 APK'sını kullanıyorsanız normal APK'yı yükleyin.",
+    "zh": "此扩展需要比当前版本的 APK 扩展运行器更新的库：请更新 YomiHub；如果您在 Android 7.0 或更高版本的手机上使用 Android 6.0 专用 APK，请安装普通 APK。"
+  },
+  "Bạn đang dùng bản APK dành cho Android 6.0 trên Android {p0}. Bản này có thể không chạy được một số tiện ích APK mới – hãy cài bản APK thường (Android 7.0 trở lên) để dùng đủ tính năng.": {
+    "ar": "أنت تستخدم نسخة APK الخاصة بأندرويد 6.0 على أندرويد {p0}. قد لا تتمكن هذه النسخة من تشغيل بعض إضافات APK الأحدث – ثبّت نسخة APK العادية (أندرويد 7.0 فأحدث) للحصول على كل الميزات.",
+    "as": "আপুনি Android {p0}-ত Android 6.0-ৰ APK ব্যৱহাৰ কৰি আছে। এই সংস্কৰণে কিছুমান নতুন APK এক্সটেনশ্যন চলাব নোৱাৰিবও পাৰে – সকলো সুবিধাৰ বাবে সাধাৰণ APK (Android 7.0 আৰু তাৰ ওপৰৰ) ইনষ্টল কৰক।",
+    "de": "Du nutzt die Android-6.0-APK unter Android {p0}. Diese Version kann manche neueren APK-Erweiterungen eventuell nicht ausführen – installiere die normale APK (Android 7.0 und neuer), um alle Funktionen zu nutzen.",
+    "en": "You are using the Android 6.0 APK on Android {p0}. This build may be unable to run some newer APK extensions – install the regular APK (Android 7.0 and later) to get every feature.",
+    "es": "Estás usando el APK para Android 6.0 en Android {p0}. Esta versión puede no ejecutar algunas extensiones APK recientes – instala el APK normal (Android 7.0 o posterior) para disponer de todas las funciones.",
+    "es_419": "Estás usando el APK para Android 6.0 en Android {p0}. Esta versión puede no ejecutar algunas extensiones APK recientes – instala el APK normal (Android 7.0 o posterior) para disponer de todas las funciones.",
+    "fr": "Vous utilisez l'APK pour Android 6.0 sous Android {p0}. Cette version peut ne pas exécuter certaines extensions APK récentes – installez l'APK standard (Android 7.0 et versions ultérieures) pour profiter de toutes les fonctions.",
+    "hi": "आप Android {p0} पर Android 6.0 वाला APK चला रहे हैं। यह बिल्ड कुछ नए APK एक्सटेंशन नहीं चला सकता – सभी सुविधाओं के लिए सामान्य APK (Android 7.0 और नए) इंस्टॉल करें।",
+    "id": "Anda memakai APK untuk Android 6.0 di Android {p0}. Versi ini mungkin tidak dapat menjalankan beberapa ekstensi APK baru – pasang APK biasa (Android 7.0 ke atas) untuk mendapatkan semua fitur.",
+    "it": "Stai usando l'APK per Android 6.0 su Android {p0}. Questa versione potrebbe non eseguire alcune estensioni APK recenti – installa l'APK normale (Android 7.0 e successivi) per avere tutte le funzioni.",
+    "ja": "Android {p0} で Android 6.0 用 APK を使用しています。このビルドでは一部の新しい APK 拡張機能が動作しない場合があります – すべての機能を使うには通常版 APK（Android 7.0 以降）をインストールしてください。",
+    "ko": "Android {p0}에서 Android 6.0용 APK를 사용 중입니다. 이 빌드는 일부 최신 APK 확장 프로그램을 실행하지 못할 수 있습니다 – 모든 기능을 사용하려면 일반 APK(Android 7.0 이상)를 설치하세요.",
+    "pt": "Está a usar o APK para Android 6.0 no Android {p0}. Esta versão pode não executar algumas extensões APK recentes – instale o APK normal (Android 7.0 ou posterior) para ter todas as funcionalidades.",
+    "pt_BR": "Você está usando o APK para Android 6.0 no Android {p0}. Esta versão pode não executar algumas extensões APK recentes – instale o APK normal (Android 7.0 ou posterior) para ter todos os recursos.",
+    "ru": "Вы используете APK для Android 6.0 на Android {p0}. Эта сборка может не запускать некоторые новые APK-расширения – установите обычный APK (Android 7.0 и новее), чтобы получить все функции.",
+    "th": "คุณกำลังใช้ APK สำหรับ Android 6.0 บน Android {p0} เวอร์ชันนี้อาจรันส่วนขยาย APK ใหม่บางตัวไม่ได้ – โปรดติดตั้ง APK ปกติ (Android 7.0 ขึ้นไป) เพื่อใช้งานได้ครบทุกฟีเจอร์",
+    "tr": "Android {p0} üzerinde Android 6.0 APK'sını kullanıyorsunuz. Bu sürüm bazı yeni APK eklentilerini çalıştıramayabilir – tüm özellikler için normal APK'yı (Android 7.0 ve üzeri) yükleyin.",
+    "zh": "您正在 Android {p0} 上使用 Android 6.0 专用 APK。此版本可能无法运行部分较新的 APK 扩展 – 请安装普通 APK（Android 7.0 及以上）以使用全部功能。"
+  }
+}

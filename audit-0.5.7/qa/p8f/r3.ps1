@@ -1,0 +1,5 @@
+A shell "ls -la /sdcard/YomiHub/ /sdcard/Android/data/com.yomihub.app/ /sdcard/Android/data/com.yomihub.app/files /sdcard/Android/data/com.yomihub.app/cache 2>&1 | head -60"
+A shell "run-as com.yomihub.app ls 2>&1 | head -3"
+A shell "dumpsys package com.yomihub.app | grep -E 'flags=|granted=true' | head -20"
+A pull /sdcard/YomiHub/logs.txt "$EV\logs_r3.txt"
+A shell "getprop ro.build.version.sdk; getprop ro.product.cpu.abilist"

@@ -328,7 +328,7 @@ class ReaderPagedItem extends ConsumerWidget {
           // has to press Retry – fewer "chapter won't load" pages.
           final key = '${chapter.id}:$index';
           final tries = _autoRetries[key] ?? 0;
-          if (tries < 2) {
+          if (tries < 2 && state.autoRetry) {
             _autoRetries[key] = tries + 1;
             if (_autoRetries.length > 500) _autoRetries.clear();
             Future.delayed(Duration(milliseconds: 1500 * (tries + 1)), () {
@@ -351,6 +351,21 @@ class ReaderPagedItem extends ConsumerWidget {
                   l10n.image_loading_error,
                   style: TextStyle(color: Colors.white.withValues(alpha: 0.7)),
                 ),
+                if (state.errorMessage != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 4,
+                    ),
+                    child: Text(
+                      state.errorMessage!,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.5),
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ReaderInteractiveRegion(

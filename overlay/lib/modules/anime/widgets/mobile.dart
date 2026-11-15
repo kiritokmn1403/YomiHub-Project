@@ -15,6 +15,7 @@ import 'package:mangayomi/modules/anime/widgets/play_or_pause_button.dart';
 import 'package:mangayomi/providers/l10n_providers.dart';
 import 'package:volume_controller/volume_controller.dart';
 import 'package:screen_brightness/screen_brightness.dart';
+import 'package:mangayomi/yomihub/integrations/nuvio_media_hub.dart';
 import 'package:flutter/material.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 import 'package:media_kit_video/media_kit_video_controls/src/controls/extensions/duration.dart';
@@ -63,8 +64,8 @@ class _MobileControllerWidgetState
   Duration controlsTransitionDuration = const Duration(milliseconds: 300);
   Color backdropColor = const Color(0x66000000);
   Timer? _timer;
-  late final skipDuration = ref.watch(
-    defaultDoubleTapToSkipLengthStateProvider,
+  late final skipDuration = NuvioMediaHub.resolveDoubleTapSeconds(
+    ref.watch(defaultDoubleTapToSkipLengthStateProvider),
   );
   final ValueNotifier<double> _brightnessValue = ValueNotifier(0.0);
   final ValueNotifier<bool> _brightnessIndicator = ValueNotifier(false);
@@ -518,23 +519,26 @@ class _MobileControllerWidgetState
                           if (widget.isLocked?.value == true) return;
                           final delta = e.delta.dy;
                           final Offset position = e.localPosition;
-
-                          if (position.dx <=
-                              MediaQuery.of(context).size.width / 2) {
+                          // YomiHub 0.5.7 (U5, Nuvio): each side can be
+                          // switched off in the settings; the maths comes
+                          // from NuvioMediaHub (same 500 px travel as before).
+                          final size = MediaQuery.of(context).size;
+                          final leftSide = position.dx <= size.width / 2;
+                          final result = NuvioMediaHub.applySwipe(
+                            leftSide: leftSide,
+                            current: leftSide
+                                ? _brightnessValue.value
+                                : _volumeValue.value,
+                            dy: delta,
+                            screenHeight: size.height,
+                            travel: verticalGestureSensitivity.toDouble(),
+                          );
+                          if (result == null) return;
+                          if (leftSide) {
                             // Left side of screen swiped
-
-                            final brightness =
-                                _brightnessValue.value -
-                                delta / verticalGestureSensitivity;
-                            final result = brightness.clamp(0.0, 1.0);
                             setBrightness(result);
                           } else {
                             // Right side of screen swiped
-
-                            final volume =
-                                _volumeValue.value -
-                                delta / verticalGestureSensitivity;
-                            final result = volume.clamp(0.0, 1.0);
                             setVolume(result);
                           }
                         },

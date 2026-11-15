@@ -7,6 +7,7 @@ import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:mangayomi/modules/more/settings/reader/providers/reader_state_provider.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 import 'package:mangayomi/modules/widgets/tv_escapable_slider.dart';
+import 'package:mangayomi/yomihub/integrations/integration_settings.dart';
 
 class ReaderScreen extends ConsumerWidget {
   const ReaderScreen({super.key});
@@ -1023,6 +1024,8 @@ class ReaderScreen extends ConsumerWidget {
             ),
 
             const Divider(height: 32),
+            // YomiHub 0.5.7 (U5): tích hợp Yomikiru
+            const YomikiruSettingsSection(),
           ],
         ),
       ),

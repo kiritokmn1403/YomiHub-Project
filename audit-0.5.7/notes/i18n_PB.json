@@ -1,0 +1,42 @@
+{
+  "Sách điện tử": {
+    "ar": "الكتب الإلكترونية",
+    "as": "ইলেক্ট্ৰনিক কিতাপ",
+    "de": "E-Books",
+    "en": "Ebooks",
+    "es": "Libros electrónicos",
+    "es_419": "Libros electrónicos",
+    "fr": "Livres numériques",
+    "hi": "ई-बुक",
+    "id": "Buku elektronik",
+    "it": "eBook",
+    "ja": "電子書籍",
+    "ko": "전자책",
+    "pt": "Livros eletrónicos",
+    "pt_BR": "E-books",
+    "ru": "Электронные книги",
+    "th": "อีบุ๊ก",
+    "tr": "E-kitaplar",
+    "zh": "电子书"
+  },
+  "Danh sách yêu thích": {
+    "ar": "قائمة الرغبات",
+    "as": "ইচ্ছাতালিকা",
+    "de": "Wunschliste",
+    "en": "Wishlist",
+    "es": "Lista de deseos",
+    "es_419": "Lista de deseos",
+    "fr": "Liste de souhaits",
+    "hi": "विशलिस्ट",
+    "id": "Wishlist",
+    "it": "Lista dei desideri",
+    "ja": "ウィッシュリスト",
+    "ko": "위시리스트",
+    "pt": "Lista de desejos",
+    "pt_BR": "Lista de desejos",
+    "ru": "Список желаний",
+    "th": "รายการที่อยากได้",
+    "tr": "İstek listesi",
+    "zh": "心愿单"
+  }
+}

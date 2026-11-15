@@ -14,6 +14,9 @@ import 'package:mangayomi/providers/storage_provider.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/services/http/m_client.dart';
 import 'package:mangayomi/utils/avif.dart';
+import 'package:mangayomi/utils/image_load_timeout.dart';
+import 'package:mangayomi/utils/log/logger.dart';
+import 'package:mangayomi/yomihub/a6/a6_native.dart';
 import 'package:path/path.dart';
 import 'package:extended_image_library/src/network/extended_network_image_provider.dart'
     as image_provider;
@@ -120,6 +123,11 @@ class _CacheManager {
   }
 }
 
+/// YomiHub 0.5.7 (QA3): one WARNING per host per minute for images that fail.
+final ImageFailWarnLog _imageWarnLog = ImageFailWarnLog(
+  emit: (line) => AppLogger.log(line, logLevel: LogLevel.warning),
+);
+
 class CustomExtendedNetworkImageProvider
     extends ImageProvider<image_provider.ExtendedNetworkImageProvider>
     with ExtendedImageProvider<image_provider.ExtendedNetworkImageProvider>
@@ -223,6 +231,9 @@ class CustomExtendedNetworkImageProvider
   final Duration? cacheMaxAge;
 
   final bool showCloudFlareError;
+
+  /// Last network error of this provider (reason shown to the user).
+  Object? _lastNetError;
 
   final String? imageCacheFolderName;
 
@@ -339,7 +350,8 @@ class CustomExtendedNetworkImageProvider
       }
     }
 
-    if (result == null) {
+    // A timed-out host would just burn another full timeout on the second try.
+    if (result == null && !isImageLoadTimeout(lastError)) {
       try {
         final Uint8List? data = await _loadNetworkWithDeduplication(
           key,
@@ -360,9 +372,10 @@ class CustomExtendedNetworkImageProvider
     //Failed to load
     if (result == null) {
       //result = await ui.instantiateImageCodec(kTransparentImage);
+      final cause = lastError ?? key._lastNetError ?? _lastNetError;
       return Future<ui.Codec>.error(
         StateError(
-          'Failed to load $url.${lastError != null ? ' Cause: $lastError' : ''}',
+          'Failed to load $url.${cause != null ? ' Cause: $cause' : ''}',
         ),
       );
     }
@@ -494,6 +507,11 @@ class CustomExtendedNetworkImageProvider
       final StreamedResponse? response = await _tryGetResponse(resolved);
 
       if (response == null || response.statusCode != HttpStatus.ok) {
+        yhA6Diag('img ${resolved.host} HTTP ${response?.statusCode} ${response?.headers['server'] ?? ''} ${response?.headers['content-type'] ?? ''}');
+        final httpErr = 'HTTP ${response?.statusCode}';
+        _lastNetError = httpErr;
+        key._lastNetError = httpErr;
+        _imageWarnLog.record(resolved.host, '${resolved.host} $httpErr');
         return null;
       }
 
@@ -501,7 +519,12 @@ class CustomExtendedNetworkImageProvider
       final BytesBuilder bytesBuilder = BytesBuilder(copy: false);
       int received = 0;
 
-      await for (final chunk in response.stream) {
+      await for (final chunk in response.stream.timeout(
+        kImageLoadTimeout,
+        onTimeout: (sink) => sink.addError(
+          ImageLoadTimeoutException(resolved.host, kImageLoadTimeout, phase: 'receive'),
+        ),
+      )) {
         bytesBuilder.add(chunk);
         received += chunk.length;
         chunkEvents?.add(
@@ -534,9 +557,19 @@ class CustomExtendedNetworkImageProvider
       }
       return Future<Uint8List>.error(StateError('User cancel request $url.'));
     } catch (e) {
+      yhA6Diag('img ${key.url.length > 90 ? key.url.substring(0, 90) : key.url} LOI $e');
       if (kDebugMode) {
         print(e);
       }
+      _lastNetError = e;
+      key._lastNetError = e;
+      _imageWarnLog.record(
+        imageHostOf(key.url),
+        e is ImageLoadTimeoutException ? e : '${key.url} $e',
+      );
+      // A timeout is surfaced (not swallowed into null) so the in-flight
+      // entry is released and the UI can say why; "Thử lại" re-requests.
+      if (isImageLoadTimeout(e)) rethrow;
     } finally {
       await chunkEvents?.close();
     }
@@ -637,13 +670,23 @@ class CustomExtendedNetworkImageProvider
     cancelToken?.throwIfCancellationRequested();
 
     int attempt = 0;
+    final deadline = DateTime.now().add(kImageLoadTimeout);
     while (attempt < retries) {
       try {
+        final remaining = deadline.difference(DateTime.now());
+        if (remaining <= Duration.zero) {
+          throw ImageLoadTimeoutException(resolved.host, kImageLoadTimeout);
+        }
         return await CancellationTokenSource.register(
           cancelToken,
-          _getResponse(resolved),
+          withImageTimeout(
+            _getResponse(resolved),
+            host: resolved.host,
+            timeout: remaining,
+          ),
         );
       } catch (e) {
+        if (e is ImageLoadTimeoutException) rethrow;
         attempt++;
         if (attempt >= retries) {
           rethrow;

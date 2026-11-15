@@ -85,6 +85,7 @@ Future<void> downloadChapter(
         connectivity.contains(ConnectivityResult.wifi) ||
         connectivity.contains(ConnectivityResult.ethernet);
     if (onlyOnWifi && !isOnWifi) {
+      AppLogger.log('[Tải xuống] Không tải "${chapter.name}": đang bật "chỉ tải qua Wi-Fi" nhưng máy không có Wi-Fi/Ethernet', logLevel: LogLevel.warning);
       botToast(localizedMessage((l10n) => l10n.downloads_are_limited_to_wifi));
       keepAlive.close();
       return;
@@ -589,7 +590,9 @@ Future<void> processDownloads(Ref ref, {bool? useWifi}) async {
       if (!downloadItem.chapter.isLoaded) {
         try {
           downloadItem.chapter.loadSync();
-        } catch (_) {}
+        } catch (e) {
+          AppLogger.log('[Tải xuống] Không đọc được chương trong hàng chờ: $e', logLevel: LogLevel.warning);
+        }
       }
       final chapter = downloadItem.chapter.value;
       if (chapter == null) continue;

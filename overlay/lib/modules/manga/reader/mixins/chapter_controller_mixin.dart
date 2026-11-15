@@ -6,6 +6,7 @@ import 'package:mangayomi/repositories/history_repository.dart';
 import 'package:mangayomi/repositories/manga_repository.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/utils/extensions/manga_extensions.dart';
+import 'package:mangayomi/yomihub/health/health_connect_service.dart';
 
 /// Shared navigation and history logic used by [ReaderController],
 /// [NovelReaderController], and [AnimeStreamController].
@@ -102,6 +103,16 @@ mixin ChapterControllerMixin {
   Future<void> setHistoryUpdate({int elapsedSeconds = 0}) async {
     if (incognitoMode) return;
     final manga = getManga();
+    // 0.5.7 (Feature Check 35): reading / watching time feeds the Health
+    // Connect statistics (not in incognito mode)
+    if (elapsedSeconds > 0) {
+      try {
+        HealthConnectService.instance.recordSeconds(
+          elapsedSeconds,
+          watching: manga.itemType == ItemType.anime,
+        );
+      } catch (_) {}
+    }
 
     final m = chapter.manga.value!;
     m.lastRead = DateTime.now().millisecondsSinceEpoch;

@@ -30,11 +30,18 @@ class YomiFilterLoader {
         out = await YomiFilterRefresh.load(source, force: true)
             .timeout(const Duration(seconds: 90), onTimeout: () => null);
         if (out != null && out.isEmpty) {
-          return (filters: null, error: null); // 0.2.3: the extension has no filters
+          // 0.2.3: the extension has no filters. 0.5.7: INFO line, not a failure.
+          AppLogger.logOnce(
+            'filter_none:${source.id}',
+            '[Bộ lọc] "${source.name}" (${source.lang}, ${source.sourceCodeLanguage.name}) không có bộ lọc',
+            logLevel: LogLevel.info,
+          );
+          return (filters: null, error: null);
         }
         if (out == null) {
-          err = 'tiện ích không trả về danh sách bộ lọc (sau 3 lần thử)'
-              '${YomiFilterRefresh.lastError[source.id] != null ? ' – ${YomiFilterRefresh.lastError[source.id]}' : ''}';
+          // 0.5.7: only a real failure (exception / timeout) reaches the WARNING
+          err = YomiFilterRefresh.lastError[source.id] ??
+              'tiện ích không trả về danh sách bộ lọc (sau 3 lần thử)';
         }
       } else {
         // JS / Dart / Aidoku / LNReader: build the list again from a fresh

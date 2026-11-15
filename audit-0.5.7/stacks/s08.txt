@@ -1,0 +1,20 @@
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 8914, tid: 548293673240, name 1.ui
+os: android arch: arm64 comp: yes sim: no
+build_id: 'd6bf8bd58efc4f900546a1d2cb062aa6'
+isolate_dso_base: 7bffa57000, vm_dso_base: 0
+isolate_instructions: 7c002a7000, vm_instructions: 0
+    #00 abs 0000007c01b1346f virt 00000000020bc46f _kDartSnapshotText+0x186c46f
+    #01 abs 0000007c01b13fb7 virt 00000000020bcfb7 _kDartSnapshotText+0x186cfb7
+<asynchronous suspension>
+    #02 abs 0000007c01999857 virt 0000000001f42857 _kDartSnapshotText+0x16f2857
+<asynchronous suspension>
+    #03 abs 0000007c0197c7f3 virt 0000000001f257f3 _kDartSnapshotText+0x16d57f3
+<asynchronous suspension>
+    #04 abs 0000007c01979ff3 virt 0000000001f22ff3 _kDartSnapshotText+0x16d2ff3
+<asynchronous suspension>
+    #05 abs 0000007c004cd5d4 virt 0000000000a765d4 _kDartSnapshotText+0x2265d4
+<asynchronous suspension>
+    #06 abs 0000007c004cd5ac virt 0000000000a765ac _kDartSnapshotText+0x2265ac
+<asynchronous suspension>
+

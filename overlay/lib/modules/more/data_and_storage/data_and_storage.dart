@@ -211,9 +211,15 @@ class DataAndStorage extends ConsumerWidget {
             // 0.5.3: library tools stay here; backup settings moved
             const MissingSourceCheckTile(),
             const DeleteSourceTile(),
-            const MergeDuplicateMangaTile(),
-            const ManualMergeMangaTile(),
-            const CustomMergeSourcesTile(),
+            // 0.5.7 (Feature Check 38): the three merge tools moved into
+            // "Hợp Nhất Tiện Ích"; one shortcut stays here
+            ListTile(
+              leading: const Icon(Icons.hub_rounded),
+              title: Text(tr('Hợp Nhất Tiện Ích')),
+              subtitle: Text(tr('Hợp nhất bộ trùng, tự chọn bộ, hợp nhất tiện ích theo lựa chọn')),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push('/mergeExtensions'),
+            ),
             ListTile(
               leading: const Icon(Icons.settings_backup_restore),
               title: Text(tr('Sao Lưu & Đồng Bộ')),

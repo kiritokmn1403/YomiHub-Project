@@ -188,7 +188,7 @@ void main() {
     test('version / user agent', () {
       expect(AppIdentity.userAgent, anyOf('YomiHub/0.5.4', 'YomiHub/0.5.5', startsWith('YomiHub/0.5.')));
       if (File('pubspec.yaml').existsSync()) {
-        expect(_read('pubspec.yaml'), anyOf(contains('version: 0.5.4+46'), contains('version: 0.5.5+47'), contains('version: 0.5.5'), contains('version: 0.5.6')));
+        expect(_read('pubspec.yaml'), anyOf(contains('version: 0.5.4+46'), contains('version: 0.5.5+47'), contains('version: 0.5.5'), contains('version: 0.5.6'), contains('version: 0.5.7')));
       }
     });
 
@@ -622,13 +622,20 @@ void main() {
 
       // 5. Verified resume notification toast only AFTER actual playback at target is confirmed
       expect(playerSrc, contains('Đã tiếp tục xem video tại'));
-      expect(playerSrc, contains('_hasResumeTargetCompleted = true;\n            AppLogger.log(\n              "[Trình phát] Đã tiếp tục xem video'));
+      // 0.5.7 (U7): the decision moved to YomiResumePolicy.step; the toast
+      // still follows only the confirmed step
+      expect(playerSrc, contains('if (step == ResumeStep.confirmed) {\n        _hasResumeTargetCompleted = true;\n        AppLogger.log(\n          "[Trình phát] Đã tiếp tục xem video'));
 
       // 6. DB write flush on player exit
       expect(playerSrc, contains('dbWriteQueue.flush()'));
 
       // 7. Live stream protection in _setCurrentPosition: no position saved, no clearing live flag
-      expect(playerSrc, contains('if (_yhLiveStream || !_yhSourceNatureResolved)'));
+      // 0.5.7: the same rule through YomiResumePolicy.persistBlocker
+      expect(playerSrc, contains("if (blocker == 'live' || blocker == 'unresolved')"));
+      expect(playerSrc, contains('live: _yhLiveStream,\n      natureResolved: _yhSourceNatureResolved,'));
+      final policySrc = _read('lib/yomihub/player/resume_policy.dart');
+      expect(policySrc, contains("if (live) return 'live';"));
+      expect(policySrc, contains("if (!natureResolved) return 'unresolved';"));
 
       // 8. Session & token coordinator state
       expect(playerSrc, contains('int _activeResumeSession = 0;'));
@@ -644,7 +651,7 @@ void main() {
       expect(queueSrc, contains('writeTxnSync(callback'));
 
       final ctrlSrc = _read('lib/modules/anime/providers/anime_player_controller_provider.dart');
-      expect(ctrlSrc, contains('chapterRepository.save(ep)'));
+      expect(ctrlSrc, contains(RegExp(r'chapterRepository\s*\.save\(ep\)')));
       expect(ctrlSrc, contains('dbWriteQueue.flush()'));
     });
 

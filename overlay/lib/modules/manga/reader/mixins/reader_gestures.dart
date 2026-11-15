@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mangayomi/yomihub/integrations/yomikiru_reader_enhancer.dart';
 
 /// Handler for keyboard shortcuts in the reader.
 class ReaderKeyboardHandler {
@@ -10,6 +11,11 @@ class ReaderKeyboardHandler {
   final VoidCallback? onNextChapter;
   final VoidCallback? onPreviousChapter;
 
+  /// YomiHub 0.5.7 (Yomikiru): phím bổ sung A/D/Space/Home/End.
+  final bool extraKeys;
+  final VoidCallback? onFirstPage;
+  final VoidCallback? onLastPage;
+
   const ReaderKeyboardHandler({
     this.onEscape,
     this.onFullScreen,
@@ -17,6 +23,9 @@ class ReaderKeyboardHandler {
     this.onNextPage,
     this.onNextChapter,
     this.onPreviousChapter,
+    this.extraKeys = false,
+    this.onFirstPage,
+    this.onLastPage,
   });
 
   /// Handles a key event and returns true if it was handled.
@@ -69,7 +78,22 @@ class ReaderKeyboardHandler {
         return true;
 
       default:
-        return false;
+        if (!extraKeys) return false;
+        final act = YomikiruReaderEnhancer.extraKeyAction(event.logicalKey);
+        if (act == null) return false;
+        final isAD = event.logicalKey == LogicalKeyboardKey.keyA ||
+            event.logicalKey == LogicalKeyboardKey.keyD;
+        var forward = act == 'next';
+        if (isAD && isReverseHorizontal) forward = !forward;
+        switch (act) {
+          case 'first':
+            onFirstPage?.call();
+          case 'last':
+            onLastPage?.call();
+          default:
+            (forward ? onNextPage : onPreviousPage)?.call();
+        }
+        return true;
     }
   }
 

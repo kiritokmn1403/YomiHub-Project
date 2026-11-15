@@ -240,7 +240,17 @@ class GetIsolateService {
       final q = query != null && query.length > 80 ? '${query.substring(0, 80)}…' : query;
       final where = 'Extension "${source?.name}" (${source?.lang}, engine: $langEngine, repo: $repoInfo) $serviceType '
           '${url ?? q ?? page ?? ''}';
-      if (YomiExtErrors.isSetupError(e)) {
+      if (YomiExtErrors.isDiscontinued(source?.name)) {
+        // 0.5.7 (logs 7, 14/11: "Phim Nhựa (Ngừng hoạt động)", "Rổ Phim (Ngừng
+        // hoạt động)" … were ERRORs): the repository itself says the site is
+        // gone – one information line per run, and background work skips it
+        YomiExtErrors.markSlow(source?.name, source?.lang);
+        if (YomiExtErrors.noteDiscontinuedOnce(source?.name, source?.lang)) {
+          AppLogger.log(
+              '$where: ${YomiExtErrors.short(e).split('\n').first} – tiện ích được kho đánh dấu đã ngừng hoạt động',
+              logLevel: LogLevel.info);
+        }
+      } else if (YomiExtErrors.isSetupError(e)) {
         if (!YomiExtErrors.needsSetup(source?.name, source?.lang)) {
           YomiExtErrors.markSetup(source?.name, source?.lang);
           AppLogger.log('$where: ${YomiExtErrors.short(e)} (needs setup)',
@@ -255,9 +265,19 @@ class GetIsolateService {
           AppLogger.log('$where: ${YomiExtErrors.short(e)}${h == null ? '' : ' – $h'}',
               logLevel: LogLevel.warning);
         }
+      } else if (YomiExtErrors.isIncompatible(e)) {
+        // 0.5.7: the extension needs a newer extension runner (MiMi, logs 7)
+        if (YomiExtErrors.shouldLog(source?.name, source?.lang, serviceType, e)) {
+          AppLogger.log(
+              '$where: ${YomiExtErrors.short(e).split('\n').first} – ${YomiExtErrors.incompatibleHint()}',
+              logLevel: LogLevel.warning);
+        }
       } else if (serviceType == 'search' &&
           (query ?? '').trim().isNotEmpty &&
-          RegExp(r"expected start of the object '\{', but had '\['|http error 404\b",
+          RegExp(r"expected start of the object '\{', but had '\['|http error 404\b|"
+                  // 0.5.7 (logs 7, global search 12/11 16:18): Aidoku sources
+                  // and the NHentai (dart) source with no match
+                  r"sourceerror: missing result|bad state: no element",
                   caseSensitive: false)
               .hasMatch(e.toString())) {
         // 0.5.2: Subsplease answers "[]" when nothing matches and the
@@ -267,6 +287,11 @@ class GetIsolateService {
           AppLogger.log(
               '$where: ${YomiExtErrors.short(e).split('\n').first} – nguồn không có kết quả cho từ khóa này',
               logLevel: LogLevel.info);
+        }
+      } else if (YomiExtErrors.isSourceDataError(e)) {
+        // 0.5.7: the site answered with something the extension cannot read
+        if (YomiExtErrors.shouldLog(source?.name, source?.lang, serviceType, e)) {
+          AppLogger.log('$where: ${YomiExtErrors.short(e)}', logLevel: LogLevel.warning);
         }
       } else if (YomiExtErrors.shouldLog(source?.name, source?.lang, serviceType, e)) {
         final timeout = e is TimeoutException;

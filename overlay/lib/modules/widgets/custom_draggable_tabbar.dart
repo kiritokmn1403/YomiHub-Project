@@ -47,8 +47,14 @@ Future<void> customDraggableTabBar({
   Widget? moreWidget,
 }) async {
   final controller = DraggableMenuController();
-  late TabController tabBarController;
-  tabBarController = TabController(length: tabs.length, vsync: vsync);
+  // 0.5.7 (logs 7: 40x "Null check operator used on a null value" in
+  // flutter tabs.dart:633 `controller.animation!` @ /MangaLibrary and
+  // /mangaReaderView): the TabController used to be created here and disposed
+  // right after `DraggableMenu.open` returned - while the menu's closing
+  // animation was still painting the TabBar. It now lives in
+  // [DraggableTabsHost], whose State disposes it only once the subtree has
+  // left the tree, i.e. after the last frame that could paint from it.
+  // [vsync] is kept in the signature for the existing callers.
   final maxHeight = context.height(0.8);
 
   int index = 0;
@@ -59,15 +65,6 @@ Future<void> customDraggableTabBar({
       widgetsHeight.indexWhere((element) => element["index"] == index),
     );
   }
-
-  tabBarController.animation!.addListener(() {
-    final currentIndex = tabBarController.animation!.value.round();
-    index = tabBarController.index;
-    if (index != currentIndex) {
-      index = currentIndex;
-    }
-    refresh();
-  });
 
   await showDialog(
     context: context,
@@ -135,9 +132,13 @@ Future<void> customDraggableTabBar({
                       topRight: Radius.circular(20),
                     ),
                   ),
-                  child: DefaultTabController(
+                  child: DraggableTabsHost(
                     length: tabs.length,
-                    child: Column(
+                    onIndexChanged: (i) {
+                      index = i;
+                      refresh();
+                    },
+                    builder: (context, tabBarController) => Column(
                       children: [
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -206,5 +207,58 @@ Future<void> customDraggableTabBar({
       ),
     );
   }
-  tabBarController.dispose();
+}
+
+/// Owns the [TabController] of a [customDraggableTabBar] sheet.
+///
+/// The controller is created in [State.initState] and disposed in
+/// [State.dispose], so it outlives every frame in which the sheet (including
+/// its closing animation) can still paint the [TabBar].
+class DraggableTabsHost extends StatefulWidget {
+  final int length;
+  final ValueChanged<int>? onIndexChanged;
+  final Widget Function(BuildContext context, TabController controller)
+      builder;
+
+  const DraggableTabsHost({
+    super.key,
+    required this.length,
+    required this.builder,
+    this.onIndexChanged,
+  });
+
+  @override
+  State<DraggableTabsHost> createState() => _DraggableTabsHostState();
+}
+
+class _DraggableTabsHostState extends State<DraggableTabsHost>
+    with SingleTickerProviderStateMixin {
+  late final TabController _controller =
+      TabController(length: widget.length, vsync: this);
+  int _lastIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.animation?.addListener(_onAnimation);
+  }
+
+  void _onAnimation() {
+    final animation = _controller.animation;
+    if (animation == null) return;
+    final i = animation.value.round().clamp(0, widget.length - 1);
+    if (i == _lastIndex) return;
+    _lastIndex = i;
+    widget.onIndexChanged?.call(i);
+  }
+
+  @override
+  void dispose() {
+    _controller.animation?.removeListener(_onAnimation);
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.builder(context, _controller);
 }

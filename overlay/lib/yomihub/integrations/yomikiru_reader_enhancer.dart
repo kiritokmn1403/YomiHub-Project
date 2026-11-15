@@ -18,6 +18,24 @@ class YomikiruReaderEnhancer {
   static const String prefSmoothScroll = 'yomikiru_smooth_scroll';
   static const String prefImageEnhance = 'yomikiru_image_enhance';
 
+  /// YomiHub 0.5.7: phím tắt mở rộng trong trình đọc truyện (A/D/Space/Home/End).
+  static const String prefExtraKeys = 'yomikiru_extra_keys';
+
+  /// Mặc định tắt: không đổi hành vi cũ của trình đọc.
+  static bool get extraKeysEnabled => YomiPrefs.get<bool>(prefExtraKeys, false);
+
+  /// Hành động của các phím bổ sung (ngoài các phím trình đọc đã có):
+  /// 'next' (D, Space), 'prev' (A), 'first' (Home), 'last' (End); null nếu không phải.
+  static String? extraKeyAction(LogicalKeyboardKey key) {
+    if (key == LogicalKeyboardKey.keyD || key == LogicalKeyboardKey.space) {
+      return 'next';
+    }
+    if (key == LogicalKeyboardKey.keyA) return 'prev';
+    if (key == LogicalKeyboardKey.home) return 'first';
+    if (key == LogicalKeyboardKey.end) return 'last';
+    return null;
+  }
+
   /// Whether automatic dual-page spread is enabled on wide monitors.
   static bool get dualPageEnabled => YomiPrefs.get<bool>(prefDualPage, false);
 

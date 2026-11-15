@@ -7,6 +7,7 @@ import 'package:mangayomi/modules/library/widgets/continue_reader_button.dart';
 import 'package:mangayomi/modules/manga/detail/providers/state_providers.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
+import 'package:mangayomi/yomihub/ui/ui_style.dart';
 import 'package:mangayomi/modules/library/widgets/library_entry_utils.dart';
 import 'package:mangayomi/modules/widgets/bottom_text_widget.dart';
 import 'package:mangayomi/modules/widgets/cover_view_widget.dart';
@@ -116,7 +117,9 @@ class _LibraryGridViewWidgetState extends State<LibraryGridViewWidget> {
                               child: Padding(
                                 padding: const EdgeInsets.all(5),
                                 child: Container(
-                                  color: context.themeData.cardColor,
+                                  color: (!isTv && YomiUi.isModern)
+                                      ? null
+                                      : context.themeData.cardColor,
                                   child: EntryBadgeChip(
                                     label: (entry.lang ?? '').toUpperCase(),
                                     borderRadius: const BorderRadius.only(

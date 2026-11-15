@@ -14,6 +14,9 @@ import 'package:mangayomi/utils/chapter_recognition.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/utils/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:mangayomi/yomihub/integrations/zenshin_anime_tracker.dart';
+import 'package:mangayomi/yomihub/player/resume_policy.dart';
+import 'package:mangayomi/yomihub/player/resume_store.dart';
 part 'anime_player_controller_provider.g.dart';
 
 final fullscreenProvider = StateProvider<bool>(() => false);
@@ -67,12 +70,19 @@ class AnimeStreamController extends _$AnimeStreamController
         episode;
     final pos = int.tryParse(freshEp.lastPageRead ?? '') ?? 0;
     final total = int.tryParse(freshEp.duration ?? '') ?? 0;
-    if (total > 0 && pos >= total) return Duration.zero;
-    if (pos >= 1000) return Duration(milliseconds: pos);
-    return Duration.zero;
+    // 0.5.7 (U7): the database write of the exit position may still be
+    // waiting in the write queue – the side store knows the real position.
+    return YomiResumePolicy.storedPosition(
+      dbPositionMs: pos,
+      dbTotalMs: total,
+      dbUpdatedAtMs: freshEp.updatedAt ?? 0,
+      mark: YomiResumeStore.peek(episode.id),
+    );
   }
 
   int _lastSavedPositionMs = 0;
+  // 0.5.7 (U5, Zenshin): the tracker is updated once per playback.
+  bool _trackerSynced = false;
 
   void setCurrentPosition(
     Duration duration,
@@ -89,8 +99,17 @@ class AnimeStreamController extends _$AnimeStreamController
         ? duration.inSeconds >=
               ((totalDuration.inSeconds * markEpisodeAsSeenType) / 100).ceil()
         : false;
+    final syncTracker = YomiResumePolicy.shouldSyncTracker(
+      zenshinEnabled: ZenshinAnimeTracker.autoSyncEnabled,
+      reachedThreshold:
+          totalDuration != null &&
+          ZenshinAnimeTracker.hasReachedWatchThreshold(duration, totalDuration),
+      markedSeenNow: isWatch && !wasRead,
+      alreadySynced: _trackerSynced,
+    );
     if ((isWatch && !wasRead) ||
         save ||
+        syncTracker ||
         (duration.inMilliseconds - _lastSavedPositionMs).abs() >= 1000) {
       _lastSavedPositionMs = duration.inMilliseconds;
       final ep = episode.id != null
@@ -98,6 +117,7 @@ class AnimeStreamController extends _$AnimeStreamController
           : null;
       // A chapter removed while playing must not be resurrected by a timer.
       if (ep == null) return;
+      YomiResumeStore.remember(episode.id, duration, totalDuration);
       ep.isRead = isWatch || wasRead;
       ep.lastPageRead = (duration.inMilliseconds).toString();
       if (totalDuration != null && totalDuration > Duration.zero) {
@@ -105,13 +125,20 @@ class AnimeStreamController extends _$AnimeStreamController
       }
       ep.updatedAt = DateTime.now().millisecondsSinceEpoch;
       try {
-        chapterRepository.save(ep).catchError((Object e, StackTrace stack) {
-          AppLogger.logOnce(
-            'save_ep_pos_err_${ep.id}',
-            '[Trình phát] Lỗi không lưu được vị trí đã xem của tập "${ep.name}": $e',
-            logLevel: LogLevel.warning,
-          );
-        });
+        // 0.5.7 (FC32): a write that fails, or that is still waiting in the
+        // database write queue after 20 s, is reported in the app log.
+        chapterRepository
+            .save(ep)
+            .timeout(const Duration(seconds: 20))
+            .catchError((Object e, StackTrace stack) {
+              AppLogger.logOnce(
+                'save_ep_pos_err_${ep.id}',
+                e is TimeoutException
+                    ? '[Trình phát] Trình phát video không lưu đúng vị trí đã xem: tập "${ep.name}" chờ ghi cơ sở dữ liệu quá 20 giây (hàng đợi ghi đang bận) – vị trí vẫn được giữ ở bộ nhớ phụ'
+                    : '[Trình phát] Trình phát video không lưu đúng vị trí đã xem: tập "${ep.name}": $e',
+                logLevel: LogLevel.warning,
+              );
+            });
         episode.lastPageRead = ep.lastPageRead;
         episode.duration = ep.duration;
         episode.isRead = ep.isRead;
@@ -121,7 +148,8 @@ class AnimeStreamController extends _$AnimeStreamController
           logLevel: LogLevel.warning,
         );
       }
-      if (isWatch && !wasRead) {
+      if (syncTracker) {
+        _trackerSynced = true;
         episode.updateTrackChapterRead(ref);
       }
     }

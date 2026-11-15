@@ -127,8 +127,8 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen>
       }
     } else {
       // Android / Other OS
-      items.add(const WifiProfileItem(
-        ssid: 'Wi-Fi Gia Đình',
+      items.add(WifiProfileItem(
+        ssid: tr('Wi-Fi Gia Đình'),
         auth: 'WPA2-PSK (AES)',
         password: 'yomihub_pass_saved',
       ));
@@ -624,7 +624,7 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen>
     for (final p in _savedProfiles) {
       final auth = p.auth.toUpperCase();
       final pass = p.password;
-      if (auth.contains('OPEN') || pass.isEmpty || pass.contains('Không có mật khẩu')) {
+      if (auth.contains('OPEN') || pass.isEmpty || pass == tr('(Không có mật khẩu hoặc mở)') || pass.contains('Không có mật khẩu')) {
         dangerCount++;
       } else if (auth.contains('WEP') || pass.length < 8) {
         warningCount++;
@@ -851,13 +851,13 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen>
                       onPressed: () async {
                         final buffer = StringBuffer();
                         buffer.writeln('=== YomiHub Wi-Fi Password Recovery Report ===');
-                        buffer.writeln('Thời gian: ${DateTime.now()}');
-                        buffer.writeln('Tổng số mạng: ${_savedProfiles.length}');
+                        buffer.writeln(tr('Thời gian: {p0}', {'p0': DateTime.now()}));
+                        buffer.writeln(tr('Tổng số mạng: {p0}', {'p0': _savedProfiles.length}));
                         buffer.writeln('----------------------------------------------');
                         for (final p in _savedProfiles) {
                           buffer.writeln('SSID    : ${p.ssid}');
-                          buffer.writeln('Bảo mật : ${p.auth}');
-                          buffer.writeln('Mật khẩu: ${p.password}');
+                          buffer.writeln(tr('Bảo mật : {p0}', {'p0': p.auth}));
+                          buffer.writeln(tr('Mật khẩu: {p0}', {'p0': p.password}));
                           buffer.writeln('----------------------------------------------');
                         }
                         await Clipboard.setData(ClipboardData(text: buffer.toString()));

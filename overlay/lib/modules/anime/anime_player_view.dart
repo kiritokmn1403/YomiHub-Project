@@ -34,6 +34,9 @@ import 'package:mangayomi/modules/anime/utils/mpv_track_snapshot.dart';
 import 'package:mangayomi/modules/anime/utils/video_prefs.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:mangayomi/yomihub/player/web_player.dart';
+import 'package:mangayomi/yomihub/player/resume_policy.dart';
+import 'package:mangayomi/yomihub/player/resume_store.dart';
+import 'package:mangayomi/yomihub/integrations/nuvio_media_hub.dart';
 import 'package:mangayomi/modules/anime/providers/state_provider.dart';
 import 'package:mangayomi/modules/anime/utils/player_lifecycle.dart';
 import 'package:mangayomi/modules/anime/widgets/aniskip_countdown_btn.dart';
@@ -980,7 +983,28 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     Navigator.pop(context);
   }
 
+  // 0.5.7 (P8F-2): when the position last moved / since when it has been
+  // moving without a pause (Back -> PiP, decoder fallback).
+  Duration _yhLastPos = Duration.zero;
+  DateTime? _yhPosMovedAt;
+  DateTime? _yhPosRunSince;
+  bool get _yhPositionAdvancing {
+    final at = _yhPosMovedAt;
+    return at != null &&
+        DateTime.now().difference(at) < const Duration(milliseconds: 1500);
+  }
+
   void _unifiedPositionHandler(Duration position) {
+    if (position != _yhLastPos) {
+      final now = DateTime.now();
+      final last = _yhPosMovedAt;
+      if (last == null ||
+          now.difference(last) > const Duration(milliseconds: 1500)) {
+        _yhPosRunSince = now;
+      }
+      _yhPosMovedAt = now;
+      _yhLastPos = position;
+    }
     final currentSecs = position.inSeconds;
     _setCurrentAudSub(position, currentSecs);
     _setSkipPhase(currentSecs);
@@ -1217,7 +1241,12 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     _completed;
     // ignore: unnecessary_statements
     _currentTotalDurationSub;
-    _loadAndroidFont().then((_) {
+    // 0.5.7 (U7): the side store of positions is loaded before the stored
+    // position is read (ensureOpen never throws and waits 2 s at most).
+    Future.wait<void>([
+      _loadAndroidFont(),
+      YomiResumeStore.ensureOpen(),
+    ]).then((_) {
       // Loading the subtitle font writes a file, so this callback can arrive
       // after the reader has already left. Everything below it touches the
       // player, and media_kit asserts "[Player] has been disposed" the moment
@@ -1348,17 +1377,18 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
         botToast(tr('Đã thử hết các server của tập này'), second: 3);
         return;
       }
-      final pos = _player.state.position > Duration.zero
-          ? _player.state.position
-          : _currentPosition.value;
+      // 0.5.7 (U7): while the resume is still pending the engine is at 0 –
+      // carrying that to the next server restarted the episode from the
+      // beginning and then overwrote the stored position.
+      final pos = _yhCarryPosition();
       final prefs = VideoPrefs(
         videoTrack: VideoTrack(next.url, next.quality, next.quality),
         headers: next.headers,
         isLocal: false,
       );
       _video.value = prefs;
-      _initialResumeTarget = pos;
-      _hasResumeTargetCompleted = pos <= Duration.zero;
+      _initialResumeTarget = pos ?? Duration.zero;
+      _hasResumeTargetCompleted = _initialResumeTarget <= Duration.zero;
       await _player.stop();
       if (!mounted) return;
       await _openMedia(prefs, pos);
@@ -1375,6 +1405,15 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   bool _yhSourceNatureResolved = false;
   int _activeResumeSession = 0;
   int _resumeToken = 0;
+
+  /// Position to keep across a server / quality switch (null = use storage).
+  Duration? _yhCarryPosition() => YomiResumePolicy.carryOver(
+    pendingTarget: _initialResumeTarget,
+    targetCompleted: _hasResumeTargetCompleted,
+    enginePosition: _player.state.position,
+    uiPosition: _currentPosition.value,
+    live: _yhLiveStream,
+  );
 
   bool _handleRejectedSeek(String message) {
     final reason = rejectedSeekReason(message);
@@ -1498,11 +1537,15 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
 
   Future<void> _openMedia(VideoPrefs prefs, [Duration? position]) async {
     final sessionId = ++_mediaSessionId;
-    final initialPos =
-        position ??
-        YomiMiniPlayer.takeResume(widget.episode.id) ??
-        _streamController.getCurrentPosition();
-    final start = YomiPrefs.resumeVideoPosition ? initialPos : Duration.zero;
+    // 0.5.7 (U7): the position handed over by the floating mini player comes
+    // first – initState always passes the stored position explicitly, so the
+    // hand-over was never read and "mở lớn" restarted at the older mark.
+    final start = YomiResumePolicy.openTarget(
+      resumeEnabled: YomiPrefs.resumeVideoPosition,
+      miniPlayer: YomiMiniPlayer.takeResume(widget.episode.id),
+      explicit: position,
+      stored: _streamController.getCurrentPosition(),
+    );
     // open() can emit zero positions before its future completes.
     _initialResumeTarget = start;
     _hasResumeTargetCompleted = start <= Duration.zero;
@@ -1530,19 +1573,29 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     // demuxer confirms seekability.
     final openStart = widget.isLocal ? start : Duration.zero;
     if (!mounted || _mediaSessionId != sessionId) return;
-    await _player.open(
-      playbackMedia(
-        prefs.videoTrack!.id,
-        isLocal: widget.isLocal,
-        httpHeaders: YomiSponsorBlock.clean(prefs.headers),
-        start: openStart,
-      ),
-    );
+    try {
+      await _player.open(
+        playbackMedia(
+          prefs.videoTrack!.id,
+          isLocal: widget.isLocal,
+          httpHeaders: YomiSponsorBlock.clean(prefs.headers),
+          start: openStart,
+        ),
+      );
+    } catch (e) {
+      // 0.5.7 (FC32): "video không tải được" – open() itself failed.
+      AppLogger.log(
+        '[Trình phát] Lỗi video không tải được (không mở được nguồn phát) – tập "${widget.episode.name}": ${e.runtimeType}',
+        logLevel: LogLevel.error,
+      );
+      rethrow;
+    }
     if (!mounted || _mediaSessionId != sessionId) return;
     unawaited(_yhCoordinateResume(sessionId, trigger: 'openMedia'));
     unawaited(_syncActiveAudioTrackFromMpv());
     unawaited(_syncActiveSubtitleTrackFromMpv());
     unawaited(_audioWatchdog());
+    unawaited(_yhVideoWatchdog(sessionId));
     _yhSaveTimer ??= Timer.periodic(const Duration(seconds: 3), (_) {
       if (mounted && _player.state.playing) _setCurrentPosition(true);
     });
@@ -1558,6 +1611,58 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     });
   }
 
+  /// 0.5.7 (P8F-2): sound + advancing position but the decoder never reports
+  /// a picture size -> try MediaCodec with copy-back, then software decoding.
+  /// (On the Note 9 the black picture was NOT this - mpv rendered fine and the
+  /// frame was lost in Flutter's texture, see MainActivity - but a decoder
+  /// that yields nothing must not leave the viewer with sound only.)
+  Future<void> _yhVideoWatchdog(int sessionId) async {
+    if (!Platform.isAndroid) return;
+    var current = hwdecMode;
+    for (var round = 0; round < 2; round++) {
+      for (var i = 0; i < 40; i++) {
+        await Future<void>.delayed(const Duration(seconds: 1));
+        if (!mounted || _mediaSessionId != sessionId) return;
+        final st = _player.state;
+        if ((st.width ?? 0) > 0 && (st.height ?? 0) > 0) return;
+        final since = _yhPosRunSince;
+        final stuck = YomiResumePolicy.videoStuckWithoutPicture(
+          playing: st.playing,
+          hasVideoTrack: st.tracks.video.any(
+            (t) => t.id != 'auto' && t.id != 'no',
+          ),
+          width: st.width,
+          height: st.height,
+          advancingFor: (_yhPositionAdvancing && since != null)
+              ? DateTime.now().difference(since)
+              : Duration.zero,
+        );
+        if (!stuck) continue;
+        final next = YomiResumePolicy.nextHwdecFallback(current);
+        if (next == null) return;
+        AppLogger.log(
+          '[Trình phát] Video có tiếng nhưng bộ giải mã "$current" không ra hình sau 8 giây (tập "${widget.episode.name}") – thử lại với bộ giải mã "$next"',
+          logLevel: LogLevel.warning,
+        );
+        try {
+          final p = _player.platform;
+          if (p is NativePlayer) {
+            await p.setProperty('hwdec', next, waitForInitialization: false);
+          }
+        } catch (e) {
+          AppLogger.log(
+            '[Trình phát] Không đổi được bộ giải mã sang "$next": $e',
+            logLevel: LogLevel.warning,
+          );
+          return;
+        }
+        current = next;
+        _yhPosRunSince = DateTime.now();
+        break;
+      }
+    }
+  }
+
   /// 0.4.9 (kiểm thử lại Note 9, 03/11/2026): the verified seek above still
   /// restarted RoPhim/HLS at 0:00 – mpv reports the pending seek target as the
   /// position and then drops the seek when the HLS variant is (re)opened, and
@@ -1565,52 +1670,103 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   /// the stream really plays, seeks through mpv directly (with a timeout) and
   /// only stops once playback has stayed at the target for 3 s.
   Future<void> _yhResumeTo(Duration start, int sessionId, int token) async {
-    final until = DateTime.now().add(const Duration(seconds: 45));
+    // 0.5.7 (U7): the decisions live in YomiResumePolicy.step (unit-tested):
+    // seek only once the stream really plays, re-seek when the backend drops
+    // the seek, stop as soon as the viewer seeks somewhere else, and never
+    // count the time the stream spent loading against the 45 s budget.
+    final began = DateTime.now();
+    final until = began.add(const Duration(seconds: 45));
+    final hardLimit = began.add(const Duration(minutes: 3));
     var tries = 0;
+    var reached = false;
+    var baseline = Duration.zero;
+    var baselineAt = began;
+    var lastPos = _player.state.position;
     DateTime? okSince;
-    while (mounted &&
-        _mediaSessionId == sessionId &&
-        _resumeToken == token &&
-        DateTime.now().isBefore(until) &&
-        tries < 8) {
+    bool stale() =>
+        !mounted || _mediaSessionId != sessionId || _resumeToken != token;
+    while (!stale()) {
       await Future<void>.delayed(const Duration(milliseconds: 500));
-      if (!mounted || _mediaSessionId != sessionId || _resumeToken != token) return;
+      if (stale()) return;
       final st = _player.state;
-      final diff = st.position - start;
-      // Allow forward playback after the first matching sample, without
-      // accepting a position almost a minute ahead as a successful resume.
-      final observed = okSince == null ? Duration.zero : DateTime.now().difference(okSince);
-      final near = diff >= const Duration(seconds: -2) &&
-          diff <= const Duration(seconds: 2) + observed * st.rate;
-      if (near) {
-        if (st.playing && !st.buffering) {
-          okSince ??= DateTime.now();
-          if (DateTime.now().difference(okSince) >= const Duration(seconds: 3)) {
-            if (_mediaSessionId != sessionId || _resumeToken != token || !mounted) return;
-            _hasResumeTargetCompleted = true;
-            AppLogger.log(
-              "[Trình phát] Đã tiếp tục xem video tại ${start.inSeconds}s thành công",
-              logLevel: LogLevel.info,
-            );
-            final mins = start.inMinutes;
-            final secs = start.inSeconds % 60;
-            final timeFmt =
-                '${mins.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
-            botToast(tr('Tiếp tục phát từ {p0}', {'p0': timeFmt}), second: 2);
-            return;
+      final now = DateTime.now();
+      final stable = okSince == null ? Duration.zero : now.difference(okSince);
+      // P8F-2: never seek again while the position stands still.
+      final advancing = st.position != lastPos;
+      lastPos = st.position;
+      final step = YomiResumePolicy.step(
+        target: start,
+        position: st.position,
+        duration: st.duration,
+        playing: st.playing,
+        buffering: st.buffering,
+        rate: st.rate,
+        stable: stable,
+        reached: reached,
+        baseline: baseline,
+        sinceBaseline: now.difference(baselineAt),
+        tries: tries,
+        expired: now.isAfter(hardLimit) || (tries > 0 && now.isAfter(until)),
+        sinceSeek: tries > 0 ? now.difference(baselineAt) : Duration.zero,
+        advancing: advancing,
+      );
+      if (step == ResumeStep.wait) {
+        if (YomiResumePolicy.isNear(
+          target: start,
+          position: st.position,
+          stable: stable,
+          rate: st.rate,
+          sinceSeek: tries > 0 ? now.difference(baselineAt) : Duration.zero,
+          afterSeek: tries > 0,
+        )) {
+          reached = true;
+          if (st.playing && !st.buffering) {
+            okSince ??= now;
+          } else {
+            okSince = null;
           }
         } else {
           okSince = null;
         }
         continue;
       }
+      if (step == ResumeStep.confirmed) {
+        _hasResumeTargetCompleted = true;
+        AppLogger.log(
+          "[Trình phát] Đã tiếp tục xem video tại ${start.inSeconds}s thành công",
+          logLevel: LogLevel.info,
+        );
+        // P8F-2: the source could only seek to a later segment boundary.
+        if (st.position - start > const Duration(seconds: 8)) {
+          AppLogger.log(
+            "[Trình phát] Nguồn chỉ tua được tới mốc gần nhất: đang phát tại ${YomiResumePolicy.clock(st.position)} thay cho ${YomiResumePolicy.clock(start)}",
+            logLevel: LogLevel.info,
+          );
+        }
+        final mins = start.inMinutes;
+        final secs = start.inSeconds % 60;
+        final timeFmt =
+            '${mins.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
+        botToast(tr('Tiếp tục phát từ {p0}', {'p0': timeFmt}), second: 2);
+        return;
+      }
+      if (step == ResumeStep.userSeek) {
+        // The viewer moved after the target was reached: the resume is over
+        // and the real position is saved from here on.
+        _hasResumeTargetCompleted = true;
+        AppLogger.log(
+          '[Trình phát] Người xem tự tua sau khi phát tiếp tại ${start.inSeconds}s',
+          logLevel: LogLevel.info,
+        );
+        return;
+      }
+      if (step == ResumeStep.giveUp) break;
+      // ResumeStep.seek
       okSince = null;
-      final ready = st.duration > Duration.zero &&
-          st.playing &&
-          !st.buffering &&
-          st.position > Duration.zero;
-      if (!ready) continue;
+      reached = false;
       tries++;
+      baseline = st.position;
+      baselineAt = now;
       try {
         final p = _player.platform;
         if (p is NativePlayer) {
@@ -1624,7 +1780,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
           await _player.seek(start).timeout(const Duration(seconds: 3));
         }
       } catch (error) {
-        if (!mounted || _mediaSessionId != sessionId || _resumeToken != token) return;
+        if (stale()) return;
         if (_handleRejectedSeek(error.toString())) return;
         final msg = error.toString().toLowerCase();
         if (!msg.contains('timeout')) {
@@ -1632,18 +1788,16 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
               logLevel: LogLevel.error);
         }
       }
-      if (!mounted || _mediaSessionId != sessionId || _resumeToken != token) return;
+      if (stale()) return;
       await Future<void>.delayed(const Duration(seconds: 2));
     }
-    if (!mounted ||
-        _mediaSessionId != sessionId ||
-        _resumeToken != token ||
-        _hasResumeTargetCompleted) return;
+    if (stale() || _hasResumeTargetCompleted) return;
     // give up: keep saving the real position from here on
     _hasResumeTargetCompleted = true;
+    // 0.5.7 (FC32): a resume that did not happen is a warning in the app log.
     AppLogger.log(
-      '[Trình phát] Hết thời gian chờ đồng bộ vị trí xem ${start.inSeconds}s, tiếp tục phát',
-      logLevel: LogLevel.info,
+      '[Trình phát] Trình phát video không lưu đúng vị trí đã xem: không phát tiếp được tại ${YomiResumePolicy.clock(start)} sau $tries lần tua (tập "${widget.episode.name}"), phát từ vị trí hiện tại ${YomiResumePolicy.clock(_player.state.position)}',
+      logLevel: LogLevel.warning,
     );
   }
 
@@ -2018,7 +2172,22 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
 
   void _reportPlaybackError(String error) {
     final message = error.trim();
-    if (message.isEmpty || !isAudioDecoderInitializationError(message)) return;
+    if (message.isEmpty) return;
+    if (!isAudioDecoderInitializationError(message)) {
+      // 0.5.7 (FC32): with a single server, a local file or a torrent – or
+      // with automatic server switching off – nobody logged a video that
+      // fails to load, and an asynchronously rejected seek was not noticed.
+      if (_yhErrSub != null && YomiPrefs.autoServerSwitch) return;
+      final lower = message.toLowerCase();
+      if (lower.contains('subtitle') || lower.contains('font')) return;
+      if (_handleRejectedSeek(message)) return;
+      AppLogger.logOnce(
+        'player-load-${widget.episode.id}-${message.hashCode}',
+        '[Trình phát] Lỗi video không tải được – tập "${widget.episode.name}": $message',
+        logLevel: LogLevel.error,
+      );
+      return;
+    }
     if (_audioFallbackInProgress) {
       _audioFallbackErrorQueued = true;
       return;
@@ -2149,7 +2318,15 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     _subSpeedController.removeListener(_onSubSpeedChanged);
     _subSettingsSub?.close();
     WidgetsBinding.instance.removeObserver(this);
-    _setCurrentPosition(true, saveWatchTime: true);
+    try {
+      _setCurrentPosition(true, saveWatchTime: true);
+    } catch (e) {
+      // 0.5.7 (FC32): the exit position could not be handed to storage.
+      AppLogger.log(
+        '[Trình phát] Trình phát video không lưu đúng vị trí đã xem khi thoát – tập "${widget.episode.name}": $e',
+        logLevel: LogLevel.error,
+      );
+    }
     unawaited(dbWriteQueue.flush());
     final playerCleanup = disposePlaybackSession(
       listenerCancellations: [
@@ -2205,11 +2382,18 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   }
 
   void _setCurrentPosition(bool save, {bool saveWatchTime = false}) {
-    if (!_mediaOpenStarted) return;
+    final blocker = YomiResumePolicy.persistBlocker(
+      mediaOpenStarted: _mediaOpenStarted,
+      live: _yhLiveStream,
+      natureResolved: _yhSourceNatureResolved,
+      targetCompleted: _hasResumeTargetCompleted,
+      pendingTarget: _initialResumeTarget,
+    );
+    if (blocker == 'not-opened') return;
     // 0.4.5 & 0.5.4: Live streams (including live with sliding DVR buffer duration > 0)
     // have no persistent position to resume – only the watch time is recorded.
     // Also protect against saving positions when source nature is not yet resolved.
-    if (_yhLiveStream || !_yhSourceNatureResolved) {
+    if (blocker == 'live' || blocker == 'unresolved') {
       _streamController.setHistoryUpdate(
         elapsedSeconds: saveWatchTime ? _watchStopwatch.elapsed.inSeconds : 0,
       );
@@ -2217,7 +2401,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     }
     // A backend can briefly report the seek target and then restart from zero.
     // Only the resume coordinator can confirm stable playback or time out.
-    if (!_hasResumeTargetCompleted && _initialResumeTarget > Duration.zero) return;
+    if (blocker != null) return;
     _streamController.setCurrentPosition(
       _currentPosition.value,
       _currentTotalDuration.value,
@@ -2255,14 +2439,14 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       localQualityLabel: _firstVid.quality,
       currentVideo: _video.value,
       onSelect: (quality) async {
-        final resume = _currentPosition.value;
+        final resume = _yhCarryPosition();
         _setCurrentPosition(true);
         _video.value = quality;
         if (quality.isLocal && widget.isLocal) {
           await _player.setVideoTrack(quality.videoTrack!);
         } else {
-          _initialResumeTarget = resume;
-          _hasResumeTargetCompleted = resume <= Duration.zero;
+          _initialResumeTarget = resume ?? Duration.zero;
+          _hasResumeTargetCompleted = _initialResumeTarget <= Duration.zero;
           await _player.stop();
           if (!mounted) return;
           await _openMedia(quality, resume);
@@ -2610,16 +2794,19 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
         selected: selected,
         onTap: () {
           if (_video.value?.videoTrack?.id == quality.videoTrack?.id) return;
+          // 0.5.7 (U7): keep the position across the switch.
+          final resume = _yhCarryPosition();
+          _setCurrentPosition(true);
           _video.value = quality;
           _player.stop();
           if (quality.isLocal) {
             if (widget.isLocal) {
               _player.setVideoTrack(quality.videoTrack!);
             } else {
-              _openMedia(quality);
+              _openMedia(quality, resume);
             }
           } else {
-            _openMedia(quality);
+            _openMedia(quality, resume);
           }
           _initSubtitleAndAudio = true;
         },
@@ -2840,9 +3027,12 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
               headers: video.headers,
               isLocal: false,
             );
+            // 0.5.7 (U7): keep the position across the switch.
+            final resume = _yhCarryPosition();
+            _setCurrentPosition(true);
             _video.value = prefs;
             _player.stop();
-            _openMedia(prefs);
+            _openMedia(prefs, resume);
             _initSubtitleAndAudio = true;
           },
         ),
@@ -3264,6 +3454,13 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   /// Floating mini window (Android 7.x, desktop, or chosen in settings).
   Future<void> _enterMiniPlayer() async {
     if (_handedOff || _routeExitInProgress) return;
+    // 0.5.7 (FC15): an episode without a database id (not stored yet) cannot
+    // be reopened from the mini window – `episode.id!` crashed here.
+    final episodeId = widget.episode.id;
+    if (episodeId == null) {
+      botToast(tr('Không bật được Hình trong hình: {p0}', {'p0': 'episode.id'}), second: 3);
+      return;
+    }
     _routeExitInProgress = true;
     _setCurrentPosition(true);
     _handedOff = true;
@@ -3273,7 +3470,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     YomiMiniPlayer.show(
       player: _player,
       controller: _controller,
-      episodeId: widget.episode.id!,
+      episodeId: episodeId,
       title:
           '${widget.episode.manga.value?.name ?? ''} – ${widget.episode.name ?? ''}',
     );
@@ -3285,29 +3482,59 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   }
 
   Future<void> _enterPip() async {
-    final pip = _controller.pictureInPicture;
-    if (YomiPip.mode == 'mini' ||
-        !Platform.isAndroid ||
-        !await pip.isSupported()) {
-      // Android < 8.0 has no system PiP: use the floating mini player.
-      await _enterMiniPlayer();
-      return;
-    }
-    final w = _player.state.width ?? 16;
-    final h = _player.state.height ?? 9;
+    if (_pipEntering || _inPip) return;
+    _pipEntering = true;
     try {
-      await pip.start(
-        handle: await _player.handle,
-        videoSize: ui.Size(w.toDouble(), h.toDouble()),
-        autoEnter: YomiPip.autoEnter,
-        startImmediately: true,
+      final pip = _controller.pictureInPicture;
+      // 0.5.7 (FC15): isSupported() can throw (plugin missing on a device /
+      // build) – that is "no system PiP", not a crash.
+      var supported = false;
+      if (YomiPip.mode != 'mini' && Platform.isAndroid) {
+        try {
+          supported = await pip.isSupported();
+        } catch (e) {
+          AppLogger.logOnce(
+            'pip-supported',
+            '[Trình phát] Không kiểm tra được Hình trong hình của hệ thống, dùng cửa sổ nổi: $e',
+            logLevel: LogLevel.warning,
+          );
+        }
+      }
+      if (!mounted) return;
+      if (!supported) {
+        // Android < 8.0 has no system PiP: use the floating mini player.
+        await _enterMiniPlayer();
+        return;
+      }
+      // 0.5.7 (FC15 / U5 Nuvio): Android throws IllegalArgumentException for
+      // an aspect ratio outside 0.418…2.39 (very wide / very tall videos) and
+      // for a 0×0 size while the video is still loading.
+      final size = NuvioMediaHub.pipVideoSize(
+        _player.state.width,
+        _player.state.height,
       );
-    } catch (e) {
-      BotToast.showText(
-        text: tr('Không bật được Hình trong hình: {p0}', {'p0': e}),
-      );
+      try {
+        await pip.start(
+          handle: await _player.handle,
+          videoSize: ui.Size(size.$1, size.$2),
+          autoEnter: YomiPip.autoEnter,
+          startImmediately: true,
+        );
+      } catch (e) {
+        AppLogger.log(
+          '[Trình phát] Không bật được Hình trong hình: $e',
+          logLevel: LogLevel.warning,
+        );
+        BotToast.showText(
+          text: tr('Không bật được Hình trong hình: {p0}', {'p0': e}),
+        );
+      }
+    } finally {
+      _pipEntering = false;
     }
   }
+
+  bool _pipEntering = false;
 
   void _onPipEvent(PipEvent e) {
     if (!mounted) return;
@@ -3315,6 +3542,10 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       if (!_inPip) setState(() => _inPip = true);
     } else if (e is PipDidStop || e is PipClosed || e is PipRestore) {
       if (_inPip) setState(() => _inPip = false);
+      // 0.5.7 (U7): closing the PiP window is an exit – keep the position.
+      try {
+        _setCurrentPosition(true);
+      } catch (_) {}
     }
   }
 
@@ -3814,7 +4045,16 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
               return;
             }
             if (backPip) {
-              if (_player.state.playing) {
+              final st = _player.state;
+              if (YomiPip.pipOnBack(
+                playing: st.playing,
+                buffering: st.buffering,
+                width: st.width,
+                height: st.height,
+                advancing: _yhPositionAdvancing,
+                resumePending: !_hasResumeTargetCompleted &&
+                    _initialResumeTarget > Duration.zero,
+              )) {
                 _enterPip();
               } else {
                 _goBackToDetail();

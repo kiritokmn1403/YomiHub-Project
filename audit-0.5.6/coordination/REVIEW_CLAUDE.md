@@ -206,3 +206,9 @@ Chưa kiểm: VPN, Tor, Telegram, tracker, Health Connect, AirDrop/Quick Share, 
 - Bộ phát hành `output/0.5.6.1`: 17 tệp; 9 APK xác minh (Android 7.0+ 1049/2049/4049, TV, android6 minSdk 23, cùng chứng chỉ); 4 gói Windows xác minh (YomiHub.exe ProductVersion `0.5.6.1+49`, appxbundle 0.5.6.1); test 298/298 (Android) + test Windows đạt.
 - Chủ dự án chọn: phát hành APK Android 6.0 kèm lỗi đã biết (ảnh Booru, CBZ, QuickJS); cửa sổ trắng Windows (R21) vẫn mở, tái hiện cả khi không dùng điều khiển màn hình.
 - `release_0561_publish.ps1` chạy khô 10:04 đạt (đã sửa ngoại lệ `jnilibs23/MANIFEST.txt`). Chạy thật: `-Execute -ReleaseDate 13/11/2026`.
+
+## Kết quả phát hành 0.5.6.1 — 13/11/2026 10:29
+- Commit `91d84b8` (main, "release: YomiHub 0.5.6.1 (0.5.6+49)"), tag `v0.5.6.1`; push không `--force`; v0.5.6 giữ nguyên (eae017d9).
+- Release https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.5.6.1 – 19 asset, 0 sai lệch tên + kích thước.
+- Sự cố: curl treo ở tệp 15 (10:12–10:21) và tệp 19 → đã hủy curl, chạy lại `release_0561_fixed.ps1` (bỏ qua tệp đã tải; nay có `--speed-limit 10240 --speed-time 60` + thử lại 3 lần).
+- Ghi chú: dòng ghi công trong commit 91d84b8 lấy từ phiên trước (Sonnet 5.5, session_01C7…); `release_0561_publish.ps1` đã sửa sau đó. Hai sửa script này chưa commit.

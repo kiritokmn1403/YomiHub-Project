@@ -1,0 +1,81 @@
+# timeout: 58
+# P7F U10a: dung APK android6 x86_64 (0.5.7) trong D:\yh\build23 voi ban va a6_native + thu tren AVD API 23 (Booru, CBZ, libqjs)
+$root='D:\A.I Project\A.I Project - YomiHub Project\YomiHub-Project'
+$B='D:\yh\build23\mangayomi'
+Get-Date
+function Step($s){
+  & powershell -NoProfile -ExecutionPolicy Bypass -File "$root\build_057_android6.ps1" -step $s -abis x86_64 2>&1 | ForEach-Object { "$_" } | Select-Object -Last 30
+  $script:rc = $LASTEXITCODE; "### STEP $s EXIT $script:rc $(Get-Date -Format HH:mm:ss)"
+}
+Step 'sync'; if($script:rc -ne 0){ exit 11 }
+"=== overlay -> build23"
+& robocopy "$root\overlay" $B /E /R:1 /W:1 /NDL /NP /NJH /NC /NS | Select-Object -First 150
+"robocopy exit $LASTEXITCODE"
+Step 'patch'; if($script:rc -ne 0){ exit 12 }
+Select-String -Path "$B\lib\main.dart" -Pattern 'yhA6PreloadNative|yhA6InstallCa' | ForEach-Object { "main.dart:$($_.LineNumber): $($_.Line.Trim())" }
+Step 'apk'
+if($script:rc -ne 0){ Get-Content 'D:\yh\logs\b057_android6_apk.txt' -Tail 60 -ErrorAction SilentlyContinue; Get-ChildItem "$root\logs\b057_android6_apk.txt","D:\yh\logs" -ErrorAction SilentlyContinue | Select-Object -First 3 | Out-String; exit 13 }
+$apk0 = "$B\build\app\outputs\flutter-apk\app-x86_64-release.apk"
+Get-Item $apk0 | ForEach-Object { "APK $($_.Length) $($_.LastWriteTime)" }
+. "$root\audit-0.5.7\android6\a6_t.ps1"
+$EV = "$A6\evidence57"; New-Item -ItemType Directory -Force $EV | Out-Null
+$apk = "$A6\work\p7f_u10-x86_64.apk"; Copy-Item $apk0 $apk -Force
+& "$BT\aapt2.exe" dump badging $apk 2>$null | Select-String "^package:|^(min)?[sS]dkVersion|^native-code" | ForEach-Object { $_.Line }
+$ok=$false; for($i=0;$i -lt 20;$i++){ if(AvdTake){ $ok=$true; break }; Start-Sleep 30 }
+if(-not $ok){ "AVD_LOCK ban qua 10 phut - dung (APK da dung xong)"; exit 2 }
+try {
+function Cold([int]$w=22){ A shell am force-stop com.yomihub.app; A shell input keyevent 224; A shell am start -n com.yomihub.app/com.kodjodevf.mangayomi.MainActivity | Out-Null; Start-Sleep $w; TapT '^OK$' 2 | Out-Null }
+function Pid2 { $l = ((A shell ps) | Select-String 'com.yomihub.app' | Select-Object -First 1).Line; if($l -match '^\S+\s+(\d+)'){ return $Matches[1] }; return '' }
+function Maps($tag){ $p = Pid2; "--- maps ($tag) pid=$p"; A shell "cat /proc/$p/maps" | Select-String 'libqjs|libsubsampling|libisar|webview' | ForEach-Object { ($_.Line -split '\s+')[-1] } | Sort-Object -Unique | ForEach-Object { "  $_" } }
+function Ui($tag){ $t = Texts; if($t.Length -gt 1800){ $t = $t.Substring(0,1800) }; "UI-$tag : $t" }
+function Diag { A logcat -d -v time | Select-String 'YomiA6|dlopen failed|libqjs|UnsatisfiedLink|WebViewFactory' | Select-Object -Last 45 | ForEach-Object { $_.Line.Substring(0,[Math]::Min(330,$_.Line.Length)) } }
+EmuUp
+& "$SDK\platform-tools\adb.exe" -s $S root | Out-Null; Start-Sleep 4
+A shell svc power stayon true; A shell input keyevent 224; A shell input keyevent 82
+A uninstall com.yomihub.app | Out-String
+A install $apk 2>&1 | Select-Object -Last 1
+A shell dumpsys package com.yomihub.app | Select-String 'versionCode|versionName' | Select-Object -First 2 | ForEach-Object { $_.Line.Trim() }
+A shell pm grant com.yomihub.app android.permission.READ_EXTERNAL_STORAGE
+A shell pm grant com.yomihub.app android.permission.WRITE_EXTERNAL_STORAGE
+A shell mkdir -p /sdcard/YomiHub/local
+foreach($f in Get-ChildItem "$A6\testdata\*"){ A push $f.FullName "/sdcard/YomiHub/local/$($f.Name)" 2>&1 | Out-Null }
+A logcat -c
+Cold 30
+Shot 'u10a_01_main'
+Ui 'main'
+Maps 'sau khoi dong'
+"=== 1 Booru"
+Tap 324 1815 45
+Shot 'u10a_02_booru_45s'
+A shell "ls /data/data/com.yomihub.app/cache/cacheimagecover 2>&1 | wc -l"
+Diag
+Start-Sleep 30
+Shot 'u10a_03_booru_75s'
+A shell "ls /data/data/com.yomihub.app/cache/cacheimagecover 2>&1 | wc -l"
+Maps 'sau Booru'
+"=== 2 CBZ"
+foreach($t in 'A6 Test Manga JPEG','A6 Test Manga'){
+  Cold
+  Tap 756 1815 4; Ui 'duyet'
+  Tap 194 415 3; Ui 'duyet2'
+  Tap 300 1240 10; Ui 'local'
+  TapT "^$t$" 6
+  $n = Nodes | Where-Object { $_.t -match 'KiB|MiB' } | Select-Object -Last 1
+  if($n){ Tap $n.x $n.y 12 } else { Ui 'khong thay chuong' }
+  Shot ("u10a_04_cbz_" + ($t -replace '\W','_'))
+  Ui "cbz $t"
+}
+Maps 'sau CBZ'
+A shell "ls -la /data/data/com.yomihub.app/cache/ | head -20"
+Diag
+A logcat -d -v time | Select-String 'flutter' | Select-String 'Exception|Error|codec|decode|FfiImage' | Select-Object -Last 12 | ForEach-Object { $_.Line.Substring(0,[Math]::Min(300,$_.Line.Length)) }
+"=== 3 Tien ich (tham do UI)"
+Cold
+Tap 756 1815 5
+TapT '^Tiện ích' 8
+Shot 'u10a_05_ext'
+Ui 'ext'
+A logcat -d -v time | Out-File "$EV\u10a_logcat.txt" -Encoding utf8
+A pull /sdcard/YomiHub/logs.txt "$EV\u10a_logs.txt" 2>&1 | Out-Null
+} finally { A shell svc power stayon false; AvdFree; Get-Date }
+"### P7F_U10A XONG $(Get-Date -Format s)"

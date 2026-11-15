@@ -1,0 +1,6 @@
+Log ("ping host: " + ((A shell ping -c 1 -W 3 api.comick.fun) -join ' | '))
+Log ("ping6: " + ((A shell ping6 -c 1 -W 3 api.comick.fun) -join ' | '))
+Log ("ping google: " + ((A shell ping -c 1 -W 3 www.google.com) -join ' | '))
+Log ("private dns: " + (A shell settings get global private_dns_mode))
+Log ("vpn apps: " + ((A shell dumpsys connectivity | Select-String 'VPN' | Select-Object -First 3) -join ' | '))
+Log ("fg: " + (Fg))

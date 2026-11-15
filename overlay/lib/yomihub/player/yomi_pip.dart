@@ -2,6 +2,9 @@ import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:mangayomi/yomihub/integrations/nuvio_media_hub.dart';
+import 'package:mangayomi/yomihub/integrations/zenshin_anime_tracker.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 
 /// YomiHub: Picture-in-Picture (Hình trong hình) settings for the video player.
 ///
@@ -26,6 +29,27 @@ class YomiPip {
   /// 'auto' = system PiP on Android 8.0+, floating mini player elsewhere
   /// (Android 7.x, Windows); 'mini' = always the in-app floating window.
   static String mode = 'auto';
+
+  /// 0.5.7 (P8F): Back turns into Picture-in-Picture only while a picture
+  /// is really playing. A video that is still loading / re-buffering (or has
+  /// no frame yet) made a black PiP window and dropped the user on the
+  /// launcher; Back now simply returns to the previous screen then.
+  static bool pipOnBack({
+    required bool playing,
+    required bool buffering,
+    required int? width,
+    required int? height,
+    bool advancing = true,
+    bool resumePending = false,
+  }) =>
+      // P8F-2: also not while the position stands still or the "resume where
+      // I stopped" seek is still running (decoder flushed -> black window).
+      playing &&
+      !buffering &&
+      advancing &&
+      !resumePending &&
+      (width ?? 0) > 0 &&
+      (height ?? 0) > 0;
 
   static Future<void> open() async {
     try {
@@ -139,6 +163,49 @@ class _PipSettingsScreenState extends State<PipSettingsScreen> {
             subtitle: Text(
               tr('Hệ điều hành chưa có Hình trong hình cho điện thoại, nên YomiHub dùng cửa sổ nổi riêng: chạm để hiện nút, chạm đúp để mở lớn, kéo để di chuyển (tự bám cạnh màn hình). Có thể tắt PiP hệ thống riêng cho YomiHub trong Cài đặt Android > Ứng dụng.'),
             ),
+          ),
+          // YomiHub 0.5.7 (U5): Nuvio gestures + Zenshin tracker threshold
+          const Divider(),
+          ListTile(
+            dense: true,
+            title: Text(
+              tr('Cử chỉ và theo dõi khi xem video'),
+              style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            ),
+          ),
+          SwitchListTile(
+            secondary: const Icon(Icons.brightness_6_outlined),
+            title: Text(tr('Vuốt dọc bên trái để chỉnh độ sáng')),
+            value: NuvioMediaHub.swipeBrightnessEnabled,
+            onChanged: (v) async {
+              await YomiPrefs.set(NuvioMediaHub.prefSwipeBrightness, v);
+              if (mounted) setState(() {});
+            },
+          ),
+          SwitchListTile(
+            secondary: const Icon(Icons.volume_up_outlined),
+            title: Text(tr('Vuốt dọc bên phải để chỉnh âm lượng')),
+            value: NuvioMediaHub.swipeVolumeEnabled,
+            onChanged: (v) async {
+              await YomiPrefs.set(NuvioMediaHub.prefSwipeVolume, v);
+              if (mounted) setState(() {});
+            },
+          ),
+          SwitchListTile(
+            secondary: const Icon(Icons.sync_outlined),
+            title: Text(
+              tr('Cập nhật theo dõi khi xem được {p0}% tập', {
+                'p0': ZenshinAnimeTracker.syncThresholdPercent,
+              }),
+            ),
+            subtitle: Text(
+              tr('Tắt: cập nhật theo dõi ngay khi tập được đánh dấu đã xem'),
+            ),
+            value: ZenshinAnimeTracker.autoSyncEnabled,
+            onChanged: (v) async {
+              await YomiPrefs.set(ZenshinAnimeTracker.prefAutoSync, v);
+              if (mounted) setState(() {});
+            },
           ),
         ],
       ),

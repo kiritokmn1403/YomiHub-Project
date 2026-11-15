@@ -353,6 +353,21 @@ class _DoublePageViewState extends State<DoublePageView>
             l10n.image_loading_error,
             style: TextStyle(color: Colors.white.withValues(alpha: 0.7)),
           ),
+          if (state.errorMessage != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 4,
+              ),
+              child: Text(
+                state.errorMessage!,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white.withValues(alpha: 0.5),
+                  fontSize: 12,
+                ),
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: _buildRetryButton(state, l10n),

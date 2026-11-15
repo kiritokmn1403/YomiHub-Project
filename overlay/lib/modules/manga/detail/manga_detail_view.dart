@@ -73,6 +73,9 @@ class _MangaDetailViewState extends ConsumerState<MangaDetailView>
       ..addListener(() {
         ref.read(offetProvider.notifier).state = _scrollController.offset;
       });
+    // 0.5.7 (Feature Check 37): the read source chosen for this merged title
+    // is remembered (it used to be forgotten when the screen closed)
+    _selectedMergedSource = ChapterOrigins.preferredSource(widget.manga?.id);
   }
 
   @override
@@ -126,6 +129,11 @@ class _MangaDetailViewState extends ConsumerState<MangaDetailView>
   Widget _mergedSourceSelector() {
     final sources = _mergedSources();
     if (sources.length < 2) return const SizedBox.shrink();
+    // a remembered source that is gone (un-merged, chapters removed) no
+    // longer filters the list
+    if (_selectedMergedSource != null && !sources.containsKey(_selectedMergedSource)) {
+      _selectedMergedSource = null;
+    }
     return Padding(
       padding: const EdgeInsets.all(12),
       child: DropdownButtonFormField<String>(
@@ -135,7 +143,10 @@ class _MangaDetailViewState extends ConsumerState<MangaDetailView>
             : '',
         isExpanded: true,
         decoration: InputDecoration(
-          labelText: tr('Chọn nguồn'),
+          labelText: tr('Nguồn đọc'),
+          prefixIcon: const Icon(Icons.call_merge_rounded),
+          helperText: tr('Nguồn để đọc sau khi hợp nhất – được nhớ cho bộ này'),
+          helperMaxLines: 2,
           border: const OutlineInputBorder(),
         ),
         items: [
@@ -146,8 +157,11 @@ class _MangaDetailViewState extends ConsumerState<MangaDetailView>
               child: Text(source.value, overflow: TextOverflow.ellipsis),
             ),
         ],
-        onChanged: (value) =>
-            setState(() => _selectedMergedSource = value == '' ? null : value),
+        onChanged: (value) {
+          final picked = value == null || value == '' ? null : value;
+          setState(() => _selectedMergedSource = picked);
+          ChapterOrigins.setPreferredSource(widget.manga?.id, picked);
+        },
       ),
     );
   }
@@ -203,7 +217,8 @@ class _MangaDetailViewState extends ConsumerState<MangaDetailView>
         child: chapters.when(
           data: (_) {
             List<Chapter> chapters = widget.manga!.getSortedFilteredChapters();
-            if (_selectedMergedSource != null) {
+            if (_selectedMergedSource != null &&
+                _mergedSources().containsKey(_selectedMergedSource)) {
               chapters = chapters
                   .where(
                     (c) => ChapterOrigins.sourceKey(c, widget.manga) == _selectedMergedSource,

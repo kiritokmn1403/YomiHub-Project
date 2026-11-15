@@ -5,6 +5,7 @@ import 'package:mangayomi/modules/novel/tts/tts_settings_tab.dart';
 import 'package:mangayomi/modules/novel/widgets/novel_reader_settings_sheet.dart';
 import 'package:mangayomi/providers/l10n_providers.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
+import 'package:mangayomi/yomihub/integrations/integration_settings.dart';
 
 class NovelReaderScreen extends ConsumerWidget {
   const NovelReaderScreen({super.key});
@@ -34,7 +35,9 @@ class NovelReaderScreen extends ConsumerWidget {
             ),
             SingleChildScrollView(
               padding: tvPageInsets,
-              child: const GeneralSettingsTab(),
+              child: const Column(
+                children: [GeneralSettingsTab(), YomihonSettingsSection()],
+              ),
             ),
             if (ttsSupported)
               SingleChildScrollView(

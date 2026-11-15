@@ -35,6 +35,7 @@ import 'package:mangayomi/utils/extensions/dom_extensions.dart';
 import 'package:mangayomi/utils/headers.dart';
 import 'package:mangayomi/utils/cached_network.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:mangayomi/yomihub/integrations/yomihon_novel_enhancer.dart';
 import 'dart:convert';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:mangayomi/utils/system_ui.dart';
@@ -539,6 +540,28 @@ class _NovelWebViewState extends ConsumerState<NovelWebView>
   final _keyboardFocusNode = FocusNode();
   bool _showTts = false;
   String? _currentHtmlContent;
+
+  // YomiHub 0.5.7 (Yomihon): thời gian đọc ước tính, tính lại khi đổi nội dung/WPM
+  String? _yhReadTimeFor;
+  int _yhReadTimeWpm = 0;
+  String _yhReadTimeText = '';
+
+  String _yhReadingTimeText() {
+    final html = _currentHtmlContent;
+    if (html == null) return '';
+    final wpm = YomihonNovelEnhancer.readingWpm;
+    if (!identical(_yhReadTimeFor, html) || _yhReadTimeWpm != wpm) {
+      _yhReadTimeFor = html;
+      _yhReadTimeWpm = wpm;
+      _yhReadTimeText = YomihonNovelEnhancer.formatReadingTime(
+        YomihonNovelEnhancer.estimateReadingTime(
+          YomihonNovelEnhancer.plainTextFromHtml(html),
+          wpm: wpm,
+        ),
+      );
+    }
+    return _yhReadTimeText;
+  }
   final ValueNotifier<({int paragraph, int wordStart, int wordEnd})>
   _ttsProgress = ValueNotifier((paragraph: -1, wordStart: -1, wordEnd: -1));
   int _ttsTotalBlocks = 0;
@@ -794,9 +817,13 @@ class _NovelWebViewState extends ConsumerState<NovelWebView>
                               final padding = ref.watch(
                                 novelReaderPaddingStateProvider,
                               );
-                              final lineHeight = ref.watch(
-                                novelReaderLineHeightStateProvider,
-                              );
+                              // YomiHub 0.5.7 (Yomihon): preset typography khi bật
+                              final lineHeight =
+                                  YomihonNovelEnhancer.effectiveLineHeight(
+                                    ref.watch(
+                                      novelReaderLineHeightStateProvider,
+                                    ),
+                                  );
                               final textAlign = ref.watch(
                                 novelTextAlignStateProvider,
                               );
@@ -1330,6 +1357,35 @@ class _NovelWebViewState extends ConsumerState<NovelWebView>
                         _autoScroll.value = !_autoScroll.value;
                       },
                     ),
+                    if (_isView &&
+                        YomihonNovelEnhancer.showReadingTime &&
+                        _currentHtmlContent != null)
+                      Positioned(
+                        bottom: 124,
+                        right: 12,
+                        child: IgnorePointer(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.black54,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              tr(
+                                'Ước tính: {p0}',
+                                {'p0': _yhReadingTimeText()},
+                              ),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     if (_ttsSupported &&
                         _showTts &&
                         _currentHtmlContent != null)

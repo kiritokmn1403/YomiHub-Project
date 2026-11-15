@@ -4,6 +4,7 @@ import 'package:mangayomi/models/settings.dart';
 import 'package:mangayomi/repositories/download_repository.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/utils/chapter_recognition.dart';
+import 'package:mangayomi/yomihub/merge/chapter_origins.dart';
 
 /// Sort/identity keys that only bucket by season if numbering actually
 /// repeats across seasons (a real reset) — otherwise chapters key by raw
@@ -245,6 +246,17 @@ extension MangaExtensions on Manga {
   List<Chapter> getChapterListForReading() {
     final list = getFilteredChapters();
     final sortKeys = _chapterSortKeys(name ?? '', list);
+    // 0.5.7 (Feature Check 37): a merged title with a remembered read source
+    // opens that source's copy of each chapter; other sources fill the gaps.
+    final preferred = ChapterOrigins.preferredSource(id);
+    if (preferred != null) {
+      return ChapterOrigins.pickForReading(
+        list,
+        (c) => sortKeys[c.id],
+        owner: this,
+        preferred: preferred,
+      );
+    }
     final seen = <double>{};
     return list.where((c) {
       final key = sortKeys[c.id];

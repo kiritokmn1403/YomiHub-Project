@@ -12,6 +12,7 @@ import 'package:mangayomi/repositories/category_repository.dart';
 import 'package:mangayomi/repositories/chapter_repository.dart';
 import 'package:mangayomi/repositories/manga_repository.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 
 /// YomiHub 0.1.9: state of the Short Video feed.
 ///
@@ -34,6 +35,19 @@ class ShortsStore {
       _box ??= Hive.isBoxOpen(_boxName) ? Hive.box(_boxName) : await YomiHive.open(_boxName);
 
   static String _key(Source s, String link) => '${s.id}|$link';
+
+  // ───────── 0.5.7 (U9): "Ép chế độ Short" per extension ─────────
+
+  static String forceKey(int? sourceId) => 'shorts_force_$sourceId';
+
+  /// Read synchronously (the Short button is decided while building).
+  static bool isForced(Source s) =>
+      s.id != null && YomiPrefs.get<bool>(forceKey(s.id), false);
+
+  static Future<void> setForced(Source s, bool value) async {
+    if (s.id == null) return;
+    await YomiPrefs.set(forceKey(s.id), value ? true : null);
+  }
 
   // ───────── seen / random ─────────
 

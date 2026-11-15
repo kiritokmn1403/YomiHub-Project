@@ -73,7 +73,8 @@ class YomiLanShare {
         }
       }
       return best;
-    } catch (_) {
+    } catch (e) {
+      YomiShareLog.warn('Wi-Fi/LAN', 'Không đọc được địa chỉ mạng của máy', error: e);
       return null;
     }
   }
@@ -86,7 +87,9 @@ class YomiLanShare {
       } else {
         base = await getDownloadsDirectory();
       }
-    } catch (_) {}
+    } catch (e) {
+      YomiShareLog.warn('Wi-Fi/LAN', 'Không mở được thư mục nhận tệp, dùng thư mục Tài liệu', error: e);
+    }
     base ??= await getApplicationDocumentsDirectory();
     final d = Directory(p.join(base.path, Platform.isAndroid ? 'Received' : 'YomiHub Received'));
     await d.create(recursive: true);
@@ -110,7 +113,9 @@ class YomiLanShare {
         } else {
           deviceName = Platform.localHostname;
         }
-      } catch (_) {}
+      } catch (e) {
+        YomiShareLog.warn('Wi-Fi/LAN', 'Không đọc được tên thiết bị / bật multicast', error: e);
+      }
       try {
         _server = await HttpServer.bind(InternetAddress.anyIPv4, httpPort, shared: true);
       } catch (_) {
@@ -121,7 +126,9 @@ class YomiLanShare {
           rethrow;
         }
       }
-      _server!.listen(_handle, onError: (_) {});
+      _server!.listen(_handle, onError: (Object e) {
+        YomiShareLog.warn('Wi-Fi/LAN', 'Lỗi máy chủ nhận tệp', error: e);
+      });
       try {
         _udp = await RawDatagramSocket.bind(InternetAddress.anyIPv4, udpPort, reuseAddress: true);
         _udp!.broadcastEnabled = true;
@@ -134,7 +141,9 @@ class YomiLanShare {
             _udp?.send(utf8.encode(reply), d.address, d.port);
           }
         });
-      } catch (_) {}
+      } catch (e) {
+        YomiShareLog.warn('Wi-Fi/LAN', 'Không mở được cổng dò thiết bị UDP $udpPort (máy khác sẽ không tự thấy máy này, vẫn quét QR được)', error: e);
+      }
     }
     visibleUntil = DateTime.now().add(visibleFor);
     _autoOff?.cancel();
@@ -152,7 +161,9 @@ class YomiLanShare {
     running.value = false;
     try {
       if (Platform.isAndroid) await _tools.invokeMethod('multicast', {'on': false});
-    } catch (_) {}
+    } catch (e) {
+      YomiShareLog.warn('Wi-Fi/LAN', 'Không tắt được multicast', error: e);
+    }
   }
 
   /// Finds other YomiHub devices on the same Wi-Fi.
@@ -172,7 +183,9 @@ class YomiLanShare {
           final j = jsonDecode(msg.substring(3)) as Map<String, dynamic>;
           if (j['token'] == token && isRunning) return; // ourselves
           peers[d.address.address] = YomiPeer('${j['name']}', d.address.address, j['port'] as int, '${j['token']}', '${j['platform']}');
-        } catch (_) {}
+        } catch (e) {
+          YomiShareLog.warn('Wi-Fi/LAN', 'Gói phản hồi tìm thiết bị không hợp lệ từ ${d.address.address}', error: e);
+        }
       });
       final ip = await localIp();
       final targets = <InternetAddress>[InternetAddress('255.255.255.255')];
@@ -184,7 +197,9 @@ class YomiLanShare {
         for (final t in targets) {
           try {
             s.send(utf8.encode('YH?'), t, udpPort);
-          } catch (_) {}
+          } catch (e) {
+            if (i == 0) YomiShareLog.warn('Wi-Fi/LAN', 'Không phát được gói dò thiết bị tới ${t.address}', error: e);
+          }
         }
         await Future.delayed(Duration(milliseconds: wait.inMilliseconds ~/ 3));
       }
@@ -192,6 +207,9 @@ class YomiLanShare {
       YomiShareLog.error('Wi-Fi/LAN', 'Tìm thiết bị', error: e);
     } finally {
       s?.close();
+    }
+    if (peers.isEmpty) {
+      YomiShareLog.warn('Wi-Fi/LAN', 'Không tìm thấy thiết bị YomiHub nào trong mạng (cùng Wi-Fi? máy kia đã bật "Nhận"? mạng có chặn broadcast/AP isolation?)');
     }
     return peers.values.toList();
   }
@@ -242,8 +260,10 @@ class YomiLanShare {
   Future<void> _handle(HttpRequest r) async {
     final segs = r.uri.pathSegments;
     final res = r.response;
+    File? partial;
     try {
       if (segs.isEmpty || segs.first != token) {
+        YomiShareLog.warn('Wi-Fi/LAN', 'Từ chối yêu cầu có mã liên kết sai/hết hạn', error: r.connectionInfo?.remoteAddress.address);
         res.statusCode = 404;
         res.write(tr('YomiHub: liên kết đã hết hạn – quét lại mã QR.'));
         return;
@@ -273,9 +293,18 @@ class YomiLanShare {
           out = File(p.join(dir.path, '${p.basenameWithoutExtension(name)} ($n)${p.extension(name)}'));
           n++;
         }
+        partial = out;
         final sink = out.openWrite();
-        await sink.addStream(r);
-        await sink.close();
+        try {
+          await sink.addStream(r);
+        } finally {
+          await sink.close();
+        }
+        final expected = r.contentLength;
+        if (expected >= 0 && await out.length() != expected) {
+          throw 'tệp nhận không đủ dung lượng (${await out.length()}/$expected B)';
+        }
+        partial = null;
         received.value = [out.path, ...received.value];
         status.value = tr('Đã nhận {p0}{p1}', {'p0': p.basename(out.path), 'p1': r.headers.value('X-YH-From') != null ? ' từ ${r.headers.value('X-YH-From')}' : ''});
         res.write('ok');
@@ -284,6 +313,14 @@ class YomiLanShare {
       }
     } catch (e) {
       YomiShareLog.error('Wi-Fi/LAN', 'Nhận tệp', target: r.connectionInfo?.remoteAddress.address, error: e);
+      // 0.5.7: a broken/interrupted upload must not stay as a corrupt file
+      if (partial != null) {
+        try {
+          if (await partial.exists()) await partial.delete();
+        } catch (e2) {
+          YomiShareLog.warn('Wi-Fi/LAN', 'Không xoá được tệp nhận dở ${partial.path.split(RegExp(r'[\\/]')).last}', error: e2);
+        }
+      }
       try {
         res.statusCode = 500;
         res.write('$e');

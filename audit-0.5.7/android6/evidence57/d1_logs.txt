@@ -1,0 +1,158 @@
+[13/11/2026 01:19:02][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 01:19:02][INFO] [Tiện ích] 0.5.3: tiện ích website không còn tích hợp sẵn – đã thêm kho "Kiritokmn Extension Repo" vào Truyện tranh / Phim & Điện ảnh / Tiểu thuyết; 0 tiện ích đã cài được chuyển sang nhận cập nhật từ kho này.
+[13/11/2026 01:22:12][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 01:23:08][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 01:53:42][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 02:32:41][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 02:32:41][INFO] [Tiện ích] 0.5.3: tiện ích website không còn tích hợp sẵn – đã thêm kho "Kiritokmn Extension Repo" vào Truyện tranh / Phim & Điện ảnh / Tiểu thuyết; 0 tiện ích đã cài được chuyển sang nhận cập nhật từ kho này.
+[13/11/2026 02:42:23][ERROR] Extension "AVSub – AnimeVietsub" (vi, engine: javascript, repo: Built-in/Local) getHeaders : Invalid argument(s): Failed to load dynamic library 'libqjs.so': dlopen failed: library "libqjs.so" not found
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 3203, tid: 140669357724160, name 1.ui
+os: android arch: x64 comp: yes sim: no
+build_id: 'f687fbcadb0b49d0f027947791f55243'
+isolate_dso_base: 7ff00683e000, vm_dso_base: 0
+isolate_instructions: 7ff00702e000, vm_instructions: 0
+    #00 abs 00007ff008780b30 virt 0000000001f42b30 _kDartSnapshotText+0x1752b30
+    #01 abs 00007ff0075d5f89 virt 0000000000d97f89 _kDartSnapshotText+0x5a7f89
+    #02 abs 00007ff0075db865 virt 0000000000d9d865 _kDartSnapshotText+0x5ad865
+    #03 abs 00007ff0075db5ad virt 0000000000d9d5ad _kDartSnapshotText+0x5ad5ad
+    #04 abs 00007ff0075db13a virt 0000000000d9d13a _kDartSnapshotText+0x5ad13a
+    #05 abs 00007ff0075d3668 virt 0000000000d95668 _kDartSnapshotText+0x5a5668
+    #06 abs 00007ff0075dc167 virt 0000000000d9e167 _kDartSnapshotText+0x5ae167
+    #07 abs 00007ff0075dbcc8 virt 0000000000d9dcc8 _kDartSnapshotText+0x5adcc8
+    #08 abs 00007ff0075dbc8d virt 0000000000d9dc8d _kDartSnapshotText+0x5adc8d
+    #09 abs 00007ff0075dbb05 virt 0000000000d9db05 _kDartSnapshotText+0x5adb05
+    #10 abs 00007ff008552982 virt 0000000001d14982 _kDartSnapshotText+0x1524982
+    #11 abs 00007ff0089d605c virt 000000000219805c _kDartSnapshotText+0x19a805c
+    #12 abs 00007ff008560481 virt 0000000001d22481 _kDartSnapshotText+0x1532481
+    #13 abs 00007ff008822e89 virt 0000000001fe4e89 _kDartSnapshotText+0x17f4e89
+    #14 abs 00007ff0087e4753 virt 0000000001fa6753 _kDartSnapshotText+0x17b6753
+    #15 abs 00007ff008820a8c virt 0000000001fe2a8c _kDartSnapshotText+0x17f2a8c
+    #16 abs 00007ff00881fd75 virt 0000000001fe1d75 _kDartSnapshotText+0x17f1d75
+    #17 abs 00007ff00881f288 virt 0000000001fe1288 _kDartSnapshotText+0x17f1288
+<asynchronous suspension>
+    #18 abs 00007ff00881d0ca virt 0000000001fdf0ca _kDartSnapshotText+0x17ef0ca
+<asynchronous suspension>
+    #19 abs 00007ff00881c0cc virt 0000000001fde0cc _kDartSnapshotText+0x17ee0cc
+<asynchronous suspension>
+    #20 abs 00007ff00881bfab virt 0000000001fddfab _kDartSnapshotText+0x17edfab
+<asynchronous suspension>
+    #21 abs 00007ff00728f3fc virt 0000000000a513fc _kDartSnapshotText+0x2613fc
+<asynchronous suspension>
+    #22 abs 00007ff00728f3cc virt 0000000000a513cc _kDartSnapshotText+0x2613cc
+<asynchronous suspension>
+
+[13/11/2026 02:42:23][ERROR] [Cập nhật tiện ích] "AVSub – AnimeVietsub" (vi, javascript) cài lại 0.5.1 • kho: Kiritokmn Extension Repo
+URL: https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/mangayomi/avsubanimevietsub.js
+Lỗi: Invalid argument(s): Failed to load dynamic library 'libqjs.so': dlopen failed: library "libqjs.so" not found
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+pid: 3203, tid: 140669357724160, name 1.ui
+os: android arch: x64 comp: yes sim: no
+build_id: 'f687fbcadb0b49d0f027947791f55243'
+isolate_dso_base: 7ff00683e000, vm_dso_base: 0
+isolate_instructions: 7ff00702e000, vm_instructions: 0
+    #00 abs 00007ff008780b30 virt 0000000001f42b30 _kDartSnapshotText+0x1752b30
+    #01 abs 00007ff0075d5f89 virt 0000000000d97f89 _kDartSnapshotText+0x5a7f89
+    #02 abs 00007ff0075db865 virt 0000000000d9d865 _kDartSnapshotText+0x5ad865
+    #03 abs 00007ff0075db5ad virt 0000000000d9d5ad _kDartSnapshotText+0x5ad5ad
+    #04 abs 00007ff0075db13a virt 0000000000d9d13a _kDartSnapshotText+0x5ad13a
+    #05 abs 00007ff0075d3668 virt 0000000000d95668 _kDartSnapshotText+0x5a5668
+    #06 abs 00007ff0075dc167 virt 0000000000d9e167 _kDartSnapshotText+0x5ae167
+    #07 abs 00007ff0075dbcc8 virt 0000000000d9dcc8 _kDartSnapshotText+0x5adcc8
+    #08 abs 00007ff0075dbc8d virt 0000000000d9dc8d _kDartSnapshotText+0x5adc8d
+    #09 abs 00007ff0075dbb05 virt 0000000000d9db05 _kDartSnapshotText+0x5adb05
+    #10 abs 00007ff008552982 virt 0000000001d14982 _kDartSnapshotText+0x1524982
+    #11 abs 00007ff0089d605c virt 000000000219805c _kDartSnapshotText+0x19a805c
+    #12 abs 00007ff008560481 virt 0000000001d22481 _kDartSnapshotText+0x1532481
+    #13 abs 00007ff008822e89 virt 0000000001fe4e89 _kDartSnapshotText+0x17f4e89
+    #14 abs 00007ff0087e4753 virt 0000000001fa6753 _kDartSnapshotText+0x17b6753
+    #15 abs 00007ff008820a8c virt 0000000001fe2a8c _kDartSnapshotText+0x17f2a8c
+    #16 abs 00007ff00881fd75 virt 0000000001fe1d75 _kDartSnapshotText+0x17f1d75
+    #17 abs 00007ff00881f288 virt 0000000001fe1288 _kDartSnapshotText+0x17f1288
+<asynchronous suspension>
+    #18 abs 00007ff00881d0ca virt 0000000001fdf0ca _kDartSnapshotText+0x17ef0ca
+<asynchronous suspension>
+    #19 abs 00007ff00881c0cc virt 0000000001fde0cc _kDartSnapshotText+0x17ee0cc
+<asynchronous suspension>
+    #20 abs 00007ff00881bfab virt 0000000001fddfab _kDartSnapshotText+0x17edfab
+<asynchronous suspension>
+    #21 abs 00007ff00728f3fc virt 0000000000a513fc _kDartSnapshotText+0x2613fc
+<asynchronous suspension>
+    #22 abs 00007ff00728f3cc virt 0000000000a513cc _kDartSnapshotText+0x2613cc
+<asynchronous suspension>
+
+[13/11/2026 02:47:15][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 05:53:38][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 05:55:02][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 05:56:54][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 06:05:26][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 06:05:26][ERROR] [Lỗi Mạng / Tor Timeout] [VPN] VPN (Tor / WARP / proxy): Tor đã làm ứng dụng thoát ở lần mở trước nên đã được tắt. Bật lại trong VPN & DNS nếu muốn thử lại.
+[13/11/2026 06:05:26][ERROR] [Lỗi Mạng / Tor Timeout] [VPN] Ứng dụng bị đóng trong lúc Tor đang khởi động (chưa tải xong dữ liệu mạng Tor) – đã tắt Tor để ứng dụng mở được; bật lại trong VPN & DNS
+[13/11/2026 06:08:44][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 06:09:44][ERROR] [Lỗi Mạng / Tor Timeout] [VPN] VPN (Tor / WARP / proxy): HandshakeException: Handshake error in client (OS Error: 
+	CERTIFICATE_VERIFY_FAILED: unable to get local issuer certificate(handshake.cc:320))
+[13/11/2026 06:14:00][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:26:06][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:26:06][INFO] [Tiện ích] 0.5.3: tiện ích website không còn tích hợp sẵn – đã thêm kho "Kiritokmn Extension Repo" vào Truyện tranh / Phim & Điện ảnh / Tiểu thuyết; 0 tiện ích đã cài được chuyển sang nhận cập nhật từ kho này.
+[13/11/2026 07:27:40][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:28:39][ERROR] [Lỗi Mạng / Tor Timeout] [VPN] VPN (Tor / WARP / proxy): HandshakeException: Handshake error in client (OS Error: 
+	CERTIFICATE_VERIFY_FAILED: unable to get local issuer certificate(handshake.cc:320))
+[13/11/2026 07:29:14][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:29:55][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:30:45][ERROR] [Lỗi Mạng / Tor Timeout] [VPN] VPN (Tor / WARP / proxy): Tor cần Android 7.0 trở lên – trên Android 6.0 hãy dùng WARP/Proxy hoặc DNS-over-HTTPS
+[13/11/2026 07:31:58][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:31:58][ERROR] [Lỗi Mạng / Tor Timeout] [VPN] VPN (Tor / WARP / proxy): Tor cần Android 7.0 trở lên – trên Android 6.0 hãy dùng WARP/Proxy hoặc DNS-over-HTTPS
+[13/11/2026 07:32:01][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 07:32:01][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 33274, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[13/11/2026 07:33:04][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:33:04][ERROR] [Lỗi Mạng / Tor Timeout] [VPN] VPN (Tor / WARP / proxy): Tor cần Android 7.0 trở lên – trên Android 6.0 hãy dùng WARP/Proxy hoặc DNS-over-HTTPS
+[13/11/2026 07:33:07][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 07:33:07][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 33369, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[13/11/2026 07:34:09][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:34:09][ERROR] [Lỗi Mạng / Tor Timeout] [VPN] VPN (Tor / WARP / proxy): Tor cần Android 7.0 trở lên – trên Android 6.0 hãy dùng WARP/Proxy hoặc DNS-over-HTTPS
+[13/11/2026 07:34:12][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 07:34:12][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 33468, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[13/11/2026 07:49:00][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:49:00][INFO] [Tiện ích] 0.5.3: tiện ích website không còn tích hợp sẵn – đã thêm kho "Kiritokmn Extension Repo" vào Truyện tranh / Phim & Điện ảnh / Tiểu thuyết; 0 tiện ích đã cài được chuyển sang nhận cập nhật từ kho này.
+[13/11/2026 07:50:33][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:52:09][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:52:49][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:54:51][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:54:54][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 07:54:54][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 36338, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[13/11/2026 07:55:56][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:55:59][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 07:55:59][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 36366, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[13/11/2026 07:57:02][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 07:57:05][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 07:57:05][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 36394, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[13/11/2026 09:36:35][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 09:36:34][INFO] [Tiện ích] 0.5.3: tiện ích website không còn tích hợp sẵn – đã thêm kho "Kiritokmn Extension Repo" vào Truyện tranh / Phim & Điện ảnh / Tiểu thuyết; 0 tiện ích đã cài được chuyển sang nhận cập nhật từ kho này.
+[13/11/2026 09:38:43][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 09:39:50][WARNING] [Lỗi Mạng / Tor Timeout] [VPN] WARP: không bắt tay được qua cổng UDP 2408
+[13/11/2026 09:39:57][WARNING] [Lỗi Mạng / Tor Timeout] [VPN] WARP: không bắt tay được qua cổng UDP 500
+[13/11/2026 09:40:05][WARNING] [Lỗi Mạng / Tor Timeout] [VPN] WARP: không bắt tay được qua cổng UDP 4500
+[13/11/2026 09:40:12][WARNING] [Lỗi Mạng / Tor Timeout] [VPN] WARP: không bắt tay được qua cổng UDP 1701
+[13/11/2026 09:40:13][INFO] [VPN] WARP đã bắt tay với Cloudflare (cổng 854)
+[13/11/2026 09:40:22][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 09:41:01][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 09:43:04][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 09:43:07][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 09:43:07][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 57378, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[13/11/2026 09:44:08][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 09:44:11][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 09:44:11][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 57406, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[13/11/2026 09:44:52][WARNING] [Lỗi Mạng / Tor Timeout] [VPN] Không áp dụng được cầu nối Tor: snowflake: Tor is no longer running
+[13/11/2026 09:45:14][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 09:45:17][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 09:45:17][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 57507, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[13/11/2026 09:50:41][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 09:50:45][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 09:50:45][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 56310, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[13/11/2026 09:51:59][INFO] ===== Logger initialized (phiên mới) =====
+[13/11/2026 09:52:02][WARNING] [Kho tiện ích] Không kết nối được raw.githubusercontent.com (không có mạng hoặc DNS bị chặn) – sẽ thử lại khi có mạng
+[13/11/2026 09:52:02][WARNING] [Lỗi Mạng / Tor Timeout] fetchSourcesList: raw.githubusercontent.com unreachable (vd. https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json): ClientException with SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 56360, uri=https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json – sẽ thử lại khi có mạng
+[14/11/2026 14:52:34][INFO] ===== Logger initialized (phiên mới) =====
+[14/11/2026 14:52:34][INFO] [Tiện ích] 0.5.3: tiện ích website không còn tích hợp sẵn – đã thêm kho "Kiritokmn Extension Repo" vào Truyện tranh / Phim & Điện ảnh / Tiểu thuyết; 0 tiện ích đã cài được chuyển sang nhận cập nhật từ kho này.
+[14/11/2026 14:54:13][INFO] ===== Logger initialized (phiên mới) =====
+[14/11/2026 14:54:52][WARNING] [Kiểm tra cập nhật] Không đọc được nguồn MediaFire kg0wfu3lpbc98: TimeoutException after 0:00:20.000000: Future not completed

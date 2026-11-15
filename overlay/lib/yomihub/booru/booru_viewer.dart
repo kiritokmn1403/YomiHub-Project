@@ -75,12 +75,30 @@ class _BooruViewerState extends State<BooruViewer> {
   }
 
   void _share() {
-    SharePlus.instance.share(ShareParams(uri: Uri.parse(_post.postUrl), subject: 'Booru #${_post.id}'));
+    final u = Uri.tryParse(_post.postUrl);
+    if (u == null) {
+      booruLog('Không chia sẻ được bài #${_post.id}', 'URL không hợp lệ: ${_post.postUrl}', site: store.siteById(_post.siteId));
+      return;
+    }
+    SharePlus.instance.share(ShareParams(uri: u, subject: 'Booru #${_post.id}')).catchError((Object e) {
+      booruLog('Không chia sẻ được bài #${_post.id}', e, site: store.siteById(_post.siteId));
+      return ShareResult.unavailable;
+    });
   }
 
   Future<void> _openPost() async {
     final u = Uri.tryParse(_post.postUrl);
-    if (u != null) await launchUrl(u, mode: LaunchMode.externalApplication);
+    if (u == null) {
+      booruLog('Không mở được bài #${_post.id}', 'URL không hợp lệ: ${_post.postUrl}', site: store.siteById(_post.siteId));
+      return;
+    }
+    try {
+      if (!await launchUrl(u, mode: LaunchMode.externalApplication)) {
+        booruLog('Không mở được bài #${_post.id}', 'launchUrl trả false', site: store.siteById(_post.siteId));
+      }
+    } catch (e) {
+      booruLog('Không mở được bài #${_post.id}', e, site: store.siteById(_post.siteId));
+    }
   }
 
   void _tags() {

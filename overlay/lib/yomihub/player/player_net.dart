@@ -36,7 +36,10 @@ class YomiPlayerNet {
   /// connection. Never throws.
   static Future<bool> apply(Player player, int? sourceId, {String? url}) async {
     var proxy = '';
-    if (url == null || (url.startsWith('http') && isProgressive(url))) {
+    // 0.5.7: a clip served by the app itself (loopback chunk / HLS proxy,
+    // torrent server) is never sent to Tor / the kill switch.
+    final local = url != null && YomiVpnState.isLoopbackHost(Uri.tryParse(url)?.host ?? '');
+    if (!local && (url == null || (url.startsWith('http') && isProgressive(url)))) {
       proxy = proxyFor(sourceId);
     }
     try {

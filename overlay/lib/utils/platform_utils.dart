@@ -29,6 +29,10 @@ bool? _isTvOverride;
 /// instead, which is the only way to reproduce a TV layout bug without a
 /// television on the desk.
 const bool kIsTvBuild = bool.fromEnvironment('IS_TV_BUILD', defaultValue: false);
+
+/// 0.5.7: true in the separate Android 6.0 APK (`YomiHub-<ver>-android6-*`,
+/// minSdk 23, built with `--dart-define=IS_A6_BUILD=true`).
+const bool kIsA6Build = bool.fromEnvironment('IS_A6_BUILD', defaultValue: false);
 bool get isTv => kIsTvBuild || (_isTvOverride ?? _isTvDetected);
 
 /// Forces the TV layout on or off regardless of what the device reported.

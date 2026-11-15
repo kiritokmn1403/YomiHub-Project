@@ -12,6 +12,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:crypto/crypto.dart';
 import 'package:mangayomi/utils/avif.dart';
 import 'package:mangayomi/utils/downloaded_page_file.dart';
+import 'package:mangayomi/utils/image_load_timeout.dart';
+import 'package:mangayomi/utils/log/logger.dart';
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 
 import 'coordinate_transformer.dart';
 import 'ffi_image_decoder.dart';
@@ -39,8 +42,14 @@ class SubsamplingImageState {
   const SubsamplingImageState({
     required this.loadState,
     this.loadingProgress,
+    this.errorMessage,
+    this.autoRetry = true,
     required this._reLoadCallback,
   });
+
+  /// 0.5.7 (P8F): false when retrying on its own is pointless (the page
+  /// could not be decoded in time) - the error stays until "Thử lại".
+  final bool autoRetry;
 
   /// Current loading state.
   final LoadState loadState;
@@ -48,6 +57,10 @@ class SubsamplingImageState {
   /// Loading progress (available during [LoadState.loading]).
   /// Contains the bytes received and the expected total size.
   final ImageChunkEvent? loadingProgress;
+
+  /// Short, translated reason of the failure (available during
+  /// [LoadState.failed]; null when unknown).
+  final String? errorMessage;
 
   final VoidCallback _reLoadCallback;
 
@@ -454,6 +467,10 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
   // ImageProvider loading
   LoadState _loadState = LoadState.loading;
   ImageChunkEvent? _loadingProgress;
+  String? _loadError;
+  // 0.5.7 (P8F): decoding watchdog - the spinner can never outlive it.
+  Timer? _decodeWatchdog;
+  bool _decodeTimedOut = false;
   String? _resolvedFilePath;
   ImageStream? _activeImageStream;
   ImageStreamListener? _activeImageStreamListener;
@@ -514,6 +531,7 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
   @override
   void dispose() {
     _resizeTimer?.cancel();
+    _decodeWatchdog?.cancel();
     _cancelImageStream();
     widget.controller?._detach();
     _animationController.dispose();
@@ -571,6 +589,9 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
         }
       } else {
         // Trigger tile refresh when it becomes visible
+        if (_loadState == LoadState.loading && _resolvedFilePath != null) {
+          _armDecodeWatchdog();
+        }
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (mounted) {
             _refreshTiles(load: true);
@@ -623,18 +644,71 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
     return null;
   }
 
+  /// 0.5.7 (P8F): the page file is on disk but was not on screen after
+  /// [kImageDecodeBackstop] - show the error + "Thử lại" instead of spinning.
+  void _armDecodeWatchdog() {
+    _decodeWatchdog?.cancel();
+    _decodeWatchdog = Timer(kImageDecodeBackstop, _onDecodeTimeout);
+  }
+
+  void _onDecodeTimeout() {
+    if (!mounted || _loadState != LoadState.loading) return;
+    // An off-screen page has its decodes cancelled on purpose: not an error.
+    if (!widget.isVisible) return;
+    final path = _resolvedFilePath ?? '';
+    _failDecode(
+      'quá ${kImageDecodeBackstop.inSeconds} giây',
+      tr('Không giải mã được ảnh sau {sec} giây', {
+        'sec': kImageDecodeBackstop.inSeconds,
+      }),
+      path,
+      timedOut: true,
+    );
+  }
+
+  void _failDecode(
+    String why,
+    String shown,
+    String path, {
+    bool timedOut = false,
+  }) {
+    _decodeWatchdog?.cancel();
+    try {
+      AppLogger.logOnce(
+        'ssiv-decode-fail:$why',
+        '[Reader] Không hiển thị được ảnh trang: $why (tệp '
+            '${path.split(RegExp(r'[\\/]')).last})',
+        logLevel: LogLevel.warning,
+      );
+    } catch (_) {}
+    if (!mounted) return;
+    setState(() {
+      _loadState = LoadState.failed;
+      _decodeTimedOut = timedOut;
+      _loadError = shown;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) widget.onError?.call('Image decode failed: $why');
+    });
+  }
+
   Future<void> _loadFromProvider({bool evictCache = false}) async {
     _cancelImageStream();
+    _decodeWatchdog?.cancel();
+    _decodeTimedOut = false;
 
     if (mounted) {
       setState(() {
         _loadState = LoadState.loading;
         _loadingProgress = null;
+        _loadError = null;
         _isInitialized = false;
       });
     }
 
     if (evictCache) {
+      final stale = _resolvedFilePath;
+      if (stale != null) ffiImageDecoder.forget(stale);
       final provider = widget.image;
       try {
         await provider.evict();
@@ -730,7 +804,15 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
     stream.addListener(listener);
 
     try {
-      final ui.Image loadedImage = await completer.future;
+      // Backstop: the provider reports its own 30 s timeout first.
+      final ui.Image loadedImage = await completer.future.timeout(
+        kImageLoadBackstop,
+        onTimeout: () => throw ImageLoadTimeoutException(
+          imageHostOf(networkUrl ?? ''),
+          kImageLoadBackstop,
+          phase: 'decode',
+        ),
+      );
       _cancelImageStream();
 
       if (!mounted) return;
@@ -774,7 +856,14 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
       }
       _cancelImageStream();
       if (mounted) {
-        setState(() => _loadState = LoadState.failed);
+        setState(() {
+          _loadState = LoadState.failed;
+          _loadError = describeImageLoadError(
+            e,
+            host: imageHostOf(networkUrl ?? ''),
+            translate: (vi, a) => tr(vi, a),
+          );
+        });
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (mounted) widget.onError?.call(e.toString());
         });
@@ -785,6 +874,8 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
   SubsamplingImageState _makeImageState() => SubsamplingImageState(
     loadState: _loadState,
     loadingProgress: _loadingProgress,
+    errorMessage: _loadError,
+    autoRetry: !_decodeTimedOut,
     reLoadCallback: () => _loadFromProvider(evictCache: true),
   );
 
@@ -959,6 +1050,7 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
   Future<void> _initImage() async {
     var path = _resolvedFilePath;
     if (path == null) return;
+    if (_loadState == LoadState.loading) _armDecodeWatchdog();
 
     var outSize = await ffiImageDecoder.getImageDimensionsAsync(
       path,
@@ -996,10 +1088,11 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
         debugPrint('SubsamplingScaleImageView: $msg');
       }
       if (mounted) {
-        setState(() => _loadState = LoadState.failed);
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) widget.onError?.call(msg);
-        });
+        _failDecode(
+          'không đọc được kích thước ảnh',
+          tr('Tệp ảnh hỏng hoặc định dạng không hỗ trợ'),
+          path ?? '',
+        );
       }
       return;
     }
@@ -1230,7 +1323,31 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
       cropBorders: widget.cropBorders,
     );
     ffiImageDecoder.decodeRegionAsync(params, cancelToken: tile).then((result) {
-      if (result == null) return;
+      if (result == null) {
+        tile.loading = false;
+        _onTileFailed(tile, 'bộ giải mã không chạy');
+        return;
+      }
+      // 0.5.7 (P8F): Android < 11 - the page arrives as a ready ui.Image.
+      final direct = result.image;
+      if (direct != null) {
+        if (!mounted) {
+          direct.dispose();
+          return;
+        }
+        tile.image?.dispose();
+        tile.image = direct;
+        tile.loading = false;
+        if (_loadState != LoadState.completed) {
+          _decodeWatchdog?.cancel();
+          _loadState = LoadState.completed;
+          _notifyStateChanged();
+          widget.onReady?.call();
+          widget.onImageLoaded?.call(_sWidth, _sHeight);
+        }
+        _scheduleBatchRebuild();
+        return;
+      }
       if (result.pointerAddress != null) {
         final int left = fileRect.left.toInt();
         final int top = fileRect.top.toInt();
@@ -1262,6 +1379,7 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
               tile.image = img;
               tile.loading = false;
               if (_loadState != LoadState.completed) {
+                _decodeWatchdog?.cancel();
                 _loadState = LoadState.completed;
                 _notifyStateChanged();
                 widget.onReady?.call();
@@ -1285,9 +1403,22 @@ class _SubsamplingScaleImageViewState extends State<SubsamplingScaleImageView>
             debugPrint('SubsamplingScaleImageView: Tile decoding failed: $msg');
           }
           widget.onTileError?.call(msg);
+          _onTileFailed(tile, msg);
         }
       }
     });
+  }
+
+  /// 0.5.7 (P8F): the first (base) tile failed - before this the page kept
+  /// its spinner forever because nothing left the loading state.
+  void _onTileFailed(Tile tile, String msg) {
+    if (!mounted || _loadState != LoadState.loading) return;
+    if (tile.sampleSize != _tilingEngine.fullImageSampleSize) return;
+    _failDecode(
+      'giải mã thất bại ($msg)',
+      tr('Tệp ảnh hỏng hoặc định dạng không hỗ trợ'),
+      _resolvedFilePath ?? '',
+    );
   }
   // ── Batch Rebuild ──────────────────────────────────────────────────────────
 

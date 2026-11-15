@@ -8,6 +8,14 @@ import 'package:mangayomi/yomihub/booru/booru_store.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// 0.5.7: turns Booru App on/off (shows / hides its navigation item). Used by
+/// the switch in "Bật/Tắt tính năng & Nguồn mở rộng" and by the Booru settings.
+void setBooruEnabled(WidgetRef ref, bool on) {
+  final hidden = [...ref.read(hideItemsStateProvider)]..remove(BooruStore.route);
+  if (!on) hidden.add(BooruStore.route);
+  ref.read(hideItemsStateProvider.notifier).set(hidden);
+}
+
 /// YomiHub 0.4.4 – entry in Settings (next to Google Play Books).
 class BooruSettingTile extends ConsumerWidget {
   const BooruSettingTile({super.key});
@@ -21,7 +29,18 @@ class BooruSettingTile extends ConsumerWidget {
       subtitle: Text(on
           ? tr('Đang bật – duyệt ảnh từ Danbooru, Safebooru, Gelbooru, Yande.re, Konachan, e621…')
           : tr('Đang tắt – ẩn nút Booru khỏi thanh điều hướng')),
-      trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14),
+      // 0.5.7: the switch itself (before: only an arrow to another screen)
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Switch(
+            key: const ValueKey('booruSwitch'),
+            value: on,
+            onChanged: (v) => setBooruEnabled(ref, v),
+          ),
+          const Icon(Icons.arrow_forward_ios_rounded, size: 14),
+        ],
+      ),
       onTap: () => context.push('/booruSettings'),
     );
   }
@@ -70,12 +89,7 @@ class _BooruSettingsScreenState extends ConsumerState<BooruSettingsScreen> {
     super.dispose();
   }
 
-  void _setEnabled(bool on) {
-    final hidden = [...ref.read(hideItemsStateProvider)];
-    hidden.remove(BooruStore.route);
-    if (!on) hidden.add(BooruStore.route);
-    ref.read(hideItemsStateProvider.notifier).set(hidden);
-  }
+  void _setEnabled(bool on) => setBooruEnabled(ref, on);
 
   Future<void> _editBlacklist() async {
     final c = TextEditingController(text: store.blacklist.join(' '));
@@ -248,7 +262,7 @@ class _BooruSettingsScreenState extends ConsumerState<BooruSettingsScreen> {
         ListTile(
           leading: const Icon(Icons.backup_outlined),
           title: Text(tr('Sao lưu')),
-          subtitle: Text(tr('Yêu thích ({p0}), lịch sử và cài đặt Booru App được sao lưu cùng ứng dụng (Cài đặt › Dữ liệu và bộ nhớ, đồng bộ đám mây).',
+          subtitle: Text(tr('Yêu thích ({p0}), lịch sử và cài đặt Booru App được sao lưu cùng ứng dụng (Cài đặt › Sao Lưu & Đồng Bộ).',
               {'p0': '${store.favourites.length}'})),
         ),
         ListTile(

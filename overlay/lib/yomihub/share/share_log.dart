@@ -6,6 +6,15 @@ import 'package:mangayomi/utils/log/logger.dart';
 class YomiShareLog {
   YomiShareLog._();
 
+  /// 0.5.7 (P5b): non-fatal problem (no device found, permission denied,
+  /// swallowed error) -> WARNING, one line, no token.
+  static void warn(String channel, String message, {Object? error}) {
+    AppLogger.log(
+      '[AirDrop & Quick Share] $channel – $message${error != null ? ' • lỗi: $error' : ''}',
+      logLevel: LogLevel.warning,
+    );
+  }
+
   static void error(
     String channel,
     String action, {
