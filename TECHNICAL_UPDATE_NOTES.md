@@ -6,6 +6,8 @@ Chủ dự án yêu cầu tạo và duy trì tài liệu này ngày 25/10/2026. 
 
 ## 1. Trạng thái hiện tại
 
+- **`17/11/2026` – Quy hoạch cấu trúc thư mục (audit/):** Theo yêu cầu trực tiếp của chủ dự án, toàn bộ 17 thư mục audit lịch sử từ `audit-0.3.9` đến `audit-0.5.8` đã được quy hoạch vào chung một thư mục mẹ tên là `audit/` (ví dụ: `audit/audit-0.3.9/`, `audit/audit-0.5.8/`) trên cả máy tính cục bộ lẫn trên GitHub. Toàn bộ 756 tệp theo dõi được di chuyển qua `git mv` (bảo toàn 100% lịch sử đóng góp), các tệp nhật ký/bằng chứng cục bộ được chuyển trọn vẹn, và các script phát hành/điều phối 0.5.8 đã được cập nhật đường dẫn tương ứng.
+
 - **`17/11/2026` – 0.5.8 (0.5.8+51):** Giữ nền Mangayomi; hoàn thiện 11 nhóm tính năng & sửa lỗi cốt lõi (5 nhóm Core-Dev + 6 nhóm UI-Features):
   1. Lỗi nhật ký luồng tải ảnh MangaDex `Bad state: Cannot add event after closing` (`uploads.mangadex.org`): sửa quyền sở hữu StreamController trong `_loadAsync`, không đóng luồng sớm trong `_loadNetwork` khi gặp lỗi thử lại; thêm biến thể Referer tên miền gốc (`https://mangadex.org/`) và không Referer khi gặp HTTP 401/403/404/500+.
   2. Treo giao diện 2,6s - 2,9s khi cập nhật thư viện: bóc tách dữ liệu DTO (`ChapterDiffInput`, `ChapterDiffResult`) và chuyển toàn bộ việc tính toán biểu thức chính quy (RegExp) trong `ChapterRecognition().chapterIdentityKey()` sang luồng nền qua `Isolate.run()`; giao dịch ghi Isar chỉ thực hiện lưu/cập nhật danh sách đã tính toán mà không chiếm giữ luồng UI.

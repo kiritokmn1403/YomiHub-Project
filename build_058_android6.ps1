@@ -19,21 +19,21 @@ param(
 # build_057_android6.ps1 - YomiHub 0.5.8: dựng 3 APK RIÊNG cho Android 6.0 (API 23)
 # (arm64-v8a, armeabi-v7a, x86_64) trong D:\yh\build23 - KHÔNG đụng APK Android 7.0+ chính.
 #   sync  : chép mã từ $YH\build\mangayomi sang $YH\build23\mangayomi (robocopy /MIR, giữ bộ đệm build)
-#   patch : minSdk 23, vmSafeMode, embedding Flutter có kiểm tra phiên bản, jniLibs đã vá (audit-0.5.8\android6\jnilibs23),
+#   patch : minSdk 23, vmSafeMode, embedding Flutter có kiểm tra phiên bản, jniLibs đã vá (audit\audit-0.5.8\android6\jnilibs23),
 #           tắt cargokit (dùng librust_lib_mangayomi.so của bản chính), bỏ chặn WireGuard/WARP/Tor < API 24 (tor-android vá FileObserver),
 #           bộ CA Mozilla đóng gói cho Dart HttpClient + Java (chỉ khi SDK < 24)
 #   apk   : flutter build apk --split-per-abi --build-name 0.5.8 (ký bằng khóa phát hành qua key.properties)
-#   post  : chép ra audit-0.5.8\android6\out\YomiHub-0.5.8-android6-<abi>.apk
+#   post  : chép ra audit\audit-0.5.8\android6\out\YomiHub-0.5.8-android6-<abi>.apk
 #   verify: aapt2 (sdkVersion 23, versionName, ABI, nhãn), sha256 thư viện đã vá, apksigner + so chứng chỉ với APK chính
 # Bước sync/patch/apk giữ audit-0.5.6\coordination\BUILD_LOCK.txt ("A6 <giờ>") và luôn trả khóa (try/finally).
-# Chi tiết kỹ thuật: audit-0.5.8\android6\A6_FEASIBILITY.md
+# Chi tiết kỹ thuật: audit\audit-0.5.8\android6\A6_FEASIBILITY.md
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 $root = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Item .).FullName }
 . "$root\common.ps1"
 $ErrorActionPreference = 'Stop'
 
-$A6 = "$root\audit-0.5.8\android6"
+$A6 = "$root\audit\audit-0.5.8\android6"
 $J23 = "$A6\jnilibs23"
 $outDir = "$A6\out"
 $SRC = "$YH\build\mangayomi"

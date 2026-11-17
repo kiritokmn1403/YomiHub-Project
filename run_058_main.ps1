@@ -5,8 +5,8 @@ param(
 $ErrorActionPreference = 'Continue'
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $lock = Join-Path $root 'audit-0.5.6\coordination\BUILD_LOCK.txt'
-$st   = Join-Path $root 'audit-0.5.8\release\main_build_status_058.txt'
-Start-Transcript -Path (Join-Path $root 'audit-0.5.8\release\main_build_058.log') -Append | Out-Null
+$st   = Join-Path $root 'audit\audit-0.5.8\release\main_build_status_058.txt'
+Start-Transcript -Path (Join-Path $root 'audit\audit-0.5.8\release\main_build_058.log') -Append | Out-Null
 function S($m){ $l = "{0:dd/MM HH:mm:ss} {1}" -f (Get-Date), $m; Write-Host $l; Add-Content $st $l -Encoding UTF8 }
 function WaitLock {
   for($i=0; $i -lt 360; $i++){

@@ -1,6 +1,6 @@
 ﻿# sync_058.ps1 - Dong bo overlay 0.5.8 (0.5.8+51) sang D:\yh\build\mangayomi va D:\yh\buildwin\mangayomi.
-# Danh sach tep: audit-0.5.8\release\changed_files_058.txt (tao lai bang -Regen: git diff HEAD + tep chua theo doi trong overlay).
-# Sao luu truoc khi ghi de: audit-0.5.8\backup\{baseline,runs}. Khong xoa tep nao.
+# Danh sach tep: audit\audit-0.5.8\release\changed_files_058.txt (tao lai bang -Regen: git diff HEAD + tep chua theo doi trong overlay).
+# Sao luu truoc khi ghi de: audit\audit-0.5.8\backup\{baseline,runs}. Khong xoa tep nao.
 param([switch]$Regen)
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
@@ -8,7 +8,7 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 $ErrorActionPreference = "Stop"
 
 $root = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Item .).FullName }
-$manifestPath = Join-Path $root "audit-0.5.8\release\changed_files_058.txt"
+$manifestPath = Join-Path $root "audit\audit-0.5.8\release\changed_files_058.txt"
 if ($Regen) {
     $git = if (Get-Command git -ErrorAction SilentlyContinue) { 'git' } else { 'D:\yh\tools\git\cmd\git.exe' }
     $l = @(& $git -C $root diff --name-only HEAD -- overlay) + @(& $git -C $root ls-files -o --exclude-standard -- overlay)
@@ -55,7 +55,7 @@ if ($missingFiles.Count -gt 0) {
 }
 
 # 2. KHỞI TẠO ĐƯỜNG DẪN SAO LƯU RIÊNG CHO 0.5.8
-$backupBaseDir = Join-Path $root "audit-0.5.8\backup"
+$backupBaseDir = Join-Path $root "audit\audit-0.5.8\backup"
 $baselineBackupDir = Join-Path $backupBaseDir "baseline"
 $runTimestamp = (Get-Date).ToString("yyyyMMdd_HHmmss")
 $runBackupDir = Join-Path (Join-Path $backupBaseDir "runs") $runTimestamp
@@ -116,7 +116,7 @@ foreach ($entry in $syncEntries) {
 }
 
 # 3. TẠO HASH MANIFEST SAU ĐỒNG BỘ
-$manifestOut = Join-Path $root "audit-0.5.8\release\overlay_manifest_058.txt"
+$manifestOut = Join-Path $root "audit\audit-0.5.8\release\overlay_manifest_058.txt"
 $hashLines = @()
 foreach ($entry in $syncEntries) {
     $rel = $entry.Rel

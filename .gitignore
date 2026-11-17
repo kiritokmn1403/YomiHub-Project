@@ -45,16 +45,54 @@ key.properties
 # ── QA evidence, screenshots, pre-change copies (kept on the build PC) ──
 /test/
 /Screenshot/
-audit-*/before/
-audit-0.4.3/compat23/
-audit-*/**/*.png
-audit-*/**/*.jpg
-audit-*/**/*.jpeg
-audit-*/**/*.webp
-audit-*/**/*.xml
-audit-*/**/*.mp4
-audit-*/**/*.jar
-audit-0.3.9/test-tools/
+
+# ── Audit directory ignore rules ──
+audit/**/before/
+audit/**/test-tools/
+audit/**/compat23/
+audit/**/*.png
+audit/**/*.jpg
+audit/**/*.jpeg
+audit/**/*.webp
+audit/**/*.xml
+audit/**/*.mp4
+audit/**/*.jar
+audit/**/iptproxy/
+audit/**/_scratch/
+audit/**/hako_repo/
+audit/**/vtv_*.html
+audit/**/npm/
+audit/**/backup/
+audit/**/*.html
+audit/**/qa/
+audit/**/fetch/
+audit/**/before_scripts/
+audit/**/yomi_ls*
+audit/**/__pycache__/
+audit/**/extracted_backup/
+audit/**/*.backup
+audit/**/*.backup.db
+audit/**/extracted_requirements.txt
+audit/**/inputs/
+audit/**/jobsrc/
+audit/**/status/
+audit/audit-0.5.5/*.ps1
+audit/**/evidence/*
+!audit/**/evidence/QA2/
+audit/**/evidence/QA2/*
+!audit/**/evidence/QA2/RESULTS_QA2.md
+audit/**/vpn/apk/
+audit/**/vpn/evidence/
+audit/**/android6/evidence/
+audit/**/android6/evidence57/
+audit/**/android6/work/
+audit/**/android6/out/
+audit/**/android6/orig_libisar/
+audit/**/android6/patched_libisar/
+audit/**/android6/patched_libtor/
+audit/**/android6/tmp/
+audit/**/evidence/
+audit/**/devbuild/
 
 # ── Large prebuilt upstream binaries for iOS/macOS (not YomiHub targets, >40 MB) ──
 **/ios/Frameworks/
@@ -66,88 +104,11 @@ audit-0.3.9/test-tools/
 !**/assets/mangayomi_mpv.zip
 !**/res/raw/*.mp4
 
-# ── 0.4.5 (30/10/2026): audit scratch – third-party downloads and pages ──
-/audit-0.4.5/iptproxy/
-/audit-0.4.5/_scratch/
-/audit-0.4.5/hako_repo/
-/audit-0.4.5/vtv_*.html
 # third-party source trees downloaded for reference (414 MB, not YomiHub code)
 /dev/x018/ref/
-
-# ── 0.4.9 (03/11/2026): audit scratch – third-party pages/packages, build-dir copies ──
-/audit-0.4.9/npm/
-/audit-0.4.9/backup/
-/audit-0.4.9/*.html
-/audit-0.4.9/qa/
 /_to_delete/
-
-# ── 0.5.0 (03/11/2026): audit scratch – build-dir copies, third-party downloads, QA ──
-/audit-0.5.0/backup/
-/audit-0.5.0/fetch/
-/audit-0.5.0/qa/
-/audit-0.5.0/before_scripts/
-
-# ── 0.5.1 (03/11/2026): audit scratch – build-dir copies, QA media, personal device listings ──
-/audit-0.5.1/backup/
-/audit-0.5.1/qa/
-/audit-0.5.1/yomi_ls*
-**/__pycache__/
-
-# -- 0.5.4 (09/11/2026): local QA media, device dumps, private backups --
-/audit-0.5.2/qa/
-/audit-0.5.2/backup/
-/audit-0.5.3/qa/
-/audit-0.5.3/backup/
-/audit-0.5.4/qa/
-/audit-0.5.4/backup/
-/audit-0.5.4/extracted_backup/
-*.backup
-*.backup.db
 /ocr_check.ps1
 /find_imported.ps1
 /find_xml.ps1
 /sync_054.ps1
-
-# -- 0.5.5 (10/11/2026): local QA media, device dumps, private backups --
-/audit-0.5.5/qa/
-/audit-0.5.5/backup/
-/audit-0.5.5/*.ps1
-/audit-0.5.5/extracted_requirements.txt
-
-# 0.5.6: upstream tham khảo và bằng chứng kiểm thử nặng (không commit)
 src/mangayomi-0.9.95/
-audit-0.5.6/evidence/*
-audit-0.5.6/backup/
-audit-0.5.6/inputs/
-audit-0.5.6/jobsrc/
-audit-0.5.6/status/
-!audit-0.5.6/evidence/QA2/
-audit-0.5.6/evidence/QA2/*
-!audit-0.5.6/evidence/QA2/RESULTS_QA2.md
-
-# 0.5.6.1 (13/11/2026): audit-0.5.7 - APK, bang chung, thu muc lam viec nang (giu *.md, *.py, *.ps1, build23_patch/)
-/audit-0.5.7/vpn/apk/
-/audit-0.5.7/vpn/evidence/
-/audit-0.5.7/android6/evidence/
-/audit-0.5.7/android6/work/
-/audit-0.5.7/android6/out/
-/audit-0.5.7/android6/orig_libisar/
-/audit-0.5.7/android6/patched_libisar/
-/audit-0.5.7/android6/patched_libtor/
-/audit-0.5.7/android6/tmp/
-/audit-0.5.7/backup/
-# 0.5.7 (15/11/2026): bang chung QA (UI dump, nhat ky, logcat co thong tin thu vien/thiet bi rieng) giu tren may build
-/audit-0.5.7/evidence/
-
-# 0.5.8 (17/11/2026): audit-0.5.8 - APK, bang chung, thu muc lam viec nang
-/audit-0.5.8/devbuild/
-/audit-0.5.8/android6/evidence/
-/audit-0.5.8/android6/evidence57/
-/audit-0.5.8/android6/work/
-/audit-0.5.8/android6/out/
-/audit-0.5.8/android6/orig_libisar/
-/audit-0.5.8/android6/patched_libisar/
-/audit-0.5.8/android6/patched_libtor/
-/audit-0.5.8/android6/tmp/
-/audit-0.5.8/backup/
-/audit-0.5.8/evidence/

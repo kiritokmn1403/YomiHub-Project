@@ -8,7 +8,7 @@ param(
 # chep 3 APK android6 vao output\0.5.8, kiem nhan/versionName/versionCode theo ABI/ABI/noi dung/chu ky.
 #   -step test|unit : pub get, gen-l10n, analyze, flutter test (gom test VPN 0.5.8)
 #   -step apk | tv  : flutter build apk --split-per-abi --build-name 0.5.8 --build-number 50 (khong co nhanh gia)
-#   -step a6        : chep + kiem 3 APK android6 tu audit-0.5.8\android6\out (phai dung lai bang build_058_android6.ps1 voi build-number 50)
+#   -step a6        : chep + kiem 3 APK android6 tu audit\audit-0.5.8\android6\out (phai dung lai bang build_058_android6.ps1 voi build-number 50)
 #   -step verify    : kiem lai toan bo APK trong output\0.5.8
 # Windows (win/pack) nam trong build_057.ps1. Giu audit-0.5.6\coordination\BUILD_LOCK.txt ("B057 <gio>") o test/apk/tv.
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -16,7 +16,7 @@ param(
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
 $root = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Item .).FullName }
-$skipFile = Join-Path $root "audit-0.5.8\SKIP_STEPS"
+$skipFile = Join-Path $root "audit\audit-0.5.8\SKIP_STEPS"
 if ((Test-Path $skipFile) -and ((Get-Content $skipFile -Raw) -split '\s+' -contains $step)) {
     Write-Host "Bỏ qua step $step do khai báo trong SKIP_STEPS" -ForegroundColor Yellow
     exit 0
@@ -325,7 +325,7 @@ try {
 
     # BƯỚC 4: CHÉP + KIỂM 3 APK ANDROID 6.0 (dựng bằng build_058_android6.ps1)
     if ($step -in 'all', 'a6') {
-        $a6out = Join-Path $root 'audit-0.5.8\android6\out'
+        $a6out = Join-Path $root 'audit\audit-0.5.8\android6\out'
         foreach ($abi in $targetAbis) {
             $a6src = "$a6out\YomiHub-$ver-android6-$abi.apk"
             if (-not (Test-Path $a6src)) { throw "LỖI ARTIFACT THIẾU: $a6src - chạy build_058_android6.ps1 trước" }

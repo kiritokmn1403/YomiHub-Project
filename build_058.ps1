@@ -7,7 +7,7 @@ param(
 # build_057.ps1 - YomiHub 0.5.8 (pubspec 0.5.8+51) Windows build & packaging, sums, verification.
 #   -step test | win | pack | verify : thuc hien o day (win/pack dung make_installer_exe_058.ps1, make_appxbundle_058.ps1)
 #   -step apk | tv | a6              : chuyen sang build_058_android.ps1 (dung THAT, khong co nhanh gia)
-#   output\0.5.8 ; version.json 0.5.8 / build 50 ; changelog tu audit-0.5.8\release\YomiHub-0.5.8-changelog.md
+#   output\0.5.8 ; version.json 0.5.8 / build 50 ; changelog tu audit\audit-0.5.8\release\YomiHub-0.5.8-changelog.md
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
@@ -15,7 +15,7 @@ Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $root = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Item .).FullName }
-$skipFile = Join-Path $root "audit-0.5.8\SKIP_STEPS"
+$skipFile = Join-Path $root "audit\audit-0.5.8\SKIP_STEPS"
 if ((Test-Path $skipFile) -and ((Get-Content $skipFile -Raw) -split '\s+' -contains $step)) {
     Write-Host "Bỏ qua step $step do khai báo trong SKIP_STEPS" -ForegroundColor Yellow
     exit 0
@@ -420,7 +420,7 @@ try {
     # BƯỚC 4: TẠO BẢNG BĂM SHA256 VÀ XÁC MINH (Chuẩn UTF-8 No BOM, Unix LF)
     if ($step -in 'all', 'pack', 'verify', 'verify-package', 'verify_package') {
         # Đồng bộ changelog duy nhất
-        $chgSrc = "$root\audit-0.5.8\release\YomiHub-0.5.8-changelog.md"
+        $chgSrc = "$root\audit\audit-0.5.8\release\YomiHub-0.5.8-changelog.md"
         if (-not (Test-Path $chgSrc)) { throw "Thiếu changelog $chgSrc" }
         Copy-Item $chgSrc "$out\YomiHub-$ver-changelog.md" -Force
         if ((Get-Content $chgSrc -Raw) -match '<<') { Say "CẢNH BÁO: changelog còn chỗ trống <<...>> - release_057_publish.ps1 sẽ chặn khi -Execute" }
