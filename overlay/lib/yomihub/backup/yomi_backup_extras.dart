@@ -8,6 +8,7 @@ import 'package:mangayomi/models/settings.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
 import 'package:mangayomi/repositories/source_preference_repository.dart';
+import 'package:mangayomi/yomihub/booru/booru_store.dart';
 
 /// YomiHub data that rides along in every backup, whatever options were
 /// ticked: the Extensions Repo lists (all three item types), the installed
@@ -50,27 +51,35 @@ class YomiBackupExtras {
     required bool hasExtensionPrefs,
     bool includeSensitive = false,
   }) async {
-    final s = settingsRepository.current;
+    final s = settingsRepository.currentOrNull;
     final out = <String, dynamic>{
       'version': 1,
       'repos': {
-        'manga': (s.mangaExtensionsRepo ?? []).map((e) => e.toJson()).toList(),
-        'anime': (s.animeExtensionsRepo ?? []).map((e) => e.toJson()).toList(),
-        'novel': (s.novelExtensionsRepo ?? []).map((e) => e.toJson()).toList(),
+        'manga': (s?.mangaExtensionsRepo ?? []).map((e) => e.toJson()).toList(),
+        'anime': (s?.animeExtensionsRepo ?? []).map((e) => e.toJson()).toList(),
+        'novel': (s?.novelExtensionsRepo ?? []).map((e) => e.toJson()).toList(),
       },
     };
     if (!hasExtensions) {
-      out['extensions'] = sourceRepository
-          .getAll()
-          .where((e) => e.isAdded ?? false)
-          .map((e) => e.toJson())
-          .toList();
+      try {
+        out['extensions'] = sourceRepository
+            .getAll()
+            .where((e) => e.isAdded ?? false)
+            .map((e) => e.toJson())
+            .toList();
+      } catch (_) {
+        out['extensions'] = [];
+      }
     }
     if (!hasExtensionPrefs) {
-      out['extensions_preferences'] = sourcePreferenceRepository
-          .getAll()
-          .map((e) => e.toJson())
-          .toList();
+      try {
+        out['extensions_preferences'] = sourcePreferenceRepository
+            .getAll()
+            .map((e) => e.toJson())
+            .toList();
+      } catch (_) {
+        out['extensions_preferences'] = [];
+      }
     }
     final data = <String, dynamic>{};
     for (final name in boxes) {
@@ -108,26 +117,28 @@ class YomiBackupExtras {
   static Future<void> restore(Map<String, dynamic> extras) async {
     final repos = extras['repos'];
     if (repos is Map) {
-      final s = settingsRepository.current;
-      List<Repo> merge(List<Repo>? current, dynamic incoming) {
-        final list = [...?current];
-        final known = list.map((e) => _norm(e.jsonUrl)).toSet();
-        if (incoming is List) {
-          for (final j in incoming.whereType<Map>()) {
-            final r = Repo.fromJson(Map<String, dynamic>.from(j));
-            if (_norm(r.jsonUrl).isEmpty || !known.add(_norm(r.jsonUrl))) {
-              continue;
+      final s = settingsRepository.currentOrNull;
+      if (s != null) {
+        List<Repo> merge(List<Repo>? current, dynamic incoming) {
+          final list = [...?current];
+          final known = list.map((e) => _norm(e.jsonUrl)).toSet();
+          if (incoming is List) {
+            for (final j in incoming.whereType<Map>()) {
+              final r = Repo.fromJson(Map<String, dynamic>.from(j));
+              if (_norm(r.jsonUrl).isEmpty || !known.add(_norm(r.jsonUrl))) {
+                continue;
+              }
+              list.add(r);
             }
-            list.add(r);
           }
+          return list;
         }
-        return list;
-      }
 
-      s.mangaExtensionsRepo = merge(s.mangaExtensionsRepo, repos['manga']);
-      s.animeExtensionsRepo = merge(s.animeExtensionsRepo, repos['anime']);
-      s.novelExtensionsRepo = merge(s.novelExtensionsRepo, repos['novel']);
-      await settingsRepository.save(s);
+        s.mangaExtensionsRepo = merge(s.mangaExtensionsRepo, repos['manga']);
+        s.animeExtensionsRepo = merge(s.animeExtensionsRepo, repos['anime']);
+        s.novelExtensionsRepo = merge(s.novelExtensionsRepo, repos['novel']);
+        await settingsRepository.save(s);
+      }
     }
     final data = extras['boxes'];
     if (data is Map) {
@@ -140,9 +151,13 @@ class YomiBackupExtras {
               : await YomiHive.open(name);
           for (final kv in (e.value as Map).entries) {
             // Chapter origins are restored with the database's ID mapping.
-            if (name == 'yomihub_prefs' && kv.key == 'mergedChapterOrigins')
+            if (name == 'yomihub_prefs' && kv.key == 'mergedChapterOrigins') {
               continue;
+            }
             await box.put('${kv.key}', kv.value);
+          }
+          if (name == 'yomihub_booru') {
+            BooruStore.instance.onRestored();
           }
         } catch (_) {}
       }

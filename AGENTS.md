@@ -10,3 +10,5 @@ Theo yêu cầu trực tiếp của chủ dự án ngày 25/10/2026:
 6. Không đưa thông tin đăng nhập, khóa ký, token hoặc mật khẩu vào ghi chú, log chia sẻ hay bản phát hành.
 
 File bắt buộc: [TECHNICAL_UPDATE_NOTES.md](TECHNICAL_UPDATE_NOTES.md).
+
+7. **BẮT BUỘC đọc thư mục `A.I Brain - Second Brain/` trước khi làm việc** (yêu cầu chủ dự án 14/11/2026); bổ sung kinh nghiệm mới vào đó sau mỗi đợt.

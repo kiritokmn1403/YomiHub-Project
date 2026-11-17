@@ -60,8 +60,9 @@ class YomiUrlOverride {
       if (v is! Map || v['force'] != true) continue;
       final from = Uri.tryParse('${v['from']}');
       final to = Uri.tryParse('${v['to']}');
-      if (from == null || to == null || from.host.isEmpty || to.host.isEmpty)
+      if (from == null || to == null || from.host.isEmpty || to.host.isEmpty) {
         continue;
+      }
       m[from.host.toLowerCase()] = to;
     }
     _forced = m;
@@ -151,6 +152,34 @@ class YomiUrlOverride {
       'https://animevietsub.nl',
       'https://animevietsub.tv',
       'https://animevietsub.moe',
+    ],
+    'animevietsub.best': [
+      'https://animevietsub.best',
+      'https://animevietsub.sale',
+      'https://animevietsub.nl',
+      'https://animevietsub.news',
+    ],
+    'anime47.best': [
+      'https://anime47.best',
+      'https://anime47.tv',
+      'https://anime47.net',
+      'https://anime47.com',
+    ],
+    'anime47.net': [
+      'https://anime47.best',
+      'https://anime47.tv',
+      'https://anime47.net',
+    ],
+    'anime47.tv': [
+      'https://anime47.best',
+      'https://anime47.tv',
+      'https://anime47.net',
+    ],
+    'fikfap.com': [
+      'https://fikfap.com',
+      'https://fikfap.net',
+      'https://fikfap.org',
+      'https://fikfap.app',
     ],
     'animevn.net': [
       'https://animevn.net',
@@ -420,8 +449,9 @@ class YomiUrlOverride {
     final u = Uri.tryParse(t);
     if (u == null ||
         u.host.isEmpty ||
-        !(u.scheme == 'http' || u.scheme == 'https'))
+        !(u.scheme == 'http' || u.scheme == 'https')) {
       return null;
+    }
     var s = '${u.scheme}://${u.host}${u.hasPort ? ':${u.port}' : ''}${u.path}';
     while (s.endsWith('/')) {
       s = s.substring(0, s.length - 1);

@@ -188,7 +188,7 @@ void main() {
     test('version / user agent', () {
       expect(AppIdentity.userAgent, anyOf('YomiHub/0.5.4', 'YomiHub/0.5.5', startsWith('YomiHub/0.5.')));
       if (File('pubspec.yaml').existsSync()) {
-        expect(_read('pubspec.yaml'), anyOf(contains('version: 0.5.4+46'), contains('version: 0.5.5+47'), contains('version: 0.5.5'), contains('version: 0.5.6'), contains('version: 0.5.7')));
+        expect(_read('pubspec.yaml'), anyOf(contains('version: 0.5.4+46'), contains('version: 0.5.5+47'), contains('version: 0.5.5'), contains('version: 0.5.6'), contains('version: 0.5.7'), contains('version: 0.5.8')));
       }
     });
 

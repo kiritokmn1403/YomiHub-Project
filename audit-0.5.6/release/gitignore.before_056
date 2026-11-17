@@ -1,0 +1,115 @@
+# YomiHub-Project – .gitignore (0.4.4, 29/10/2026)
+
+# ── Secrets: never commit ──
+*.jks
+*.keystore
+*.p12
+*.pfx
+keystore-password.txt
+key.properties
+**/key.properties
+**/*cookie*.txt
+**/cookies.json
+.env
+
+# ── Scraped site data (contains cookies / third-party pages) ──
+/fetch/
+
+# ── Build outputs, installers, logs, job queues ──
+/output/
+/logs/
+/jobs/
+**/build/
+**/.dart_tool/
+**/.gradle/
+**/.kotlin/
+**/ephemeral/
+*.apk
+*.aab
+*.exe
+*.dll
+*.so
+*.zip
+*.tgz
+*.tar
+*.gz
+*.7z
+*.bundle
+*.appx
+*.appxbundle
+*.msix
+*.cer
+*.mp4
+*.log
+
+# ── QA evidence, screenshots, pre-change copies (kept on the build PC) ──
+/test/
+/Screenshot/
+audit-*/before/
+audit-0.4.3/compat23/
+audit-*/**/*.png
+audit-*/**/*.jpg
+audit-*/**/*.jpeg
+audit-*/**/*.webp
+audit-*/**/*.xml
+audit-*/**/*.mp4
+audit-*/**/*.jar
+audit-0.3.9/test-tools/
+
+# ── Large prebuilt upstream binaries for iOS/macOS (not YomiHub targets, >40 MB) ──
+**/ios/Frameworks/
+**/macos/Frameworks/
+*.dylib
+
+# ── Needed to build the app: keep despite the binary rules above ──
+!**/jniLibs/**/*.so
+!**/assets/mangayomi_mpv.zip
+!**/res/raw/*.mp4
+
+# ── 0.4.5 (30/10/2026): audit scratch – third-party downloads and pages ──
+/audit-0.4.5/iptproxy/
+/audit-0.4.5/_scratch/
+/audit-0.4.5/hako_repo/
+/audit-0.4.5/vtv_*.html
+# third-party source trees downloaded for reference (414 MB, not YomiHub code)
+/dev/x018/ref/
+
+# ── 0.4.9 (03/11/2026): audit scratch – third-party pages/packages, build-dir copies ──
+/audit-0.4.9/npm/
+/audit-0.4.9/backup/
+/audit-0.4.9/*.html
+/audit-0.4.9/qa/
+/_to_delete/
+
+# ── 0.5.0 (03/11/2026): audit scratch – build-dir copies, third-party downloads, QA ──
+/audit-0.5.0/backup/
+/audit-0.5.0/fetch/
+/audit-0.5.0/qa/
+/audit-0.5.0/before_scripts/
+
+# ── 0.5.1 (03/11/2026): audit scratch – build-dir copies, QA media, personal device listings ──
+/audit-0.5.1/backup/
+/audit-0.5.1/qa/
+/audit-0.5.1/yomi_ls*
+**/__pycache__/
+
+# -- 0.5.4 (09/11/2026): local QA media, device dumps, private backups --
+/audit-0.5.2/qa/
+/audit-0.5.2/backup/
+/audit-0.5.3/qa/
+/audit-0.5.3/backup/
+/audit-0.5.4/qa/
+/audit-0.5.4/backup/
+/audit-0.5.4/extracted_backup/
+*.backup
+*.backup.db
+/ocr_check.ps1
+/find_imported.ps1
+/find_xml.ps1
+/sync_054.ps1
+
+# -- 0.5.5 (10/11/2026): local QA media, device dumps, private backups --
+/audit-0.5.5/qa/
+/audit-0.5.5/backup/
+/audit-0.5.5/*.ps1
+/audit-0.5.5/extracted_requirements.txt

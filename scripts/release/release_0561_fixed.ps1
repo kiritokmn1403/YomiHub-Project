@@ -60,7 +60,15 @@ foreach ($f in $files) {
   $name = [Uri]::EscapeDataString($f.Name)
   $url = "https://uploads.github.com/repos/$repo/releases/$($rel.id)/assets?name=$name"
   $sw = [Diagnostics.Stopwatch]::StartNew()
-  $code = & curl.exe -sS -o NUL -w "%{http_code}" -X POST -H "Authorization: token $tok" -H "Content-Type: application/octet-stream" --data-binary "@$($f.FullName)" $url
+  # 13/11: lan dau curl treo >10 phut o tep 15 -> huy khi < 10 KB/s trong 60 s, thu lai toi da 3 lan (xoa asset do dang)
+  for ($try = 1; $try -le 3; $try++) {
+    $code = & curl.exe -sS --speed-limit 10240 --speed-time 60 -o NUL -w "%{http_code}" -X POST -H "Authorization: token $tok" -H "Content-Type: application/octet-stream" --data-binary "@$($f.FullName)" $url
+    if ($code -eq '201') { break }
+    Log ("[{0}/{1}] {2}: lan {3} that bai (HTTP {4}) - thu lai" -f $i, $files.Count, $f.Name, $try, $code)
+    $part = @(Invoke-RestMethod -Headers $h "$api/releases/$($rel.id)/assets?per_page=100" | ForEach-Object { $_ }) | Where-Object { $_.name -eq $f.Name }
+    if ($part) { Invoke-RestMethod -Method Delete -Headers $h "$api/releases/assets/$($part.id)" | Out-Null }
+    Start-Sleep 5
+  }
   $sw.Stop(); $done += $f.Length
   if ($code -ne '201') { throw "Upload of $($f.Name) failed: HTTP $code" }
   Log ("[{0}/{1}] {2} {3:N1} MB -> HTTP {4} in {5:N0}s - total {6:P0}" -f $i, $files.Count, $f.Name, ($f.Length/1MB), $code, $sw.Elapsed.TotalSeconds, ($done/$total))

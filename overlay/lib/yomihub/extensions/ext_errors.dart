@@ -124,6 +124,9 @@ class YomiExtErrors {
     if (RegExp(r'\b5(2[0-9]|30)\b').hasMatch(s)) {
       return tr('Máy chủ của trang đang lỗi (Cloudflare 52x) – thử lại sau.');
     }
+    if (RegExp(r'\b404\b').hasMatch(s) || s.contains('not found')) {
+      return tr('Nguồn truyện đổi định dạng hoặc URL: mở bằng WebView hoặc chuyển sang nguồn phụ.');
+    }
     return null;
   }
 
@@ -149,7 +152,8 @@ class YomiExtErrors {
   /// warning line; the native stack of the app says nothing about it.
   static final RegExp _sourceData = RegExp(
     r'(sourceerror: (missing result|json parse error|[a-z ]{3,40}$)|csrf token not found|'
-    r'end of input at character 0|no value for [a-z_]+$|method not allowed)',
+    r'end of input at character 0|no value for [a-z_]+$|method not allowed|'
+    r'http (error )?404\b|status(code)?[=: ]+404\b|\b404 not found\b)',
     caseSensitive: false,
     multiLine: true,
   );

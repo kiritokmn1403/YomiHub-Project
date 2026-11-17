@@ -3,12 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mangayomi/eval/model/m_bridge.dart';
 import 'package:mangayomi/modules/more/data_and_storage/widgets/source_management_tiles.dart';
-import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/source.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
-import 'package:mangayomi/utils/constant.dart';
 import 'package:mangayomi/yomihub/extensions/builtin_extensions.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
+import 'package:mangayomi/yomihub/ui/shiori/shiori.dart';
+import 'package:mangayomi/yomihub/ui/ui_style.dart';
 
 class ExtensionMergeScreen extends ConsumerStatefulWidget {
   const ExtensionMergeScreen({super.key});
@@ -108,21 +108,28 @@ class _ExtensionMergeScreenState extends ConsumerState<ExtensionMergeScreen> {
           // 0.5.7 (Feature Check 38): every merge setting lives on this
           // screen – the three tools that used to sit under "Dữ liệu và bộ
           // nhớ" and the way into "Hợp nhất nội dung".
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Text(
-              tr('Công cụ hợp nhất'),
-              style: theme.textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: cs.primary,
+          if (YomiUi.isModern)
+            ShioriSectionHeader(
+              title: tr('Công cụ hợp nhất'),
+              padding: const EdgeInsets.symmetric(vertical: 8),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Text(
+                tr('Công cụ hợp nhất'),
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: cs.primary,
+                ),
               ),
             ),
-          ),
           Card(
             key: const ValueKey('mergeTools'),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(YomiUi.isModern ? ShioriShape.card : 12),
             ),
+            elevation: YomiUi.isModern ? 1 : 2,
             clipBehavior: Clip.antiAlias,
             child: Column(
               children: [
@@ -148,18 +155,27 @@ class _ExtensionMergeScreenState extends ConsumerState<ExtensionMergeScreen> {
           const SizedBox(height: 16),
 
           // Header danh sách nhóm đã hợp nhất
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Text(
-              tr('Các nhóm tiện ích đã hợp nhất ({p0})', {
+          if (YomiUi.isModern)
+            ShioriSectionHeader(
+              title: tr('Các nhóm tiện ích đã hợp nhất ({p0})', {
                 'p0': '${groups.length}',
               }),
-              style: theme.textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: cs.primary,
+              badgeText: groups.isNotEmpty ? '${groups.length}' : null,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Text(
+                tr('Các nhóm tiện ích đã hợp nhất ({p0})', {
+                  'p0': '${groups.length}',
+                }),
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: cs.primary,
+                ),
               ),
             ),
-          ),
 
           if (groups.isEmpty)
             Padding(
@@ -293,7 +309,7 @@ class _ExtensionMergeScreenState extends ConsumerState<ExtensionMergeScreen> {
                     Expanded(
                       child: ListView.separated(
                         itemCount: list.length,
-                        separatorBuilder: (_, __) => const Divider(height: 1),
+                        separatorBuilder: (c, i) => const Divider(height: 1),
                         itemBuilder: (_, idx) {
                           final s = list[idx];
                           final isChecked = chosen.contains(s);
@@ -348,6 +364,7 @@ class _ExtensionMergeScreenState extends ConsumerState<ExtensionMergeScreen> {
     );
 
     if (selected != null && selected.length >= 2 && mounted) {
+      if (!context.mounted) return;
       final target = await showDialog<Source>(
         context: context,
         builder: (dContext) => AlertDialog(
@@ -357,7 +374,7 @@ class _ExtensionMergeScreenState extends ConsumerState<ExtensionMergeScreen> {
             child: ListView.separated(
               shrinkWrap: true,
               itemCount: selected.length,
-              separatorBuilder: (_, __) => const Divider(height: 1),
+              separatorBuilder: (c, i) => const Divider(height: 1),
               itemBuilder: (_, idx) {
                 final s = selected[idx];
                 return ListTile(

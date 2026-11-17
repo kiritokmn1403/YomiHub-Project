@@ -45,3 +45,11 @@ Tác nhân bật/tắt trạng thái trắng. Nghi vấn (chưa chứng minh): D
 
 ## [17:49] R26 — kết quả (Sonnet)
 - Lỗi CÓ THẬT trên gói Windows cũ nhưng KHÔNG phải lỗi mã: overlay đã đúng. Windows Release (app.so 6DD2F121...) dựng từ buildwin còn main_screen.dart/library_hub_bar.dart bản TRƯỚC R22 (md5 khác overlay; thiếu fallback _routerLocation và YomiHubShell). Dải tab nằm trong YomiHubShell dùng chung cho _TabletLayout (rail/desktop) và nhánh mobile, Cũ và Mới (pill=uiModern); chỉ phụ thuộc stripFor(location)>=2 tab. Vì vậy không cần sửa mã; đã chép overlay sang buildwin/build, thêm test R26 (1280x800, Cũ+Mới thấy 'Phim & Điện ảnh', tắt tính năng thì mất tab) vào overlay/test/yh_056_c2_ui_test.dart. analyze lib 0 lỗi; flutter test toàn bộ đạt (676, exit 0). Dựng lại: build_056 -step win + pack exit 0; zip/Setup/full/appx mới 17:42-17:44; app.so mới E77222532604BC284D1467AEF94032D25DF8B73927C88F75048ABE767BDD21F6 = app.so trong YomiHub-0.5.6-windows-x64.zip (khớp). Không dựng APK/TV (không đổi mã dùng chung). Ảnh: evidence/R26/r26_a_8.png (trước: không dải), r26_b_6.png (sau, Cũ: có dải 4 tab). Chế độ Mới không chụp lại (cùng mã; ảnh cũ ok056_08 đã có dải); giao diện Windows không đổi, vẫn Cũ.
+
+## 13/11/2026 — thử thêm với 0.5.6.1 (Claude Opus, phiên Cowork)
+- Cài đè Setup.exe 0.5.3 → 0.5.6.1: cửa sổ trắng; chủ dự án nhìn trực tiếp cũng trắng (không phải lỗi chụp). Mở lại khi KHÔNG có computer-use (job 0_wwtest1, 09:28): vẫn trắng → loại giả thuyết computer-use.
+- Event Log 09:34: đóng cửa sổ trắng → văng `flutter_windows.dll` offset `0x1e220` (`c0000005`, rồi `c000041d`) – cùng chữ ký 0.4.4/0.5.3.
+- GPU: Intel Iris Xe 27.20.100.9664 (06/2021, xuất màn hình) + NVIDIA GTX 1650 32.0.16.1714. Windows 11 Pro build 26300 (Insider).
+- Ép NVIDIA cho riêng YomiHub.exe (HKCU\...\DirectX\UserGpuPreferences `GpuPreference=2;`): tiến trình nạp `nvwgf2umx.dll` nhưng vẫn trắng. Thêm `SwapEffectUpgradeEnable=0;`: vẫn trắng. Đã gỡ lại giá trị (về mặc định).
+- Cây cửa sổ lúc trắng: FLUTTER_RUNNER_WIN32_WINDOW → con FLUTTERVIEW hiện, đúng kích thước (0,23,1920,1032) → Flutter không trình chiếu khung hình lên bề mặt (ANGLE/D3D11/DWM), không phải lỗi bố cục cửa sổ.
+- Đề xuất kế: cập nhật driver Intel (2021 → bản mới của Intel), thử tắt "Hardware-accelerated GPU scheduling"; nếu còn trắng, thử bản engine Flutter mới hơn ở 0.5.7.

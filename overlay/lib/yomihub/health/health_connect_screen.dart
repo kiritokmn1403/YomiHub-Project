@@ -289,13 +289,16 @@ class _HealthConnectScreenState extends State<HealthConnectScreen> {
                         : (_hc['granted'] == true
                             ? tr('Đã cấp quyền – thời gian đọc/xem được ghi vào Health Connect')
                             : tr('Chạm để cấp quyền cho YomiHub'))),
-                    onTap: _hc['canWrite'] == true && _hc['granted'] != true
-                        ? () async {
-                            await _service.requestPermission();
-                            await Future.delayed(const Duration(seconds: 2));
-                            await _refreshHc();
-                          }
-                        : null,
+                    onTap: () async {
+                      if (_hc['canWrite'] == true && _hc['granted'] != true) {
+                        await _service.requestPermission();
+                        await Future.delayed(const Duration(seconds: 1));
+                        await _refreshHc();
+                      } else {
+                        await _service.openHealthConnectSettings();
+                        await _refreshHc();
+                      }
+                    },
                   ),
                 ],
               ],

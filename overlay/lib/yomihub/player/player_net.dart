@@ -31,15 +31,25 @@ class YomiPlayerNet {
     return RegExp(r'\.(mp4|m4v|webm|mkv|mov)$').hasMatch(path);
   }
 
+  /// 0.5.8: HLS stream hosts blocked by ISPs (Pornhub, phncdn, FikFap, FapReel)
+  /// that must route through the source's proxy even for .m3u8 playlists.
+  static bool needsProxyForHls(String url) {
+    final host = (Uri.tryParse(url)?.host ?? '').toLowerCase();
+    return host.contains('pornhub') ||
+        host.contains('phncdn') ||
+        host.contains('fikfap') ||
+        host.contains('imctransfer');
+  }
+
   /// Applies [proxyFor] to [player] before `open()` and returns true when a
   /// proxy was set; local files and streaming playlists use a direct
-  /// connection. Never throws.
+  /// connection unless the host is ISP-blocked (Pornhub HLS). Never throws.
   static Future<bool> apply(Player player, int? sourceId, {String? url}) async {
     var proxy = '';
     // 0.5.7: a clip served by the app itself (loopback chunk / HLS proxy,
     // torrent server) is never sent to Tor / the kill switch.
     final local = url != null && YomiVpnState.isLoopbackHost(Uri.tryParse(url)?.host ?? '');
-    if (!local && (url == null || (url.startsWith('http') && isProgressive(url)))) {
+    if (!local && (url == null || (url.startsWith('http') && (isProgressive(url) || needsProxyForHls(url))))) {
       proxy = proxyFor(sourceId);
     }
     try {

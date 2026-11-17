@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:mangayomi/providers/storage_provider.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
+import 'package:mangayomi/utils/device_description.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
@@ -69,10 +70,16 @@ class AppLogger {
       _sink = _logFile!.openWrite(mode: FileMode.append);
       _initialized = true;
 
-      // 0.5.3: the session marker was written as a WARNING wrapped in blank
-      // lines - 73 of the warnings in "logs 3" were only this marker. It is
-      // now one INFO line, still always written so sessions stay separable.
-      log('===== Logger initialized (phiên mới) =====', logLevel: LogLevel.info, always: true);
+      // 0.5.8: include device model, OS version and app version in session header
+      var sessionHeader = '===== Logger initialized (phiên mới)';
+      try {
+        final dev = await deviceDescription();
+        final ver = await appVersionDescription();
+        sessionHeader = '$sessionHeader • $dev • YomiHub $ver =====';
+      } catch (_) {
+        sessionHeader = '$sessionHeader =====';
+      }
+      log(sessionHeader, logLevel: LogLevel.info, always: true);
       _queue.addAll(_pending);
       _pending.clear();
       _drain();

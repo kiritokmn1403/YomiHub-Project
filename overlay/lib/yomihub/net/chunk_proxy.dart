@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:mangayomi/services/http/m_client.dart';
 import 'package:mangayomi/yomihub/browser/adblock.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
 
 /// YomiHub: local range-chunking proxy.
 ///
@@ -157,7 +158,17 @@ class YomiHlsAdFilter {
       YomiAdBlock.enabled && YomiPrefs.get<bool>('hlsAdFilter', true);
   static final HttpClient _client = HttpClient()
     ..connectionTimeout = const Duration(seconds: 20)
-    ..idleTimeout = const Duration(seconds: 30);
+    ..idleTimeout = const Duration(seconds: 30)
+    ..findProxy = (uri) {
+      final active = YomiVpnState.activeProxy();
+      if (active != null && active.isNotEmpty) {
+        final u = Uri.tryParse(active);
+        if (u != null && u.host.isNotEmpty && u.port > 0) {
+          return 'PROXY ${u.host}:${u.port}';
+        }
+      }
+      return 'DIRECT';
+    };
 
   static final _adWord = RegExp(
     r'adjump|/ads?/|[/_-]ads?[_-]|quangcao|qc_|advert|/promo/|doubleclick',

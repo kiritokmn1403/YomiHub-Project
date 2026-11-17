@@ -1,3 +1,4 @@
+import 'dart:isolate';
 import 'package:mangayomi/utils/chapter_recognition.dart';
 import 'package:mangayomi/models/chapter.dart';
 import 'package:mangayomi/models/update.dart';
@@ -89,155 +90,117 @@ Future<dynamic> updateMangaDetail(
 
     final chaps = getManga.chapters;
 
-    await mangaRepository.writeTransactionAsync(() async {
-      final savedMangaId = await mangaRepository.putAsync(manga);
+    // A refresh from the primary extension must not deduplicate or rewrite
+    // chapters that belong to a different member of a merged title.
+    final existingChapters = manga.chapters.where((c) {
+      final origin = ChapterOrigins.of(c);
+      return origin == null ||
+          (origin['sourceId'] == manga.sourceId &&
+              origin['source'] == manga.source &&
+              origin['lang'] == manga.lang);
+    }).toList();
 
-      if (chaps == null || chaps.isEmpty) return;
+    // 0.5.8: Offload heavy chapter recognition and regex matching to a background
+    // Isolate to prevent UI thread freezes (2.6s - 2.9s UI freezes on long series).
+    ChapterDiffResult? diff;
+    if (chaps != null && chaps.isNotEmpty) {
+      final existingData = [
+        for (final c in existingChapters)
+          ExistingChapterData(
+            id: c.id ?? 0,
+            url: c.url,
+            name: c.name,
+            scanlator: c.scanlator,
+            isRead: c.isRead ?? false,
+            lastPageRead: c.lastPageRead,
+            duration: c.duration,
+          )
+      ];
 
-      // A refresh from the primary extension must not deduplicate or rewrite
-      // chapters that belong to a different member of a merged title.
-      final existingChapters = manga.chapters.where((c) {
-        final origin = ChapterOrigins.of(c);
-        return origin == null ||
-            (origin['sourceId'] == manga.sourceId &&
-                origin['source'] == manga.source &&
-                origin['lang'] == manga.lang);
-      }).toList();
-      final recognition = ChapterRecognition();
-
-      // Season and episode together, never the episode alone. The episode
-      // alone makes season 2 episode 1 the same chapter as season 1 episode 1,
-      // so whichever arrives second is dropped before it reaches the library
-      // and a two season show displays one season.
-      //
-      // Not parseChapterNumber either: that truncates, so 12, 12.1 and 12.5
-      // all answer 12 and two of the three are dropped the same way.
-      String? identityOf(Chapter c, {bool withScanlator = true}) {
-        if (c.name == null) return null;
-        return recognition.chapterIdentityKey(
-          manga.name ?? '',
-          c.name!,
-          withScanlator ? (c.scanlator ?? '') : null,
-        );
-      }
-
-      final existingByUrl = <String, Chapter>{};
-      final existingByComposite = <String, Chapter>{};
-      final duplicateIds = <int>{};
-      for (final c in existingChapters) {
-        final u = c.url?.trim();
-        final urlKey = (u == null || u.isEmpty) ? null : u.getUrlWithoutDomain;
-        final compositeKey = identityOf(c);
-
-        final prior =
-            (urlKey != null ? existingByUrl[urlKey] : null) ??
-            (compositeKey != null ? existingByComposite[compositeKey] : null);
-        if (prior == null) {
-          if (urlKey != null) existingByUrl[urlKey] = c;
-          if (compositeKey != null) existingByComposite[compositeKey] = c;
-        } else {
-          final priorHasState =
-              (prior.isRead ?? false) || (prior.lastPageRead ?? '').isNotEmpty;
-          final keep = priorHasState ? prior : c;
-          final drop = identical(keep, prior) ? c : prior;
-          if (urlKey != null) existingByUrl[urlKey] = keep;
-          if (compositeKey != null) existingByComposite[compositeKey] = keep;
-          if (drop.id != null) duplicateIds.add(drop.id!);
-        }
-      }
-
-      // Keyed without the scanlator: the same episode from a different group
-      // is still that episode, so read state carries. Keyed with the season
-      // for the same reason as above.
-      final readByEpisode = <String, bool>{};
-      for (final c in existingChapters) {
-        final key = identityOf(c, withScanlator: false);
-        if (key != null) {
-          readByEpisode[key] =
-              (readByEpisode[key] ?? false) || (c.isRead ?? false);
-        }
-      }
-
-      final newChapters = <Chapter>[];
-      final seenKeys = <String>{};
-      final chaptersToUpdate = <Chapter>[];
-
-      for (final chap in chaps) {
-        final url = chap.url?.trim();
-        if (url == null || url.isEmpty) continue;
-        final key = url.getUrlWithoutDomain;
-
-        final compositeKey = chap.name == null
-            ? null
-            : recognition.chapterIdentityKey(
-                manga.name!,
-                chap.name!,
-                chap.scanlator ?? '',
-              );
-        final episodeKey = chap.name == null
-            ? null
-            : recognition.chapterIdentityKey(manga.name!, chap.name!);
-
-        if (!seenKeys.add(key)) continue;
-        if (compositeKey != null && !seenKeys.add('c:$compositeKey')) {
-          continue;
-        }
-
-        final existing =
-            existingByUrl[key] ??
-            (compositeKey != null ? existingByComposite[compositeKey] : null);
-
-        if (existing == null) {
-          final alreadyRead =
-              episodeKey != null && (readByEpisode[episodeKey] ?? false);
-
-          final newChapter = Chapter(
-            name: chap.name!,
-            url: url,
-            dateUpload: chap.dateUpload == null
-                ? now.toString()
-                : chap.dateUpload.toString(),
-            scanlator: chap.scanlator ?? '',
-            mangaId: savedMangaId,
-            updatedAt: now,
+      final incomingData = [
+        for (final chap in chaps)
+          IncomingChapterData(
+            name: chap.name ?? '',
+            url: chap.url ?? '',
+            dateUpload: chap.dateUpload?.toString(),
+            scanlator: chap.scanlator,
             isFiller: chap.isFiller,
             thumbnailUrl: chap.thumbnailUrl,
             description: chap.description,
             downloadSize: chap.downloadSize,
             duration: chap.duration,
-          )..manga.value = manga;
+          )
+      ];
 
-          if (alreadyRead) {
-            newChapter.isRead = alreadyRead;
-            newChapter.lastPageRead = "1";
-          }
+      diff = await Isolate.run(() => computeChapterDiffInIsolate(
+        ChapterDiffInput(
+          mangaTitle: manga.name ?? '',
+          existing: existingData,
+          incoming: incomingData,
+        ),
+      ));
+    }
 
-          existingByUrl[key] = newChapter;
-          if (compositeKey != null) {
-            existingByComposite[compositeKey] = newChapter;
-          }
+    await mangaRepository.writeTransactionAsync(() async {
+      final savedMangaId = await mangaRepository.putAsync(manga);
+      final d = diff;
 
-          newChapters.add(newChapter);
-        } else {
-          if (existing.url != url) {
+      if (d == null || chaps == null || chaps.isEmpty) return;
+
+      final existingById = {
+        for (final c in existingChapters)
+          if (c.id != null) c.id!: c,
+      };
+
+      final chaptersToUpdate = <Chapter>[];
+      for (final u in d.toUpdate) {
+        final existing = existingById[u.id];
+        if (existing != null) {
+          if (u.urlChanged) {
             ChapterCache().remove(existing);
           }
           existing
-            ..name = chap.name
-            ..url = url
-            ..scanlator = chap.scanlator
+            ..name = u.name
+            ..url = u.url
+            ..scanlator = u.scanlator
             ..updatedAt = now
-            ..isFiller = chap.isFiller
-            ..thumbnailUrl = chap.thumbnailUrl
-            ..description = chap.description
-            ..downloadSize = chap.downloadSize
-            ..duration = chap.duration ?? existing.duration;
+            ..isFiller = u.isFiller
+            ..thumbnailUrl = u.thumbnailUrl
+            ..description = u.description
+            ..downloadSize = u.downloadSize
+            ..duration = u.duration ?? existing.duration;
           chaptersToUpdate.add(existing);
         }
       }
 
       if (chaptersToUpdate.isNotEmpty) {
         await chapterRepository.putAllAsync(chaptersToUpdate);
+      }
+
+      final newChapters = <Chapter>[];
+      for (final ins in d.toInsert) {
+        final alreadyRead = d.readStates[ins.url] ?? false;
+
+        final newChapter = Chapter(
+          name: ins.name,
+          url: ins.url,
+          dateUpload: ins.dateUpload ?? now.toString(),
+          scanlator: ins.scanlator ?? '',
+          mangaId: savedMangaId,
+          updatedAt: now,
+          isFiller: ins.isFiller,
+          thumbnailUrl: ins.thumbnailUrl,
+          description: ins.description,
+          downloadSize: ins.downloadSize,
+          duration: ins.duration,
+        )..manga.value = manga;
+
+        if (alreadyRead) {
+          newChapter.isRead = alreadyRead;
+          newChapter.lastPageRead = "1";
+        }
+
+        newChapters.add(newChapter);
       }
 
       if (newChapters.isNotEmpty) {
@@ -276,14 +239,15 @@ Future<dynamic> updateMangaDetail(
         }
       }
 
-      if (duplicateIds.isNotEmpty) {
-        await chapterRepository.deleteAllAsync(duplicateIds.toList());
+      if (d.duplicateIds.isNotEmpty) {
+        await chapterRepository.deleteAllAsync(d.duplicateIds);
       }
 
-      final dedupedExisting = duplicateIds.isEmpty
+      final duplicateSet = d.duplicateIds.toSet();
+      final dedupedExisting = duplicateSet.isEmpty
           ? existingChapters
           : existingChapters
-                .where((c) => c.id == null || !duplicateIds.contains(c.id))
+                .where((c) => c.id == null || !duplicateSet.contains(c.id))
                 .toList();
       final allChapters = newChapters.isEmpty
           ? dedupedExisting
@@ -305,4 +269,206 @@ Future<dynamic> updateMangaDetail(
   } finally {
     keepAlive.close();
   }
+}
+
+/// Plain data structure representing an existing chapter for background isolate processing.
+class ChapterDiffInput {
+  final String mangaTitle;
+  final List<ExistingChapterData> existing;
+  final List<IncomingChapterData> incoming;
+
+  const ChapterDiffInput({
+    required this.mangaTitle,
+    required this.existing,
+    required this.incoming,
+  });
+}
+
+class ExistingChapterData {
+  final int id;
+  final String? url;
+  final String? name;
+  final String? scanlator;
+  final bool isRead;
+  final String? lastPageRead;
+  final String? duration;
+
+  const ExistingChapterData({
+    required this.id,
+    this.url,
+    this.name,
+    this.scanlator,
+    this.isRead = false,
+    this.lastPageRead,
+    this.duration,
+  });
+}
+
+class IncomingChapterData {
+  final String name;
+  final String url;
+  final String? dateUpload;
+  final String? scanlator;
+  final bool? isFiller;
+  final String? thumbnailUrl;
+  final String? description;
+  final String? downloadSize;
+  final String? duration;
+
+  const IncomingChapterData({
+    required this.name,
+    required this.url,
+    this.dateUpload,
+    this.scanlator,
+    this.isFiller,
+    this.thumbnailUrl,
+    this.description,
+    this.downloadSize,
+    this.duration,
+  });
+}
+
+class ChapterDiffResult {
+  final List<int> duplicateIds;
+  final List<ExistingChapterUpdate> toUpdate;
+  final List<IncomingChapterData> toInsert;
+  final Map<String, bool> readStates;
+
+  const ChapterDiffResult({
+    required this.duplicateIds,
+    required this.toUpdate,
+    required this.toInsert,
+    required this.readStates,
+  });
+}
+
+class ExistingChapterUpdate {
+  final int id;
+  final String name;
+  final String url;
+  final String? scanlator;
+  final bool? isFiller;
+  final String? thumbnailUrl;
+  final String? description;
+  final String? downloadSize;
+  final String? duration;
+  final bool urlChanged;
+
+  const ExistingChapterUpdate({
+    required this.id,
+    required this.name,
+    required this.url,
+    this.scanlator,
+    this.isFiller,
+    this.thumbnailUrl,
+    this.description,
+    this.downloadSize,
+    this.duration,
+    required this.urlChanged,
+  });
+}
+
+/// Runs in a background Isolate to compute the chapter diff without stalling the UI thread.
+ChapterDiffResult computeChapterDiffInIsolate(ChapterDiffInput input) {
+  final recognition = ChapterRecognition();
+  final mangaTitle = input.mangaTitle;
+
+  String? identityOf(String? name, String? scanlator, {bool withScanlator = true}) {
+    if (name == null || name.isEmpty) return null;
+    return recognition.chapterIdentityKey(
+      mangaTitle,
+      name,
+      withScanlator ? (scanlator ?? '') : null,
+    );
+  }
+
+  final existingByUrl = <String, ExistingChapterData>{};
+  final existingByComposite = <String, ExistingChapterData>{};
+  final duplicateIds = <int>{};
+
+  for (final c in input.existing) {
+    final u = c.url?.trim();
+    final urlKey = (u == null || u.isEmpty) ? null : u.getUrlWithoutDomain;
+    final compositeKey = identityOf(c.name, c.scanlator);
+
+    final prior =
+        (urlKey != null ? existingByUrl[urlKey] : null) ??
+        (compositeKey != null ? existingByComposite[compositeKey] : null);
+    if (prior == null) {
+      if (urlKey != null) existingByUrl[urlKey] = c;
+      if (compositeKey != null) existingByComposite[compositeKey] = c;
+    } else {
+      final priorHasState = prior.isRead || (prior.lastPageRead ?? '').isNotEmpty;
+      final keep = priorHasState ? prior : c;
+      final drop = identical(keep, prior) ? c : prior;
+      if (urlKey != null) existingByUrl[urlKey] = keep;
+      if (compositeKey != null) existingByComposite[compositeKey] = keep;
+      duplicateIds.add(drop.id);
+    }
+  }
+
+  final readByEpisode = <String, bool>{};
+  for (final c in input.existing) {
+    final key = identityOf(c.name, null, withScanlator: false);
+    if (key != null) {
+      readByEpisode[key] = (readByEpisode[key] ?? false) || c.isRead;
+    }
+  }
+
+  final toInsert = <IncomingChapterData>[];
+  final seenKeys = <String>{};
+  final toUpdate = <ExistingChapterUpdate>[];
+  final readStates = <String, bool>{};
+
+  for (final chap in input.incoming) {
+    final url = chap.url.trim();
+    if (url.isEmpty) continue;
+    final key = url.getUrlWithoutDomain;
+
+    final compositeKey = recognition.chapterIdentityKey(
+      mangaTitle,
+      chap.name,
+      chap.scanlator ?? '',
+    );
+    final episodeKey = recognition.chapterIdentityKey(mangaTitle, chap.name);
+
+    if (!seenKeys.add(key)) continue;
+    if (!seenKeys.add('c:$compositeKey')) {
+      continue;
+    }
+
+    final existing =
+        existingByUrl[key] ??
+        (compositeKey != null && compositeKey.isNotEmpty ? existingByComposite[compositeKey] : null);
+
+    if (existing == null) {
+      final alreadyRead = readByEpisode[episodeKey] ?? false;
+      toInsert.add(chap);
+      if (alreadyRead) {
+        readStates[url] = true;
+      }
+    } else {
+      toUpdate.add(
+        ExistingChapterUpdate(
+          id: existing.id,
+          name: chap.name,
+          url: url,
+          scanlator: chap.scanlator,
+          isFiller: chap.isFiller,
+          thumbnailUrl: chap.thumbnailUrl,
+          description: chap.description,
+          downloadSize: chap.downloadSize,
+          duration: chap.duration ?? existing.duration,
+          urlChanged: existing.url != url,
+        ),
+      );
+    }
+  }
+
+  return ChapterDiffResult(
+    duplicateIds: duplicateIds.toList(),
+    toUpdate: toUpdate,
+    toInsert: toInsert,
+    readStates: readStates,
+  );
 }

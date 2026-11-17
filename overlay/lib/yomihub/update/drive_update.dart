@@ -63,6 +63,9 @@ class YomiDriveUpdate {
             )
             .timeout(const Duration(seconds: 20));
         if (r.statusCode == 200) break;
+        if (r.statusCode >= 500 && attempt < 2) {
+          await Future.delayed(Duration(milliseconds: 600 * (attempt + 1) * (attempt + 1)));
+        }
       } catch (e) {
         lastErr = e;
         final dns = '$e'.contains('Failed host lookup');
@@ -118,7 +121,18 @@ class YomiDriveUpdate {
         entries = await _list(id, transport);
       } catch (e) {
         // 0.4.3: one unreadable sub-folder no longer fails the whole check
-        if (depth == 0) rethrow;
+        // 0.5.8: if root folder fails with 5xx server error, log warning instead of crashing update check
+        if (depth == 0) {
+          if (e is http.ClientException && e.message.contains(RegExp(r'5\d\d'))) {
+            AppLogger.logOnce(
+              'drive-root:$id',
+              '[Kiểm tra cập nhật] Bỏ qua kiểm tra Google Drive (5xx Server Error): $e',
+              logLevel: LogLevel.warning,
+            );
+            return;
+          }
+          rethrow;
+        }
         AppLogger.logOnce(
           'drive-sub:$id',
           '[Kiểm tra cập nhật] Bỏ qua thư mục con Google Drive $id: $e',

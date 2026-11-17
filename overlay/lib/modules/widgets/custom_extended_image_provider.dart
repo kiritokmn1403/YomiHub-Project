@@ -317,70 +317,72 @@ class CustomExtendedNetworkImageProvider
     StreamController<ImageChunkEvent> chunkEvents,
     ImageDecoderCallback decode,
   ) async {
-    assert(key == this);
-    if (key.url.startsWith('data:')) {
-      final dataUriBytes = tryDecodeDataUri(key.url);
-      if (dataUriBytes != null) {
+    try {
+      assert(key == this);
+      if (key.url.startsWith('data:')) {
+        final dataUriBytes = tryDecodeDataUri(key.url);
+        if (dataUriBytes != null) {
+          try {
+            return await instantiateImageCodec(dataUriBytes, decode);
+          } catch (e) {
+            throw StateError('Failed to load data URI $url: $e');
+          }
+        }
+      }
+
+      final String md5Key = cacheKey ?? keyToMd5(key.url);
+      ui.Codec? result;
+      // Kept so the final error, if any, says why instead of just "failed" —
+      // both attempts below were previously swallowing the real exception.
+      Object? lastError;
+      if (cache) {
         try {
-          return await instantiateImageCodec(dataUriBytes, decode);
+          final Uint8List? data = await _loadCache(key, chunkEvents, md5Key);
+          if (data != null) {
+            result = await instantiateImageCodec(data, decode);
+          }
         } catch (e) {
-          return Future<ui.Codec>.error(
-            StateError('Failed to load data URI $url: $e'),
+          lastError = e;
+          if (kDebugMode) {
+            print(e);
+          }
+        }
+      }
+
+      // A timed-out host would just burn another full timeout on the second try.
+      if (result == null && !isImageLoadTimeout(lastError)) {
+        try {
+          final Uint8List? data = await _loadNetworkWithDeduplication(
+            key,
+            chunkEvents,
+            md5Key,
           );
+          if (data != null) {
+            result = await instantiateImageCodec(data, decode);
+          }
+        } catch (e) {
+          lastError = e;
+          if (kDebugMode) {
+            print(e);
+          }
         }
       }
-    }
 
-    final String md5Key = cacheKey ?? keyToMd5(key.url);
-    ui.Codec? result;
-    // Kept so the final error, if any, says why instead of just "failed" —
-    // both attempts below were previously swallowing the real exception.
-    Object? lastError;
-    if (cache) {
-      try {
-        final Uint8List? data = await _loadCache(key, chunkEvents, md5Key);
-        if (data != null) {
-          result = await instantiateImageCodec(data, decode);
-        }
-      } catch (e) {
-        lastError = e;
-        if (kDebugMode) {
-          print(e);
-        }
-      }
-    }
-
-    // A timed-out host would just burn another full timeout on the second try.
-    if (result == null && !isImageLoadTimeout(lastError)) {
-      try {
-        final Uint8List? data = await _loadNetworkWithDeduplication(
-          key,
-          chunkEvents,
-          md5Key,
-        );
-        if (data != null) {
-          result = await instantiateImageCodec(data, decode);
-        }
-      } catch (e) {
-        lastError = e;
-        if (kDebugMode) {
-          print(e);
-        }
-      }
-    }
-
-    //Failed to load
-    if (result == null) {
-      //result = await ui.instantiateImageCodec(kTransparentImage);
-      final cause = lastError ?? key._lastNetError ?? _lastNetError;
-      return Future<ui.Codec>.error(
-        StateError(
+      //Failed to load
+      if (result == null) {
+        //result = await ui.instantiateImageCodec(kTransparentImage);
+        final cause = lastError ?? key._lastNetError ?? _lastNetError;
+        throw StateError(
           'Failed to load $url.${cause != null ? ' Cause: $cause' : ''}',
-        ),
-      );
-    }
+        );
+      }
 
-    return result;
+      return result;
+    } finally {
+      if (!chunkEvents.isClosed) {
+        await chunkEvents.close();
+      }
+    }
   }
 
   /// Helper to deduplicate in-flight network downloads for non-cached or fallback requests
@@ -490,15 +492,6 @@ class CustomExtendedNetworkImageProvider
             resolvedUrl = '${refUri.scheme}://${refUri.authority}$slash$resolvedUrl';
           }
         }
-      } else if (false) {
-        final ref = key.headers?['Referer'] ?? key.headers?['referer'] ?? key.headers?['Origin'] ?? key.headers?['origin'];
-        if (ref != null && ref.isNotEmpty) {
-          final refUri = Uri.tryParse(ref);
-          if (refUri != null && refUri.hasScheme && refUri.hasAuthority) {
-            final slash = resolvedUrl.startsWith('/') ? '' : '/';
-            resolvedUrl = '${refUri.scheme}://${refUri.authority}$slash$resolvedUrl';
-          }
-        }
       }
       final Uri? resolved = Uri.tryParse(resolvedUrl);
       if (resolved == null || !resolved.hasScheme || !resolved.hasAuthority) {
@@ -527,12 +520,14 @@ class CustomExtendedNetworkImageProvider
       )) {
         bytesBuilder.add(chunk);
         received += chunk.length;
-        chunkEvents?.add(
-          ImageChunkEvent(
-            cumulativeBytesLoaded: received,
-            expectedTotalBytes: total > 0 ? total : null,
-          ),
-        );
+        if (chunkEvents != null && !chunkEvents.isClosed) {
+          chunkEvents.add(
+            ImageChunkEvent(
+              cumulativeBytesLoaded: received,
+              expectedTotalBytes: total > 0 ? total : null,
+            ),
+          );
+        }
       }
 
       final Uint8List bytes = bytesBuilder.takeBytes();
@@ -571,17 +566,15 @@ class CustomExtendedNetworkImageProvider
       // entry is released and the UI can say why; "Thử lại" re-requests.
       if (isImageLoadTimeout(e)) rethrow;
     } finally {
-      await chunkEvents?.close();
+      // StreamController ownership belongs to _loadAsync, so it is not closed prematurely here.
     }
     return null;
   }
 
   /// YomiHub 0.1.6: covers/pages that failed in 0.1.5 logs fell in three
   /// groups, each with its own retry here:
-  ///  * hotlink protection (e.g. i.hinhhinh.com, xvideos-cdn): 403 unless the
-  ///    site's Referer is sent – the headers provider now adds the source's
-  ///    base URL as Referer; on a 401/403 the image is retried with its own
-  ///    origin as Referer, or without one if the source's was refused;
+  ///  * hotlink protection (e.g. i.hinhhinh.com, xvideos-cdn, uploads.mangadex.org):
+  ///    401/403/404 unless the site's Referer or root domain is sent;
   ///  * domains the ISP DNS does not resolve (connection error before any
   ///    response): retried once through DNS-over-HTTPS;
   ///  * Cloudflare challenge on the image host: handled by MClient (cookie +
@@ -635,31 +628,42 @@ class CustomExtendedNetworkImageProvider
     }
     if (response.statusCode == HttpStatus.ok) return response;
 
-    final variants = <Map<String, String>>[base];
+    final variants = <Map<String, String>>[];
     if (response.statusCode == HttpStatus.forbidden ||
         response.statusCode == HttpStatus.unauthorized ||
+        response.statusCode == HttpStatus.notFound ||
         response.statusCode >= 500) {
       final hasRef = base.keys.any((k) => k.toLowerCase() == 'referer');
-      variants.add(
-        hasRef
-            ? (Map.of(base)..removeWhere((k, _) => k.toLowerCase() == 'referer'))
-            : {...base, 'Referer': '${resolved.scheme}://${resolved.host}/'},
-      );
-      variants.add({
-        ...base,
-        'Referer': '${resolved.scheme}://${resolved.host}/',
-      });
+      // 1. Without referer (if base had referer)
+      if (hasRef) {
+        variants.add(Map.of(base)..removeWhere((k, _) => k.toLowerCase() == 'referer'));
+      }
+      // 2. Referer with exact host
+      variants.add({...base, 'Referer': '${resolved.scheme}://${resolved.host}/'});
+
+      // 3. Root domain referer (e.g. for uploads.mangadex.org -> https://mangadex.org/)
+      final hostParts = resolved.host.split('.');
+      if (hostParts.length > 2) {
+        final rootHost = hostParts.sublist(hostParts.length - 2).join('.');
+        variants.add({...base, 'Referer': '${resolved.scheme}://$rootHost/'});
+      }
+
+      // 4. Without referer (if base did not have one)
+      if (!hasRef) {
+        variants.add(Map.of(base)..removeWhere((k, _) => k.toLowerCase() == 'referer'));
+      }
     }
+
     for (var i = 0; i < variants.length; i++) {
       await drain(response);
       try {
         final next = await send(variants[i], dartClient: i == 0, doh: i == variants.length - 1);
-        if (next.statusCode == HttpStatus.ok || i == variants.length - 1) {
+        if (next.statusCode == HttpStatus.ok) {
           return next;
         }
         response = next;
       } catch (_) {
-        if (i == variants.length - 1) return response;
+        // continue trying next variant
       }
     }
     return response;

@@ -38,6 +38,9 @@ class BooruStore extends ChangeNotifier {
     }
   }
 
+  /// YomiHub 0.5.8: Notifies listeners when the box has been restored from backup.
+  void onRestored() => notifyListeners();
+
   T _get<T>(String k, T def) {
     final v = _box?.get(k);
     return v is T ? v : def;

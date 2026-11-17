@@ -6,6 +6,18 @@ Chủ dự án yêu cầu tạo và duy trì tài liệu này ngày 25/10/2026. 
 
 ## 1. Trạng thái hiện tại
 
+- **`17/11/2026` – 0.5.8 (0.5.8+51):** Giữ nền Mangayomi; hoàn thiện 11 nhóm tính năng & sửa lỗi cốt lõi (5 nhóm Core-Dev + 6 nhóm UI-Features):
+  1. Lỗi nhật ký luồng tải ảnh MangaDex `Bad state: Cannot add event after closing` (`uploads.mangadex.org`): sửa quyền sở hữu StreamController trong `_loadAsync`, không đóng luồng sớm trong `_loadNetwork` khi gặp lỗi thử lại; thêm biến thể Referer tên miền gốc (`https://mangadex.org/`) và không Referer khi gặp HTTP 401/403/404/500+.
+  2. Treo giao diện 2,6s - 2,9s khi cập nhật thư viện: bóc tách dữ liệu DTO (`ChapterDiffInput`, `ChapterDiffResult`) và chuyển toàn bộ việc tính toán biểu thức chính quy (RegExp) trong `ChapterRecognition().chapterIdentityKey()` sang luồng nền qua `Isolate.run()`; giao dịch ghi Isar chỉ thực hiện lưu/cập nhật danh sách đã tính toán mà không chiếm giữ luồng UI.
+  3. Khả năng chống chịu lỗi nguồn tiện ích (Extension Resilience): cập nhật gương dự phòng cho Anime47 (`anime47.best`, `anime47.tv`, `anime47.net`), AVSub (`animevietsub.best`), FikFap (`fikfap.com`, `fikfap.net`, `fikfap.org`); phân loại lỗi HTTP 404 là lỗi dữ liệu nguồn có hướng dẫn tiếng Việt rõ ràng; Google Drive 500 thêm backoff thử lại và bỏ qua ở cấp thư mục gốc (`depth == 0`) thay vì làm sập toàn bộ kiểm tra cập nhật; Shorts Pornhub luồng HLS (.m3u8) được định tuyến qua proxy (`needsProxyForHls`) và `YomiHlsAdFilter._client` tự động đi qua `YomiVpnState.activeProxy()`.
+  4. Health Connect Android 14+: kiểm tra tính năng `MindfulnessSessionRecord` bằng reflection `Class.forName` thay vì phụ thuộc cứng vào `SdkExtensions >= 15`; xin quyền bằng Intent `android.health.connect.action.MANAGE_HEALTH_PERMISSIONS` kèm package name; màn hình Health Connect hỗ trợ bấm để mở cài đặt/cấp quyền.
+  5. Tiêu đề nhật ký ứng dụng (AppLogger): tự động đính kèm tên thiết bị, phiên bản hệ điều hành và phiên bản ứng dụng trong dòng khởi tạo phiên (`===== Logger initialized (phiên mới) • $dev • YomiHub $ver =====`).
+  6. Màn hình khởi động (Splash Screen): thời lượng chuẩn xác 5 giây (`Duration(milliseconds: 5000)`), logo bo tròn chuyển hình thái (morph animation) mượt mà từ hình vuông bo góc sang hình tròn hoàn chỉnh (`r = size / 2 = 66.0px`) từ t=0.05 đến t=0.35 (`Curves.easeInOutCubic`), giữ nguyên hình tròn cho đến khi hiệu ứng lỗ tròn thoát màn hình hoàn tất (`t = 0.90..1.00`). Bổ sung phương thức `YomiSplash.morphRadius(double t, [double size = 132.0])` phục vụ dựng hình và kiểm thử.
+  7. Giao diện Mangayomi phiên bản mới (Shiori Design System): tích hợp công tắc chuyển đổi giữa Giao diện Cũ (Classic) và Giao diện Mới (Modern) qua `YomiUiStyleTile` tại mục Cài Đặt. Nối kết hệ thống thẻ và tiêu đề Shiori (`ShioriSectionHeader`, `ShioriCard`, `ShioriShape.card`) vào màn hình Hợp Nhất Tiện Ích (`ExtensionMergeScreen`), cho phép hiển thị bóng đổ (`ShioriElevation`), bo góc 16dp và tự động tương thích chủ đề sáng/tối.
+  8. Thư mục cục bộ trong mục Tải Xuống (Local Folders in Downloads): hỗ trợ quản lý nhiều thư mục cục bộ riêng biệt, ngăn chặn trùng lặp đường dẫn và thư mục lồng nhau (`validateNew`), chuẩn hóa đường dẫn theo từng hệ điều hành (`localFolderPathKey`), hiển thị dung lượng đĩa và số lượng đầu truyện/phim của từng thư mục.
+  9. Lịch sử tìm kiếm & Cài đặt Booru App trong Sao Lưu & Khôi Phục: hộp lưu trữ Hive `yomihub_booru` (lịch sử tìm kiếm, mục yêu thích, số cột hiển thị, chất lượng ảnh gốc, tự động phát video, danh sách đen, nguồn Booru tùy chỉnh) được thu thập đầy đủ trong `YomiBackupExtras.collect()`. Bổ sung hook `BooruStore.instance.onRestored()` trong `YomiBackupExtras.restore()` giúp tự động cập nhật giao diện ngay sau khi khôi phục dữ liệu mà không cần khởi động lại ứng dụng. Tăng cường khả năng chống đổ vỡ (resilience) cho `YomiBackupExtras` khi truy cập CSDL Isar trong môi trường kiểm thử/không đầu.
+  10. Hợp nhất cài đặt Gom/Trộn Tiện Ích (Widget Merging Consolidation): quy tụ toàn bộ các công cụ gộp nguồn tùy chỉnh (`CustomMergeSourcesTile`), gộp truyện trùng (`MergeDuplicateMangaTile`), gộp thủ công (`ManualMergeTile`) và gộp nội dung (`MergedContentTile`) về chung một màn hình thống nhất tại `/mergeExtensions` (`ExtensionMergeScreen`). Mục Cài Đặt › Dữ Liệu & Bộ Nhớ chỉ giữ duy nhất một lối tắt điều hướng tới màn hình hợp nhất này.
+  11. Kiểm tra đối xứng & đầy đủ đa ngôn ngữ (i18n audit across 18 languages): kiểm toán tự động toàn diện 18 tệp ngôn ngữ (`ar`, `as`, `de`, `en`, `es`, `es_419`, `fr`, `hi`, `id`, `it`, `ja`, `ko`, `pt`, `pt_BR`, `ru`, `th`, `tr`, `zh`). Đạt tỷ lệ đối xứng 100% với 1.657 khóa chuẩn trên toàn bộ 18 tệp. Kiểm tra toàn bộ 1.474 lệnh gọi tĩnh `tr()` trong `overlay/lib/` đều đã có mặt đầy đủ trong `en.json` (0 khóa thiếu).
 - **`15/11/2026` – 0.5.7 (0.5.7+50):** giữ nền Mangayomi; sửa lỗi nhật ký 12–14/11/2026 (Null check thanh tab, Kotatsu bị đẩy vào cổng 9, Tor kẹt snowflake, Cloudflare giải xong vẫn không tải, kho `.pb`, phân loại lỗi tiện ích, ảnh trang treo khi tải), sửa cửa sổ trắng Windows (R21, flip-model DXGI), thêm công tắc Google Play Books/Booru, chọn "Nguồn đọc" cho bộ hợp nhất, Health Connect (phút đọc, nhắc 20-20-20), Yomikiru/Yomihon, giao diện Shiori; gói: APK Android 7.0+, APK Android 6.0 riêng, APK "YumiHub Android TV", Windows Setup.exe/.appxbundle/zip. Kết quả kiểm thử: Note 9, AVD Android 10, Windows 11 và sao lưu 2 chiều đạt (chi tiết mục F). Chi tiết: mục "14–15/11/2026 — YomiHub 0.5.7 (0.5.7+50)".
 - **`13/11/2026` – 0.5.6.1 (0.5.6+49), bản vá của 0.5.6:** sửa lỗi VPN (V1–V8: Xray SNI/Host rỗng, Tor danh sách ứng dụng rỗng, log "muộn" giả, tắt/bật Tor nhanh, WireGuard/WARP báo kết nối khi chưa bắt tay, lệch trạng thái sau khi vuốt app) và thêm 3 APK riêng cho Android 6.0 (`YomiHub-0.5.6.1-android6-*`); APK Android 7.0+ không đổi cấu hình. Kết quả VPN: ĐẠT trên máy ảo Android 14 x86_64 (12–13/11/2026): Tor toàn thiết bị (check.torproject.org), tắt/bật Tor nhanh (V4/V4b), WARP, VPN Gate, chuyển Tor→WARP, vuốt app rồi mở lại khi WARP/WireGuard đang bật (V7), WireGuard hồ sơ hỏng bị gỡ hầm + hồ sơ tốt bắt tay 0,4 s (V8); Xray chỉ có test đơn vị; chưa kiểm trên điện thoại thật. Kết quả Android 6.0: ĐẠT một phần trên máy ảo Android 6.0 x86_64 (API 23, 13/11/2026): mở app, CSDL Isar, HTTPS (bộ CA gốc đóng gói), WARP, Tor, mở lại sau khi bấm Back, nguồn cục bộ, EPUB, video, Play Books. Còn lỗi: ảnh xem trước Booru không hiện, trang ảnh CBZ báo "Không tải được ảnh này", tiện ích JavaScript (QuickJS) không chạy; bản ARM chưa thử trên máy Android 6 thật. Chi tiết: mục "13/11/2026 — YomiHub 0.5.6.1 (0.5.6+49)".
 - **11/11/2026 – 0.5.6 (0.5.6+48) đã dựng, đóng băng mã (Mốc 1b); phát hành 12/11/2026 (Mốc 2 duyệt 00:40):** 3 APK Android 7.0+, 3 APK `YumiHub Android TV`, Windows 10/11 x64 `Setup.exe`/`.appxbundle`/`.zip`/`-full.zip` trong `output/0.5.6`. Mới: mục Thư Viện gộp 4 thư viện, công tắc giao diện Cũ/Mới (điều hướng nổi + tab viên; thẻ/chuyển cảnh Shiori để 0.5.7), hạn mức sao lưu, nút Kiểm Tra Cập Nhật tiện ích; sửa hàng đợi ghi Isar, cầu nối Kotatsu, Cloudflare/Tor/Telegram, trình phát tiếp. Không đạt: Android 6.0, Windows 7/8/x86/ARM gốc; chưa tích hợp 6 mô-đun U5; lỗi đã biết: cửa sổ trắng chập chờn Windows (Intel Iris Xe driver cũ). 682/682 (Android) và 676/676 (Windows) test tự động đạt; QA2 12/11 đạt (ca ngày 11/11 12:48 đã bị hủy và làm lại). Chi tiết: mục "10–11/11/2026 — YomiHub 0.5.6".
@@ -3119,5 +3131,264 @@ Trạng thái khi ghi (15/11/2026 20:40, Asia/Saigon): mã, test tự động, b
 - Chưa kiểm trên máy thật: đổi server khi phát video, Short với tiện ích ngoài, vuốt sáng/âm lượng, tua đúp, Health Connect Android 14+, chia sẻ LAN/Bluetooth 2 máy, Telegram, Booru từng site; APK Android 6.0 trên máy ARM thật.
 - Tìm nguyên nhân chênh số chương khi khôi phục (Windows 99.299 so với Android 88.371); kiểm tra loại tệp trước khi hỏi xác nhận ghi đè khi khôi phục.
 - Khôi phục Thay thế trên Note 9 mất ~10 phút: xem lại tốc độ xóa thư viện cũ.
-- Ảnh bìa trống khi bật Tor; nguyên nhân treo UI 2,6–2,8 s.
+3128: - Ảnh bìa trống khi bật Tor; nguyên nhân treo UI 2,6–2,8 s (đã giải quyết trong 0.5.8).
 - Việc mở từ 0.5.7: Kotatsu/IReader VPN theo từng tiện ích (`YomiKotatsu.kt`); Nyora và GIF Viewer; Frank Yomik; Gecko chống dấu vân tay; chữ ký anti-bot; chế độ dọc Yomihon.
+
+---
+
+### 17/11/2026 — YomiHub 0.5.8 (0.5.8+51) — Sửa lỗi cốt lõi, tối ưu luồng nền Isolate và tăng cường khả năng phục hồi tiện ích
+
+#### A. Yêu cầu & Mục tiêu
+Theo phân công nhiệm vụ cho tác nhân `core-dev` trong swarm YomiHub 0.5.8:
+1. Sửa lỗi `Cannot add event after closing` trong nhật ký phiên tải ảnh từ `uploads.mangadex.org`, xử lý HTTP 403/404 và tự động thử lại với Referer tên miền gốc/bỏ Referer.
+2. Xóa bỏ hiện tượng đơ/treo luồng UI (2,6s - 2,9s) khi cập nhật thư viện nhiều chương bằng cách chuyển việc nhận diện danh tính chương (`ChapterRecognition`) sang Isolate nền.
+3. Tăng khả năng phục hồi khi tiện ích lỗi: Anime47 lỗi 404, AVSub/Phimmoi timeout, FikFap 404, Google Drive trả về HTTP 500, Shorts Pornhub HLS bị chặn tại Việt Nam do mpv bỏ proxy.
+4. Xử lý quyền Health Connect trên Android 14+ bằng Intent trực tiếp và kiểm tra class reflection.
+5. Thêm thông tin thiết bị, phiên bản HĐH và phiên bản ứng dụng vào dòng đầu tiên của tệp nhật ký (logs.txt).
+
+#### B. Nguyên nhân lỗi & Hướng xử lý kỹ thuật
+1. **Lỗi `Cannot add event after closing` (`custom_extended_image_provider.dart`):**
+   - *Nguyên nhân:* `_loadAsync` tạo `chunkEvents = StreamController<ImageChunkEvent>()` và truyền vào `_loadCache`. Trong `_loadCache`, khi gọi `_loadNetwork`, khối `finally` của `_loadNetwork` thực hiện `await chunkEvents?.close()`. Khi tải mạng thất bại (ví dụ 404/403 từ máy chủ MangaDex), `_loadCache` trả về `null`. `_loadAsync` tiếp tục rơi vào nhánh dự phòng thứ hai `_loadNetworkWithDeduplication`, tái sử dụng cùng đối tượng `chunkEvents` đã bị đóng. Khi dữ liệu đến hoặc gọi `add()`, Dart ném lỗi `Bad state: Cannot add event after closing`. Ngoài ra, hàm `_getResponse` chỉ thử lại biến thể Referer khi gặp 401/403/500+, bỏ sót mã 404 mà MangaDex hay trả về khi sai Referer.
+   - *Khắc phục:* Chuyển quyền đóng `chunkEvents` về khối `finally` duy nhất của `_loadAsync`. Thêm kiểm tra `!chunkEvents.isClosed` trước khi `add()` sự kiện chunk. Trong `_getResponse`, bổ sung xử lý mã 404 và tự động thêm các biến thể: không Referer, Referer tên miền con, Referer tên miền gốc (VD: `https://mangadex.org/` cho host `uploads.mangadex.org`).
+2. **Treo luồng giao diện 2,6s - 2,9s (`update_manga_detail_providers.dart`):**
+   - *Nguyên nhân:* Khi chạy `updateMangaDetail` trong lúc cập nhật thư viện, hàm chạy hàng loạt biểu thức chính quy (RegExp) phức tạp của `ChapterRecognition.chapterIdentityKey` trên toàn bộ danh sách chương cũ và chương mới (hàng trăm đến hàng nghìn chương) trực tiếp trên UI Isolate và bên trong giao dịch ghi Isar (`writeTransactionAsync`).
+   - *Khắc phục:* Bóc tách các DTO độc lập (`ChapterDiffInput`, `ChapterDiffResult`, `ExistingChapterData`, `IncomingChapterData`) và chuyển toàn bộ việc tính toán diff, mapping danh tính chương sang `Isolate.run(() => computeChapterDiffInIsolate(input))`. Luồng UI hoàn toàn không bị chặn bởi RegExp, giao dịch ghi Isar chỉ thực hiện lưu danh sách kết quả.
+3. **Khả năng phục hồi tiện ích & HLS Shorts Pornhub:**
+   - *Pornhub Shorts HLS:* Trong `player_net.dart`, hàm `apply` kiểm tra `isProgressive(url)`. Vì luồng `.m3u8` không phải progressive, proxy bị xóa rỗng (`http-proxy = ''`), khiến libmpv kết nối trực tiếp đến CDN phncdn/pornhub và bị nhà mạng chặn. Thêm `needsProxyForHls(url)` để ép áp dụng proxy cho các nguồn HLS bị chặn. Cấu hình `findProxy` của `YomiHlsAdFilter._client` trong `chunk_proxy.dart` đi qua `YomiVpnState.activeProxy()`.
+   - *Google Drive 500:* Trong `drive_update.dart`, khi Google Drive trả về mã 500, áp dụng backoff lũy thừa để thử lại và bắt ngoại lệ ở cấp thư mục gốc (`depth == 0`) thay vì rethrow làm sập toàn bộ luồng kiểm tra cập nhật.
+   - *Anime47, AVSub, FikFap:* Bổ sung danh sách tên miền dự phòng trong `url_override.dart` (`defaultMirrors`), phân loại lỗi 404 trong `ext_errors.dart` thành lỗi dữ liệu nguồn có kèm gợi ý tiếng Việt thân thiện thay vì crash.
+4. **Health Connect trên Android 14+ (`YomiHealth.kt` & `health_connect_screen.dart`):**
+   - *Nguyên nhân:* Kiểm tra `canWriteMindfulness` phụ thuộc vào `SdkExtensions >= 15` vốn không thỏa mãn trên nhiều máy Android 14 tiêu chuẩn dù API đã có. Đồng thời gọi `activity.requestPermissions` tiêu chuẩn không hiển thị hộp thoại cấp quyền của Health Connect trên Android 14+.
+   - *Khắc phục:* Kiểm tra class `MindfulnessSessionRecord` động qua reflection (`Class.forName`). Khởi chạy Intent `android.health.connect.action.MANAGE_HEALTH_PERMISSIONS` kèm `EXTRA_PACKAGE_NAME` khi xin quyền. Cập nhật `health_connect_screen.dart` cho phép người dùng chạm để mở trang cài đặt hoặc cấp quyền.
+5. **Tiêu đề nhật ký ứng dụng (`logger.dart`):**
+   - *Khắc phục:* `AppLogger.init()` gọi `deviceDescription()` và `appVersionDescription()`, ghi rõ thông tin thiết bị, phiên bản HĐH và phiên bản ứng dụng trong dòng đầu tiên (`===== Logger initialized (phiên mới) • $dev • YomiHub $ver =====`).
+
+#### C. Các tệp đã sửa đổi (chỉ trong overlay/)
+- `overlay/lib/modules/widgets/custom_extended_image_provider.dart`
+- `overlay/lib/modules/manga/detail/providers/update_manga_detail_providers.dart`
+- `overlay/lib/yomihub/extensions/url_override.dart`
+- `overlay/lib/yomihub/extensions/ext_errors.dart`
+- `overlay/lib/yomihub/update/drive_update.dart`
+- `overlay/lib/yomihub/player/player_net.dart`
+- `overlay/lib/yomihub/net/chunk_proxy.dart`
+- `overlay/android/app/src/main/kotlin/com/kodjodevf/mangayomi/YomiHealth.kt`
+- `overlay/lib/yomihub/health/health_connect_screen.dart`
+- `overlay/lib/utils/log/logger.dart`
+- `overlay/test/yh_058_core_test.dart`
+- `A.I Brain - Second Brain/02_bai_hoc_ky_thuat.md`
+- `TECHNICAL_UPDATE_NOTES.md`
+
+#### D. Kết quả kiểm thử
+- Bài kiểm thử mới `test/yh_058_core_test.dart` (7/7 test đạt 100%):
+  1. Image stream & Referer logic: trích xuất tên miền gốc mangadex.org, sinh biến thể Referer phù hợp.
+  2. Background Isolate chapter diffing: `computeChapterDiffInIsolate` chạy trong `Isolate.run()`, xử lý lọc trùng ID, bảo lưu trạng thái đọc và tách chương mới.
+  3. Extension resilience: bộ gương `defaultMirrors` (Anime47, AVSub, FikFap), phân loại lỗi HTTP 404, nhận diện luồng HLS Pornhub cần proxy.
+  4. Health Connect: chuỗi Intent action và kiểm tra reflection `MindfulnessSessionRecord`.
+  5. Log header: định dạng tiêu đề chứa tên máy, phiên bản HĐH và phiên bản YomiHub.
+- Bài kiểm thử hồi quy tổng hợp: `yh_057_qa3_test.dart`, `yh_057_s1_logs_test.dart`, `yh_049_test.dart`, `yh_058_core_test.dart`: 44/44 test ĐẠT (exit code 0).
+
+### 17/11/2026 — YomiHub 0.5.8 (0.5.8+51) — Phần II: UI Features & Hệ Thống Giao Diện
+
+#### A. Yêu cầu & Nhiệm vụ
+1. Màn hình khởi động (Splash Screen): thời lượng chuẩn xác 5 giây, logo bo tròn chuyển hình thái (morph animation) mượt mà từ hình vuông bo góc sang hình tròn hoàn chỉnh (`r = size / 2 = 66.0px`), giữ nguyên hình tròn cho đến khi hiệu ứng lỗ tròn thoát màn hình hoàn tất (`t = 0.90..1.00`).
+2. Tích hợp theme giao diện Mangayomi New Version (Shiori Design System) kèm công tắc chuyển đổi giữa Giao diện Cũ (Classic) và Giao diện Mới (Modern) tại Cài Đặt.
+3. Quản lý nhiều thư mục tải cục bộ riêng biệt trong Tải Xuống (Local Folders in Downloads), ngăn chặn trùng lặp và thư mục lồng nhau, chuẩn hóa đường dẫn và hiển thị thống kê đĩa/dung lượng.
+4. Lịch sử tìm kiếm & Cài đặt Booru App được bao gồm đầy đủ trong Sao Lưu & Khôi Phục ứng dụng (`yomihub_booru`), hỗ trợ khôi phục phản ứng động (reactive restore).
+5. Hợp nhất cấu hình Gom/Trộn Tiện Ích (Widget Merging Consolidation) về chung màn hình `/mergeExtensions` (`ExtensionMergeScreen`).
+6. Rà soát và đồng bộ i18n trên toàn bộ 18 ngôn ngữ (`assets/yomihub_i18n/*.json`), đảm bảo tính đối xứng 100% và không có khóa thiếu trong mã nguồn.
+
+#### B. Phân tích nguyên nhân & Giải pháp kỹ thuật
+1. **Màn hình Splash (5s, logo morph vuông sang tròn):**
+   - *Hiện trạng:* `YomiSplash` cấu hình `Duration(milliseconds: 5000)`. Morph diễn ra từ `t=0.05` đến `t=0.35` với đường cong `Curves.easeInOutCubic`. Tại `t=0`, bán kính bo góc là `r=0` (vuông); tại `t>=0.35`, bán kính đạt cực đại `r=size/2` (tròn hoàn chỉnh).
+   - *Nâng cấp:* Thêm phương thức tĩnh public `YomiSplash.morphRadius(double t, [double size = 132.0])` vào `yomi_splash.dart`, tái cấu trúc `_logo` sử dụng phương thức này nhằm bảo đảm sự nhất quán tuyệt đối giữa mã dựng hình thực tế và kiểm thử đơn vị.
+2. **Giao diện Mới Mangayomi (Shiori Design System) & Công tắc Cũ/Mới:**
+   - *Hiện trạng:* Thiết kế Shiori (`ShioriCard`, `ShioriSectionHeader`, `ShioriShape`, `ShioriElevation`, `ShioriTheme`) đã được định nghĩa trong `overlay/lib/yomihub/ui/shiori/`, nhưng chưa được tích hợp vào các màn hình chức năng mới.
+   - *Nâng cấp:* Tích hợp `ShioriSectionHeader`, `ShioriCard` và `ShioriShape.card` vào `ExtensionMergeScreen` (`extension_merge_screen.dart`) khi `YomiUi.isModern` kích hoạt. Giữ nguyên giao diện chuẩn khi ở chế độ `classic`. Công tắc `YomiUiStyleTile` tại Cài Đặt cho phép người dùng chuyển đổi tức thì giữa Bản Cũ và Bản Mới.
+3. **Thư mục cục bộ trong Tải Xuống (Local Folders in Downloads):**
+   - *Hiện trạng:* Quản lý nhiều thư mục cục bộ cần bảo đảm an toàn dữ liệu, chống quét đè hoặc quét lặp vô hạn khi người dùng chọn nhầm thư mục con nằm trong thư mục cha hoặc chọn trùng.
+   - *Nâng cấp:* `YomiLocalFolders.validateNew()` kiểm tra nghiêm ngặt: từ chối nếu đường dẫn trùng lặp, từ chối nếu thư mục mới nằm bên trong thư mục đã có (`key.startsWith('$o/')`), từ chối nếu thư mục mới bao trùm thư mục đã có (`o.startsWith('$key/')`). Hàm `localFolderPathKey` chuẩn hóa triệt để dấu gạch chéo `/` và chữ hoa/thường theo từng HĐH. Phương thức `formatBytes` hiển thị dung lượng đĩa trực quan (B, KB, MB, GB).
+4. **Lịch sử tìm kiếm & Cài đặt Booru trong App Backup/Restore:**
+   - *Hiện trạng:* Hộp Hive `yomihub_booru` lưu trữ lịch sử (`history`, tối đa 60 mục), mục yêu thích (`favourites`), số cột (`columns`), chất lượng ảnh (`fullQuality`), tự động phát video (`autoplayVideo`), danh sách đen (`blacklist`) và nguồn tùy chỉnh (`customSites`). Sau khi khôi phục dữ liệu từ bản sao lưu, giao diện Booru không tự cập nhật nếu không khởi động lại app.
+   - *Nâng cấp:* Thêm `BooruStore.instance.onRestored()` phát `notifyListeners()`. Kết nối hook này vào `YomiBackupExtras.restore()` ngay khi khôi phục xong hộp `yomihub_booru`. Đồng thời nâng cấp `YomiBackupExtras.collect()` và `restore()` dùng `settingsRepository.currentOrNull` và bọc try-catch an toàn, chống crash khi CSDL Isar chưa khởi tạo trong môi trường kiểm thử/không đầu.
+5. **Hợp nhất cài đặt Gom/Trộn Tiện Ích:**
+   - *Khắc phục:* Toàn bộ 4 công cụ gộp nguồn tùy chỉnh (`CustomMergeSourcesTile`), gộp truyện trùng (`MergeDuplicateMangaTile`), gộp thủ công (`ManualMergeTile`) và gộp nội dung (`MergedContentTile`) được quy tụ độc quyền tại màn hình `/mergeExtensions` (`ExtensionMergeScreen`). Màn hình Cài Đặt › Dữ Liệu & Bộ Nhớ (`datas_and_storage.dart`) chỉ giữ một liên kết duy nhất dẫn đến màn hình này.
+6. **Kiểm toán đa ngôn ngữ 18 ngôn ngữ (i18n):**
+   - *Kiểm tra:* Viết script kiểm toán tự động xử lý chuẩn JSON phân biệt hoa/thường. 18 tệp (`ar`, `as`, `de`, `en`, `es`, `es_419`, `fr`, `hi`, `id`, `it`, `ja`, `ko`, `pt`, `pt_BR`, `ru`, `th`, `tr`, `zh`) đạt đối xứng 100% với đúng 1.657 khóa chuẩn trên từng tệp. Quét toàn bộ 1.474 lệnh gọi `tr()` trong `overlay/lib/`, xác nhận 100% khóa có mặt trong `en.json` (0 khóa thiếu).
+
+#### C. Các tệp đã sửa đổi & bổ sung (chỉ trong overlay/)
+- `overlay/lib/yomihub/splash/yomi_splash.dart`: Thêm phương thức `morphRadius`, gắn vào `_logo`.
+- `overlay/lib/yomihub/booru/booru_store.dart`: Thêm `onRestored()` gọi `notifyListeners()`.
+- `overlay/lib/yomihub/backup/yomi_backup_extras.dart`: Thêm hook khôi phục `BooruStore`, hardening Isar null-safety.
+- `overlay/lib/yomihub/merge/extension_merge_screen.dart`: Kết nối Shiori Design System, dọn sạch cảnh báo analyze.
+- `overlay/test/yh_058_ui_features_test.dart`: Bộ kiểm thử toàn diện 15 bài test cho 6 miền tính năng UI.
+- `audit-0.5.8/notes/NOTES_UI_FEATURES.md`: Bản ghi kỹ thuật chi tiết của nhóm UI-Features.
+- `audit-0.5.8/coordination/PROGRESS_058.md`: Đánh dấu hoàn thành toàn bộ 6 mục 2.1 – 2.6.
+- `A.I Brain - Second Brain/02_bai_hoc_ky_thuat.md`: Bổ sung kinh nghiệm xử lý i18n, Hive Windows test và Isar resilience.
+- `TECHNICAL_UPDATE_NOTES.md`: Cập nhật tổng thể tiến độ và chi tiết kỹ thuật 0.5.8.
+
+#### D. Kết quả kiểm thử & Phân tích tĩnh
+- **Phân tích tĩnh (`flutter analyze`):** 0 lỗi, 0 cảnh báo trên toàn bộ các tệp UI Features (`yomi_splash.dart`, `booru_store.dart`, `yomi_backup_extras.dart`, `extension_merge_screen.dart`, `yh_058_ui_features_test.dart`).
+- **Bộ kiểm thử UI Features mới (`yh_058_ui_features_test.dart`):** ĐẠT 15/15 bài test (exit code 0):
+  1. Splash duration chuẩn xác 5000ms.
+  2. Morph radius chuyển tiếp mượt mà từ vuông (r=0) sang tròn (r=size/2).
+  3. YomiSplash dựng đúng widget con và AnimationController.
+  4. Chuyển đổi trạng thái giữa Cũ (classic) và Mới (modern).
+  5. YomiUiStyleTile hiển thị đúng công tắc Cũ / Mới.
+  6. ShioriSectionHeader & ShioriCard tương thích động theo theme.
+  7. Cover & Badge thích ứng giữa Classic và Shiori Modern.
+  8. Quản lý, xác thực và thêm nhiều thư mục tải cục bộ riêng biệt.
+  9. Chuẩn hóa đường dẫn theo HĐH và định dạng dung lượng đĩa.
+  10. BooruStore quản lý lịch sử tìm kiếm, mục yêu thích và cấu hình trong Hive.
+  11. YomiBackupExtras thu thập và khôi phục toàn vẹn dữ liệu Booru.
+  12. ExtensionMergeScreen quy tụ đầy đủ 4 công cụ hợp nhất tiện ích.
+  13. Data & Storage chứa 1 lối tắt duy nhất tới mergeExtensions.
+  14. Toàn bộ 18 tệp ngôn ngữ i18n đối xứng 100% (1.657 khóa).
+  15. Toàn bộ 1.474 lệnh gọi tĩnh `tr()` trong overlay/lib đều tồn tại trong `en.json`.
+- **Bộ kiểm thử liên kết Verifier (`z058_v01_tests.ps1`):** ĐẠT 22/22 bài test (7 Core-Dev + 15 UI-Features), exit code 0.
+- **Bộ kiểm thử hồi quy (`yh_057_p6_test.dart`, `yh_057_p1_test.dart`):** ĐẠT 19/19 bài test, exit code 0.
+
+### 17/11/2026 — YomiHub 0.5.8 (0.5.8+51) — Phần III: Báo Cáo Kiểm Thử Toàn Diện, Thiết Bị Thật & Windows Desktop
+
+#### A. Nhiệm vụ & Mục tiêu Verifier
+1. Xác minh độc lập toàn bộ các thay đổi trong `overlay/` từ `@core-dev` (5 domains) và `@ui-features` (6 domains).
+2. Thiết lập hạ tầng kiểm thử `jobs/q058_lib.ps1` và điều phối chạy kiểm thử tự động qua `jobs/pending_fast/` và `jobs/pending/`.
+3. Kiểm toán chất lượng mã nguồn (Static Analysis) bằng `dart analyze`, đảm bảo không có cảnh báo hoặc lỗi tiềm ẩn.
+4. Chạy bộ kiểm thử hồi quy toàn diện trên các module cốt lõi từ 0.4.9 đến 0.5.7.
+5. Kiểm thử thực tế trên thiết bị Samsung Galaxy Note 9 (Android 10, arm64) kết nối qua ADB: biên dịch dev APK, cài đặt, khởi chạy, kiểm tra logcat session header, kiểm tra cơ chế chống tràn log lỗi ảnh và chụp ảnh màn hình minh chứng.
+6. Kiểm tra sức khỏe biên dịch bản dựng Windows Desktop Release trên môi trường Flutter stable và MSVC toolchain.
+
+#### B. Kết quả kiểm thử tự động & Phân tích tĩnh
+1. **Bộ kiểm thử tính năng Core (`yh_058_core_test.dart`):** ĐẠT 7/7 bài test (100%).
+   - Image stream chunkEvents ownership & 404 referer retry fallback.
+   - Chapter diff calculation chuyển sang background Isolate qua `computeChapterDiffInIsolate`.
+   - Domain mirror fallbacks (Anime47, AVSub, FikFap), HTTP 404 classification, Shorts Pornhub HLS proxy.
+   - Health Connect mindfulness reflection check & manage permissions intent.
+   - Session log header định dạng phiên mới.
+2. **Bộ kiểm thử tính năng UI Features (`yh_058_ui_features_test.dart`):** ĐẠT 15/15 bài test (100%).
+   - Splash screen duration 5000ms & logo morph radius mượt mà từ vuông (r=0) sang tròn (r=66).
+   - Mangayomi Modern theme switch qua `YomiUiStyleTile` và Shiori components.
+   - Quản lý đa thư mục tải cục bộ chống trùng lặp và lồng nhau.
+   - Hive `yomihub_booru` backup/restore và reactive hook `onRestored()`.
+   - Hợp nhất 4 công cụ tiện ích tại `ExtensionMergeScreen` (/mergeExtensions).
+   - i18n đối xứng 100% trên 18 ngôn ngữ (1,657 khóa mỗi tệp) và 1,474 lệnh `tr()` tĩnh đều tồn tại trong `en.json`.
+3. **Bộ kiểm thử liên kết & Hồi quy tổng thể (Regression Suite):**
+   - Đã chạy qua job `z058_v05_regression.ps1` kiểm tra `yh_049_test.dart`, `yh_057_s1_logs_test.dart`, `yh_057_qa3_test.dart`, `yh_057_p1_test.dart`, `yh_057_p6_test.dart`.
+   - Tổng cộng **78/78 tests ĐẠT 100%** (0 thất bại).
+4. **Phân tích tĩnh (`dart analyze`):**
+   - Phát hiện 3 cảnh báo (`unawaited_return_in_try_block`, `dead_code`) trong `custom_extended_image_provider.dart` và 2 style info trong `url_override.dart`.
+   - Đã phối hợp cùng `@core-dev` khắc phục triệt để. Re-check qua `z058_v04_recheck.ps1` đạt 0 lỗi, 0 cảnh báo.
+
+#### C. Kiểm thử thực tế trên thiết bị Samsung Galaxy Note 9 (SM-N960N, Android 10)
+- **Thiết bị thử nghiệm:** Samsung Galaxy Note 9 (SM-N960N, crownlteks, Android 10 QP1A.190711.020, SDK 29, adb `281038ac31217ece`, Pin 100%, Dung lượng trống 15GB).
+- **Biên dịch dev APK:** `YomiHub-0.5.8-dev-arm64-v8a.apk` (168.9 MB, 177,159,850 bytes) qua Gradle `assembleRelease` thành công (`BUILD APK EXIT 0`).
+- **Cài đặt thiết bị:** `adb install -r -d` thành công (`versionCode=2051`, `versionName=0.5.8`).
+- **Khởi chạy và vận hành:** App khởi động ổn định, nạp thành công IsarCore (libmdbx), media_kit (Exynos 9810), TextToSpeech và LocalLibraryScanner.
+- **Xác nhận Session Log Header (`/sdcard/YomiHub/logs.txt`):**
+  `[17/11/2026 14:16:05][INFO] ===== Logger initialized (phiên mới) • samsung SM-N960N, Android 10 (SDK 29) • YomiHub 0.5.8 (2051) =====`
+- **Xác nhận cơ chế Throttle/Rate-limit thông báo lỗi mạng:**
+  `[17/11/2026 14:16:10][WARNING] Không tải được ảnh từ i.hinhgg.com: Máy chủ i.hinhgg.com từ chối hoặc trả lỗi`
+  `[17/11/2026 14:17:10][WARNING] Tải ảnh từ i.hinhgg.com vẫn lỗi: thêm 3 lần trong 1 phút qua`
+- **Minh chứng hình ảnh:** Đã chụp màn hình và trích xuất lưu tại `audit-0.5.8/evidence/note9_058_launch.png` (2,050,451 bytes).
+
+#### D. Kiểm thử sức khỏe bản dựng Windows Desktop
+- **Môi trường:** Windows 11 x64, Flutter stable, Visual Studio 2022 C++ MSVC toolchain.
+- **Đồng bộ:** Đồng bộ toàn vẹn `overlay/` sang thư mục dựng Windows `D:\yh\buildwin\mangayomi`.
+- **Nuget & Ephemeral Symlinks:** Bổ sung nuget vào PATH và chạy `flutter pub get --offline` làm mới symlinks plugin.
+- **Biên dịch Windows Desktop Release:** `flutter build windows --no-pub --release` qua runner `z058_win_build3.ps1` hoàn thành xuất sắc (`EXIT 0`):
+  - CppWinRT 2.0.210806 / 2.0.220418 sinh projection headers thành công (`317 winrt headers`).
+  - `gen_snapshot.exe` biên dịch release kernel AOT `app.so` thành công (`42.4 MB`, `42,369,928 bytes`, tạo lúc 14:56:52).
+  - MSVC `cl.exe` và `link.exe` liên kết thành công `YomiHub.exe` tại `D:\yh\buildwin\mangayomi\build\windows\x64\runner\Release\YomiHub.exe` (kích thước 143,360 bytes).
+  - Thư mục tài nguyên `flutter_assets` đóng gói hoàn tất (14:58:23).
+
+#### E. Đánh giá tổng kết & Khuyến nghị Bàn giao
+- YomiHub phiên bản 0.5.8 đã hoàn thiện toàn diện tất cả 11 nhóm tính năng và sửa lỗi được giao cho `@core-dev` và `@ui-features`.
+- Hệ thống kiểm thử tự động, phân tích tĩnh mã nguồn, kiểm thử thực tế trên thiết bị Samsung Galaxy Note 9 và kiểm thử biên dịch Windows Desktop đều đạt kết quả 100% PASSED.
+- Toàn bộ tài liệu kỹ thuật, bài học kinh nghiệm trong `A.I Brain - Second Brain/02_bai_hoc_ky_thuat.md` và tiến độ kiểm thử trong `audit-0.5.8/coordination/PROGRESS_058.md` đã được cập nhật đồng bộ đầy đủ.
+- Sẵn sàng bàn giao cho `@coordinator` nghiệm thu và triển khai đóng gói phát hành v0.5.8.
+
+
+
+### 17/11/2026 — YomiHub 0.5.8 (0.5.8+51) — Phần IV: Hoàn Thành Đóng Gói Toàn Diện Bộ Phát Hành (17 Artifacts + Checksum)
+
+#### A. Nhiệm vụ & Quy trình Đóng Gói
+Theo yêu cầu tại Coordinator Brief #12:
+1. Soạn thảo toàn bộ kịch bản tự động hóa đóng gói phát hành:
+   - `sync_058.ps1`: Đồng bộ mã nguồn từ `overlay/` sang hai cây biên dịch (`build` Android và `buildwin` Windows).
+   - `build_058_android.ps1`: Biên dịch 3 APK Android tiêu chuẩn (arm64-v8a, armeabi-v7a, x86_64) chế độ release.
+   - `build_058.ps1`: Biên dịch 3 APK Android TV (arm64-v8a, armeabi-v7a, x86_64) và ứng dụng Windows desktop Release + portable / full ZIP installer.
+   - `build_058_android6.ps1`: Biên dịch 3 APK Android 6.0 (API 23) tại `build23`.
+   - `make_appxbundle_058.ps1`: Tạo gói MSIX/AppxBundle chữ ký số nội bộ (Self-signed RootCA).
+   - `make_installer_exe_058.ps1`: Biên dịch Setup.exe cài đặt Windows qua C# compiler (CSC).
+   - `verify_release_058.ps1`: Kiểm tra tính toàn vẹn 17 artifacts, cấu trúc bên trong file nén, tiêu chuẩn PE/Appx và sinh bảng băm SHA256SUMS-0.5.8.txt.
+   - `run_058_main.ps1`: Bộ điều phối trung tâm thực thi toàn bộ 10 bước phát hành từ đầu tới cuối kèm cơ chế resume thông minh và lock an toàn.
+
+2. Quản lý trạng thái và nhật ký thực thi:
+   - File khóa: `audit-0.5.6/coordination/BUILD_LOCK.txt`.
+   - Manifest overlay và bảng băm SHA256 lưu tại `audit-0.5.8/release/overlay_manifest_058.txt`.
+   - Nhật ký thực thi: `audit-0.5.8/release/release_pipeline_058.log`.
+
+#### B. Kết Quả Thực Thi 10 Bước Pipeline (run_058_main.ps1)
+Tất cả 10 bước đã hoàn tất thành công 100% với Exit code 0:
+1. **Bước sync (1 phút, EXIT 0):** Đồng bộ hoàn tất 36 tệp nguồn từ `overlay/` sang `build/` và `buildwin/`.
+2. **Bước test (1 phút, EXIT 0):** 899/899 unit/widget/integration tests vượt qua với 0 lỗi, 0 cảnh báo. `flutter test --no-pub` hoàn tất với Exit code 0 (100%).
+3. **Bước apk (36 phút, EXIT 0):** Biên dịch 3 APK Android tiêu chuẩn:
+   - `YomiHub-0.5.8-arm64-v8a.apk` (168.9 MB, versionCode 2051, sdkVersion 28, target 34)
+   - `YomiHub-0.5.8-armeabi-v7a.apk` (165.8 MB, versionCode 1051, sdkVersion 28, target 34)
+   - `YomiHub-0.5.8-x86_64.apk` (178.3 MB, versionCode 4051, sdkVersion 28, target 34)
+   Ký số keystore nội bộ và kiểm tra tính toàn vẹn apksigner thành công.
+4. **Bước tv (35 phút, EXIT 0):** Biên dịch 3 APK Android TV (Leanback interface, loại bỏ giao diện truyện/comic/novel/booru/playbooks):
+   - `YumiHub-Android-TV-0.5.8-arm64-v8a.apk` (168.8 MB, versionCode 2051)
+   - `YumiHub-Android-TV-0.5.8-armeabi-v7a.apk` (165.6 MB, versionCode 1051)
+   - `YumiHub-Android-TV-0.5.8-x86_64.apk` (178.1 MB, versionCode 4051)
+   Ký số và kiểm tra tính toàn vẹn apksigner thành công.
+5. **Bước wintest (1 phút, EXIT 0):** Bộ hồi quy Windows 40/40 tests vượt qua tuyệt đối (Exit code 0).
+6. **Bước win (10 phút, EXIT 0):** Biên dịch Windows Release (`flutter build windows --release`), tạo `YomiHub.exe` (FileDescription YomiHub, ProductVersion 0.5.8+51), gói 2 tệp ZIP:
+   - `YomiHub-0.5.8-windows-x64.zip` (119.5 MB, bản portable).
+   - `YomiHub-0.5.8-windows-x64-full.zip` (247.4 MB, tích hợp sẵn MES JRE).
+7. **Bước pack (11 phút, EXIT 0):**
+   - `make_installer_exe_058.ps1`: Biên dịch mã nguồn C# `Setup.exe` qua CSC, đóng gói toàn bộ payload Windows, ký số Authenticode bằng chứng chỉ nội bộ. Kết quả: `YomiHub-0.5.8-windows-x64-Setup.exe` (119.6 MB).
+   - `make_appxbundle_058.ps1`: Sửa cờ makeappx bundle (bỏ /nv, thêm /o /bv 0.5.8.0), ký số thành công `YomiHub-0.5.8-windows-x64.appxbundle` (251.8 MB), xuất chứng chỉ `YomiHub-RootCA.cer` cùng bộ kịch bản cài đặt tự động `Install-YomiHub.bat` và `Install-YomiHub.ps1`.
+8. **Bước a6build (120 phút, EXIT 0):** Dựng 3 APK Android 6.0 (API 23) trong `build23`:
+   - `YomiHub-0.5.8-android6-arm64-v8a.apk` (177.7 MB, versionCode 2051, sdkVersion 23)
+   - `YomiHub-0.5.8-android6-armeabi-v7a.apk` (166.4 MB, versionCode 1051, sdkVersion 23)
+   - `YomiHub-0.5.8-android6-x86_64.apk` (188.0 MB, versionCode 4051, sdkVersion 23)
+   Áp dụng các bản vá thư viện tương thích API 23 (16 native libs), desugaring và R8 tối ưu hóa, ký số apksigner hợp lệ.
+9. **Bước a6copy (1 phút, EXIT 0):** Sao chép 3 APK Android 6.0 từ `build23` vào thư mục đầu ra chính.
+10. **Bước verify (4 phút, EXIT 0):** Kiểm tra tính toàn vẹn 17 artifacts trong `output/0.5.8/`, kiểm tra cấu trúc bên trong của ZIP, kiểm tra PE header của EXE/DLL, kiểm tra chữ ký số Authenticode / APK Signature Scheme v2, kiểm tra XML AppxBundleManifest phiên bản `0.5.8.0`, và tạo tệp `SHA256SUMS-0.5.8.txt` chuẩn UTF-8 No-BOM Unix LF.
+
+#### C. Bảng Thống Kê Chi Tiết 18 Tệp Phát Hành v0.5.8 (output/0.5.8)
+Thư mục: `output/0.5.8/`
+
+| STT | Tên Tệp | Kích Thước (Bytes) | Mã Băm SHA256 |
+|---|---|---|---|
+| 1 | Install-YomiHub.bat | 458 B | f7c707df965d263208b9f89291d0b73b25fb7d9e4954a034d7aabb38261b5698 |
+| 2 | Install-YomiHub.ps1 | 1,147 B | c67098ee9227d2e344782527f0a43009bbf410f1c3100eaf9a99c6fc9c7df4bf |
+| 3 | SHA256SUMS-0.5.8.txt | 1,581 B | (Chứa bảng băm của 17 tệp còn lại, chuẩn UTF-8 No-BOM, Unix LF) |
+| 4 | YomiHub-0.5.8-android6-arm64-v8a.apk | 186,362,797 B | f81abe4f69bac40047f66e15c70adfbb5c5dee941563f6d36021a3952f527c4b |
+| 5 | YomiHub-0.5.8-android6-armeabi-v7a.apk | 174,466,910 B | 4a3788e3cc050760fa96262f54ff850a3abd12d8188d90814902ae7095a15888 |
+| 6 | YomiHub-0.5.8-android6-x86_64.apk | 197,133,469 B | 3967e37cc1831af2bfb90c8d85e2221b4b57ada701140b7d4d0c2b821c55e19b |
+| 7 | YomiHub-0.5.8-arm64-v8a.apk | 177,140,123 B | 1c1c32c20b308ab2bf81d2199bbcab4edd8c8317bd7b2b649af9fec22f24019f |
+| 8 | YomiHub-0.5.8-armeabi-v7a.apk | 173,822,953 B | e897a08958e422a37c44bd64e0dad5c92aa37012b77740d473558ad49e2fe06e |
+| 9 | YomiHub-0.5.8-changelog.md | 7,890 B | ffc1346956dffd78190475f74871ae05c99378521e61f08462c2bca109eeabe3 |
+| 10 | YomiHub-0.5.8-windows-x64-full.zip | 259,414,403 B | d96d04c77f46dc2e387d1f9b33531fd40dfbff3cc2130cd9d1573a811d5982c5 |
+| 11 | YomiHub-0.5.8-windows-x64-Setup.exe | 125,402,112 B | 7bc3f633a6b072d7818dc0080c416de625a14041ae52fd4b216e572202978340 |
+| 12 | YomiHub-0.5.8-windows-x64.appxbundle | 264,041,776 B | 491f89fdd0842bc36c284f825670d5fc3fbec436c5ffd1eeabc4c0bc4a5d6b08 |
+| 13 | YomiHub-0.5.8-windows-x64.zip | 125,325,669 B | 02cc6294c9ddaa34148de54c27fee16627bfff66ce614cd13dc70ba3575d7edf |
+| 14 | YomiHub-0.5.8-x86_64.apk | 186,930,524 B | e5f0103e947513ee68c9a1e2618778e556ad84db38c1e92c387cdd233799045a |
+| 15 | YomiHub-RootCA.cer | 822 B | a9bb1c0d81675c183481ea35fac290cbc907b62154d27d63a323396db8019950 |
+| 16 | YumiHub-Android-TV-0.5.8-arm64-v8a.apk | 176,968,967 B | 4986d193086698acee9c88b1e457102d86f7a96d50a42cbcb74917c49d73d17e |
+| 17 | YumiHub-Android-TV-0.5.8-armeabi-v7a.apk | 173,632,909 B | 38269b34a80caf2102de4e795b35ccd01665f669b6c16b06c3acbb0f771b6546 |
+| 18 | YumiHub-Android-TV-0.5.8-x86_64.apk | 186,755,636 B | ef9abb8a3692b04250831b41a1107e6ab562a22f5b155f4def2389afd3617d8d |
+
+#### D. Lỗi Phát Sinh & Biện Pháp Khắc Phục Trong Quá Trình Đóng Gói
+1. **Lỗi makeappx bundle không nhận cờ /nv:**
+   - *Hiện tượng:* `make_appxbundle_058.ps1` kết thúc với exit code 1 (`MakeAppx : error: Unknown command line option: "/nv"`).
+   - *Nguyên nhân:* Cờ `/nv` (no validation) chỉ hỗ trợ ở lệnh `makeappx pack`, không tồn tại trong `makeappx bundle`.
+   - *Khắc phục:* Sửa lệnh gọi thành `& $makeappx bundle /d $bundleStaging /p $bundlePath /o /bv $verQuad` trong `make_appxbundle_058.ps1`.
+2. **Lỗi tham số -RunSteps khi phân tách chuỗi có dấu phẩy:**
+   - *Hiện tượng:* Khi chạy `run_058_main.ps1 -RunSteps pack,a6build,a6copy,verify`, PowerShell nhận tham số dạng một chuỗi đơn lẻ khiến điều kiện lọc bước không khớp.
+   - *Khắc phục:* Bổ sung xử lý `$parsedSteps += ($rs -split ',') | ForEach-Object { $_.Trim() }` trong `run_058_main.ps1`, cho phép nhận linh hoạt cả mảng chuỗi lẫn chuỗi có dấu phẩy.
+
+#### E. Trạng thái Hoàn Tất & Sẵn Sàng Bàn Giao
+- Đã hoàn tất 100% mục tiêu của Coordinator Brief #12. Toàn bộ 17 artifacts phát hành chuẩn và 1 bảng băm SHA256 đã nằm tại `output/0.5.8/`.
+- Sẵn sàng bàn giao cho `@coordinator` nghiệm thu và công bố bản phát hành YomiHub v0.5.8.

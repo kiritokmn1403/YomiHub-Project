@@ -34,6 +34,15 @@ class YomiSplash extends StatefulWidget {
     if (!ready.isCompleted) ready.complete();
   }
 
+  /// Calculates the morph radius at animation progress [t] (0.0 to 1.0)
+  /// transitioning from square (0.0) to full circle (size / 2) between 0.05 and 0.35.
+  static double morphRadius(double t, [double size = 132.0]) {
+    final morph = Curves.easeInOutCubic.transform(
+      ((t - 0.05) / (0.35 - 0.05)).clamp(0.0, 1.0),
+    );
+    return size * (0.0 + 0.5 * morph);
+  }
+
   @override
   State<YomiSplash> createState() => _YomiSplashState();
 }
@@ -239,7 +248,7 @@ class _YomiSplashState extends State<YomiSplash> with TickerProviderStateMixin {
     final morph = _seg(t, 0.05, 0.35, Curves.easeInOutCubic);
     const size = 132.0;
     // 0.0 × size = square → 0.5 × size = full circle
-    final r = size * (0.0 + 0.5 * morph);
+    final r = YomiSplash.morphRadius(t, size);
     return Container(
       width: size,
       height: size,

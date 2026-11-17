@@ -64,9 +64,14 @@ class YomiHealth(private val activity: Activity, messenger: BinaryMessenger) {
         else Build.VERSION.SDK_INT >= 28 && hcAppInstalled()
 
     private fun canWriteMindfulness(): Boolean =
-        Build.VERSION.SDK_INT >= 36 ||
-            (Build.VERSION.SDK_INT >= 34 &&
-                SdkExtensions.getExtensionVersion(Build.VERSION_CODES.UPSIDE_DOWN_CAKE) >= 15)
+        if (Build.VERSION.SDK_INT >= 34) {
+            try {
+                Class.forName("android.health.connect.datatypes.MindfulnessSessionRecord")
+                true
+            } catch (_: Throwable) {
+                false
+            }
+        } else false
 
     private fun granted(): Boolean =
         platformApi() && activity.checkSelfPermission(writePerm) == PackageManager.PERMISSION_GRANTED
@@ -104,8 +109,19 @@ class YomiHealth(private val activity: Activity, messenger: BinaryMessenger) {
     private fun requestPermission(): Boolean {
         if (!platformApi() || !canWriteMindfulness()) return false
         if (granted()) return true
-        activity.requestPermissions(arrayOf(writePerm), 7431)
-        return false
+        try {
+            val i = Intent("android.health.connect.action.MANAGE_HEALTH_PERMISSIONS")
+            i.putExtra(Intent.EXTRA_PACKAGE_NAME, activity.packageName)
+            activity.startActivity(i)
+            return true
+        } catch (_: Exception) {
+            try {
+                activity.requestPermissions(arrayOf(writePerm), 7431)
+                return false
+            } catch (_: Exception) {
+                return false
+            }
+        }
     }
 
     private fun syncSession(minutes: Long, endMs: Long, result: MethodChannel.Result) {
