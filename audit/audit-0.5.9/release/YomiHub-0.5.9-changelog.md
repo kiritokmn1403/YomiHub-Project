@@ -18,6 +18,10 @@
 
 ## Tiện ích (Kiritokmn Extension Repo)
 - Cập nhật Anime47, FikFap, Phimmoi, AVSub – AnimeVietsub, SexVietTop, AnimeVN, Pornhub (Shorts) theo các lỗi 404/TLS trong nhật ký.
+- Sửa nhãn ngôn ngữ/18+: HentaiVN, Mimimoe, NetTruyen18, VinaHentai bật NSFW; E-Hentai đổi ngôn ngữ sang toàn cầu.
+
+## Khác
+- README mới chỉ giới thiệu ứng dụng, nút Download dẫn tới bản phát hành mới nhất; trang chủ + chính sách quyền riêng tư trên GitHub Pages (dùng cho đăng nhập Google).
 
 ## Nền tảng
 - Android 7.0+ (APK thường), Android 6.0 (APK android6 riêng), Android TV (YumiHub Android TV), Windows 10/11 x64 (.appxbundle, Setup.exe, bản portable .zip).
