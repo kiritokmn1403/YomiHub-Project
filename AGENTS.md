@@ -1,6 +1,6 @@
 # Hướng dẫn bắt buộc khi cập nhật YomiHub
 
-**0. BẮT BUỘC ĐỌC ĐẦU TIÊN: toàn bộ thư mục [`A.I Brain - Second Brain/`](A.I%20Brain%20-%20Second%20Brain/00_README_DOC_TRUOC.md) (00 → 04: quy trình, bài học kỹ thuật, điều phối tác nhân, công cụ sử dụng), rồi mới đến các mục dưới. Không bắt đầu sửa mã, dựng, kiểm thử hay phát hành khi chưa đọc xong** (yêu cầu chủ dự án 18/11/2026).
+**0. BẮT BUỘC ĐỌC ĐẦU TIÊN: toàn bộ thư mục [`A.I Brain - Second Brain/`](A.I%20Brain%20-%20Second%20Brain/00_README_READ_FIRST_DOC_TRUOC.md) (00 → 10: kiến trúc, quy trình, xây dựng bản phát hành, bài học kỹ thuật, kiểm tra, công cụ, quy tắc, mẹo phiên AI, điều phối tác nhân, cấu trúc thư mục), rồi mới đến các mục dưới. Không bắt đầu sửa mã, dựng, kiểm thử hay phát hành khi chưa đọc xong** (yêu cầu chủ dự án 18/11/2026).
 
 Theo yêu cầu trực tiếp của chủ dự án ngày 25/10/2026:
 
@@ -13,4 +13,4 @@ Theo yêu cầu trực tiếp của chủ dự án ngày 25/10/2026:
 
 File bắt buộc: [TECHNICAL_UPDATE_NOTES.md](TECHNICAL_UPDATE_NOTES.md).
 
-7. **BẮT BUỘC đọc thư mục `A.I Brain - Second Brain/` trước khi làm việc** (yêu cầu chủ dự án 14/11/2026, nhắc lại 18/11/2026); bổ sung kinh nghiệm mới vào đó sau mỗi đợt, công cụ mới vào `04_cong_cu_su_dung.md`.
+7. **BẮT BUỘC đọc thư mục `A.I Brain - Second Brain/` trước khi làm việc** (yêu cầu chủ dự án 14/11/2026, nhắc lại 18/11/2026); bổ sung kinh nghiệm mới vào đó sau mỗi đợt, công cụ mới vào `06_tools_used_cong_cu_su_dung.md`, bài học vào `04_technical_lesson_bai_hoc_ky_thuat.md`.

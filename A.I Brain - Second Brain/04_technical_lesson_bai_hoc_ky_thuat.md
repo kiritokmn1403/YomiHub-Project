@@ -1,4 +1,6 @@
 # Bài học kỹ thuật
+Lỗi đã gặp, nguyên nhân gốc và cách xử lý đúng – xếp theo đợt. Quy trình dựng xem 03, kiểm thử xem 05, công cụ xem 06.
+
 - Stack Dart bị làm rối (`_kDartSnapshotText+0x...`): `flutter symbolize` không đọc được; dùng `llvm-symbolizer --obj=<app.android-arm64.symbols>` với địa chỉ = địa chỉ ký hiệu `_kDartSnapshotText` + offset. Phải khớp build_id: đọc note GNU trong tệp .symbols. Mỗi lần dựng ghi đè `D:\yh\symbols` → nên dựng với thư mục symbols theo phiên bản.
 - Log 0.5.6.1 của chủ dự án đến từ APK **android6** (build23) dù điện thoại chạy Android mới.
 - "Null check" ở `_IndicatorPainter.paint` (tabs.dart:633) = TabBar vẽ bằng TabController đã dispose; đừng dispose controller ngay sau `await` mở sheet/route – để State của widget sở hữu nó.
@@ -49,7 +51,8 @@
 - Cờ lệnh makeappx: makeappx pack chấp nhận cờ /nv (no validation), nhưng makeappx bundle KHÔNG hỗ trợ /nv và sẽ báo lỗi Unknown command line option: "/nv" dẫn đến exit code 1. Khi đóng gói .appxbundle, bỏ /nv và sử dụng /o /bv <VersionQuad> (ví dụ /bv 0.5.8.0).
 - Xử lý mảng tham số PowerShell từ CLI: Khi truyền -RunSteps pack,a6build,a6copy,verify từ runner hoặc script con, PowerShell có thể gom thành một chuỗi duy nhất "pack,a6build,a6copy,verify". Nếu script kiểm tra $RunSteps -contains , điều kiện sẽ trượt. Luôn phân tách thêm bằng dấu phẩy ($rs -split ',' | ForEach-Object { .Trim() }) để hỗ trợ đồng thời cả mảng đối tượng lẫn chuỗi phân cách phẩy.
 - R8 minification & dexing trong AGP 8+: Khi biên dịch APK release (nhất là Android 6.0 build23 với nhiều thư viện native và plugin), bước R8 minification/shrinking và sinh file DEX (classes.dex đến classes4.dex) có thể tiêu tốn 10–15 phút. Tiến trình Java/Gradle daemon CPU tăng liên tục (>8,000s CPU) và ghi các file seeds.txt, usage.txt, mapping.prt trước khi ghi APK. Cần kiên nhẫn chờ đợi, không hủy tiến trình khi daemon đang hoạt động.
-- Thiết kế Pipeline tái tục linh hoạt: Bộ kịch bản điều phối phát hành (un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợp cơ chế kiểm tra sự tồn tại của artifact cũ/mới. Khi một bước đóng gói phụ (như appxbundle) gặp sự cố cú pháp, việc có thể tái tục từ bước đó giúp tiết kiệm từ 1 đến 2 giờ biên dịch lại toàn bộ các APK điện thoại và TV.
+- Thiết kế Pipeline tái tục linh hoạt: Bộ kịch bản điều phối phát hành (
+un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợp cơ chế kiểm tra sự tồn tại của artifact cũ/mới. Khi một bước đóng gói phụ (như appxbundle) gặp sự cố cú pháp, việc có thể tái tục từ bước đó giúp tiết kiệm từ 1 đến 2 giờ biên dịch lại toàn bộ các APK điện thoại và TV.
 
 ## Bổ sung 18/11/2026 (0.5.9 – Claude Opus 5.5)
 - **Isolate.run + Isar:** closure tạo trong hàm có biến Isar (`Manga`, `IsarLinks`) bắt CẢ ngữ cảnh hàm cha → "object is unsendable – IsarImpl" dù chỉ dùng DTO. Luôn gọi `Isolate.run` trong một hàm cấp cao nhận đúng DTO làm tham số (`runChapterDiffInBackground(input)`), có nhánh dự phòng tính trên isolate hiện tại.

@@ -1,6 +1,6 @@
 # YomiHub — Ghi chú kỹ thuật cập nhật
 
-**BẮT BUỘC ĐỌC TRƯỚC MỖI LẦN CẬP NHẬT** — sau khi đã đọc toàn bộ thư mục bắt buộc `A.I Brain - Second Brain/` (00–04).
+**BẮT BUỘC ĐỌC TRƯỚC MỖI LẦN CẬP NHẬT** — sau khi đã đọc toàn bộ thư mục bắt buộc `A.I Brain - Second Brain/` (00–10).
 
 Chủ dự án yêu cầu tạo và duy trì tài liệu này ngày 25/10/2026. Quy định được ghi thêm trong `AGENTS.md` ở gốc dự án. Mỗi người hoặc tác nhân tự động cập nhật ứng dụng phải đọc toàn bộ tài liệu, kiểm tra trạng thái và bổ sung kết quả sau khi làm việc.
 
@@ -3496,3 +3496,6 @@ Thư mục: `output/0.5.8/`
 - Claude (computer use, Cốc Cốc): tạo ứng dụng `com.yomihub.app` "YomiHub"; loại app, danh mục Books & Reference, icon 512, xếp hạng nội dung Mature 17+, chính sách quyền riêng tư GitHub Pages, mô tả ngắn/đầy đủ (EN, ghi rõ không chứa sẵn nội dung, nguồn 18+ ẩn mặc định – `showNSFW=false`), 6 ảnh chụp (nguồn evidence Note 9 không có bìa 18+/bản quyền; APKPure yêu cầu cạnh dài ≤ 2 lần cạnh ngắn → cắt 1080×2160), ảnh nổi bật 1024×500; tệp ở `audit/audit-0.5.9/apkpure/`.
 - Tải `YomiHub-0.5.9-arm64-v8a.apk` (giới hạn 2 GB) + "What's new" → APKPure xác minh tệp ĐẠT. ĐÃ GỬI DUYỆT 16:36 (chủ dự án đồng ý 16:32, giữ xếp hạng Mature 17+): thêm bản mô tả tiếng Việt (vi-VN, kèm 6 ảnh + ảnh nổi bật), bấm "Công bố" → trạng thái "Đang chờ phê duyệt" (0.5.9, mã phiên bản 2052 – APK tách ABI cộng 2000, bản sau phải > 2052; 169 MB). Còn: chủ dự án liên kết email trong APKPure ("Please bind your email") để nhận kết quả duyệt; bản sau tải APK mới vào tab "Phiên bản quản lý".
 - Hộp chọn tệp Windows của APKPure chỉ nhận 1 tệp/lần.
+
+### 20. Tổ chức lại Second Brain thành 11 tệp (18/11 21:32)
+- Theo cấu trúc chủ dự án đặt: 00 bắt buộc đọc, 01 kiến trúc, 02 quy trình, 03 xây dựng bản phát hành, 04 bài học kỹ thuật, 05 kiểm tra, 06 công cụ, 07 quy tắc, 08 mẹo phiên AI, 09 điều phối tác nhân, 10 cấu trúc thư mục. Nội dung cũ (quy trình, bài học, công cụ, điều phối) giữ nguyên và phân lại đúng tệp; viết mới 01, 03, 05, 07, 08, 10. Cập nhật đường dẫn trong AGENTS.md, CLAUDE.md, GEMINI.md.
