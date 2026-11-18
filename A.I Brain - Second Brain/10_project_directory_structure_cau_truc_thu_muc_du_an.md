@@ -3,7 +3,7 @@
 ## Gốc dự án: `D:\A.I Project\A.I Project - YomiHub Project\YomiHub-Project` (Git: `kiritokmn1403/YomiHub-Project`)
 | Đường dẫn | Nội dung |
 |---|---|
-| `A.I Brain - Second Brain/` | Kiến thức bắt buộc đọc (00–10) |
+| `A.I Brain - Second Brain/` | Kiến thức bắt buộc đọc (00–12) |
 | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` | Quy định cho tác nhân (trỏ tới Second Brain) |
 | `TECHNICAL_UPDATE_NOTES.md` | Ghi chú kỹ thuật & nhật ký mọi phiên bản (bắt buộc đọc) |
 | `README.md` | Giới thiệu + nút Download → releases/latest |

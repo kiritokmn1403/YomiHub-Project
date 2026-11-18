@@ -1,0 +1,36 @@
+# Quy trình bàn giao dự án
+
+Áp dụng khi: kết thúc một phiên bản, kết thúc phiên làm việc (hết hạn mức, máy ngủ, chuyển sang tác nhân/phiên khác), hoặc bàn giao cho chủ dự án/người khác.
+
+## A. Bàn giao cuối phiên làm việc (giữa chừng một phiên bản)
+1. **Dừng an toàn**: không để job dựng chạy dở mà không ghi lại; nếu buộc phải dừng tiến trình dựng thì xóa nội dung `audit/audit-0.5.6/coordination/BUILD_LOCK.txt`.
+2. **Ghi trạng thái** vào `TECHNICAL_UPDATE_NOTES.md` (mục phiên bản đang làm) và `audit/audit-<ver>/coordination/PROGRESS_<ver>.md`:
+   - việc đã xong (kèm tệp sửa, test, bằng chứng), việc đang dở (dừng ở bước nào, job nào trong `jobs/pending*`), việc chưa làm;
+   - trạng thái bản dựng (`main_build_status_<ver>.txt`), các tác nhân/Antigravity đang chạy và tệp NOTES của chúng.
+3. **Thêm một mục vào `12_session log_nhat_ky_phien_lam_viec.md`** (ngày, tác nhân, yêu cầu, đã làm, kết quả, việc tiếp theo).
+4. **Lưu lên GitHub**: commit có chọn lọc (notes, overlay, docs, Second Brain, audit trừ evidence/input/backup) và push.
+5. **Tắt tác vụ nền**: lịch hẹn kiểm tra, autosave (`jobs/STOP_AUTOSAVE`), theo dõi của Antigravity; ghi lại nếu cố ý để chạy tiếp.
+6. **Báo chủ dự án** (tiếng Việt): đang ở đâu, phiên sau bắt đầu từ đâu, việc chủ dự án cần làm (đăng nhập, xác nhận, cài tay…).
+
+## B. Bàn giao một phiên bản (sau phát hành)
+Danh sách kiểm:
+- [ ] `output/<ver>/` đủ gói + `SHA256SUMS-<ver>.txt` + changelog; verify ĐẠT.
+- [ ] GitHub Release `v<ver>` (make_latest) đủ asset, kích thước khớp; README + trang chủ trỏ đúng bản mới nhất.
+- [ ] Repo tiện ích đã push (nếu đổi); APKPure đã tải phiên bản mới (nếu có kênh này).
+- [ ] Kiểm thử thiết bị thật (Note 9, Windows) có ảnh/video/log trong `audit/audit-<ver>/evidence/`.
+- [ ] `TECHNICAL_UPDATE_NOTES.md`: dòng tóm tắt ở mục 1 + nhật ký chi tiết + mục "Còn mở".
+- [ ] Second Brain: bài học mới (04), công cụ mới (06), quy trình/quy tắc thay đổi (02/03/05/07), nhật ký phiên (12).
+- [ ] Tất cả đã push; lịch hẹn/autosave/Antigravity đã tắt.
+- [ ] Báo cáo cuối cho chủ dự án: đã phát hành gì, kết quả kiểm, việc còn mở, việc chủ dự án cần tự làm.
+
+## C. Nhận bàn giao (phiên/tác nhân mới)
+1. Đọc Second Brain 00 → 12, `AGENTS.md`, mục 1 + mục phiên bản đang làm của `TECHNICAL_UPDATE_NOTES.md`.
+2. Đọc mục mới nhất của `12_session log...` và `PROGRESS_<ver>.md`.
+3. Kiểm thực tế: `main_build_status_<ver>.txt`, `jobs/pending*`, `jobs/done/` (job mới nhất), `logs/`, `git log -5`, `audit/audit-<ver>/antigravity/NOTES_*`; runner còn sống (`jobs/runner_*_alive.txt`).
+4. Tóm tắt trạng thái cho chủ dự án rồi tiếp tục từ việc dở dang đầu tiên.
+
+## D. Trạng thái bàn giao hiện tại (sau 0.5.9 – 18/11/2026)
+- 0.5.9 (0.5.9+52) đã phát hành GitHub Release 14:17; gửi duyệt APKPure 16:36 (chờ kết quả; chủ dự án cần liên kết email trong APKPure Console).
+- Còn mở cho 0.6.0: kho `kohiden.xyz` lỗi chứng chỉ; thêm kho Salmanbappi/Secozzi vào `repo_discovery.dart`; 5 liên kết công cụ tấn công cũ trong Dự án GitHub chờ quyết định gỡ; các mục lớn của sheet YomiHub Update chưa tích hợp hết (quét Yomikiru/Nyora/Nuvio/Frank Yomik/Browser Fingerprint…).
+- Xiaomi của chủ dự án đang chạy APK android6 → cần cài tay APK thường 0.5.9 một lần.
+- Không còn tác vụ nền chạy (autosave dừng 14:29, lịch hẹn tắt). Tệp `jobs/STOP_AUTOSAVE` còn – xóa trước khi bật lại autosave.

@@ -18,8 +18,9 @@
 11. Xếp hạng nội dung trung thực (YomiHub: Mature 17+ vì người dùng có thể thêm nguồn 18+; `showNSFW` mặc định tắt).
 
 ## Ghi chép & báo cáo
-12. Đọc toàn bộ Second Brain + `AGENTS.md` + `TECHNICAL_UPDATE_NOTES.md` trước khi làm.
+12. Đọc toàn bộ Second Brain (00–12) + `AGENTS.md` + `TECHNICAL_UPDATE_NOTES.md` trước khi làm.
 13. Sau mỗi bước ghi tiến độ; sau mỗi đợt cập nhật ghi chú kỹ thuật (không xóa lịch sử thất bại) và Second Brain đúng tệp.
 14. Không chấp nhận "ĐẠT" khi chưa có bằng chứng thật (xem 05).
 15. Báo cáo chủ dự án bằng tiếng Việt, mỗi bước 1 câu; nói rõ việc chủ dự án cần tự làm.
 16. Tắt lịch hẹn/tiến trình nền khi xong việc (lịch nhắc, autosave, theo dõi của Antigravity).
+17. Cuối mỗi phiên: thêm mục vào nhật ký phiên (12) và làm bước bàn giao (11).

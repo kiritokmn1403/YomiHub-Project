@@ -1,6 +1,6 @@
 # Hướng dẫn bắt buộc khi cập nhật YomiHub
 
-**0. BẮT BUỘC ĐỌC ĐẦU TIÊN: toàn bộ thư mục [`A.I Brain - Second Brain/`](A.I%20Brain%20-%20Second%20Brain/00_README_READ_FIRST_DOC_TRUOC.md) (00 → 10: kiến trúc, quy trình, xây dựng bản phát hành, bài học kỹ thuật, kiểm tra, công cụ, quy tắc, mẹo phiên AI, điều phối tác nhân, cấu trúc thư mục), rồi mới đến các mục dưới. Không bắt đầu sửa mã, dựng, kiểm thử hay phát hành khi chưa đọc xong** (yêu cầu chủ dự án 18/11/2026).
+**0. BẮT BUỘC ĐỌC ĐẦU TIÊN: toàn bộ thư mục [`A.I Brain - Second Brain/`](A.I%20Brain%20-%20Second%20Brain/00_README_READ_FIRST_DOC_TRUOC.md) (00 → 12: kiến trúc, quy trình, xây dựng bản phát hành, bài học kỹ thuật, kiểm tra, công cụ, quy tắc, mẹo phiên AI, điều phối tác nhân, cấu trúc thư mục, bàn giao, nhật ký phiên), rồi mới đến các mục dưới. Không bắt đầu sửa mã, dựng, kiểm thử hay phát hành khi chưa đọc xong** (yêu cầu chủ dự án 18/11/2026).
 
 Theo yêu cầu trực tiếp của chủ dự án ngày 25/10/2026:
 
