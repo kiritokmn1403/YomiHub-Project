@@ -12,3 +12,6 @@
 | 14:12:18 | 11/19 | `YomiHub-0.5.9-windows-x64.zip` (119.5 MB) | 49% | 5.89 MB/s | ~3 phút |
 | 14:12:59 | 12/19 | `YomiHub-0.5.9-windows-x64-full.zip` (247.4 MB) | 54% | 4.42 MB/s | ~4 phút |
 | 14:13:15 | 12/19 | `YomiHub-0.5.9-windows-x64-full.zip` (247.4 MB) | 54% | 4.42 MB/s | ~4 phút |
+| 14:13:59 | 12/19 | `YomiHub-0.5.9-windows-x64-full.zip` (247.4 MB) | 54% | 4.42 MB/s | ~4 phút |
+| 14:15:21 | 12/19 | `YomiHub-0.5.9-windows-x64-full.zip` (247.4 MB) | 54% | 4.42 MB/s | ~4 phút |
+| 14:16:39 | 16/19 | `YumiHub-Android-TV-0.5.9-arm64-v8a.apk` (168.8 MB) | 78% | 5.98 MB/s | ~1 phút |
