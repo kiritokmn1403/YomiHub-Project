@@ -3473,3 +3473,10 @@ Thư mục: `output/0.5.8/`
 - `scripts/autosave_progress_059.ps1` (chạy nền, PID ghi ở `logs/autosave_059.txt`): mỗi 180 s `git add` có chọn lọc (notes, Second Brain, overlay, docs, README, audit-0.5.9/{antigravity,notes,release,coordination}, script dựng 0.5.9) → commit `wip(0.5.9): tu luu tien do …` → push `main`. Không đưa `secrets/`, `logs/`, `*.log`, `evidence/`, `input/`, `backup/`, `BUILD_LOCK.txt`. Dừng: tạo `jobs/STOP_AUTOSAVE`; tự dừng sau 8 giờ. Lượt đầu 12:06: 81 tệp, push OK (đã kiểm không có `GOCSPX`/tài khoản Anime47).
 - Phát hành v0.5.9 lên GitHub Release sẽ chạy tự động khi `verify` đạt (không chờ hỏi).
 - README.md: thay bằng bản giới thiệu + nút Download → releases/latest (bản nháp Antigravity `antigravity/README_0.5.9.md`, Claude sửa 5 chỗ khẳng định không đúng mã: VLC, OpenDyslexic, "kết nối tài khoản Play Books", trình duyệt ẩn danh, đồng bộ hai chiều Drive).
+
+### 16. Dựng xong + kiểm thử Windows (18/11 12:48–13:52)
+- `run_059_main.ps1` XONG 12:48: pack (12:09), a6build 37 phút, a6copy, verify → `output/0.5.9` 18 tệp + `SHA256SUMS-0.5.9.txt` (APK thường ×3, android6 ×3, YumiHub Android TV ×3, Setup.exe, .appxbundle, .zip, -full.zip, chứng chỉ, Install-YomiHub.*).
+- Windows 11: bản portable `YomiHub.exe` FileVersion 0.5.9+52 chạy (job `x059_win_qa1`); Setup.exe cài đè vào `%LOCALAPPDATA%\YomiHub` (bấm "Cài Đặt Ngay" bằng computer use 13:51) → app tự mở, giao diện đầy đủ (Thư viện 4 tab, Thêm), không cửa sổ trắng. Ảnh bìa trống ở Thư viện như ghi nhận 0.5.7 (máy chủ ảnh/Tor).
+- Antigravity đợt 3 XONG 12:33: README (đã duyệt, thay README.md), 5 tiện ích sửa lang/NSFW (commit cục bộ `c919f87` repo tiện ích), `repo_suggestions_059.{json,md}`.
+- Changelog 0.5.9 bổ sung dòng tiện ích lang/NSFW + README/GitHub Pages.
+- **Phát hành v0.5.9 CHƯA chạy**: job đẩy repo tiện ích + `release_059.ps1` bị bộ phân loại an toàn của phiên Claude chặn (đăng công khai cần chủ dự án xác nhận trực tiếp trong lượt chat). Chờ chủ dự án xác nhận hoặc tự chạy `release_059.ps1`.
