@@ -77,8 +77,15 @@ export async function checkStatus() {
     const lastOk = okLines[okLines.length - 1];
     const pMatch = lastOk.match(/total\s+(\d+)%/);
     if (pMatch) totalPercent = parseInt(pMatch[1], 10);
-    const sMatch = lastOk.match(/=\s*([\d.]+)\s*MB\/s/);
-    if (sMatch) lastSpeed = parseFloat(sMatch[1]);
+    
+    // Find latest non-zero speed
+    for (let i = okLines.length - 1; i >= 0; i--) {
+      const sMatch = okLines[i].match(/=\s*([\d.]+)\s*MB\/s/);
+      if (sMatch && parseFloat(sMatch[1]) > 0.05) {
+        lastSpeed = parseFloat(sMatch[1]);
+        break;
+      }
+    }
   }
 
   // Check GitHub uploaded count
