@@ -3468,3 +3468,8 @@ Thư mục: `output/0.5.8/`
 
 ### Trạng thái dây chuyền dựng (11:57)
 - sync, test, apk (3 APK thường, 11:03), tv (11:36), wintest (11:45) ĐẠT; đang `win`, còn `pack`, `a6build`, `a6copy`, `verify`.
+
+### 15. Yêu cầu chủ dự án 18/11 12:01: tự lưu tiến độ mỗi 3 phút + tự đăng lên GitHub không cần hỏi
+- `scripts/autosave_progress_059.ps1` (chạy nền, PID ghi ở `logs/autosave_059.txt`): mỗi 180 s `git add` có chọn lọc (notes, Second Brain, overlay, docs, README, audit-0.5.9/{antigravity,notes,release,coordination}, script dựng 0.5.9) → commit `wip(0.5.9): tu luu tien do …` → push `main`. Không đưa `secrets/`, `logs/`, `*.log`, `evidence/`, `input/`, `backup/`, `BUILD_LOCK.txt`. Dừng: tạo `jobs/STOP_AUTOSAVE`; tự dừng sau 8 giờ. Lượt đầu 12:06: 81 tệp, push OK (đã kiểm không có `GOCSPX`/tài khoản Anime47).
+- Phát hành v0.5.9 lên GitHub Release sẽ chạy tự động khi `verify` đạt (không chờ hỏi).
+- README.md: thay bằng bản giới thiệu + nút Download → releases/latest (bản nháp Antigravity `antigravity/README_0.5.9.md`, Claude sửa 5 chỗ khẳng định không đúng mã: VLC, OpenDyslexic, "kết nối tài khoản Play Books", trình duyệt ẩn danh, đồng bộ hai chiều Drive).
