@@ -15,3 +15,4 @@
 
 - [11:33] Khởi tạo tệp NOTES_swarm3.md, thiết lập kế hoạch Đợt 3.
 - [12:02] Việc 1: Tạo README_0.5.9.md chuẩn cấu trúc, không ghi đè README gốc, trỏ releases/latest, đầy đủ nhóm tính năng, bỏ changelog kỹ thuật.
+- [12:22] Việc 2: Kiểm toán 196 tiện ích, lập bảng ext_lang_nsfw_audit.md, sửa plugin.json (hentaivn, mimimoe, nettruyen18, vinahentai, ehentai), re-build và commit cục bộ (commit c919f87).
