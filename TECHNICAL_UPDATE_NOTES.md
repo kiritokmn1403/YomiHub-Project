@@ -3490,3 +3490,9 @@ Thư mục: `output/0.5.8/`
 ### 18. Trang chủ GitHub Pages + mục About (18/11 15:40–15:55)
 - About repo: Website = trang chủ; mô tả kèm đường dẫn trang chủ + chính sách quyền riêng tư.
 - `docs/index.html` viết lại: biểu tượng ứng dụng (từ `overlay/assets/app_icons/icon-red.png`, cùng icon Windows), nút tải `releases/latest`, bảng chọn bản cài, 12 nhóm tính năng (đã grep `overlay/lib` + Kotlin xác minh: VPN Gate, WireGuard, AdBlock, Web Scanner, Liquid Glass, AniList/Trakt, Dropbox/OneDrive/Rclone, Image Translation, PiP); favicon `favicon.ico` (16–64), `favicon-32.png`, `icon-192/512.png`, `apple-touch-icon.png`; `privacy.html` dùng cùng favicon. Commit `135d1f2`, Pages dựng xong, favicon trả 200.
+
+### 19. APKPure (18/11 16:13–16:33)
+- Chủ dự án đăng ký tài khoản nhà phát triển APKPure "Kiritokmn" trong Cốc Cốc (trình duyệt tích hợp bị Cloudflare chặn ở trang đăng nhập APKPure).
+- Claude (computer use, Cốc Cốc): tạo ứng dụng `com.yomihub.app` "YomiHub"; loại app, danh mục Books & Reference, icon 512, xếp hạng nội dung Mature 17+, chính sách quyền riêng tư GitHub Pages, mô tả ngắn/đầy đủ (EN, ghi rõ không chứa sẵn nội dung, nguồn 18+ ẩn mặc định – `showNSFW=false`), 6 ảnh chụp (nguồn evidence Note 9 không có bìa 18+/bản quyền; APKPure yêu cầu cạnh dài ≤ 2 lần cạnh ngắn → cắt 1080×2160), ảnh nổi bật 1024×500; tệp ở `audit/audit-0.5.9/apkpure/`.
+- Tải `YomiHub-0.5.9-arm64-v8a.apk` (giới hạn 2 GB) + "What's new" → APKPure xác minh tệp ĐẠT. ĐÃ GỬI DUYỆT 16:36 (chủ dự án đồng ý 16:32, giữ xếp hạng Mature 17+): thêm bản mô tả tiếng Việt (vi-VN, kèm 6 ảnh + ảnh nổi bật), bấm "Công bố" → trạng thái "Đang chờ phê duyệt" (0.5.9, mã phiên bản 2052 – APK tách ABI cộng 2000, bản sau phải > 2052; 169 MB). Còn: chủ dự án liên kết email trong APKPure ("Please bind your email") để nhận kết quả duyệt; bản sau tải APK mới vào tab "Phiên bản quản lý".
+- Hộp chọn tệp Windows của APKPure chỉ nhận 1 tệp/lần.
