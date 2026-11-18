@@ -3486,3 +3486,7 @@ Thư mục: `output/0.5.8/`
 
 ### 17. Gom script build_*.ps1 vào `build/` (18/11 14:39)
 - `git mv` 6 tệp `build_058*.ps1`, `build_059*.ps1` → `build/` (commit `0ff8444`), sửa `$root` (cha của `$PSScriptRoot`), lời gọi chéo `Join-Path $root "build\build_05x_android.ps1"`, `run_058_main.ps1`/`run_059_main.ps1` (`$root\build\build_...`), danh sách autosave; kiểm cú pháp PowerShell 9 tệp: 0 lỗi; `.gitignore` thêm `!/build/` (commit `333a4a4`). Đã push GitHub.
+
+### 18. Trang chủ GitHub Pages + mục About (18/11 15:40–15:55)
+- About repo: Website = trang chủ; mô tả kèm đường dẫn trang chủ + chính sách quyền riêng tư.
+- `docs/index.html` viết lại: biểu tượng ứng dụng (từ `overlay/assets/app_icons/icon-red.png`, cùng icon Windows), nút tải `releases/latest`, bảng chọn bản cài, 12 nhóm tính năng (đã grep `overlay/lib` + Kotlin xác minh: VPN Gate, WireGuard, AdBlock, Web Scanner, Liquid Glass, AniList/Trakt, Dropbox/OneDrive/Rclone, Image Translation, PiP); favicon `favicon.ico` (16–64), `favicon-32.png`, `icon-192/512.png`, `apple-touch-icon.png`; `privacy.html` dùng cùng favicon. Commit `135d1f2`, Pages dựng xong, favicon trả 200.
