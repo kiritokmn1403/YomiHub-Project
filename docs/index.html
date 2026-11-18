@@ -1,10 +1,131 @@
 <!DOCTYPE html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>YomiHub</title>
-<style>body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;max-width:760px;margin:40px auto;padding:0 20px;line-height:1.6;color:#1d1d1f}a.btn{display:inline-block;background:#0b6bcb;color:#fff;padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:600}</style></head>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YomiHub – Đọc truyện, xem phim, đọc tiểu thuyết</title>
+<meta name="description" content="YomiHub: ứng dụng mã nguồn mở đọc truyện tranh, xem phim & anime, đọc tiểu thuyết, Google Play Sách và Booru cho Android, Android TV và Windows.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="YomiHub">
+<meta property="og:description" content="Đọc truyện tranh, xem phim & anime, đọc tiểu thuyết – Android, Android TV, Windows.">
+<meta property="og:image" content="https://kiritokmn1403.github.io/YomiHub-Project/icon-512.png">
+<meta name="theme-color" content="#3b5bdb">
+<style>
+:root{--fg:#1d1d1f;--muted:#5f6368;--bg:#fff;--card:#f5f7fb;--line:#e3e7ef;--acc:#3b5bdb}
+@media (prefers-color-scheme:dark){:root{--fg:#ececf1;--muted:#a3a8b3;--bg:#121318;--card:#1c1e26;--line:#2c2f3a;--acc:#7c93ff}}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;color:var(--fg);background:var(--bg)}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{text-align:center;padding:48px 0 24px}
+header img{width:112px;height:112px;border-radius:24px}
+h1{font-size:2.2rem;margin:12px 0 4px}
+.lead{color:var(--muted);font-size:1.08rem;max-width:680px;margin:0 auto}
+.btn{display:inline-block;background:var(--acc);color:#fff;padding:12px 26px;border-radius:12px;text-decoration:none;font-weight:600;margin:20px 6px 0}
+.btn.ghost{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+h2{font-size:1.35rem;margin:40px 0 14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.card h3{margin:0 0 6px;font-size:1.05rem}
+.card ul{margin:0;padding-left:18px}
+.card li{margin:3px 0}
+footer{color:var(--muted);font-size:.9rem;text-align:center;padding:36px 0 48px;border-top:1px solid var(--line);margin-top:44px}
+a{color:var(--acc)}
+code{font-size:.9em}
+</style>
+</head>
 <body>
-<h1>YomiHub</h1>
-<p>Ứng dụng đọc truyện tranh (Comic), xem phim (Film &amp; Movie), đọc tiểu thuyết (Novel), Google Play Books và Booru – cho Android, Android TV và Windows. Mã nguồn mở, xây dựng trên Mangayomi (Flutter).</p>
-<p><a class="btn" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest">Tải YomiHub</a></p>
-<p><a href="https://github.com/kiritokmn1403/YomiHub-Project">Mã nguồn trên GitHub</a> · <a href="privacy.html">Chính sách quyền riêng tư</a></p>
-</body></html>
+<div class="wrap">
+<header>
+  <img src="icon-512.png" alt="Biểu tượng YomiHub">
+  <h1>YomiHub</h1>
+  <p class="lead">Ứng dụng mã nguồn mở gom mọi thứ để đọc và xem vào một nơi: truyện tranh, phim &amp; anime, tiểu thuyết, Google Play Sách và Booru – chạy trên Android, Android TV và Windows. Xây dựng trên nhân Mangayomi (Flutter).</p>
+  <a class="btn" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest">Tải YomiHub bản mới nhất</a>
+  <a class="btn ghost" href="https://github.com/kiritokmn1403/YomiHub-Project">Mã nguồn trên GitHub</a>
+</header>
+
+<h2>Chọn bản cài</h2>
+<table>
+<tr><th>Thiết bị</th><th>Tệp trên trang phát hành</th><th>Ghi chú</th></tr>
+<tr><td>Android 7.0 trở lên</td><td><code>YomiHub-&lt;phiên bản&gt;-arm64-v8a.apk</code> (hầu hết máy), <code>armeabi-v7a</code>, <code>x86_64</code></td><td>Điện thoại, máy tính bảng</td></tr>
+<tr><td>Android 6.0</td><td><code>YomiHub-&lt;phiên bản&gt;-android6-*.apk</code></td><td>Chỉ dành cho máy Android 6.0</td></tr>
+<tr><td>Android TV</td><td><code>YumiHub-Android-TV-&lt;phiên bản&gt;-*.apk</code></td><td>Giao diện điều khiển từ xa, tập trung Phim &amp; Điện ảnh</td></tr>
+<tr><td>Windows 10/11 (x64)</td><td><code>…-windows-x64-Setup.exe</code>, <code>.appxbundle</code>, <code>.zip</code> (bản chạy ngay)</td><td>Bản <code>-full.zip</code> kèm Java cho máy chủ tiện ích</td></tr>
+</table>
+
+<h2>Tính năng</h2>
+<div class="grid">
+  <div class="card"><h3>📖 Truyện tranh</h3><ul>
+    <li>Đọc manga, manhwa, manhua, webtoon từ hàng nghìn nguồn</li>
+    <li>Cuộn dọc liên tục (cuộn vô hạn), lật trang, trang đôi, đọc phải sang trái</li>
+    <li>Tải chương để đọc ngoại tuyến, nhiều thư mục cục bộ</li>
+    <li>Thư viện có lọc, sắp xếp, danh mục, lịch sử, cập nhật chương mới</li>
+  </ul></div>
+  <div class="card"><h3>🎬 Phim &amp; Anime</h3><ul>
+    <li>Trình phát tích hợp, đổi máy chủ/luồng phát, phụ đề</li>
+    <li>Nhớ vị trí đã xem, xem tiếp đúng chỗ</li>
+    <li>Picture-in-Picture (PiP), tải tập về máy</li>
+    <li>Video ngắn (Shorts) vuốt liên tục cho tiện ích có hỗ trợ</li>
+  </ul></div>
+  <div class="card"><h3>📚 Tiểu thuyết, Ebook &amp; PDF</h3><ul>
+    <li>Đọc tiểu thuyết trực tuyến, chỉnh cỡ chữ, phông, giãn dòng, nền tối</li>
+    <li>Mở tệp EPUB và PDF trên máy</li>
+    <li>Dịch ảnh (Image Translation) cho trang truyện</li>
+  </ul></div>
+  <div class="card"><h3>🛒 Google Play Sách</h3><ul>
+    <li>Google Play Sách nhúng ngay trong ứng dụng: Trang chủ, Thư viện, Danh sách yêu thích, Cửa hàng</li>
+    <li>Đăng nhập tài khoản Google để đọc sách đã mua</li>
+  </ul></div>
+  <div class="card"><h3>🎨 Booru App</h3><ul>
+    <li>Duyệt, tìm kiếm, tải ảnh từ các trang Booru (Danbooru, Yande.re…), thêm nguồn tùy chỉnh</li>
+    <li>Gợi ý thẻ, yêu thích, lịch sử tìm kiếm, danh sách chặn – có trong bản sao lưu</li>
+  </ul></div>
+  <div class="card"><h3>🔌 Kho tiện ích nhiều nền tảng</h3><ul>
+    <li>Chạy tiện ích Mihon/Tachiyomi, Aniyomi, Mangayomi, Kotatsu, LNReader, IReader, Aidoku và vBook</li>
+    <li>Tự gợi ý kho tiện ích mới từ các trang cộng đồng</li>
+    <li>Bộ lọc tìm kiếm của tiện ích, đổi URL/tên miền khi trang chuyển nhà</li>
+    <li>Mangayomi Extension Server, ApkBridge, máy chủ tiện ích Mihon</li>
+  </ul></div>
+  <div class="card"><h3>🧩 Hợp nhất tiện ích</h3><ul>
+    <li>Gộp cùng một bộ truyện/phim từ nhiều nguồn vào một trang</li>
+    <li>Chọn nguồn đọc/xem, gộp truyện trùng, gộp thủ công</li>
+  </ul></div>
+  <div class="card"><h3>🛡️ VPN, DNS &amp; Cloudflare</h3><ul>
+    <li>Tor (cầu nối Snowflake, obfs4, meek – tự đổi khi bị kẹt), Cloudflare WARP, WireGuard, VPN Gate</li>
+    <li>DNS-over-HTTPS, chặn quảng cáo</li>
+    <li>Tự giải và hỗ trợ giải Cloudflare thủ công trong WebView</li>
+    <li>Chọn phạm vi VPN cho từng tiện ích</li>
+  </ul></div>
+  <div class="card"><h3>🌐 Trình duyệt &amp; Web Scanner</h3><ul>
+    <li>Trình duyệt tích hợp mở trang nguồn, đăng nhập, giải thử thách</li>
+    <li>Web Scanner tìm và mở nội dung từ trang web</li>
+  </ul></div>
+  <div class="card"><h3>☁️ Sao lưu &amp; Đồng bộ</h3><ul>
+    <li>Chọn từng mục sao lưu: thư viện, lịch sử, tiện ích, cài đặt, Booru</li>
+    <li>Đăng nhập bằng tài khoản Google để sao lưu lên Google Drive</li>
+    <li>OneDrive, Dropbox, Telegram Bot, Rclone, tự sao lưu định kỳ</li>
+  </ul></div>
+  <div class="card"><h3>📡 Chia sẻ &amp; Theo dõi</h3><ul>
+    <li>AirDrop &amp; Quick Share: gửi tệp giữa điện thoại và máy tính</li>
+    <li>Trình theo dõi MyAnimeList, AniList, Trakt…; xuất danh sách MyAnimeList</li>
+  </ul></div>
+  <div class="card"><h3>🩺 Sức khỏe &amp; Tiện ích</h3><ul>
+    <li>Health Connect: ghi thời gian đọc/xem, nhắc nghỉ mắt 20-20-20</li>
+    <li>Thống kê, chế độ ẩn danh, giao diện Cũ/Mới (Liquid Glass, Shiori)</li>
+    <li>Nhật ký ứng dụng chi tiết để báo lỗi; kiểm tra cập nhật từ GitHub, Google Drive, MediaFire</li>
+    <li>18 ngôn ngữ giao diện</li>
+  </ul></div>
+</div>
+
+<footer>
+  <p><a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest">Tải về</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project">GitHub</a> · <a href="privacy.html">Chính sách quyền riêng tư</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project/issues">Báo lỗi</a></p>
+  <p>YomiHub là phần mềm mã nguồn mở. Nội dung truyện/phim do các tiện ích bạn tự cài tải từ trang nguồn; YomiHub không lưu trữ nội dung.</p>
+</footer>
+</div>
+</body>
+</html>
