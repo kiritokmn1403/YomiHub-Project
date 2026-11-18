@@ -1,5 +1,6 @@
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/utils/log/logger.dart';
+import 'package:mangayomi/yomihub/cloud/google_oauth_config.dart';
 import 'package:mangayomi/services/http/m_client.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -196,24 +197,136 @@ class GoogleDriveProvider extends CloudProvider with _OAuth {
   Map<String, String> get refreshExtra => {};
   @override
   List<CloudField> get fields => [
-        CloudField('client_id', 'Client ID'),
+        CloudField('client_id', tr('Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)')),
         CloudField('client_secret', 'Client secret', secret: true),
         CloudField('folder_name', tr('Tên thư mục sao lưu (mặc định YomiHub)'), hint: 'YomiHub'),
         CloudField('keep', tr('Giữ bao nhiêu bản sao lưu gần nhất (mặc định 10, 0 = giữ hết)')),
       ];
   @override
   String get help =>
-      tr('Ứng dụng chỉ sử dụng quyền drive.file đối với đúng 1 thư mục cụ thể được bạn cấp quyền (mặc định: YomiHub), hoàn toàn không truy cập tệp tin khác. Nhập Client ID và Client secret (loại TV/Limited Input Devices từ Google Cloud Console) rồi cấp quyền một lần để tự động sao lưu.');
+      tr('Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.');
+
+  /// Email of the signed-in Google account (0.5.9), shown in the UI.
+  String? get accountEmail => config['account_email'];
+
+  // 0.5.9: loopback (PKCE) state for the Windows "Sign in with Google" flow.
+  HttpServer? _loopback;
+  String? _verifier;
+  String? _redirect;
+  String? _state;
+
+  bool get _useLoopback =>
+      Platform.isWindows &&
+      (config['client_id'] ?? '').isEmpty &&
+      YomiGoogleOAuth.hasDesktopClient;
+
+  void _applyBuiltInDeviceClient() {
+    if ((config['client_id'] ?? '').isEmpty && YomiGoogleOAuth.hasDeviceClient) {
+      config['client_id'] = YomiGoogleOAuth.tvClientId;
+      config['client_secret'] = YomiGoogleOAuth.tvClientSecret;
+      config['builtin_client'] = 'tv';
+    }
+  }
 
   @override
-  Future<CloudAuthPrompt?> beginAuth() => _deviceStart(
-        'https://oauth2.googleapis.com/device/code',
-        {'client_id': config['client_id'] ?? '', 'scope': 'https://www.googleapis.com/auth/drive.file'},
+  void _storeTokens(Map<String, dynamic> t) {
+    super._storeTokens(t);
+    final email = YomiGoogleOAuth.emailFromIdToken(t['id_token']?.toString());
+    if (email != null) config['account_email'] = email;
+  }
+
+  @override
+  Future<CloudAuthPrompt?> beginAuth() async {
+    if (_useLoopback) {
+      await _loopback?.close(force: true);
+      _loopback = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+      _redirect = 'http://127.0.0.1:${_loopback!.port}';
+      final rnd = Random.secure();
+      _verifier = base64UrlEncode(List<int>.generate(48, (_) => rnd.nextInt(256))).replaceAll('=', '');
+      _state = base64UrlEncode(List<int>.generate(16, (_) => rnd.nextInt(256))).replaceAll('=', '');
+      final challenge = base64UrlEncode(sha256.convert(utf8.encode(_verifier!)).bytes).replaceAll('=', '');
+      final url = Uri.https('accounts.google.com', '/o/oauth2/v2/auth', {
+        'client_id': YomiGoogleOAuth.desktopClientId,
+        'redirect_uri': _redirect!,
+        'response_type': 'code',
+        'scope': YomiGoogleOAuth.scopes,
+        'code_challenge': challenge,
+        'code_challenge_method': 'S256',
+        'state': _state!,
+        'access_type': 'offline',
+        'prompt': 'consent',
+      });
+      AppLogger.log('[Google Drive] Mở trình duyệt để đăng nhập Google (loopback ${_loopback!.port})');
+      // Opened by the shell, so the screen's prompt==null branch goes straight
+      // to completeAuth(), which waits for Google's redirect.
+      if (!await _openExternal(url.toString())) {
+        throw Exception(tr('Không mở được trình duyệt để đăng nhập Google'));
+      }
+      return null;
+    }
+    _applyBuiltInDeviceClient();
+    if ((config['client_id'] ?? '').isEmpty) {
+      throw Exception(tr('Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng'));
+    }
+    return _deviceStart(
+      'https://oauth2.googleapis.com/device/code',
+      {'client_id': config['client_id'] ?? '', 'scope': YomiGoogleOAuth.scopes},
+    );
+  }
+
+  @override
+  Future<void> completeAuth({String? pastedCode}) async {
+    if (_loopback == null) {
+      return _devicePoll({'client_secret': config['client_secret'] ?? ''});
+    }
+    final server = _loopback!;
+    try {
+      final req = await server.first.timeout(const Duration(minutes: 5));
+      final q = req.uri.queryParameters;
+      final ok = q['code'] != null && q['state'] == _state;
+      req.response
+        ..statusCode = 200
+        ..headers.contentType = ContentType.html
+        ..write('<html><body style="font-family:sans-serif;text-align:center;padding-top:15vh">'
+            '<h2>${ok ? 'YomiHub: đã đăng nhập Google' : 'YomiHub: đăng nhập không thành công'}</h2>'
+            '<p>${ok ? 'Bạn có thể đóng tab này và quay lại ứng dụng.' : 'Hãy thử lại trong ứng dụng.'}</p></body></html>');
+      await req.response.close();
+      if (!ok) throw Exception('Google: ${q['error'] ?? 'state mismatch'}');
+      final r = await _client.post(
+        Uri.parse(tokenUrl),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: _q({
+          'grant_type': 'authorization_code',
+          'code': q['code']!,
+          'client_id': YomiGoogleOAuth.desktopClientId,
+          'client_secret': YomiGoogleOAuth.desktopClientSecret,
+          'redirect_uri': _redirect!,
+          'code_verifier': _verifier!,
+        }),
       );
+      final t = _json(r, 'Google sign-in');
+      // refresh uses the same client as the sign-in
+      config['client_id'] = YomiGoogleOAuth.desktopClientId;
+      config['client_secret'] = YomiGoogleOAuth.desktopClientSecret;
+      config['builtin_client'] = 'desktop';
+      _storeTokens(t);
+      AppLogger.log('[Google Drive] Đã đăng nhập ${config['account_email'] ?? 'Google'}');
+    } on TimeoutException {
+      throw Exception(tr('Google Drive: hết thời gian chờ đăng nhập'));
+    } finally {
+      await server.close(force: true);
+      _loopback = null;
+    }
+  }
 
-  @override
-  Future<void> completeAuth({String? pastedCode}) =>
-      _devicePoll({'client_secret': config['client_secret'] ?? ''});
+  static Future<bool> _openExternal(String url) async {
+    try {
+      final r = await Process.run('rundll32', ['url.dll,FileProtocolHandler', url]);
+      return r.exitCode == 0;
+    } catch (_) {
+      return false;
+    }
+  }
 
   Future<Map<String, String>> _h() async => {'Authorization': 'Bearer ${await accessToken()}'};
 

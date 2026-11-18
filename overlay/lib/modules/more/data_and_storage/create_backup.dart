@@ -10,6 +10,9 @@ import 'package:mangayomi/providers/l10n_providers.dart';
 import 'package:mangayomi/providers/storage_provider.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
+import 'package:mangayomi/utils/platform_utils.dart';
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 
 class CreateBackup extends ConsumerStatefulWidget {
   const CreateBackup({super.key});
@@ -152,6 +155,38 @@ class _CreateBackupState extends ConsumerState<CreateBackup> {
                   },
                 ),
               ),
+              // 0.5.9 (sheet YomiHub Update): choose the YomiHub-only items too –
+              // Booru App = search history + favourites + settings
+              // (Hive box `yomihub_booru`). Not on the TV build (no Booru).
+              if (!kIsTvBuild) ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Row(
+                    children: [
+                      Text('YomiHub', style: TextStyle(fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    child: StatefulBuilder(
+                      builder: (context, setLocal) {
+                        final on = YomiPrefs.get<bool>('backupBooru', true);
+                        return ListTileChapterFilter(
+                          label: tr('Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)'),
+                          type: on ? 1 : 0,
+                          onTap: () async {
+                            await YomiPrefs.set('backupBooru', !on);
+                            setLocal(() {});
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Divider(color: context.primaryColor, height: 0.3),

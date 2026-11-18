@@ -36,6 +36,7 @@ import 'package:mangayomi/yomihub/cloudflare/cf_identity.dart';
 import 'package:mangayomi/yomihub/cloudflare/cf_webfetch.dart';
 import 'package:mangayomi/utils/localized_message.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
+import 'package:mangayomi/yomihub/vpn/vpn_service.dart';
 
 class MClient {
   MClient();
@@ -211,7 +212,10 @@ class MClient {
         dns: dnsSettings,
         dnsKey: dnsKey,
       ),
-      retryPolicy: ResolveCloudFlareChallenge(showCloudFlareError),
+      retryPolicy: ResolveCloudFlareChallenge(
+        showCloudFlareError,
+        route: YomiVpnState.proxyFor(source?.id) ?? '',
+      ),
       interceptors: [
         // YomiHub 0.1.7: "Cưỡng chế đổi URL" (must run before cookies)
         YomiUrlRewriteInterceptor(),
@@ -545,7 +549,10 @@ bool isCloudflare(BaseResponse response) {
 
 class ResolveCloudFlareChallenge extends RetryPolicy {
   bool showCloudFlareError;
-  ResolveCloudFlareChallenge(this.showCloudFlareError);
+
+  /// 0.5.9: proxy this client's requests use ('' = direct, null = unknown).
+  final String? route;
+  ResolveCloudFlareChallenge(this.showCloudFlareError, {this.route});
   @override
   int get maxRetryAttempts => CloudScraper.retries.clamp(0, 5);
   @override
@@ -586,7 +593,7 @@ class ResolveCloudFlareChallenge extends RetryPolicy {
           .post(
             Uri.parse('http://localhost:$cfPort/resolve_cf'),
             headers: {HttpHeaders.contentTypeHeader: 'application/json'},
-            body: jsonEncode({'url': url}),
+            body: jsonEncode({'url': url, if (route != null) 'route': route}),
           )
           .then((res) {
             if (res.statusCode == 200) {
@@ -731,9 +738,24 @@ void _handleResolveCf(HttpRequest request) async {
       return r.$1;
     }
 
-    final solved = data['interactive'] == true
-        ? await YomiCf.solve(url, headless)
-        : await headless();
+    Future<bool> run() =>
+        data['interactive'] == true ? YomiCf.solve(url, headless) : headless();
+    // 0.5.9: `route` = proxy the extension itself uses ('' = direct). When the
+    // WebView would leave through another route, solve on the extension's
+    // route so cf_clearance matches its IP (kill-switch route excluded).
+    final route = data['route'] as String?;
+    final align = route != null &&
+        route != (YomiVpnState.webViewProxy() ?? '') &&
+        !route.endsWith(':9');
+    if (align) {
+      AppLogger.log(
+        '[Cloudflare] Giải Cloudflare cho ${Uri.tryParse(url)?.host ?? url} trên cùng đường mạng với tiện ích '
+        '(${route.isEmpty ? 'đi thẳng' : route}) để cookie cf_clearance dùng được',
+      );
+    }
+    final solved = align
+        ? await YomiVpnService.instance.withWebViewRoute(route, run)
+        : await run();
 
     request.response
       ..headers.contentType = ContentType.json

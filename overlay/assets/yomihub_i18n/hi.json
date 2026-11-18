@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} ने अनुरोध अस्वीकार किया या त्रुटि लौटाई",
   "Lỗi mạng khi tải ảnh từ {host}": "{host} से छवि लोड करते समय नेटवर्क त्रुटि",
   "Không giải mã được ảnh sau {sec} giây": "{sec} सेकंड बाद भी चित्र डिकोड नहीं हो सका",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "चित्र फ़ाइल ख़राब है या प्रारूप समर्थित नहीं है"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "चित्र फ़ाइल ख़राब है या प्रारूप समर्थित नहीं है",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "क्लाइंट ID (खाली छोड़ें = YomiHub की बिल्ट-इन सेटिंग से Google खाते में साइन इन)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Google खाते से साइन इन करने के लिए कनेक्ट दबाएँ (Windows: ब्राउज़र खुलता है और अपने-आप ऐप में लौट आता है; Android/TV: google.com/device खोलें और दिखाया गया कोड डालें)। ऐप केवल YomiHub द्वारा बनाए गए बैकअप फ़ोल्डर (डिफ़ॉल्ट: YomiHub) के लिए drive.file अनुमति का उपयोग करता है और कोई अन्य फ़ाइल नहीं पढ़ता। आप चाहें तो अपना Client ID/Client secret (TV/Limited Input Devices प्रकार) डाल सकते हैं।",
+  "Không mở được trình duyệt để đăng nhập Google": "Google साइन-इन के लिए ब्राउज़र नहीं खुल सका",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "इस बिल्ड में Google साइन-इन की बिल्ट-इन सेटिंग नहीं है – अपना Client ID और Client secret डालें",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: साइन-इन का समय समाप्त",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (खोज इतिहास, पसंदीदा, सेटिंग्स)"
 }

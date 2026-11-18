@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} refused the request or returned an error",
   "Lỗi mạng khi tải ảnh từ {host}": "Network error loading image from {host}",
   "Không giải mã được ảnh sau {sec} giây": "Could not decode the image after {sec} s",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Image file is corrupt or in an unsupported format"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Image file is corrupt or in an unsupported format",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "Client ID (leave empty = Sign in with your Google account using YomiHub's built-in setup)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Tap Connect to sign in with your Google account (Windows: opens the browser and returns to the app automatically; Android/TV: open google.com/device and enter the code shown). The app only uses the drive.file scope for the backup folder YomiHub creates (default: YomiHub) and never reads other files. You can enter your own Client ID/Client secret (TV/Limited Input Devices type) instead.",
+  "Không mở được trình duyệt để đăng nhập Google": "Could not open the browser for Google sign-in",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "This build has no built-in Google sign-in setup – enter your own Client ID and Client secret",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: sign-in timed out",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (search history, favourites, settings)"
 }

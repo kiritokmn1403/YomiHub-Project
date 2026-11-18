@@ -1,0 +1,146 @@
+{
+ "en": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "Client ID (leave empty = Sign in with your Google account using YomiHub's built-in setup)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Tap Connect to sign in with your Google account (Windows: opens the browser and returns to the app automatically; Android/TV: open google.com/device and enter the code shown). The app only uses the drive.file scope for the backup folder YomiHub creates (default: YomiHub) and never reads other files. You can enter your own Client ID/Client secret (TV/Limited Input Devices type) instead.",
+  "Không mở được trình duyệt để đăng nhập Google": "Could not open the browser for Google sign-in",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "This build has no built-in Google sign-in setup – enter your own Client ID and Client secret",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: sign-in timed out",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (search history, favourites, settings)"
+ },
+ "ar": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "معرّف العميل (اتركه فارغًا = تسجيل الدخول بحساب Google باستخدام إعداد YomiHub المدمج)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "اضغط اتصال لتسجيل الدخول بحساب Google (ويندوز: يفتح المتصفح ثم يعود إلى التطبيق تلقائيًا؛ أندرويد/التلفاز: افتح google.com/device وأدخل الرمز المعروض). يستخدم التطبيق صلاحية drive.file فقط لمجلد النسخ الاحتياطي الذي ينشئه YomiHub (الافتراضي: YomiHub) ولا يقرأ أي ملفات أخرى. يمكنك إدخال معرّف العميل وسرّ العميل الخاصين بك (نوع TV/Limited Input Devices) بدلًا من ذلك.",
+  "Không mở được trình duyệt để đăng nhập Google": "تعذّر فتح المتصفح لتسجيل الدخول إلى Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "لا يحتوي هذا الإصدار على إعداد مدمج لتسجيل الدخول إلى Google – أدخل معرّف العميل وسرّ العميل الخاصين بك",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: انتهت مهلة تسجيل الدخول",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "تطبيق Booru (سجل البحث، المفضلة، الإعدادات)"
+ },
+ "as": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "Client ID (খালী ৰাখক = YomiHub-ৰ নিজা ছেটআপেৰে Google একাউণ্টত ছাইন ইন)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Google একাউণ্টেৰে ছাইন ইন কৰিবলৈ সংযোগত টিপক (Windows: ব্ৰাউজাৰ খোলে আৰু নিজে এপলৈ ঘূৰি আহে; Android/TV: google.com/device খুলি দেখুওৱা ক'ড দিয়ক)। এপে কেৱল YomiHub-এ বনোৱা বেকআপ ফ'ল্ডাৰৰ বাবে drive.file অনুমতি ব্যৱহাৰ কৰে (ডিফল্ট: YomiHub), আন ফাইল নপঢ়ে। বিকল্পভাৱে নিজৰ Client ID/Client secret (TV/Limited Input Devices প্ৰকাৰ) দিব পাৰে।",
+  "Không mở được trình duyệt để đăng nhập Google": "Google ছাইন ইনৰ বাবে ব্ৰাউজাৰ খুলিব পৰা নগ'ল",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "এই বিল্ডত Google ছাইন ইনৰ নিজা ছেটআপ নাই – নিজৰ Client ID আৰু Client secret দিয়ক",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: ছাইন ইনৰ সময় উকলি গ'ল",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (সন্ধানৰ ইতিহাস, প্ৰিয়, ছেটিংছ)"
+ },
+ "de": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "Client-ID (leer lassen = Mit Google-Konto anmelden, integrierte YomiHub-Konfiguration)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Tippe auf Verbinden, um dich mit deinem Google-Konto anzumelden (Windows: öffnet den Browser und kehrt automatisch zur App zurück; Android/TV: google.com/device öffnen und den angezeigten Code eingeben). Die App nutzt nur die Berechtigung drive.file für den von YomiHub erstellten Sicherungsordner (Standard: YomiHub) und liest keine anderen Dateien. Du kannst stattdessen eine eigene Client-ID/ein eigenes Client-Secret (Typ TV/Limited Input Devices) eingeben.",
+  "Không mở được trình duyệt để đăng nhập Google": "Browser für die Google-Anmeldung konnte nicht geöffnet werden",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Dieser Build hat keine integrierte Google-Anmeldung – gib eine eigene Client-ID und ein Client-Secret ein",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: Zeitüberschreitung bei der Anmeldung",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru-App (Suchverlauf, Favoriten, Einstellungen)"
+ },
+ "es": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID de cliente (vacío = Iniciar sesión con tu cuenta de Google usando la configuración integrada de YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Pulsa Conectar para iniciar sesión con tu cuenta de Google (Windows: abre el navegador y vuelve a la app automáticamente; Android/TV: abre google.com/device e introduce el código mostrado). La app solo usa el permiso drive.file para la carpeta de copias que crea YomiHub (predeterminada: YomiHub) y nunca lee otros archivos. También puedes introducir tu propio ID de cliente/secreto de cliente (tipo TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "No se pudo abrir el navegador para iniciar sesión en Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Esta compilación no tiene configuración integrada de inicio de sesión de Google: introduce tu propio ID y secreto de cliente",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: se agotó el tiempo de inicio de sesión",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (historial de búsqueda, favoritos, ajustes)"
+ },
+ "fr": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID client (laisser vide = Se connecter avec un compte Google via la configuration intégrée de YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Appuyez sur Connecter pour vous connecter avec votre compte Google (Windows : ouvre le navigateur puis revient automatiquement dans l'app ; Android/TV : ouvrez google.com/device et saisissez le code affiché). L'app n'utilise que l'autorisation drive.file pour le dossier de sauvegarde créé par YomiHub (par défaut : YomiHub) et ne lit aucun autre fichier. Vous pouvez aussi saisir votre propre ID client/secret client (type TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Impossible d'ouvrir le navigateur pour la connexion Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Cette version n'a pas de configuration de connexion Google intégrée – saisissez votre propre ID client et secret client",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive : délai de connexion dépassé",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (historique de recherche, favoris, paramètres)"
+ },
+ "hi": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "क्लाइंट ID (खाली छोड़ें = YomiHub की बिल्ट-इन सेटिंग से Google खाते में साइन इन)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Google खाते से साइन इन करने के लिए कनेक्ट दबाएँ (Windows: ब्राउज़र खुलता है और अपने-आप ऐप में लौट आता है; Android/TV: google.com/device खोलें और दिखाया गया कोड डालें)। ऐप केवल YomiHub द्वारा बनाए गए बैकअप फ़ोल्डर (डिफ़ॉल्ट: YomiHub) के लिए drive.file अनुमति का उपयोग करता है और कोई अन्य फ़ाइल नहीं पढ़ता। आप चाहें तो अपना Client ID/Client secret (TV/Limited Input Devices प्रकार) डाल सकते हैं।",
+  "Không mở được trình duyệt để đăng nhập Google": "Google साइन-इन के लिए ब्राउज़र नहीं खुल सका",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "इस बिल्ड में Google साइन-इन की बिल्ट-इन सेटिंग नहीं है – अपना Client ID और Client secret डालें",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: साइन-इन का समय समाप्त",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (खोज इतिहास, पसंदीदा, सेटिंग्स)"
+ },
+ "id": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID Klien (kosongkan = Masuk dengan akun Google memakai konfigurasi bawaan YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Ketuk Hubungkan untuk masuk dengan akun Google (Windows: membuka browser lalu otomatis kembali ke aplikasi; Android/TV: buka google.com/device dan masukkan kode yang ditampilkan). Aplikasi hanya memakai izin drive.file untuk folder cadangan yang dibuat YomiHub (bawaan: YomiHub) dan tidak membaca file lain. Anda juga dapat memasukkan Client ID/Client secret sendiri (jenis TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Tidak dapat membuka browser untuk masuk ke Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Build ini tidak memiliki konfigurasi masuk Google bawaan – masukkan Client ID dan Client secret sendiri",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: waktu masuk habis",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (riwayat pencarian, favorit, pengaturan)"
+ },
+ "it": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID client (lascia vuoto = Accedi con l'account Google usando la configurazione integrata di YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Tocca Connetti per accedere con il tuo account Google (Windows: apre il browser e torna automaticamente all'app; Android/TV: apri google.com/device e inserisci il codice mostrato). L'app usa solo l'autorizzazione drive.file per la cartella di backup creata da YomiHub (predefinita: YomiHub) e non legge altri file. In alternativa puoi inserire un tuo ID client/segreto client (tipo TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Impossibile aprire il browser per l'accesso a Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Questa build non ha una configurazione di accesso Google integrata: inserisci un tuo ID client e segreto client",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: tempo di accesso scaduto",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (cronologia ricerche, preferiti, impostazioni)"
+ },
+ "ja": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "クライアント ID（空欄 = YomiHub の組み込み設定で Google アカウントにログイン）",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "「接続」をタップして Google アカウントでログインします（Windows：ブラウザが開き、自動でアプリに戻ります。Android/TV：google.com/device を開いて表示されたコードを入力）。アプリは YomiHub が作成したバックアップフォルダ（既定：YomiHub）に対する drive.file 権限のみを使い、他のファイルは読みません。独自のクライアント ID/クライアントシークレット（TV/Limited Input Devices タイプ）を入力することもできます。",
+  "Không mở được trình duyệt để đăng nhập Google": "Google ログイン用のブラウザを開けませんでした",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "このビルドには Google ログインの組み込み設定がありません。独自のクライアント ID とクライアントシークレットを入力してください",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive：ログインがタイムアウトしました",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App（検索履歴、お気に入り、設定）"
+ },
+ "ko": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "클라이언트 ID (비워 두면 = YomiHub 기본 설정으로 Google 계정 로그인)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "연결을 눌러 Google 계정으로 로그인하세요 (Windows: 브라우저가 열리고 자동으로 앱으로 돌아옵니다; Android/TV: google.com/device를 열고 표시된 코드를 입력하세요). 앱은 YomiHub가 만든 백업 폴더(기본: YomiHub)에 대한 drive.file 권한만 사용하며 다른 파일은 읽지 않습니다. 원하면 직접 만든 Client ID/Client secret(TV/Limited Input Devices 유형)을 입력할 수 있습니다.",
+  "Không mở được trình duyệt để đăng nhập Google": "Google 로그인을 위한 브라우저를 열 수 없습니다",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "이 빌드에는 기본 Google 로그인 설정이 없습니다 – 직접 Client ID와 Client secret을 입력하세요",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: 로그인 시간이 초과되었습니다",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru 앱 (검색 기록, 즐겨찾기, 설정)"
+ },
+ "pt": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID de cliente (deixe vazio = Iniciar sessão com a conta Google usando a configuração integrada do YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Toque em Ligar para iniciar sessão com a sua conta Google (Windows: abre o navegador e volta automaticamente à app; Android/TV: abra google.com/device e introduza o código apresentado). A app só usa a permissão drive.file para a pasta de cópias de segurança criada pelo YomiHub (predefinição: YomiHub) e nunca lê outros ficheiros. Também pode introduzir o seu próprio ID/segredo de cliente (tipo TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Não foi possível abrir o navegador para iniciar sessão na Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Esta versão não tem configuração integrada de início de sessão Google – introduza o seu próprio ID e segredo de cliente",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: o tempo de início de sessão esgotou",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (histórico de pesquisa, favoritos, definições)"
+ },
+ "pt_BR": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID do cliente (deixe vazio = Entrar com a conta Google usando a configuração integrada do YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Toque em Conectar para entrar com sua conta Google (Windows: abre o navegador e volta ao app automaticamente; Android/TV: abra google.com/device e digite o código exibido). O app usa apenas a permissão drive.file para a pasta de backup criada pelo YomiHub (padrão: YomiHub) e nunca lê outros arquivos. Você também pode inserir seu próprio ID/segredo do cliente (tipo TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Não foi possível abrir o navegador para entrar no Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Esta versão não tem configuração integrada de login do Google – insira seu próprio ID e segredo do cliente",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: o tempo para entrar esgotou",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (histórico de pesquisa, favoritos, configurações)"
+ },
+ "ru": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID клиента (оставьте пустым = вход через аккаунт Google со встроенной настройкой YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Нажмите «Подключить», чтобы войти через аккаунт Google (Windows: откроется браузер, затем автоматический возврат в приложение; Android/TV: откройте google.com/device и введите показанный код). Приложение использует только разрешение drive.file для папки резервных копий, созданной YomiHub (по умолчанию: YomiHub), и не читает другие файлы. Можно ввести собственные Client ID/Client secret (тип TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Не удалось открыть браузер для входа в Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "В этой сборке нет встроенной настройки входа Google – введите собственные Client ID и Client secret",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: время ожидания входа истекло",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (история поиска, избранное, настройки)"
+ },
+ "th": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "Client ID (เว้นว่าง = ลงชื่อเข้าใช้ด้วยบัญชี Google โดยใช้การตั้งค่าในตัวของ YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "แตะเชื่อมต่อเพื่อลงชื่อเข้าใช้ด้วยบัญชี Google (Windows: เปิดเบราว์เซอร์แล้วกลับมาที่แอปอัตโนมัติ; Android/TV: เปิด google.com/device แล้วป้อนรหัสที่แสดง) แอปใช้เพียงสิทธิ์ drive.file กับโฟลเดอร์สำรองข้อมูลที่ YomiHub สร้าง (ค่าเริ่มต้น: YomiHub) และไม่อ่านไฟล์อื่น คุณสามารถป้อน Client ID/Client secret ของคุณเอง (ประเภท TV/Limited Input Devices) แทนได้",
+  "Không mở được trình duyệt để đăng nhập Google": "ไม่สามารถเปิดเบราว์เซอร์เพื่อลงชื่อเข้าใช้ Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "บิลด์นี้ไม่มีการตั้งค่าลงชื่อเข้าใช้ Google ในตัว – โปรดป้อน Client ID และ Client secret ของคุณเอง",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: หมดเวลาลงชื่อเข้าใช้",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (ประวัติการค้นหา รายการโปรด การตั้งค่า)"
+ },
+ "tr": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "İstemci Kimliği (boş bırakın = YomiHub'ın yerleşik ayarıyla Google hesabıyla oturum açın)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Google hesabınızla oturum açmak için Bağlan'a dokunun (Windows: tarayıcıyı açar ve otomatik olarak uygulamaya döner; Android/TV: google.com/device adresini açıp gösterilen kodu girin). Uygulama yalnızca YomiHub'ın oluşturduğu yedek klasörü (varsayılan: YomiHub) için drive.file iznini kullanır, başka dosya okumaz. İsterseniz kendi Client ID/Client secret değerlerinizi (TV/Limited Input Devices türü) girebilirsiniz.",
+  "Không mở được trình duyệt để đăng nhập Google": "Google oturumu için tarayıcı açılamadı",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Bu derlemede yerleşik Google oturum açma ayarı yok – kendi Client ID ve Client secret değerlerinizi girin",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: oturum açma zaman aşımına uğradı",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (arama geçmişi, favoriler, ayarlar)"
+ },
+ "zh": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "客户端 ID（留空 = 使用 YomiHub 内置配置以 Google 账号登录）",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "点按“连接”以 Google 账号登录（Windows：打开浏览器并自动返回应用；Android/TV：打开 google.com/device 并输入显示的代码）。应用仅对 YomiHub 创建的备份文件夹（默认：YomiHub）使用 drive.file 权限，不会读取其他文件。也可以填写自己的 Client ID/Client secret（TV/Limited Input Devices 类型）。",
+  "Không mở được trình duyệt để đăng nhập Google": "无法打开浏览器进行 Google 登录",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "此版本没有内置的 Google 登录配置——请填写自己的 Client ID 和 Client secret",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive：登录超时",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru 应用（搜索记录、收藏、设置）"
+ },
+ "es_419": {
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID de cliente (vacío = Iniciar sesión con tu cuenta de Google usando la configuración integrada de YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Pulsa Conectar para iniciar sesión con tu cuenta de Google (Windows: abre el navegador y vuelve a la app automáticamente; Android/TV: abre google.com/device e introduce el código mostrado). La app solo usa el permiso drive.file para la carpeta de copias que crea YomiHub (predeterminada: YomiHub) y nunca lee otros archivos. También puedes introducir tu propio ID de cliente/secreto de cliente (tipo TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "No se pudo abrir el navegador para iniciar sesión en Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Esta compilación no tiene configuración integrada de inicio de sesión de Google: introduce tu propio ID y secreto de cliente",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: se agotó el tiempo de inicio de sesión",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (historial de búsqueda, favoritos, configuración)"
+ }
+}

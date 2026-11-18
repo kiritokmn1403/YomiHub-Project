@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} отклонил запрос или вернул ошибку",
   "Lỗi mạng khi tải ảnh từ {host}": "Ошибка сети при загрузке изображения с {host}",
   "Không giải mã được ảnh sau {sec} giây": "Не удалось декодировать изображение за {sec} с",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Файл изображения повреждён или формат не поддерживается"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Файл изображения повреждён или формат не поддерживается",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID клиента (оставьте пустым = вход через аккаунт Google со встроенной настройкой YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Нажмите «Подключить», чтобы войти через аккаунт Google (Windows: откроется браузер, затем автоматический возврат в приложение; Android/TV: откройте google.com/device и введите показанный код). Приложение использует только разрешение drive.file для папки резервных копий, созданной YomiHub (по умолчанию: YomiHub), и не читает другие файлы. Можно ввести собственные Client ID/Client secret (тип TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Не удалось открыть браузер для входа в Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "В этой сборке нет встроенной настройки входа Google – введите собственные Client ID и Client secret",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: время ожидания входа истекло",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (история поиска, избранное, настройки)"
 }

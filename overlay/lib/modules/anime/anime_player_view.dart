@@ -970,16 +970,56 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     widget.desktopFullScreenPlayer.call(isFullScreen);
   }
 
+  // 0.5.9 (Feature Check 32 "Video không thoát được"): exit watchdog.
+  DateTime? _yhExitStartedAt;
+  String _yhExitStep = '';
+
   Future<void> _goBackToDetail() async {
-    if (_routeExitInProgress) return;
-    _routeExitInProgress = true;
-    if (isDesktop && ref.read(fullscreenProvider)) {
-      await _exitDesktopFullScreen();
+    if (_routeExitInProgress) {
+      // A previous exit hung (texture release / fullscreen never returned):
+      // a second Back after 4 s forces the route closed instead of trapping
+      // the user in the player.
+      final t = _yhExitStartedAt;
+      if (t != null && DateTime.now().difference(t) > const Duration(seconds: 4) && mounted) {
+        AppLogger.log(
+          '[Trình phát] Video không thoát được (kẹt ở bước "$_yhExitStep" ${DateTime.now().difference(t).inSeconds} giây) – buộc đóng trình phát • tập "${widget.episode.name}"',
+          logLevel: LogLevel.error,
+        );
+        _firstTime = true;
+        Navigator.pop(context);
+      }
+      return;
     }
-    restoreSystemUI();
-    await _retireVideoTexture();
+    _routeExitInProgress = true;
+    _yhExitStartedAt = DateTime.now();
+    final watchdog = Timer(const Duration(seconds: 4), () {
+      if (mounted) {
+        AppLogger.log(
+          '[Trình phát] Thoát trình phát chậm: sau 4 giây vẫn ở bước "$_yhExitStep" • tập "${widget.episode.name}"',
+          logLevel: LogLevel.warning,
+        );
+      }
+    });
+    try {
+      if (isDesktop && ref.read(fullscreenProvider)) {
+        _yhExitStep = 'thoát toàn màn hình';
+        await _exitDesktopFullScreen();
+      }
+      _yhExitStep = 'khôi phục thanh hệ thống';
+      restoreSystemUI();
+      _yhExitStep = 'giải phóng khung video';
+      await _retireVideoTexture().timeout(const Duration(seconds: 3));
+    } catch (e) {
+      AppLogger.log(
+        '[Trình phát] Lỗi khi thoát trình phát ở bước "$_yhExitStep": $e – vẫn đóng trình phát',
+        logLevel: LogLevel.error,
+      );
+    } finally {
+      watchdog.cancel();
+    }
     if (!mounted) return;
     _firstTime = true;
+    _yhExitStep = 'đóng màn hình';
     Navigator.pop(context);
   }
 

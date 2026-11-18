@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} menolak permintaan atau mengembalikan kesalahan",
   "Lỗi mạng khi tải ảnh từ {host}": "Kesalahan jaringan saat memuat gambar dari {host}",
   "Không giải mã được ảnh sau {sec} giây": "Gambar tidak dapat didekode setelah {sec} dtk",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Berkas gambar rusak atau format tidak didukung"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Berkas gambar rusak atau format tidak didukung",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID Klien (kosongkan = Masuk dengan akun Google memakai konfigurasi bawaan YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Ketuk Hubungkan untuk masuk dengan akun Google (Windows: membuka browser lalu otomatis kembali ke aplikasi; Android/TV: buka google.com/device dan masukkan kode yang ditampilkan). Aplikasi hanya memakai izin drive.file untuk folder cadangan yang dibuat YomiHub (bawaan: YomiHub) dan tidak membaca file lain. Anda juga dapat memasukkan Client ID/Client secret sendiri (jenis TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Tidak dapat membuka browser untuk masuk ke Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Build ini tidak memiliki konfigurasi masuk Google bawaan – masukkan Client ID dan Client secret sendiri",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: waktu masuk habis",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (riwayat pencarian, favorit, pengaturan)"
 }

@@ -4,10 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:mangayomi/modules/more/settings/reader/providers/reader_state_provider.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:mangayomi/utils/platform_utils.dart';
 
 class YomiPlayBooks {
   static const route = '/playBooks';
-  static bool get enabled => YomiPrefs.get<bool>('playBooksEnabled', true);
+  /// 0.5.9: never on the "YumiHub Android TV" build (or a TV device) – the
+  /// TV APK has no Comic, Novel, Google Play Books or Booru.
+  static bool get enabled =>
+      !(kIsTvBuild || isTv) && YomiPrefs.get<bool>('playBooksEnabled', true);
 
   /// 0.5.7 (YomiHub Update: công tắc Google Play Books nằm ngay trong
   /// "Bật/Tắt tính năng & Nguồn mở rộng"): the one place that turns the

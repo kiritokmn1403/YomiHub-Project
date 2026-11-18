@@ -1,0 +1,1611 @@
+{
+  "total": 196,
+  "suspicious": [
+    {
+      "dir": "hentaivn",
+      "name": "HentaiVN",
+      "source": "https://hentaihvn.tv",
+      "version": 31,
+      "nsfwIssue": {
+        "oldNsfw": false,
+        "newNsfw": true,
+        "reason": "Tên/nguồn chứa từ khóa 18+ (hentai) nhưng nsfw đang là false"
+      },
+      "langIssue": null
+    },
+    {
+      "dir": "mimimoe",
+      "name": "Mimimoe",
+      "source": "https://mimihentai.moe",
+      "version": 5,
+      "nsfwIssue": {
+        "oldNsfw": false,
+        "newNsfw": true,
+        "reason": "Tên/nguồn chứa từ khóa 18+ (hentai) nhưng nsfw đang là false"
+      },
+      "langIssue": null
+    },
+    {
+      "dir": "vinahentai",
+      "name": "VinaHentai",
+      "source": "https://vinahentai.bio",
+      "version": 6,
+      "nsfwIssue": {
+        "oldNsfw": false,
+        "newNsfw": true,
+        "reason": "Tên/nguồn chứa từ khóa 18+ (hentai) nhưng nsfw đang là false"
+      },
+      "langIssue": null
+    }
+  ],
+  "allSources": [
+    {
+      "dir": "07br",
+      "name": "07br",
+      "source": "https://www.bqg603.cc",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "101kks",
+      "name": "101kks",
+      "source": "https://101kks.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "101minc",
+      "name": "101Minc",
+      "source": "https://www.101minc.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "52shukubyquocbao",
+      "name": "52shuku",
+      "source": "https://www.52shuku.net",
+      "locale": "zh_CN",
+      "nsfw": false,
+      "version": 15
+    },
+    {
+      "dir": "69shuba",
+      "name": "69shuba",
+      "source": "https://www.69shuba.com",
+      "locale": "zh_CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "69shurepoduongden",
+      "name": "69shuba",
+      "source": "https://www.69shuba.com",
+      "locale": "zh_CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "75zwcom",
+      "name": "75zwcom",
+      "source": "https://m.75biquge.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "8book",
+      "name": "8book",
+      "source": "https://www.8book.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "abcbiquge",
+      "name": "笔趣阁-abcbiquge",
+      "source": "https://m.bqg6.xyz",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "alicesw",
+      "name": "AliceSW",
+      "source": "https://www.alicesw.com/",
+      "locale": "zh_CN",
+      "nsfw": true,
+      "version": 9
+    },
+    {
+      "dir": "allin1",
+      "name": "allin1",
+      "source": "http://14.225.254.182",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "anime47",
+      "name": "Anime47",
+      "source": "https://anime47.best",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "animevnnet",
+      "name": "AnimeVn.Net",
+      "source": "https://animevn.net",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "apptruyenchu",
+      "name": "App Truyện Chữ",
+      "source": "https://apptruyenchu.pro",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "avsubanimevietsub",
+      "name": "AVSub – AnimeVietsub",
+      "source": "https://animevsub.co.uk",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "banlong",
+      "name": "Bàn Long",
+      "source": "https://blhvip.vn",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 11
+    },
+    {
+      "dir": "bilibili",
+      "name": "Bilibili",
+      "source": "https://www.bilibili.tv",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "blbattu",
+      "name": "BL Bất Tử",
+      "source": "https://blbattu.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "blvietsub",
+      "name": "BLVietsub",
+      "source": "https://www.blvietsub.vip",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "boylovebattu",
+      "name": "Boylove Bất Tử",
+      "source": "https://boylovebattu.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "cbhentai",
+      "name": "HentaiCube -18+ (iOS)",
+      "source": "https://hentaicube.xyz",
+      "locale": "vi_VN",
+      "nsfw": true,
+      "version": 18
+    },
+    {
+      "dir": "cbunucomic",
+      "name": "CBunu Comic",
+      "source": "https://cucbongunu.com",
+      "locale": "vi",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "ciyuanji",
+      "name": "ciyuanji",
+      "source": "https://m.ciyuanji.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 7
+    },
+    {
+      "dir": "cosplaytele",
+      "name": "Cosplaytele",
+      "source": "https://cosplaytele.com",
+      "locale": "en_US",
+      "nsfw": true,
+      "version": 8
+    },
+    {
+      "dir": "czbooksrepoduongden",
+      "name": "czbooks - repo Đường đen",
+      "source": "https://czbooks.net",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 9
+    },
+    {
+      "dir": "dailymotion",
+      "name": "Dailymotion",
+      "source": "https://www.dailymotion.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "damconuong",
+      "name": "Dâm Cô Nương",
+      "source": "https://damconuong.name",
+      "locale": "vi",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "deqixs",
+      "name": "Deqixs",
+      "source": "https://www.deqixs.org",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "destinteam",
+      "name": "Destin Team",
+      "source": "https://destinteam.xyz",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "doctruyentranhbl",
+      "name": "Đọc Truyện Tranh BL",
+      "source": "https://truyentranhbl.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "douban",
+      "name": "douban",
+      "source": "https://read.douban.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "douyin",
+      "name": "Douyin",
+      "source": "https://www.douyin.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "duahau",
+      "name": "Dưa Hấu",
+      "source": "https://xgmf.zuanqianyi.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "dualeotruyen",
+      "name": "Dưa Leo truyện",
+      "source": "https://dualeotruyenbet.com",
+      "locale": "vi",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "ehentai",
+      "name": "E Hentai",
+      "source": "https://e-hentai.org",
+      "locale": "vi",
+      "nsfw": true,
+      "version": 5
+    },
+    {
+      "dir": "faloo",
+      "name": "bFaloo (飞卢小说)",
+      "source": "https://b.faloo.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 8
+    },
+    {
+      "dir": "fanmtl",
+      "name": "Fan MTL",
+      "source": "https://www.fanmtl.com",
+      "locale": "en",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "fapreel",
+      "name": "FapReel",
+      "source": "https://fapreel.com",
+      "locale": "global",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "fikfap",
+      "name": "FikFap",
+      "source": "https://fikfap.com",
+      "locale": "global",
+      "nsfw": true,
+      "version": 5
+    },
+    {
+      "dir": "freereels",
+      "name": "FreeReels",
+      "source": "https://free-reels.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "gaumeoteam",
+      "name": "Gấu Mèo Team",
+      "source": "https://gaumeoteam.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "gioitruyen",
+      "name": "Giới Truyện",
+      "source": "https://gioitruyen.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "goctruyentranh",
+      "name": "Góc Truyện Tranh",
+      "source": "https://goctruyentranhvui41.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "gongzicp",
+      "name": "gongzicp",
+      "source": "https://www.gongzicp.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "guphim",
+      "name": "GuPhim",
+      "source": "https://guphimz.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "hacamchicac",
+      "name": "Hắc Ám Chi Các",
+      "source": "https://haccbl.xyz",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "hamelnsyosetuorg",
+      "name": "Hameln (Syosetu.org)",
+      "source": "https://syosetu.org",
+      "locale": "ja",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "hangtruyenchu",
+      "name": "Hang Truyện Chữ",
+      "source": "https://hangtruyenchu.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "haychill",
+      "name": "HayChill",
+      "source": "https://phimhaychill.org",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "hentaivietsubcom",
+      "name": "HentaiVietsub.com",
+      "source": "https://hentaivietsub.com",
+      "locale": "vi",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "hentaivn",
+      "name": "HentaiVN",
+      "source": "https://hentaihvn.tv",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 31
+    },
+    {
+      "dir": "hhpanda",
+      "name": "HHPanda",
+      "source": "https://hhpanda.st",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "hhtqhayvip",
+      "name": "HHTQHAY.VIP",
+      "source": "https://hhtqhay.vip",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "hihiphim",
+      "name": "HiHiPhim",
+      "source": "https://hihiphim.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "hongqua",
+      "name": "Hồng Quả",
+      "source": "https://hongguoduanju.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "hotphim",
+      "name": "HotPhim",
+      "source": "https://hotphim.org",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "html5qqcom",
+      "name": "html5.qq.com",
+      "source": "https://bookshelf.html5.qq.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "idejian",
+      "name": "idejian",
+      "source": "https://www.idejian.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "ijjjxsxzw",
+      "name": "ijjjxsxzw",
+      "source": "https://m.ijjjxsxzw.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "iqiyi",
+      "name": "iQIYI",
+      "source": "https://www.iq.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "ixdzs8",
+      "name": "ixdzs8",
+      "source": "https://ixdzs8.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "jellycomics",
+      "name": "Jelly Comics",
+      "source": "https://jellycomics.online",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "jjwxcrepoduongden",
+      "name": "Jjwxc-repo duongden💰✅",
+      "source": "https://www.jjwxc.net",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "jjwxctangiang",
+      "name": "JJWXC · Tấn Giang",
+      "source": "https://www.jjwxc.net",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "julycomic",
+      "name": "JulyComic",
+      "source": "https://julycomics.site",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "kakuyomu",
+      "name": "Kakuyomu",
+      "source": "https://kakuyomu.jp",
+      "locale": "ja",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "khotruyenchu",
+      "name": "Kho Truyện Chữ",
+      "source": "https://khotruyenchu.me/",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "kwiky",
+      "name": "Kwiky",
+      "source": "https://kwiky.com",
+      "locale": "global",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "lacatruyen",
+      "name": "La Cà Truyện",
+      "source": "https://lacatruyen.homes",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "langgee",
+      "name": "Langgee",
+      "source": "https://v5.langge.uk",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "lnhakovnhako",
+      "name": "Hako Novel",
+      "source": "https://docln.sbs",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "lnkuro",
+      "name": "LN Kuro",
+      "source": "https://lnkuro.top",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 19
+    },
+    {
+      "dir": "lofter",
+      "name": "LOFTER",
+      "source": "https://www.suduguu.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "lohi",
+      "name": "LoHi",
+      "source": "https://lohi2.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "loppytoon",
+      "name": "LoppyToon",
+      "source": "https://loppytoon.com",
+      "locale": "vi",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "luottruyen",
+      "name": "LuotTruyen",
+      "source": "https://luottruyen21.com",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 11
+    },
+    {
+      "dir": "luphim",
+      "name": "LuPhim",
+      "source": "https://luphim.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "luvevaland",
+      "name": "Luvevaland",
+      "source": "https://luvevalandn2.co",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "mangadex",
+      "name": "MangaDex",
+      "source": "https://mangadex.org",
+      "locale": "global",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "mangadm",
+      "name": "MangaDM",
+      "source": "https://mangadm.me",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "manhwabuddy",
+      "name": "ManhwaBuddy",
+      "source": "https://manhwabuddy.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "mattreadingtranslations",
+      "name": "Matt Reading Translations",
+      "source": "https://mattreadingtranslations.com",
+      "locale": "en",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "medoctruyen",
+      "name": "Mê Đọc Truyện",
+      "source": "https://medoctruyen.vn",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "metruyenchu",
+      "name": "MeTruyenChu",
+      "source": "https://metruyenchu.com.vn",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 20
+    },
+    {
+      "dir": "metruyencv",
+      "name": "Mê Truyện CV",
+      "source": "https://metruyencv.xyz",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "mgtv",
+      "name": "MGTV",
+      "source": "https://glb.m.mgtv.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "mimimoe",
+      "name": "Mimimoe",
+      "source": "https://mimihentai.moe",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "minotruyen",
+      "name": "Mino Truyện",
+      "source": "https://minotruyenv6.xyz",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "mintteanovel",
+      "name": "Minttea Novel",
+      "source": "https://mintteanovel.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "misskon",
+      "name": "Misskon",
+      "source": "https://misskon.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "moetruyen",
+      "name": "MoeTruyen",
+      "source": "https://truyen.moe",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "monkeyd",
+      "name": "MonkeyD",
+      "source": "https://monkeydd.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "motphim",
+      "name": "MotPhim",
+      "source": "https://motphimc.my",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "mottruyen",
+      "name": "Mọt Truyện",
+      "source": "https://mottruyen.app",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "moyuemacduyet",
+      "name": "Moyue · Mặc Duyệt",
+      "source": "https://moyue.app",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "mtc",
+      "name": "Mê Truyện CV",
+      "source": "https://metruyencv.xyz",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "myreadingmanga",
+      "name": "My Reading Manga",
+      "source": "https://myreadingmanga.info",
+      "locale": "global",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "navyteamcomic",
+      "name": "Navy Team Comic",
+      "source": "https://navyteams.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "navyteamnovel",
+      "name": "Navy Team Novel",
+      "source": "https://navyteams.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "nettruyen",
+      "name": "NetTruyen",
+      "source": "https://nettruyen.com.vn",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "nettruyen18",
+      "name": "NetTruyen18",
+      "source": "https://nettruyen18.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "nettruyenviet",
+      "name": "NetTruyenViet",
+      "source": "https://nettruyenviet10.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "nettruyenz",
+      "name": "NetTruyenZ",
+      "source": "https://nettruyenz.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "nextphim",
+      "name": "NextPhim",
+      "source": "https://nextphim.net",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "nguonc",
+      "name": "NguonC",
+      "source": "https://phim.nguonc.com",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 9
+    },
+    {
+      "dir": "novelfullnet",
+      "name": "NovelFull.Net",
+      "source": "https://novelfull.net",
+      "locale": "en",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "novelnext",
+      "name": "Novel Next",
+      "source": "https://novelnext.me",
+      "locale": "en",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "novelphoenix",
+      "name": "NovelPhoenix",
+      "source": "https://novelphoenix.net",
+      "locale": "en",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "novelpiaglobal",
+      "name": "Novelpia Global",
+      "source": "https://global.novelpia.com",
+      "locale": "en",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "phim4k",
+      "name": "Phim4K",
+      "source": "https://phim4k.xyz",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "phimmoi",
+      "name": "Phimmoi",
+      "source": "https://phimmoii.run",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "phimmoihd",
+      "name": "PhimMoiHD",
+      "source": "https://phimmoihd.online",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "phimnhua",
+      "name": "Phim Nhựa",
+      "source": "https://phimnhua.online",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "phimtv",
+      "name": "PhimTV",
+      "source": "https://phimtv2.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "piaotia",
+      "name": "飘天文学",
+      "source": "https://www.piaotia.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "piaotianapp",
+      "name": "piaotian-app",
+      "source": "https://www.piaotianapp.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "po18",
+      "name": "po18",
+      "source": "https://www.po18.tw",
+      "locale": "zh_CN",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "po18sm",
+      "name": "po18sm",
+      "source": "https://www.po18sm.com",
+      "locale": "zh-CN",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "pornhub",
+      "name": "PornHub",
+      "source": "https://www.pornhub.com",
+      "locale": "global",
+      "nsfw": true,
+      "version": 5
+    },
+    {
+      "dir": "qimao",
+      "name": "Qimao (七猫文化)",
+      "source": "https://www.qimao.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "qmbook",
+      "name": "qmbook",
+      "source": "https://m.bqg631.xyz",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "quanben",
+      "name": "quanben",
+      "source": "https://quanben.io",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "quanwenyuedu",
+      "name": "quanwenyuedu",
+      "source": "https://www.quanwenyuedu.io",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "quykiep",
+      "name": "LightNovel VN",
+      "source": "https://quykiep.com",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 8
+    },
+    {
+      "dir": "roadsteam",
+      "name": "Roads Team",
+      "source": "https://roadsteami.net",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "rophim",
+      "name": "Rổ Phim",
+      "source": "https://www.rophim.soy",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "sayhentai",
+      "name": "SayHentai -18+",
+      "source": "https://sayhentai.cx",
+      "locale": "vi_VN",
+      "nsfw": true,
+      "version": 6
+    },
+    {
+      "dir": "sexviettop",
+      "name": "SexVietTop",
+      "source": "https://sexvietnam69.com",
+      "locale": "vi",
+      "nsfw": true,
+      "version": 5
+    },
+    {
+      "dir": "shinigamilnteam",
+      "name": "Shinigami LN Team",
+      "source": "https://shinigamilnteam.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "showbox",
+      "name": "Showbox",
+      "source": "https://pixnet.cc",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "shubenshu",
+      "name": "书本书 Shubenshu",
+      "source": "https://www.shubenshu.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "sitruyencv",
+      "name": "Si Truyện CV",
+      "source": "https://sitruyencv.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "snapd",
+      "name": "Snapd",
+      "source": "https://m.bqgsn.cc",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "sobqg",
+      "name": "搜笔趣阁",
+      "source": "https://www.sobqg.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "sohu",
+      "name": "sohu",
+      "source": "https://m.sohu.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "soixamfanqie",
+      "name": "Sói Xám (Fanqie)",
+      "source": "https://api.langge.cf",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "sonako",
+      "name": "Sonako",
+      "source": "https://sonako.fandom.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "stvappvi",
+      "name": "STV App Vi",
+      "source": "https://sangtacviet.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "sudugu",
+      "name": "sudugu",
+      "source": "https://www.suduguu.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "sweetastes",
+      "name": "sweetastes",
+      "source": "https://baby0world.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "syosetu",
+      "name": "Syosetu",
+      "source": "https://ncode.syosetu.com",
+      "locale": "ja",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "syosetur18",
+      "name": "Syosetu R18",
+      "source": "https://novel18.syosetu.com",
+      "locale": "ja",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "taonovel",
+      "name": "TaoNovel",
+      "source": "https://tybook.taoyuewenhua.net",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "thegioitruyen",
+      "name": "Thế Giới Truyện",
+      "source": "https://thegioitruyen.vn",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "tiemtruyenchu",
+      "name": "Tiệm Truyện Chữ (Demo)",
+      "source": "https://tiemtruyenchu.cloud",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "tikporn",
+      "name": "Tik.Porn",
+      "source": "https://tik.porn",
+      "locale": "global",
+      "nsfw": true,
+      "version": 6
+    },
+    {
+      "dir": "tiktok",
+      "name": "TikTok",
+      "source": "https://www.tiktok.com",
+      "locale": "global",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "tinhlinh",
+      "name": "Tinh Linh",
+      "source": "https://tinhlinh.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "truyenc",
+      "name": "TruyenC",
+      "source": "https://truyenc.net",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "truyenchu",
+      "name": "TruyenChu",
+      "source": "https://truyenchu.net",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 12
+    },
+    {
+      "dir": "truyencv",
+      "name": "Mê Truyện CV",
+      "source": "https://metruyencv.xyz",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "truyencvio",
+      "name": "TruyenCV.io",
+      "source": "https://truyencv.io",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "truyendichai",
+      "name": "TruyenDich.AI",
+      "source": "https://truyendich.store",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 8
+    },
+    {
+      "dir": "truyendichain",
+      "name": "Truyện Dịch AI",
+      "source": "https://truyendichai.top/",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "truyenfull",
+      "name": "Truyện Full",
+      "source": "https://truyenfull.live",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 17
+    },
+    {
+      "dir": "truyenfulln",
+      "name": "Truyện Full",
+      "source": "https://truyenfull.live",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 17
+    },
+    {
+      "dir": "truyengg",
+      "name": "TruyenGG",
+      "source": "https://truyenggvn.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "truyenh",
+      "name": "Truyen H",
+      "source": "https://truyenh.top",
+      "locale": "vi",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "truyenmoi",
+      "name": "Truyện Mới",
+      "source": "https://truyenmoiqq.com/",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 10
+    },
+    {
+      "dir": "truyenmoikk",
+      "name": "Truyện Mới KK",
+      "source": "https://truyenmoikk.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "truyennet",
+      "name": "Truyện Net",
+      "source": "https://truyennet.vn/",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "truyenqq",
+      "name": "Truyện QQ",
+      "source": "https://truyenqqko.com",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 28
+    },
+    {
+      "dir": "truyenqqc",
+      "name": "TruyenQQ",
+      "source": "https://truyenqq.com.vn",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "truyentranhdammyy",
+      "name": "Truyentranhdammyy",
+      "source": "https://truyentranhdammyy.site",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "truyenzhihutonghop",
+      "name": "Truyện Zhihu Tổng Hợp",
+      "source": "https://truyendexuat.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "tutienpro",
+      "name": "Tu Tiên (.pro)",
+      "source": "https://tutien.pro",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "tvkh",
+      "name": "TVKH",
+      "source": "https://bananacoo.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "twitch",
+      "name": "Twitch",
+      "source": "https://www.twitch.tv",
+      "locale": "global",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "ungtycomics",
+      "name": "Ưng Tỷ Comics",
+      "source": "https://ungtycomicseo.com/",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "uukanshu",
+      "name": "uukanshu",
+      "source": "https://uukanshu.cc",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "valvrareteam",
+      "name": "Valvrareteam",
+      "source": "https://valvrareteam.net",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 13
+    },
+    {
+      "dir": "vfilm",
+      "name": "Vfilm",
+      "source": "http://vfilm.vn",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "viblo",
+      "name": "Viblo",
+      "source": "https://viblo.asia",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "vietnamthuquan",
+      "name": "Việt Nam Thư Quán",
+      "source": "https://vnthuquan.org",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "vinahentai",
+      "name": "VinaHentai",
+      "source": "https://vinahentai.bio",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "vipbachngocsach",
+      "name": "【VIP】Bạch Ngọc Sách",
+      "source": "https://bnsvip.net",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "vivutruyencom",
+      "name": "Vivu Truyện",
+      "source": "https://vivutruyen.net/",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "vtvgo",
+      "name": "VTV Go",
+      "source": "https://vtvgo.vn",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "watchhentainet",
+      "name": "WatchHentai.net",
+      "source": "https://watchhentai.net",
+      "locale": "en",
+      "nsfw": true,
+      "version": 4
+    },
+    {
+      "dir": "wattpad",
+      "name": "Wattpad - Tiếng Việt",
+      "source": "https://www.wattpad.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 24
+    },
+    {
+      "dir": "webtoonscan",
+      "name": "WebtoonScan",
+      "source": "https://webtoonscan.com",
+      "locale": "en",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "webtruyenchu",
+      "name": "Web Truyện Chữ",
+      "source": "https://webtruyenchu.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "webtruyendich",
+      "name": "Web Truyện Dịch",
+      "source": "https://webtruyendich.com/",
+      "locale": "vi_VN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "weebcentral",
+      "name": "Weeb Central",
+      "source": "https://weebcentral.com",
+      "locale": "en",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "weibo",
+      "name": "Weibo",
+      "source": "https://m.weibo.cn",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "wikidich",
+      "name": "Wiki Dịch",
+      "source": "https://wikicv.org",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "wodeshucheng5",
+      "name": "wodeshucheng5",
+      "source": "https://www.wodeshucheng5.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "xbanxiarepoduongden",
+      "name": "Xbanxia - repo Đường đen",
+      "source": "https://www.xbanxia.cc",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 6
+    },
+    {
+      "dir": "xemphimgi",
+      "name": "XemPhimGi",
+      "source": "https://xemphimgi.com",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 5
+    },
+    {
+      "dir": "xfree",
+      "name": "xFree",
+      "source": "https://www.xfree.com",
+      "locale": "global",
+      "nsfw": true,
+      "version": 5
+    },
+    {
+      "dir": "xianqihaotiamiapp",
+      "name": "言情小说阁 (APP)",
+      "source": "http://www.xianqihaotianmi.org",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "xoilac",
+      "name": "Xôi Lạc",
+      "source": "https://xoilacxl.cc",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "xsw",
+      "name": "xsw",
+      "source": "https://m.xsw.tw",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "xtruyen",
+      "name": "XTruyen",
+      "source": "https://xtruyen.vn",
+      "locale": "vi",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "youtube",
+      "name": "YouTube",
+      "source": "https://www.youtube.com",
+      "locale": "global",
+      "nsfw": false,
+      "version": 4
+    },
+    {
+      "dir": "ypshuobinhluansach",
+      "name": "YPShuo - Bình luận sách",
+      "source": "https://www.ypshuo.com",
+      "locale": "zh-CN",
+      "nsfw": false,
+      "version": 4
+    }
+  ]
+}

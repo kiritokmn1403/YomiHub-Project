@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} ha rifiutato la richiesta o ha restituito un errore",
   "Lỗi mạng khi tải ảnh từ {host}": "Errore di rete durante il caricamento dell'immagine da {host}",
   "Không giải mã được ảnh sau {sec} giây": "Impossibile decodificare l'immagine dopo {sec} s",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "File immagine danneggiato o formato non supportato"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "File immagine danneggiato o formato non supportato",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID client (lascia vuoto = Accedi con l'account Google usando la configurazione integrata di YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Tocca Connetti per accedere con il tuo account Google (Windows: apre il browser e torna automaticamente all'app; Android/TV: apri google.com/device e inserisci il codice mostrato). L'app usa solo l'autorizzazione drive.file per la cartella di backup creata da YomiHub (predefinita: YomiHub) e non legge altri file. In alternativa puoi inserire un tuo ID client/segreto client (tipo TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Impossibile aprire il browser per l'accesso a Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Questa build non ha una configurazione di accesso Google integrata: inserisci un tuo ID client e segreto client",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: tempo di accesso scaduto",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (cronologia ricerche, preferiti, impostazioni)"
 }

@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} hat die Anfrage abgelehnt oder einen Fehler geliefert",
   "Lỗi mạng khi tải ảnh từ {host}": "Netzwerkfehler beim Laden des Bildes von {host}",
   "Không giải mã được ảnh sau {sec} giây": "Bild konnte nach {sec} s nicht dekodiert werden",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Bilddatei beschädigt oder Format nicht unterstützt"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Bilddatei beschädigt oder Format nicht unterstützt",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "Client-ID (leer lassen = Mit Google-Konto anmelden, integrierte YomiHub-Konfiguration)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Tippe auf Verbinden, um dich mit deinem Google-Konto anzumelden (Windows: öffnet den Browser und kehrt automatisch zur App zurück; Android/TV: google.com/device öffnen und den angezeigten Code eingeben). Die App nutzt nur die Berechtigung drive.file für den von YomiHub erstellten Sicherungsordner (Standard: YomiHub) und liest keine anderen Dateien. Du kannst stattdessen eine eigene Client-ID/ein eigenes Client-Secret (Typ TV/Limited Input Devices) eingeben.",
+  "Không mở được trình duyệt để đăng nhập Google": "Browser für die Google-Anmeldung konnte nicht geöffnet werden",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Dieser Build hat keine integrierte Google-Anmeldung – gib eine eigene Client-ID und ein Client-Secret ein",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: Zeitüberschreitung bei der Anmeldung",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru-App (Suchverlauf, Favoriten, Einstellungen)"
 }

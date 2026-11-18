@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} isteği reddetti veya hata döndürdü",
   "Lỗi mạng khi tải ảnh từ {host}": "{host} adresinden görsel yüklenirken ağ hatası",
   "Không giải mã được ảnh sau {sec} giây": "Görsel {sec} sn sonra çözülemedi",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Görsel dosyası bozuk veya biçim desteklenmiyor"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Görsel dosyası bozuk veya biçim desteklenmiyor",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "İstemci Kimliği (boş bırakın = YomiHub'ın yerleşik ayarıyla Google hesabıyla oturum açın)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Google hesabınızla oturum açmak için Bağlan'a dokunun (Windows: tarayıcıyı açar ve otomatik olarak uygulamaya döner; Android/TV: google.com/device adresini açıp gösterilen kodu girin). Uygulama yalnızca YomiHub'ın oluşturduğu yedek klasörü (varsayılan: YomiHub) için drive.file iznini kullanır, başka dosya okumaz. İsterseniz kendi Client ID/Client secret değerlerinizi (TV/Limited Input Devices türü) girebilirsiniz.",
+  "Không mở được trình duyệt để đăng nhập Google": "Google oturumu için tarayıcı açılamadı",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Bu derlemede yerleşik Google oturum açma ayarı yok – kendi Client ID ve Client secret değerlerinizi girin",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: oturum açma zaman aşımına uğradı",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (arama geçmişi, favoriler, ayarlar)"
 }

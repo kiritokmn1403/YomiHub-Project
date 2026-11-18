@@ -402,7 +402,7 @@ class MihonExtensionService implements ExtensionService {
             headers: {'content-type': 'application/json'},
             // 0.5.7: same chain as the other engines (visible challenge
             // page when the invisible WebView cannot pass)
-            body: jsonEncode({'url': url, 'interactive': true}),
+            body: jsonEncode({'url': url, 'interactive': true, 'route': YomiVpnState.jvmBridgeProxy ?? YomiVpnState.proxyFor(null) ?? ''}),
           )
           .timeout(const Duration(seconds: 150));
       final solved = r.statusCode == 200 ? jsonDecode(r.body) as Map : const {};

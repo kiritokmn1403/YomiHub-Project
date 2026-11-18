@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "رفض {host} الطلب أو أعاد خطأً",
   "Lỗi mạng khi tải ảnh từ {host}": "خطأ في الشبكة أثناء تحميل الصورة من {host}",
   "Không giải mã được ảnh sau {sec} giây": "تعذّر فك ترميز الصورة بعد {sec} ثانية",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "ملف الصورة تالف أو بتنسيق غير مدعوم"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "ملف الصورة تالف أو بتنسيق غير مدعوم",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "معرّف العميل (اتركه فارغًا = تسجيل الدخول بحساب Google باستخدام إعداد YomiHub المدمج)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "اضغط اتصال لتسجيل الدخول بحساب Google (ويندوز: يفتح المتصفح ثم يعود إلى التطبيق تلقائيًا؛ أندرويد/التلفاز: افتح google.com/device وأدخل الرمز المعروض). يستخدم التطبيق صلاحية drive.file فقط لمجلد النسخ الاحتياطي الذي ينشئه YomiHub (الافتراضي: YomiHub) ولا يقرأ أي ملفات أخرى. يمكنك إدخال معرّف العميل وسرّ العميل الخاصين بك (نوع TV/Limited Input Devices) بدلًا من ذلك.",
+  "Không mở được trình duyệt để đăng nhập Google": "تعذّر فتح المتصفح لتسجيل الدخول إلى Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "لا يحتوي هذا الإصدار على إعداد مدمج لتسجيل الدخول إلى Google – أدخل معرّف العميل وسرّ العميل الخاصين بك",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: انتهت مهلة تسجيل الدخول",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "تطبيق Booru (سجل البحث، المفضلة، الإعدادات)"
 }

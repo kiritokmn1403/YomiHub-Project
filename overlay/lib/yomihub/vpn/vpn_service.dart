@@ -245,10 +245,17 @@ class YomiVpnService extends ChangeNotifier {
 
   Future<void> _torStallWatch(int generation, int id) async {
     final chosen = torBridge;
+    final lastGood = TorBridgeFallback.validLastGood(_box?.get('torLastGoodFallback'), chosen, DateTime.now());
     final tracker = TorStallTracker(
-      TorBridgeFallback.order(chosen, (_ptBridges ?? const {}).keys),
+      TorBridgeFallback.order(chosen, (_ptBridges ?? const {}).keys, lastGood: lastGood),
       DateTime.now(),
     );
+    if (lastGood != null) {
+      AppLogger.log(
+        '[VPN] Tor thử trước ${TorBridgeFallback.label(lastGood)} (lần trước "$chosen" bị kẹt, ${TorBridgeFallback.label(lastGood)} kết nối được)',
+      );
+      await _applyTorFallback(lastGood);
+    }
     bool live() => id == _torWatchId && generation == _torGeneration && YomiVpnState.torEnabled && torBridge == chosen;
     while (live() && !tracker.finished) {
       await Future.delayed(torWatchInterval);
@@ -266,6 +273,15 @@ class YomiVpnService extends ChangeNotifier {
         case TorStallKind.none:
           break;
         case TorStallKind.done:
+          if (tracker.current != chosen) {
+            await _box?.put('torLastGoodFallback', {
+              'kind': tracker.current,
+              'chosen': chosen,
+              'at': DateTime.now().toIso8601String(),
+            });
+          } else {
+            await _box?.delete('torLastGoodFallback');
+          }
           if (tracker.onFallback) {
             AppLogger.log(
               '[VPN] Tor đã kết nối qua ${TorBridgeFallback.label(step.from)} sau khi cầu nối đã chọn "$chosen" bị kẹt. '
@@ -1020,6 +1036,42 @@ class YomiVpnService extends ChangeNotifier {
 
   /// Sends the in-app WebViews (browser / WebView mode) through the active
   /// proxy-type service, following the in-app scope.
+  // ── 0.5.9: Cloudflare solve on the extension's route ──
+  Future<void> _webViewRouteLock = Future.value();
+
+  /// Runs [body] (a Cloudflare solve) with the in-app WebView temporarily on
+  /// [route] ('' / null = direct), then restores the WebView setting.
+  /// `cf_clearance` is bound to the solving IP: log 18/11 showed CBHentai,
+  /// Kagane, LxManga solved through http://127.0.0.1:8118 while the extension
+  /// went direct, so the cookie was useless. Serialised: one route at a time.
+  Future<T> withWebViewRoute<T>(String? route, Future<T> Function() body) async {
+    if (!Platform.isAndroid) return body();
+    final prev = _webViewRouteLock;
+    final done = Completer<void>();
+    _webViewRouteLock = done.future;
+    await prev;
+    try {
+      try {
+        final pc = ProxyController.instance();
+        if (route == null || route.isEmpty) {
+          await pc.clearProxyOverride();
+        } else {
+          final u = Uri.parse(route);
+          await pc.setProxyOverride(
+            settings: ProxySettings(
+              proxyRules: [ProxyRule(url: u.scheme.startsWith('socks') ? 'socks5://${u.host}:${u.port}' : '${u.host}:${u.port}')],
+              bypassRules: ['localhost', '127.0.0.1'],
+            ),
+          );
+        }
+      } catch (_) {}
+      return await body();
+    } finally {
+      await _applyBrowserProxy();
+      done.complete();
+    }
+  }
+
   Future<void> _applyBrowserProxy() async {
     // Windows: WebView2 takes its proxy when YomiHub starts (see
     // windowsWebViewProxyArg); the VPN screen asks for a restart.

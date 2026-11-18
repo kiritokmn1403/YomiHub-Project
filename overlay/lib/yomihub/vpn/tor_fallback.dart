@@ -21,15 +21,36 @@ class TorBridgeFallback {
 
   /// Order to try: the user's transport first, then the other transports
   /// that have bridge lines, and a direct connection last.
-  static List<String> order(String chosen, Iterable<String> available) {
+  static List<String> order(String chosen, Iterable<String> available, {String? lastGood}) {
     if (!appliesTo(chosen)) return [chosen];
     final have = available.toSet();
-    return [
+    final base = [
       chosen,
       for (final t in transports)
         if (t != chosen && have.contains(t)) t,
       '',
     ];
+    // 0.5.9 (log 17/11 20:35): snowflake sat at 75 % for 140 s on every launch
+    // while obfs4 connected within seconds. The transport that rescued the
+    // previous session is tried first; the user's choice stays second.
+    if (lastGood != null && lastGood != chosen && base.contains(lastGood)) {
+      return [lastGood, ...base.where((t) => t != lastGood)];
+    }
+    return base;
+  }
+
+  /// A remembered rescue transport is only trusted for a few days: networks
+  /// (home Wi-Fi vs mobile data) change.
+  static const lastGoodMaxAge = Duration(days: 3);
+
+  static String? validLastGood(Object? raw, String chosen, DateTime now) {
+    if (raw is! Map) return null;
+    final kind = raw['kind'];
+    final forChoice = raw['chosen'];
+    final at = DateTime.tryParse('${raw['at']}');
+    if (kind is! String || forChoice != chosen || at == null) return null;
+    if (now.difference(at) > lastGoodMaxAge) return null;
+    return kind;
   }
 
   /// How long bootstrap may stay at the same percentage. Same limits as the

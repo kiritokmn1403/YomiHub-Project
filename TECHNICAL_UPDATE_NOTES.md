@@ -3394,3 +3394,77 @@ Thư mục: `output/0.5.8/`
 #### E. Trạng thái Hoàn Tất & Sẵn Sàng Bàn Giao
 - Đã hoàn tất 100% mục tiêu của Coordinator Brief #12. Toàn bộ 17 artifacts phát hành chuẩn và 1 bảng băm SHA256 đã nằm tại `output/0.5.8/`.
 - Sẵn sàng bàn giao cho `@coordinator` nghiệm thu và công bố bản phát hành YomiHub v0.5.8.
+
+---
+
+## 18/11/2026 — YomiHub 0.5.9 (đang làm) — Claude Opus 5.5 điều phối
+
+**Đầu vào:** `audit/audit-0.5.9/input/` (Excel Project GitHub + Project YomiHub xuất JSON, che tài khoản; log `logs_9.txt` 16–18/11 từ Xiaomi 25069PTEBG Android 16 chạy 0.5.8 build 2051).
+**Quyết định chủ dự án:** Windows 10/11 x64 (+ARM64 nếu dựng được; Win7/x86 không khả thi với Flutter); APK thường (7.0+), APK android6, "YumiHub Android TV" (bỏ Comic, Novel, Google Play Books, Booru); Claude tự tạo Google Cloud project; Antigravity nhận phần Extension Repo qua /swarm (công khai là Claude điều phối).
+**Công cụ:** device_bash (VM trên máy chủ dự án), runner `jobs/pending_fast` (PowerShell + Flutter 3.47.6 / Dart 3.13.5, MSVC 19.44), trình duyệt tích hợp Claude (Google Cloud Console), computer use (Antigravity, Android Studio, VS Code).
+
+### 1. Lỗi log: `updateMangaDetail` — "Illegal argument in isolate message: object is unsendable – IsarImpl" (lặp >10 lần, 18/11 00:24–00:35)
+- **Nguyên nhân:** 0.5.8 đẩy tính diff chương sang `Isolate.run(() => computeChapterDiffInIsolate(ChapterDiffInput(...)))` ngay trong hàm `updateMangaDetail`. Closure Dart bắt *cả ngữ cảnh* hàm cha (stack: `Context num_variables: 7`), trong đó có `Manga` → `IsarLinksImpl<Chapter>` → `IsarImpl` không gửi được qua isolate ⇒ cập nhật chi tiết truyện thất bại mỗi lần mở trình đọc.
+- **Sửa:** `overlay/lib/modules/manga/detail/providers/update_manga_detail_providers.dart` — thêm hàm cấp cao `runChapterDiffInBackground(ChapterDiffInput input)`; closure chỉ bắt `input` (dữ liệu thuần). Nếu không tạo được isolate → ghi WARNING và tính trên isolate hiện tại thay vì bỏ cập nhật. Thêm import `utils/log/logger.dart`.
+
+### 2. Lỗi log: máy Android 16 chạy APK **android6** → hàng loạt tiện ích Keiyoushi/Project Nox lỗi `kotlinx.serialization ... typeParametersSerializers()`
+- **Nguyên nhân:** `download_file_screen.dart` chọn APK cập nhật chỉ theo ABI; danh sách release có `YomiHub-0.5.8-android6-arm64-v8a.apk` đứng trước `YomiHub-0.5.8-arm64-v8a.apk` ⇒ trình cập nhật trong app cài nhầm bản android6 (log 21:34:18 "Update: removed 1 installed update file", sau đó cảnh báo "[Bản cài] Đang chạy bản APK dành cho Android 6.0 trên Android 16").
+- **Sửa:** tệp mới `overlay/lib/yomihub/update/apk_variant_picker.dart` — `pickUpdateApk(assetUrls, supportedAbis, sdkInt, isTv)`: TV chỉ lấy `android-tv`; SDK ≥ 24 ưu tiên bản thường, SDK < 24 ưu tiên `android6`; trong nhóm chọn theo thứ tự ABI máy. `download_file_screen.dart` dùng hàm này và ghi log bản đã chọn (SDK/ABI/TV). Test `overlay/test/yh_059_apk_picker_test.dart` (6 ca, gồm đúng ca log: SDK 36 arm64 → bản thường).
+- **Lưu ý cho chủ dự án:** máy Xiaomi cần cài lại thủ công bản APK thường 0.5.9 một lần (bản android6 đang cài sẽ tự cập nhật đúng sau khi có 0.5.9).
+
+### 3. Lỗi log: "[Kiểm tra cập nhật] Thất bại … Failed host lookup 'api.github.com' (DNS hệ thống và DoH)" ghi ERROR 2–3 lần ngay sau khi mở app
+- **Nguyên nhân:** kiểm tra cập nhật chạy lúc Tor/WARP còn dựng mạch (21:31:11 thất bại, 21:31:49 thành công); nhiều nơi gọi kiểm tra cùng lúc nên lỗi bị ghi trùng.
+- **Sửa:** `overlay/lib/modules/more/about/providers/check_for_update.dart` — gộp lần gọi đồng thời (`_updateCheckInFlight`), lỗi DNS thì ghi WARNING "thử lại sau 30 giây" rồi thử lại 1 lần; chỉ ghi ERROR khi lần thử lại cũng hỏng.
+
+### 4. Google Cloud project + Đăng nhập bằng tài khoản Google → sao lưu Google Drive (sheet YomiHub Update)
+- Tạo project `yomihub` (tài khoản chủ dự án), bật Google Drive API, Google Auth Platform (External, đang "Testing"; người dùng thử nghiệm: tài khoản chủ dự án). Client: "YomiHub Windows" (Desktop app), "YomiHub Android TV" (TVs and Limited Input – dùng cho Android/TV, luồng mã thiết bị). Giá trị lưu ở `secrets/google_oauth.json` (đã thêm `secrets/` vào `.gitignore`), nạp lúc dựng qua `--dart-define=YH_GOOGLE_*`.
+- Mã: tệp mới `overlay/lib/yomihub/cloud/google_oauth_config.dart`; `cloud_backup_service.dart` › `GoogleDriveProvider`: để trống Client ID = dùng cấu hình sẵn; Windows: OAuth loopback 127.0.0.1 + PKCE (mở trình duyệt, tự nhận mã); Android/TV: device code với client TV; scope `openid email drive.file`; lưu email tài khoản đăng nhập.
+- Việc còn lại: trang chủ + chính sách quyền riêng tư (GitHub Pages) để chuyển app OAuth sang "In production" (tránh token hết hạn sau 7 ngày ở chế độ Testing); chuỗi i18n mới.
+
+### 5. Lỗi log: Tor kẹt 75% "Loaded enough directory info" 140 s với snowflake mỗi lần mở app (17/11 20:35–20:37), obfs4 kết nối ngay sau khi tự đổi
+- **Sửa:** `overlay/lib/yomihub/vpn/tor_fallback.dart` — `order(..., lastGood:)` đưa cầu nối đã "cứu" phiên trước lên đầu; `validLastGood()` chỉ tin bản ghi ≤ 3 ngày và đúng cầu nối người dùng chọn. `vpn_service.dart` — lưu `torLastGoodFallback` (Hive) khi Tor xong bằng cầu nối khác, áp dụng ngay khi mở app (log "[VPN] Tor thử trước cầu nối ..."), xóa khi cầu nối đã chọn tự chạy được.
+- **Test:** `overlay/test/yh_059_tor_test.dart` 5/5 đạt; `yh_057_f1_net_test.dart` 23/23 đạt (job `q059_fix2`, 08:46).
+
+### 6. Lỗi log: "đã giải xong Cloudflare trên WebView nhưng vẫn không tải được trang" – CBHentai, Kagane, LxManga.org (18/11 00:22–00:24); WebView qua 127.0.0.1:8118, tiện ích đi thẳng
+- **Nguyên nhân:** `cf_clearance` gắn với IP đã giải; WebView và tiện ích ra Internet bằng 2 đường khác nhau. 0.5.7 chỉ ghi chú vào log.
+- **Sửa:** `vpn_service.dart` thêm `withWebViewRoute(route, body)` (Android: đặt tạm ProxyController theo đường của tiện ích, giải xong khôi phục, tuần tự hóa). `m_client.dart`: `/resolve_cf` nhận `route`; khác đường WebView (và không phải kill switch :9) thì giải trên đường của tiện ích + ghi log; `ResolveCloudFlareChallenge(route: proxyFor(source.id))`. `eval/mihon/service.dart`: tiện ích APK gửi `route` = `jvmBridgeProxy`.
+- **Phân tích tĩnh lượt 1** (8 tệp, job `q059_analyze1` 08:48): 0 lỗi, 1 cảnh báo `!` thừa (`download_file_screen.dart:73`) → đã bỏ.
+
+### 7. Lỗi log: treo giao diện 2,6–3,1 s ở /MangaLibrary, /mangaHome ("dựng 3127ms")
+- **Nguyên nhân tìm được:** `filteredLibraryManga` (`overlay/lib/modules/library/providers/library_filter_provider.dart`) gọi `element.chapters.any/every(...)`, `unreadChaptersCount`, `chapters.length` cho MỌI bộ khi bật lọc chưa đọc/đã tải/đánh dấu hoặc sắp xếp theo chưa đọc/tổng chương. `IsarLinks` nạp đồng bộ trên luồng UI ⇒ ~88.000 đối tượng chương (thư viện ~4.490 bộ) bị giải mã trong một khung hình.
+- **Sửa:** tệp mới `overlay/lib/yomihub/library/library_chapter_stats.dart` — truy vấn chỉ mục/thuộc tính Isar (`where().mangaIdProperty()`, `isReadEqualTo(true)`, `isBookmarkedEqualTo(true)`, ánh xạ chương đã tải qua 2 danh sách thẳng hàng `idProperty`/`mangaIdProperty`) chỉ trả số nguyên; provider dùng thống kê này, bộ nào thiếu `mangaId` hoặc có lọc nhóm dịch thì quay về cách cũ; >250 ms thì ghi log hiệu năng. Chương `isRead == null` nay tính là chưa đọc (cách cũ `!chap.isRead!` có thể ném lỗi).
+- **Kiểm thử:** analyze 0 lỗi; `overlay/test/yh_059_library_stats_test.dart` 4/4 (gồm 88.000 chương < 500 ms) — job `q059_fix4` 08:59. Cần đo lại trên thiết bị thật có thư viện lớn.
+- Bản dịch 18 ngôn ngữ cho chuỗi đăng nhập Google: `audit/audit-0.5.9/notes/i18n_claude.json` (gộp cuối đợt).
+
+### 8. Feature Check 32 – "Video không thoát được" chưa có trong Nhật ký ứng dụng
+- `overlay/lib/modules/anime/anime_player_view.dart` › `_goBackToDetail`: đồng hồ canh 4 s (WARNING "Thoát trình phát chậm… bước …"), bắt lỗi từng bước (thoát toàn màn hình / khôi phục thanh hệ thống / giải phóng khung video, có timeout 3 s) và vẫn đóng trình phát; nếu bước thoát trước bị kẹt, lần bấm Back sau 4 s buộc đóng + ghi ERROR "Video không thoát được (kẹt ở bước …)". Analyze: 0 lỗi (1 info có sẵn ở dòng 1351).
+
+### 9. Sheet YomiHub Update – mỗi dòng nhật ký ghi phiên bản ứng dụng, thiết bị, hệ điều hành
+- `overlay/lib/utils/log/logger.dart`: nhãn `[YH <ver> (<build>) • <hãng> <model>, Android <x> (SDK <n>)]` đặt ngay sau `[LEVEL]` cho MỌI dòng (đọc 1 lần lúc init; dòng ghi trước init được gắn nhãn khi đẩy ra). Màn Nhật ký vẫn tách mục theo `[..][`. Tách hàm `formatLine`/`buildTag` để test.
+- Test: `overlay/test/yh_059_log_tag_test.dart` + `yh_057_s1_logs_test`, `yh_058_core_test`, `yh_051_test`: 39/39 đạt (job `q059_fix6`).
+- Ghi chú: tác nhân phụ A/B đã bị dừng giữa chừng (không để lại thay đổi) → Claude tự làm mục 9–11.
+
+### 10. Bản "YumiHub Android TV" bỏ Google Play Books
+- Đã có từ 0.5.0–0.5.7: TV ẩn Comic/Novel/Play Books/Booru trên thanh điều hướng, lối tắt, cài đặt bật/tắt. 0.5.9 chặn tại gốc: `YomiPlayBooks.enabled` = false khi `kIsTvBuild || isTv` (`overlay/lib/yomihub/playbooks/playbooks_toggle.dart`). Test `yh_059_tv_playbooks_test.dart`.
+
+### 11. Sao lưu chọn mục + Booru; Dự án GitHub đã sử dụng
+- Sao lưu Booru (lịch sử tìm kiếm, yêu thích, cài đặt – hộp `yomihub_booru`, khôi phục gọi `BooruStore.onRestored()`) đã có từ 0.5.8; 0.5.9 thêm mục chọn "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)" ngay trong màn **Tạo bản sao lưu** (`overlay/lib/modules/more/data_and_storage/create_backup.dart`, ẩn trên bản TV), gắn với công tắc `backupBooru`.
+- `overlay/lib/yomihub/about/github_projects.dart`: so khớp 576 liên kết sheet Project GitHub → 310 chưa có; bổ sung 258 liên kết / 32 dự án (GitHub, gist, *.github.io, trang dự án chính thức). Không thêm: trang ứng dụng chatbot, bài viết/StackOverflow/trang hỗ trợ, tệp OneDrive, và các liên kết công cụ tấn công (hack Wi-Fi, WPS-0DAY, AMSI bypass). Test `yh_059_github_projects_test.dart`.
+- i18n: 6 chuỗi mới × 18 ngôn ngữ (108 mục) gộp từ `audit/audit-0.5.9/notes/i18n_claude.json` bằng Python `json` (không dùng PowerShell ConvertFrom-Json).
+
+### 12. GitHub Pages + Google OAuth "In production" (18/11 11:34–11:46)
+- Đẩy `docs/index.html`, `docs/privacy.html` và `.gitignore` (bỏ qua `secrets/`) lên `main` (commit `63ea6c4`, job `x059_pages`). Chủ dự án đăng nhập GitHub/Google Cloud trong trình duyệt tích hợp; Claude bật GitHub Pages (main, /docs) → https://kiritokmn1403.github.io/YomiHub-Project/ và `/privacy.html` đã truy cập được.
+- Google Auth Platform › Branding: trang chủ, chính sách quyền riêng tư, tên miền được phép `kiritokmn1403.github.io`; Audience: **Publish app → In production** (scope không nhạy cảm: openid, email, drive.file) ⇒ token không còn hết hạn sau 7 ngày như ở chế độ Testing. Màn đồng ý của Google có thể hiện "ứng dụng chưa xác minh" cho người dùng khác cho tới khi gửi xác minh (chưa cần vì không có scope nhạy cảm/logo).
+- Lưu ý bảo mật: `logs/status.txt`, `audit/**/main_build_059.log` chứa dòng lệnh dựng có `YH_GOOGLE_*_CLIENT_SECRET` – đã kiểm tra bị `.gitignore` (`/logs/`, `*.log`), không đưa lên GitHub/Release.
+- Không dùng được: gọi API GitHub Pages bằng token Git Credential Manager từ job (bị chặn) → làm qua trình duyệt.
+
+### 13. Kiểm thử bản phát hành 0.5.9 (2052) trên Note 9 (11:46–11:50)
+- `adb install -r output/0.5.9/YomiHub-0.5.9-arm64-v8a.apk` → Success (cài đè bản dev). Job `x059_n9_r2`: mở app, chi tiết truyện, trình đọc, lọc "chưa đọc" ở Thư viện; video `evidence/note9/r2_release_launch_reader.mp4`, ảnh `r01`–`r06`.
+- Nhật ký phiên 11:47: KHÔNG còn `object is unsendable`/IsarImpl; mỗi dòng có nhãn `[YH 0.5.9 (2052) • samsung SM-N960N, Android 10 (SDK 29)]`. Còn 1 WARNING kho `kohiden.xyz` lỗi chứng chỉ (CERTIFICATE_VERIFY_FAILED – lỗi phía máy chủ kho, chưa xử lý).
+- Sự cố: lúc 11:48 Google hiện hộp thoại "Có phải bạn đang cố đăng nhập?" trên Note 9 (do chủ dự án đăng nhập trên Windows); 2 cú chạm kịch bản rơi vào vùng chữ, không bấm nút. Theo yêu cầu chủ dự án đã bấm Home (11:53), không chọn gì. Bài học: trước khi chạy chuỗi chạm adb phải chụp màn hình kiểm tra đang ở đúng ứng dụng.
+
+### 14. Antigravity /swarm đợt 3 (gửi 11:32)
+- Brief: (1) README mới chỉ giới thiệu + nút Download → releases/latest (ghi vào `antigravity/README_0.5.9.md`, Claude duyệt rồi thay); (2) Feature Check 34 – rà lang/NSFW 196 nguồn Extension Repo; (3) Feature Check 21 – đối chiếu 29 kho quét được với `repo_discovery.dart` → `repo_suggestions_059.json/md`. Ghi tiến độ `antigravity/NOTES_swarm3.md`.
+
+### Trạng thái dây chuyền dựng (11:57)
+- sync, test, apk (3 APK thường, 11:03), tv (11:36), wintest (11:45) ĐẠT; đang `win`, còn `pack`, `a6build`, `a6copy`, `verify`.

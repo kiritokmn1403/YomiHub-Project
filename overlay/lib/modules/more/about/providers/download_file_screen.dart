@@ -19,6 +19,8 @@ import 'package:path/path.dart' as p;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mangayomi/yomihub/update/drive_update.dart';
+import 'package:mangayomi/yomihub/update/apk_variant_picker.dart';
+import 'package:mangayomi/utils/log/logger.dart';
 
 class DownloadFileScreen extends ConsumerStatefulWidget {
   final (String, String, String, List<dynamic>) updateAvailable;
@@ -68,7 +70,7 @@ class _DownloadFileScreenState extends ConsumerState<DownloadFileScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final l10n = l10nLocalizations(context)!;
+    final l10n = l10nLocalizations(context);
     final updateAvailable = widget.updateAvailable;
     final targetVersion = updateAvailable.$1;
     final changelog = updateAvailable.$2;
@@ -375,34 +377,19 @@ class _DownloadFileScreenState extends ConsumerState<DownloadFileScreen> {
       try {
         final deviceInfo = DeviceInfoPlugin();
         final androidInfo = await deviceInfo.androidInfo;
-        String apkUrl = '';
-        final apks = updateAvailable.$4
-            .whereType<String>()
-            .where((apk) => apk.toLowerCase().endsWith('.apk'))
-            .toList();
-
-        final filteredApks = isTv
-            ? apks
-                  .where((apk) => apk.toLowerCase().contains('android-tv'))
-                  .toList()
-            : apks
-                  .where((apk) => !apk.toLowerCase().contains('android-tv'))
-                  .toList();
-
-        final candidateApks = filteredApks.isNotEmpty ? filteredApks : apks;
-
-        for (String abi in androidInfo.supportedAbis) {
-          for (final apk in candidateApks) {
-            if (apk.toLowerCase().contains(abi.toLowerCase())) {
-              apkUrl = apk;
-              break;
-            }
-          }
-          if (apkUrl.isNotEmpty) break;
-        }
-        if (apkUrl.isEmpty && candidateApks.isNotEmpty) {
-          apkUrl = candidateApks.first;
-        }
+        // 0.5.9: variant-aware pick (normal / android6 / TV) – see
+        // apk_variant_picker.dart for the Android 16 + android6 APK bug.
+        final apkUrl = pickUpdateApk(
+              assetUrls: updateAvailable.$4.whereType<String>().toList(),
+              supportedAbis: androidInfo.supportedAbis,
+              sdkInt: androidInfo.version.sdkInt,
+              isTv: isTv,
+            ) ??
+            '';
+        AppLogger.log(
+          '[Cập nhật] Chọn bản cài: ${YomiDriveUpdate.fileName(apkUrl)} '
+          '(SDK ${androidInfo.version.sdkInt}, ABI ${androidInfo.supportedAbis.join("/")}, TV: $isTv)',
+        );
 
         if (apkUrl.isNotEmpty) {
           await _downloadApk(apkUrl);

@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} rechazó la solicitud o devolvió un error",
   "Lỗi mạng khi tải ảnh từ {host}": "Error de red al cargar la imagen de {host}",
   "Không giải mã được ảnh sau {sec} giây": "No se pudo decodificar la imagen tras {sec} s",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Archivo de imagen dañado o formato no compatible"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Archivo de imagen dañado o formato no compatible",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID de cliente (vacío = Iniciar sesión con tu cuenta de Google usando la configuración integrada de YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Pulsa Conectar para iniciar sesión con tu cuenta de Google (Windows: abre el navegador y vuelve a la app automáticamente; Android/TV: abre google.com/device e introduce el código mostrado). La app solo usa el permiso drive.file para la carpeta de copias que crea YomiHub (predeterminada: YomiHub) y nunca lee otros archivos. También puedes introducir tu propio ID de cliente/secreto de cliente (tipo TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "No se pudo abrir el navegador para iniciar sesión en Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Esta compilación no tiene configuración integrada de inicio de sesión de Google: introduce tu propio ID y secreto de cliente",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: se agotó el tiempo de inicio de sesión",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (historial de búsqueda, favoritos, configuración)"
 }

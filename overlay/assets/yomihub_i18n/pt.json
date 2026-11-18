@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} recusou o pedido ou devolveu um erro",
   "Lỗi mạng khi tải ảnh từ {host}": "Erro de rede ao carregar a imagem de {host}",
   "Không giải mã được ảnh sau {sec} giây": "Não foi possível descodificar a imagem após {sec} s",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Ficheiro de imagem corrompido ou formato não suportado"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Ficheiro de imagem corrompido ou formato não suportado",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID de cliente (deixe vazio = Iniciar sessão com a conta Google usando a configuração integrada do YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Toque em Ligar para iniciar sessão com a sua conta Google (Windows: abre o navegador e volta automaticamente à app; Android/TV: abra google.com/device e introduza o código apresentado). A app só usa a permissão drive.file para a pasta de cópias de segurança criada pelo YomiHub (predefinição: YomiHub) e nunca lê outros ficheiros. Também pode introduzir o seu próprio ID/segredo de cliente (tipo TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Não foi possível abrir o navegador para iniciar sessão na Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Esta versão não tem configuração integrada de início de sessão Google – introduza o seu próprio ID e segredo de cliente",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: o tempo de início de sessão esgotou",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (histórico de pesquisa, favoritos, definições)"
 }

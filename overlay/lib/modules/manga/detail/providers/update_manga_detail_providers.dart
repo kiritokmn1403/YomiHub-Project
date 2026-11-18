@@ -1,4 +1,5 @@
 import 'dart:isolate';
+import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/utils/chapter_recognition.dart';
 import 'package:mangayomi/models/chapter.dart';
 import 'package:mangayomi/models/update.dart';
@@ -132,13 +133,17 @@ Future<dynamic> updateMangaDetail(
           )
       ];
 
-      diff = await Isolate.run(() => computeChapterDiffInIsolate(
+      // 0.5.9: build the plain-data input here and hand it to a top-level
+      // helper. A closure created in this function would capture the whole
+      // enclosing context (incl. the Isar-backed `manga`), which made
+      // Isolate.run fail with "object is unsendable - IsarImpl".
+      diff = await runChapterDiffInBackground(
         ChapterDiffInput(
           mangaTitle: manga.name ?? '',
           existing: existingData,
           incoming: incomingData,
         ),
-      ));
+      );
     }
 
     await mangaRepository.writeTransactionAsync(() async {
@@ -471,4 +476,23 @@ ChapterDiffResult computeChapterDiffInIsolate(ChapterDiffInput input) {
     toInsert: toInsert,
     readStates: readStates,
   );
+}
+
+
+/// 0.5.9: runs [computeChapterDiffInIsolate] on a background isolate. The
+/// closure below only captures [input] (plain data), so it is always sendable.
+/// If spawning an isolate fails (low memory, platform restrictions), the diff is
+/// computed on the current isolate instead of aborting the detail update.
+Future<ChapterDiffResult> runChapterDiffInBackground(
+  ChapterDiffInput input,
+) async {
+  try {
+    return await Isolate.run(() => computeChapterDiffInIsolate(input));
+  } catch (e) {
+    AppLogger.log(
+      '[Cập nhật chi tiết] Không chạy được tính chương ở luồng nền ($e) – tính trên luồng chính',
+      logLevel: LogLevel.warning,
+    );
+    return computeChapterDiffInIsolate(input);
+  }
 }

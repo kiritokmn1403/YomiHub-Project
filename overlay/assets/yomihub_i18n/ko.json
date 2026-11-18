@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host}이(가) 요청을 거부했거나 오류를 반환했습니다",
   "Lỗi mạng khi tải ảnh từ {host}": "{host}에서 이미지를 불러오는 중 네트워크 오류",
   "Không giải mã được ảnh sau {sec} giây": "{sec}초가 지나도 이미지를 디코딩하지 못했습니다",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "이미지 파일이 손상되었거나 지원되지 않는 형식입니다"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "이미지 파일이 손상되었거나 지원되지 않는 형식입니다",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "클라이언트 ID (비워 두면 = YomiHub 기본 설정으로 Google 계정 로그인)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "연결을 눌러 Google 계정으로 로그인하세요 (Windows: 브라우저가 열리고 자동으로 앱으로 돌아옵니다; Android/TV: google.com/device를 열고 표시된 코드를 입력하세요). 앱은 YomiHub가 만든 백업 폴더(기본: YomiHub)에 대한 drive.file 권한만 사용하며 다른 파일은 읽지 않습니다. 원하면 직접 만든 Client ID/Client secret(TV/Limited Input Devices 유형)을 입력할 수 있습니다.",
+  "Không mở được trình duyệt để đăng nhập Google": "Google 로그인을 위한 브라우저를 열 수 없습니다",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "이 빌드에는 기본 Google 로그인 설정이 없습니다 – 직접 Client ID와 Client secret을 입력하세요",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: 로그인 시간이 초과되었습니다",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru 앱 (검색 기록, 즐겨찾기, 설정)"
 }

@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host}এ অনুৰোধ প্ৰত্যাখ্যান কৰিলে বা ত্ৰুটি ঘূৰাই দিলে",
   "Lỗi mạng khi tải ảnh từ {host}": "{host}ৰ পৰা ছবি লোড কৰোঁতে নেটৱৰ্ক ত্ৰুটি",
   "Không giải mã được ảnh sau {sec} giây": "{sec} ছেকেণ্ডৰ পিছতো ছবি ডিকোড কৰিব পৰা নগ'ল",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "ছবিৰ ফাইল নষ্ট বা ফৰ্মেট সমৰ্থিত নহয়"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "ছবিৰ ফাইল নষ্ট বা ফৰ্মেট সমৰ্থিত নহয়",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "Client ID (খালী ৰাখক = YomiHub-ৰ নিজা ছেটআপেৰে Google একাউণ্টত ছাইন ইন)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Google একাউণ্টেৰে ছাইন ইন কৰিবলৈ সংযোগত টিপক (Windows: ব্ৰাউজাৰ খোলে আৰু নিজে এপলৈ ঘূৰি আহে; Android/TV: google.com/device খুলি দেখুওৱা ক'ড দিয়ক)। এপে কেৱল YomiHub-এ বনোৱা বেকআপ ফ'ল্ডাৰৰ বাবে drive.file অনুমতি ব্যৱহাৰ কৰে (ডিফল্ট: YomiHub), আন ফাইল নপঢ়ে। বিকল্পভাৱে নিজৰ Client ID/Client secret (TV/Limited Input Devices প্ৰকাৰ) দিব পাৰে।",
+  "Không mở được trình duyệt để đăng nhập Google": "Google ছাইন ইনৰ বাবে ব্ৰাউজাৰ খুলিব পৰা নগ'ল",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "এই বিল্ডত Google ছাইন ইনৰ নিজা ছেটআপ নাই – নিজৰ Client ID আৰু Client secret দিয়ক",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: ছাইন ইনৰ সময় উকলি গ'ল",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (সন্ধানৰ ইতিহাস, প্ৰিয়, ছেটিংছ)"
 }

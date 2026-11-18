@@ -46,20 +46,54 @@ Future<UpdateInfo?> checkForUpdate(Ref ref) async {
 /// platform are ready, or `null` when already up-to-date or assets are still building.
 // YomiHub 0.1.6: updates come from the shared Google Drive folder; the old
 // upstream GitHub channel (different app id + signature) is disabled.
-Future<UpdateInfo?> _getUpdateIfAvailable() async {
-  final info = await PackageInfo.fromPlatform();
-  try {
-    // YomiHub 0.4.9: GitHub (primary) → 3 Google Drive → 3 MediaFire folders,
-    // in the order of the "Website Update Apps" sheet.
-    final found = await YomiUpdateSources.check(
-      info.version,
-      acceptsFile: (name) => _hasPlatformAssets([name]),
+Future<UpdateInfo?>? _updateCheckInFlight;
+
+/// 0.5.9: concurrent callers (startup auto-check, About screen, More tab)
+/// share one check instead of logging the same failure 2–3 times (log 17/11).
+Future<UpdateInfo?> _getUpdateIfAvailable() =>
+    _updateCheckInFlight ??= _checkWithDnsRetry().whenComplete(
+      () => _updateCheckInFlight = null,
     );
-    if (found == null || !_hasPlatformAssets(found.$4)) return null;
-    return found;
+
+bool _isDnsFailure(Object e) => '$e'.contains('Failed host lookup');
+
+Future<UpdateInfo?> _checkOnce() async {
+  final info = await PackageInfo.fromPlatform();
+  // YomiHub 0.4.9: GitHub (primary) → 3 Google Drive → 3 MediaFire folders,
+  // in the order of the "Website Update Apps" sheet.
+  final found = await YomiUpdateSources.check(
+    info.version,
+    acceptsFile: (name) => _hasPlatformAssets([name]),
+  );
+  if (found == null || !_hasPlatformAssets(found.$4)) return null;
+  return found;
+}
+
+/// 0.5.9: right after launch, Tor/WARP may still be building its circuit and
+/// DNS (system + DoH) fails for every source; the log showed a hard ERROR at
+/// 21:31:11 and a successful check 38 s later. One delayed retry fixes that
+/// without spamming the log.
+Future<UpdateInfo?> _checkWithDnsRetry({
+  Duration retryAfter = const Duration(seconds: 30),
+}) async {
+  try {
+    return await _checkOnce();
   } catch (e) {
-    AppLogger.log('[Kiểm tra cập nhật] Thất bại: $e', logLevel: LogLevel.error);
-    rethrow;
+    if (!_isDnsFailure(e)) {
+      AppLogger.log('[Kiểm tra cập nhật] Thất bại: $e', logLevel: LogLevel.error);
+      rethrow;
+    }
+    AppLogger.log(
+      '[Kiểm tra cập nhật] Chưa phân giải được tên miền (mạng hoặc VPN đang kết nối) – thử lại sau ${retryAfter.inSeconds} giây',
+      logLevel: LogLevel.warning,
+    );
+    await Future<void>.delayed(retryAfter);
+    try {
+      return await _checkOnce();
+    } catch (e2) {
+      AppLogger.log('[Kiểm tra cập nhật] Thất bại: $e2', logLevel: LogLevel.error);
+      rethrow;
+    }
   }
 }
 

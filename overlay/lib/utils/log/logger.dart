@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show visibleForTesting;
+
 import 'package:mangayomi/providers/storage_provider.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/utils/device_description.dart';
@@ -22,6 +24,25 @@ class AppLogger {
   static final List<String> _pending = [];
 
   static const _maxSize = 512 * 1024;
+
+  /// 0.5.9 (sheet YomiHub Update): every line carries the app version, the
+  /// device and its OS, e.g. `[YH 0.5.9 (2052) • Xiaomi 25069PTEBG, Android 16
+  /// (SDK 36)]`, read once in [init]. Lines logged before init get it when
+  /// they are flushed.
+  static String _tag = '';
+  static String get lineTag => _tag;
+  static const _tagSlot = '\u0000TAG\u0000';
+
+  @visibleForTesting
+  static String formatLine(DateTime now, LogLevel level, String message, String tag) {
+    final timestamp =
+        '${now.day.toString().padLeft(2, '0')}/${now.month.toString().padLeft(2, '0')}/${now.year.toString().padLeft(4, '0')} '
+        '${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}:${now.second.toString().padLeft(2, '0')}';
+    return '[$timestamp][${level.toString()}]${tag.isEmpty ? '' : '[$tag]'} $message';
+  }
+
+  @visibleForTesting
+  static String buildTag(String appVersion, String device) => 'YH $appVersion • $device';
 
   /// Path of the application log, once known.
   static String? get path_ => _logFile?.path;
@@ -76,11 +97,12 @@ class AppLogger {
         final dev = await deviceDescription();
         final ver = await appVersionDescription();
         sessionHeader = '$sessionHeader • $dev • YomiHub $ver =====';
+        _tag = buildTag(ver, dev);
       } catch (_) {
         sessionHeader = '$sessionHeader =====';
       }
       log(sessionHeader, logLevel: LogLevel.info, always: true);
-      _queue.addAll(_pending);
+      _queue.addAll(_pending.map((l) => l.replaceFirst(_tagSlot, _tag.isEmpty ? '' : '[$_tag]')));
       _pending.clear();
       _drain();
     } catch (_) {
@@ -108,15 +130,16 @@ class AppLogger {
     }
 
     final now = DateTime.now();
-    final timestamp =
-        '${now.day.toString().padLeft(2, '0')}/${now.month.toString().padLeft(2, '0')}/${now.year.toString().padLeft(4, '0')} '
-        '${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}:${now.second.toString().padLeft(2, '0')}';
-
-    final logMessage = '[$timestamp][${logLevel.toString()}] $message';
     if (!_initialized || _sink == null) {
-      if (_pending.length < 300) _pending.add(logMessage);
+      // tag not known yet: keep a slot that init() fills in
+      final line = formatLine(now, logLevel, message, '');
+      final cut = line.indexOf('] ');
+      if (_pending.length < 300) {
+        _pending.add(cut > 0 ? '${line.substring(0, cut + 1)}$_tagSlot${line.substring(cut + 1)}' : line);
+      }
       return;
     }
+    final logMessage = formatLine(now, logLevel, message, _tag);
     // YomiHub 0.1.9: never write to the IOSink while a flush() is running.
     // `writeln` during `flush` throws "Bad state: StreamSink is bound to a
     // stream", so a log call itself crashed its caller (seen as "Suggestions

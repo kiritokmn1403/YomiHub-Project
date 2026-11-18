@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} 拒绝了请求或返回了错误",
   "Lỗi mạng khi tải ảnh từ {host}": "从 {host} 加载图片时出现网络错误",
   "Không giải mã được ảnh sau {sec} giây": "{sec} 秒后仍无法解码图片",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "图片文件损坏或格式不受支持"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "图片文件损坏或格式不受支持",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "客户端 ID（留空 = 使用 YomiHub 内置配置以 Google 账号登录）",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "点按“连接”以 Google 账号登录（Windows：打开浏览器并自动返回应用；Android/TV：打开 google.com/device 并输入显示的代码）。应用仅对 YomiHub 创建的备份文件夹（默认：YomiHub）使用 drive.file 权限，不会读取其他文件。也可以填写自己的 Client ID/Client secret（TV/Limited Input Devices 类型）。",
+  "Không mở được trình duyệt để đăng nhập Google": "无法打开浏览器进行 Google 登录",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "此版本没有内置的 Google 登录配置——请填写自己的 Client ID 和 Client secret",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive：登录超时",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru 应用（搜索记录、收藏、设置）"
 }

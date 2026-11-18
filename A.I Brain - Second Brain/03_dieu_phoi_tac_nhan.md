@@ -11,3 +11,9 @@
 ## Bổ sung 15/11/2026 tối
 - Chủ dự án muốn THẤY quá trình: làm trực tiếp trong chat (mỗi bước 1 câu tiếng Việt + kết quả), hạn chế Agent chạy ngầm.
 - Khi máy ngủ: runner treo và cửa sổ console có thể kẹt "Select" (QuickEdit) → đóng cửa sổ treo, mở lại `3_run_jobs.bat`/`3b_run_fast_jobs.bat`, chạy job dọn khóa `BUILD_LOCK.txt`.
+
+## Bổ sung 18/11/2026 (0.5.9)
+- Khi chủ dự án ngắt (interrupt) một lệnh của điều phối viên, các tác nhân nền đang chạy cũng bị dừng theo và KHÔNG tự chạy lại (SendMessage báo "stopped by the user"). Sau mỗi lần bị ngắt: kiểm tra tác nhân còn sống; tác nhân bị dừng sớm thường chưa để lại gì → điều phối viên tự làm hoặc hỏi chủ dự án có mở lại không.
+- Google Antigravity (bản app, không phải IDE): gõ `/swarm <brief>` vào ô chat đã mở; brief ghi rõ "[Claude (Anthropic) điều phối thay mặt Kiệt]", phạm vi tệp riêng (Extension Repo), commit cục bộ không push, ghi `_work/NOTES_swarm_<ver>.md`. Antigravity tự tách @ext_anime / @ext_adult / @verifier và chạy `node .build/test/*.mjs`.
+- (18/11 trưa) Antigravity bản app: cửa sổ có thể không nhận phím dù đã open_application → bấm biểu tượng Antigravity trên thanh tác vụ (cần quyền File Explorer dạng click) rồi mới dán. Ô chat đã có chip `/swarm` sẵn từ lần trước: chỉ cần End + Ctrl+V + bấm gửi.
+- (18/11) Trước chuỗi chạm adb trên Note 9: chụp/dump kiểm tra màn hình trước — hộp thoại hệ thống (Google xác minh đăng nhập) có thể đè lên app.

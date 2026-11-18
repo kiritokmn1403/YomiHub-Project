@@ -1,0 +1,114 @@
+[
+  {
+    "url": "https://aidoku-community.github.io/sources/index.min.json",
+    "status": 200,
+    "format": "JSON Object",
+    "count": 2,
+    "error": null,
+    "dataSample": "{\"name\":\"Aidoku Community Sources\",\"sources\":[{\"id\":\"ar.aasq\",\"name\":\"3asq\",\"version\":2,\"iconURL\":\"icons/ar.aasq-v2.png\",\"downloadURL\":\"sources/ar.aasq-v2.aix\",\"languages\":[\"ar\"],\"contentRating\":0,\"ba"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/Kareadita/tach-extension/repo/index.min.json",
+    "status": 200,
+    "format": "Mihon / Tachiyomi index.min.json",
+    "count": 1,
+    "error": null,
+    "dataSample": "[{\"name\":\"Tachiyomi: Kavita\",\"pkg\":\"eu.kanade.tachiyomi.extension.all.kavita\",\"apk\":\"tachiyomi-all.kavita-v1.4.29.apk\",\"lang\":\"all\",\"code\":29,\"version\":\"1.4.29\",\"nsfw\":0,\"sources\":[{\"name\":\"Kavita (1)"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repov2/index.min.json",
+    "status": 200,
+    "format": "Mihon / Tachiyomi index.min.json",
+    "count": 147,
+    "error": null,
+    "dataSample": "[{\"pkg\":\"ireader.allnovel.en\",\"apk\":\"ireader-en-allnovel-v2.1.apk\",\"name\":\"AllNovel\",\"id\":4368737766418014452,\"lang\":\"en\",\"code\":1,\"version\":\"2.1\",\"description\":\"Read novels online\",\"nsfw\":false,\"sour"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/index.json",
+    "status": 200,
+    "format": "Mangayomi index.json",
+    "count": 335,
+    "error": null,
+    "dataSample": "[{\"name\":\"1st Kiss-Manga (unoriginal)\",\"id\":638504049,\"baseUrl\":\"https://1stkissmanga.org\",\"lang\":\"en\",\"typeSource\":\"madara\",\"iconUrl\":\"https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/mai"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/anime_index.json",
+    "status": 200,
+    "format": "Mangayomi index.json",
+    "count": 64,
+    "error": null,
+    "dataSample": "[{\"name\":\"Gogoanime\",\"id\":1061885186,\"baseUrl\":\"https://anitaku.to\",\"lang\":\"en\",\"typeSource\":\"single\",\"iconUrl\":\"https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/main/dart/anime/src/en/gog"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/refs/heads/main/novel_index.json",
+    "status": 200,
+    "format": "Mangayomi index.json",
+    "count": 9,
+    "error": null,
+    "dataSample": "[{\"name\":\"RoyalRoad\",\"id\":1021112861,\"baseUrl\":\"https://royalroad.com\",\"lang\":\"en\",\"typeSource\":\"single\",\"iconUrl\":\"https://raw.githubusercontent.com/m2k3a/mangayomi-extensions/main/dart/novel/src/en/"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/LNReader/lnreader-plugins/plugins/v3.0.0/.dist/plugins.min.json",
+    "status": 200,
+    "format": "LNReader plugins.min.json",
+    "count": 372,
+    "error": null,
+    "dataSample": "[{\"id\":\"arnovel\",\"name\":\"ArNovel\",\"site\":\"https://ar-no.com/\",\"lang\":\"‎العربية\",\"version\":\"2.4.0\",\"url\":\"https://raw.githubusercontent.com/lnreader/lnreader-plugins/plugins/v3.0.0/.js/src/plu"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/yuzono/anime-repo/repo/index.min.json",
+    "status": 200,
+    "format": "Mihon / Tachiyomi index.min.json",
+    "count": 248,
+    "error": null,
+    "dataSample": "[{\"name\":\"Aniyomi: AnimeOnsen\",\"pkg\":\"eu.kanade.tachiyomi.animeextension.all.animeonsen\",\"apk\":\"aniyomi-all.animeonsen-v14.11.apk\",\"lang\":\"all\",\"code\":11,\"version\":\"14.11\",\"nsfw\":0,\"torrent\":0,\"source"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/gato404/kegareta-sauces/main/index.json",
+    "status": 200,
+    "format": "Mangayomi index.json",
+    "count": 272,
+    "error": null,
+    "dataSample": "[{\"name\":\"1st Manhwa\",\"id\":387503373,\"baseUrl\":\"https://1stmanhwa.com\",\"lang\":\"en\",\"typeSource\":\"madara\",\"iconUrl\":\"https://raw.githubusercontent.com/gato404/kegareta-sauces/main/dart/manga/multisrc/m"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/FelipeGFA/extensoes/repo/index.min.json",
+    "status": 200,
+    "format": "Mihon / Tachiyomi index.min.json",
+    "count": 2,
+    "error": null,
+    "dataSample": "[\n  {\n    \"name\": \"App Desatualizado\",\n    \"pkg\": \"eu.kanade.tachiyomi.extension.all.felipegfa\",\n    \"apk\": \"tachiyomi-all.felipegfa-v1.4.1.apk\",\n    \"lang\": \"all\",\n    \"code\": 1,\n    \"version\": \"1.4."
+  },
+  {
+    "url": "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.pb",
+    "status": 200,
+    "format": "Mihon index.pb (Protobuf)",
+    "count": "~127 KB raw protobuf",
+    "error": null,
+    "dataSample": "\u001f�\b\u0000\u0000\u0000\u0000\u0000\u0002��}\u0007\\\u001c���B��㖌\u001d��Ʌ�rq�\u0010\u0012���DŶlY�b��\\�[�\u0005V�.ނJ.�(\u0012�w�{���DG4\u0001���{��ζ��ѱk�w�\u000e�<����_o�s�Y�\u001b\\!߀\r����3�?�d0�ǎ\u001ee\u001c?�:yL�\bK�8�6K��I����ѣ��0�\u001f;~��I=��Q��\u0013G�ǎ\u001fb����#L��7?\u0004�0\u0010\bL��\u001f<h(��"
+  },
+  {
+    "url": "https://github.com/Shebyyy/kotatsu-multi-parsers",
+    "status": 200,
+    "format": "GitHub Repository",
+    "count": "Web repository",
+    "error": null,
+    "dataSample": "\n\n\n\n  \n\n<!DOCTYPE html>\n<html\n  lang=\"en\"\n  \n  data-color-mode=\"auto\" data-light-theme=\"light\" data-dark-theme=\"dark\"\n  data-a11y-animated-images=\"system\" data-a11y-link-underlines=\"true\"\n  data-css-f"
+  },
+  {
+    "url": "https://github.com/IReaderorg/IReader-extensions",
+    "status": 200,
+    "format": "GitHub Repository",
+    "count": "Web repository",
+    "error": null,
+    "dataSample": "\n\n\n\n  \n\n<!DOCTYPE html>\n<html\n  lang=\"en\"\n  \n  data-color-mode=\"auto\" data-light-theme=\"light\" data-dark-theme=\"dark\"\n  data-a11y-animated-images=\"system\" data-a11y-link-underlines=\"true\"\n  data-css-f"
+  },
+  {
+    "url": "https://p.codekk.com/detail/Android/IReaderorg/IReader-extensions",
+    "status": 200,
+    "format": "Web Page",
+    "count": "Web page",
+    "error": null,
+    "dataSample": "<!DOCTYPE html><html lang=\"en\"><head><title>IReader-extensions @codeKK AndroidOpen Source Website</title><link rel=\"canonical\" href=\"https://p.codekk.com/detail/Android/IReaderorg/IReader-extensions\">"
+  }
+]

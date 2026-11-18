@@ -1655,5 +1655,11 @@
   "Máy chủ {host} từ chối hoặc trả lỗi": "{host} a refusé la requête ou renvoyé une erreur",
   "Lỗi mạng khi tải ảnh từ {host}": "Erreur réseau lors du chargement de l'image depuis {host}",
   "Không giải mã được ảnh sau {sec} giây": "Impossible de décoder l'image après {sec} s",
-  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Fichier image corrompu ou format non pris en charge"
+  "Tệp ảnh hỏng hoặc định dạng không hỗ trợ": "Fichier image corrompu ou format non pris en charge",
+  "Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)": "ID client (laisser vide = Se connecter avec un compte Google via la configuration intégrée de YomiHub)",
+  "Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.": "Appuyez sur Connecter pour vous connecter avec votre compte Google (Windows : ouvre le navigateur puis revient automatiquement dans l'app ; Android/TV : ouvrez google.com/device et saisissez le code affiché). L'app n'utilise que l'autorisation drive.file pour le dossier de sauvegarde créé par YomiHub (par défaut : YomiHub) et ne lit aucun autre fichier. Vous pouvez aussi saisir votre propre ID client/secret client (type TV/Limited Input Devices).",
+  "Không mở được trình duyệt để đăng nhập Google": "Impossible d'ouvrir le navigateur pour la connexion Google",
+  "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Cette version n'a pas de configuration de connexion Google intégrée – saisissez votre propre ID client et secret client",
+  "Google Drive: hết thời gian chờ đăng nhập": "Google Drive : délai de connexion dépassé",
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (historique de recherche, favoris, paramètres)"
 }
