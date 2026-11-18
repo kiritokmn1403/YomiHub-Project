@@ -1,0 +1,270 @@
+[
+  {
+    "name": "Keiyoushi Extensions",
+    "url": "https://github.com/keiyoushi/extensions/raw/repo/index.pb",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 1000,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "Keiyoushi Extensions",
+    "url": "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 2,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "Keiyoushi Extensions",
+    "url": "https://github.com/keiyoushi/extensions",
+    "resolvedIndexUrl": "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 2,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "Keiyoushi Extensions",
+    "url": "https://github.com/keiyoushi/extensions-source",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 0,
+    "alive": false,
+    "inApp": true
+  },
+  {
+    "name": "ObserverOfTime Tachiyomi Extensions",
+    "url": "https://observeroftime.frama.io/tachiyomi-extensions/index.min.json",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 14,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "ObserverOfTime Tachiyomi Extensions",
+    "url": "https://observeroftime.frama.io/tachiyomi-extensions/index.min.json",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 14,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "Yuzono Anime Repo",
+    "url": "https://raw.githubusercontent.com/yuzono/anime-repo/repo/index.min.json",
+    "type": "Film",
+    "engine": "aniyomi",
+    "count": 248,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "Salmanbappi Extensions Repo",
+    "url": "https://raw.githubusercontent.com/salmanbappi/extensions-repo/main/index.min.json",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 99,
+    "alive": true,
+    "inApp": false
+  },
+  {
+    "name": "Yuzono Anime Repo",
+    "url": "https://github.com/yuzono/anime-extensions",
+    "type": "Film",
+    "engine": "aniyomi",
+    "count": 0,
+    "alive": false,
+    "inApp": true
+  },
+  {
+    "name": "Salmanbappi Extensions Repo",
+    "url": "https://github.com/salmanbappi/extensions-repo",
+    "resolvedIndexUrl": "https://raw.githubusercontent.com/salmanbappi/extensions-repo/repo/index.min.json",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 99,
+    "alive": true,
+    "inApp": false
+  },
+  {
+    "name": "Secozzi/aniyomi-extensions",
+    "url": "https://github.com/Secozzi/aniyomi-extensions",
+    "resolvedIndexUrl": "https://raw.githubusercontent.com/Secozzi/aniyomi-extensions/repo/index.min.json",
+    "type": "Film",
+    "engine": "aniyomi",
+    "count": 1,
+    "alive": true,
+    "inApp": false
+  },
+  {
+    "name": "Cursedyomi Extensions (Claudemirovsky)",
+    "url": "https://github.com/Claudemirovsky/cursedyomi-extensions",
+    "resolvedIndexUrl": "https://raw.githubusercontent.com/Claudemirovsky/cursedyomi-extensions/repo/index.min.json",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 31,
+    "alive": true,
+    "inApp": false
+  },
+  {
+    "name": "Keiyoushi Extensions",
+    "url": "https://x.noz.one/keiyoushi/index.pb",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 1000,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "Yuzono Cursed Repo",
+    "url": "https://x.noz.one/yuzono/cursed/index.pb",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 1000,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "Secozzi Aniyomi Extensions",
+    "url": "https://x.noz.one/secozzi/index.pb",
+    "type": "Film",
+    "engine": "aniyomi",
+    "count": 1000,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "Yuzono Anime Repo",
+    "url": "https://x.noz.one/yuzono/anime/index.pb",
+    "type": "Film",
+    "engine": "aniyomi",
+    "count": 1000,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "Keiyoushi Extensions",
+    "url": "https://github.com/keiyoushi/extensions@repo",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 0,
+    "alive": false,
+    "inApp": true
+  },
+  {
+    "name": "Secozzi/aniyomi-extensions@repo",
+    "url": "https://github.com/Secozzi/aniyomi-extensions@repo",
+    "type": "Film",
+    "engine": "aniyomi",
+    "count": 0,
+    "alive": false,
+    "inApp": false
+  },
+  {
+    "name": "Kotatsu Multi Parsers (Shebyyy)",
+    "url": "https://github.com/Shebyyy/kotatsu-multi-parsers",
+    "type": "Comic",
+    "engine": "kotatsu",
+    "count": 0,
+    "alive": false,
+    "inApp": true
+  },
+  {
+    "name": "Kotatsu Multi Parsers (Shebyyy)",
+    "url": "https://github.com/Shebyyy/kotatsu-multi-parsers",
+    "type": "Comic",
+    "engine": "kotatsu",
+    "count": 0,
+    "alive": false,
+    "inApp": true
+  },
+  {
+    "name": "Kotatsu Parsers Redo",
+    "url": "https://github.com/Kotatsu-Redo/kotatsu-parsers-redo",
+    "type": "Comic",
+    "engine": "kotatsu",
+    "count": 0,
+    "alive": false,
+    "inApp": false
+  },
+  {
+    "name": "Kaisoku Parsers (glitch-228)",
+    "url": "https://github.com/glitch-228/kaisoku-parsers",
+    "type": "Comic",
+    "engine": "kotatsu",
+    "count": 0,
+    "alive": false,
+    "inApp": false
+  },
+  {
+    "name": "Kotatsu Parsers (hany18h)",
+    "url": "https://github.com/hany18h/kotatsu-parsers",
+    "type": "Comic",
+    "engine": "kotatsu",
+    "count": 0,
+    "alive": false,
+    "inApp": false
+  },
+  {
+    "name": "Kototoro Parsers (skepsun)",
+    "url": "https://github.com/skepsun/kototoro-parsers",
+    "resolvedIndexUrl": "https://raw.githubusercontent.com/skepsun/kototoro-parsers/repo/index.min.json",
+    "type": "Comic",
+    "engine": "kotatsu",
+    "count": 1,
+    "alive": true,
+    "inApp": false
+  },
+  {
+    "name": "LNReader Official Plugins",
+    "url": "https://raw.githubusercontent.com/LNReader/lnreader-plugins/plugins/v3.0.0/.dist/plugins.min.json",
+    "type": "Novel",
+    "engine": "lnreader",
+    "count": 372,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "IReader Official Extensions",
+    "url": "https://github.com/IReaderorg/IReader-extensions",
+    "resolvedIndexUrl": "https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repo/index.min.json",
+    "type": "Novel",
+    "engine": "ireader",
+    "count": 97,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "IReader Official Extensions",
+    "url": "https://github.com/IReaderorg/IReader-extensions",
+    "resolvedIndexUrl": "https://raw.githubusercontent.com/IReaderorg/IReader-extensions/repo/index.min.json",
+    "type": "Novel",
+    "engine": "ireader",
+    "count": 97,
+    "alive": true,
+    "inApp": true
+  },
+  {
+    "name": "IReader Extensions Fork (kazemcodes)",
+    "url": "https://github.com/kazemcodes/IReader-extensions",
+    "type": "Novel",
+    "engine": "ireader",
+    "count": 0,
+    "alive": false,
+    "inApp": false
+  },
+  {
+    "name": "Tachiyomi 1.x Legacy Extensions (Archived)",
+    "url": "https://github.com/tachiyomiorg/tachiyomi-extensions-1.x",
+    "type": "Comic",
+    "engine": "mihon",
+    "count": 0,
+    "alive": false,
+    "inApp": false
+  }
+]
