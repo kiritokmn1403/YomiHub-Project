@@ -61,3 +61,7 @@
 - **device_bash:** `grep -r` trên cả `overlay/lib` có thể vượt 120 s → giới hạn thư mục hoặc ghi kết quả ra tệp tạm.
 - **PowerShell:** `Run 'flutter.bat' @(...) + (Get-YhDefines) 'log'` truyền dấu `+` như một tham số chữ – phải bọc `(@(...) + (...))`.
 - **Danh sách Dự án GitHub:** sheet có liên kết công cụ tấn công (hack Wi-Fi, WPS-0DAY, AMSI bypass) – không bổ sung mới; 5 liên kết loại này đã có từ bản cũ, chờ chủ dự án quyết định có gỡ không.
+- **Bản phát hành 0.5.9 (chiều 18/11):** dựng đủ bộ trong ~2 giờ 20 (test 10' → APK 24' → TV 33' → wintest 9' → win 19' → pack 5' → a6build 37' → verify 2'); tải 19 tệp ~2,9 GB lên Release mất ~19 phút (1 MB/s lúc đầu, 4–6 MB/s về sau). `release_059.ps1` tự đối chiếu kích thước 19 asset; lỗi 409 khi bật Pages trong script = Pages đã bật sẵn.
+- **Kho `kohiden.xyz`** báo CERTIFICATE_VERIFY_FAILED trên Android 10 (thiếu chứng chỉ trung gian phía máy chủ) – chưa xử lý, xem ở 0.6.0.
+- **Gợi ý kho (FC21):** Antigravity xác nhận 29 kho từ 13 website; đề xuất thêm Salmanbappi (`raw.githubusercontent.com/salmanbappi/extensions-repo/main/index.min.json`, 99 nguồn) và Secozzi vào `repo_discovery.dart`; bỏ các URL là repo mã nguồn không có index (keiyoushi/extensions-source, yuzono/anime-extensions). Chưa đưa vào 0.5.9.
+- **README do tác nhân viết dễ "bịa" tính năng** (VLC, OpenDyslexic, đồng bộ hai chiều Drive…) → luôn grep `overlay/lib` kiểm từng khẳng định trước khi thay README.
