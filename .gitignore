@@ -20,6 +20,8 @@ key.properties
 /logs/
 /jobs/
 **/build/
+# 18/11/2026: thu muc build/ o goc chua cac script build_*.ps1 (khong phai thu muc dung Flutter)
+!/build/
 **/.dart_tool/
 **/.gradle/
 **/.kotlin/
