@@ -14,7 +14,7 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
-$root = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Item .).FullName }
+$root = if ($PSScriptRoot) { Split-Path -Parent $PSScriptRoot } else { (Get-Item .).FullName }  # build\ -> goc du an
 $skipFile = Join-Path $root "audit\audit-0.5.8\SKIP_STEPS"
 if ((Test-Path $skipFile) -and ((Get-Content $skipFile -Raw) -split '\s+' -contains $step)) {
     Write-Host "Bỏ qua step $step do khai báo trong SKIP_STEPS" -ForegroundColor Yellow
@@ -250,7 +250,7 @@ try {
 
     # BƯỚC 0: CHUYỂN TIẾP BUILD ANDROID (NẾU GỌI STEP APK/TV)
     if ($step -in 'apk', 'tv', 'a6') {
-        $androidScript = Join-Path $root "build_058_android.ps1"
+        $androidScript = Join-Path $root "build\build_058_android.ps1"
         if (-not (Test-Path $androidScript)) {
             throw "LỖI: Step '$step' là tác vụ Android nhưng không tìm thấy build_058_android.ps1 tại $androidScript"
         }

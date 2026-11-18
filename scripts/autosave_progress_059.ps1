@@ -6,7 +6,7 @@ $log = Join-Path $root 'logs\autosave_059.txt'
 function L($m){ Add-Content $log ("{0:dd/MM HH:mm:ss} {1}" -f (Get-Date), $m) -Encoding UTF8 }
 $paths = @('TECHNICAL_UPDATE_NOTES.md','README.md','AGENTS.md','A.I Brain - Second Brain','overlay','docs',
   'audit/audit-0.5.9/antigravity','audit/audit-0.5.9/notes','audit/audit-0.5.9/release','audit/audit-0.5.9/coordination',
-  'build_059.ps1','build_059_android.ps1','build_059_android6.ps1','run_059_main.ps1','sync_059.ps1','release_059.ps1',
+  'build','run_059_main.ps1','sync_059.ps1','release_059.ps1',
   'make_installer_exe_059.ps1','make_appxbundle_059.ps1','scripts/autosave_progress_059.ps1')
 $end = (Get-Date).AddHours(8)
 L "=== autosave bat dau (PID $PID) ==="

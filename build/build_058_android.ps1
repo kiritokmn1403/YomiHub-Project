@@ -4,29 +4,28 @@ param(
     [string]$step = 'all'
 )
 
-# build_057_android.ps1 - YomiHub 0.5.9 (pubspec 0.5.9+52): dung THAT 3 APK dien thoai + 3 APK Android TV,
-# chep 3 APK android6 vao output\0.5.9, kiem nhan/versionName/versionCode theo ABI/ABI/noi dung/chu ky.
-#   -step test|unit : pub get, gen-l10n, analyze, flutter test (gom test VPN 0.5.9)
-#   -step apk | tv  : flutter build apk --split-per-abi --build-name 0.5.9 --build-number 52 (khong co nhanh gia)
-#   -step a6        : chep + kiem 3 APK android6 tu audit\audit-0.5.8\android6\out (phai dung lai bang build_059_android6.ps1 voi build-number 52)
-#   -step verify    : kiem lai toan bo APK trong output\0.5.9
-# Windows (win/pack) nam trong build_057.ps1. Giu audit\audit-0.5.6\coordination\BUILD_LOCK.txt ("B057 <gio>") o test/apk/tv.
+# build_057_android.ps1 - YomiHub 0.5.8 (pubspec 0.5.8+51): dung THAT 3 APK dien thoai + 3 APK Android TV,
+# chep 3 APK android6 vao output\0.5.8, kiem nhan/versionName/versionCode theo ABI/ABI/noi dung/chu ky.
+#   -step test|unit : pub get, gen-l10n, analyze, flutter test (gom test VPN 0.5.8)
+#   -step apk | tv  : flutter build apk --split-per-abi --build-name 0.5.8 --build-number 50 (khong co nhanh gia)
+#   -step a6        : chep + kiem 3 APK android6 tu audit\audit-0.5.8\android6\out (phai dung lai bang build_058_android6.ps1 voi build-number 50)
+#   -step verify    : kiem lai toan bo APK trong output\0.5.8
+# Windows (win/pack) nam trong build_057.ps1. Giu audit-0.5.6\coordination\BUILD_LOCK.txt ("B057 <gio>") o test/apk/tv.
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
-$root = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Item .).FullName }
-$skipFile = Join-Path $root "audit\audit-0.5.9\SKIP_STEPS"
+$root = if ($PSScriptRoot) { Split-Path -Parent $PSScriptRoot } else { (Get-Item .).FullName }  # build\ -> goc du an
+$skipFile = Join-Path $root "audit\audit-0.5.8\SKIP_STEPS"
 if ((Test-Path $skipFile) -and ((Get-Content $skipFile -Raw) -split '\s+' -contains $step)) {
     Write-Host "Bỏ qua step $step do khai báo trong SKIP_STEPS" -ForegroundColor Yellow
     exit 0
 }
 
 . "$root\common.ps1"
-. "$root\yh_defines.ps1"  # 0.5.9: dang nhap Google
 
 $stamp = Get-Date -Format "yyyyMMdd_HHmmss"
-$buildLogPath = Join-Path $LOGS "build059_android_${step}_$stamp.txt"
+$buildLogPath = Join-Path $LOGS "build058_android_${step}_$stamp.txt"
 Start-Transcript $buildLogPath -Force | Out-Null
 $ErrorActionPreference = 'Stop'
 
@@ -52,7 +51,7 @@ function Run($exe, [string[]]$a, $logName) {
     if ($LASTEXITCODE -ne 0) { throw "$exe thất bại (exit $LASTEXITCODE) - xem chi tiết tại logs\$logName" }
 }
 
-$lockFile = Join-Path $root "audit\audit-0.5.6\coordination\BUILD_LOCK.txt"
+$lockFile = Join-Path $root "audit-0.5.6\coordination\BUILD_LOCK.txt"
 $lockWaitMin = 60
 $script:locked = $false
 function Lock-Build {
@@ -167,7 +166,7 @@ function Verify-ApkDetails([string]$apkPath, [string]$expectedLabel, [string]$ex
         $zip.Dispose()
     }
 
-    # 3. Kiểm tra nâng cấp tương thích từ 0.5.7 -> 0.5.9 cho ABI này
+    # 3. Kiểm tra nâng cấp tương thích từ 0.5.7 -> 0.5.8 cho ABI này
     $fileName = Split-Path $apkPath -Leaf
     $prevFileName = $fileName.Replace("-$expectedVer-", "-0.5.7-")
     $prevApkPath = Join-Path $KIT "output\0.5.7\$prevFileName"
@@ -197,7 +196,7 @@ function Verify-ApkDetails([string]$apkPath, [string]$expectedLabel, [string]$ex
 }
 
 function Verify-AllPackages([string]$outDir, [string]$ver, [string]$code) {
-    Say "=== XÁC MINH NỘI DUNG THỰC CÁC APK 0.5.9 (VERIFY PACKAGE) ==="
+    Say "=== XÁC MINH NỘI DUNG THỰC CÁC APK 0.5.8 (VERIFY PACKAGE) ==="
     foreach ($abi in @('arm64-v8a', 'armeabi-v7a', 'x86_64')) {
         Verify-ApkDetails "$outDir\YomiHub-$ver-$abi.apk" 'YomiHub' $abi $ver (Get-ExpectedVersionCode -abi $abi -baseCode ([int]$code))
     }
@@ -218,21 +217,21 @@ if ($step -eq 'none') {
     return
 }
 
-$out = Join-Path $KIT "output\0.5.9"
+$out = Join-Path $KIT "output\0.5.8"
 New-Item -ItemType Directory -Force $out | Out-Null
 
 $pubspecRaw = Get-Content "$abld\pubspec.yaml" -Raw
 $verMatch = [regex]::Match($pubspecRaw, '(?m)^version:\s*([0-9\.]+)\+?([0-9]*)')
 $pubVer = $verMatch.Groups[1].Value
 $code = $verMatch.Groups[2].Value
-if ($pubVer -ne '0.5.9') { throw "Phiên bản pubspec là '$pubVer', kỳ vọng '0.5.9' (0.5.9 = versionName hiển thị, truyền bằng --build-name)" }
-if ($code -ne '52') { throw "Build number pubspec là '$code', kỳ vọng '52' (sync_059.ps1 chưa chạy?)" }
-$ver = '0.5.9'   # versionName hiển thị (--build-name)
+if ($pubVer -ne '0.5.8') { throw "Phiên bản pubspec là '$pubVer', kỳ vọng '0.5.8' (0.5.8 = versionName hiển thị, truyền bằng --build-name)" }
+if ($code -ne '51') { throw "Build number pubspec là '$code', kỳ vọng '51' (sync_058.ps1 chưa chạy?)" }
+$ver = '0.5.8'   # versionName hiển thị (--build-name)
 
 $targetAbis = @('arm64-v8a', 'armeabi-v7a', 'x86_64')
 
 try {
-    Say "=== BẮT ĐẦU QUY TRÌNH BUILD YOMIHUB 0.5.9 (step=$step, ver=$ver, build=$code) ==="
+    Say "=== BẮT ĐẦU QUY TRÌNH BUILD YOMIHUB 0.5.8 (step=$step, ver=$ver, build=$code) ==="
     $env:PATH = "$TOOLS\android-sdk\cmake\3.22.1\bin;" + $env:PATH
     $env:CARGO_HTTP_MULTIPLEXING = "false"
     $env:CARGO_NET_RETRY = "10"
@@ -242,10 +241,10 @@ try {
     # BƯỚC 1: KIỂM THỬ TĨNH & ĐƠN VỊ
     if ($step -in 'all', 'test') {
         Push-Location $abld
-        Remove-Item "$LOGS\b059_analyze.txt", "$LOGS\b059_test.txt" -ErrorAction SilentlyContinue
-        Run 'flutter.bat' @('pub', 'get', '--offline') 'b059_pub_get.txt'
-        Run 'flutter.bat' @('gen-l10n') 'b059_gen_l10n.txt'
-        Run 'dart.bat' @('analyze', '--no-fatal-warnings', 'lib/modules/widgets/custom_extended_image_provider.dart', 'lib/yomihub/extensions/url_override.dart', 'lib/utils/log/logger.dart') 'b059_analyze.txt'
+        Remove-Item "$LOGS\b058_analyze.txt", "$LOGS\b058_test.txt" -ErrorAction SilentlyContinue
+        Run 'flutter.bat' @('pub', 'get', '--offline') 'b058_pub_get.txt'
+        Run 'flutter.bat' @('gen-l10n') 'b058_gen_l10n.txt'
+        Run 'dart.bat' @('analyze', '--no-fatal-warnings', 'lib/modules/widgets/custom_extended_image_provider.dart', 'lib/yomihub/extensions/url_override.dart', 'lib/utils/log/logger.dart') 'b058_analyze.txt'
         Pop-Location
     }
 
@@ -260,10 +259,10 @@ try {
         $absent = @($testFiles | Where-Object { -not (Test-Path (Join-Path $abld $_)) })
         if ($absent.Count -gt 0) { Say ("CẢNH BÁO: bỏ qua test không có trong build dir: " + ($absent -join ', ')) }
         foreach ($must in 'test/yh_058_core_test.dart', 'test/yh_058_ui_features_test.dart', 'test/yh_049_test.dart') {
-            if ($present -notcontains $must) { throw "Thiếu test bắt buộc $must trong $abld (sync_059.ps1 chưa chạy?)" }
+            if ($present -notcontains $must) { throw "Thiếu test bắt buộc $must trong $abld (sync_058.ps1 chưa chạy?)" }
         }
-        # 0.5.9: chạy TOÀN BỘ thư mục test (gồm yh_057_*), danh sách trên chỉ để kiểm tệp bắt buộc
-        Run 'flutter.bat' @('test', '--no-pub') 'b059_test.txt'
+        # 0.5.8: chạy TOÀN BỘ thư mục test (gồm yh_057_*), danh sách trên chỉ để kiểm tệp bắt buộc
+        Run 'flutter.bat' @('test', '--no-pub') 'b058_test.txt'
         Pop-Location
     }
 
@@ -272,7 +271,7 @@ try {
         Set-AppName 'YomiHub'
         Push-Location $abld
         $apkStart = Get-Date
-        Run 'flutter.bat' (@('build', 'apk', '--no-pub', '--release', '--split-per-abi', '--target-platform', 'android-arm,android-arm64,android-x64', '--build-name', $ver, '--build-number', $code, '--split-debug-info', "$YH\symbols_059") + (Get-YhDefines)) 'b059_apk.txt'
+        Run 'flutter.bat' @('build', 'apk', '--no-pub', '--release', '--split-per-abi', '--target-platform', 'android-arm,android-arm64,android-x64', '--build-name', $ver, '--build-number', $code, '--split-debug-info', "$YH\symbols") 'b058_apk.txt'
         
         foreach ($abi in $targetAbis) {
             $f = "$abld\build\app\outputs\flutter-apk\app-$abi-release.apk"
@@ -296,14 +295,14 @@ try {
         Set-AppName 'YumiHub Android TV'
         try {
             $tvStart = Get-Date
-            Run 'flutter.bat' (@(
+            Run 'flutter.bat' @(
                 'build', 'apk', '--no-pub', '--release', '--split-per-abi',
                 '--target-platform', 'android-arm,android-arm64,android-x64',
                 '--build-name', $ver, '--build-number', $code,
-                '--split-debug-info', "$YH\symbols_tv_059",
+                '--split-debug-info', "$YH\symbols_tv",
                 '--dart-define=IS_TV_BUILD=true',
                 '--dart-define=APP_NAME=YumiHub Android TV'
-            ) + (Get-YhDefines)) 'b059_tv.txt'
+            ) 'b058_tv.txt'
 
             foreach ($abi in $targetAbis) {
                 $f = "$abld\build\app\outputs\flutter-apk\app-$abi-release.apk"
@@ -324,12 +323,12 @@ try {
         }
     }
 
-    # BƯỚC 4: CHÉP + KIỂM 3 APK ANDROID 6.0 (dựng bằng build_059_android6.ps1)
+    # BƯỚC 4: CHÉP + KIỂM 3 APK ANDROID 6.0 (dựng bằng build_058_android6.ps1)
     if ($step -in 'all', 'a6') {
         $a6out = Join-Path $root 'audit\audit-0.5.8\android6\out'
         foreach ($abi in $targetAbis) {
             $a6src = "$a6out\YomiHub-$ver-android6-$abi.apk"
-            if (-not (Test-Path $a6src)) { throw "LỖI ARTIFACT THIẾU: $a6src - chạy build_059_android6.ps1 trước" }
+            if (-not (Test-Path $a6src)) { throw "LỖI ARTIFACT THIẾU: $a6src - chạy build_058_android6.ps1 trước" }
             $expectedAbiCode = Get-ExpectedVersionCode -abi $abi -baseCode ([int]$code)
             # APK android6 phải được dựng lại sau khi nâng build-number lên 50; nếu versionCode cũ (49) sẽ báo lỗi ở đây
             Verify-ApkDetails $a6src 'YomiHub' $abi $ver $expectedAbiCode
@@ -344,7 +343,7 @@ try {
         Verify-AllPackages -outDir $out -ver $ver -code $code
     }
 
-    Say "=== QUY TRÌNH BUILD YOMIHUB 0.5.9 (ANDROID) HOÀN TẤT THÀNH CÔNG (step=$step) ==="
+    Say "=== QUY TRÌNH BUILD YOMIHUB 0.5.8 (ANDROID) HOÀN TẤT THÀNH CÔNG (step=$step) ==="
 } catch {
     Say "LỖI NGHIÊM TRỌNG: $($_.Exception.Message)"
     if ($host -and $host.SetShouldExit) {

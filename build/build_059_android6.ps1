@@ -29,7 +29,7 @@ param(
 # Chi tiết kỹ thuật: audit\audit-0.5.8\android6\A6_FEASIBILITY.md
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
-$root = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Item .).FullName }
+$root = if ($PSScriptRoot) { Split-Path -Parent $PSScriptRoot } else { (Get-Item .).FullName }  # build\ -> goc du an
 . "$root\common.ps1"
 . "$root\yh_defines.ps1"  # 0.5.9: dang nhap Google
 $ErrorActionPreference = 'Stop'

@@ -19,15 +19,15 @@ function WaitLock {
 }
 $steps = @(
   @('sync',     { & "$root\sync_059.ps1" -Regen }),
-  @('test',     { & "$root\build_059_android.ps1" -step test }),
-  @('apk',      { & "$root\build_059_android.ps1" -step apk }),
-  @('tv',       { & "$root\build_059_android.ps1" -step tv }),
-  @('wintest',  { & "$root\build_059.ps1" -step test }),
-  @('win',      { & "$root\build_059.ps1" -step win }),
-  @('pack',     { & "$root\build_059.ps1" -step pack }),
-  @('a6build',  { & "$root\build_059_android6.ps1" -step all }),
-  @('a6copy',   { & "$root\build_059_android.ps1" -step a6 }),
-  @('verify',   { & "$root\build_059.ps1" -step verify })
+  @('test',     { & "$root\build\build_059_android.ps1" -step test }),
+  @('apk',      { & "$root\build\build_059_android.ps1" -step apk }),
+  @('tv',       { & "$root\build\build_059_android.ps1" -step tv }),
+  @('wintest',  { & "$root\build\build_059.ps1" -step test }),
+  @('win',      { & "$root\build\build_059.ps1" -step win }),
+  @('pack',     { & "$root\build\build_059.ps1" -step pack }),
+  @('a6build',  { & "$root\build\build_059_android6.ps1" -step all }),
+  @('a6copy',   { & "$root\build\build_059_android.ps1" -step a6 }),
+  @('verify',   { & "$root\build\build_059.ps1" -step verify })
 )
 if ($RunSteps -and $RunSteps.Count -gt 0) {
   $parsedSteps = @()
