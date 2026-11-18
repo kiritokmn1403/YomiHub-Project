@@ -112,3 +112,6 @@ audit/**/devbuild/
 /find_xml.ps1
 /sync_054.ps1
 src/mangayomi-0.9.95/
+
+# 0.5.9: OAuth client config (injected at build via --dart-define)
+secrets/
