@@ -31,14 +31,14 @@ Chọn gói cài đặt phù hợp với thiết bị của bạn tại trang ph
 - Bộ lọc màu nâng cao, tăng cường độ nét trang ảnh, tự động tải trước chương tiếp theo và tải ngoại tuyến để đọc khi không có mạng.
 
 ### 🎬 Xem phim & Anime (Film & Movie)
-- Tận hưởng kho phim và Anime trực tuyến với trình phát chất lượng cao tích hợp bộ giải mã MPV/VLC mượt mà.
+- Tận hưởng kho phim và Anime trực tuyến với trình phát tích hợp (nhân mpv qua media_kit), hỗ trợ Picture-in-Picture.
 - Tự động nhớ vị trí đang xem, hỗ trợ đổi luồng phát, chọn máy chủ dự phòng khi gặp sự cố mạng, tải tập phim về máy xem offline.
 - Tích hợp giao diện Shorts / Video ngắn giải trí với thao tác vuốt chuyển tiện lợi.
 
 ### 📚 Tiểu thuyết chữ & Sách điện tử (Novel & Google Play Books)
 - Khám phá kho tiểu thuyết trực tuyến đa dạng thể loại: Tiên hiệp, Kiếm hiệp, Đô thị, Ngôn tình, Light Novel.
-- Kết nối tài khoản Google Play Books để đọc và quản lý thư viện sách bản quyền cá nhân.
-- Tùy biến không gian đọc văn bản: Tùy chỉnh cỡ chữ, phông chữ hỗ trợ chứng khó đọc (OpenDyslexic), giãn dòng, chế độ nền tối/bảo vệ mắt và ước lượng thời gian đọc.
+- Google Play Sách nhúng ngay trong ứng dụng (giao diện Trang chủ, Thư viện, Danh sách yêu thích, Cửa hàng), đăng nhập tài khoản Google để đọc sách đã mua.
+- Tùy biến không gian đọc văn bản: tùy chỉnh cỡ chữ, phông chữ, giãn dòng, nền tối; đọc tệp EPUB và PDF trên máy.
 
 ### 🎨 Duyệt & Tìm kiếm ảnh nghệ thuật (Booru App)
 - Tìm kiếm, duyệt và tải ảnh nghệ thuật độ phân giải cao từ các nguồn Booru danh tiếng (Danbooru, Safebooru, Yande.re, Gelbooru...).
@@ -61,13 +61,13 @@ YomiHub hỗ trợ cài đặt và quản lý tiện ích từ nhiều kiến tr
 
 ### ☁️ Sao lưu & Đồng bộ dữ liệu
 - Tùy chọn linh hoạt từng mục sao lưu: Thư viện, Lịch sử, Dấu trang, Nguồn tiện ích, Cài đặt cá nhân và Dữ liệu Booru App.
-- Hỗ trợ lưu trữ cục bộ, đồng bộ hai chiều an toàn qua Google Drive cá nhân và sao lưu nhanh qua Telegram Bot.
+- Lưu cục bộ hoặc lên đám mây: đăng nhập bằng tài khoản Google để sao lưu vào Google Drive, ngoài ra có OneDrive, Dropbox và Telegram Bot.
 
 ### 🩺 Sức khỏe & Tiện ích thông minh
 - **Đồng bộ Health Connect**: Tự động ghi nhận thời gian đọc sách và xem phim vào dữ liệu sức khỏe thể chất/tinh thần (Mindfulness).
 - **Bảo vệ thị lực**: Tính năng nhắc nhở nghỉ mắt theo quy tắc 20-20-20 khoa học.
 - **Trình đọc mở rộng**: Tích hợp các phím tắt và tiện ích đọc chuyên dụng (Yomikiru & Yomihon).
-- **Trình duyệt ẩn danh**: Tích hợp công nghệ chống thu thập dấu vân tay thiết bị (Fingerprinting Protection).
+- **Trình duyệt tích hợp**: dùng cho WebView của nguồn, giải Cloudflare thủ công và chống thu thập dấu vân tay trình duyệt.
 - **Hỗ trợ 18 ngôn ngữ**: Giao diện được bản địa hóa hoàn chỉnh với khả năng nhận diện ngôn ngữ hệ thống tự động.
 
 ---
