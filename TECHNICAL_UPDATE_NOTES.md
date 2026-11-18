@@ -3483,3 +3483,6 @@ Thư mục: `output/0.5.8/`
 - Changelog 0.5.9 bổ sung dòng tiện ích lang/NSFW + README/GitHub Pages.
 - **ĐÃ PHÁT HÀNH v0.5.9** (chủ dự án xác nhận 13:57): đẩy Kiritokmn Extension Repo `eee75b4..c919f87`; `release_059.ps1` tạo Release id 449626546 lúc 13:59, tải 19 tệp (~2,9 GB) xong 14:17:55, "Release verification SUCCESS: All 19 assets verified with identical sizes"; Claude đối chiếu lại API GitHub với `output/0.5.9` – 19/19 khớp kích thước, state=uploaded, make_latest. (Lỗi 409 bật Pages trong script là do Pages đã bật từ 11:46 – bỏ qua.)
 - Theo dõi tải lên: Antigravity /swarm 3 tác tử (@log_watch, @api_watch, @verifier) chu kỳ 40 s → `antigravity/RELEASE_PROGRESS_059.md`; Claude kiểm tra 10 phút/lần. Tốc độ ~1 MB/s lúc đầu, 4–6 MB/s từ 14:13.
+
+### 17. Gom script build_*.ps1 vào `build/` (18/11 14:39)
+- `git mv` 6 tệp `build_058*.ps1`, `build_059*.ps1` → `build/` (commit `0ff8444`), sửa `$root` (cha của `$PSScriptRoot`), lời gọi chéo `Join-Path $root "build\build_05x_android.ps1"`, `run_058_main.ps1`/`run_059_main.ps1` (`$root\build\build_...`), danh sách autosave; kiểm cú pháp PowerShell 9 tệp: 0 lỗi; `.gitignore` thêm `!/build/` (commit `333a4a4`). Đã push GitHub.
