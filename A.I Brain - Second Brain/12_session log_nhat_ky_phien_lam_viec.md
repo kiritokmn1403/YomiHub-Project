@@ -53,3 +53,15 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **20:55–21:05** APK TV x86_64 trên AVD API 34 (dọn 4 emulator thừa): chỉ Phim & Điện ảnh – ĐẠT (ảnh evidence/avdtv).
 - **21:10** ghi chú kỹ thuật mục 16–21, Second Brain 03/04/05/11/12; dừng autosave 0.6.1.
 - **Tiếp theo (0.6.2)**: xem 11-F.
+
+## 19–20/11/2026 · 0.6.2 · Claude Opus 5.5 (claude.ai + máy tính, 22:05–) + Google Antigravity
+- **22:05** yêu cầu 0.6.2 (log 16–19/11 + 2 Excel). Tóm tắt, chủ dự án 22:11 "Đồng ý toàn bộ" (Windows 10/11 x64), giao Antigravity /swarm, tự lưu 5 phút.
+- **22:12–22:16** quyền máy tính; script `*_062`, `pubspec 0.6.2+55`, autosave_062 (5 phút).
+- **22:16** /swarm 1 (giao diện Mangayomi 0.9.96 + bộ lọc mới) – dừng lượt phân tích cũ của Antigravity rồi "Send Now"; xong 22:32.
+- **22:20–22:35** giải stack log bằng symbols_061 → lỗi văng bool→double (PageStorage ExpansionTile) – sửa `YomiFilterStorageScope`, test + đối chứng mã cũ tái hiện lỗi. Sửa bộ lọc không tải, Kotatsu CDN Cloudflare, nhãn log, pending_062.
+- **22:35–22:50** tích hợp bộ lọc mới (sửa classifier 4 ca trượt), giao diện YomiHub New Version (theme, nav nổi, thẻ bìa); i18n 35 chuỗi × 18.
+- **22:43** chủ dự án: /swarm 2 dịch theo ngôn ngữ Aniyomi/Nekoyomi/Kotatsu → 52 mã xong 00:04; Claude tích hợp 48 (bỏ ceb, eo, jv, nn).
+- **22:57** dây chuyền lần 1 (test 979/982 – 3 test nhãn cũ) → sửa → 23:16 lần 2 (test 981/982, yh_017 mạng) → 23:24 chạy tiếp từ apk; apk xong 00:05, tv đang chạy.
+- **23:13** chủ dự án cho phép tự đẩy GitHub + Release khi xong. **23:19** lịch kiểm tra 1h31. **00:03** giao thêm /swarm 3 (Feature Check, README/changelog, tên mục 48 ngôn ngữ).
+- **00:08** chủ dự án: lưu tiến độ ngay → commit + push.
+- **Tiếp theo**: kiểm Note 9 với APK arm64; tích hợp /swarm 3; dựng lại lần cuối (có 48 ngôn ngữ); kiểm Windows/AVD 6/TV; phát hành v0.6.2.

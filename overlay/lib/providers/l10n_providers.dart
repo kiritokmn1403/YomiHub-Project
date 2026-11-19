@@ -10,7 +10,12 @@ class L10nLocaleState extends _$L10nLocaleState {
   @override
   Locale build() {
     final locale = _getLocale();
-    return Locale(locale.languageCode ?? "en", locale.countryCode ?? "");
+    // YomiHub 0.6.2: chữ viết (zh_Hant) được lưu vào ô countryCode ("Hant")
+    final cc = locale.countryCode ?? "";
+    if (cc.length == 4) {
+      return Locale.fromSubtags(languageCode: locale.languageCode ?? "en", scriptCode: cc);
+    }
+    return Locale(locale.languageCode ?? "en", cc);
   }
 
   L10nLocale _getLocale() {
@@ -22,7 +27,7 @@ class L10nLocaleState extends _$L10nLocaleState {
     settingsRepository.update(
       (s) => s.locale = L10nLocale(
         languageCode: locale.languageCode,
-        countryCode: locale.countryCode,
+        countryCode: locale.countryCode ?? locale.scriptCode,
       ),
     );
     state = locale;

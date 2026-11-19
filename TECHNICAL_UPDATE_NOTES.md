@@ -3778,3 +3778,13 @@ Yêu cầu chủ dự án 22:05 (log `logs (11).txt` 16–19/11, `Project YomiHu
 - 23:05 lần 1 dừng ở bước test: 979/982 – 3 test cũ kiểm đúng chi tiết đã đổi có chủ đích: `yh_056_a` + `yh_058_ui_features` (nhãn nút giao diện "Cũ/Mới" → "YomiHub Old Version / Shiori (0.9.95) / YomiHub New Version"), `yh_057_qa3` (provider ảnh nay dùng `imageTimeoutFor(` thay vì hằng `kImageLoadTimeout`). Đã cập nhật 3 test (thêm kiểm nút thứ 3 và `parse('mangayomiV2')`).
 - 23:13 chủ dự án: "cho phép sau khi hoàn thành công việc thì tự động đẩy file lên GitHub" → được tự đẩy mã nguồn + tạo GitHub Release v0.6.2 khi dựng + kiểm thử xong (không cần hỏi lại).
 - 23:16 chạy lại (lần 2): test 981/982 – chỉ `yh_017` (Website Scan, mạng) TimeoutException 20 s (test mạng chập chờn đã biết, bài học 15/11) → 23:24 chạy tiếp `-RunSteps apk,tv,wintest,win,pack,a6build,a6copy,verify` (job `x062_build_main3`).
+- 00:05 (20/11) bước apk XONG (41 phút): `output/0.6.2/YomiHub-0.6.2-{arm64-v8a,armeabi-v7a,x86_64}.apk`; bước tv đang chạy. Lỗi "Kotlin daemon: Failed connecting in 4 retries" trong log apk chỉ là cảnh báo (Gradle tự biên dịch trong tiến trình), RAM trống ~740 MB.
+- 00:06 cài APK arm64 lên Note 9 (job `f062_d01_install`) – đang kiểm.
+
+### 12. Ngôn ngữ mới (Antigravity /swarm 2 – XONG 00:04, 52/52 mã đã duyệt) – Claude tích hợp 00:00–00:05
+- 48 ngôn ngữ mới vào `overlay/assets/yomihub_i18n/<mã>.json` (đủ 1.727 khóa, placeholder kiểm khớp 100%) + `overlay/lib/l10n/app_<mã>.arb` (đủ 1.004 khóa, `@@locale`): am be bg bn ca cs da el et eu fa fi fil gl gu he hr hu ka kk km kn lo lt lv ml mr ms my nb ne nl or pa pl ro si sk sl sq sr sv ta te uk ur uz zh_Hant. Bỏ ceb, eo, jv, nn (Flutter Material/Cupertino không có bản địa hóa → chọn sẽ lỗi). Tổng app: 67 ngôn ngữ (19 cũ + 48).
+- `yomihub/i18n/yomi_tr.dart`: thêm 48 mã vào `languages`, `use()` nhận zh_Hant (Hant/TW/HK); `main.dart`: truyền `scriptCode` khi không có countryCode; `providers/l10n_providers.dart`: lưu chữ viết "Hant" trong ô countryCode và đọc lại bằng `Locale.fromSubtags`; `utils/language.dart`: thêm tên Galego, Norsk bokmål, ଓଡ଼ିଆ, 繁體中文.
+- Chưa có trong bộ gói đang dựng (dựng 22:57/23:24) → cần dựng lại lần cuối trước phát hành.
+
+### 13. Antigravity /swarm 3 (giao 00:05 theo yêu cầu chủ dự án 00:03)
+- Brief `audit/audit-0.6.2/antigravity/BRIEF_swarm3_062.md`: @feature_auditor (FEATURE_CHECK_062.md – đối chiếu 43 + 14 mục với bằng chứng grep), @doc_writer (README_062.md + changelog VI/EN), @term_translator (tên 3 mục cho 48 ngôn ngữ mới), @reviewer. Excel đầu vào chép vào `audit/audit-0.6.2/input/`.
