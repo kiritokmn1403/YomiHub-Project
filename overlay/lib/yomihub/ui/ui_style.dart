@@ -86,3 +86,54 @@ class YomiUiStyleTile extends StatelessWidget {
     );
   }
 }
+
+/// YomiHub 0.6.2 – Settings › Appearance: "Giao diện bộ lọc: Bộ lọc cũ / Bộ lọc mới"
+/// (sheet "YomiHub Update": chọn giữa bộ lọc mới và bộ lọc cũ trong Giao Diện).
+class YomiFilterStyleTile extends StatelessWidget {
+  const YomiFilterStyleTile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<int>(
+      valueListenable: YomiPrefs.changes,
+      builder: (context, _, _) {
+        final isNew = YomiPrefs.useNewFilter;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.filter_list_rounded),
+              title: Text(tr('Giao diện bộ lọc')),
+              subtitle: Text(
+                isNew
+                    ? tr('Bộ lọc mới – gom thành 9 nhóm thẻ gập/mở (Sắp Xếp, Tình Trạng, Thể Loại…), toàn bộ dạng ô chọn')
+                    : tr('Bộ lọc cũ – danh sách bộ lọc mặc định theo từng kiểu tiện ích'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: SegmentedButton<bool>(
+                key: const ValueKey('yomiFilterStyleSwitch'),
+                showSelectedIcon: false,
+                segments: [
+                  ButtonSegment(
+                    value: false,
+                    icon: const Icon(Icons.view_list_outlined),
+                    label: Text(tr('Bộ lọc cũ')),
+                  ),
+                  ButtonSegment(
+                    value: true,
+                    icon: const Icon(Icons.dashboard_outlined),
+                    label: Text(tr('Bộ lọc mới')),
+                  ),
+                ],
+                selected: {isNew},
+                onSelectionChanged: (s) => YomiPrefs.useNewFilter = s.first,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}

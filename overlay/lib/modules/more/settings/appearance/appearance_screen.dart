@@ -107,6 +107,8 @@ class AppearanceScreen extends ConsumerWidget {
               children: [
                 // YomiHub 0.5.6: Cũ (YomiHub) / Mới (Mangayomi)
                 const YomiUiStyleTile(),
+                // YomiHub 0.6.2: Bộ lọc mới / Bộ lọc cũ
+                const YomiFilterStyleTile(),
                 // YomiHub 0.1.5
                 const LiquidGlassSettings(),
                 if (isTv)

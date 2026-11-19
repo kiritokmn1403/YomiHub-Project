@@ -3,6 +3,8 @@ import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:mangayomi/yomihub/filters/filter_v2_sheet.dart';
 import 'package:mangayomi/yomihub/filters/filter_checkbox.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
@@ -346,79 +348,9 @@ class _YomiFilterSheetState extends State<YomiFilterSheet> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final showSearch = _leafCount(widget.filters) >= 10;
-    final visible = _visible();
-    final body = SafeArea(
-      top: false,
-      child: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              TextButton(onPressed: widget.onReset, child: Text(widget.resetLabel)),
-              if (widget.onLoadFilter != null)
-                TextButton.icon(
-                  icon: const Icon(Icons.refresh, size: 16),
-                  label: Text(tr('Nạp bộ lọc')),
-                  onPressed: widget.onLoadFilter,
-                ),
-              IconButton(
-                tooltip: tr('Bộ lọc đã lưu'),
-                icon: const Icon(Icons.bookmarks_outlined),
-                onPressed: _presets,
-              ),
-              const Spacer(),
-              FilledButton(onPressed: widget.onFilter, child: Text(widget.filterLabel)),
-            ],
-          ),
-        ),
-        if (showSearch)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-            child: TextField(
-              decoration: InputDecoration(
-                isDense: true,
-                prefixIcon: Icon(Icons.search),
-                hintText: tr('Tìm trong bộ lọc…'),
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (v) => setState(() => _query = v),
-            ),
-          ),
-        if (widget.loading) ...[
-          const LinearProgressIndicator(minHeight: 2),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
-            child: Text(
-              tr('Đang tải toàn bộ bộ lọc của tiện ích…'),
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ),
-        ] else if (widget.loadError != null)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
-            child: Row(
-              children: [
-                Icon(Icons.error_outline, size: 16, color: Theme.of(context).colorScheme.error),
-                const SizedBox(width: 6),
-                Expanded(
-                  child: Text(
-                    widget.loadError!,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        const Divider(height: 1),
-        Expanded(
-          child: ListView(
-            children: [
-              if (_ready && _query.isEmpty)
-                ExpansionTile(
+  /// 0.6.2: tách ra để dùng chung cho Bộ lọc cũ và Bộ lọc mới (FilterV2Sheet.headerExtra).
+  Widget _resultFiltersTile() {
+    return ExpansionTile(
                   leading: const Icon(Icons.filter_alt_outlined),
                   title: Text(tr('Lọc kết quả (mọi tiện ích)'), style: TextStyle(fontSize: 13)),
                   subtitle: YomiFilterStore.hasResultFilters(_id)
@@ -492,7 +424,81 @@ class _YomiFilterSheetState extends State<YomiFilterSheet> {
                     ),
                    ]),
                   ],
+                );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final showSearch = _leafCount(widget.filters) >= 10;
+    final visible = _visible();
+    final Widget oldBody = SafeArea(
+      top: false,
+      child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              TextButton(onPressed: widget.onReset, child: Text(widget.resetLabel)),
+              if (widget.onLoadFilter != null)
+                TextButton.icon(
+                  icon: const Icon(Icons.refresh, size: 16),
+                  label: Text(tr('Nạp bộ lọc')),
+                  onPressed: widget.onLoadFilter,
                 ),
+              IconButton(
+                tooltip: tr('Bộ lọc đã lưu'),
+                icon: const Icon(Icons.bookmarks_outlined),
+                onPressed: _presets,
+              ),
+              const Spacer(),
+              FilledButton(onPressed: widget.onFilter, child: Text(widget.filterLabel)),
+            ],
+          ),
+        ),
+        if (showSearch)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+            child: TextField(
+              decoration: InputDecoration(
+                isDense: true,
+                prefixIcon: Icon(Icons.search),
+                hintText: tr('Tìm trong bộ lọc…'),
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (v) => setState(() => _query = v),
+            ),
+          ),
+        if (widget.loading) ...[
+          const LinearProgressIndicator(minHeight: 2),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
+            child: Text(
+              tr('Đang tải toàn bộ bộ lọc của tiện ích…'),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ),
+        ] else if (widget.loadError != null)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
+            child: Row(
+              children: [
+                Icon(Icons.error_outline, size: 16, color: Theme.of(context).colorScheme.error),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    widget.loadError!,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        const Divider(height: 1),
+        Expanded(
+          child: ListView(
+            children: [
+              if (_ready && _query.isEmpty) _resultFiltersTile(),
               if (_query.isEmpty)
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
@@ -523,6 +529,23 @@ class _YomiFilterSheetState extends State<YomiFilterSheet> {
         ),
       ],
     ));
+    // YomiHub 0.6.2: Cài đặt › Giao Diện › "Giao diện bộ lọc" (sheet New Filter)
+    final Widget body = YomiPrefs.useNewFilter
+        ? SafeArea(
+            top: false,
+            child: FilterV2Sheet(
+              filters: widget.filters,
+              onChanged: widget.onChanged,
+              onReset: () => widget.onReset(),
+              onLoad: widget.onLoadFilter == null ? null : () => widget.onLoadFilter!(),
+              onBookmark: _presets,
+              onApply: () => widget.onFilter(),
+              loading: widget.loading,
+              loadError: widget.loadError,
+              headerExtra: _ready ? _resultFiltersTile() : null,
+            ),
+          )
+        : oldBody;
     // YomiHub 0.1.8: Liquid Glass on the filter of every extension
     return Consumer(
       builder: (context, ref, _) {

@@ -78,4 +78,11 @@ class YomiPrefs {
   /// Resume playback from previous position. Default is true.
   static bool get resumeVideoPosition => get('resumeVideoPosition', true);
   static set resumeVideoPosition(bool v) => set('resumeVideoPosition', v);
+
+  // ───────── Bộ lọc tiện ích (0.6.2, sheet "New Filter") ─────────
+  static const newFilterKey = 'useNewFilter';
+
+  /// true = "Bộ lọc mới" (FilterV2Sheet: 9 ô thẻ), false = "Bộ lọc cũ".
+  static bool get useNewFilter => get(newFilterKey, true);
+  static set useNewFilter(bool v) => set(newFilterKey, v);
 }

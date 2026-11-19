@@ -88,10 +88,10 @@ class AppLogger {
         await _logFile!.create(recursive: true);
       }
 
-      _sink = _logFile!.openWrite(mode: FileMode.append);
-      _initialized = true;
-
       // 0.5.8: include device model, OS version and app version in session header
+      // 0.6.2: lấy nhãn TRƯỚC khi đánh dấu đã khởi tạo – dòng ghi trong lúc chờ
+      // deviceDescription() (vd. "Refreshed MAL token!") từng được ghi ngay,
+      // không nhãn và đứng trước dòng mở phiên (log 19/11 15:41, 15:43).
       var sessionHeader = '===== Logger initialized (phiên mới)';
       try {
         final dev = await deviceDescription();
@@ -101,6 +101,9 @@ class AppLogger {
       } catch (_) {
         sessionHeader = '$sessionHeader =====';
       }
+
+      _sink = _logFile!.openWrite(mode: FileMode.append);
+      _initialized = true;
       log(sessionHeader, logLevel: LogLevel.info, always: true);
       _queue.addAll(_pending.map((l) => l.replaceFirst(_tagSlot, _tag.isEmpty ? '' : '[$_tag]')));
       _pending.clear();
