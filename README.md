@@ -32,7 +32,7 @@
 
 ## 🧐 Giới thiệu <a name = "about"></a>
 
-YomiHub gom các tính năng của nhiều ứng dụng đọc truyện/xem phim mã nguồn mở (Mangayomi, Aniyomi, Nekoyomi, Kotatsu, LNReader, IReader, Aidoku, vBook…) vào một ứng dụng duy nhất, tối ưu cho tiếng Việt và hỗ trợ 18 ngôn ngữ giao diện. Ứng dụng chạy trên Android, Android TV và Windows; mọi dữ liệu nằm trên thiết bị của bạn.
+YomiHub gom các tính năng của nhiều ứng dụng đọc truyện/xem phim mã nguồn mở (Mangayomi, Aniyomi, Nekoyomi, Kotatsu, LNReader, IReader, Aidoku, vBook…) vào một ứng dụng duy nhất, tối ưu cho tiếng Việt và hỗ trợ 67 ngôn ngữ giao diện (bao gồm 48 ngôn ngữ bổ sung từ Aniyomi, Nekoyomi và Kotatsu). Ứng dụng chạy trên Android, Android TV và Windows; mọi dữ liệu nằm trên thiết bị của bạn.
 
 ## ✨ Tính năng <a name = "features"></a>
 
@@ -41,8 +41,10 @@ YomiHub gom các tính năng của nhiều ứng dụng đọc truyện/xem phim
 - **📚 Novel & Google Play Books:** tiểu thuyết trực tuyến, đọc EPUB/PDF trên máy, tùy chỉnh chữ/giãn dòng/nền tối; Google Play Sách nhúng trong ứng dụng.
 - **🎨 Booru App:** tìm, duyệt và tải ảnh từ các nguồn Booru, gợi ý thẻ, yêu thích và lịch sử tìm kiếm.
 - **🔌 Tiện ích nhiều nền tảng:** Mihon/Tachiyomi, Aniyomi, Mangayomi, Kotatsu, LNReader, IReader, Aidoku, vBook; tự gợi ý kho tiện ích; hợp nhất nhiều nguồn của cùng một bộ truyện/phim.
-- **☑️ Bộ lọc ô chọn, chọn nhiều:** mọi lựa chọn trong bộ lọc của tiện ích là ô chọn và tick được nhiều ô cùng lúc (kết quả gộp, bỏ trùng); thể loại bao gồm → loại trừ → tắt; sắp xếp ↑/↓.
-- **🛡️ VPN & DNS:** Tor (cầu nối Snowflake/obfs4), Cloudflare WARP, proxy riêng, DNS-over-HTTPS; bật cho từng tiện ích hoặc toàn ứng dụng; vượt Cloudflare qua WebView.
+- **☑️ Bộ lọc mới (New Filter) & chọn nhiều ô:** gom toàn bộ bộ lọc của mọi tiện ích thành 9 nhóm thẻ gập/mở (Sắp Xếp, Tình Trạng, Danh Mục, Phân Loại Nội Dung, Năm Phát Hành, Tìm Theo, Đánh Giá, Bản Dịch, Thể Loại + Khác) với 4 nút Đặt Lại / Nạp Bộ Lọc / Đánh Dấu / Bộ Lọc; mọi lựa chọn là ô chọn, tick được nhiều ô cùng lúc (kết quả gộp, bỏ trùng), thể loại bao gồm → loại trừ → tắt, sắp xếp ↑/↓; tùy chọn chuyển đổi giữa Bộ lọc mới và Bộ lọc cũ trong **Cài đặt › Giao diện**.
+- **🎨 Giao diện YomiHub New Version (Mangayomi v0.9.96):** chủ đề Mv2, thanh điều hướng nổi kéo-thả tự thu gọn khi cuộn trên điện thoại, thẻ bìa 2:3 mới và tiêu đề mục hiện đại; công tắc 3 chế độ **YomiHub Old Version / Shiori (0.9.95) / YomiHub New Version** trong **Cài đặt › Giao diện**.
+- **🌐 67 ngôn ngữ giao diện:** tiếng Việt, tiếng Anh và 65 ngôn ngữ quốc tế (19 ngôn ngữ sẵn có + 48 ngôn ngữ mới đồng bộ từ Aniyomi, Nekoyomi, Kotatsu với 1.727 khóa `yomihub_i18n` và 1.004 khóa ARB mỗi ngôn ngữ).
+- **🛡️ VPN & DNS:** Tor (cầu nối Snowflake/obfs4), Cloudflare WARP, proxy riêng, DNS-over-HTTPS; bật cho từng tiện ích hoặc toàn ứng dụng; vượt Cloudflare qua WebView (hỗ trợ cả CDN ảnh Kotatsu).
 - **☁️ Sao lưu & đồng bộ:** chọn từng mục sao lưu (thư viện, lịch sử, tiện ích, cài đặt, dữ liệu Booru); Google Drive bằng đăng nhập Google hoặc Client ID riêng, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram Bot.
 - **🧭 Trình duyệt tích hợp:** nhiều tab, chặn quảng cáo, bảo vệ dấu vân tay trình duyệt, công cụ Savior tải video và quét mã trang tìm link m3u8/mp4.
 - **🖼️ GIF Viewer:** xem ảnh động GIF / WebP / APNG từng khung hình, chỉnh tốc độ, lặp lại.
@@ -52,15 +54,15 @@ YomiHub gom các tính năng của nhiều ứng dụng đọc truyện/xem phim
 
 <p align="center"><a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest"><img src="https://img.shields.io/badge/Download-YomiHub%20Latest%20Release-blue?style=for-the-badge&logo=github" alt="Download YomiHub"></a></p>
 
-Bản mới nhất **0.6.1** ([ghi chú phát hành](https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.6.1)):
+Bản mới nhất **0.6.2** ([ghi chú phát hành](https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.6.2)):
 
 | Thiết bị | Tải về |
 | :--- | :--- |
-| **Android 7.0+** | [arm64-v8a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-0.6.1-arm64-v8a.apk) (hầu hết điện thoại) · [armeabi-v7a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-0.6.1-armeabi-v7a.apk) · [x86_64](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-0.6.1-x86_64.apk) |
-| **Android 6.0** | [arm64-v8a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-0.6.1-android6-arm64-v8a.apk) · [armeabi-v7a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-0.6.1-android6-armeabi-v7a.apk) · [x86_64](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-0.6.1-android6-x86_64.apk) |
-| **Android TV** (YumiHub Android TV) | [arm64-v8a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YumiHub-Android-TV-0.6.1-arm64-v8a.apk) · [armeabi-v7a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YumiHub-Android-TV-0.6.1-armeabi-v7a.apk) · [x86_64](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YumiHub-Android-TV-0.6.1-x86_64.apk) – không có Comic, Novel, Google Play Books, Booru |
-| **Windows 10/11 x64** | [Setup.exe](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-0.6.1-windows-x64-Setup.exe) (cài đặt) · [.appxbundle](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-0.6.1-windows-x64.appxbundle) (kèm [YomiHub-RootCA.cer](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-RootCA.cer) và [Install-YomiHub.bat](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/Install-YomiHub.bat)) · [portable .zip](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-0.6.1-windows-x64.zip) · [portable -full.zip](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/YomiHub-0.6.1-windows-x64-full.zip) (kèm M-Extension-Server cho tiện ích APK) |
-| **Kiểm tra tệp** | [SHA256SUMS-0.6.1.txt](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.1/SHA256SUMS-0.6.1.txt) |
+| **Android 7.0+** | [arm64-v8a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-arm64-v8a.apk) (hầu hết điện thoại) · [armeabi-v7a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-armeabi-v7a.apk) · [x86_64](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-x86_64.apk) |
+| **Android 6.0** | [arm64-v8a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-android6-arm64-v8a.apk) · [armeabi-v7a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-android6-armeabi-v7a.apk) · [x86_64](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-android6-x86_64.apk) |
+| **Android TV** (YumiHub Android TV) | [arm64-v8a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YumiHub-Android-TV-0.6.2-arm64-v8a.apk) · [armeabi-v7a](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YumiHub-Android-TV-0.6.2-armeabi-v7a.apk) · [x86_64](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YumiHub-Android-TV-0.6.2-x86_64.apk) – không có Comic, Novel, Google Play Books, Booru |
+| **Windows 10/11 x64** | [Setup.exe](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-windows-x64-Setup.exe) (cài đặt) · [.appxbundle](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-windows-x64.appxbundle) (kèm [YomiHub-RootCA.cer](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-RootCA.cer) và [Install-YomiHub.bat](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/Install-YomiHub.bat)) · [portable .zip](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-windows-x64.zip) · [portable -full.zip](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-windows-x64-full.zip) (kèm M-Extension-Server cho tiện ích APK) |
+| **Kiểm tra tệp** | [SHA256SUMS-0.6.2.txt](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/SHA256SUMS-0.6.2.txt) |
 
 Cài đè lên bản cũ giữ nguyên dữ liệu; ứng dụng tự kiểm tra cập nhật từ GitHub Releases.
 

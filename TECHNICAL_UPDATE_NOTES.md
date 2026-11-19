@@ -3808,3 +3808,9 @@ Yêu cầu chủ dự án 22:05 (log `logs (11).txt` 16–19/11, `Project YomiHu
   - Sao lưu: "Sao Lưu Lên Google Drive" (đăng nhập Google) và "Google Drive – Client ID" trong Sao lưu đám mây là 2 tùy chọn riêng ĐẠT (không đăng nhập).
   - Nhật ký phiên 01:54: mọi dòng có nhãn `[YH 0.6.2 (2055) • samsung SM-N960N, Android 10 (SDK 29)]`, 0 ERROR; còn WARNING kho `kohiden.xyz` ("Connection closed before full header") – phía máy chủ.
   - Chưa kiểm lại: Short Video (không đổi mã từ 0.6.1, đã ĐẠT ở 0.6.1).
+
+### 16. Đóng gói, kiểm Windows, chuẩn bị phát hành (20/11 02:39–03:40)
+- 02:39 bước pack dừng: thiếu `audit/audit-0.6.2/release/YomiHub-0.6.2-changelog.md` → dùng bản nháp /swarm 3 (VI + EN), thêm câu về tên 3 mục cho 48 ngôn ngữ, bỏ phần "Bằng chứng grep" nội bộ. 03:03 `x062_build_main7` chạy `pack,a6build,a6copy,verify` → XONG 03:34: `output/0.6.2/` 18 tệp + `SHA256SUMS-0.6.2.txt` (verify ĐẠT).
+- Windows 11: portable `D:\yh\qa062win\YomiHub.exe` FileVersion `0.6.2+55`; `Setup.exe` cài đè 0.6.1 → mở app không cửa sổ trắng, Thêm › Giới thiệu "Beta (0.6.2)", bộ lọc mới (4 nút, ô chọn) trên nguồn Comick ĐẠT (trang nguồn api.comick "Network unreachable" – phía trang).
+- README ← `audit/audit-0.6.2/release/README_062.md` (67 ngôn ngữ, New Filter, New Version); `docs/index.html` 40 liên kết/nhãn `0.6.1 → 0.6.2`.
+- AVD: job `x062_avd6` (Android 6.0, APK android6 x86_64) và `x062_avdtv` (APK TV x86_64 trên AVD API 34).
