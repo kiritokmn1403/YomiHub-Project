@@ -28,3 +28,8 @@
 - Thời gian 0.6.0 trên máy quá tải: test 3–26' → apk 34' → tv 30' → wintest 2–4' → win ~20' → pack 3' → a6build ~25' → verify 2'; tải 19 asset (~2,3 GB) ~7 phút (5–6 MB/s).
 - Thêm phần tiếng Anh vào changelog SAU bước verify → phải cập nhật dòng băm changelog trong `SHA256SUMS-<ver>.txt` (hoặc chạy lại `-RunSteps verify`) trước khi chạy release.
 - README (19/11) theo mẫu "Standard" của The Documentation Compendium: logo `assets/logo/yomihub_logo_1024.png`, huy hiệu, nút Download → `releases/latest`, Mục lục, Giới thiệu, Bắt đầu, Kiểm thử, Sử dụng, Dựng & phát hành, Công nghệ, Tác giả, Ghi nhận. Mọi tính năng ghi trong README phải grep được trong `overlay/lib`.
+
+## Bổ sung 19/11/2026 (0.6.1)
+- Trước khi chạy `release_<ver>.ps1`: README ← bản nháp `audit/audit-<ver>/release/README_<ver>.md`; `docs/index.html` đổi mọi link tĩnh + chữ "phiên bản" sang bản mới (grep không còn số bản cũ); để autosave hoặc job git đẩy lên trước khi tạo Release.
+- Job phát hành: `jobs/pending/x<ver>_release.ps1` gọi `scripts\release\release_<ver>.ps1` (đường dẫn mới, không còn ở gốc). 0.6.1: 19 tệp ~2,9 GB trong ~11 phút.
+- Giao Antigravity /swarm theo dõi API Release + kiểm link sau phát hành (brief mẫu `audit/audit-0.6.1/antigravity/BRIEF_swarm3_061.md`).

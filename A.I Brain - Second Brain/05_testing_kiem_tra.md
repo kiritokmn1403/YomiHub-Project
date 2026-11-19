@@ -33,3 +33,8 @@
 - Kiểm bộ lọc ô chọn: hồ sơ Mangayomi (vd. MangaDex), Aniyomi (nguồn APK, vd. DocTruyen5s/MoeTruyen), Kotatsu (nguồn có chữ "(Kotatsu)", vd. ComicK (Kotatsu)) – mỗi loại: chọn-một, Sắp xếp bấm lại đổi ↑/↓, thể loại ✓ → ô đỏ loại trừ, áp dụng có kết quả.
 - Windows portable: giải nén `.zip` vào `D:\yh\qa<ver>win` bằng job, mở `YomiHub.exe`; computer use phải xin quyền theo **đường dẫn exe** (`d:\a.i project\yh\qa060win\yomihub.exe`) – tên "YomiHub" trỏ về bản đã cài trong `%LOCALAPPDATA%`. Bản portable dùng chung dữ liệu với bản cài (chỉ thao tác xem/lọc). Nguồn APK trên Windows cần bản `-full.zip` (M-Extension-Server).
 - Test `yh_055` Case 1 (giao dịch Isar tranh chấp có hẹn giờ) có thể trượt khi máy quá tải → chạy lại riêng trước khi kết luận lỗi mã.
+
+## 7. Bổ sung 19/11/2026 (0.6.1) – máy ảo
+- AVD có sẵn (`%USERPROFILE%\.android\avd`): `OOS_Android6_API23` (x86_64, Android 6.0 – APK android6 x86_64), `YH_Android10_API29`, `YomiHub056_Phone_API34` (x86_64 – dùng cho APK TV x86_64), `YomiHub_TV_API34` (x86 32-bit – KHÔNG cài được APK x86_64), `Medium_Phone_API_37.0`.
+- Mẫu job: tắt máy ảo cũ → đặt `ANDROID_SDK_ROOT` = SDK Android Studio → `Start-Process emulator.exe -avd <tên> -no-boot-anim -no-audio -no-snapshot-load -gpu swiftshader_indirect -memory 1536` → chờ `sys.boot_completed=1` → `install -r -g` → mở app → `screencap` → logcat lọc `FATAL|ANR|UnsatisfiedLink`. Mẫu: `jobs/done/f061_avd6_run5.ps1`, `f061_avdtv_run2.ps1`. Bằng chứng: `audit/audit-<ver>/evidence/avd6/`, `avdtv/`.
+- Tiêu chí TV: chỉ thư viện Phim & Điện ảnh, thanh bên Thư viện · Cập nhật · Duyệt · Thêm (không Truyện tranh/Tiểu thuyết/Play Books/Booru).

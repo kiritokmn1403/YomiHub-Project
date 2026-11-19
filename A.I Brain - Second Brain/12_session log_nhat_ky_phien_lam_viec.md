@@ -46,3 +46,10 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **20:03** chủ dự án: giao thêm /swarm 2 (kiểm README/changelog/link bằng mã). Windows Setup.exe cài đè 0.5.9 → 0.6.1 ĐẠT, GIF Viewer + Drive trên Windows ĐẠT.
 - **20:08** chủ dự án: tự lưu 3 phút/lần.
 
+- **20:31** phiên mới nhận bàn giao (đọc Second Brain 00→12, AGENTS, ghi chú 0.6.1): dây chuyền xong 20:20, /swarm 2 ĐẠT; so 43 tệp overlay ↔ bản dựng giống hệt.
+- **20:36–20:53** AVD Android 6.0: 2 lần hết giờ do `ANDROID_SDK_ROOT` sai SDK → sửa, máy ảo lên 41 s; APK android6 cài + chạy ĐẠT (ảnh evidence/avd6).
+- **20:38** chủ dự án: xin đủ quyền (máy tính + phát hành GitHub), giao Antigravity /swarm 3 (theo dõi Release + kiểm link sau phát hành).
+- **20:43** README + trang chủ sang v0.6.1 (autosave đẩy `37771d5`). **20:54–21:05** phát hành GitHub Release v0.6.1: 19/19 tệp khớp; xác minh API độc lập.
+- **20:55–21:05** APK TV x86_64 trên AVD API 34 (dọn 4 emulator thừa): chỉ Phim & Điện ảnh – ĐẠT (ảnh evidence/avdtv).
+- **21:10** ghi chú kỹ thuật mục 16–21, Second Brain 03/04/05/11/12; dừng autosave 0.6.1.
+- **Tiếp theo (0.6.2)**: xem 11-F.

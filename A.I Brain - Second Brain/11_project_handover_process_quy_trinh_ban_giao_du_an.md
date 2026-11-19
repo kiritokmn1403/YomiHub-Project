@@ -41,3 +41,9 @@ Danh sách kiểm:
 - Note 9 đã cài 0.6.0 (2053) + Antigravity đã cài thêm tiện ích "ComicK (Kotatsu)" để kiểm. Xiaomi của chủ dự án vẫn cần cài tay APK thường (nếu còn chạy bản android6).
 - Sau phát hành (15:38–16:12): README theo mẫu Standard; `.ps1`/`.bat` đã chuyển vào `scripts/<nhóm>/`, ảnh/logo vào `assets/` (icon trang chủ `docs/assets/`); `scripts/lib/yh_defines.ps1` chỉ còn cục bộ (git-ignored, bản cũ còn trong lịch sử commit `22405f2` – không chứa secret). Runner mở bằng `scripts\runner\3_run_jobs.bat` / `3b_run_fast_jobs.bat` (hoặc `scripts\runner\ensure_runners.ps1`). Bộ script cho 0.6.1: chép `scripts/{pipeline,sync,build,packaging,release}/*_060*` → `*_061*` và đổi chuỗi phiên bản (xem 03).
 - Tác vụ nền: autosave 0.6.0 dừng bằng `jobs/STOP_AUTOSAVE_060` (15:35); lịch hẹn kiểm tra đã xong/không còn.
+
+## F. Trạng thái bàn giao hiện tại (sau 0.6.1 – 19/11/2026 21:10) – thay mục E
+- 0.6.1 (0.6.1+54) đã phát hành GitHub Release `v0.6.1` 21:05 (19 asset khớp kích thước, `releases/latest` = v0.6.1). README + trang chủ trỏ v0.6.1. KHÔNG đẩy Extension Repo, KHÔNG gửi APKPure.
+- Đã kiểm: Note 9 (arm64), Windows 11 (Setup.exe cài đè), AVD Android 6.0 (android6 x86_64), AVD API 34 (TV x86_64). Chưa kiểm sâu tính năng trên Android 6/TV; chưa thử `.appxbundle` 0.6.1.
+- Còn mở cho 0.6.2: xem `TECHNICAL_UPDATE_NOTES.md` mục 0.6.1 › 21 (giao diện Mangayomi v0.9.96 Flutter 3.50 trên nhánh riêng – `src/mangayomi-0.9.96/` đã có; `pending_062/`; KeiSource trên Windows; Frank Yomik; ghim toolchain/YH_ROOT; AVD TV x86_64).
+- Tác vụ nền: autosave 0.6.1 dừng bằng `jobs/STOP_AUTOSAVE_061`; máy ảo đã tắt; Antigravity /swarm 3 xong (xem `audit/audit-0.6.1/antigravity/VERIFICATION_swarm3_061.md`).

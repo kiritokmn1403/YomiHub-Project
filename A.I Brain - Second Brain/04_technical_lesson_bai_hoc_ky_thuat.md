@@ -88,3 +88,13 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - **`git rm -r --cached`** để bỏ thư mục khỏi nhánh mà GIỮ bản cục bộ (audit/ chứa BUILD_LOCK, trạng thái dựng, bằng chứng mà dây chuyền vẫn dùng) + thêm `.gitignore`. `.git` không nhỏ đi – muốn clone nhẹ cần `git filter-repo` + force-push (phải hỏi chủ dự án).
 - **`git add -A -- <đường dẫn bị .gitignore>`** (vd. `jobs/q061_lib.ps1`, cả `/jobs/` bị ignore) có thể làm hỏng cả lệnh add của autosave → không đưa đường dẫn bị ignore vào danh sách autosave.
 - **RAM thấp làm `dart analyze` chậm 3–5 phút** (còn ~850 MB trống khi Android Studio mở): Run-Analyze trả mảng – in `$a | Select -Last 25` để thấy lỗi, không chỉ mã thoát.
+
+## Bổ sung 19/11/2026 đêm (0.6.1 – kiểm thử máy ảo & phát hành)
+- **Emulator không lên, job chỉ hết giờ**: `scripts/lib/common.ps1` đặt `ANDROID_SDK_ROOT=D:\yh\tools\android-sdk`, nhưng system image của các AVD (`android-23`, `android-29`, `android-34`, `android-tv`) nằm trong SDK Android Studio `%LOCALAPPDATA%\Android\Sdk` → `FATAL | Broken AVD system path`. Job khởi động AVD phải đặt `$env:ANDROID_SDK_ROOT = $env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"` và ghi stdout/stderr emulator ra tệp (`Start-Process -RedirectStandardOutput`) để thấy lỗi.
+- **Tiến trình emulator thừa** từ các lần thử hết giờ vẫn sống (0.6.1: 4 tiến trình) → ăn RAM, và `adb devices` có nhiều `emulator-555x` khiến job sau cài nhầm máy. Trước khi bật AVD mới: `adb -s <emu> emu kill` mọi máy ảo rồi `Stop-Process` các tiến trình `emulator`/`qemu`.
+- Sau dây chuyền dựng, **Gradle/Kotlin daemon** còn giữ 1–1,3 GB RAM → dừng bằng `Win32_Process` (CommandLine chứa `GradleDaemon|KotlinCompileDaemon`) trước khi chạy máy ảo.
+- **adb trong job PowerShell**: `common.ps1` đặt `$ErrorActionPreference='Stop'` → `& adb ... 2>&1` (adb ghi tiến độ ra stderr) làm job thoát EXIT 1 im lặng. Dùng `$ErrorActionPreference='Continue'` + `cmd /c "adb ... 2>&1"`. Job không dot-source `common.ps1` thì không có `adb` trong PATH.
+- `pidof` trên Android 6 không lọc theo tên (in mọi PID) – dùng `ps | grep` hoặc chỉ dựa vào logcat/ảnh.
+- AVD khởi động lạnh hay hiện "System UI isn't responding" che app → dump uiautomator, bấm "Wait" rồi chụp lại trước khi kết luận.
+- **AVD Android TV trên máy là x86 32-bit** – không cài được APK TV x86_64; kiểm APK TV trên AVD điện thoại API 34 x86_64 bằng `am start -n com.yomihub.app/com.kodjodevf.mangayomi.MainActivity`.
+- Autosave (3 phút) tự đẩy README/docs vừa sửa → kiểm `git log -1 --stat` trước khi tự commit, tránh commit trùng.

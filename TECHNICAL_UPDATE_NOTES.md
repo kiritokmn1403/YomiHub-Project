@@ -5,6 +5,7 @@
 Chủ dự án yêu cầu tạo và duy trì tài liệu này ngày 25/10/2026. Quy định được ghi thêm trong `AGENTS.md` ở gốc dự án. Mỗi người hoặc tác nhân tự động cập nhật ứng dụng phải đọc toàn bộ tài liệu, kiểm tra trạng thái và bổ sung kết quả sau khi làm việc.
 
 ## 1. Trạng thái hiện tại
+- **19/11/2026 – 0.6.1 (0.6.1+54) đã phát hành GitHub Release `v0.6.1` lúc 21:05 (19 tệp, kích thước khớp):** 3 APK Android 7.0+, 3 APK android6, 3 APK `YumiHub Android TV`, Windows 10/11 x64 `.appxbundle`/`Setup.exe`/portable `.zip`/`-full.zip`. Mới: bộ lọc chọn nhiều ô, Google Drive 2 tùy chọn, Short Video cho mọi tiện ích, GIF Viewer, 5 kho gợi ý; sửa thể loại Keiyoushi (DamCoNuong), CheckBox/TriState tiện ích APK, chứng chỉ kohiden.xyz, nhãn log 403 Drive. Test 950/950; kiểm Note 9, Windows 11 Setup.exe, AVD Android 6.0, AVD API 34 (TV). Chi tiết: mục "19/11/2026 — YomiHub 0.6.1".
 
 - **`19/11/2026` – 0.6.0 (0.6.0+53) ĐÃ PHÁT HÀNH (GitHub Release `v0.6.0`, 15:29, 19 asset khớp kích thước):** mọi lựa chọn trong bộ lọc tiện ích (Mangayomi, Mihon/Aniyomi/Nekoyomi, Kotatsu) thành ô chọn + sửa lỗi "mục bộ lọc không chọn được" (FilterWidget tự vẽ lại); sửa lỗi log 16–19/11 (trang Cập nhật treo 2,7 s, CBHentai đổi URL qua lại, ảnh Kotatsu qua 127.0.0.1, Tor 90 s là cảnh báo, Health Connect 1 lần/ngày, thông báo APK android6); mục "Sao Lưu Lên Google Drive" (logo Google); Savior "Quét mã trang tìm link video"; Short Video +7 trang; gợi ý kho Salmanbappi/Secozzi; 5 thay đổi từ Mangayomi v0.9.96 (bộ lọc chống hỏng, JS PUT/DELETE/PATCH, nhớ danh mục thư viện, đệm đáy, thể loại → tìm trong nguồn). Test 942/942; Note 9 + Windows 11 portable kiểm có ảnh; Antigravity /swarm 4 kiểm Kotatsu/Cập nhật/Google Drive/gợi ý kho. Còn mở: kohiden.xyz lỗi chứng chỉ; yh_055 Case 1 chập chờn khi máy quá tải; các mục lớn sheet YomiHub Update (Frank Yomik, Browser Fingerprint, giao diện mới v0.9.96 cần Flutter 3.50) chưa tích hợp; Antigravity kịch bản Savior + rà log chưa xong. Chi tiết: mục "19/11/2026 — YomiHub 0.6.0".
 
@@ -3585,7 +3586,7 @@ Thư mục: `output/0.5.8/`
 - Logo → `assets/logo/`, ảnh chụp → `assets/screenshots/` (git-ignored), icon trang chủ → `docs/assets/` (sửa `index.html`, `privacy.html`, `og:image`) – `f096377`; kiểm HTTP 200 logo README + icon Pages.
 - `.bat` → `scripts/setup/` (0_probe, 1_setup_tools), `scripts/build/` (2_build_apk), `scripts/runner/` (3_run_jobs, 3b_run_fast_jobs); `ensure_runners.ps1` mở `.bat` từ `scripts\runner` – `7389c56`; runner chạy lại từ đường dẫn mới.
 
-## 19/11/2026 — YomiHub 0.6.1 (đang làm) — Claude Opus 5.5 điều phối + Google Antigravity
+## 19/11/2026 — YomiHub 0.6.1 (đã phát hành 21:05) — Claude Opus 5.5 điều phối + Google Antigravity
 
 **Đầu vào:** 2 Excel (`Project GitHub.xlsx` – 23 nhóm, 716 dòng; `Project YomiHub.xlsx` – Feature Check 43 mục, Feature Check - Short, YomiHub Update 12 mục, Website Update Apps 8 nguồn, Extension Repo 14, Website Scan 13, ảnh Google Play Books + Merge); tệp đánh giá `Đánh giá build, prerequisites và cấu trúc repo YomiHub.md`; nhật ký ứng dụng Note 9 (`audit/audit-0.6.1/input/note9_logs_061.txt`, 1.596 dòng, kéo bằng adb 17:25). Chủ dự án không gửi log mới của Xiaomi.
 **Quyết định chủ dự án (17:16):** Windows 10/11 x64 (Claude chọn – chủ dự án "tùy bạn"; Flutter không hỗ trợ Win7/x86); 3 APK như 0.6.0 (thường 7.0+, android6, "YumiHub Android TV" bỏ Comic/Novel/Google Play Books/Booru); dọn repo theo tệp đánh giá: bỏ `dev/`, `work-0.1.8/`, `audit/`, `_old/`, `archive/`, `bug/` khỏi nhánh (lịch sử git giữ) + `BUILDING.md`; giao diện Mangayomi mới (Flutter 3.50) làm trên nhánh riêng, chỉ gộp khi build + test qua. 17:18: xin đủ quyền (đã cấp: Antigravity, File Explorer, VS Code, Android Studio, Visual Studio Installer, YomiHub, Cốc Cốc, PowerShell, Task Manager, clipboard, phím hệ thống), giao Antigravity /swarm, tự lưu tiến độ 5 phút/lần.
@@ -3688,3 +3689,39 @@ Thư mục: `output/0.5.8/`
 - Antigravity /swarm 2 (20:05, yêu cầu chủ dự án): @claim_checker kiểm README_061/changelog/trang web bằng mã, @link_checker kiểm link tải v0.6.1 so với `output/0.6.1` – brief `audit/audit-0.6.1/antigravity/BRIEF_swarm2_061.md`.
 - 20:08 chủ dự án đổi tự lưu 5 → 3 phút (autosave PID 28116).
 
+### 16. Nhận bàn giao phiên tối (20:31–20:40)
+- Phiên mới (claude.ai + máy tính): đọc Second Brain 00→12, `AGENTS.md`, mục 0.6.1 ghi chú này; dây chuyền 0.6.1 XONG 20:20 (verify ĐẠT, 17 tệp trong `output/0.6.1`), Antigravity /swarm 2 ĐẠT (`claims_report_061.md`, `links_report_061.md`).
+- Quy tắc 21 (mã phát hành = mã đã dựng): so 43 tệp trong `changed_files_061.txt` giữa `overlay/` và `D:\yh\build\mangayomi` / `buildwin` bằng `cmp` – 43/43 giống hệt. `SHA256SUMS-0.6.1.txt` khớp băm changelog.
+- 20:38 chủ dự án: xin đủ quyền (máy tính + phát hành GitHub), giao Antigravity /swarm một phần. Cấp quyền: Antigravity, YomiHub, Cốc Cốc (full); VS Code, Android Studio, File Explorer, PowerShell, Task Manager, Visual Studio Installer (click); clipboard, phím hệ thống.
+
+### 17. Kiểm thử APK android6 trên AVD Android 6.0 (API 23, x86_64) – 20:36–20:53
+- Lần 1 (`f061_avd6_start2`, phiên trước) và lần 2 (`f061_avd6_start3`) hết giờ – máy ảo không lên. Nguyên nhân: `scripts/lib/common.ps1` đặt `ANDROID_SDK_ROOT=D:\yh\tools\android-sdk`, còn image `android-23/google_apis/x86_64` nằm trong SDK của Android Studio (`%LOCALAPPDATA%\Android\Sdk`) → emulator báo `FATAL | Broken AVD system path` (chỉ thấy trong `logs\emu_a6.txt`). Đồng thời giải phóng RAM: dừng Gradle/Kotlin daemon còn lại sau dây chuyền (1,27 GB) và YomiHub Windows (561 MB) – RAM trống 922 → 1.366 MB.
+- Lần 3 (`f061_avd6_run4`/`run5`): đặt `ANDROID_SDK_ROOT` = SDK Android Studio → khởi động 41 s; `adb install -r -g YomiHub-0.6.1-android6-x86_64.apk` Success, versionName 0.6.1 / versionCode 4054; mở app: màn chờ logo bo tròn → Thư viện (tab Truyện tranh / Phim & Điện ảnh / Tiểu thuyết / Play Books, thanh Thư viện · Booru · Cập nhật · Duyệt · Thêm); logcat không có FATAL/ANR/UnsatisfiedLink, trình quét thư mục cục bộ chạy (4 tệp mẫu A6). Ảnh `audit/audit-0.6.1/evidence/avd6/a01_splash.png`, `a02_home.png`, `a03_home_later.png` – **ĐẠT** (khởi động + màn hình chính; chưa kiểm sâu từng tính năng trên Android 6).
+- Lỗi phụ: `& adb install ... 2>&1` trong job có `$ErrorActionPreference='Stop'` (common.ps1) → dòng stderr của adb thành lỗi kết thúc job (EXIT 1 ngay sau khi máy ảo lên). Sửa: `$ErrorActionPreference='Continue'` + `cmd /c "adb ... 2>&1"`.
+
+### 18. Kiểm thử APK YumiHub Android TV (x86_64) – 20:55–21:05
+- AVD TV sẵn có (`YomiHub_TV_API34`) là image **x86 32-bit** (`android-34/android-tv/x86`) → không cài được APK TV x86_64; không có image TV x86_64 trên máy. Theo Second Brain 04: cài lên AVD điện thoại `YomiHub056_Phone_API34` (x86_64) và mở bằng `am start -n com.yomihub.app/com.kodjodevf.mangayomi.MainActivity`.
+- Lần 1 nhầm thiết bị: máy ảo Android 6 vẫn chạy (`adb emu kill` trong job phát hành không tắt được) → `INSTALL_FAILED_OLDER_SDK` (APK TV minSdk 24). Lần 2 tắt hết máy ảo trước (phát hiện **4 tiến trình emulator thừa** từ các lần thử trước – nguyên nhân RAM thấp) → AVD API 34 lên sau 77 s.
+- Cài Success; `LEANBACK_LAUNCHER`, versionName 0.6.1, minSdk 24. Lần chụp đầu bị hộp thoại hệ thống "System UI isn't responding" của máy ảo (khởi động lạnh, quá tải) che → bấm "Wait" rồi chụp lại: chỉ có "Thư viện Phim & Điện ảnh đang trống" + "Duyệt phim", thanh bên trái Thư viện · Cập nhật · Duyệt · Thêm – không có Truyện tranh, Tiểu thuyết, Google Play Books, Booru. Ảnh `evidence/avdtv/t01_splash.png`, `t03_home.png`, `t03.xml` – **ĐẠT**.
+
+### 19. Phát hành GitHub Release v0.6.1 – 20:54–21:06
+- Chủ dự án yêu cầu xin quyền phát hành GitHub (20:38). Trước khi chạy: README.md ← `audit/audit-0.6.1/release/README_061.md` (giới thiệu + tính năng + nút Download → `releases/latest` + bảng tải v0.6.1); `docs/index.html` 13 link tĩnh + chữ "phiên bản" 0.5.9 → 0.6.1 (không còn chuỗi 0.5.9); autosave đẩy lên (commit `37771d5`). Bản cũ: `audit/audit-0.6.1/backup/README.md.060`, `index.html.pre061rel`.
+- Job dài `x061_release` → `scripts/release/release_061.ps1`: tạo Release `v0.6.1` (make_latest), tải 19 tệp (~2,9 GB) 20:54:29 → 21:05:50 (~11 phút, 1,2–7 MB/s), "Release verification SUCCESS: All 19 assets verified with identical sizes"; Pages 409 = đã bật sẵn.
+- Xác minh độc lập (API công khai `releases/latest`): tag v0.6.1, không draft/prerelease, 19 asset `uploaded`, kích thước trùng `output/0.6.1`.
+- Antigravity /swarm 3 (brief `audit/audit-0.6.1/antigravity/BRIEF_swarm3_061.md`): @release_watch theo dõi API mỗi ~65 s (`RELEASE_PROGRESS_061.md`), @link_checker kiểm link README/trang chủ/Pages sau phát hành (`postrelease_links_061.md`), @verifier (`VERIFICATION_swarm3_061.md`).
+- KHÔNG đẩy Kiritokmn Extension Repo, KHÔNG gửi APKPure (chủ dự án chưa yêu cầu cho 0.6.1).
+
+### 20. Thống kê 0.6.1 so với 0.6.0
+- **Tính năng mới (5):** bộ lọc chọn nhiều ô (mọi kiểu tiện ích); Google Drive 2 tùy chọn (đăng nhập Google / Client ID); Short Video cho mọi tiện ích video; GIF Viewer; 5 kho gợi ý mới (observeroftime, tympanicblock61, Swakshan, Mallyd11, 9vsv6). Ngoài app: repo gọn (6.136 → 2.500 tệp theo dõi) + `BUILDING.md`; trang chủ ↔ chính sách quyền riêng tư cùng thiết kế, liên kết qua lại; README chỉ giới thiệu + nút Download.
+- **Sửa lỗi (4 nhóm):** thể loại tiện ích Keiyoushi kiểu mới (DamCoNuong) không tải được; CheckBox/TriState cấp ngoài cùng không gửi sang tiện ích APK + trùng tên + Text trong nhóm; `kohiden.xyz` CERTIFICATE_VERIFY_FAILED (gốc Let's Encrypt thế hệ Y); nhật ký gắn nhãn sai lỗi 403 Google Drive.
+- **Dịch:** 18 chuỗi × 18 ngôn ngữ = 324 bản dịch (1.692 khóa/ngôn ngữ).
+- **Kiểm thử:** dây chuyền 950/950 test; Note 9 (Android 10, arm64): Short-all, Drive 2 tùy chọn, GIF Viewer, DamCoNuong thể loại qua Tor, kohiden; Windows 11: Setup.exe cài đè 0.5.9 → 0.6.1, GIF Viewer, Drive; AVD Android 6.0: android6 x86_64; AVD API 34: TV x86_64.
+
+### 21. Còn mở sau 0.6.1 (→ 0.6.2)
+- Giao diện mới Mangayomi v0.9.96 (Flutter 3.50, nhánh riêng, `src/mangayomi-0.9.96/` đã tải về – chưa theo dõi git).
+- `audit/audit-0.6.1/pending_062/`: bỏ tiền tố "Exception:" + mức ERROR ở thông báo Client ID trống; câu cảnh báo bộ lọc gợi ý bật VPN/Tor khi trang nguồn bị chặn.
+- Phần chờ thể loại KeiSource chưa có trên Windows (M-Extension-Server Java dựng sẵn).
+- Frank Yomik (dịch truyện bằng máy chủ GPU) chưa tích hợp; đề xuất 2–3 của tệp đánh giá repo (ghim Flutter/Rust/NDK, `D:\yh` → `YH_ROOT`) chưa làm; `.git` 305 MB (clone nhẹ cần `git filter-repo` + force-push – chủ dự án quyết).
+- Chưa có AVD Android TV x86_64 (chỉ x86) – cân nhắc tải `system-images;android-34;android-tv;x86_64` nếu có; kiểm sâu tính năng trên Android 6 (trình đọc, video) chưa làm lần này.
+- APKPure: 0.5.9 vẫn chờ duyệt; chưa gửi 0.6.0/0.6.1. Extension Repo không đổi ở 0.6.1.
+- `FEATURE_GAP_060.md` ở gốc (Antigravity tạo, chưa theo dõi git) – chờ chủ dự án quyết giữ/chuyển vào audit.
