@@ -7,7 +7,7 @@ foreach ($pair in @(@('run_jobs.ps1','3_run_jobs.bat'), @('run_jobs_fast.ps1','3
   $script = $pair[0]; $bat = $pair[1]
   $running = $procs | Where-Object { $_ -and $_ -match [regex]::Escape("\$script") }
   if (-not $running) {
-    Start-Process -FilePath (Join-Path $root $bat) -WorkingDirectory $root
+    Start-Process -FilePath (Join-Path $root "scripts\runner\$bat") -WorkingDirectory $root  # 0.6.0: .bat nam trong scripts\runner
     Add-Content $log ("{0:yyyy-MM-dd HH:mm:ss} bat lai {1}" -f (Get-Date), $bat)
   }
 }
