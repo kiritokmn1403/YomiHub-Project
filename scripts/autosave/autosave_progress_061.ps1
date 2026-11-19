@@ -1,4 +1,4 @@
-﻿# autosave_progress_061.ps1 - YomiHub 0.6.1: moi 5 phut commit + push tien do (yeu cau chu du an 19/11/2026 17:18; dung khi xong viec)
+﻿# autosave_progress_061.ps1 - YomiHub 0.6.1: moi 3 phut commit + push tien do (yeu cau chu du an 19/11/2026 17:18; doi 5->3 phut luc 20:08; dung khi xong viec)
 # Dung: tao tep jobs\STOP_AUTOSAVE_061. Tu dung sau 24 gio. Khong dua secrets/, logs, evidence, input len.
 $root = 'D:\A.I Project\A.I Project - YomiHub Project\YomiHub-Project'
 Set-Location $root
@@ -27,6 +27,6 @@ while((Get-Date) -lt $end){
       } else { L 'khong co thay doi' }
     }
   } catch { L "LOI: $_" }
-  Start-Sleep 300
+  Start-Sleep 180
 }
 L '=== autosave ket thuc ==='
