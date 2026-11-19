@@ -4,6 +4,7 @@ import 'package:mangayomi/services/http/m_client.dart';
 import 'package:mangayomi/utils/image_load_timeout.dart';
 import 'package:mangayomi/yomihub/a6/a6_notice.dart';
 import 'package:mangayomi/yomihub/health/health_connect_service.dart';
+import 'package:mangayomi/yomihub/perf/perf_watchdog.dart';
 
 void main() {
   group('Cloudflare challenge is not a dead server (CBHentai mirror flip)', () {
@@ -52,6 +53,15 @@ void main() {
       expect(YomiA6Notice.applies(a6Build: true, sdkInt: 23), isFalse);
       expect(YomiA6Notice.applies(a6Build: false, sdkInt: 36), isFalse);
       expect(YomiA6Notice.releasesUrl, contains('/releases/latest'));
+    });
+  });
+
+  group('Memory pressure at start on big-RAM phones is not critical', () {
+    test('early + 11 GB → light trim; later or small RAM → critical', () {
+      expect(YomiPerf.criticalPressure(uptimeMs: 5000, totalRamMb: 11400), isFalse);
+      expect(YomiPerf.criticalPressure(uptimeMs: 60000, totalRamMb: 11400), isTrue);
+      expect(YomiPerf.criticalPressure(uptimeMs: 5000, totalRamMb: 3000), isTrue);
+      expect(YomiPerf.criticalPressure(uptimeMs: 5000, totalRamMb: 0), isTrue);
     });
   });
 }

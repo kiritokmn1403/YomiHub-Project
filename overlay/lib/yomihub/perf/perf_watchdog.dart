@@ -212,9 +212,19 @@ class YomiPerf with WidgetsBindingObserver {
     }
   }
 
+  /// 0.6.0 (log 16–19/11, Xiaomi 11 GB RAM): HyperOS sends a memory-pressure
+  /// signal 2–9 s after every start. Handling it as critical cleared the
+  /// images on screen (clearLiveImages), so the library decoded every cover
+  /// again – the 649–1548 ms slow frames at /MangaLibrary right after start.
+  /// Early in the run on a phone with plenty of RAM only idle caches go.
+  @visibleForTesting
+  static bool criticalPressure({required int uptimeMs, required int totalRamMb}) =>
+      !(uptimeMs < 30000 && totalRamMb >= 6000);
+
   @override
   void didHaveMemoryPressure() {
-    trim(critical: true).then((freed) {
+    final critical = criticalPressure(uptimeMs: _mono.elapsedMilliseconds, totalRamMb: totalRamMb);
+    trim(critical: critical, reason: critical ? '' : 'early').then((freed) {
       final now = DateTime.now();
       if (now.difference(_lastTrimLog).inMinutes < 10) return;
       _lastTrimLog = now;

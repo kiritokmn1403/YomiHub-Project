@@ -30,7 +30,9 @@ class AppIdentity {
   /// Folder name the app used before 0.1.5 on desktop.
   static const legacyDirName = 'Mangayomi';
 
-  static const userAgent = 'YomiHub/0.5.7';
+  // 0.6.0: was still 0.5.7 – also the once-per-version key of the android6
+  // notice (a6_notice.dart), so that dialog never came back after 0.5.7.
+  static const userAgent = 'YomiHub/0.6.0';
 
   /// URL scheme registered on Windows (Android declares its schemes in the
   /// manifest). `mangayomi://` is no longer claimed on desktop.

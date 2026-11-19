@@ -11,3 +11,10 @@ Yêu cầu 09:24: tự lưu tiến độ mỗi 5 phút tới khi xong (`scripts/
 | 09:24 | Xin quyền computer use (Antigravity, Android Studio, VS Code, GitHub Desktop, YomiHub, Cốc Cốc, Explorer, PowerShell) | Được cấp |
 | 09:24 | Brief Antigravity `antigravity/BRIEF_swarm1_060.md` (@ui_designer, @project_scanner, @repo_checker) | Đang gửi |
 | 09:27 | Bật autosave 5 phút | – |
+| 09:32 | Gửi /swarm 1 cho Antigravity | Antigravity trả kết quả sơ sài 09:52 |
+| 09:33–09:52 | Sửa lỗi log: android6 notice, trang Cập nhật treo, Tor ERROR→WARNING, CBHentai đổi URL, ảnh Kotatsu 127.0.0.1, Health Connect 1 lần/ngày; test `yh_060_log_fixes_test.dart` | Chờ chạy test |
+| 09:40–10:10 | Job analyze/test treo: máy quá tải (đĩa 270–386 %, RAM trống 1,5 GB, Microsoft PC Manager 56.000 s CPU); `D:\yh\tools\git\cmd\git.exe --version` treo, Git hệ thống chạy | Báo chủ dự án tắt PC Manager; job dùng Git hệ thống |
+| 09:55–10:06 | REVIEW /swarm 1 → giao /swarm 2 (bấm "Send Now" vì tin nhắn xếp hàng) | Đợt 2 xong 10:20, khá hơn, vẫn chưa đủ để tích hợp |
+| 10:00–10:20 | Logo Google (vecteezy chặn tải → vẽ vector), mục "Sao Lưu Lên Google Drive"; Savior "Quét mã trang tìm link video"; Shorts thêm tên miền; kho Salmanbappi (97, anime) + Secozzi (3); dọn bộ nhớ nhẹ khi khởi động; userAgent 0.5.7→0.6.0; i18n 11 chuỗi × 18 | Chờ test |
+| 10:20 | Tạo bộ script 0.6.0 (run/sync/build×3/installer/appx/release, Git hệ thống trước tools), pubspec 0.6.0+53 | – |
+| 10:22 | Job clone Mangayomi v0.9.96 để so sánh 0.9.95→0.9.96 (55 commit) | Xếp hàng sau job treo |
