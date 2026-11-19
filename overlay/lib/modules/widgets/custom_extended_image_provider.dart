@@ -504,7 +504,7 @@ class CustomExtendedNetworkImageProvider
         final httpErr = 'HTTP ${response?.statusCode}';
         _lastNetError = httpErr;
         key._lastNetError = httpErr;
-        _imageWarnLog.record(resolved.host, '${resolved.host} $httpErr');
+        _imageWarnLog.record(logImageHost(resolved.toString()), '${resolved.host} $httpErr');
         return null;
       }
 
@@ -559,7 +559,7 @@ class CustomExtendedNetworkImageProvider
       _lastNetError = e;
       key._lastNetError = e;
       _imageWarnLog.record(
-        imageHostOf(key.url),
+        logImageHost(key.url),
         e is ImageLoadTimeoutException ? e : '${key.url} $e',
       );
       // A timeout is surfaced (not swallowed into null) so the in-flight

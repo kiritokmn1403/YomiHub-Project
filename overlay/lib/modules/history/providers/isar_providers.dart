@@ -4,6 +4,7 @@ import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/repositories/history_repository.dart';
 import 'package:mangayomi/repositories/manga_repository.dart';
 import 'package:mangayomi/repositories/update_repository.dart';
+import 'package:mangayomi/yomihub/perf/updates_preload.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'isar_providers.g.dart';
 
@@ -40,6 +41,9 @@ Stream<List<Update>> getAllUpdateStream(
   );
 
   await for (final mangaIds in mangaIdsStream) {
-    yield* updateRepository.watchByMangaIds(mangaIds);
+    // 0.6.0: chapter links resolved off the UI thread before emitting.
+    yield* updateRepository
+        .watchByMangaIds(mangaIds)
+        .asyncMap(preloadUpdateChapters);
   }
 }

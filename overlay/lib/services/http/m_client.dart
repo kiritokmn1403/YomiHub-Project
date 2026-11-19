@@ -1077,7 +1077,12 @@ class _PooledClientWrapper extends BaseClient {
       }
       primaryRes = await _inner.send(actualRequest);
       final mirrors = YomiUrlOverride.getMirrorsFor(actualRequest.url.toString());
-      final isErr = primaryRes.statusCode == 403 || primaryRes.statusCode >= 500;
+      // 0.6.0 (log 19/11 00:40–00:41, CBHentai): a Cloudflare challenge (403/503
+      // with cf-mitigated / server: cloudflare) is not a dead server. Switching
+      // to the mirror there flipped hentaicube.xyz → 2tencb.pro → back on every
+      // request; the challenge must go to the Cloudflare resolver instead.
+      final isErr = (primaryRes.statusCode == 403 || primaryRes.statusCode >= 500) &&
+          !isCloudflareChallengeResponse(primaryRes.statusCode, primaryRes.headers);
       if (!isErr || mirrors.isEmpty) {
         return primaryRes;
       }
@@ -1152,3 +1157,17 @@ class _PooledClientWrapper extends BaseClient {
   }
 }
 
+/// 0.6.0: true when [status]/[headers] look like a Cloudflare challenge
+/// page rather than a broken server (used by the mirror fallback).
+bool isCloudflareChallengeResponse(int status, Map<String, String> headers) {
+  if (status != 403 && status != 503 && status != 429) return false;
+  String? h(String name) {
+    for (final e in headers.entries) {
+      if (e.key.toLowerCase() == name) return e.value.toLowerCase();
+    }
+    return null;
+  }
+  if ((h('cf-mitigated') ?? '').contains('challenge')) return true;
+  if (h('cf-chl-bypass') != null) return true;
+  return (h('server') ?? '').contains('cloudflare') && h('cf-ray') != null;
+}

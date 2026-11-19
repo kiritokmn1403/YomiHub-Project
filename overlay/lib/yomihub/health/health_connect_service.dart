@@ -283,12 +283,28 @@ class HealthConnectService {
       // 0.4.4: real errors (permission, unsupported device) go to the
       // application log as warnings, once per run.
       final msg = e is PlatformException ? (e.message ?? e.code) : '$e';
-      AppLogger.logOnce(
-        'hc_sync_err',
-        '[Health Connect] Chưa đồng bộ được phiên với hệ điều hành: $msg',
-        logLevel: LogLevel.warning,
-      );
+      // 0.6.0 (log 16–19/11: the same "chưa cấp quyền ghi Chánh niệm" warning
+      // at every app start): a missing permission is a setting, not a new
+      // error – write it at most once a day per message.
+      if (shouldLogDaily(msg, YomiPrefs.isOpen ? YomiPrefs.get<String>(_hcWarnKey, '') : '', DateTime.now())) {
+        if (YomiPrefs.isOpen) unawaited(YomiPrefs.set(_hcWarnKey, dailyStamp(msg, DateTime.now())));
+        AppLogger.logOnce(
+          'hc_sync_err',
+          '[Health Connect] Chưa đồng bộ được phiên với hệ điều hành: $msg (nhắc tối đa 1 lần/ngày – cấp quyền trong Cài đặt › Health Connect)',
+          logLevel: LogLevel.warning,
+        );
+      }
       return false;
     }
   }
 }
+
+const _hcWarnKey = 'hcSyncWarnStamp';
+
+/// 0.6.0: "yyyy-mm-dd|<hash of message>" – one log line per message per day.
+@visibleForTesting
+String dailyStamp(String msg, DateTime now) =>
+    '${now.year}-${now.month}-${now.day}|${msg.hashCode}';
+
+@visibleForTesting
+bool shouldLogDaily(String msg, String stored, DateTime now) => stored != dailyStamp(msg, now);

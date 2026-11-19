@@ -46,6 +46,16 @@ class UpdateRepository {
       .chapter((q) => q.manga((q) => q.itemTypeEqualTo(itemType)))
       .watch(fireImmediately: true);
 
+  // 0.6.0: the Updates tab badge only needs a number; watching the full list
+  // deserialized every Update (and walked chapter→manga links) on each write.
+  Stream<int> watchCountByItemType(ItemType itemType) {
+    final q = isar.updates
+        .filter()
+        .idIsNotNull()
+        .chapter((q) => q.manga((q) => q.itemTypeEqualTo(itemType)));
+    return q.watchLazy(fireImmediately: true).asyncMap((_) => q.count());
+  }
+
   Future<List<Id>> getIdsByItemType(ItemType itemType) => isar.updates
       .filter()
       .idIsNotNull()

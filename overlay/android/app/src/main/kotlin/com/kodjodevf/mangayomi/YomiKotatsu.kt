@@ -630,13 +630,32 @@ object YomiKotatsu {
         val real = p.getPageUrl(page)
         val builder = context.httpClient.newBuilder()
         if (p is Interceptor) builder.addInterceptor(p)
-        val req = Request.Builder().url(real).headers(p.getRequestHeaders()).apply {
-            header("Referer", "https://${p.domain}/")
-        }.build()
-        builder.build().newCall(req).execute().use { r ->
-            val bytes = r.body.bytes()
-            return (r.header("Content-Type") ?: "image/jpeg") to bytes
+        val client = builder.build()
+        // 0.6.0 (log 19/11/2026 00:45, SAYHENTAI): the old code replaced the
+        // parser's own Referer with https://<domain>/ and returned whatever the
+        // CDN sent with HTTP 200 – a 403/404 HTML page reached the reader as an
+        // "image" (51 failures a minute). Keep the parser's headers (add a
+        // Referer only when it has none), retry once without Referer when the
+        // CDN refuses, and report a real error instead of HTML.
+        val base = p.getRequestHeaders()
+        val attempts = buildList {
+            add(Request.Builder().url(real).headers(base).apply {
+                if (base["Referer"].isNullOrBlank()) header("Referer", "https://${p.domain}/")
+            }.build())
+            add(Request.Builder().url(real).headers(base).removeHeader("Referer").build())
         }
+        var lastErr = ""
+        for (req in attempts) {
+            client.newCall(req).execute().use { r ->
+                val type = r.header("Content-Type") ?: "image/jpeg"
+                val bytes = r.body.bytes()
+                val looksHtml = type.contains("html", true) || type.contains("json", true) ||
+                    (bytes.size > 15 && String(bytes, 0, 15).trimStart().startsWith("<"))
+                if (r.isSuccessful && !looksHtml) return type to bytes
+                lastErr = "HTTP ${r.code}${if (looksHtml) " (trang HTML)" else ""} từ ${req.url.host}"
+            }
+        }
+        throw java.io.IOException("Kotatsu: không tải được ảnh – $lastErr")
     }
 
     // ───────────── HTTP server ─────────────

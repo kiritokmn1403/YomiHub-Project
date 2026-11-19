@@ -167,9 +167,21 @@ class YomiVpnService extends ChangeNotifier {
   List<String> warpApps = [];
   String? _lastError;
   String? get lastError => _lastError;
+  // 0.6.0 (log 18/11 15:32): "Tor chưa kết nối được sau 90 giây … đang thử
+  // ở nền" was an ERROR although Tor connected 15 s later on its own. While
+  // Tor keeps bootstrapping in the background this is a WARNING; a real
+  // failure (every bridge tried) still logs its own ERROR in the stall watch.
+  bool _softNextError = false;
   set lastError(String? v) {
     // 0.2.3: VPN / Tor / WARP / proxy errors → app log
-    if (v != null && v.isNotEmpty && v != _lastError) yomiLogVpnError('VPN (Tor / WARP / proxy)', v);
+    if (v != null && v.isNotEmpty && v != _lastError) {
+      if (_softNextError) {
+        AppLogger.log('[VPN] VPN (Tor / WARP / proxy): $v', logLevel: LogLevel.warning);
+      } else {
+        yomiLogVpnError('VPN (Tor / WARP / proxy)', v);
+      }
+    }
+    _softNextError = false;
     _lastError = v;
   }
 
@@ -722,6 +734,7 @@ class YomiVpnService extends ChangeNotifier {
       final boot = '${info['bootstrap'] ?? ''}';
       final pct = RegExp(r'PROGRESS=(\d+)').firstMatch(boot)?.group(1);
       final sum = RegExp(r'SUMMARY="([^"]*)"').firstMatch(boot)?.group(1);
+      _softNextError = !YomiVpnState.torRunning && pct != null;
       lastError = YomiVpnState.torRunning
           ? null
           : (pct == null

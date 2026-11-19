@@ -191,6 +191,8 @@ class _UpdateTabState extends ConsumerState<UpdateTab>
         update.when(
           data: (entries) {
             // Resolve chapter/manga once here instead of per row in itemBuilder.
+            // 0.6.0: the provider already loaded the links in the background
+            // (preloadUpdateChapters); loadSync stays only as a fallback.
             final chapterByUpdateId = <int, Chapter>{};
             for (final e in entries) {
               if (!e.chapter.isLoaded) e.chapter.loadSync();
@@ -323,9 +325,9 @@ class _UpdateTabState extends ConsumerState<UpdateTab>
 
 Widget _updateNumbers(WidgetRef ref, ItemType itemType) {
   return StreamBuilder(
-    stream: updateRepository.watchByItemType(itemType),
+    stream: updateRepository.watchCountByItemType(itemType),
     builder: (context, snapshot) {
-      final count = snapshot.data?.length ?? 0;
+      final count = snapshot.data ?? 0;
       if (count == 0) return const SizedBox.shrink();
       return Badge(
         backgroundColor: Theme.of(context).focusColor,

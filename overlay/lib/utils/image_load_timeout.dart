@@ -84,6 +84,25 @@ String imageHostOf(String text) {
   return h?.group(1) ?? '';
 }
 
+/// 0.6.0 (log 19/11/2026 00:44–00:45): images served through a local bridge
+/// (Kotatsu `127.0.0.1:<port>/kotatsu/image?page=…`, HLS/chunk proxy `?u=…`)
+/// were logged as "Không tải được ảnh từ 127.0.0.1". For the log, name the
+/// real image server carried in the query instead.
+String logImageHost(String url) {
+  final u = Uri.tryParse(url);
+  if (u == null) return imageHostOf(url);
+  final h = u.host.toLowerCase();
+  if (h == '127.0.0.1' || h == 'localhost' || h == '::1') {
+    for (final k in const ['page', 'u', 'url', 'src']) {
+      final inner = u.queryParameters[k];
+      if (inner == null) continue;
+      final ih = Uri.tryParse(inner)?.host ?? '';
+      if (ih.isNotEmpty) return '$ih (qua cổng nội bộ)';
+    }
+  }
+  return u.host.isNotEmpty ? u.host : imageHostOf(url);
+}
+
 /// Short Vietnamese reason shown under "Không tải được ảnh này". [translate]
 /// is `tr` in the app (identity in tests).
 String describeImageLoadError(
