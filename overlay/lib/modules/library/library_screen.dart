@@ -25,9 +25,11 @@ import 'package:mangayomi/modules/widgets/bottom_select_bar.dart';
 import 'package:mangayomi/modules/widgets/category_selection_dialog.dart';
 import 'package:mangayomi/modules/widgets/error_text.dart';
 import 'package:mangayomi/modules/widgets/progress_center.dart';
+import 'package:mangayomi/modules/widgets/restore_bottom_padding.dart';
 import 'package:mangayomi/modules/history/history_screen.dart';
 import 'package:mangayomi/modules/history/providers/isar_providers.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:mangayomi/providers/l10n_providers.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -62,6 +64,12 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
   final _textEditingController = TextEditingController();
   TabController? tabBarController;
   int _tabIndex = 0;
+  // 0.6.0 (port of Mangayomi v0.9.96 "reopen each library on the category it
+  // was left on"): the category id is kept per library in YomiPrefs (Hive) –
+  // no Isar schema change. -1 = the first tab.
+  List _visibleCategories = const [];
+  bool _restoredLastCategory = false;
+  String get _lastCatKey => 'libLastCat_${widget.itemType.name}';
   Timer? _searchDebounce;
 
   @override
@@ -208,8 +216,14 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
 
     final searchQuery = _textEditingController.text;
 
+    // 0.6.0 (Mangayomi v0.9.96): the selection bar always fills
+    // bottomNavigationBar, so the Scaffold took the floating navigation bar's
+    // height out of the body and the grid's last row stayed underneath it.
+    final navBarInset = MediaQuery.paddingOf(context).bottom;
     return Scaffold(
-      body: mangaAll.when(
+      body: RestoreBottomPadding(
+        bottom: navBarInset,
+        child: mangaAll.when(
         data: (man) {
           return categories.when(
             data: (data) {
@@ -352,6 +366,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
         error: (error, _) => ErrorText(error),
         loading: () => const ProgressCenter(),
       ),
+      ),
       bottomNavigationBar: _buildBottomBar(),
     );
   }
@@ -380,6 +395,13 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
     }
 
     // Manage TabController
+    _visibleCategories = entr;
+    if (!_restoredLastCategory) {
+      _restoredLastCategory = true;
+      final saved = YomiPrefs.isOpen ? YomiPrefs.get<int>(_lastCatKey, -1) : -1;
+      final i = saved < 0 ? -1 : entr.indexWhere((c) => c.id == saved);
+      if (i >= 0) _tabIndex = i + 1;
+    }
     if (tabCount > 0 &&
         (tabBarController == null || tabBarController!.length != tabCount)) {
       int newTabIndex = _tabIndex;
@@ -394,6 +416,9 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
       tabBarController!.addListener(() {
         if (_tabIndex != tabBarController!.index) {
           setState(() => _tabIndex = tabBarController!.index);
+          final i = tabBarController!.index - 1;
+          final id = (i >= 0 && i < _visibleCategories.length) ? _visibleCategories[i].id as int? : null;
+          if (YomiPrefs.isOpen) YomiPrefs.set(_lastCatKey, id ?? -1);
         }
       });
     }

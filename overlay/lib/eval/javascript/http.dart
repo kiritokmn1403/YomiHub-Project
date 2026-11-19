@@ -54,6 +54,8 @@ class JsHttpClient {
     runtime.onMessage('http_patch', (dynamic args) async {
       return await _toHttpResponse(client(args[1]), "PATCH", args, sourceId, fallbackBaseUrl);
     });
+    // 0.6.0 (port of Mangayomi v0.9.96 "send PUT, DELETE and PATCH from the
+    // extension client"): put/delete/patch below all sent "http_post".
     runtime.evaluate('''
 class Client {
     constructor(reqcopyWith) {
@@ -86,7 +88,7 @@ class Client {
     async put(url, headers, body) {
         headers = headers;
         const result = await sendMessage(
-            "http_post",
+            "http_put",
             JSON.stringify([null, this.reqcopyWith, url, headers, body])
         );
         return JSON.parse(result);
@@ -94,7 +96,7 @@ class Client {
     async delete(url, headers, body) {
         headers = headers;
         const result = await sendMessage(
-            "http_post",
+            "http_delete",
             JSON.stringify([null, this.reqcopyWith, url, headers, body])
         );
         return JSON.parse(result);
@@ -102,7 +104,7 @@ class Client {
     async patch(url, headers, body) {
         headers = headers;
         const result = await sendMessage(
-            "http_post",
+            "http_patch",
             JSON.stringify([null, this.reqcopyWith, url, headers, body])
         );
         return JSON.parse(result);

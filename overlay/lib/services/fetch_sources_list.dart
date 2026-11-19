@@ -674,78 +674,92 @@ Future<FilterList?> fetchFilterListDalvik(
   }
 }
 
+// 0.6.0 (port of Mangayomi v0.9.96 "skip malformed filter options instead of
+// dropping the list", PR #1150; Feature Check 7 – filters of extensions):
+// one malformed option/filter used to throw and the whole filter list of the
+// extension was lost ("Không tải được bộ lọc"). Options are now built
+// defensively and a broken entry is skipped on its own.
+String? _optText(dynamic v) {
+  if (v == null) return null;
+  if (v is String) return v;
+  if (v is num || v is bool) return '$v';
+  return null;
+}
+
+SelectFilterOption? _selectOption(dynamic e) {
+  if (e is Map) {
+    final v = _optText(e['value']) ?? _optText(e['name']);
+    if (v == null) return null;
+    return SelectFilterOption(_optText(e['name']) ?? v, v, null);
+  }
+  final v = _optText(e);
+  return v == null ? null : SelectFilterOption(v, v, null);
+}
+
+List<SelectFilterOption> _selectOptions(dynamic list) => list is List
+    ? list.map(_selectOption).whereType<SelectFilterOption>().toList()
+    : <SelectFilterOption>[];
+
+List<SelectFilterOption> _valsOptions(dynamic list) {
+  if (list is! List) return <SelectFilterOption>[];
+  final out = <SelectFilterOption>[];
+  for (final e in list) {
+    if (e is! Map) continue;
+    final first = _optText(e['first']);
+    if (first == null) continue;
+    out.add(SelectFilterOption(first, _optText(e['second']) ?? first, null));
+  }
+  return out;
+}
+
+dynamic _filterFromJson(dynamic e) {
+  if (e is! Map) return null;
+  final name = e['name'];
+  final state = e['state'];
+  if (name is String && state is Map && e['values'] is List) {
+    final idx = state['index'];
+    return SortFilter(
+      "${name}Filter",
+      name,
+      SortState(idx is int ? idx : 0, state['ascending'] == true, null),
+      _selectOptions(e['values']),
+      null,
+    );
+  } else if (name is String && state is int && (e['values'] is List || e['vals'] is List)) {
+    final opts = e['vals'] is List ? _valsOptions(e['vals']) : _selectOptions(e['values']);
+    return SelectFilter(
+      "${name}Filter",
+      name,
+      opts.isEmpty ? 0 : state.clamp(0, opts.length - 1),
+      opts,
+      "SelectFilter",
+    );
+  } else if (name is String && state is bool) {
+    return CheckBoxFilter(null, name, _optText(e['id']) ?? name, null, state: state);
+  } else if (e['included'] is bool && e['ignored'] is bool && e['excluded'] is bool) {
+    if (name is! String) return null;
+    return TriStateFilter(null, name, _optText(e['id']) ?? name, null, state: state is int ? state : 0);
+  } else if (name is String && state is List) {
+    return GroupFilter("${name}Filter", name, filtersFromJson(state), "GroupFilter");
+  } else if (name is String && state is String) {
+    return TextFilter("${name}Filter", name, null, state: state);
+  } else if (name is String && state is int) {
+    return HeaderFilter(name, "${name}Filter");
+  }
+  return null;
+}
+
 List<dynamic> filtersFromJson(List<dynamic> json) {
-  return json.expand((e) sync* {
-    if (e['name'] is String &&
-        e['state'] is Map<String, dynamic> &&
-        e['values'] is List) {
-      yield SortFilter(
-        "${e['name']}Filter",
-        e['name'],
-        SortState(e['state']['index'], e['state']['ascending'], null),
-        (e['values'] as List)
-            .map((e) => SelectFilterOption(e, e, null))
-            .toList(),
-        null,
-      );
-    } else if (e['name'] is String &&
-        e['state'] is int &&
-        (e['values'] is List || e['vals'] is List)) {
-      yield SelectFilter(
-        "${e['name']}Filter",
-        e['name'],
-        e['state'],
-        e['vals'] is List
-            ? (e['vals'] as List)
-                  .map((e) => SelectFilterOption(e['first'], e['second'], null))
-                  .toList()
-            : e['values'] is List
-            ? (e['values'] as List)
-                  .map(
-                    (e) => (e is Map)
-                        ? SelectFilterOption(e['value'], e['value'], null)
-                        : SelectFilterOption(e, e, null),
-                  )
-                  .toList()
-            : [],
-        "SelectFilter",
-      );
-    } else if (e['name'] is String && e['state'] is bool) {
-      yield CheckBoxFilter(
-        null,
-        e['name'],
-        e['id'] ?? e['name'],
-        null,
-        state: e['state'],
-      );
-    } else if (e['included'] is bool &&
-        e['ignored'] is bool &&
-        e['excluded'] is bool) {
-      yield TriStateFilter(
-        null,
-        e['name'],
-        e['id'] ?? e['name'],
-        null,
-        state: e['state'],
-      );
-    } else if (e['name'] is String && e['state'] is List) {
-      yield GroupFilter(
-        "${e['name']}Filter",
-        e['name'],
-        filtersFromJson((e['state'] as List)),
-        "GroupFilter",
-      );
-    } else if (e['name'] is String && e['state'] is String) {
-      yield TextFilter(
-        "${e['name']}Filter",
-        e['name'],
-        null,
-        state: e['state'],
-      );
-    } else if (e['name'] is String && e['state'] is int) {
-      yield HeaderFilter(e['name'], "${e['name']}Filter");
+  final out = <dynamic>[];
+  for (final e in json) {
+    try {
+      final f = _filterFromJson(e);
+      if (f != null) out.add(f);
+    } catch (_) {
+      // a single malformed filter must not drop the extension's whole list
     }
-  }).toList();
+  }
+  return out;
 }
 
 Future<List<SourcePreference>?> fetchPreferencesDalvik(
