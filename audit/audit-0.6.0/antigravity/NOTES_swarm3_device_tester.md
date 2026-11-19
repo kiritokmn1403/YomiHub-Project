@@ -12,5 +12,6 @@
 - 19/11/2026 15:05: Scenario 1: Tested single-choice selection - switched to "Phổ biến" (s1_filter_single_choice.png), "Mặc định" automatically unchecked.
 - 19/11/2026 15:06: Scenario 1: Tested tri-state genre - 1st tap on "Action" -> blue check ✓ include (s1_filter_genre_tap1.png); 2nd tap -> red square with minus [-] exclude (s1_filter_genre_tap2_exclude.png).
 - 19/11/2026 15:07: Scenario 1: Applied filter -> button active, result returned ("Không có kết quả", s1_filter_applied_result.png). Kịch bản 1: ĐẠT hoàn toàn.
+- 19/11/2026 15:08: Scenario 2: Updates tab opened (s2_updates_initial.png), scrolled 3 times smoothly (s2_updates_scrolled.png). Checked logs for today 19/11/2026: 0 warning "Giao diện bị treo … /updates". Kịch bản 2: ĐẠT hoàn toàn.
 
 
