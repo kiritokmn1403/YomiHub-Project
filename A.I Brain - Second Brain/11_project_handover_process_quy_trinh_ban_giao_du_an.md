@@ -34,3 +34,9 @@ Danh sách kiểm:
 - Còn mở cho 0.6.0: kho `kohiden.xyz` lỗi chứng chỉ; thêm kho Salmanbappi/Secozzi vào `repo_discovery.dart`; 5 liên kết công cụ tấn công cũ trong Dự án GitHub chờ quyết định gỡ; các mục lớn của sheet YomiHub Update chưa tích hợp hết (quét Yomikiru/Nyora/Nuvio/Frank Yomik/Browser Fingerprint…).
 - Xiaomi của chủ dự án đang chạy APK android6 → cần cài tay APK thường 0.5.9 một lần.
 - Không còn tác vụ nền chạy (autosave dừng 14:29, lịch hẹn tắt). Tệp `jobs/STOP_AUTOSAVE` còn – xóa trước khi bật lại autosave.
+
+## E. Trạng thái bàn giao hiện tại (sau 0.6.0 – 19/11/2026 15:35) – thay mục D
+- 0.6.0 (0.6.0+53) đã phát hành GitHub Release `v0.6.0` 15:29 (19 asset khớp kích thước; Pages đã bật sẵn). KHÔNG đẩy Kiritokmn Extension Repo (chủ dự án: để phiên khác). Chưa gửi APKPure bản 0.6.0 (0.5.9 vẫn chờ duyệt).
+- Còn mở cho 0.6.1: kho `kohiden.xyz` CERTIFICATE_VERIFY_FAILED; `yh_055` Case 1 chập chờn khi máy quá tải (cân nhắc nới thời gian); giao diện mới Mangayomi v0.9.96 (cần Flutter 3.50) + Frank Yomik/Browser Fingerprint/Anti-bot chưa tích hợp; nguồn APK trên Windows cần bản full (M-Extension-Server); Antigravity /swarm 4 chưa xong kịch bản 5 (Savior quét link) và 6 (rà log) – xem `audit/audit-0.6.0/antigravity/NOTES_swarm3_device_tester.md`.
+- Note 9 đã cài 0.6.0 (2053) + Antigravity đã cài thêm tiện ích "ComicK (Kotatsu)" để kiểm. Xiaomi của chủ dự án vẫn cần cài tay APK thường (nếu còn chạy bản android6).
+- Tác vụ nền: autosave 0.6.0 dừng bằng `jobs/STOP_AUTOSAVE_060` (15:35); lịch hẹn kiểm tra đã xong/không còn.

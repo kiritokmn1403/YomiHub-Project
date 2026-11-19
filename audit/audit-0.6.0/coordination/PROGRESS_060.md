@@ -49,3 +49,5 @@ Yêu cầu 09:24: tự lưu tiến độ mỗi 5 phút tới khi xong (`scripts/
 | 15:18–15:20 | **Windows 11 portable** `D:\yh\qa060win` (FileVersion 0.6.0+53): mở được, không cửa sổ trắng, thanh điều hướng trái, Thư viện hiện; bộ lọc nguồn JS Comick: Sort/Status là ô chọn, chọn "Most views" → đánh dấu + tiêu đề cập nhật. Nguồn APK (CoManhua) cần M-Extension-Server (bản .zip thường không có – dùng bản full) – như 0.5.9 | ĐẠT |
 | 15:24 | Changelog phát hành thêm phần tiếng Anh (bản nháp Antigravity, Claude sửa 2 chỗ), cập nhật dòng băm trong SHA256SUMS | – |
 | 15:25 | Job `x060_release` = `release_060.ps1` (GitHub Release v0.6.0, make_latest; chủ dự án xác nhận phát hành 09:20, không đẩy Extension Repo) | Đang tải lên |
+| 15:29 | **GitHub Release v0.6.0**: 19/19 asset tải lên, đối chiếu kích thước ĐẠT (`jobs/done/x060_release.log`); Pages 409 = đã bật sẵn | ĐÃ PHÁT HÀNH |
+| 15:35 | Bàn giao: ghi chú kỹ thuật mục 1, Second Brain 04/11-E/12, dừng autosave (`jobs/STOP_AUTOSAVE_060`) sau commit + push cuối | XONG |
