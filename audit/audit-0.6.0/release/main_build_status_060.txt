@@ -11,3 +11,7 @@
 19/11 12:06:21 === BAT DAU dung bo goi chinh 0.6.0 ===
 19/11 12:06:22 --> buoc apk
 19/11 12:44:18 DUNG TAY buoc apk (Claude): chu du an yeu cau bo loc dang o chon -> sua ma, dung lai tu dau
+19/11 12:51:37 === BAT DAU dung bo goi chinh 0.6.0 ===
+19/11 12:51:37 --> buoc sync
+19/11 12:51:45 <-- buoc sync exit=0 (0 phut)
+19/11 12:51:45 --> buoc test

@@ -21,6 +21,7 @@ overlay/lib/eval/javascript/http.dart
 overlay/lib/modules/history/providers/isar_providers.dart
 overlay/lib/modules/library/library_screen.dart
 overlay/lib/modules/manga/detail/widgets/manga_info_header.dart
+overlay/lib/modules/manga/home/widget/filter_widget.dart
 overlay/lib/modules/more/data_and_storage/data_and_storage.dart
 overlay/lib/modules/updates/updates_screen.dart
 overlay/lib/modules/widgets/custom_extended_image_provider.dart
@@ -35,6 +36,8 @@ overlay/lib/yomihub/app_identity.dart
 overlay/lib/yomihub/browser/browser_screen.dart
 overlay/lib/yomihub/cloud/cloud_backup_screen.dart
 overlay/lib/yomihub/cloud/google_logo.dart
+overlay/lib/yomihub/filters/filter_checkbox.dart
+overlay/lib/yomihub/filters/filter_profiles.dart
 overlay/lib/yomihub/health/health_connect_service.dart
 overlay/lib/yomihub/perf/perf_watchdog.dart
 overlay/lib/yomihub/perf/updates_preload.dart
@@ -43,6 +46,12 @@ overlay/lib/yomihub/repos/extensions_repo_screen.dart
 overlay/lib/yomihub/savior/video_url_extractor.dart
 overlay/lib/yomihub/vpn/vpn_service.dart
 overlay/pubspec.yaml
+overlay/test/yh_051_test.dart
+overlay/test/yh_052_test.dart
+overlay/test/yh_053_test.dart
+overlay/test/yh_054_test.dart
+overlay/test/yh_055_test.dart
+overlay/test/yh_060_filter_checkbox_test.dart
 overlay/test/yh_060_filters_json_test.dart
 overlay/test/yh_060_log_fixes_test.dart
 overlay/test/yh_060_video_url_test.dart

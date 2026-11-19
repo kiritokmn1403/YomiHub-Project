@@ -1,6 +1,7 @@
 # YomiHub 0.6.0 – 19/11/2026
 
 ## Tính năng mới
+- **Bộ lọc tiện ích dạng ô chọn**: mọi lựa chọn trong bộ lọc của mọi kiểu tiện ích (Mangayomi, Mihon/Aniyomi/Nekoyomi, Kotatsu) nay là ô chọn – danh sách thả xuống thành ô chọn chọn-một, Sắp xếp thành ô chọn (bấm lại ô đang chọn để đổi chiều ↑/↓), chip thể loại Kotatsu thành ô chọn 3 trạng thái (bao gồm → loại trừ → tắt); nhóm ≤ 8 mục mở sẵn, nhóm ≥ 15 mục có ô tìm.
 - **Sao Lưu Lên Google Drive**: mục riêng trong Dữ liệu & Bộ nhớ, biểu tượng logo Google; đăng nhập bằng tài khoản Google rồi sao lưu/khôi phục qua Google Drive.
 - **Trình duyệt › Savior – "Quét mã trang tìm link video"**: tìm link m3u8/mp4 nằm sẵn trong mã trang, cấu hình trình phát (jwplayer `sources`, `og:video`, link bị thoát ký tự) trước khi bấm phát; không có link trực tiếp thì đề nghị mở khung trình phát nhúng để quét tiếp.
 - **Short Video**: nhận diện thêm Kwai, RedGifs, xFree, Kwiky, Facebook Reels, Snapchat Spotlight, Moj.
@@ -9,6 +10,7 @@
 - **Bản APK Android 6.0 chạy trên Android 7.0+**: hộp thoại có nút "Tải bản APK thường" mở thẳng trang phát hành mới nhất.
 
 ## Sửa lỗi (theo nhật ký 16–19/11/2026)
+- **Bộ lọc**: một số mục bấm không đổi dấu chọn ("không chọn được") trong khung bộ lọc kiểu Mangayomi – khung nay tự vẽ lại sau mỗi lần bấm.
 - Trang **Cập nhật** treo 2,7 giây (khung hình 2,8 giây): chương của từng mục được nạp ở nền thay vì truy vấn đồng bộ từng dòng trên luồng giao diện; huy hiệu số lượng chỉ còn đếm.
 - Giật lúc mở app trên máy RAM lớn: tín hiệu "thiếu bộ nhớ" của hệ thống ngay sau khi mở không còn xóa ảnh bìa đang hiển thị.
 - **Bộ lọc tiện ích**: một tùy chọn hỏng không còn làm mất cả danh sách bộ lọc (từ Mangayomi v0.9.96).

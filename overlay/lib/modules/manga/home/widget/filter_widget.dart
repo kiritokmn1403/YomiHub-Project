@@ -63,7 +63,7 @@ class _FilterWidgetState extends State<FilterWidget> {
         } else if (filterState is CheckBoxFilter) {
           widget = CheckboxListTile(
             dense: true,
-            value: filterState.state ?? false,
+            value: filterState.state,
             onChanged: (value) {
               filterList[idx] = filterState..state = value ?? false;
               onChanged(filterList);
