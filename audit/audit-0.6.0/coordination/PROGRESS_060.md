@@ -35,3 +35,4 @@ Yêu cầu 09:24: tự lưu tiến độ mỗi 5 phút tới khi xong (`scripts/
 | 12:40–12:50 | Tạo `overlay/lib/yomihub/filters/filter_checkbox.dart` (YomiSelectCheckboxes, YomiSortCheckboxes, YomiTriCheckbox); `filter_widget.dart` → StatefulWidget (tự vẽ lại – nguyên nhân lỗi 0.5.9 "mục bộ lọc không chọn được"), Select/Sort/TriState dùng ô chọn; `filter_profiles.dart`: Kotatsu chip → ô chọn, Aniyomi tri → ô chọn chung. Test `yh_060_filter_checkbox_test.dart` | analyze 0 lỗi; 8/8 ĐẠT (kèm yh_060_filters_json) |
 | 12:43 | Dừng tay dây chuyền `x060_build_main3` ở bước apk (mã cũ), xóa BUILD_LOCK | – |
 | 12:52 | Changelog thêm mục bộ lọc ô chọn; job `x060_build_main4` = `run_060_main.ps1` đầy đủ (sync -Regen → test → apk → tv → wintest → win → pack → a6build → a6copy → verify) | Đang chạy |
+| 12:56 | Bước test dây chuyền `x060_build_main4`: **942/942 ĐẠT** (`logs/b060_test.txt`, 3 phút) | ĐẠT – sang bước apk |
