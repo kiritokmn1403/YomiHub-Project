@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest"><img width="160" height="160" src="logo/yomihub_logo_1024.png" alt="YomiHub logo"></a>
+  <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest"><img width="160" height="160" src="assets/logo/yomihub_logo_1024.png" alt="YomiHub logo"></a>
 </p>
 
 <h3 align="center">YomiHub</h3>

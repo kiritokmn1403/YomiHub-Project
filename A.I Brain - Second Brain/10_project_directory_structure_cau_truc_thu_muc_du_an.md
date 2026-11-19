@@ -7,7 +7,8 @@
 | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` | Quy định cho tác nhân (trỏ tới Second Brain) |
 | `TECHNICAL_UPDATE_NOTES.md` | Ghi chú kỹ thuật & nhật ký mọi phiên bản (bắt buộc đọc) |
 | `README.md` | Giới thiệu + nút Download → releases/latest |
-| `docs/` | GitHub Pages: `index.html` (trang chủ, nút tải từng bản), `privacy.html`, favicon/icon |
+| `docs/` | GitHub Pages: `index.html` (trang chủ, nút tải từng bản), `privacy.html`; favicon/icon trong `docs/assets/` (phải nằm dưới `docs/` để Pages phục vụ) |
+| `assets/` | Hình ảnh của dự án (19/11/2026): `logo/` (logo 1024 sáng/tối, `tv_banner.png`, `preview.png`, `make.py` sinh logo; icon ứng dụng thật ở `overlay/assets/app_icons/icon-red.png` – README dùng `assets/logo/yomihub_logo_1024.png`), `screenshots/` (ảnh chụp riêng – git-ignored). Ảnh/biểu tượng của chính ứng dụng vẫn ở `overlay/assets/`; ảnh kiểm thử ở `audit/audit-<ver>/evidence/`, `test/shots/` |
 | `overlay/` | **Mã YomiHub** (`lib/`, `lib/yomihub/`, `android/`, `windows/`, `assets/yomihub_i18n/`, `test/`, `pubspec.yaml`) |
 | `src/` | Nền Mangayomi upstream (`mangayomi`, `mangayomi-0.9.95`, `v0.9.7`, `BASE_VERSION.txt`) |
 | gốc | Chỉ còn `.bat` khởi chạy (`0_probe.bat`…`3b_run_fast_jobs.bat`), tài liệu (`README.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `TECHNICAL_UPDATE_NOTES.md`), khóa ký (git-ignored). **Không đặt `.ps1` ở gốc** (sắp xếp 19/11/2026) |
@@ -17,8 +18,7 @@
 | `output/<ver>/` | Bộ cài đã dựng (git-ignored, tải lên Release) |
 | `logs/` | Log dựng/autosave (git-ignored; có thể chứa dòng lệnh dart-define) |
 | `secrets/` | `google_oauth.json` (git-ignored) |
-| `logo/` | Logo gốc 1024; icon ứng dụng thật ở `overlay/assets/app_icons/icon-red.png` |
-| `archive/`, `_old/`, `_to_delete/`, `work-0.1.8/`, `dev/`, `bug/`, `fetch/`, `test/`, `Screenshot/` | Lưu trữ cũ/thử nghiệm – không dùng cho bản mới |
+| `archive/`, `_old/`, `_to_delete/`, `work-0.1.8/`, `dev/`, `bug/`, `fetch/`, `test/` | Lưu trữ cũ/thử nghiệm – không dùng cho bản mới |
 | `yomihub-release.jks`, `keystore-password.txt` | Khóa ký – KHÔNG đọc/in/đẩy (git-ignored) |
 
 ## Máy dựng: `D:\yh` (junction → `D:\A.I Project\yh`)

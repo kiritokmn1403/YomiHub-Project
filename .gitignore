@@ -46,7 +46,7 @@ key.properties
 
 # ── QA evidence, screenshots, pre-change copies (kept on the build PC) ──
 /test/
-/Screenshot/
+/assets/screenshots/
 
 # ── Audit directory ignore rules ──
 audit/**/before/

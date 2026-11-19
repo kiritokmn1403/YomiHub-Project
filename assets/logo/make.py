@@ -65,8 +65,8 @@ def color_icon(dark=False):
     return base
 out=os.path.expanduser('~/ov')
 ci=color_icon(); cd=color_icon(dark=True)
-ci.resize((1024,1024),Image.LANCZOS).save(os.path.expanduser('~/logo/yomihub_logo_1024.png'))
-cd.resize((1024,1024),Image.LANCZOS).save(os.path.expanduser('~/logo/yomihub_logo_dark_1024.png'))
+ci.resize((1024,1024),Image.LANCZOS).save(os.path.expanduser('~/assets/logo/yomihub_logo_1024.png'))
+cd.resize((1024,1024),Image.LANCZOS).save(os.path.expanduser('~/assets/logo/yomihub_logo_dark_1024.png'))
 # app silhouette (tinted in-app)
 sil=Image.new('RGBA',(S,S),(0,0,0,0)); sil.putalpha(mk)
 sil.resize((1024,1024),Image.LANCZOS).save(out+'/assets/app_icons/icon.png')
