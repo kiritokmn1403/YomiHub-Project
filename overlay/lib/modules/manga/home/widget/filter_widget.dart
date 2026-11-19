@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mangayomi/eval/model/filter.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
+import 'package:mangayomi/yomihub/filters/filter_checkbox.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
-class FilterWidget extends StatelessWidget {
+/// YomiHub 0.6.0: StatefulWidget – mỗi lần đổi bộ lọc tự vẽ lại ô chọn.
+/// Trước đây là StatelessWidget nên trong bảng bộ lọc (bottom sheet không được
+/// vẽ lại khi màn mở nó setState) ô đã bấm không đổi dấu → "không chọn được".
+class FilterWidget extends StatefulWidget {
   final List<dynamic> filterList;
   final Function(List<dynamic>) onChanged;
   const FilterWidget({
@@ -11,6 +15,18 @@ class FilterWidget extends StatelessWidget {
     required this.onChanged,
     required this.filterList,
   });
+
+  @override
+  State<FilterWidget> createState() => _FilterWidgetState();
+}
+
+class _FilterWidgetState extends State<FilterWidget> {
+  List<dynamic> get filterList => widget.filterList;
+
+  void onChanged(List<dynamic> list) {
+    widget.onChanged(list);
+    if (mounted) setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,26 +52,13 @@ class FilterWidget extends StatelessWidget {
         } else if (filterState is SeparatorFilter) {
           widget = const Divider();
         } else if (filterState is TriStateFilter) {
-          final state = filterState.state;
-          widget = CheckboxListTile(
-            dense: true,
-            value: switch (state) {
-              0 => false,
-              1 => true,
-              _ => null,
-            },
-            onChanged: (value) {
-              filterList[idx] = filterState
-                ..state = switch (value) {
-                  null => 2,
-                  true => 1,
-                  _ => 0,
-                };
+          // YomiHub 0.6.0: ô chọn 3 trạng thái dùng chung
+          widget = YomiTriCheckbox(
+            filter: filterState,
+            onChanged: () {
+              filterList[idx] = filterState;
               onChanged(filterList);
             },
-            title: Text(filterState.name),
-            controlAffinity: ListTileControlAffinity.leading,
-            tristate: true,
           );
         } else if (filterState is CheckBoxFilter) {
           widget = CheckboxListTile(
@@ -82,85 +85,22 @@ class FilterWidget extends StatelessWidget {
             ],
           );
         } else if (filterState is SortFilter) {
-          final ascending = filterState.state.ascending;
-          widget = ExpansionTile(
-            title: Text(filterState.name, style: const TextStyle(fontSize: 13)),
-            children: filterState.values.map((e) {
-              final selected = filterState.values[filterState.state.index] == e;
-              return ListTile(
-                dense: true,
-                leading: Icon(
-                  ascending
-                      ? Icons.arrow_upward_rounded
-                      : Icons.arrow_downward_rounded,
-                  color: selected ? null : Colors.transparent,
-                ),
-                title: Text(e.name),
-                onTap: () {
-                  if (selected) {
-                    filterState.state.ascending = !ascending;
-                  } else {
-                    filterState.state.index = filterState.values.indexWhere(
-                      (element) => element == e,
-                    );
-                  }
-                  filterList[idx] = filterState;
-                  onChanged(filterList);
-                },
-              );
-            }).toList(),
+          // YomiHub 0.6.0: tiêu chí sắp xếp dạng ô chọn (bấm lại để đổi chiều)
+          widget = YomiSortCheckboxes(
+            filter: filterState,
+            onChanged: () {
+              filterList[idx] = filterState;
+              onChanged(filterList);
+            },
           );
         } else if (filterState is SelectFilter) {
-          final int safeState = (filterState.state is int &&
-                  filterState.state >= 0 &&
-                  filterState.state < filterState.values.length)
-              ? (filterState.state as int)
-              : 0;
-          widget = SizedBox(
-            width: context.width(1),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Expanded(
-                  child: ListTile(dense: true, title: Text(filterState.name)),
-                ),
-                Expanded(
-                  child: DropdownButtonHideUnderline(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 25,
-                      ),
-                      child: DropdownButton<int>(
-                        icon: const Icon(Icons.keyboard_arrow_down),
-                        isExpanded: true,
-                        value: filterState.values.isEmpty ? null : safeState,
-                        hint: Text(
-                          filterState.name,
-                          style: const TextStyle(fontSize: 13),
-                        ),
-                        items: [
-                          for (int i = 0; i < filterState.values.length; i++)
-                            DropdownMenuItem<int>(
-                              value: i,
-                              child: Text(
-                                filterState.values[i].name,
-                                style: const TextStyle(fontSize: 13),
-                              ),
-                            ),
-                        ],
-                        onChanged: (int? value) {
-                          if (value != null) {
-                            filterState.state = value;
-                            onChanged(filterList);
-                          }
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          // YomiHub 0.6.0: danh sách thả xuống → ô chọn (chọn một)
+          widget = YomiSelectCheckboxes(
+            filter: filterState,
+            onChanged: () {
+              filterList[idx] = filterState;
+              onChanged(filterList);
+            },
           );
         }
         return widget ?? const SizedBox.shrink();

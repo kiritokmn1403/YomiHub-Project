@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mangayomi/eval/model/filter.dart';
 import 'package:mangayomi/models/source.dart';
 import 'package:mangayomi/modules/manga/home/widget/filter_widget.dart';
+import 'package:mangayomi/yomihub/filters/filter_checkbox.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/kotatsu/kotatsu_bridge.dart';
 
 /// YomiHub 0.1.9: which app's filter UI an extension uses.
 ///
 ///  * Kotatsu parsers → Kotatsu's filter sheet: sort order and every option
-///    as chips, tags cycling include → exclude → off.
+///    as checkboxes (0.6.0; chips before), tags cycling include → exclude → off.
 ///  * Mihon / Aniyomi / Nekoyomi (APK) and Tachiyomi-format sources →
 ///    Aniyomi / Nekoyomi sheet: collapsible groups with the number of active
 ///    options, sort with direction arrow, tri-state boxes and a search box
@@ -87,32 +88,12 @@ class _KotatsuFilterViewState extends State<KotatsuFilterView> {
 
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
     final children = <Widget>[];
     for (var i = 0; i < widget.filters.length; i++) {
       final f = widget.filters[i];
       if (f is SelectFilter) {
-        children.add(_title(f.name));
-        children.add(
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Wrap(
-              spacing: 6,
-              runSpacing: 6,
-              children: [
-                for (var j = 0; j < f.values.length; j++)
-                  ChoiceChip(
-                    label: Text((f.values[j] as SelectFilterOption).name),
-                    selected: f.state == j,
-                    onSelected: (_) {
-                      f.state = j;
-                      _changed();
-                    },
-                  ),
-              ],
-            ),
-          ),
-        );
+        // YomiHub 0.6.0: chip → ô chọn (chọn một)
+        children.add(YomiSelectCheckboxes(filter: f, onChanged: _changed));
       } else if (f is GroupFilter) {
         final items = f.state;
         final many = items.length > 24;
@@ -125,42 +106,25 @@ class _KotatsuFilterViewState extends State<KotatsuFilterView> {
             : items;
         final n = _activeCount(f);
         children.add(_title(n > 0 ? '${f.name} ($n)' : f.name));
-        children.add(
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Wrap(
-              spacing: 6,
-              runSpacing: 6,
-              children: [
-                for (final e in shown)
-                  if (e is TriStateFilter)
-                    FilterChip(
-                      label: Text(e.name),
-                      selected: e.state != 0,
-                      showCheckmark: false,
-                      avatar: e.state == 0
-                          ? null
-                          : Icon(e.state == 1 ? Icons.check : Icons.remove, size: 18),
-                      selectedColor: e.state == 2 ? cs.errorContainer : cs.secondaryContainer,
-                      onSelected: (_) {
-                        // Kotatsu: include → exclude → off
-                        e.state = (e.state + 1) % 3;
-                        _changed();
-                      },
-                    )
-                  else if (e is CheckBoxFilter)
-                    FilterChip(
-                      label: Text(e.name),
-                      selected: e.state,
-                      onSelected: (v) {
-                        e.state = v;
-                        _changed();
-                      },
-                    ),
-              ],
-            ),
-          ),
-        );
+        // YomiHub 0.6.0: chip → ô chọn (tri-state: bao gồm → loại trừ → tắt)
+        for (final e in shown) {
+          if (e is TriStateFilter) {
+            children.add(YomiTriCheckbox(filter: e, onChanged: _changed));
+          } else if (e is CheckBoxFilter) {
+            children.add(
+              CheckboxListTile(
+                dense: true,
+                controlAffinity: ListTileControlAffinity.leading,
+                value: e.state,
+                title: Text(e.name),
+                onChanged: (v) {
+                  e.state = v ?? false;
+                  _changed();
+                },
+              ),
+            );
+          }
+        }
         if (many) {
           children.add(
             Align(
@@ -215,29 +179,8 @@ class _AniyomiFilterViewState extends State<AniyomiFilterView> {
     widget.onChanged();
   }
 
-  Widget _tri(TriStateFilter e) {
-    final cs = Theme.of(context).colorScheme;
-    return ListTile(
-      dense: true,
-      leading: Icon(
-        switch (e.state) {
-          1 => Icons.check_box,
-          2 => Icons.disabled_by_default,
-          _ => Icons.check_box_outline_blank,
-        },
-        color: switch (e.state) {
-          1 => cs.primary,
-          2 => cs.error,
-          _ => null,
-        },
-      ),
-      title: Text(e.name),
-      onTap: () {
-        e.state = (e.state + 1) % 3;
-        _changed();
-      },
-    );
-  }
+  // YomiHub 0.6.0: ô chọn 3 trạng thái dùng chung (bao gồm → loại trừ → tắt)
+  Widget _tri(TriStateFilter e) => YomiTriCheckbox(filter: e, onChanged: _changed);
 
   List<Widget> _items(List<dynamic> list, {String q = ''}) {
     final out = <Widget>[];
