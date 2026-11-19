@@ -110,7 +110,7 @@ class _GifViewerScreenState extends State<GifViewerScreen> {
       allowedExtensions: ['gif', 'webp', 'png', 'apng'],
       withData: !Platform.isWindows,
     );
-    final f = res?.files.firstOrNull;
+    final f = res.firstOrNull; // file_picker 12: trả List<PlatformFile>
     if (f == null) return;
     if (f.bytes != null) {
       await _open(f.bytes!, f.name);
