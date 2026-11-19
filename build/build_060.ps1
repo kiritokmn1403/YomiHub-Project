@@ -218,7 +218,7 @@ function Verify-WindowsPackageContent([string]$outDir, [string]$ver) {
             $bm = $appxZip.GetEntry("AppxMetadata/AppxBundleManifest.xml")
             $sr = New-Object System.IO.StreamReader($bm.Open())
             $bmText = $sr.ReadToEnd(); $sr.Dispose()
-            if ($bmText -notmatch 'Version="0\.5\.9\.0"') { throw "LỖI PHIÊN BẢN APPX: AppxBundleManifest không có Version=0.6.0.0" }
+            if ($bmText -notmatch 'Version="0\.6\.0\.0"') { throw "LỖI PHIÊN BẢN APPX: AppxBundleManifest không có Version=0.6.0.0" }
             Say ("Xác minh AppxBundle thành công: Manifest và payload ({0:N1} MB)" -f ((Get-Item $appxBundle).Length / 1MB))
         }
         finally {

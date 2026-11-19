@@ -17,8 +17,8 @@ String _read(String path) => File(path).readAsStringSync();
 void main() {
   group('YomiHub 0.5.3', () {
     test('version / user agent', () {
-      expect(AppIdentity.userAgent, startsWith('YomiHub/0.5.'));
-      expect(_read('pubspec.yaml'), contains('version: 0.5.'));
+      expect(AppIdentity.userAgent, matches(RegExp(r'^YomiHub/\d+\.\d+(\.\d+)+$'))); // 0.6.0: khong gan cung 0.5.x
+      expect(_read('pubspec.yaml'), matches(RegExp(r'version: \d+\.\d+\.\d+')));
     });
 
     test('player uses the same http proxy as the source (FapReel CDN token)', () {
