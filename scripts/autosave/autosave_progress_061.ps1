@@ -6,7 +6,7 @@ $env:Path = 'C:\Program Files\Git\cmd;' + $env:Path
 $log = Join-Path $root 'logs\autosave_061.txt'
 function L($m){ Add-Content $log ("{0:dd/MM HH:mm:ss} {1}" -f (Get-Date), $m) -Encoding UTF8 }
 $paths = @('TECHNICAL_UPDATE_NOTES.md','README.md','AGENTS.md','BUILDING.md','.gitignore','A.I Brain - Second Brain','overlay','docs',
-  'scripts','jobs/q061_lib.ps1','jobs/q061_dev.ps1')
+  'scripts')
 $end = (Get-Date).AddHours(24)
 L "=== autosave bat dau (PID $PID) ==="
 while((Get-Date) -lt $end){
