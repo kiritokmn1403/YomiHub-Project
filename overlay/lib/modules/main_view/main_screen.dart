@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/ui/mangayomi_v2/mv2_nav_shell.dart';
 import 'package:mangayomi/yomihub/perf/perf_watchdog.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
@@ -401,7 +402,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               // 0.4.3: History only from "More" in the classic layout.
               final tvOnly =
                   isTv || kIsTvBuild || ref.watch(animeOnlyTvModeProvider);
-              final uiModern = _uiStyle == YomiUiStyle.modern;
+              final uiModern = _uiStyle != YomiUiStyle.classic; // 0.6.2: V2 dùng nhóm điều hướng như Mới
               final hubTabs = libraryHubTabs(
                 order: navigationOrder,
                 hidden: hideItems,
@@ -470,42 +471,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 child: widget.child,
               );
 
-              return Column(
-                children: [
-                  if (!isReadingScreen)
-                    _DownloadedOnlyBar(
-                      downloadedOnly: downloadedOnly,
-                      l10n: l10n,
-                    ),
-                  if (!isReadingScreen)
-                    _IncognitoModeBar(incognitoMode: incognitoMode, l10n: l10n),
-                  Flexible(
-                    child: Scaffold(
-                      body: context.isTablet
-                          ? _TabletLayout(
-                              isLongPressed: isLongPressed,
-                              location: location,
-                              dest: dest,
-                              currentIndex: currentIndex,
-                              route: route,
-                              ref: ref,
-                              buildNavigationWidgetsDesktop:
-                                  _buildNavigationWidgetsDesktop,
-                              child: shellChild,
-                            )
-                          : shellChild,
-                      bottomNavigationBar: context.isTablet
-                          ? null
-                          : _MobileBottomNavigation(
-                              isLongPressed: isLongPressed,
-                              location: location,
-                              currentIndex: currentIndex,
-                              dest: dest,
-                              route: route,
-                              ref: ref,
-                              buildNavigationWidgetsMobile:
-                                  _buildNavigationWidgetsMobile,
-                              onDestinationSelected: (destination) {
+              // 0.6.2: tách khỏi _MobileBottomNavigation để giao diện V2 dùng chung
+              void onMobileDest(String destination) {
                                 if (destination == "_enableLibSwitch") {
                                   setState(() {
                                     isLibSwitch = true;
@@ -558,7 +525,80 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                     route.go(target);
                                   }
                                 }
-                              },
+                              }
+
+              // YomiHub 0.6.2: "YomiHub New Version" (Mangayomi 0.9.96) – thanh
+              // điều hướng nổi trên điện thoại; máy tính bảng / TV / Windows
+              // giữ bố cục cũ (_TabletLayout / NavigationRail).
+              final useV2 = _uiStyle == YomiUiStyle.mangayomiV2 &&
+                  !context.isTablet &&
+                  !isTv;
+              Widget v2Shell() {
+                final w = _buildNavigationWidgetsMobile(ref, dest, context);
+                final d = <Mv2NavDestination>[
+                  for (var i = 0; i < dest.length; i++)
+                    w[i] is NavigationDestination
+                        ? Mv2NavDestination(
+                            id: dest[i],
+                            label: (w[i] as NavigationDestination).label,
+                            icon: (w[i] as NavigationDestination).icon,
+                            selectedIcon:
+                                (w[i] as NavigationDestination).selectedIcon,
+                          )
+                        : Mv2NavDestination(
+                            id: dest[i],
+                            label: '',
+                            icon: const SizedBox.shrink(),
+                          ),
+                ];
+                return Mv2NavShell(
+                  destinations: d,
+                  selectedIndex: currentIndex,
+                  onDestinationSelected: (i) => onMobileDest(dest[i]),
+                  hideNavigation: isLongPressed || isReadingScreen,
+                  useFloatingBar: true,
+                  child: shellChild,
+                );
+              }
+
+              return Column(
+                children: [
+                  if (!isReadingScreen)
+                    _DownloadedOnlyBar(
+                      downloadedOnly: downloadedOnly,
+                      l10n: l10n,
+                    ),
+                  if (!isReadingScreen)
+                    _IncognitoModeBar(incognitoMode: incognitoMode, l10n: l10n),
+                  Flexible(
+                    child: Scaffold(
+                      body: context.isTablet
+                          ? _TabletLayout(
+                              isLongPressed: isLongPressed,
+                              location: location,
+                              dest: dest,
+                              currentIndex: currentIndex,
+                              route: route,
+                              ref: ref,
+                              buildNavigationWidgetsDesktop:
+                                  _buildNavigationWidgetsDesktop,
+                              child: shellChild,
+                            )
+                          : useV2
+                          ? v2Shell()
+                          : shellChild,
+                      bottomNavigationBar: context.isTablet || useV2
+                          ? null
+                          : _MobileBottomNavigation(
+                              isLongPressed: isLongPressed,
+                              location: location,
+                              currentIndex: currentIndex,
+                              dest: dest,
+                              route: route,
+                              ref: ref,
+                              buildNavigationWidgetsMobile:
+                                  _buildNavigationWidgetsMobile,
+                              onDestinationSelected: onMobileDest,
                             ),
                     ),
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 
@@ -14,15 +15,21 @@ import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 ///
 /// The choice is kept in [YomiPrefs] (key [prefKey]) so it is part of every
 /// backup; upgraders and restored backups without the key get [classic].
-enum YomiUiStyle { classic, modern }
+/// * [mangayomiV2] – 0.6.2 "YomiHub New Version": giao diện Mangayomi 0.9.96
+///   (thanh điều hướng nổi kéo-thả, chủ đề Mv2, thẻ bìa mới) – xem
+///   `yomihub/ui/mangayomi_v2/`. Kế thừa mọi hành vi của [modern].
+enum YomiUiStyle { classic, modern, mangayomiV2 }
 
 class YomiUi {
   YomiUi._();
   static const prefKey = 'uiStyle';
 
   /// Parses a stored value; anything unknown is the classic layout.
-  static YomiUiStyle parse(Object? raw) =>
-      raw == 'modern' ? YomiUiStyle.modern : YomiUiStyle.classic;
+  static YomiUiStyle parse(Object? raw) => switch (raw) {
+        'mangayomiV2' => YomiUiStyle.mangayomiV2,
+        'modern' => YomiUiStyle.modern,
+        _ => YomiUiStyle.classic,
+      };
 
   /// Test hook: forces a style without an open prefs box.
   @visibleForTesting
@@ -31,11 +38,34 @@ class YomiUi {
   static YomiUiStyle get style =>
       debugOverride ?? parse(YomiPrefs.get<Object?>(prefKey, null));
 
-  static bool get isModern => style == YomiUiStyle.modern;
+  /// true cho cả "Mới" (0.9.95) và "YomiHub New Version" (0.9.96): V2 dùng
+  /// chung nhóm điều hướng, chuyển cảnh và thẻ Shiori của bản Mới.
+  static bool get isModern => style != YomiUiStyle.classic;
+
+  /// 0.6.2: "YomiHub New Version" (Mangayomi 0.9.96).
+  static bool get isV2 => style == YomiUiStyle.mangayomiV2;
 
   /// Saves the choice; listeners of [YomiPrefs.changes] rebuild at once.
   static Future<void> setStyle(YomiUiStyle s) => YomiPrefs.set(prefKey, s.name);
 }
+
+/// 0.6.2: kiểu giao diện dạng provider (đổi trong Cài đặt → chủ đề dựng lại ngay).
+class YomiUiStyleNotifier extends Notifier<YomiUiStyle> {
+  @override
+  YomiUiStyle build() {
+    void listener() {
+      final s = YomiUi.style;
+      if (s != state) state = s;
+    }
+
+    YomiPrefs.changes.addListener(listener);
+    ref.onDispose(() => YomiPrefs.changes.removeListener(listener));
+    return YomiUi.style;
+  }
+}
+
+final yomiUiStyleProvider =
+    NotifierProvider<YomiUiStyleNotifier, YomiUiStyle>(YomiUiStyleNotifier.new);
 
 /// Settings › Appearance: "Giao diện ứng dụng: Cũ / Mới".
 class YomiUiStyleTile extends StatelessWidget {
@@ -54,9 +84,11 @@ class YomiUiStyleTile extends StatelessWidget {
               leading: const Icon(Icons.dashboard_customize_outlined),
               title: Text(tr('Giao diện ứng dụng')),
               subtitle: Text(
-                style == YomiUiStyle.modern
-                    ? tr('Mới – điều hướng kiểu Mangayomi 0.9.95: Cập nhật và Lịch sử gộp thành mục Hoạt động, bộ chọn tab dạng viên')
-                    : tr('Cũ – bố cục YomiHub: Lịch sử nằm trong Thêm, tab con của Thư Viện ở phía trên'),
+                switch (style) {
+                  YomiUiStyle.mangayomiV2 => tr('YomiHub New Version – giao diện Mangayomi 0.9.96: thanh điều hướng nổi kéo-thả, chủ đề và thẻ truyện mới'),
+                  YomiUiStyle.modern => tr('Mới – điều hướng kiểu Mangayomi 0.9.95: Cập nhật và Lịch sử gộp thành mục Hoạt động, bộ chọn tab dạng viên'),
+                  YomiUiStyle.classic => tr('Cũ – bố cục YomiHub: Lịch sử nằm trong Thêm, tab con của Thư Viện ở phía trên'),
+                },
               ),
             ),
             Padding(
@@ -68,12 +100,17 @@ class YomiUiStyleTile extends StatelessWidget {
                   ButtonSegment(
                     value: YomiUiStyle.classic,
                     icon: const Icon(Icons.view_agenda_outlined),
-                    label: Text(tr('Cũ')),
+                    label: FittedBox(fit: BoxFit.scaleDown, child: Text(tr('YomiHub Old Version'))),
                   ),
                   ButtonSegment(
                     value: YomiUiStyle.modern,
                     icon: const Icon(Icons.auto_awesome_outlined),
-                    label: Text(tr('Mới')),
+                    label: FittedBox(fit: BoxFit.scaleDown, child: Text(tr('Mới (0.9.95)'))),
+                  ),
+                  ButtonSegment(
+                    value: YomiUiStyle.mangayomiV2,
+                    icon: const Icon(Icons.rocket_launch_outlined),
+                    label: FittedBox(fit: BoxFit.scaleDown, child: Text(tr('YomiHub New Version'))),
                   ),
                 ],
                 selected: {style},

@@ -207,7 +207,8 @@ void main() {
     test('26. Không khớp & chống khớp nhầm chuỗi con → Khác (other)', () {
       expect(classify(null), FilterV2Section.other);
       expect(classify(SeparatorFilter('SeparatorFilter')), FilterV2Section.other);
-      expect(classify(CheckBoxFilter(null, 'Subject Filter', 'subj', null)), FilterV2Section.other);
+      // 0.6.2: 'subject' là từ khóa Thể Loại hợp lệ → ca chống khớp chuỗi con dùng 'Subsection'
+      expect(classify(CheckBoxFilter(null, 'Subsection Filter', 'subj', null)), FilterV2Section.other);
       expect(classify(TextFilter(null, 'Stage', 'TextFilter')), FilterV2Section.other);
       expect(classify(CheckBoxFilter(null, 'Italiano Custom', 'it', null)), FilterV2Section.other);
       expect(classify(HeaderFilter('Nota: tap reset', 'HeaderFilter')), FilterV2Section.other);

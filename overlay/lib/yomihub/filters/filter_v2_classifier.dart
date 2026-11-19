@@ -392,13 +392,21 @@ bool _matchesKeyword(String normalizedText, String rawKeyword) {
 FilterV2Section? _matchText(String text) {
   final norm = _normalize(text);
   if (norm.isEmpty) return null;
+  // 0.6.2 (Claude): chọn từ khóa khớp DÀI NHẤT trên mọi ô (cùng độ dài thì theo
+  // thứ tự _classifyOrder). Trước đây ô xét trước thắng ngay: "Thể loại" khớp
+  // "loại" của Danh Mục trước khi tới "thể loại" của Thể Loại.
+  FilterV2Section? best;
+  var bestLen = 0;
   for (final sec in _classifyOrder) {
-    final kws = kFilterV2Keywords[sec]!;
-    for (final kw in kws) {
-      if (_matchesKeyword(norm, kw)) return sec;
+    for (final kw in kFilterV2Keywords[sec]!) {
+      final len = _normalize(kw).length;
+      if (len > bestLen && _matchesKeyword(norm, kw)) {
+        best = sec;
+        bestLen = len;
+      }
     }
   }
-  return null;
+  return best;
 }
 
 String _nameOf(dynamic filter) {

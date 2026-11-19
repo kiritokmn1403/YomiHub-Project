@@ -9,6 +9,8 @@ import 'pure_black_dark_mode_state_provider.dart';
 import 'app_font_family.dart';
 
 import 'package:mangayomi/utils/platform_utils.dart';
+import 'package:mangayomi/yomihub/ui/ui_style.dart';
+import 'package:mangayomi/yomihub/ui/mangayomi_v2/mv2_theme.dart';
 
 /// Material draws a focused InkWell's highlight from the ambient
 /// [ThemeData.focusColor], and the default is nearly invisible on a TV
@@ -50,6 +52,11 @@ final lightThemeProvider = Provider<ThemeData>((ref) {
   final blendLevel = ref.watch(blendLevelStateProvider).toInt();
   final fontFamily = ref.watch(appFontFamilyProvider.select((t) => t.$2));
   final glass = ref.watch(liquidGlassProvider);
+  // 0.6.2: "YomiHub New Version" – chủ đề Mangayomi 0.9.96 (Mv2Theme tự lo
+  // tiêu điểm TV và Liquid Glass)
+  if (ref.watch(yomiUiStyleProvider) == YomiUiStyle.mangayomiV2) {
+    return Mv2Theme.light(colors: colors, blendLevel: blendLevel, fontFamily: fontFamily, glass: glass);
+  }
 
   return applyLiquidGlass(_tvFocus(
     FlexThemeData.light(
@@ -80,6 +87,15 @@ final darkThemeProvider = Provider<ThemeData>((ref) {
   final fontFamily = ref.watch(appFontFamilyProvider.select((t) => t.$2));
   final pureBlack = ref.watch(pureBlackDarkModeStateProvider);
   final glass = ref.watch(liquidGlassProvider);
+  if (ref.watch(yomiUiStyleProvider) == YomiUiStyle.mangayomiV2) {
+    return Mv2Theme.dark(
+      colors: colors,
+      blendLevel: pureBlack ? 0 : blendLevel,
+      pureBlack: pureBlack,
+      fontFamily: fontFamily,
+      glass: glass,
+    );
+  }
 
   return applyLiquidGlass(_tvFocus(
     FlexThemeData.dark(
