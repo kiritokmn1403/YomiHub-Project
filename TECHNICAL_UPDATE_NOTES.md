@@ -3725,3 +3725,53 @@ Thư mục: `output/0.5.8/`
 - Chưa có AVD Android TV x86_64 (chỉ x86) – cân nhắc tải `system-images;android-34;android-tv;x86_64` nếu có; kiểm sâu tính năng trên Android 6 (trình đọc, video) chưa làm lần này.
 - APKPure: 0.5.9 vẫn chờ duyệt; chưa gửi 0.6.0/0.6.1. Extension Repo không đổi ở 0.6.1.
 - `FEATURE_GAP_060.md` (phân tích tích hợp Zenshin/Nyora/Nuvio/GIF Viewer/Frank Yomik do Antigravity tạo ở gốc) – chủ dự án để Claude quyết (21:18): chuyển vào `audit/audit-0.6.1/notes/` (chỉ lưu cục bộ).
+
+## 19/11/2026 — YomiHub 0.6.2 (0.6.2+55) – Claude Opus 5.5 (claude.ai + máy tính, 22:05–) + Google Antigravity
+
+Yêu cầu chủ dự án 22:05 (log `logs (11).txt` 16–19/11, `Project YomiHub.xlsx`, `Project GitHub.xlsx`): cập nhật 0.6.2 – Android 6.0+, APK riêng "YumiHub Android TV" (bỏ Comic/Novel/Google Play Books/Booru), Windows (đồng ý giữ Windows 10/11 x64: Flutter/Isar không chạy Windows 7/x86/ARM) dạng `.appxbundle`, `Setup.exe`, portable; làm từng mục sheet Feature Check/YomiHub Update; sửa lỗi log; kiểm thử có ảnh/video; phát hành GitHub Release + README. 22:11 chủ dự án "Đồng ý toàn bộ", giao Antigravity /swarm thiết kế giao diện mới theo Mangayomi mới nhất + bộ lọc mới; tự lưu 5 phút/lần. 22:43 bổ sung: quét ngôn ngữ Aniyomi/Nekoyomi/Kotatsu, dịch toàn bộ app sang các ngôn ngữ đó.
+
+### 1. Hạ tầng phiên (22:12–22:16)
+- Bộ script `scripts/{pipeline,sync,build,packaging,release,autosave}/*_062.ps1` sinh từ `*_061` bằng Python (bảo vệ tên test `yh_06x_*` khỏi bị đổi, thay `0.6.1→0.6.2`, `061→062`, `+54→+55`, `'54'→'55'`; `sync_062` so tag `v0.6.1`); `jobs/q062_lib.ps1`, `q062_dev.ps1`. `overlay/pubspec.yaml` → `0.6.2+55`.
+- Tự lưu: `scripts/autosave/autosave_progress_062.ps1` (`Start-Sleep 300`), chạy 22:14 (PID 25636), dừng bằng `jobs/STOP_AUTOSAVE_062`.
+- Quyền computer use: Antigravity, YomiHub, Cốc Cốc, GitHub Desktop (full); Android Studio, VS Code, PowerShell, File Explorer, Task Manager, VS Installer (click); clipboard + phím hệ thống. GitHub: push qua Git Credential Manager trên máy (phiên cloud không có quyền push trực tiếp).
+
+### 2. Lỗi văng "type 'bool' is not a subtype of type 'double?' in type cast" + "Null check operator" (log 19/11 21:53–21:54, 0.6.1)
+- Công cụ: `nm -n D:\yh\symbols_061\app.android-arm64.symbols` (build_id `3c1b4ecfb22f65e9f089cce0e58b8df6` khớp log) + Python bisect địa chỉ `virt` → `ScrollPosition.restoreScrollOffset` ← `ScrollableState.didChangeDependencies` (lỗi 1); `EditableTextState.renderEditable` ← `TextSelectionGestureDetectorBuilder.onTapDown/onSingleTapUp` (lỗi 2).
+- Nguyên nhân: `ExpansionTile` của nhóm bộ lọc ghi trạng thái mở/gập (bool) vào PageStorage; Scrollable bên trong cùng định danh (ô tìm `TextField` của nhóm ≥ 15 mục, danh sách `FilterWidget` lồng trong GroupFilter) đọc giá trị đó làm vị trí cuộn (double) → văng; ô nhập chữ hỏng → Null check.
+- Sửa: `YomiFilterStorageScope` (PageStorageBucket riêng cho thân mỗi nhóm) trong `overlay/lib/yomihub/filters/filter_checkbox.dart`, bọc ở `_YomiCheckboxGroup`, GroupFilter của `modules/manga/home/widget/filter_widget.dart` (+ `PageStorageKey('yh_grp_…')`, `ScrollController(keepScrollOffset: false)`), `filter_profiles.dart` (+ khóa `yh_prof_…`), "Lọc kết quả" của `filter_sheet.dart`.
+- Kiểm: `test/yh_062_filter_pagestorage_test.dart` (2 ca). Đối chứng job `f062_t03_regress_proof`: chép 4 tệp 0.6.1 vào bản dựng → test báo đúng `_TypeError: type 'bool' is not a subtype of type 'double?'` (2/2 trượt); mã 0.6.2 → 2/2 đạt. `dart analyze` 0 lỗi.
+
+### 3. Bộ lọc không tải được: MeHentai, Comick (Unoriginal), Hentai Cosplay (log 21:51–21:56)
+- `filter_refresh.dart`: lượt thử 2 làm nóng bằng tìm kiếm rỗng (nhiều tiện ích chỉ nạp thể loại khi tìm, không ở trang phổ biến); sau 3 lượt mà vẫn chỉ có dòng "Tap Reset…" nhưng còn bộ lọc dùng được → trả về danh sách đó (`partialOnly`).
+- `filter_loader.dart`: trường hợp trên hiện bộ lọc + cảnh báo "Chưa tải được danh sách Thể loại… bật VPN/Tor… Nạp bộ lọc" (WARNING, 1 lần) thay vì báo hỏng cả bộ lọc; gộp câu gợi ý VPN/Tor từ `pending_062`.
+
+### 4. SayHentai (Kotatsu) không tải được ảnh/chương (log 20:58–21:01: 403 + hết giờ qua cổng nội bộ)
+- `android/.../YomiKotatsu.kt` `image()`: CDN trả trang thử thách Cloudflare (403/503 + `cf-mitigated`/`Server: cloudflare`) → ném `Status=403, URL=<ảnh>` để `withCf` nhận ra, giải bằng WebView (lưu UA theo host) rồi thử lại. Trước đây chỉ báo "HTTP 403" nên không giải.
+- `utils/image_load_timeout.dart` `imageTimeoutFor()`: ảnh qua `127.0.0.1/kotatsu/*` chờ 120 s (giải Cloudflare mất 60–150 s); `custom_extended_image_provider.dart` dùng hạn này.
+
+### 5. Nhật ký: dòng không nhãn phiên bản trước dòng mở phiên ("Refreshed MAL/Trakt token" 15:41, 15:43)
+- `utils/log/logger.dart` `init()`: lấy `deviceDescription()`/`appVersionDescription()` và đặt `_tag` TRƯỚC khi mở sink + `_initialized = true`.
+
+### 6. Từ `audit/audit-0.6.1/pending_062/` (đã đưa vào overlay)
+- `cloud_backup_service.dart` `CloudInputError` + `cloud_backup_screen.dart`: bỏ tiền tố "Exception:", Client ID trống ghi WARNING.
+
+### 7. Bộ lọc mới (sheet "New Filter") – Antigravity /swarm 1 @filter_designer, Claude rà + tích hợp
+- Tệp: `lib/yomihub/filters/filter_v2_classifier.dart` (xếp mọi bộ lọc vào 9 ô Sắp Xếp / Tình Trạng / Danh Mục / Phân Loại Nội Dung / Năm Phát Hành / Tìm Theo / Đánh Giá / Bản Dịch / Thể Loại + "Khác", từ khóa đa ngôn ngữ), `filter_v2_sheet.dart` (4 nút Đặt Lại / Nạp Bộ Lọc / Đánh Dấu / Bộ Lọc; ô chọn; Sắp Xếp/Tìm Theo chọn-một), `test/yh_062_filter_v2_classifier_test.dart`.
+- Claude sửa: `_matchText` chọn từ khóa khớp DÀI NHẤT (trước đây "Thể loại" khớp "loại" của Danh Mục trước) + Sắp Xếp ưu tiên tuyệt đối ("Sort by Rating"); ca kiểm 'Subject Filter' → 'Subsection Filter'. Kết quả 32/32.
+- Tích hợp: `filter_sheet.dart` (tách `_resultFiltersTile()`, chọn `FilterV2Sheet` khi `YomiPrefs.useNewFilter`), `prefs/yomi_prefs.dart` (`useNewFilter`, mặc định bật, theo sao lưu), `ui/ui_style.dart` `YomiFilterStyleTile`, `appearance_screen.dart`.
+
+### 8. Giao diện "YomiHub New Version" (Mangayomi 0.9.96) – Antigravity /swarm 1 @ui_designer, Claude tích hợp
+- Phân tích: `audit/audit-0.6.2/antigravity/staging/newui/UI_DIFF_0996.md`. Mã (Flutter 3.47.6, không cần `material_ui`): `lib/yomihub/ui/mangayomi_v2/mv2_theme.dart`, `mv2_nav_shell.dart` (thanh điều hướng nổi kéo-thả, thu gọn khi cuộn, rail/TV), `mv2_manga_card.dart`, `mv2_section_header.dart`.
+- `ui_style.dart`: `YomiUiStyle.mangayomiV2`, `isModern` = mọi kiểu ≠ classic (V2 kế thừa nhóm điều hướng/chuyển cảnh/Shiori), `isV2`, `yomiUiStyleProvider`; công tắc 3 nút YomiHub Old Version / Shiori (0.9.95) / YomiHub New Version.
+- `theme_provider.dart`: V2 → `Mv2Theme.light/dark`. `main_screen.dart`: tách `onMobileDest`, V2 trên điện thoại dùng `Mv2NavShell` (máy tính bảng/TV/Windows giữ bố cục cũ). `library_gridview_widget.dart`: V2 dùng `Mv2MangaCard`.
+- `dart analyze` 0 lỗi (chỉ cảnh báo có sẵn).
+
+### 9. Bản dịch
+- 35 chuỗi mới × 18 ngôn ngữ (Antigravity filter_v2 25 + newui 15 – trùng 6 khóa đã có, Claude 1) → 1.727 khóa/ngôn ngữ, gộp bằng `audit/audit-0.6.2/notes/i18n_merge_062.py`; `yh_049` đạt.
+- /swarm 2 (22:45–, brief `BRIEF_swarm2_062.md`): @lang_scout lấy danh sách ngôn ngữ Aniyomi (i18n, i18n-aniyomi), Nekoyomi, Kotatsu qua API GitHub; @translator_a/@translator_b dịch ~26 ngôn ngữ mới mỗi tác tử (yomihub_i18n + app_<mã>.arb), @reviewer kiểm.
+
+### 10. Kiểm nguồn trong Excel (job `f062_n01_urlcheck`, Invoke-WebRequest trên máy – VM không có mạng)
+- HTTP 200: GitHub Releases API, Drive ×3, MediaFire ×3 (cả 3 thư mục MediaFire hiện 0 tệp), 12 kho tiện ích sheet Extension Repo (IReader 147, m2k3a 335/64/9, LNReader 373, Yuzono 248, Kegareta 272, FelipeGFA 2, Kareadita 1, Keiyoushi `.pb`, Aidoku, Kiritokmn 204).
+
+### 11. Dây chuyền dựng 0.6.2 (lần 1, bắt đầu 22:57)
+- `jobs/pending/x062_build_main.ps1` → `scripts/pipeline/run_062_main.ps1` (sync → test → apk → tv → wintest → win → pack → a6build → a6copy → verify). Danh sách wintest thêm `yh_062_filter_pagestorage_test.dart`, `yh_062_filter_v2_classifier_test.dart`.
