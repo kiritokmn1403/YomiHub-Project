@@ -3584,3 +3584,16 @@ Thư mục: `output/0.5.8/`
 - `scripts/lib/yh_defines.ps1` gỡ khỏi GitHub, thêm `.gitignore` (`ed4c9ef`).
 - Logo → `assets/logo/`, ảnh chụp → `assets/screenshots/` (git-ignored), icon trang chủ → `docs/assets/` (sửa `index.html`, `privacy.html`, `og:image`) – `f096377`; kiểm HTTP 200 logo README + icon Pages.
 - `.bat` → `scripts/setup/` (0_probe, 1_setup_tools), `scripts/build/` (2_build_apk), `scripts/runner/` (3_run_jobs, 3b_run_fast_jobs); `ensure_runners.ps1` mở `.bat` từ `scripts\runner` – `7389c56`; runner chạy lại từ đường dẫn mới.
+
+## 19/11/2026 — YomiHub 0.6.1 (đang làm) — Claude Opus 5.5 điều phối + Google Antigravity
+
+**Đầu vào:** 2 Excel (`Project GitHub.xlsx` – 23 nhóm, 716 dòng; `Project YomiHub.xlsx` – Feature Check 43 mục, Feature Check - Short, YomiHub Update 12 mục, Website Update Apps 8 nguồn, Extension Repo 14, Website Scan 13, ảnh Google Play Books + Merge); tệp đánh giá `Đánh giá build, prerequisites và cấu trúc repo YomiHub.md`; nhật ký ứng dụng Note 9 (`audit/audit-0.6.1/input/note9_logs_061.txt`, 1.596 dòng, kéo bằng adb 17:25). Chủ dự án không gửi log mới của Xiaomi.
+**Quyết định chủ dự án (17:16):** Windows 10/11 x64 (Claude chọn – chủ dự án "tùy bạn"; Flutter không hỗ trợ Win7/x86); 3 APK như 0.6.0 (thường 7.0+, android6, "YumiHub Android TV" bỏ Comic/Novel/Google Play Books/Booru); dọn repo theo tệp đánh giá: bỏ `dev/`, `work-0.1.8/`, `audit/`, `_old/`, `archive/`, `bug/` khỏi nhánh (lịch sử git giữ) + `BUILDING.md`; giao diện Mangayomi mới (Flutter 3.50) làm trên nhánh riêng, chỉ gộp khi build + test qua. 17:18: xin đủ quyền (đã cấp: Antigravity, File Explorer, VS Code, Android Studio, Visual Studio Installer, YomiHub, Cốc Cốc, PowerShell, Task Manager, clipboard, phím hệ thống), giao Antigravity /swarm, tự lưu tiến độ 5 phút/lần.
+
+### 0. Khởi động phiên (17:16–17:30)
+- Đọc Second Brain 00→12, `AGENTS.md`, mục 1 + mục 0.6.0 của ghi chú này.
+- Tự lưu: `scripts/autosave/autosave_progress_061.ps1` (5 phút, dừng bằng `jobs/STOP_AUTOSAVE_061`, tự dừng sau 24 giờ, không đẩy `audit/`). Lần 1–2 không chạy: (a) job thả trước khi tạo xong script; (b) `Start-Process -ArgumentList @(...,'-File',$path)` không bọc ngoặc kép đường dẫn có dấu cách → powershell con thoát ngay. Sửa: `-ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$s`""` → chạy PID 19708, commit + push lần đầu 17:22:46.
+- Thư viện job mới `jobs/q061_lib.ps1`, `jobs/q061_dev.ps1` (chép từ 0.6.0, bằng chứng → `audit/audit-0.6.1/evidence/note9`).
+- Thiết bị: Note 9 SM-N960N (Android 10) serial 281038ac31217ece, đang cài 0.6.0 (2053).
+- Antigravity /swarm 1 (17:25, brief `audit/audit-0.6.1/antigravity/BRIEF_swarm1_061.md`): @repo_checker (13 kho Extension Repo + 13 website gợi ý kho + kohiden.xyz) và @update_checker (8 nguồn kiểm tra cập nhật). Antigravity đang có sẵn kế hoạch 0.6.1 tổng của riêng nó – tin nhắn /swarm ghi rõ chỉ làm phần trong brief.
+- Phân tích log Note 9: 2 phiên 0.6.0 (19/11 13:31, 15:00) KHÔNG có ERROR; cảnh báo lặp: kho `kohiden.xyz` CERTIFICATE_VERIFY_FAILED (mỗi lần mở app), ảnh hết giờ/từ chối (đã gom 1 phút/lần), Comick/MangaToon lỗi mạng. ERROR cũ (0.5.7–0.5.9) cần rà lại mã: `Bad state: Using "ref" when a widget is about to or has been unmounted` @ /browse (16/11), "Client is already closed" khi tải kho Secozzi/NovelSourcery (06/11), Google Drive list HTTP 403 (0.5.9).
