@@ -3500,3 +3500,53 @@ Thư mục: `output/0.5.8/`
 ### 20. Tổ chức lại Second Brain thành 13 tệp 00–12 (18/11 21:32–21:50)
 - Theo cấu trúc chủ dự án đặt: 00 bắt buộc đọc, 01 kiến trúc, 02 quy trình, 03 xây dựng bản phát hành, 04 bài học kỹ thuật, 05 kiểm tra, 06 công cụ, 07 quy tắc, 08 mẹo phiên AI, 09 điều phối tác nhân, 10 cấu trúc thư mục. Nội dung cũ (quy trình, bài học, công cụ, điều phối) giữ nguyên và phân lại đúng tệp; viết mới 01, 03, 05, 07, 08, 10. Cập nhật đường dẫn trong AGENTS.md, CLAUDE.md, GEMINI.md.
 - 21:43: thêm `11_project_handover_process_quy_trinh_ban_giao_du_an.md` (bàn giao cuối phiên/cuối phiên bản/nhận bàn giao + trạng thái hiện tại) và `12_session log_nhat_ky_phien_lam_viec.md` (nhật ký phiên, tóm tắt 25/10–17/11 + chi tiết 18/11).
+
+## 19/11/2026 — YomiHub 0.6.0 (đang làm) — Claude Opus 5.5 điều phối + Google Antigravity
+
+**Đầu vào:** `audit/audit-0.6.0/input/` (`input_0.6.0.json` – Excel Project GitHub + Project YomiHub, che tài khoản Anime47; `logs_10.txt` 16–19/11, 1.189 dòng, Xiaomi 25069PTEBG Android 16 chạy 0.5.8 rồi 0.5.9 build 2052 **bản android6**; ảnh sheet Merge).
+**Quyết định chủ dự án (09:20):** Windows 10/11 x64 đủ 3 định dạng (.appxbundle, Setup.exe, portable – Win7/x86/ARM không khả thi với Flutter); quét các dự án lớn → chuyển tính năng phù hợp sang Dart; kiểm thử Note 9 + AVD + Windows có ảnh/video, phần cần tài khoản chủ dự án tự đăng nhập; phát hành GitHub Release v0.6.0 + README (KHÔNG đẩy Kiritokmn Extension Repo – phiên khác); giữ nguyên 5 liên kết cũ; Antigravity /swarm nhận phần giao diện mới theo Mangayomi v0.9.96 + quét dự án + kiểm kho. 09:24: tự lưu tiến độ mỗi 5 phút (`scripts/autosave_progress_060.ps1`, dừng bằng `jobs/STOP_AUTOSAVE_060`).
+**Công cụ:** device_bash (VM, sửa `overlay/` bằng python3 read-modify-write, bản trước sửa ở `audit/audit-0.6.0/backup/overlay/*.059`), runner `jobs/pending_fast` + `jobs/pending` (PowerShell, Flutter 3.47.6), computer use (Antigravity), WebFetch (kiểm chỉ mục kho, API Mangayomi releases).
+
+### 1. Log: máy Android 16 vẫn chạy APK android6 của 0.5.9 (`[Bản cài] Đang chạy bản APK dành cho Android 6.0 trên Android 16`, mọi phiên 18–19/11) → tiện ích Keiyoushi/Project Nox lỗi `typeParametersSerializers()` (DamCoNuong 22:18:02)
+- **Nguyên nhân:** 0.5.8 android6 tự cập nhật lên 0.5.9 android6 bằng bộ chọn APK cũ (chỉ theo ABI). Bộ chọn mới của 0.5.9 (`apk_variant_picker.dart`) sẽ chọn APK thường ở lần cập nhật sau; nhưng bản đang cài chỉ hiện một toast dễ bỏ lỡ.
+- **Sửa:** `overlay/lib/yomihub/a6/a6_notice.dart` – thay toast bằng hộp thoại "Nên cài bản APK thường" (1 lần/phiên bản) với nút **Tải bản APK thường** mở `https://github.com/kiritokmn1403/YomiHub-Project/releases/latest` (`launchUrl(..., LaunchMode.externalApplication)`); không có context thì vẫn dùng toast; mở link lỗi → WARNING.
+
+### 2. Log: "Giao diện bị treo 2.7 giây … /updates", "Khung hình chậm: dựng 2826ms … /updates" (18/11 20:16)
+- **Nguyên nhân:** `updates_screen.dart` › build() gọi `e.chapter.loadSync()` cho TỪNG dòng cập nhật (N truy vấn Isar đồng bộ trên luồng UI, lặp lại mỗi lần watch phát); huy hiệu số lượng `_updateNumbers` xem cả danh sách `Update` (giải mã toàn bộ + duyệt liên kết chapter→manga) chỉ để lấy `.length`.
+- **Sửa:** tệp mới `overlay/lib/yomihub/perf/updates_preload.dart` – `preloadUpdateChapters()` nạp liên kết chương bằng API bất đồng bộ của Isar theo lô 150 (luồng Isar nền) trước khi phát; `modules/history/providers/isar_providers.dart` › `getAllUpdateStream` dùng `.asyncMap(preloadUpdateChapters)`; `repositories/update_repository.dart` thêm `watchCountByItemType()` (`watchLazy` + `count()`); `updates_screen.dart` dùng nó cho huy hiệu; `loadSync` chỉ còn là dự phòng. Nạp > 1,5 s ghi log hiệu năng "(không chặn giao diện)".
+
+### 3. Log: Tor "chưa kết nối được sau 90 giây (dừng ở 75%)" ghi ERROR (18/11 15:32:34) dù 15 s sau tự kết nối (15:32:49)
+- **Sửa:** `overlay/lib/yomihub/vpn/vpn_service.dart` – cờ `_softNextError`: khi Tor vẫn đang dựng mạch ở nền (có % bootstrap) thông báo 90 giây ghi WARNING; lỗi thật (đã thử hết cầu nối – `TorStallKind.exhausted`, lỗi PlatformException) vẫn ERROR.
+
+### 4. Log: CBHentai "[Tự động đổi URL] Đã chuyển từ hentaicube.xyz sang 2tencb.pro do máy chủ chính lỗi (mạng)" rồi "…từ 2tencb.pro sang hentaicube.xyz do máy chủ chính lỗi (403)" (19/11 00:40–00:41), "Captcha Failed! … (code: 300010)"
+- **Nguyên nhân:** `services/http/m_client.dart` › `_PooledClientWrapper.send` coi mọi 403/5xx là "máy chủ chính lỗi" → đổi sang gương; 403 ở đây là thách thức Cloudflare (gương cũng 403) nên đổi qua lại, cookie cf_clearance không bao giờ dùng được.
+- **Sửa:** hàm mới `isCloudflareChallengeResponse(status, headers)` (403/503/429 kèm `cf-mitigated: challenge`, `cf-chl-bypass`, hoặc `server: cloudflare` + `cf-ray`) – thách thức Cloudflare không kích hoạt đổi gương, để bộ giải Cloudflare xử lý. CAPTCHA Turnstile (300010) không tự giải – người dùng mở WebView tự xác minh (đúng thông báo hiện có).
+
+### 5. Log: "Không tải được ảnh từ 127.0.0.1 … Server returned error/HTML instead of image: http://127.0.0.1:47350/kotatsu/image?source=SAYHENTAI…" (+51 lần/phút, 19/11 00:44–00:45)
+- **Nguyên nhân:** `YomiKotatsu.kt` › `image()` thay Referer của parser bằng `https://<domain>/` và luôn trả HTTP 200 với nội dung CDN gửi về – trang lỗi 403/404 HTML đến trình đọc như "ảnh".
+- **Sửa (Kotlin):** giữ header của parser (chỉ thêm Referer khi thiếu), thử lại 1 lần không Referer khi CDN từ chối, nhận diện HTML/JSON, hỏng thì ném `IOException("Kotatsu: không tải được ảnh – HTTP <mã> (trang HTML) từ <máy chủ thật>")` → máy chủ cầu nối trả JSON lỗi rõ ràng.
+- **Sửa (Dart):** `utils/image_load_timeout.dart` hàm mới `logImageHost(url)` – với 127.0.0.1/localhost lấy máy chủ thật từ tham số `page`/`u`/`url`/`src` ("cdn.x (qua cổng nội bộ)"); `modules/widgets/custom_extended_image_provider.dart` dùng ở 2 chỗ ghi cảnh báo ảnh.
+
+### 6. Log: "[Health Connect] Chưa đồng bộ được phiên … Chưa cấp quyền ghi 'Chánh niệm'" ở mọi phiên (16–19/11, 5 lần)
+- **Sửa:** `overlay/lib/yomihub/health/health_connect_service.dart` – thiếu quyền là trạng thái cài đặt: ghi tối đa 1 lần/ngày cho mỗi thông điệp (`dailyStamp`/`shouldLogDaily`, lưu `hcSyncWarnStamp` trong YomiPrefs), kèm hướng dẫn cấp quyền.
+
+### 7. YomiHub Update – icon Google cho "Sao Lưu Lên Google Drive"
+- Ảnh trong sheet (static.vecteezy.com) **không tải tự động được**: máy ảo bị proxy chặn tên miền, máy Windows bị Cloudflare của vecteezy chặn ("Sorry, you have been blocked") – không vượt rào. Ảnh là logo chữ "G" 4 màu của Google → vẽ lại dạng vector: tệp mới `overlay/lib/yomihub/cloud/google_logo.dart` (`GoogleLogo`, màu #4285F4/#EA4335/#FBBC05/#34A853).
+- `modules/more/data_and_storage/data_and_storage.dart`: mục mới **"Sao Lưu Lên Google Drive"** (logo Google, mở `/cloudBackup`); `yomihub/cloud/cloud_backup_screen.dart`: thẻ Google Drive dùng logo Google (chấm xanh khi đã kết nối). Nếu chủ dự án muốn dùng đúng tệp ảnh: lưu vào `audit/audit-0.6.0/input/` để thay.
+
+### 8. YomiHub Update – "Get Video URL & Download Video Project"
+- Đã có từ 0.1.x: Savior trong trình duyệt (bắt link qua fetch/XHR/`<video>`, tải tệp + HLS, chọn chất lượng). Thiếu so với m3u8_StreamSniper/media-extractor/video-url-link: lấy link nằm sẵn trong mã trang trước khi bấm phát.
+- Tệp mới `overlay/lib/yomihub/savior/video_url_extractor.dart` (`VideoUrlExtractor.extract/iframes/unescape`: cấu hình jwplayer `sources/file`, `og:video`, `<source src>`, `data-src`, link thoát `https:\/\/`, `/`, `&amp;`, link tương đối, bỏ quảng cáo/segment `.ts/.m4s`/blob, HLS xếp đầu); `yomihub/browser/browser_screen.dart`: mục **"Quét mã trang tìm link video"** trong bảng Savior (đọc `document.documentElement.outerHTML`), không có link trực tiếp thì đề nghị mở khung nhúng (`<iframe>`) để quét tiếp; ghi log `[Savior] Quét mã trang …`.
+
+### 9. YomiHub Update – Video Short Scroll
+- Đã có (0.1.8 → 0.5.7): `YomiShorts` + `ShortsDetect` (từ khóa đa ngôn ngữ, tên miền, bộ lọc, công tắc "Ép chế độ Short" cho từng tiện ích). 0.6.0 thêm tên miền video ngắn: kwai, redgifs, xfree, kwiky, facebook.com/reel, spotlight (Snapchat), moj.app – `overlay/lib/yomihub/player/shorts_detect.dart`.
+
+### 10. Dự án GitHub đã sử dụng
+- So khớp lại 716 dòng sheet Project GitHub với `github_projects.dart` (696 liên kết): chỉ còn 2 liên kết là bài viết (StackOverflow, getvidora.com blog) – không phải dự án, giữ quy tắc 0.5.9 không thêm. "Donut Browser" đã có. 5 liên kết cũ giữ nguyên (quyết định chủ dự án 09:20).
+
+### 11. Gợi ý kho (Feature Check 21 – còn mở từ 0.5.9)
+- WebFetch 19/11: `salmanbappi/extensions-repo/main/index.min.json` = 97 tiện ích, tất cả `animeextension` (báo cáo 0.5.9 ghi nhầm "Comic"); `Secozzi/aniyomi-extensions/repo/index.min.json` = 3 (Jellyfin, Stremio, Torbox). Thêm cả hai vào `yomiSuggestedRepos` (`overlay/lib/yomihub/repos/extensions_repo_screen.dart`) với loại "Film & Movie • APK Aniyomi".
+
+### Kiểm thử tự động (đang chạy)
+- Test mới: `overlay/test/yh_060_log_fixes_test.dart` (Cloudflare challenge, logImageHost, Health Connect 1 lần/ngày, android6 notice), `overlay/test/yh_060_video_url_test.dart` (5 ca tách link).
+- 09:40–09:56 job `x060_fix1`: `dart analyze` treo (dartaotruntime 24 s CPU/8 phút) → dừng; `flutter test` sau đó cũng treo. 10:00–10:06: phát hiện máy quá tải (ổ đĩa 270–386 %, RAM trống 1,5/16 GB, Microsoft PC Manager chiếm CPU liên tục; `git add` của autosave cũng treo) → đã báo chủ dự án tắt PC Manager; chạy lại test khi máy rảnh.

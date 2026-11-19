@@ -84,6 +84,18 @@ const yomiSuggestedRepos = <YomiSuggestedRepo>[
     // YomiHub 0.1.9: IReader's source API is built in (Android)
     note: 'Novel • IReader (cầu nối IReader tích hợp: APK trên Android, JAR trên Windows)',
   ),
+  // 0.6.0 (Feature Check 21, open item of 0.5.9): verified 19/11/2026 –
+  // index.min.json answers, all packages are Aniyomi anime extensions.
+  YomiSuggestedRepo(
+    'https://raw.githubusercontent.com/salmanbappi/extensions-repo/main/index.min.json',
+    'Salmanbappi',
+    note: 'Film & Movie • APK Aniyomi (97 nguồn)',
+  ),
+  YomiSuggestedRepo(
+    'https://raw.githubusercontent.com/Secozzi/aniyomi-extensions/repo/index.min.json',
+    'Secozzi',
+    note: 'Film & Movie • APK Aniyomi (Jellyfin, Stremio, Torbox)',
+  ),
 ];
 
 String _norm(String? u) {
