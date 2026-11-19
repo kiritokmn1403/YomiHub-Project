@@ -1,3 +1,9 @@
 Nên cài bản APK thường
 Để sau
 Tải bản APK thường
+Quét mã trang tìm link video
+Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng
+Không thấy link trực tiếp – mở trình phát nhúng để quét?
+Đã tìm thấy {p0} link video mới – mở lại Savior để tải
+Không tìm thấy link video trong mã trang
+Không quét được mã trang

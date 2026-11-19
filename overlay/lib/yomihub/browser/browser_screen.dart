@@ -1,3 +1,5 @@
+import 'package:mangayomi/yomihub/savior/video_url_extractor.dart';
+import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/browser/webview_safe.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
@@ -328,6 +330,18 @@ class _BrowserScreenState extends State<BrowserScreen> {
                   child: Text(tr('Danh sách tải')),
                 ),
               ),
+              // 0.6.0: links sitting in the page source / player config
+              // (before pressing play) and embedded players.
+              if (!t.gecko && t.c != null)
+                ListTile(
+                  leading: const Icon(Icons.manage_search),
+                  title: Text(tr('Quét mã trang tìm link video')),
+                  subtitle: Text(tr('Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng')),
+                  onTap: () async {
+                    Navigator.pop(ctx);
+                    await _saviorScanSource(t);
+                  },
+                ),
               for (final m in items)
                 ListTile(
                   leading: Icon(m.kind == SaviorKind.hls ? Icons.stream : m.label.startsWith('Âm') ? Icons.audiotrack : Icons.movie_outlined),
@@ -352,6 +366,47 @@ class _BrowserScreenState extends State<BrowserScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _saviorScanSource(_Tab t) async {
+    try {
+      final html = '${await t.c?.evaluateJavascript(source: 'document.documentElement.outerHTML') ?? ''}';
+      final found = VideoUrlExtractor.extract(html, t.url);
+      var added = 0;
+      for (final e in found) {
+        final m = SaviorMedia.classify(e.url, t.url);
+        if (m != null && !t.media.containsKey(e.url)) {
+          t.media[e.url] = m;
+          added++;
+        }
+      }
+      final frames = VideoUrlExtractor.iframes(html, t.url);
+      if (mounted) setState(() {});
+      AppLogger.log('[Savior] Quét mã trang ${YomiAdBlock.hostOf(t.url)}: ${found.length} link media (+$added mới), ${frames.length} khung nhúng');
+      if (added == 0 && frames.isNotEmpty && mounted) {
+        final open = await showDialog<String>(
+          context: context,
+          builder: (ctx) => SimpleDialog(
+            title: Text(tr('Không thấy link trực tiếp – mở trình phát nhúng để quét?')),
+            children: [
+              for (final f in frames.take(8))
+                SimpleDialogOption(
+                  onPressed: () => Navigator.pop(ctx, f),
+                  child: Text(f, maxLines: 2, overflow: TextOverflow.ellipsis),
+                ),
+            ],
+          ),
+        );
+        if (open != null) _openTab(open);
+        return;
+      }
+      _toast(added > 0
+          ? tr('Đã tìm thấy {p0} link video mới – mở lại Savior để tải', {'p0': added})
+          : tr('Không tìm thấy link video trong mã trang'));
+    } catch (e) {
+      AppLogger.log('[Savior] Không quét được mã trang: $e', logLevel: LogLevel.warning);
+      _toast(tr('Không quét được mã trang'));
+    }
   }
 
   Future<void> _saviorDownload(_Tab t, SaviorMedia m) async {
