@@ -33,3 +33,16 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **15:29** Release `v0.6.0` 19/19 asset khớp; bàn giao (11-E), dừng autosave.
 - **15:38–16:12** theo yêu cầu chủ dự án: README viết lại theo mẫu Standard (The Documentation Compendium); sắp xếp toàn bộ `.ps1` → `scripts/{lib,runner,setup,pipeline,sync,build,packaging,release,autosave}` (sửa đường dẫn, tác vụ Windows runners, kiểm verify + khởi động lại runner); gỡ `scripts/lib/yh_defines.ps1` khỏi GitHub (giữ cục bộ, `.gitignore`); logo/ảnh → `assets/logo`, `assets/screenshots`, icon trang chủ → `docs/assets`; `.bat` → `scripts/setup`, `scripts/build`, `scripts/runner`. Lưu toàn bộ vào Second Brain (00, 03, 04, 05, 06, 08, 09, 10, 11, 12).
 - **Tiếp theo (0.6.1)**: xem 11-E.
+
+## 19/11/2026 tối · 0.6.1 · Claude Opus 5.5 (claude.ai + máy tính, 17:08–) + Google Antigravity
+- **17:12** yêu cầu 0.6.1 (2 Excel + tệp đánh giá repo). Tóm tắt yêu cầu, hỏi 4 câu → chủ dự án chọn: Windows "tùy bạn" (→ Win 10/11 x64), 3 APK như 0.6.0, dọn thư mục + BUILDING.md, giao diện Mangayomi mới trên nhánh riêng.
+- **17:18** chủ dự án: xin đủ quyền (đã cấp), giao Antigravity /swarm, tự lưu 5 phút → autosave_progress_061 (lần đầu không chạy vì Start-Process không bọc ngoặc kép đường dẫn).
+- **17:25** /swarm 1 (kho tiện ích + nguồn cập nhật) – xong ~17:40, có mã HTTP thật.
+- **17:27** dọn repo `git rm --cached` (6.136 → 2.500 tệp theo dõi), BUILDING.md.
+- **17:29** chủ dự án bổ sung: bộ lọc ô chọn chọn nhiều + Thể loại DamCoNuong → sửa MihonInvoker.kt (KeiSource), `_convertFilters`, `multi_select_search.dart`.
+- 17:45–18:09: chứng chỉ Let's Encrypt (kohiden), Google Drive 2 tùy chọn, Short cho mọi tiện ích, GIF Viewer, i18n 324 bản dịch, trang chủ ↔ chính sách, README nháp, 5 kho gợi ý; mọi test ĐẠT.
+- **18:10–18:11** dây chuyền 0.6.1 (lần 1 lỗi sync do tag v0.6.1) → lần 2 chạy: test 950/950, apk, tv, win, pack, a6build…
+- **18:40–18:56** Note 9 mất adb → chủ dự án cắm lại, `adb kill-server` mới thấy. Kiểm Note 9 (Short-all, Drive 2 tùy chọn, GIF Viewer, DamCoNuong qua Tor) ĐẠT; trang DamCoNuong bị nhà mạng chặn.
+- **20:03** chủ dự án: giao thêm /swarm 2 (kiểm README/changelog/link bằng mã). Windows Setup.exe cài đè 0.5.9 → 0.6.1 ĐẠT, GIF Viewer + Drive trên Windows ĐẠT.
+- **20:08** chủ dự án: tự lưu 3 phút/lần.
+

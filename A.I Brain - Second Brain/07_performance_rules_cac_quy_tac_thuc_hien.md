@@ -26,3 +26,6 @@
 17. Cuối mỗi phiên: thêm mục vào nhật ký phiên (12) và làm bước bàn giao (11).
 18. **Tự lưu tiến độ 3 phút/lần** (yêu cầu chủ dự án 19/11/2026 11:34, thay mức 5 phút đặt lúc 09:24): `scripts/autosave/autosave_progress_<ver>.ps1` chạy nền từ đầu đến khi xong đợt; dừng bằng `jobs/STOP_AUTOSAVE_<ver>`.
 19. Tác nhân (Antigravity/Claude) KHÔNG được liệt kê/tìm đệ quy cả `D:\A.I Project`, `D:\yh`, `src/`: 19/11 ba lệnh `ls -R`/`Get-ChildItem -Recurse` của Antigravity làm nghẽn ổ đĩa 1,5 giờ. Khi máy chậm: liệt kê cmd/PowerShell nền (Win32_Process + CommandLine) và dừng tiến trình thừa trước khi kết luận.
+20. **Tự lưu tiến độ (0.6.1)**: 19/11 17:18 chủ dự án đặt 5 phút/lần, 20:08 đổi lại **3 phút/lần** – `scripts/autosave/autosave_progress_061.ps1`, dừng bằng `jobs/STOP_AUTOSAVE_061`. Mỗi lần chủ dự án đổi nhịp: sửa `Start-Sleep`, dừng tiến trình cũ (Win32_Process theo CommandLine) rồi chạy lại.
+21. **Mã phát hành = mã đã dựng**: sửa phát sinh SAU bước sync của dây chuyền mà không dựng lại → cất vào `audit/audit-<ver>/pending_<ver+1>/`, trả `overlay/` về bản trong thư mục dựng (so `cmp`) để mã đẩy lên GitHub khớp tệp cài.
+
