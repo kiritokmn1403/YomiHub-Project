@@ -117,3 +117,6 @@ src/mangayomi-0.9.95/
 
 # 0.5.9: OAuth client config (injected at build via --dart-define)
 secrets/
+
+# 0.6.0: script nap --dart-define tu secrets (khong dua len GitHub)
+scripts/lib/yh_defines.ps1
