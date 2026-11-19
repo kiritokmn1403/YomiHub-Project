@@ -277,7 +277,8 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
     final connected = pr.isConnected;
     return ExpansionTile(
       // 0.6.0: Google Drive shows the Google logo (sheet YomiHub Update)
-      leading: pr.id == 'gdrive'
+      // 0.6.1: cả hai tùy chọn Google Drive (Đăng nhập Google / Client ID)
+      leading: pr.id.startsWith('gdrive')
           ? Badge(
               isLabelVisible: connected,
               backgroundColor: Colors.green,

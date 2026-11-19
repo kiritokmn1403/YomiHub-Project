@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/gif/gif_viewer_screen.dart';
 import 'package:mangayomi/yomihub/speedtest/speedtest_screen.dart';
 import 'package:mangayomi/yomihub/win/win_diag_screen.dart';
 import 'package:mangayomi/yomihub/wifi/wifi_settings_screen.dart';
@@ -124,6 +125,15 @@ class SettingsScreen extends StatelessWidget {
               icon: Icons.shield_outlined,
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const AdBlockSettingsScreen()),
+              ),
+            ),
+            // YomiHub 0.6.1: GIF Viewer (sheet YomiHub Update)
+            ListTileWidget(
+              title: 'GIF Viewer',
+              subtitle: tr('Xem ảnh động GIF / WebP / APNG: từng khung hình, tốc độ, lặp lại'),
+              icon: Icons.gif_box_outlined,
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const GifViewerScreen()),
               ),
             ),
             // YomiHub 0.2.2: SpeedTest (LibreSpeed)

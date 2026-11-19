@@ -65,6 +65,7 @@ class YomiShorts {
         additionalParams: s.additionalParams,
         notes: s.notes,
         filters: filters,
+        allSources: ShortsStore.allSources,
       );
 
   static bool supports(Source s, {List<dynamic> filters = const []}) =>

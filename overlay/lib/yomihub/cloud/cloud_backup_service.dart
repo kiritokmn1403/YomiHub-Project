@@ -84,6 +84,11 @@ String _q(Map<String, String> m) =>
     m.entries.map((e) => '${Uri.encodeQueryComponent(e.key)}=${Uri.encodeQueryComponent(e.value)}').join('&');
 
 Map<String, dynamic> _json(http.Response r, String what) {
+  // 0.6.1: Client ID riêng chưa bật Google Drive API → câu hướng dẫn rõ ràng
+  if (r.statusCode == 403 &&
+      (r.body.contains('accessNotConfigured') || r.body.contains('has not been used in project'))) {
+    throw Exception('$what: HTTP 403 – ${tr('Google Drive API chưa được bật cho dự án Google Cloud của Client ID này. Mở Google Cloud Console › APIs & Services › Library › bật "Google Drive API" rồi thử lại.')}');
+  }
   if (r.statusCode < 200 || r.statusCode >= 300) {
     throw Exception('$what: HTTP ${r.statusCode} ${r.body.length > 300 ? r.body.substring(0, 300) : r.body}');
   }
@@ -187,8 +192,12 @@ mixin _OAuth on CloudProvider {
 class GoogleDriveProvider extends CloudProvider with _OAuth {
   @override
   String get id => 'gdrive';
+  /// 0.6.1 (sheet YomiHub Update): "Đăng nhập bằng tài khoản Google" và
+  /// "Google Drive bằng Client ID" là HAI tùy chọn riêng. Lớp này là tùy chọn
+  /// đăng nhập Google (cấu hình OAuth sẵn của YomiHub); Client ID riêng ở
+  /// [GoogleDriveClientIdProvider].
   @override
-  String get displayName => 'Google Drive';
+  String get displayName => tr('Google Drive – Đăng nhập bằng tài khoản Google');
   @override
   CloudAuthKind get authKind => CloudAuthKind.deviceCode;
   @override
@@ -197,14 +206,12 @@ class GoogleDriveProvider extends CloudProvider with _OAuth {
   Map<String, String> get refreshExtra => {};
   @override
   List<CloudField> get fields => [
-        CloudField('client_id', tr('Client ID (để trống = Đăng nhập bằng tài khoản Google, dùng cấu hình sẵn của YomiHub)')),
-        CloudField('client_secret', 'Client secret', secret: true),
         CloudField('folder_name', tr('Tên thư mục sao lưu (mặc định YomiHub)'), hint: 'YomiHub'),
         CloudField('keep', tr('Giữ bao nhiêu bản sao lưu gần nhất (mặc định 10, 0 = giữ hết)')),
       ];
   @override
   String get help =>
-      tr('Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Có thể tự nhập Client ID/Client secret riêng (loại TV/Limited Input Devices) nếu muốn.');
+      tr('Bấm Kết nối để đăng nhập bằng tài khoản Google (Windows: mở trình duyệt rồi tự quay lại app; Android/TV: mở trang google.com/device và nhập mã hiển thị). Ứng dụng chỉ dùng quyền drive.file với đúng thư mục sao lưu do YomiHub tạo (mặc định: YomiHub), không đọc tệp khác. Muốn dùng Client ID riêng: chọn mục "Google Drive – Client ID".');
 
   /// Email of the signed-in Google account (0.5.9), shown in the UI.
   String? get accountEmail => config['account_email'];
@@ -483,6 +490,40 @@ class GoogleDriveProvider extends CloudProvider with _OAuth {
     final sink = out.openWrite();
     await r.stream.pipe(sink);
     return out;
+  }
+}
+
+
+/// 0.6.1: tùy chọn sao lưu Google Drive bằng Client ID / Client secret riêng
+/// (OAuth client loại "TVs and Limited Input devices"), tách khỏi đăng nhập
+/// Google. Dữ liệu cấu hình riêng (id `gdrive_cid`).
+class GoogleDriveClientIdProvider extends GoogleDriveProvider {
+  @override
+  String get id => 'gdrive_cid';
+  @override
+  String get displayName => tr('Google Drive – Client ID');
+  @override
+  List<CloudField> get fields => [
+        CloudField('client_id', 'Client ID'),
+        CloudField('client_secret', 'Client secret', secret: true),
+        CloudField('folder_name', tr('Tên thư mục sao lưu (mặc định YomiHub)'), hint: 'YomiHub'),
+        CloudField('keep', tr('Giữ bao nhiêu bản sao lưu gần nhất (mặc định 10, 0 = giữ hết)')),
+      ];
+  @override
+  String get help => tr('Nhập Client ID và Client secret của OAuth client riêng (Google Cloud Console › Credentials › loại "TVs and Limited Input devices", bật Google Drive API) rồi bấm Kết nối và nhập mã hiển thị ở google.com/device. Dùng quyền drive.file với thư mục sao lưu (mặc định YomiHub).');
+
+  @override
+  bool get _useLoopback => false;
+
+  @override
+  void _applyBuiltInDeviceClient() {}
+
+  @override
+  Future<CloudAuthPrompt?> beginAuth() async {
+    if ((config['client_id'] ?? '').trim().isEmpty) {
+      throw Exception(tr('Hãy nhập Client ID (và Client secret) trước khi kết nối'));
+    }
+    return super.beginAuth();
   }
 }
 
@@ -1385,6 +1426,7 @@ class CloudBackupService {
 
   final List<CloudProvider> providers = [
     GoogleDriveProvider(),
+    GoogleDriveClientIdProvider(), // 0.6.1: tách khỏi đăng nhập Google
     OneDriveProvider(),
     DropboxProvider(),
     WebDavProvider(),

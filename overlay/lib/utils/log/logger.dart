@@ -159,6 +159,10 @@ class AppLogger {
     caseSensitive: false,
   );
 
+  static final RegExp _cloudApiRegex = RegExp(
+    r'(googleapis\.com|Google Drive API|Drive (list|upload|create|download)|accessNotConfigured|graph\.microsoft\.com|OneDrive|dropboxapi\.com|Đồng bộ đám mây)',
+    caseSensitive: false,
+  );
   static final RegExp _http403Regex = RegExp(
     r'\b(http\s*(?:status|error)?\s*[:=]?\s*403|status(?:code)?\s*[:=]?\s*403|code\s*[:=]?\s*403|403\s+forbidden|cloudflare|turnstile|cf_clearance)\b',
     caseSensitive: false,
@@ -193,6 +197,13 @@ class AppLogger {
     // 2. Kiểm tra HTTP 404 dựa trên status code thực tế, không bắt số 404 ngẫu nhiên trong URL
     if (_http404Regex.hasMatch(msg)) {
       return '[Lỗi Nguồn 404] $msg';
+    }
+
+    // 3a. 0.6.1: lỗi 403 của API Google/Microsoft/Dropbox (sao lưu đám mây,
+    // vd. "Drive list: HTTP 403 … API has not been used in project") không phải
+    // Cloudflare – log 18/11 bị gắn nhầm "[Lỗi Nguồn 403 / Cloudflare]".
+    if (_http403Regex.hasMatch(msg) && _cloudApiRegex.hasMatch(msg)) {
+      return '[Lỗi Đám Mây 403] $msg';
     }
 
     // 3. Kiểm tra HTTP 403 / Cloudflare Turnstile

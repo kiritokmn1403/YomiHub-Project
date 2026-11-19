@@ -178,7 +178,7 @@ class ShortsDetect {
   }
 
   /// Why the extension counts as a Short source: `forced`, `builtin`,
-  /// `filter`, `capability`, `site` – or null when it does not.
+  /// `filter`, `capability`, `site`, `all` (0.6.1) – or null when it does not.
   static String? reason({
     required bool isVideoSource,
     bool forced = false,
@@ -188,6 +188,7 @@ class ShortsDetect {
     String? additionalParams,
     String? notes,
     List<dynamic> filters = const [],
+    bool allSources = false,
   }) {
     if (!isVideoSource) return null;
     if (forced) return 'forced';
@@ -197,6 +198,8 @@ class ShortsDetect {
       return 'capability';
     }
     if (isKnownSite(name: name, baseUrl: baseUrl)) return 'site';
+    // 0.6.1: công tắc chung "Short Video cho mọi tiện ích video"
+    if (allSources) return 'all';
     return null;
   }
 }

@@ -49,6 +49,14 @@ class ShortsStore {
     await YomiPrefs.set(forceKey(s.id), value ? true : null);
   }
 
+  // ───────── 0.6.1: mở Short Video cho MỌI tiện ích video ─────────
+  // (sheet YomiHub Update: "mở khoá toàn bộ tính năng Short Video cho tất cả
+  // các extension bên ngoài có hỗ trợ"). Bật: mọi nguồn Film & Movie có nút
+  // Short; nguồn không có bộ lọc Short thì feed dùng trang Phổ biến/Mới nhất.
+  static const allKey = 'shorts_all_sources';
+  static bool get allSources => YomiPrefs.get<bool>(allKey, false);
+  static Future<void> setAllSources(bool v) => YomiPrefs.set(allKey, v ? true : null);
+
   // ───────── seen / random ─────────
 
   static Future<Set<String>> _seen() async {

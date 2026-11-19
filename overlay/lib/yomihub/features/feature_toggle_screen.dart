@@ -7,6 +7,7 @@ import 'package:mangayomi/modules/more/settings/browse/providers/browse_state_pr
 import 'package:mangayomi/modules/more/settings/browse/source_repositories.dart';
 import 'package:mangayomi/modules/more/settings/reader/providers/reader_state_provider.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
+import 'package:mangayomi/yomihub/player/shorts_store.dart';
 import 'package:mangayomi/yomihub/repos/extensions_repo_screen.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
 import 'package:mangayomi/yomihub/playbooks/playbooks_toggle.dart';
@@ -146,6 +147,20 @@ class FeatureToggleScreen extends ConsumerWidget {
                     subtitle: Text(tr('Thư viện phim ảnh, anime, danh sách xem và trình phát video')),
                     value: animeFeatureOn,
                     onChanged: (val) => toggleFeature(animeRoute, val),
+                  ),
+                  const Divider(height: 1),
+                  // 0.6.1: Short Video cho mọi tiện ích video (sheet YomiHub Update)
+                  StatefulBuilder(
+                    builder: (context, setLocal) => SwitchListTile(
+                      secondary: const Icon(Icons.video_library_outlined),
+                      title: Text(tr('Short Video cho mọi tiện ích video')),
+                      subtitle: Text(tr('Hiện nút Short ở mọi nguồn Film & Movie, kể cả nguồn không khai báo Short (feed dùng trang Phổ biến / Mới nhất)')),
+                      value: ShortsStore.allSources,
+                      onChanged: (val) async {
+                        await ShortsStore.setAllSources(val);
+                        setLocal(() {});
+                      },
+                    ),
                   ),
                   const Divider(height: 1),
                   SwitchListTile(
