@@ -29,3 +29,8 @@
 ## Thư mục liên quan khác trong `D:\A.I Project\`
 - `A.I Project - Extension Repo\Kiritokmn - Extension Repo\` – repo tiện ích (`sources/`, `.build/test/`, `repo/`, `_work/NOTES_swarm_<ver>.md`, Second Brain riêng `A.I Brain - Second Brain/`).
 - `GitHub\` – mã tham khảo các dự án GitHub; `Claude outputs\` – ảnh/tệp bàn giao cũ; `A.I Project - YomiHub Project\` – gốc chứa `YomiHub-Project`, `output/`, `TECHNICAL_UPDATE_NOTES.md` cũ.
+
+## Thay đổi 19/11/2026 tối (0.6.1)
+- `dev/`, `work-0.1.8/`, `audit/`, `_old/`, `archive/`, `bug/`, `_to_delete/` **không còn trên GitHub** (`git rm --cached`, `.gitignore`) – vẫn nằm trên máy dựng; lịch sử git giữ bản cũ. Tiến độ/ghi chú phiên bản công khai nằm trong `TECHNICAL_UPDATE_NOTES.md` + Second Brain; `audit/audit-<ver>/` chỉ còn cục bộ.
+- Gốc có thêm `BUILDING.md` (hướng dẫn dựng cho người phát triển).
+- Tệp mới trong overlay: `lib/yomihub/filters/multi_select_search.dart`, `lib/yomihub/net/extra_roots.dart`, `lib/yomihub/gif/gif_viewer_screen.dart`.

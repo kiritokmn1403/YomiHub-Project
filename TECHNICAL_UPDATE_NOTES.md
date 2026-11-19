@@ -3657,3 +3657,11 @@ Thư mục: `output/0.5.8/`
 ### 11. Bộ script dựng 0.6.1
 - Chép `scripts/{build,packaging,sync,release,pipeline}/*_060*` → `*_061*` bằng Python (giữ BOM): `0.6.0→0.6.1`, `+53/'53'→54`, `audit-0.6.0→audit-0.6.1`, `060→061`, `sync -Regen` so với tag `v0.6.0`. Sửa tay: danh sách test Windows (`build_061.ps1` – chuỗi `yh_060_*` bị đổi thành `yh_061_*` không tồn tại → khôi phục + thêm 3 test 0.6.1). `overlay/pubspec.yaml` `0.6.1+54`, `app_identity.dart` userAgent `YomiHub/0.6.1`. Changelog VI + EN: `audit/audit-0.6.1/release/YomiHub-0.6.1-changelog.md`.
 
+### 12. Giao diện mới Mangayomi v0.9.96 (Old/New) – nhánh riêng
+- Quyết định chủ dự án 17:16: làm trên nhánh riêng, chỉ gộp khi build + test qua; nếu không → 0.6.2.
+- 0.6.1: CHƯA làm. Lý do: cần nâng Flutter 3.47.6 → 3.50 + gói `material_ui` (357 tệp upstream khác nhau, xem `audit/audit-0.6.0/notes/upstream_0995_0996_files.txt`), máy dựng chỉ còn ~850 MB RAM trống trong phiên; nâng toolchain dùng chung với dây chuyền phát hành có nguy cơ làm hỏng bản dựng 0.6.1. Dời sang 0.6.2 với toolchain Flutter 3.50 cài song song (`D:\yh\tools\flutter350`), thư mục dựng riêng.
+
+### 13. Dây chuyền dựng 0.6.1
+- 18:10 lần 1 (`x061_build_main`): bước sync lỗi "git không báo tệp overlay nào thay đổi" – `sync_061.ps1` so với tag `v0.6.1` (lỗi đổi số hàng loạt, xem Second Brain 04) → sửa thành `v0.6.0`.
+- 18:11 lần 2 (`x061_build_main2`): `git fetch --tags` (v0.6.0 = 0c8cfad) → sync ĐẠT → test …
+

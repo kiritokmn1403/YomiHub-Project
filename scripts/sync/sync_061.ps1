@@ -13,7 +13,7 @@ if ($Regen) {
     $git = if (Get-Command git -ErrorAction SilentlyContinue) { 'git' } else { 'D:\yh\tools\git\cmd\git.exe' }
     # 0.6.1: git ghi cảnh báo CRLF ra stderr; với ErrorActionPreference=Stop (common.ps1) PowerShell coi là lỗi.
     $eap = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
-    $l = @(& $git -C $root -c core.safecrlf=false diff --name-only v0.6.1 -- overlay 2>$null) + @(& $git -C $root ls-files -o --exclude-standard -- overlay 2>$null)
+    $l = @(& $git -C $root -c core.safecrlf=false diff --name-only v0.6.0 -- overlay 2>$null) + @(& $git -C $root ls-files -o --exclude-standard -- overlay 2>$null)
     $ErrorActionPreference = $eap
     $l = @($l | Where-Object { $_ -match '\S' } | Sort-Object -Unique)
     if ($l.Count -eq 0) { Write-Error "LỖI: git không báo tệp overlay nào thay đổi"; exit 1 }
