@@ -227,6 +227,7 @@ class _AniyomiFilterViewState extends State<AniyomiFilterView> {
         final q = (_q[i] ?? '').trim().toLowerCase();
         children.add(
           ExpansionTile(
+            key: PageStorageKey<String>('yh_prof_${i}_${f.name}'),
             title: Text(f.name, style: const TextStyle(fontSize: 14)),
             trailing: n > 0
                 ? Badge(label: Text('$n'), child: const Icon(Icons.expand_more))

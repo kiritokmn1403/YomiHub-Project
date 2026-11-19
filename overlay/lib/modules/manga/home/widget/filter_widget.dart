@@ -23,6 +23,19 @@ class FilterWidget extends StatefulWidget {
 class _FilterWidgetState extends State<FilterWidget> {
   List<dynamic> get filterList => widget.filterList;
 
+  /// YomiHub 0.6.2: KHÔNG lưu/đọc vị trí cuộn qua PageStorage. Nhóm bộ lọc
+  /// (ExpansionTile) ghi trạng thái mở/gập (bool) vào PageStorage cùng định danh
+  /// với danh sách lồng bên trong → ScrollPosition.restoreScrollOffset đọc bool
+  /// thành double → "type 'bool' is not a subtype of type 'double?'" (log 19/11
+  /// 21:53, giải mã bằng symbols_061) rồi Null check ở ô nhập chữ.
+  final ScrollController _scroll = ScrollController(keepScrollOffset: false);
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
+
   void onChanged(List<dynamic> list) {
     widget.onChanged(list);
     if (mounted) setState(() {});
@@ -31,6 +44,7 @@ class _FilterWidgetState extends State<FilterWidget> {
   @override
   Widget build(BuildContext context) {
     return SuperListView.builder(
+      controller: _scroll,
       padding: const EdgeInsets.all(0),
       itemCount: filterList.length,
       primary: false,
@@ -73,6 +87,8 @@ class _FilterWidgetState extends State<FilterWidget> {
           );
         } else if (filterState is GroupFilter) {
           widget = ExpansionTile(
+            // 0.6.2: khóa riêng → trạng thái mở/gập không đè lên khóa của danh sách khác
+            key: PageStorageKey<String>('yh_grp_${idx}_${filterState.name}'),
             title: Text(filterState.name, style: const TextStyle(fontSize: 13)),
             children: [
               FilterWidget(
