@@ -1,5 +1,5 @@
 # Build YomiHub for Windows 10/11 x64 (needs VS 2022 Build Tools with C++).
-. "$PSScriptRoot\common.ps1"
+. "$PSScriptRoot\..\lib\common.ps1"
 $stamp = Get-Date -Format HHmmss
 Start-Transcript "$LOGS\buildwin_log_$stamp.txt" -Force | Out-Null
 $ErrorActionPreference = 'Continue'

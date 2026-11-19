@@ -10,10 +10,9 @@
 | `docs/` | GitHub Pages: `index.html` (trang chủ, nút tải từng bản), `privacy.html`, favicon/icon |
 | `overlay/` | **Mã YomiHub** (`lib/`, `lib/yomihub/`, `android/`, `windows/`, `assets/yomihub_i18n/`, `test/`, `pubspec.yaml`) |
 | `src/` | Nền Mangayomi upstream (`mangayomi`, `mangayomi-0.9.95`, `v0.9.7`, `BASE_VERSION.txt`) |
-| `build/` | Script dựng `build_<ver>.ps1`, `build_<ver>_android.ps1`, `build_<ver>_android6.ps1` |
-| gốc | `run_<ver>_main.ps1`, `sync_<ver>.ps1`, `make_installer_exe_<ver>.ps1`, `make_appxbundle_<ver>.ps1`, `release_<ver>.ps1`, `common.ps1`, `yh_defines.ps1`, `setup_tools.ps1`, `run_jobs.ps1`, `run_jobs_fast.ps1`, `ensure_runners.ps1`, `0_probe.bat`…`3b_run_fast_jobs.bat` |
-| `jobs/` | Hàng đợi runner: `pending/`, `pending_fast/`, `done/` (log), thư viện `q059_lib.ps1`, `q059_dev.ps1`; `STOP_AUTOSAVE` (git-ignored) |
-| `scripts/` | `autosave_progress_<ver>.ps1`, nhóm `build/`, `checksums/`, `media/`, `packaging/`, `pipeline/`, `qa/`, `release/`, `sync/`, `test/` |
+| gốc | Chỉ còn `.bat` khởi chạy (`0_probe.bat`…`3b_run_fast_jobs.bat`), tài liệu (`README.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `TECHNICAL_UPDATE_NOTES.md`), khóa ký (git-ignored). **Không đặt `.ps1` ở gốc** (sắp xếp 19/11/2026) |
+| `jobs/` | Hàng đợi runner: `pending/`, `pending_fast/`, `done/` (log), thư viện `q0xx_lib.ps1`, `q0xx_dev.ps1` (dot-source `scripts\lib\common.ps1`); `STOP_AUTOSAVE` (git-ignored) |
+| `scripts/` | Mọi script PowerShell (19/11/2026): `lib/` (`common.ps1` – `$KIT` = gốc dự án, `yh_defines.ps1`), `runner/` (`run_jobs.ps1`, `run_jobs_fast.ps1`, `ensure_runners.ps1` – tác vụ Windows "YomiHub runners" trỏ vào đây), `setup/` (`setup_tools.ps1`), `pipeline/` (`run_<ver>_main.ps1`), `sync/` (`sync_<ver>.ps1`), `build/` (`build_<ver>.ps1`, `build_<ver>_android.ps1`, `build_<ver>_android6.ps1`), `packaging/` (`make_installer_exe_<ver>.ps1`, `make_appxbundle_<ver>.ps1`), `release/` (`release_<ver>.ps1`), `autosave/` (`autosave_progress_<ver>.ps1`), `checksums/`, `media/`, `qa/`, `test/`. Script trong `scripts/<nhóm>/` tính gốc dự án = 2 cấp trên `$PSScriptRoot`; script bản cũ (≤ 0.5.7) chỉ để lưu trữ |
 | `audit/audit-<ver>/` | Mỗi phiên bản: `input/` (Excel→JSON đã che), `notes/` (NOTES, i18n), `coordination/` (PROGRESS, BUILD_LOCK ở 0.5.6), `release/` (trạng thái dựng, changelog, manifest), `evidence/` (ảnh/video/log – git-ignored), `backup/`, `antigravity/` (báo cáo Antigravity), `apkpure/` (tư liệu cửa hàng) |
 | `output/<ver>/` | Bộ cài đã dựng (git-ignored, tải lên Release) |
 | `logs/` | Log dựng/autosave (git-ignored; có thể chứa dòng lệnh dart-define) |

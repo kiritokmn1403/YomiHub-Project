@@ -1,5 +1,5 @@
 # Step 1: download source + all build tools (no admin needed). Everything goes to D:\yh
-. "$PSScriptRoot\common.ps1"
+. "$PSScriptRoot\..\lib\common.ps1"
 # stop any earlier run of this script
 Get-CimInstance Win32_Process | Where-Object { ($_.CommandLine -match 'setup_tools\.ps1' -and $_.ProcessId -ne $PID) -or $_.Name -eq 'curl.exe' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
 Start-Sleep 2

@@ -13,5 +13,5 @@
 
 ## Hạ tầng thực hiện
 - Máy Windows chạy 2 runner: `jobs/pending/` (dài – dựng) và `jobs/pending_fast/` (ngắn – test, adb, git). Job = `.ps1`, dòng 1 `# timeout: <phút>`; log `jobs/done/<tên>.log` (thường UTF-16LE, đôi khi UTF-8). `ensure_runners.ps1` / `3_run_jobs.bat`, `3b_run_fast_jobs.bat` bật lại runner.
-- Thư viện job: `common.ps1` (PATH Flutter/JDK/SDK/Rust, `PUB_CACHE=D:\yh\pub-cache`), `yh_defines.ps1` (`--dart-define` Google OAuth từ `secrets/`), `jobs/q059_lib.ps1` (`Sync-Overlay`, `Run-Tests`, `Run-Analyze`), `jobs/q059_dev.ps1` (điều khiển Note 9).
-- **Tự lưu tiến độ** (yêu cầu chủ dự án 18/11): `scripts/autosave_progress_<ver>.ps1` chạy nền, 3 phút commit + push có chọn lọc; dừng bằng `jobs/STOP_AUTOSAVE` (xóa tệp này trước khi bật lại); tự dừng sau 8 giờ.
+- Thư viện job: `scripts/lib/common.ps1` (PATH Flutter/JDK/SDK/Rust, `PUB_CACHE=D:\yh\pub-cache`), `scripts/lib/yh_defines.ps1` (`--dart-define` Google OAuth từ `secrets/`), `jobs/q059_lib.ps1` (`Sync-Overlay`, `Run-Tests`, `Run-Analyze`), `jobs/q059_dev.ps1` (điều khiển Note 9).
+- **Tự lưu tiến độ** (yêu cầu chủ dự án 18/11): `scripts/autosave/autosave_progress_<ver>.ps1` chạy nền, 3 phút commit + push có chọn lọc; dừng bằng `jobs/STOP_AUTOSAVE` (xóa tệp này trước khi bật lại); tự dừng sau 8 giờ.

@@ -2,7 +2,7 @@
 # into D:\yh\build and D:\yh\buildwin; no mirror copy).
 # Usage: powershell -ExecutionPolicy Bypass -File build_047.ps1 -step test|apk|tv|win|pack|all
 param([string]$step = 'all')
-. "$PSScriptRoot\common.ps1"
+. "$PSScriptRoot\..\lib\common.ps1"
 $stamp = Get-Date -Format HHmmss
 Start-Transcript "$LOGS\build047_${step}_$stamp.txt" -Force | Out-Null
 $ErrorActionPreference = 'Continue'

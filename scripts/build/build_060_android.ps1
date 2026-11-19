@@ -15,15 +15,15 @@ param(
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
-$root = if ($PSScriptRoot) { Split-Path -Parent $PSScriptRoot } else { (Get-Item .).FullName }  # build\ -> goc du an
+$root = if ($PSScriptRoot) { Split-Path -Parent (Split-Path -Parent $PSScriptRoot) } else { (Get-Item .).FullName }  # scripts\build\ -> goc du an (0.6.0)
 $skipFile = Join-Path $root "audit\audit-0.6.0\SKIP_STEPS"
 if ((Test-Path $skipFile) -and ((Get-Content $skipFile -Raw) -split '\s+' -contains $step)) {
     Write-Host "Bỏ qua step $step do khai báo trong SKIP_STEPS" -ForegroundColor Yellow
     exit 0
 }
 
-. "$root\common.ps1"
-. "$root\yh_defines.ps1"  # 0.6.0: dang nhap Google
+. "$root\scripts\lib\common.ps1"
+. "$root\scripts\lib\yh_defines.ps1"  # 0.6.0: dang nhap Google
 
 $stamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $buildLogPath = Join-Path $LOGS "build060_android_${step}_$stamp.txt"

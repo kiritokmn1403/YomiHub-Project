@@ -1,6 +1,6 @@
 param([string]$target = 'all')
 # Step 2: apply YomiHub overlay on top of Mangayomi source and build the APKs
-. "$PSScriptRoot\common.ps1"
+. "$PSScriptRoot\..\lib\common.ps1"
 # Get-CimInstance Win32_Process | Where-Object { ($_.CommandLine -match 'build_apk\.ps1' -and $_.ProcessId -ne $PID) -or $_.Name -eq 'curl.exe' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
 $stamp = Get-Date -Format HHmmss
 Start-Transcript "$LOGS\build_log_$stamp.txt" -Force | Out-Null

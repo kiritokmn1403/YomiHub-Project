@@ -6,8 +6,8 @@ $log = Join-Path $root 'logs\autosave_060.txt'
 function L($m){ Add-Content $log ("{0:dd/MM HH:mm:ss} {1}" -f (Get-Date), $m) -Encoding UTF8 }
 $paths = @('TECHNICAL_UPDATE_NOTES.md','README.md','AGENTS.md','A.I Brain - Second Brain','overlay','docs',
   'audit/audit-0.6.0/antigravity','audit/audit-0.6.0/notes','audit/audit-0.6.0/release','audit/audit-0.6.0/coordination',
-  'build','jobs/q060_lib.ps1','run_060_main.ps1','sync_060.ps1','release_060.ps1',
-  'make_installer_exe_060.ps1','make_appxbundle_060.ps1','scripts/autosave_progress_060.ps1')
+  'scripts','jobs/q060_lib.ps1',
+  'scripts/autosave')
 $end = (Get-Date).AddHours(72)
 L "=== autosave bat dau (PID $PID) ==="
 while((Get-Date) -lt $end){

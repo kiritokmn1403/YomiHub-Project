@@ -14,14 +14,14 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
-$root = if ($PSScriptRoot) { Split-Path -Parent $PSScriptRoot } else { (Get-Item .).FullName }  # build\ -> goc du an
+$root = if ($PSScriptRoot) { Split-Path -Parent (Split-Path -Parent $PSScriptRoot) } else { (Get-Item .).FullName }  # scripts\build\ -> goc du an (0.6.0)
 $skipFile = Join-Path $root "audit\audit-0.5.8\SKIP_STEPS"
 if ((Test-Path $skipFile) -and ((Get-Content $skipFile -Raw) -split '\s+' -contains $step)) {
     Write-Host "Bỏ qua step $step do khai báo trong SKIP_STEPS" -ForegroundColor Yellow
     exit 0
 }
 
-. "$root\common.ps1"
+. "$root\scripts\lib\common.ps1"
 
 $stamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $buildLogPath = Join-Path $LOGS "build058_${step}_$stamp.txt"
@@ -250,7 +250,7 @@ try {
 
     # BƯỚC 0: CHUYỂN TIẾP BUILD ANDROID (NẾU GỌI STEP APK/TV)
     if ($step -in 'apk', 'tv', 'a6') {
-        $androidScript = Join-Path $root "build\build_058_android.ps1"
+        $androidScript = Join-Path $root "scripts\build\build_058_android.ps1"
         if (-not (Test-Path $androidScript)) {
             throw "LỖI: Step '$step' là tác vụ Android nhưng không tìm thấy build_058_android.ps1 tại $androidScript"
         }
@@ -384,7 +384,7 @@ try {
         }
 
         Say "Đang thực thi make_installer_exe_058.ps1..."
-        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$KIT\make_installer_exe_058.ps1"
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$KIT\scripts\packaging\make_installer_exe_058.ps1"
         if ($LASTEXITCODE -ne 0) {
             throw "LỖI ĐÓNG GÓI: make_installer_exe_058.ps1 kết thúc với mã lỗi $LASTEXITCODE"
         }
@@ -397,7 +397,7 @@ try {
         Remove-Item "$KIT\output\YomiHub-$ver-windows-x64.zip" -ErrorAction SilentlyContinue
 
         Say "Đang thực thi make_appxbundle_058.ps1..."
-        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$KIT\make_appxbundle_058.ps1"
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$KIT\scripts\packaging\make_appxbundle_058.ps1"
         if ($LASTEXITCODE -ne 0) {
             throw "LỖI ĐÓNG GÓI: make_appxbundle_058.ps1 kết thúc với mã lỗi $LASTEXITCODE"
         }

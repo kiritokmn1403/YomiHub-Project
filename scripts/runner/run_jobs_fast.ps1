@@ -9,8 +9,9 @@ try {
   $qeH = [YH.QE]::GetStdHandle(-10); $qeM = 0
   if ([YH.QE]::GetConsoleMode($qeH, [ref]$qeM)) { [void][YH.QE]::SetConsoleMode($qeH, (($qeM -band (-bnot 0x40)) -bor 0x80)) }
 } catch { }
-try { . (Join-Path $PSScriptRoot 'link_paths.ps1') } catch { Write-Host $_ }
-$J = Join-Path $PSScriptRoot 'jobs'
+$YHRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)  # 0.6.0: scripts\runner -> goc du an
+try { . (Join-Path $YHRoot 'link_paths.ps1') } catch { Write-Host $_ }
+$J = Join-Path $YHRoot 'jobs'
 foreach ($d in 'pending_fast','done') { New-Item -ItemType Directory -Force "$J\$d" | Out-Null }
 Remove-Item "$J\STOP_FAST" -ErrorAction SilentlyContinue
 Write-Host "YomiHub FAST runner - dang cho tac vu (tao file jobs\STOP_FAST de dung)" -ForegroundColor Green

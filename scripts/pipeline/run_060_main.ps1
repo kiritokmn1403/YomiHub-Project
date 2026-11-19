@@ -3,7 +3,7 @@ param(
   [string[]]$RunSteps
 )
 $ErrorActionPreference = 'Continue'
-$root = Split-Path -Parent $MyInvocation.MyCommand.Path
+$root = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path))  # 0.6.0: scripts\pipeline -> goc du an
 $lock = Join-Path $root 'audit\audit-0.5.6\coordination\BUILD_LOCK.txt'
 $st   = Join-Path $root 'audit\audit-0.6.0\release\main_build_status_060.txt'
 Start-Transcript -Path (Join-Path $root 'audit\audit-0.6.0\release\main_build_060.log') -Append | Out-Null
@@ -18,16 +18,16 @@ function WaitLock {
   S "QUA 6 GIO CHO KHOA - DUNG"; Stop-Transcript | Out-Null; exit 3
 }
 $steps = @(
-  @('sync',     { & "$root\sync_060.ps1" -Regen }),
-  @('test',     { & "$root\build\build_060_android.ps1" -step test }),
-  @('apk',      { & "$root\build\build_060_android.ps1" -step apk }),
-  @('tv',       { & "$root\build\build_060_android.ps1" -step tv }),
-  @('wintest',  { & "$root\build\build_060.ps1" -step test }),
-  @('win',      { & "$root\build\build_060.ps1" -step win }),
-  @('pack',     { & "$root\build\build_060.ps1" -step pack }),
-  @('a6build',  { & "$root\build\build_060_android6.ps1" -step all }),
-  @('a6copy',   { & "$root\build\build_060_android.ps1" -step a6 }),
-  @('verify',   { & "$root\build\build_060.ps1" -step verify })
+  @('sync',     { & "$root\scripts\sync\sync_060.ps1" -Regen }),
+  @('test',     { & "$root\scripts\build\build_060_android.ps1" -step test }),
+  @('apk',      { & "$root\scripts\build\build_060_android.ps1" -step apk }),
+  @('tv',       { & "$root\scripts\build\build_060_android.ps1" -step tv }),
+  @('wintest',  { & "$root\scripts\build\build_060.ps1" -step test }),
+  @('win',      { & "$root\scripts\build\build_060.ps1" -step win }),
+  @('pack',     { & "$root\scripts\build\build_060.ps1" -step pack }),
+  @('a6build',  { & "$root\scripts\build\build_060_android6.ps1" -step all }),
+  @('a6copy',   { & "$root\scripts\build\build_060_android.ps1" -step a6 }),
+  @('verify',   { & "$root\scripts\build\build_060.ps1" -step verify })
 )
 if ($RunSteps -and $RunSteps.Count -gt 0) {
   $parsedSteps = @()

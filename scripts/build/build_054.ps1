@@ -4,7 +4,7 @@
 param([string]$step = 'all')
 $skipFile = "$PSScriptRoot\audit-0.5.4\SKIP_STEPS"
 if ((Test-Path $skipFile) -and ((Get-Content $skipFile -Raw) -split '\s+' -contains $step)) { "step $step skipped (SKIP_STEPS)"; exit 0 }
-. "$PSScriptRoot\common.ps1"
+. "$PSScriptRoot\..\lib\common.ps1"
 $stamp = Get-Date -Format HHmmss
 Start-Transcript "$LOGS\build054_${step}_$stamp.txt" -Force | Out-Null
 $ErrorActionPreference = 'Continue'

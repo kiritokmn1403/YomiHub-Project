@@ -87,7 +87,7 @@ Mỗi phiên bản được kiểm tra trước khi phát hành:
 
 ## 🚀 Dựng & phát hành <a name = "deployment"></a>
 
-YomiHub được dựng trên nền mã nguồn Mangayomi; mọi thay đổi riêng nằm trong `overlay/` và được đồng bộ sang thư mục dựng bằng script. Dây chuyền `run_<ver>_main.ps1` chạy tuần tự: đồng bộ → test → APK → Android TV → test Windows → dựng Windows → đóng gói (Setup.exe, .appxbundle, .zip) → APK android6 → xác minh (chữ ký, phiên bản, SHA256). Bản phát hành được tải lên GitHub Releases bằng `release_<ver>.ps1`. Chi tiết kỹ thuật và lịch sử thay đổi: [TECHNICAL_UPDATE_NOTES.md](TECHNICAL_UPDATE_NOTES.md).
+YomiHub được dựng trên nền mã nguồn Mangayomi; mọi thay đổi riêng nằm trong `overlay/` và được đồng bộ sang thư mục dựng bằng script. Dây chuyền `scripts/pipeline/run_<ver>_main.ps1` chạy tuần tự: đồng bộ → test → APK → Android TV → test Windows → dựng Windows → đóng gói (Setup.exe, .appxbundle, .zip) → APK android6 → xác minh (chữ ký, phiên bản, SHA256). Bản phát hành được tải lên GitHub Releases bằng `scripts/release/release_<ver>.ps1`. Chi tiết kỹ thuật và lịch sử thay đổi: [TECHNICAL_UPDATE_NOTES.md](TECHNICAL_UPDATE_NOTES.md).
 
 ## ⛏️ Công nghệ sử dụng <a name = "built_using"></a>
 

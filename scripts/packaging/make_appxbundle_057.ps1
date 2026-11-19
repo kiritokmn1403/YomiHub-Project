@@ -1,5 +1,5 @@
 ﻿# make_appxbundle.ps1: Build Windows .appx and .appxbundle for YomiHub 0.3.8
-. "$PSScriptRoot\common.ps1"
+. "$PSScriptRoot\..\lib\common.ps1"
 Add-Type -AssemblyName System.Drawing
 
 # 0.5.7: ban sao cua make_appxbundle.ps1 - MSIX/appx Version = 0.5.7 (pubspec van 0.5.7+50)

@@ -2,7 +2,7 @@
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-$KIT = if ($PSScriptRoot) { $PSScriptRoot } else { 'D:\A.I Project\A.I Project - YomiHub Project' }
+$KIT = if ($PSScriptRoot) { Split-Path -Parent (Split-Path -Parent $PSScriptRoot) } else { 'D:\A.I Project\A.I Project - YomiHub Project\YomiHub-Project' }  # 0.6.0: scripts\lib -> goc du an
 $YH    = if ($env:YH_ROOT) { $env:YH_ROOT } else { 'D:\yh' }  # 0.1.7: YH_ROOT=Y: (subst) for Windows builds
 $TOOLS = "$YH\tools"
 $LOGS  = "$KIT\logs"

@@ -7,7 +7,7 @@ param([switch]$Regen)
 $OutputEncoding = [System.Text.Encoding]::UTF8
 $ErrorActionPreference = "Stop"
 
-$root = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Item .).FullName }
+$root = if ($PSScriptRoot) { Split-Path -Parent (Split-Path -Parent $PSScriptRoot) } else { (Get-Item .).FullName }
 $manifestPath = Join-Path $root "audit\audit-0.5.9\release\changed_files_059.txt"
 if ($Regen) {
     $git = if (Get-Command git -ErrorAction SilentlyContinue) { 'git' } else { 'D:\yh\tools\git\cmd\git.exe' }

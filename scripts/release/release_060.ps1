@@ -5,7 +5,7 @@
 param([string]$tag = 'v0.6.0', [string]$repo = 'kiritokmn1403/YomiHub-Project')
 $ErrorActionPreference = 'Stop'
 if ($tag -ne 'v0.6.0') { throw "release_060.ps1 chi phat hanh v0.6.0 (khong sua tag/Release cu: $tag)" }
-$root = $PSScriptRoot
+$root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)  # 0.6.0: scripts\release -> goc du an
 $out = "$root\output\0.6.0"
 $env:GCM_INTERACTIVE = 'never'; $env:GIT_TERMINAL_PROMPT = '0'
 

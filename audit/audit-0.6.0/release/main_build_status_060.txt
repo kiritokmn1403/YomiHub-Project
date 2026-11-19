@@ -39,3 +39,8 @@
 19/11 15:01:53 --> buoc verify
 19/11 15:04:10 <-- buoc verify exit=0 (2 phut)
 19/11 15:04:10 === XONG bo goi chinh 0.6.0 (gom APK android6 + verify) ===
+19/11 15:47:31 Loc buoc theo RunSteps: verify
+19/11 15:47:31 === BAT DAU dung bo goi chinh 0.6.0 ===
+19/11 15:47:31 --> buoc verify
+19/11 15:49:04 <-- buoc verify exit=0 (2 phut)
+19/11 15:49:04 === XONG bo goi chinh 0.6.0 (gom APK android6 + verify) ===

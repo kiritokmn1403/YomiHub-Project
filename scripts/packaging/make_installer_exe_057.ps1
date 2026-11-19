@@ -1,5 +1,5 @@
 ﻿# make_installer_exe.ps1: Compile the Windows GUI installer for the overlay version.
-. "$PSScriptRoot\common.ps1"
+. "$PSScriptRoot\..\lib\common.ps1"
 
 # 0.5.7: ban sao cua make_installer_exe.ps1 - ten tep/AssemblyVersion theo versionName 0.5.7 (pubspec van 0.5.7+50)
 $pubVer = ([regex]::Match((Get-Content "$KIT\overlay\pubspec.yaml" -Raw), '(?m)^version:\s*(\d+\.\d+\.\d+)')).Groups[1].Value

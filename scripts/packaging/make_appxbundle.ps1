@@ -1,5 +1,5 @@
 # make_appxbundle.ps1: Build Windows .appx and .appxbundle for YomiHub 0.3.8
-. "$PSScriptRoot\common.ps1"
+. "$PSScriptRoot\..\lib\common.ps1"
 Add-Type -AssemblyName System.Drawing
 
 $ver = ([regex]::Match((Get-Content "$KIT\overlay\pubspec.yaml" -Raw), '(?m)^version:\s*(\d+\.\d+\.\d+)')).Groups[1].Value

@@ -2,7 +2,7 @@ param(
     [string]$name = "screenshot.png"
 )
 
-. "$PSScriptRoot\common.ps1"
+. "$PSScriptRoot\..\lib\common.ps1"
 $scDir = "D:\A.I Project\YomiHub Project\output\screenshots"
 $artDir = "C:\Users\nguye\.gemini\antigravity\brain\48d96891-e7f0-4019-8457-b8aa7a4f496a"
 
