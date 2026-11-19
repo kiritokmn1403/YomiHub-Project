@@ -88,7 +88,8 @@ void main() {
     test('provider bounds connect and receive and logs a warning', () {
       expect(prov, contains('withImageTimeout('));
       expect(prov, contains('response.stream.timeout('));
-      expect(prov, contains('kImageLoadTimeout'));
+      // 0.6.2: hạn chờ theo URL (cổng Kotatsu 120 s) qua imageTimeoutFor()
+      expect(prov, contains('imageTimeoutFor('));
       expect(prov, contains('LogLevel.warning'));
       expect(prov, contains('isImageLoadTimeout(lastError)'));
     });

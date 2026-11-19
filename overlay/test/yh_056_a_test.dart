@@ -549,11 +549,13 @@ void main() {
         const MaterialApp(home: Scaffold(body: YomiUiStyleTile())),
       );
       expect(find.text(tr('Giao diện ứng dụng')), findsOneWidget);
-      expect(find.text(tr('Cũ')), findsOneWidget);
-      expect(find.text(tr('Mới')), findsOneWidget);
+      expect(find.text(tr('YomiHub Old Version')), findsOneWidget);
+      expect(find.text(tr('Shiori (0.9.95)')), findsOneWidget);
+      // 0.6.2: thêm nút thứ 3 "YomiHub New Version" (Mangayomi 0.9.96)
+      expect(find.text(tr('YomiHub New Version')), findsOneWidget);
       expect(YomiUi.style, YomiUiStyle.classic);
 
-      await tester.tap(find.text(tr('Mới')));
+      await tester.tap(find.text(tr('Shiori (0.9.95)')));
       await tester.runAsync(
         () => Future<void>.delayed(const Duration(milliseconds: 100)),
       );
@@ -561,7 +563,7 @@ void main() {
       expect(YomiUi.style, YomiUiStyle.modern);
       expect(find.textContaining('Mangayomi'), findsOneWidget);
 
-      await tester.tap(find.text(tr('Cũ')));
+      await tester.tap(find.text(tr('YomiHub Old Version')));
       await tester.runAsync(
         () => Future<void>.delayed(const Duration(milliseconds: 100)),
       );

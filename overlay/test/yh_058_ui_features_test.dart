@@ -122,6 +122,7 @@ void main() {
       // Parsing strings
       expect(YomiUi.parse('classic'), equals(YomiUiStyle.classic));
       expect(YomiUi.parse('modern'), equals(YomiUiStyle.modern));
+      expect(YomiUi.parse('mangayomiV2'), equals(YomiUiStyle.mangayomiV2));
       expect(YomiUi.parse('unknown'), equals(YomiUiStyle.classic));
       expect(YomiUi.parse(null), equals(YomiUiStyle.classic));
     });
@@ -136,8 +137,10 @@ void main() {
       );
 
       expect(find.byKey(const ValueKey('yomiUiStyleSwitch')), findsOneWidget);
-      expect(find.text('Cũ'), findsOneWidget);
-      expect(find.text('Mới'), findsOneWidget);
+      // 0.6.2: Old / Shiori (0.9.95) / New Version (Mangayomi 0.9.96)
+      expect(find.text('YomiHub Old Version'), findsOneWidget);
+      expect(find.text('Shiori (0.9.95)'), findsOneWidget);
+      expect(find.text('YomiHub New Version'), findsOneWidget);
     });
 
     testWidgets('ShioriSectionHeader and ShioriCard adapt to theme', (tester) async {
