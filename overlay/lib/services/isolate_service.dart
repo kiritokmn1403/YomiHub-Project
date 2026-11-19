@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/net/extra_roots.dart';
 import 'package:mangayomi/yomihub/extensions/ext_errors.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'dart:async';
@@ -107,6 +108,8 @@ class GetIsolateService {
     BackgroundIsolateBinaryMessenger.ensureInitialized(
       isolateData.rootIsolateToken,
     );
+    // 0.6.1: SecurityContext.defaultContext là riêng của từng isolate
+    YomiExtraRoots.install();
 
     await initializeDateFormatting();
 

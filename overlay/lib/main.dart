@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/net/extra_roots.dart';
 import 'package:mangayomi/yomihub/perf/perf_watchdog.dart';
 import 'package:mangayomi/yomihub/library/source_attribution.dart';
 import 'package:mangayomi/yomihub/browser/webview_safe.dart';
@@ -107,6 +108,7 @@ void main(List<String> args) async {
       WidgetsFlutterBinding.ensureInitialized();
       if (Platform.isLinux && runWebViewTitleBarWidget(args)) return;
       yhA6PreloadNative(); // 0.5.7 U10: chỉ APK android6 (libqjs.so / trình giải mã trang)
+      YomiExtraRoots.install(); // 0.6.1: gốc Let's Encrypt Root YE/YR (kho kohiden.xyz)
 
       // Cap the decoded image cache so a large library grid can't fill the
       // default 100 MB ceiling with full-resolution covers and OOM constrained
