@@ -21,3 +21,6 @@
 19/11 13:29:49 --> buoc tv
 19/11 14:00:19 <-- buoc tv exit=0 (30 phut)
 19/11 14:00:19 --> buoc wintest
+19/11 14:04:09 NGOAI LE buoc wintest: flutter.bat thất bại (exit 1) - xem chi tiết tại logs\b060_part_c_test.txt
+19/11 14:04:09 <-- buoc wintest exit=99 (4 phut)
+19/11 14:04:09 DUNG vi buoc wintest loi
