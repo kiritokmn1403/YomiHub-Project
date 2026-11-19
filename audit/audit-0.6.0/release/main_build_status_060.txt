@@ -35,3 +35,7 @@
 19/11 14:32:33 --> buoc a6build
 19/11 15:01:07 <-- buoc a6build exit=0 (29 phut)
 19/11 15:01:07 --> buoc a6copy
+19/11 15:01:53 <-- buoc a6copy exit=0 (1 phut)
+19/11 15:01:53 --> buoc verify
+19/11 15:04:10 <-- buoc verify exit=0 (2 phut)
+19/11 15:04:10 === XONG bo goi chinh 0.6.0 (gom APK android6 + verify) ===
