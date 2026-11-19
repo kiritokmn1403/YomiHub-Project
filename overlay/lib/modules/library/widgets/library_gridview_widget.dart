@@ -8,6 +8,7 @@ import 'package:mangayomi/modules/manga/detail/providers/state_providers.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:mangayomi/yomihub/ui/ui_style.dart';
+import 'package:mangayomi/yomihub/ui/mangayomi_v2/mv2_manga_card.dart';
 import 'package:mangayomi/modules/library/widgets/library_entry_utils.dart';
 import 'package:mangayomi/modules/widgets/bottom_text_widget.dart';
 import 'package:mangayomi/modules/widgets/cover_view_widget.dart';
@@ -60,6 +61,41 @@ class _LibraryGridViewWidgetState extends State<LibraryGridViewWidget> {
             final entry = widget.entriesManga[index];
             return Consumer(
               builder: (context, ref, child) {
+                // YomiHub 0.6.2: "YomiHub New Version" – thẻ bìa Mangayomi 0.9.96
+                if (YomiUi.isV2 && !isTv) {
+                  return Padding(
+                    padding: const EdgeInsets.all(2),
+                    child: Mv2MangaCard(
+                      title: entry.name ?? '',
+                      image: resolveCoverImage(entry, ref),
+                      unreadCount: entry.unreadChaptersCount(widget.settings),
+                      isLocal: widget.localSource && (entry.isLocalArchive ?? false),
+                      languageLabel: widget.language && (entry.lang?.isNotEmpty ?? false)
+                          ? entry.lang!.toUpperCase()
+                          : null,
+                      sourceLabel: widget.sourceBadge ? entry.source : null,
+                      isComfortableGrid: widget.isComfortableGrid,
+                      isCoverOnly: widget.isCoverOnlyGrid,
+                      isSelected: widget.mangaIdsList.contains(entry.id),
+                      onTap: () => onTapEntry(
+                        isLongPressed: ref.read(isLongPressedStateProvider),
+                        ref: ref,
+                        context: context,
+                        entry: entry,
+                      ),
+                      onLongPress: () => handleLongOrSecondaryTap(
+                        ref.read(isLongPressedStateProvider),
+                        ref,
+                        entry,
+                      ),
+                      onSecondaryTap: () => handleLongOrSecondaryTap(
+                        ref.read(isLongPressedStateProvider),
+                        ref,
+                        entry,
+                      ),
+                    ),
+                  );
+                }
                 return Padding(
                   padding: const EdgeInsets.all(2),
                   child: CoverViewWidget(

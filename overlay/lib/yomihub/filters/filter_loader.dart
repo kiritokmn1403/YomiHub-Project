@@ -74,8 +74,9 @@ class YomiFilterLoader {
         );
         return (
           filters: out,
-          error: tr('Chưa tải được danh sách Thể loại từ trang nguồn – các bộ lọc khác vẫn dùng được. '
-              'Nếu trang bị chặn hãy bật VPN/Tor cho tiện ích này rồi bấm "Nạp bộ lọc".'),
+          error: tr(
+            'Chưa tải được danh sách Thể loại từ trang nguồn – các bộ lọc khác vẫn dùng được. Nếu trang bị chặn hãy bật VPN/Tor cho tiện ích này rồi bấm "Nạp bộ lọc".',
+          ),
         );
       }
       err ??= 'bộ lọc vẫn chỉ là dòng "Tap Reset to load filters"';
