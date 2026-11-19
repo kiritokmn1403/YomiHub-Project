@@ -120,3 +120,12 @@ secrets/
 
 # 0.6.0: script nap --dart-define tu secrets (khong dua len GitHub)
 scripts/lib/yh_defines.ps1
+
+# -- 0.6.1 (19/11/2026): thu muc cu/thu nghiem chi giu tren may dung, lich su con trong git --
+/dev/
+/work-0.1.8/
+/audit/
+/_old/
+/archive/
+/bug/
+/_to_delete/

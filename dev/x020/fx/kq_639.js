@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_atg_quickies_client=self.webpackChunk_atg_quickies_client||[]).push([[639],{92639(t){t.exports=JSON.parse('{"localization":"עם לוקליזציה","report_content":"דווח על תוכן","contact_support":"פנה למחלקת התמיכה"}')}}]);

@@ -1,7 +1,0 @@
-# timeout: 1
-$ff = Get-ChildItem "D:\yh\tools\ffmpeg-9.0.2-essentials_build" -Recurse -Filter ffmpeg.exe | Select-Object -First 1
-$out = "D:\Claude A.I\audit-0.5.7\evidence\windows\YomiHub-0.5.7-windows-walkthrough.mp4"
-New-Item -ItemType Directory -Force (Split-Path $out) | Out-Null
-$args2 = "-y -f gdigrab -framerate 15 -t 240 -i desktop -vf scale=1920:-2 -c:v libx264 -preset veryfast -crf 28 -pix_fmt yuv420p `"$out`""
-Start-Process -FilePath $ff.FullName -ArgumentList $args2 -WindowStyle Hidden -RedirectStandardError "D:\Claude A.I\audit-0.5.7\evidence\windows\ffmpeg_rec.log"
-"recording 240s -> $out using $($ff.FullName)"

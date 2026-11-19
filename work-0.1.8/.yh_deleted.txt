@@ -1,3 +1,0 @@
-assets/app_icons/icon_red_tv.png
-assets/app_icons/icon_red_tv_2.png
-assets/app_icons/icon_red_tv_3.png

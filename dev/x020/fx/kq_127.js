@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_atg_quickies_client=self.webpackChunk_atg_quickies_client||[]).push([[127],{86127(t){t.exports=JSON.parse('{"localization":"med lokalisering","report_content":"Rapporter innholdet","contact_support":"Kontakt support"}')}}]);

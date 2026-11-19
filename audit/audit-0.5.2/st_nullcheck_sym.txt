@@ -1,3 +1,0 @@
-*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
-pid: 32607, tid: 526621507864, name 1.ui
-os: android arch: arm64 comp: yes sim: no
