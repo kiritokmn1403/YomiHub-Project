@@ -29,9 +29,8 @@ void main() {
       await t.pumpAndSettle();
       expect(t.takeException(), isNull);
     }
-    // ô tìm có mặt khi đang mở; gõ chữ không lỗi Null check
-    await t.tap(find.text('Thể loại'));
-    await t.pumpAndSettle();
+    // sau 3 lần chạm nhóm đang MỞ (ban đầu gập vì > kYomiFilterOpenMax mục):
+    // ô tìm có mặt; gõ chữ không lỗi Null check
     final tf = find.byType(TextField);
     expect(tf, findsWidgets);
     await t.tap(tf.first);
