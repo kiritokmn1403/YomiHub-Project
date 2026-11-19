@@ -36,3 +36,5 @@ Yêu cầu 09:24: tự lưu tiến độ mỗi 5 phút tới khi xong (`scripts/
 | 12:43 | Dừng tay dây chuyền `x060_build_main3` ở bước apk (mã cũ), xóa BUILD_LOCK | – |
 | 12:52 | Changelog thêm mục bộ lọc ô chọn; job `x060_build_main4` = `run_060_main.ps1` đầy đủ (sync -Regen → test → apk → tv → wintest → win → pack → a6build → a6copy → verify) | Đang chạy |
 | 12:56 | Bước test dây chuyền `x060_build_main4`: **942/942 ĐẠT** (`logs/b060_test.txt`, 3 phút) | ĐẠT – sang bước apk |
+| 13:29 | Bước apk xong (34 phút): 3 APK trong `output/0.6.0/`; dây chuyền sang bước tv | ĐẠT |
+| 13:31–13:38 | **Note 9 (SM-N960N, Android 10)**: cài đè APK arm64 0.6.0 (versionCode 2053) – OK. Bộ lọc MangaDex (kiểu Mangayomi): Sort là ô chọn, bấm "Alphabetic" → đánh dấu, bấm lại → ↓ đổi ↑ (tiêu đề nhóm cập nhật ngay), Status (nhóm) chọn "Completed", áp dụng → kết quả A→Z. Bộ lọc nguồn APK (kiểu Aniyomi/Nekoyomi): "Trạng thái" + "Sắp xếp theo" (SelectFilter) hiện ô chọn, chọn "Hoàn thành" + "Lượt xem cao nhất" → áp dụng → có kết quả. Ảnh `evidence/note9/01..14_*.png`; log phiên mới sạch (chỉ còn cảnh báo kho kohiden.xyz CERTIFICATE_VERIFY_FAILED – mục mở cũ) | ĐẠT |
