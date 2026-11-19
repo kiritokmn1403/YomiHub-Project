@@ -3618,3 +3618,42 @@ Thư mục: `output/0.5.8/`
 - Tải gốc chính thức từ letsencrypt.org/certificates (job Windows `x061_le_dl`): `root-ye.pem` (SHA-256 E1:4F:FC:AD…), `root-yr.pem` (E5:7B:7E:6F…), `isrg-root-x2.pem` (69:72:9B:8E…), `isrgrootx1.pem` (96:BC:EC:06…) – lưu `audit/audit-0.6.1/notes/certs/`.
 - Tệp mới `overlay/lib/yomihub/net/extra_roots.dart` (`YomiExtraRoots.install()` thêm 4 gốc vào `SecurityContext.defaultContext`, bỏ qua lỗi "ALREADY"); gọi trong `main.dart` (sau `yhA6PreloadNative`) và trong `isolate_service.dart` (mỗi isolate có defaultContext riêng). Chỉ mở rộng gốc tin cậy, không tắt kiểm tra chứng chỉ. Test `yh_061_extra_roots_test.dart`.
 
+### 4. Sheet YomiHub Update – đối chiếu từng mục (18:00)
+| Mục | Trạng thái 0.6.1 |
+|---|---|
+| Sửa lỗi + cảnh báo trong nhật ký | Log Note 9: 2 phiên 0.6.0 không có ERROR; sửa cảnh báo kohiden (mục 3); phân loại sai "[Lỗi Nguồn 403 / Cloudflare]" cho lỗi Google Drive API (dưới) |
+| Dự án GitHub còn thiếu | 0.6.0 đã so khớp 716 dòng – sheet không đổi (689 dòng có nội dung) |
+| Yomikiru, Yomihon, Zenshin, Nyora, Nuvio, Mangayomi, Kotatsu, GIF Viewer | GIF Viewer: MỚI (dưới). Các dự án còn lại đã chuyển phần phù hợp ở 0.5.3–0.6.0 |
+| Frank Yomik, Browser Fingerprint, Anti-bot | Fingerprint/Anti-bot đã có từ 0.5.7 (`browser/anti_fingerprint.dart`); Frank Yomik (dịch truyện bằng máy chủ GPU riêng) – chưa tích hợp |
+| Video Short Scroll – mọi tiện ích | Công tắc mới "Short Video cho mọi tiện ích video" (dưới) |
+| Isar libmdbx, viết lại cho Android 6.0 | Giữ Isar 3 + hàng đợi ghi; APK android6 tiếp tục dựng riêng |
+| Giao diện mới Mangayomi (Old/New) | Theo quyết định chủ dự án: làm trên nhánh riêng (Flutter 3.50) – xem mục sau |
+| Sao lưu: lỗi còn lại, Booru, chọn mục | Booru + chọn mục đã có từ 0.5.8–0.5.9; lỗi Drive 403 (API chưa bật) có câu hướng dẫn |
+| Nhãn phiên bản/thiết bị/HĐH mỗi dòng log | Đã có từ 0.5.9 – kiểm lại trong log Note 9: `[YH 0.6.0 (2053) • samsung SM-N960N, Android 10 (SDK 29)]` |
+| Đăng nhập Google tách khỏi Client ID | Làm ở 0.6.1 (dưới) |
+| README, Trang chủ ↔ Chính sách | Làm ở 0.6.1 (dưới) |
+| Treo/lag/văng | Không có lỗi treo/văng trong log 0.6.0 của Note 9; kiểm lại sau khi dựng |
+
+### 5. Google Drive: hai tùy chọn riêng (sheet YomiHub Update)
+- `overlay/lib/yomihub/cloud/cloud_backup_service.dart`: `GoogleDriveProvider` (id `gdrive`) = "Google Drive – Đăng nhập bằng tài khoản Google" – bỏ ô Client ID/secret (dùng cấu hình OAuth của YomiHub; người dùng cũ đã lưu Client ID riêng vẫn dùng được). Lớp mới `GoogleDriveClientIdProvider` (id `gdrive_cid`) = "Google Drive – Client ID": bắt buộc Client ID, luồng mã thiết bị, không dùng loopback/cấu hình sẵn. `_json`: HTTP 403 `accessNotConfigured` → câu hướng dẫn bật Google Drive API.
+- `cloud_backup_screen.dart`: cả hai dùng logo Google. `utils/log/logger.dart`: lỗi 403 có googleapis/Drive/OneDrive/Dropbox/"Đồng bộ đám mây" → nhãn "[Lỗi Đám Mây 403]" thay vì "[Lỗi Nguồn 403 / Cloudflare]" (log 18/11 10:37).
+
+### 6. Short Video cho mọi tiện ích video
+- `player/shorts_store.dart` (`allSources`, khóa `shorts_all_sources`), `player/shorts_detect.dart` (`reason(..., allSources)` → `'all'`), `player/yomi_shorts.dart`, công tắc trong `features/feature_toggle_screen.dart` (mục Film & Movie).
+
+### 7. GIF Viewer (sheet Project GitHub › GIF Viewer: gifiddle, GifView, gif-viewer, voidImageViewer, gif-player)
+- Tệp mới `overlay/lib/yomihub/gif/gif_viewer_screen.dart`: giải mã mọi khung (`ui.instantiateImageCodec`, tối đa 600 khung), thời lượng 0/≤10 ms → 100 ms như trình duyệt, phát/dừng, khung trước/sau, thanh trượt, tốc độ 0,25×–4×, lặp/1 lần, phóng to, phím tắt (Space, ←/→, ↑/↓ – Windows/TV). Mở từ Cài đặt › "GIF Viewer". file_picker 12: `pickFiles` trả `List<PlatformFile>`, đọc bằng `readAsBytes()` (lần 1 lỗi phân tích vì dùng `.files`/`.bytes` kiểu cũ).
+- Test `yh_061_gif_viewer_test.dart` (khung kế tiếp/lặp, giải mã GIF 3 khung 50/0/200 ms).
+
+### 8. Bản dịch
+- 18 chuỗi mới × 18 ngôn ngữ = 324 bản dịch (`audit/audit-0.6.1/notes/i18n_061_a.py`, `i18n_061_b.py`, gộp bằng `i18n_merge.py` – Python `json`, kiểm `{p0}`); 18 tệp đối xứng, 1.692 khóa.
+
+### 9. Trang chủ ↔ Chính sách quyền riêng tư (sheet YomiHub Update)
+- `docs/privacy.html` viết lại dùng CSS, logo, chân trang của `docs/index.html`; thanh điều hướng chung (Trang chủ · Tải về · Chính sách quyền riêng tư · GitHub) ở cả hai trang; nút "← Về Trang chủ"; mục Google ghi 2 tùy chọn Drive. `index.html`: `id="tai-ve"`. Liên kết tải tĩnh (đang v0.5.9) đổi sang v0.6.1 lúc phát hành (JS vẫn tự lấy bản mới nhất). Bản cũ: `audit/audit-0.6.1/backup/*.html.060`.
+
+### 10. Gợi ý kho (Feature Check 21) – từ báo cáo Antigravity
+- 13/13 kho + 13/13 website HTTP 200; 54 kho tìm được, 43 chưa có trong danh sách dựng sẵn (bộ quét `repo_discovery.dart` gợi ý lúc chạy). Thêm 5 kho dự phòng vào `yomiSuggestedRepos`: observeroftime (frama.io), tympanicblock61, Swakshan (anime), Mallyd11 (anime), 9vsv6 (Ả Rập). Không thêm kho NSFW/mirror.
+
+### 11. Bộ script dựng 0.6.1
+- Chép `scripts/{build,packaging,sync,release,pipeline}/*_060*` → `*_061*` bằng Python (giữ BOM): `0.6.0→0.6.1`, `+53/'53'→54`, `audit-0.6.0→audit-0.6.1`, `060→061`, `sync -Regen` so với tag `v0.6.0`. Sửa tay: danh sách test Windows (`build_061.ps1` – chuỗi `yh_060_*` bị đổi thành `yh_061_*` không tồn tại → khôi phục + thêm 3 test 0.6.1). `overlay/pubspec.yaml` `0.6.1+54`, `app_identity.dart` userAgent `YomiHub/0.6.1`. Changelog VI + EN: `audit/audit-0.6.1/release/YomiHub-0.6.1-changelog.md`.
+
