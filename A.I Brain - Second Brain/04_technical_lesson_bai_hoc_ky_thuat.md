@@ -68,3 +68,10 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - **Kho `kohiden.xyz`** báo CERTIFICATE_VERIFY_FAILED trên Android 10 (thiếu chứng chỉ trung gian phía máy chủ) – chưa xử lý, xem ở 0.6.0.
 - **Gợi ý kho (FC21):** Antigravity xác nhận 29 kho từ 13 website; đề xuất thêm Salmanbappi (`raw.githubusercontent.com/salmanbappi/extensions-repo/main/index.min.json`, 99 nguồn) và Secozzi vào `repo_discovery.dart`; bỏ các URL là repo mã nguồn không có index (keiyoushi/extensions-source, yuzono/anime-extensions). Chưa đưa vào 0.5.9.
 - **README do tác nhân viết dễ "bịa" tính năng** (VLC, OpenDyslexic, đồng bộ hai chiều Drive…) → luôn grep `overlay/lib` kiểm từng khẳng định trước khi thay README.
+
+## Bổ sung 19/11/2026 (0.6.0 – Claude Opus 5.5)
+- **Test phiên bản gắn cứng:** `yh_051..055` kiểm `startsWith('YomiHub/0.5.')` → khi lên 0.6.0, bước test dây chuyền trượt 5 test sau 26 phút. Test phiên bản chỉ kiểm định dạng (`matches(RegExp(r'^YomiHub/\d+\.\d+(\.\d+)+$'))`), không gắn số minor; bản mới thì có test riêng cho đúng số.
+- **Chép script dựng từ bản trước:** `build_060.ps1` còn regex `Version="0\.5\.9\.0"` ở bước verify AppxBundle. Sau khi chép `*_059.ps1 → *_060.ps1` luôn `grep -n "0\.5\.9\|0\\\\.5\\\\.9"` trên mọi script mới trước khi chạy dây chuyền.
+- **Hàm PowerShell trả mã thoát:** `Run-Tests` (q0xx_lib) vừa xuất dòng của flutter vừa `return $code` → gán `$c = Run-Tests …` được MẢNG; `$c -ne 0` luôn "đúng" → job dừng nhầm dù TEST EXIT 0. Lấy phần tử cuối: `$out = @(Run-Tests $t); $c = $out[-1]`.
+- **Runner chạy tệp ngay khi xuất hiện:** sửa tệp job trong `jobs/pending` sau khi thả vào có thể muộn (runner đã nạp bản cũ trong ≤ 5 s) → soạn xong rồi mới chép vào `pending`, sai thì thả job mới tên khác.
+- **Máy chậm:** `flutter pub get --offline` mất 13 phút khi RAM trống ~2 GB (thường < 1 phút) – không phải treo nếu `Win32_Process` còn thấy `git rev-parse` mới trên pub-cache.

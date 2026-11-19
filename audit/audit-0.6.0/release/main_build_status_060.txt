@@ -6,3 +6,7 @@
 19/11 12:02:54 DUNG vi buoc test loi
 19/11 12:04:26 --> chay lai 5 test yh_051..055 (sua kiem userAgent)
 19/11 12:05:56 <-- 5 test exit=System.Object[]
+19/11 12:06:21 5 test yh_051..055 DAT (12:05) - dung tiep tu buoc apk
+19/11 12:06:21 Loc buoc theo RunSteps: apk, tv, wintest, win, pack, a6build, a6copy, verify
+19/11 12:06:21 === BAT DAU dung bo goi chinh 0.6.0 ===
+19/11 12:06:22 --> buoc apk

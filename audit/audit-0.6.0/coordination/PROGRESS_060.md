@@ -27,3 +27,7 @@ Yêu cầu 09:24: tự lưu tiến độ mỗi 5 phút tới khi xong (`scripts/
 | 11:33 | Bắt đầu dây chuyền `run_060_main.ps1` (job `x060_build_main`) | Đang chạy |
 | 11:34 | Yêu cầu chủ dự án: tự lưu 3 phút/lần → sửa `autosave_progress_060.ps1` (Start-Sleep 180), khởi động lại (PID 33516) | Chạy |
 | 11:45 | **Phiên mới (Claude Opus 5.5, claude.ai + máy tính)** nhận bàn giao: đọc Second Brain 00/07/11/12, AGENTS.md, PROGRESS_060, log + 2 Excel; kiểm tiến trình nền (Win32_Process) – dây chuyền `x060_build_main` (PID 13576) đang chạy `pub get --offline` ở bước test, chậm nhưng tiến triển (RAM trống 2,2 GB, đĩa 76 %); autosave PID 33516 chạy | Tiếp tục theo dõi |
+| 12:02 | Bước test của dây chuyền: 932 ĐẠT / 5 lỗi – `yh_051..055` gắn cứng `startsWith('YomiHub/0.5.')`, nay userAgent `YomiHub/0.6.0` (lỗi test, không phải lỗi mã) | Sửa 5 test: so khớp `^YomiHub/\d+\.\d+(\.\d+)+$` và `version: \d+\.\d+\.\d+` (bản cũ ở `backup/overlay/test_ua/`) |
+| 12:04 | Phát hiện `build/build_060.ps1` dòng 221 vẫn kiểm `Version="0\.5\.9\.0"` của AppxBundle → bước verify chắc chắn lỗi | Sửa thành `0\.6\.0\.0` (bản cũ `backup/overlay/build_060.ps1.bak`) |
+| 12:05 | Job `x060_build_main2`: đồng bộ 5 test sang 2 thư mục dựng, chạy lại → TEST EXIT 0 (job tự dừng do lỗi so sánh mã thoát trong script) | ĐẠT |
+| 12:07 | Job `x060_build_main3`: `run_060_main.ps1 -RunSteps apk,tv,wintest,win,pack,a6build,a6copy,verify` | Đang chạy |
