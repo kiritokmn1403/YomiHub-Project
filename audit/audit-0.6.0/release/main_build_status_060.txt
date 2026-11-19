@@ -15,3 +15,5 @@
 19/11 12:51:37 --> buoc sync
 19/11 12:51:45 <-- buoc sync exit=0 (0 phut)
 19/11 12:51:45 --> buoc test
+19/11 12:56:00 <-- buoc test exit=0 (4 phut)
+19/11 12:56:00 --> buoc apk
