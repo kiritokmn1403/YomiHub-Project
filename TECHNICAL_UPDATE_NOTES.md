@@ -3724,4 +3724,4 @@ Thư mục: `output/0.5.8/`
 - Frank Yomik (dịch truyện bằng máy chủ GPU) chưa tích hợp; đề xuất 2–3 của tệp đánh giá repo (ghim Flutter/Rust/NDK, `D:\yh` → `YH_ROOT`) chưa làm; `.git` 305 MB (clone nhẹ cần `git filter-repo` + force-push – chủ dự án quyết).
 - Chưa có AVD Android TV x86_64 (chỉ x86) – cân nhắc tải `system-images;android-34;android-tv;x86_64` nếu có; kiểm sâu tính năng trên Android 6 (trình đọc, video) chưa làm lần này.
 - APKPure: 0.5.9 vẫn chờ duyệt; chưa gửi 0.6.0/0.6.1. Extension Repo không đổi ở 0.6.1.
-- `FEATURE_GAP_060.md` ở gốc (Antigravity tạo, chưa theo dõi git) – chờ chủ dự án quyết giữ/chuyển vào audit.
+- `FEATURE_GAP_060.md` (phân tích tích hợp Zenshin/Nyora/Nuvio/GIF Viewer/Frank Yomik do Antigravity tạo ở gốc) – chủ dự án để Claude quyết (21:18): chuyển vào `audit/audit-0.6.1/notes/` (chỉ lưu cục bộ).
