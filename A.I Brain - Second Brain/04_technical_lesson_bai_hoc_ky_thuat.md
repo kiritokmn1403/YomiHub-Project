@@ -98,3 +98,13 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - AVD khởi động lạnh hay hiện "System UI isn't responding" che app → dump uiautomator, bấm "Wait" rồi chụp lại trước khi kết luận.
 - **AVD Android TV trên máy là x86 32-bit** – không cài được APK TV x86_64; kiểm APK TV trên AVD điện thoại API 34 x86_64 bằng `am start -n com.yomihub.app/com.kodjodevf.mangayomi.MainActivity`.
 - Autosave (3 phút) tự đẩy README/docs vừa sửa → kiểm `git log -1 --stat` trước khi tự commit, tránh commit trùng.
+
+## Bổ sung 19/11/2026 đêm (0.6.2 – Claude Opus 5.5)
+- **"type 'bool' is not a subtype of type 'double?' in type cast" ở `ScrollPosition.restoreScrollOffset`** = xung đột PageStorage: `ExpansionTile` lưu trạng thái mở/gập (bool) và một Scrollable bên trong (ô `TextField`, ListView lồng) cùng định danh PageStorage đọc nó làm vị trí cuộn. Thêm `PageStorageKey` cho ExpansionTile KHÔNG đủ (Scrollable con thừa hưởng cùng khóa tổ tiên). Cách sửa: bọc thân nhóm bằng `PageStorage(bucket: PageStorageBucket())` riêng (`YomiFilterStorageScope`) và/hoặc `ScrollController(keepScrollOffset: false)`. Lỗi "Null check" ở `EditableTextState.renderEditable` ngay sau đó chỉ là hệ quả.
+- **Giải stack Dart bị làm rối nhanh trong VM**: `nm -n app.android-arm64.symbols` → bảng địa chỉ; tra địa chỉ `virt` trong log bằng `bisect` (Python) ra tên hàm Flutter/Dart – không cần llvm-symbolizer. Kiểm build_id bằng `readelf -n`. Thư mục `D:\yh\symbols_<ver>`.
+- **Chứng minh bản sửa**: job chép tệp CŨ (từ `audit/audit-<ver>/backup/build/<giờ>/`, do `Sync-Overlay` tự lưu) vào bản dựng → chạy test mới (phải trượt đúng lỗi log) → chép lại tệp mới. Đưa kết quả vào ghi chú.
+- **Phân loại theo từ khóa đa ngôn ngữ**: chọn từ khóa khớp DÀI NHẤT trên mọi nhóm, không phải nhóm xét trước (tiếng Việt "Thể loại" chứa "loại" của nhóm Danh mục); nhóm có cụm mở đầu đặc trưng ("Sắp xếp theo …", "Sort by …") ưu tiên tuyệt đối.
+- **`tr('…' '…')` (chuỗi ghép bằng 2 literal liền nhau)**: test `yh_049` quét literal đầu → báo thiếu bản dịch. Luôn viết khóa `tr()` thành MỘT literal.
+- **Kotatsu cổng ảnh `127.0.0.1/kotatsu/image`**: CDN ảnh có thể bật Cloudflare riêng → phải ném lỗi có `Status=403, URL=` để `withCf` giải; phía Dart chờ cổng nội bộ lâu hơn (120 s).
+- **Logger**: đặt nhãn phiên bản TRƯỚC khi đánh dấu đã khởi tạo, nếu không các dòng ghi trong lúc chờ `deviceDescription()` mất nhãn và đứng trước dòng mở phiên.
+- **VM device_bash không có mạng** (curl trả 000) → kiểm URL bằng job Windows `Invoke-WebRequest`.
