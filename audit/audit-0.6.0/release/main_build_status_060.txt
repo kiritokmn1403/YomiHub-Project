@@ -31,3 +31,5 @@
 19/11 14:08:06 --> buoc win
 19/11 14:29:11 <-- buoc win exit=0 (21 phut)
 19/11 14:29:11 --> buoc pack
+19/11 14:32:33 <-- buoc pack exit=0 (3 phut)
+19/11 14:32:33 --> buoc a6build
