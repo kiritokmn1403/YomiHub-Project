@@ -18,5 +18,5 @@
 - **CBHentai**: Fixed Cloudflare challenge loop.
 - **Kotatsu Images**: Improved Kotatsu image handling (e.g., SAYHENTAI) returning error HTML instead of images.
 - **Tor**: Changed "connection failed after 90s" from error to warning.
-- **Health Connect**: Mindfullness permission reminder limited to once a day.
-- **Notification**: Fixed Android 6.0 notification appearing on Android 7.0+.
+- **Health Connect**: Mindfulness permission reminder limited to once a day.
+- **Android 6.0 APK notice**: the "running the Android 6.0 APK" notice no longer stays hidden after 0.5.7 (it was keyed to an old version string).
