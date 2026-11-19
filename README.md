@@ -33,7 +33,7 @@ Chọn gói cài đặt phù hợp với thiết bị của bạn tại trang ph
 ### 🎬 Xem phim & Anime (Film & Movie)
 - Tận hưởng kho phim và Anime trực tuyến với trình phát tích hợp (nhân mpv qua media_kit), hỗ trợ Picture-in-Picture.
 - Tự động nhớ vị trí đang xem, hỗ trợ đổi luồng phát, chọn máy chủ dự phòng khi gặp sự cố mạng, tải tập phim về máy xem offline.
-- Tích hợp giao diện Shorts / Video ngắn giải trí với thao tác vuốt chuyển tiện lợi.
+- Tích hợp giao diện Shorts / Video ngắn giải trí với thao tác vuốt chuyển tiện lợi (nhận diện YouTube Shorts, TikTok, Kwai, RedGifs, Facebook Reels, Snapchat Spotlight, Moj…).
 
 ### 📚 Tiểu thuyết chữ & Sách điện tử (Novel & Google Play Books)
 - Khám phá kho tiểu thuyết trực tuyến đa dạng thể loại: Tiên hiệp, Kiếm hiệp, Đô thị, Ngôn tình, Light Novel.
@@ -67,7 +67,7 @@ YomiHub hỗ trợ cài đặt và quản lý tiện ích từ nhiều kiến tr
 - **Đồng bộ Health Connect**: Tự động ghi nhận thời gian đọc sách và xem phim vào dữ liệu sức khỏe thể chất/tinh thần (Mindfulness).
 - **Bảo vệ thị lực**: Tính năng nhắc nhở nghỉ mắt theo quy tắc 20-20-20 khoa học.
 - **Trình đọc mở rộng**: Tích hợp các phím tắt và tiện ích đọc chuyên dụng (Yomikiru & Yomihon).
-- **Trình duyệt tích hợp**: dùng cho WebView của nguồn, giải Cloudflare thủ công và chống thu thập dấu vân tay trình duyệt.
+- **Trình duyệt tích hợp**: dùng cho WebView của nguồn, giải Cloudflare thủ công và chống thu thập dấu vân tay trình duyệt; công cụ Savior tải video và quét mã trang tìm link m3u8/mp4.
 - **Hỗ trợ 18 ngôn ngữ**: Giao diện được bản địa hóa hoàn chỉnh với khả năng nhận diện ngôn ngữ hệ thống tự động.
 
 ---
