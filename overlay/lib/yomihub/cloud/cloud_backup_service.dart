@@ -69,16 +69,6 @@ abstract class CloudProvider {
   Future<File> download(CloudFile file, Directory into);
 }
 
-/// 0.6.1: lỗi do người dùng chưa nhập đủ thông tin (không phải lỗi ứng dụng):
-/// màn hình hiện câu thông báo, nhật ký ghi WARNING thay vì ERROR (log Note 9
-/// 19/11 19:12 – "[Đồng bộ đám mây] Exception: Hãy nhập Client ID…" mức ERROR).
-class CloudInputError implements Exception {
-  final String message;
-  const CloudInputError(this.message);
-  @override
-  String toString() => message;
-}
-
 class CloudField {
   final String key;
   final String label;
@@ -531,7 +521,7 @@ class GoogleDriveClientIdProvider extends GoogleDriveProvider {
   @override
   Future<CloudAuthPrompt?> beginAuth() async {
     if ((config['client_id'] ?? '').trim().isEmpty) {
-      throw CloudInputError(tr('Hãy nhập Client ID (và Client secret) trước khi kết nối'));
+      throw Exception(tr('Hãy nhập Client ID (và Client secret) trước khi kết nối'));
     }
     return super.beginAuth();
   }
