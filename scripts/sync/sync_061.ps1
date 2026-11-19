@@ -1,5 +1,5 @@
 ﻿# sync_061.ps1 - Dong bo overlay 0.6.1 (0.6.1+54) sang D:\yh\build\mangayomi va D:\yh\buildwin\mangayomi.
-# Danh sach tep: audit\audit-0.6.1\release\changed_files_061.txt (tao lai bang -Regen: git diff v0.5.9 + tep chua theo doi trong overlay; autosave commit 5 phut/lan nen so voi HEAD se bo sot tep).
+# Danh sach tep: audit\audit-0.6.1\release\changed_files_061.txt (tao lai bang -Regen: git diff v0.6.0 + tep chua theo doi trong overlay; autosave commit 5 phut/lan nen so voi HEAD se bo sot tep).
 # Sao luu truoc khi ghi de: audit\audit-0.6.1\backup\{baseline,runs}. Khong xoa tep nao.
 param([switch]$Regen)
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:file_picker/file_picker.dart';
@@ -108,14 +107,13 @@ class _GifViewerScreenState extends State<GifViewerScreen> {
     final res = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['gif', 'webp', 'png', 'apng'],
-      withData: !Platform.isWindows,
     );
     final f = res.firstOrNull; // file_picker 12: trả List<PlatformFile>
     if (f == null) return;
-    if (f.bytes != null) {
-      await _open(f.bytes!, f.name);
-    } else if (f.path != null) {
-      await _openPath(f.path!);
+    try {
+      await _open(await f.readAsBytes(), f.name);
+    } catch (e) {
+      _fail(e);
     }
   }
 

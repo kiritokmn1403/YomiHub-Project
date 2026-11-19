@@ -43,10 +43,13 @@ h2 small{font-size:.8rem;color:var(--muted);font-weight:500}
 footer{color:var(--muted);font-size:.9rem;text-align:center;padding:36px 0 48px;border-top:1px solid var(--line);margin-top:44px}
 a{color:var(--acc)}
 code{font-size:.9em}
+.nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line);font-weight:600}
+.nav a{text-decoration:none}.nav a.on{color:var(--fg)}
 </style>
 </head>
 <body>
 <div class="wrap">
+<nav class="nav"><a class="on" href="index.html">Trang chủ</a><a href="#tai-ve">Tải về</a><a href="privacy.html">Chính sách quyền riêng tư</a><a href="https://github.com/kiritokmn1403/YomiHub-Project">GitHub</a></nav>
 <header>
   <img src="assets/icon-512.png" alt="Biểu tượng YomiHub">
   <h1>YomiHub</h1>
@@ -55,7 +58,7 @@ code{font-size:.9em}
   <a class="btn ghost" href="https://github.com/kiritokmn1403/YomiHub-Project">Mã nguồn trên GitHub</a>
 </header>
 
-<h2>Chọn bản cài <small id="ver">· phiên bản 0.5.9</small></h2>
+<h2 id="tai-ve">Chọn bản cài <small id="ver">· phiên bản 0.5.9</small></h2>
 <table class="dlt">
 <tr><th>Thiết bị</th><th>Tải về</th></tr>
 <tr><td><b>Android 7.0 trở lên</b><br><span class="note">Điện thoại, máy tính bảng (chọn arm64-v8a nếu không chắc)</span></td><td class="dls"><a class="dl" data-pat="YomiHub-{v}-arm64-v8a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.5.9/YomiHub-0.5.9-arm64-v8a.apk" title="Tải YomiHub-0.5.9-arm64-v8a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>arm64-v8a</a><a class="dl" data-pat="YomiHub-{v}-armeabi-v7a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.5.9/YomiHub-0.5.9-armeabi-v7a.apk" title="Tải YomiHub-0.5.9-armeabi-v7a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>armeabi-v7a</a><a class="dl" data-pat="YomiHub-{v}-x86_64.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.5.9/YomiHub-0.5.9-x86_64.apk" title="Tải YomiHub-0.5.9-x86_64.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>x86_64</a></td></tr>

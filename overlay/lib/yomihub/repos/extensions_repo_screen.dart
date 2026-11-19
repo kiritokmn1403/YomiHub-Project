@@ -96,6 +96,33 @@ const yomiSuggestedRepos = <YomiSuggestedRepo>[
     'Secozzi',
     note: 'Film & Movie • APK Aniyomi (Jellyfin, Stremio, Torbox)',
   ),
+  // 0.6.1: kho tìm thấy khi Antigravity /swarm 1 quét 13 website (HTTP 200 thật,
+  // audit-0.6.1/antigravity/extension_repos_report_061.md)
+  YomiSuggestedRepo(
+    'https://observeroftime.frama.io/tachiyomi-extensions/index.min.json',
+    'observeroftime (frama.io)',
+    note: 'Comic • APK Mihon (14 nguồn)',
+  ),
+  YomiSuggestedRepo(
+    'https://raw.githubusercontent.com/tympanicblock61/mangayomi-extensions/main/index.json',
+    'tympanicblock61',
+    note: 'Comic • Mangayomi (261 nguồn)',
+  ),
+  YomiSuggestedRepo(
+    'https://raw.githubusercontent.com/Swakshan/mangayomi-swak-extensions/refs/heads/main/anime_index.json',
+    'Swakshan',
+    note: 'Film & Movie • Mangayomi (15 nguồn)',
+  ),
+  YomiSuggestedRepo(
+    'https://raw.githubusercontent.com/Mallyd11/mangayomi-anime-extensions/main/anime_index.json',
+    'Mallyd11',
+    note: 'Film & Movie • Mangayomi (17 nguồn)',
+  ),
+  YomiSuggestedRepo(
+    'https://raw.githubusercontent.com/9vsv6/mangayomi-ar-extensions/refs/heads/main/manga_index.json',
+    '9vsv6 (Arabic)',
+    note: 'Comic • Mangayomi, tiếng Ả Rập',
+  ),
 ];
 
 String _norm(String? u) {
