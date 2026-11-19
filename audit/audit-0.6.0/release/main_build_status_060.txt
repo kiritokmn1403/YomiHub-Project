@@ -17,3 +17,5 @@
 19/11 12:51:45 --> buoc test
 19/11 12:56:00 <-- buoc test exit=0 (4 phut)
 19/11 12:56:00 --> buoc apk
+19/11 13:29:49 <-- buoc apk exit=0 (34 phut)
+19/11 13:29:49 --> buoc tv
