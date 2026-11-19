@@ -218,6 +218,12 @@ class RouterNotifier extends ChangeNotifier {
       name: "mangaHome",
       builder: (id) => MangaHomeScreen(source: id.$1!, isLatest: id.$2),
     ),
+    // 0.6.0 (Mangayomi v0.9.96 "browse a genre in the source from its chip"):
+    // the genre chip's "search in source" opened the source without the genre.
+    _genericRoute<(Source?, String)>(
+      name: "mangaHomeGenre",
+      builder: (id) => MangaHomeScreen(source: id.$1!, query: id.$2, isSearch: true),
+    ),
     _genericRoute<int>(
       path: "/manga-reader/detail",
       builder: (id) => MangaReaderDetail(mangaId: id),

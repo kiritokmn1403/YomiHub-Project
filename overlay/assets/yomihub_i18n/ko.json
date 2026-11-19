@@ -1661,5 +1661,16 @@
   "Không mở được trình duyệt để đăng nhập Google": "Google 로그인을 위한 브라우저를 열 수 없습니다",
   "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "이 빌드에는 기본 Google 로그인 설정이 없습니다 – 직접 Client ID와 Client secret을 입력하세요",
   "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: 로그인 시간이 초과되었습니다",
-  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru 앱 (검색 기록, 즐겨찾기, 설정)"
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru 앱 (검색 기록, 즐겨찾기, 설정)",
+  "Nên cài bản APK thường": "일반 APK 설치",
+  "Để sau": "나중에",
+  "Tải bản APK thường": "일반 APK 다운로드",
+  "Quét mã trang tìm link video": "페이지 소스에서 동영상 링크 찾기",
+  "Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng": "소스, 플레이어 설정, 삽입 프레임에서 m3u8/mp4 링크를 찾습니다",
+  "Không thấy link trực tiếp – mở trình phát nhúng để quét?": "직접 링크가 없습니다 – 삽입된 플레이어를 열어 찾을까요?",
+  "Đã tìm thấy {p0} link video mới – mở lại Savior để tải": "새 동영상 링크 {p0}개를 찾았습니다 – Savior를 다시 열어 다운로드하세요",
+  "Không tìm thấy link video trong mã trang": "페이지 소스에서 동영상 링크를 찾지 못했습니다",
+  "Không quét được mã trang": "페이지 소스를 분석할 수 없습니다",
+  "Sao Lưu Lên Google Drive": "Google 드라이브에 백업",
+  "Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive": "Google 계정으로 로그인해 Google 드라이브로 백업하고 복원합니다"
 }

@@ -1661,5 +1661,16 @@
   "Không mở được trình duyệt để đăng nhập Google": "Tidak dapat membuka browser untuk masuk ke Google",
   "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Build ini tidak memiliki konfigurasi masuk Google bawaan – masukkan Client ID dan Client secret sendiri",
   "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: waktu masuk habis",
-  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (riwayat pencarian, favorit, pengaturan)"
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (riwayat pencarian, favorit, pengaturan)",
+  "Nên cài bản APK thường": "Pasang APK biasa",
+  "Để sau": "Nanti",
+  "Tải bản APK thường": "Unduh APK biasa",
+  "Quét mã trang tìm link video": "Pindai sumber halaman untuk tautan video",
+  "Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng": "Cari tautan m3u8/mp4 di sumber halaman, konfigurasi pemutar, dan bingkai sematan",
+  "Không thấy link trực tiếp – mở trình phát nhúng để quét?": "Tidak ada tautan langsung – buka pemutar sematan untuk dipindai?",
+  "Đã tìm thấy {p0} link video mới – mở lại Savior để tải": "Ditemukan {p0} tautan video baru – buka Savior lagi untuk mengunduh",
+  "Không tìm thấy link video trong mã trang": "Tidak ada tautan video di sumber halaman",
+  "Không quét được mã trang": "Tidak dapat memindai sumber halaman",
+  "Sao Lưu Lên Google Drive": "Cadangkan ke Google Drive",
+  "Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive": "Masuk dengan akun Google untuk mencadangkan dan memulihkan lewat Google Drive"
 }

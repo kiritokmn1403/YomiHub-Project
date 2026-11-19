@@ -1661,5 +1661,16 @@
   "Không mở được trình duyệt để đăng nhập Google": "Google ছাইন ইনৰ বাবে ব্ৰাউজাৰ খুলিব পৰা নগ'ল",
   "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "এই বিল্ডত Google ছাইন ইনৰ নিজা ছেটআপ নাই – নিজৰ Client ID আৰু Client secret দিয়ক",
   "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: ছাইন ইনৰ সময় উকলি গ'ল",
-  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (সন্ধানৰ ইতিহাস, প্ৰিয়, ছেটিংছ)"
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (সন্ধানৰ ইতিহাস, প্ৰিয়, ছেটিংছ)",
+  "Nên cài bản APK thường": "সাধাৰণ APK ইনষ্টল কৰক",
+  "Để sau": "পিছত",
+  "Tải bản APK thường": "সাধাৰণ APK ডাউনলোড কৰক",
+  "Quét mã trang tìm link video": "পৃষ্ঠাৰ উৎসত ভিডিঅ' লিংক বিচাৰক",
+  "Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng": "উৎস, প্লেয়াৰ ছেটিং আৰু এম্বেড ফ্ৰেমত m3u8/mp4 লিংক বিচাৰক",
+  "Không thấy link trực tiếp – mở trình phát nhúng để quét?": "প্ৰত্যক্ষ লিংক নাই – বিচাৰিবলৈ এম্বেড প্লেয়াৰ খুলিবনে?",
+  "Đã tìm thấy {p0} link video mới – mở lại Savior để tải": "{p0} টা নতুন ভিডিঅ' লিংক পোৱা গ'ল – ডাউনলোডৰ বাবে Savior পুনৰ খোলক",
+  "Không tìm thấy link video trong mã trang": "পৃষ্ঠাৰ উৎসত কোনো ভিডিঅ' লিংক পোৱা নগ'ল",
+  "Không quét được mã trang": "পৃষ্ঠাৰ উৎস স্কেন কৰিব পৰা নগ'ল",
+  "Sao Lưu Lên Google Drive": "Google Driveত বেকআপ",
+  "Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive": "Google Driveৰে বেকআপ আৰু পুনৰুদ্ধাৰৰ বাবে Google একাউণ্টেৰে ছাইন ইন কৰক"
 }

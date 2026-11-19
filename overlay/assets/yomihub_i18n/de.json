@@ -1661,5 +1661,16 @@
   "Không mở được trình duyệt để đăng nhập Google": "Browser für die Google-Anmeldung konnte nicht geöffnet werden",
   "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Dieser Build hat keine integrierte Google-Anmeldung – gib eine eigene Client-ID und ein Client-Secret ein",
   "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: Zeitüberschreitung bei der Anmeldung",
-  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru-App (Suchverlauf, Favoriten, Einstellungen)"
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru-App (Suchverlauf, Favoriten, Einstellungen)",
+  "Nên cài bản APK thường": "Reguläre APK installieren",
+  "Để sau": "Später",
+  "Tải bản APK thường": "Reguläre APK herunterladen",
+  "Quét mã trang tìm link video": "Seitenquelltext nach Videolinks durchsuchen",
+  "Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng": "m3u8/mp4-Links in Quelltext, Player-Konfiguration und eingebetteten Frames finden",
+  "Không thấy link trực tiếp – mở trình phát nhúng để quét?": "Kein direkter Link gefunden – eingebetteten Player zum Durchsuchen öffnen?",
+  "Đã tìm thấy {p0} link video mới – mở lại Savior để tải": "{p0} neue Videolinks gefunden – Savior erneut öffnen, um herunterzuladen",
+  "Không tìm thấy link video trong mã trang": "Keine Videolinks im Seitenquelltext gefunden",
+  "Không quét được mã trang": "Seitenquelltext konnte nicht durchsucht werden",
+  "Sao Lưu Lên Google Drive": "Sicherung in Google Drive",
+  "Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive": "Mit Google-Konto anmelden, um über Google Drive zu sichern und wiederherzustellen"
 }

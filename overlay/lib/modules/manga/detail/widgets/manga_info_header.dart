@@ -238,9 +238,12 @@ class _MangaInfoHeaderState extends ConsumerState<MangaInfoHeader> {
                                               break;
                                           }
                                         } else {
-                                          context.pushReplacement(
-                                            '/mangaHome',
-                                            extra: (source, false),
+                                          // 0.6.0: search the genre in the
+                                          // source (was: its home page) and
+                                          // keep this page under it.
+                                          context.push(
+                                            '/mangaHomeGenre',
+                                            extra: (source, widget.manga.genre![i]),
                                           );
                                         }
                                       },

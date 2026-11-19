@@ -1661,5 +1661,16 @@
   "Không mở được trình duyệt để đăng nhập Google": "Google oturumu için tarayıcı açılamadı",
   "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Bu derlemede yerleşik Google oturum açma ayarı yok – kendi Client ID ve Client secret değerlerinizi girin",
   "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: oturum açma zaman aşımına uğradı",
-  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (arama geçmişi, favoriler, ayarlar)"
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (arama geçmişi, favoriler, ayarlar)",
+  "Nên cài bản APK thường": "Normal APK'yı yükle",
+  "Để sau": "Sonra",
+  "Tải bản APK thường": "Normal APK'yı indir",
+  "Quét mã trang tìm link video": "Sayfa kaynağında video bağlantısı ara",
+  "Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng": "Kaynak kodda, oynatıcı ayarlarında ve gömülü çerçevelerde m3u8/mp4 bağlantılarını bul",
+  "Không thấy link trực tiếp – mở trình phát nhúng để quét?": "Doğrudan bağlantı yok – taramak için gömülü oynatıcı açılsın mı?",
+  "Đã tìm thấy {p0} link video mới – mở lại Savior để tải": "{p0} yeni video bağlantısı bulundu – indirmek için Savior'u yeniden açın",
+  "Không tìm thấy link video trong mã trang": "Sayfa kaynağında video bağlantısı bulunamadı",
+  "Không quét được mã trang": "Sayfa kaynağı taranamadı",
+  "Sao Lưu Lên Google Drive": "Google Drive'a Yedekle",
+  "Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive": "Google Drive ile yedeklemek ve geri yüklemek için Google hesabınızla oturum açın"
 }

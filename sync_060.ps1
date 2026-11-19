@@ -1,5 +1,5 @@
 ﻿# sync_060.ps1 - Dong bo overlay 0.6.0 (0.6.0+53) sang D:\yh\build\mangayomi va D:\yh\buildwin\mangayomi.
-# Danh sach tep: audit\audit-0.6.0\release\changed_files_060.txt (tao lai bang -Regen: git diff HEAD + tep chua theo doi trong overlay).
+# Danh sach tep: audit\audit-0.6.0\release\changed_files_060.txt (tao lai bang -Regen: git diff v0.5.9 + tep chua theo doi trong overlay; autosave commit 5 phut/lan nen so voi HEAD se bo sot tep).
 # Sao luu truoc khi ghi de: audit\audit-0.6.0\backup\{baseline,runs}. Khong xoa tep nao.
 param([switch]$Regen)
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -13,7 +13,7 @@ if ($Regen) {
     $git = if (Get-Command git -ErrorAction SilentlyContinue) { 'git' } else { 'D:\yh\tools\git\cmd\git.exe' }
     # 0.6.0: git ghi cảnh báo CRLF ra stderr; với ErrorActionPreference=Stop (common.ps1) PowerShell coi là lỗi.
     $eap = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
-    $l = @(& $git -C $root -c core.safecrlf=false diff --name-only HEAD -- overlay 2>$null) + @(& $git -C $root ls-files -o --exclude-standard -- overlay 2>$null)
+    $l = @(& $git -C $root -c core.safecrlf=false diff --name-only v0.5.9 -- overlay 2>$null) + @(& $git -C $root ls-files -o --exclude-standard -- overlay 2>$null)
     $ErrorActionPreference = $eap
     $l = @($l | Where-Object { $_ -match '\S' } | Sort-Object -Unique)
     if ($l.Count -eq 0) { Write-Error "LỖI: git không báo tệp overlay nào thay đổi"; exit 1 }

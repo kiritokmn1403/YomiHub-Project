@@ -1661,5 +1661,16 @@
   "Không mở được trình duyệt để đăng nhập Google": "Google ログイン用のブラウザを開けませんでした",
   "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "このビルドには Google ログインの組み込み設定がありません。独自のクライアント ID とクライアントシークレットを入力してください",
   "Google Drive: hết thời gian chờ đăng nhập": "Google Drive：ログインがタイムアウトしました",
-  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App（検索履歴、お気に入り、設定）"
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App（検索履歴、お気に入り、設定）",
+  "Nên cài bản APK thường": "通常版APKをインストール",
+  "Để sau": "後で",
+  "Tải bản APK thường": "通常版APKをダウンロード",
+  "Quét mã trang tìm link video": "ページのソースから動画リンクを探す",
+  "Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng": "ソース、プレーヤー設定、埋め込みフレームからm3u8/mp4リンクを探します",
+  "Không thấy link trực tiếp – mở trình phát nhúng để quét?": "直接リンクがありません – 埋め込みプレーヤーを開いて探しますか？",
+  "Đã tìm thấy {p0} link video mới – mở lại Savior để tải": "新しい動画リンクが{p0}件見つかりました – Saviorを開き直してダウンロード",
+  "Không tìm thấy link video trong mã trang": "ページのソースに動画リンクがありません",
+  "Không quét được mã trang": "ページのソースを解析できません",
+  "Sao Lưu Lên Google Drive": "Google ドライブにバックアップ",
+  "Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive": "Google アカウントでログインして、Google ドライブでバックアップと復元を行います"
 }

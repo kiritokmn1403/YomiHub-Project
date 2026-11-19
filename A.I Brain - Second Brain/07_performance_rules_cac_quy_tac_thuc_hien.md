@@ -24,3 +24,5 @@
 15. Báo cáo chủ dự án bằng tiếng Việt, mỗi bước 1 câu; nói rõ việc chủ dự án cần tự làm.
 16. Tắt lịch hẹn/tiến trình nền khi xong việc (lịch nhắc, autosave, theo dõi của Antigravity).
 17. Cuối mỗi phiên: thêm mục vào nhật ký phiên (12) và làm bước bàn giao (11).
+18. **Tự lưu tiến độ 3 phút/lần** (yêu cầu chủ dự án 19/11/2026 11:34, thay mức 5 phút đặt lúc 09:24): `scripts/autosave_progress_<ver>.ps1` chạy nền từ đầu đến khi xong đợt; dừng bằng `jobs/STOP_AUTOSAVE_<ver>`.
+19. Tác nhân (Antigravity/Claude) KHÔNG được liệt kê/tìm đệ quy cả `D:\A.I Project`, `D:\yh`, `src/`: 19/11 ba lệnh `ls -R`/`Get-ChildItem -Recurse` của Antigravity làm nghẽn ổ đĩa 1,5 giờ. Khi máy chậm: liệt kê cmd/PowerShell nền (Win32_Process + CommandLine) và dừng tiến trình thừa trước khi kết luận.

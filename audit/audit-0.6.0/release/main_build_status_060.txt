@@ -1,0 +1,4 @@
+﻿19/11 11:33:37 === BAT DAU dung bo goi chinh 0.6.0 ===
+19/11 11:33:39 --> buoc sync
+19/11 11:36:43 <-- buoc sync exit=0 (3 phut)
+19/11 11:36:43 --> buoc test

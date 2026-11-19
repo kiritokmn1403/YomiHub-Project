@@ -1661,5 +1661,16 @@
   "Không mở được trình duyệt để đăng nhập Google": "Google साइन-इन के लिए ब्राउज़र नहीं खुल सका",
   "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "इस बिल्ड में Google साइन-इन की बिल्ट-इन सेटिंग नहीं है – अपना Client ID और Client secret डालें",
   "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: साइन-इन का समय समाप्त",
-  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (खोज इतिहास, पसंदीदा, सेटिंग्स)"
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (खोज इतिहास, पसंदीदा, सेटिंग्स)",
+  "Nên cài bản APK thường": "सामान्य APK इंस्टॉल करें",
+  "Để sau": "बाद में",
+  "Tải bản APK thường": "सामान्य APK डाउनलोड करें",
+  "Quét mã trang tìm link video": "पेज सोर्स में वीडियो लिंक खोजें",
+  "Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng": "सोर्स, प्लेयर कॉन्फ़िगरेशन और एम्बेडेड फ़्रेम में m3u8/mp4 लिंक खोजें",
+  "Không thấy link trực tiếp – mở trình phát nhúng để quét?": "कोई सीधा लिंक नहीं – खोजने के लिए एम्बेडेड प्लेयर खोलें?",
+  "Đã tìm thấy {p0} link video mới – mở lại Savior để tải": "{p0} नए वीडियो लिंक मिले – डाउनलोड के लिए Savior फिर खोलें",
+  "Không tìm thấy link video trong mã trang": "पेज सोर्स में कोई वीडियो लिंक नहीं मिला",
+  "Không quét được mã trang": "पेज सोर्स स्कैन नहीं हो सका",
+  "Sao Lưu Lên Google Drive": "Google Drive पर बैकअप",
+  "Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive": "Google Drive से बैकअप और रिस्टोर के लिए Google खाते से साइन इन करें"
 }

@@ -1661,5 +1661,16 @@
   "Không mở được trình duyệt để đăng nhập Google": "Could not open the browser for Google sign-in",
   "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "This build has no built-in Google sign-in setup – enter your own Client ID and Client secret",
   "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: sign-in timed out",
-  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (search history, favourites, settings)"
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (search history, favourites, settings)",
+  "Nên cài bản APK thường": "Install the regular APK",
+  "Để sau": "Later",
+  "Tải bản APK thường": "Download the regular APK",
+  "Quét mã trang tìm link video": "Scan page source for video links",
+  "Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng": "Find m3u8/mp4 links in the page source, player config and embedded frames",
+  "Không thấy link trực tiếp – mở trình phát nhúng để quét?": "No direct link found – open an embedded player to scan it?",
+  "Đã tìm thấy {p0} link video mới – mở lại Savior để tải": "Found {p0} new video links – open Savior again to download",
+  "Không tìm thấy link video trong mã trang": "No video links found in the page source",
+  "Không quét được mã trang": "Could not scan the page source",
+  "Sao Lưu Lên Google Drive": "Back Up to Google Drive",
+  "Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive": "Sign in with your Google account to back up and restore via Google Drive"
 }

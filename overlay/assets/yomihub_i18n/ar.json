@@ -1661,5 +1661,16 @@
   "Không mở được trình duyệt để đăng nhập Google": "تعذّر فتح المتصفح لتسجيل الدخول إلى Google",
   "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "لا يحتوي هذا الإصدار على إعداد مدمج لتسجيل الدخول إلى Google – أدخل معرّف العميل وسرّ العميل الخاصين بك",
   "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: انتهت مهلة تسجيل الدخول",
-  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "تطبيق Booru (سجل البحث، المفضلة، الإعدادات)"
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "تطبيق Booru (سجل البحث، المفضلة، الإعدادات)",
+  "Nên cài bản APK thường": "تثبيت حزمة APK العادية",
+  "Để sau": "لاحقًا",
+  "Tải bản APK thường": "تنزيل حزمة APK العادية",
+  "Quét mã trang tìm link video": "البحث عن روابط الفيديو في مصدر الصفحة",
+  "Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng": "العثور على روابط m3u8/mp4 في المصدر وإعدادات المشغل والإطارات المضمّنة",
+  "Không thấy link trực tiếp – mở trình phát nhúng để quét?": "لا يوجد رابط مباشر – فتح مشغل مضمّن للبحث فيه؟",
+  "Đã tìm thấy {p0} link video mới – mở lại Savior để tải": "تم العثور على {p0} روابط فيديو جديدة – افتح Savior مجددًا للتنزيل",
+  "Không tìm thấy link video trong mã trang": "لم يُعثر على روابط فيديو في مصدر الصفحة",
+  "Không quét được mã trang": "تعذّر تحليل مصدر الصفحة",
+  "Sao Lưu Lên Google Drive": "النسخ الاحتياطي إلى Google Drive",
+  "Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive": "سجّل الدخول بحساب Google للنسخ الاحتياطي والاستعادة عبر Google Drive"
 }

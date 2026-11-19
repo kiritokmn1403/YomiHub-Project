@@ -17,3 +17,7 @@ Kết quả đợt 1 chỉ là khung (FEATURE_GAP có "?", "[ ]" không kèm đ�
 - Đặc tả từng màn (Thư viện, Cập nhật, Lịch sử, Duyệt, Thêm, Chi tiết + "Chọn nguồn đọc" cho bộ hợp nhất, Trình đọc, Cài đặt): bố cục, kích thước (dp), màu (ColorScheme), chữ, bo góc, hiệu ứng; khác biệt Android / Android TV (D-pad, focus) / Windows (rộng ≥ 1000 px: thanh điều hướng trái).
 - Mã Dart (Flutter 3.47, Material 3) cho ít nhất: thanh điều hướng mới (điện thoại + NavigationRail Windows/TV), thẻ truyện lưới, tiêu đề mục, AppBar tìm kiếm – mỗi widget nhận `bool newStyle` để giữ chuyển đổi Cũ/Mới; `INTEGRATION.md` nêu chính xác tệp overlay sẽ nối (đã grep).
 Thời hạn: 60 phút. Ghi NOTES sau mỗi bước, kết thúc `SUMMARY_swarm2_060.md`.
+
+## QUY TẮC BỔ SUNG (Claude, 19/11 11:30) – BẮT BUỘC
+- 10:08 các tác tử /swarm đã chạy 3 lệnh PowerShell `ls -R` / `Get-ChildItem -Recurse` trên TOÀN BỘ `D:\A.I Project` (1.500–2.700 s CPU, ổ đĩa nghẽn 300–580 %, làm treo mọi bản dựng 1,5 giờ) → Claude đã dừng theo yêu cầu chủ dự án.
+- CẤM liệt kê/tìm đệ quy cả `D:\A.I Project`, `D:\yh`, `src/`, `overlay/` không giới hạn. Chỉ grep đúng thư mục con cần (ví dụ `overlay/lib/yomihub/repos`), dùng `Select-String -Path <thư mục cụ thể>\*.dart`, luôn có giới hạn thời gian.

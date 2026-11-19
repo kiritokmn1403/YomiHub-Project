@@ -1661,5 +1661,16 @@
   "Không mở được trình duyệt để đăng nhập Google": "No se pudo abrir el navegador para iniciar sesión en Google",
   "Bản dựng này chưa có cấu hình đăng nhập Google – hãy nhập Client ID và Client secret riêng": "Esta compilación no tiene configuración integrada de inicio de sesión de Google: introduce tu propio ID y secreto de cliente",
   "Google Drive: hết thời gian chờ đăng nhập": "Google Drive: se agotó el tiempo de inicio de sesión",
-  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (historial de búsqueda, favoritos, configuración)"
+  "Booru App (lịch sử tìm kiếm, yêu thích, cài đặt)": "Booru App (historial de búsqueda, favoritos, configuración)",
+  "Nên cài bản APK thường": "Instalar el APK normal",
+  "Để sau": "Más tarde",
+  "Tải bản APK thường": "Descargar el APK normal",
+  "Quét mã trang tìm link video": "Buscar enlaces de video en el código de la página",
+  "Tìm link m3u8/mp4 trong mã nguồn, cấu hình trình phát và khung nhúng": "Buscar enlaces m3u8/mp4 en el código, la configuración del reproductor y los marcos incrustados",
+  "Không thấy link trực tiếp – mở trình phát nhúng để quét?": "No hay enlace directo: ¿abrir un reproductor incrustado para buscarlo?",
+  "Đã tìm thấy {p0} link video mới – mở lại Savior để tải": "Se encontraron {p0} enlaces de video nuevos: abre Savior de nuevo para descargar",
+  "Không tìm thấy link video trong mã trang": "No se encontraron enlaces de video en el código de la página",
+  "Không quét được mã trang": "No se pudo analizar el código de la página",
+  "Sao Lưu Lên Google Drive": "Respaldo en Google Drive",
+  "Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive": "Inicia sesión con tu cuenta de Google para respaldar y restaurar con Google Drive"
 }
