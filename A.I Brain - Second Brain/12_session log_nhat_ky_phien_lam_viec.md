@@ -65,3 +65,12 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **23:13** chủ dự án cho phép tự đẩy GitHub + Release khi xong. **23:19** lịch kiểm tra 1h31. **00:03** giao thêm /swarm 3 (Feature Check, README/changelog, tên mục 48 ngôn ngữ).
 - **00:08** chủ dự án: lưu tiến độ ngay → commit + push.
 - **Tiếp theo**: kiểm Note 9 với APK arm64; tích hợp /swarm 3; dựng lại lần cuối (có 48 ngôn ngữ); kiểm Windows/AVD 6/TV; phát hành v0.6.2.
+
+## 20/11/2026 · 0.6.2 (tiếp) · Claude Opus 5.5 (claude.ai + máy tính, 00:21–06:50) + Google Antigravity
+- **00:21** chủ dự án: kiểm tiến độ, xin đủ quyền (máy tính + GitHub), giao Antigravity /swarm, tiếp tục. Đọc Second Brain 00→12, AGENTS, mục 0.6.2; cấp quyền computer use 00:26.
+- **00:22–00:28** duyệt /swarm 3; giao /swarm 4 (Note 9 + đối chiếu log). **00:29** tên 3 mục cho 48 ngôn ngữ + test. **00:30** dừng dây chuyền cũ (chưa có 48 ngôn ngữ), **00:40** dựng lại lần cuối.
+- **00:42** Antigravity hết AI credits (Argon) → đổi Gemini 3.8 Flash, gửi lại 00:44; worker hết credits lần 2 ~01:05 sau kịch bản 4; @log_analyst xong (25 nhóm lỗi, không còn lỗi mã cần sửa ngay).
+- **00:46 / 01:53 / 02:39** dây chuyền dừng 3 lần (test gắn cứng 18 ngôn ngữ; `yh_055` chập chờn; thiếu changelog) → sửa, chạy tiếp từng phần; verify XONG 03:34.
+- **01:52–02:24** Claude kiểm APK cuối trên Note 9 (bộ lọc cũ/mới, hồi quy văng, Polski, Drive). **03:07** Windows Setup.exe cài đè ĐẠT. (Máy không phản hồi ~03:10–06:00.)
+- **06:04–06:30** AVD Android 6 ĐẠT; AVD TV cài + màn hình chờ (máy ảo mất do xung đột adb). **06:38–06:45** phát hành **GitHub Release v0.6.2** (19/19 tệp), `latest` = v0.6.2.
+- **Tiếp theo (0.6.3)**: xem 11-G và ghi chú 0.6.2 › 18.

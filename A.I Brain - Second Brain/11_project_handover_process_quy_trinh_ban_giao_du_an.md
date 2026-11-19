@@ -47,3 +47,9 @@ Danh sách kiểm:
 - Đã kiểm: Note 9 (arm64), Windows 11 (Setup.exe cài đè), AVD Android 6.0 (android6 x86_64), AVD API 34 (TV x86_64). Chưa kiểm sâu tính năng trên Android 6/TV; chưa thử `.appxbundle` 0.6.1.
 - Còn mở cho 0.6.2: xem `TECHNICAL_UPDATE_NOTES.md` mục 0.6.1 › 21 (giao diện Mangayomi v0.9.96 Flutter 3.50 trên nhánh riêng – `src/mangayomi-0.9.96/` đã có; `pending_062/`; KeiSource trên Windows; Frank Yomik; ghim toolchain/YH_ROOT; AVD TV x86_64).
 - Tác vụ nền: autosave 0.6.1 dừng bằng `jobs/STOP_AUTOSAVE_061`; máy ảo đã tắt; Antigravity /swarm 3 xong (xem `audit/audit-0.6.1/antigravity/VERIFICATION_swarm3_061.md`).
+
+## G. Trạng thái bàn giao hiện tại (sau 0.6.2 – 20/11/2026 06:50) – thay mục F
+- 0.6.2 (0.6.2+55) đã phát hành GitHub Release `v0.6.2` 06:45 (19 asset khớp kích thước, `releases/latest` = v0.6.2). README + trang chủ trỏ v0.6.2. KHÔNG đẩy Extension Repo, KHÔNG gửi APKPure.
+- Đã kiểm: Note 9 (APK arm64 cuối – New Version, bộ lọc cũ/mới, hồi quy bool→double, Polski, Drive 2 tùy chọn, nhãn log), Windows 11 (Setup.exe cài đè, bộ lọc mới), AVD Android 6.0 (mở app), AVD API 34 (APK TV cài + màn hình chờ).
+- Còn mở cho 0.6.3: `TECHNICAL_UPDATE_NOTES.md` mục 0.6.2 › 18.
+- Tác vụ nền: autosave 0.6.2 dừng bằng `jobs/STOP_AUTOSAVE_062`; lịch hẹn kiểm tra đã hết; máy ảo đã tắt; Antigravity hết credits tới 26/11.

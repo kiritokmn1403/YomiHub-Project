@@ -108,3 +108,10 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - **Kotatsu cổng ảnh `127.0.0.1/kotatsu/image`**: CDN ảnh có thể bật Cloudflare riêng → phải ném lỗi có `Status=403, URL=` để `withCf` giải; phía Dart chờ cổng nội bộ lâu hơn (120 s).
 - **Logger**: đặt nhãn phiên bản TRƯỚC khi đánh dấu đã khởi tạo, nếu không các dòng ghi trong lúc chờ `deviceDescription()` mất nhãn và đứng trước dòng mở phiên.
 - **VM device_bash không có mạng** (curl trả 000) → kiểm URL bằng job Windows `Invoke-WebRequest`.
+
+## Bổ sung 20/11/2026 (0.6.2 – dựng lần cuối & phát hành)
+- **Test gắn cứng số ngôn ngữ**: `yh_050/051/053` kiểm `assets/yomihub_i18n` đúng 18 tệp → thêm 48 ngôn ngữ làm trượt bước test của dây chuyền. Test đếm tệp chỉ kiểm `greaterThanOrEqualTo(18)`; đối xứng ngôn ngữ kiểm bằng `YomiTr.languages` (`yh_062_section_terms_test.dart`).
+- **Bước pack cần changelog** `audit/audit-<ver>/release/YomiHub-<ver>-changelog.md` có sẵn TRƯỚC khi chạy dây chuyền (không có → dừng sau 14' dựng Windows). Bỏ phần "bằng chứng grep" nội bộ của bản nháp tác nhân trước khi đưa vào changelog công khai.
+- **Hai server adb khác phiên bản**: job gọi `%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe` trong khi job khác dùng adb của `common.ps1` (`D:\yh\tools\android-sdk`) → server bị khởi động lại, máy ảo/điện thoại "not found" giữa chừng. Mọi job adb dùng chung adb từ `common.ps1`.
+- **Máy ảo cũ còn sống** khi bật AVD khác: lấy nhầm `emulator-5554` cũ (INSTALL_FAILED_OLDER_SDK), hoặc "Running multiple emulators with the same AVD". Tắt hết emulator (`adb emu kill` + Stop-Process qemu/emulator), chờ ≥ 15 s, xóa `*.lock` của AVD rồi mới khởi động.
+- Máy có thể không phản hồi vài giờ (ngủ) giữa các bước computer use → kiểm lại `date` VM + `runner_alive.txt` trước khi suy luận thời gian.

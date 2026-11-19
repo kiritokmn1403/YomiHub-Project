@@ -3816,3 +3816,14 @@ Yêu cầu chủ dự án 22:05 (log `logs (11).txt` 16–19/11, `Project YomiHu
 - AVD: job `x062_avd6` (Android 6.0, APK android6 x86_64) và `x062_avdtv` (APK TV x86_64 trên AVD API 34).
 - AVD Android 6.0 (`OOS_Android6_API23`, job `x062_avd6` 06:04–06:08): cài APK `android6-x86_64` (versionName 0.6.2), mở app → Thư viện Truyện tranh (giao diện cũ mặc định, tab Truyện tranh/Phim & Điện ảnh/Tiểu thuyết/Play Books), logcat không FATAL/UnsatisfiedLink – ĐẠT (`evidence/avd6/a02_home.png`).
 - AVD API 34 (`YomiHub056_Phone_API34`) cho APK TV x86_64: lần 1 (`x062_avdtv`) cài nhầm vào máy ảo Android 6 còn sống (INSTALL_FAILED_OLDER_SDK); lần 2 lỗi "multiple emulators with the same AVD"; lần 3 (`x062_avdtv3` 06:26) cài ĐẠT (versionName 0.6.2, `LEANBACK_LAUNCHER`, minSdk 24), mở `am start` → màn hình chờ logo tròn (`evidence/avdtv/t01_splash.png`); sau đó máy ảo mất kết nối do job chụp của Claude gọi adb của SDK Android Studio (khác phiên bản với adb trong `common.ps1`) → khởi động lại server adb. Bài học: job adb luôn dùng adb từ `common.ps1`, không gọi `%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe` song song.
+
+### 17. Phát hành GitHub Release v0.6.2 (20/11 06:38–06:45)
+- Job `x062_release` → `scripts/release/release_062.ps1`: tạo Release `v0.6.2` ("YomiHub 0.6.2", make_latest), tải 19 tệp (~2,9 GB, 6–7 MB/s) trong ~7 phút, tự đối chiếu: "All 19 assets verified with identical sizes". Pages 409 = đã bật sẵn.
+- Xác minh độc lập: API `releases/tags/v0.6.2` (draft=false, prerelease=false, 19 asset, published 23:38Z); `releases/latest` = v0.6.2 (job `f062_latest` trên máy; WebFetch lúc đầu còn trả v0.6.1 do bộ đệm).
+- KHÔNG đẩy Kiritokmn Extension Repo, KHÔNG gửi APKPure (giữ như 0.6.0/0.6.1).
+
+### 18. Còn mở cho 0.6.3
+- Đề xuất từ `LOG_COVERAGE_062.md`: tên miền dự phòng khi DNS/nhà mạng chặn (Kotatsu/JS: Góc Truyện Tranh, TopTruyen, OioiVn, HentaiVN.su); thông báo thân thiện cho `SourceError: JSON parse error` của Aidoku (Kagane); thử lại/DoH khi kho tiện ích lỗi bắt tay TLS (codeberg, kohiden).
+- Từ `FEATURE_CHECK_062.md`: cầu nối APK trên Windows chưa chờ `KeiSource` (JAR M-Extension-Server); giao diện New Version chưa áp cho máy tính bảng/TV/Windows; Yomihon dọc CJK, Nyora chưa nối; Frank Yomik (cần máy chủ GPU) chưa làm; Isar libmdbx chưa thay.
+- Kiểm thử chưa làm ở 0.6.2: Short Video (không đổi mã), TV sâu hơn màn hình chờ, `.appxbundle`.
+- Antigravity hết AI credits Gemini 4 Argon tới 26/11/2026 (Gemini 3.8 Flash cũng bị chặn worker sau ~15 phút) → /swarm sau ngày đó hoặc khi chủ dự án nạp credits.
