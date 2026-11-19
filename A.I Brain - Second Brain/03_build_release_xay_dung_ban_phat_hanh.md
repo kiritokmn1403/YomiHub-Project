@@ -20,3 +20,11 @@
 5. README chỉ giới thiệu + nút Download → `releases/latest`; trang chủ GitHub Pages tự lấy link bản mới nhất (không cần sửa mỗi bản).
 6. **APKPure** (`developer.apkpure.com`, tài khoản "Kiritokmn", dùng Cốc Cốc): tab "Phiên bản quản lý" → tải APK arm64 mới (versionCode phải > bản trước, 0.5.9 = 2052) + "What's new" → chờ xác minh → "Công bố" → chờ duyệt. Tư liệu trang: `audit/audit-0.5.9/apkpure/`.
 7. Ghi kết quả vào ghi chú kỹ thuật (mục 1 + nhật ký), Second Brain; tự lưu push.
+
+## Bổ sung 19/11/2026 (0.6.0)
+- Đường dẫn mới: `scripts/pipeline/run_<ver>_main.ps1` → `scripts/sync/`, `scripts/build/`, `scripts/packaging/`; phát hành `scripts/release/release_<ver>.ps1`. Script trong `scripts/<nhóm>/` lấy gốc dự án = 2 cấp trên `$PSScriptRoot`; `scripts/lib/common.ps1` đặt `$KIT` = gốc dự án.
+- Khi tạo bộ script cho bản mới bằng cách chép bản trước: grep chuỗi phiên bản cũ trong mọi script mới (0.6.0 còn `Version="0\.5\.9\.0"` ở verify AppxBundle → sửa trước khi chạy).
+- Dừng dây chuyền giữa chừng (khi chủ dự án đổi yêu cầu): job nhanh `taskkill /T /F` PowerShell của job + xóa nội dung `BUILD_LOCK.txt`; chạy lại một phần bằng `run_<ver>_main.ps1 -RunSteps 'apk,tv,...'`.
+- Thời gian 0.6.0 trên máy quá tải: test 3–26' → apk 34' → tv 30' → wintest 2–4' → win ~20' → pack 3' → a6build ~25' → verify 2'; tải 19 asset (~2,3 GB) ~7 phút (5–6 MB/s).
+- Thêm phần tiếng Anh vào changelog SAU bước verify → phải cập nhật dòng băm changelog trong `SHA256SUMS-<ver>.txt` (hoặc chạy lại `-RunSteps verify`) trước khi chạy release.
+- README (19/11) theo mẫu "Standard" của The Documentation Compendium: logo `assets/logo/yomihub_logo_1024.png`, huy hiệu, nút Download → `releases/latest`, Mục lục, Giới thiệu, Bắt đầu, Kiểm thử, Sử dụng, Dựng & phát hành, Công nghệ, Tác giả, Ghi nhận. Mọi tính năng ghi trong README phải grep được trong `overlay/lib`.

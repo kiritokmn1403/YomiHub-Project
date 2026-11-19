@@ -26,3 +26,5 @@
 - Đăng công khai (GitHub Release, push repo tiện ích, APKPure) cần chủ dự án xác nhận rõ trong chat.
 - Ghi tiến độ sau mỗi bước; cuối phiên ghi nhật ký (12) và bàn giao theo 11; cuối đợt bổ sung kiến thức vào đúng tệp trong thư mục này.
 - Tiến độ bản đang làm: `audit/audit-<phiên bản>/coordination/PROGRESS_*.md`, `audit/audit-<phiên bản>/notes/`.
+- **Cấu trúc gốc (19/11/2026):** gốc chỉ còn tài liệu + thư mục; mọi `.ps1`/`.bat` ở `scripts/<nhóm>/` (runner: `scripts\runner\3_run_jobs.bat`, `3b_run_fast_jobs.bat`; dây chuyền: `scripts\pipeline\run_<ver>_main.ps1`), hình ảnh/logo ở `assets/` (icon trang chủ ở `docs/assets/`). Chi tiết ở 10. Không tạo lại `.ps1`/`.bat`/ảnh ở gốc.
+- **Bộ lọc tiện ích (từ 0.6.0, yêu cầu chủ dự án 19/11):** mọi lựa chọn trong bộ lọc của mọi kiểu tiện ích phải là ô chọn (checkbox) – không thêm lại dropdown/chip. Widget dùng chung: `overlay/lib/yomihub/filters/filter_checkbox.dart`.

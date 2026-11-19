@@ -27,3 +27,9 @@
 - Có log/ảnh/video thật của đúng bản, đúng tính năng; người kiểm tự mở ảnh xem.
 - Phân biệt: kiểm HTTP ≠ phân tích index ≠ cài tiện ích ≠ đọc/phát nội dung.
 - Không đánh dấu đạt chỉ vì có nút giao diện; ghi rõ phần cần tài khoản/thiết bị thứ hai/quyền hệ thống chưa kiểm.
+
+## 6. Bổ sung 19/11/2026 (0.6.0)
+- Note 9 dùng `jobs/q060_dev.ps1`: thêm `TapText <regex>`, `Find-Node`, `Labels` (đọc uiautomator), `NewLog <tên>` (lọc log từ dòng "Logger initialized" cuối, bỏ cảnh báo ảnh CDN). Job có chữ tiếng Việt (regex TapText) phải lưu UTF-8 **có BOM**, nếu không PowerShell 5 đọc sai → chạm theo toạ độ lấy từ `Labels`.
+- Kiểm bộ lọc ô chọn: hồ sơ Mangayomi (vd. MangaDex), Aniyomi (nguồn APK, vd. DocTruyen5s/MoeTruyen), Kotatsu (nguồn có chữ "(Kotatsu)", vd. ComicK (Kotatsu)) – mỗi loại: chọn-một, Sắp xếp bấm lại đổi ↑/↓, thể loại ✓ → ô đỏ loại trừ, áp dụng có kết quả.
+- Windows portable: giải nén `.zip` vào `D:\yh\qa<ver>win` bằng job, mở `YomiHub.exe`; computer use phải xin quyền theo **đường dẫn exe** (`d:\a.i project\yh\qa060win\yomihub.exe`) – tên "YomiHub" trỏ về bản đã cài trong `%LOCALAPPDATA%`. Bản portable dùng chung dữ liệu với bản cài (chỉ thao tác xem/lọc). Nguồn APK trên Windows cần bản `-full.zip` (M-Extension-Server).
+- Test `yh_055` Case 1 (giao dịch Isar tranh chấp có hẹn giờ) có thể trượt khi máy quá tải → chạy lại riêng trước khi kết luận lỗi mã.

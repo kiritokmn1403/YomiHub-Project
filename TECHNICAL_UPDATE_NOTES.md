@@ -3577,3 +3577,10 @@ Thư mục: `output/0.5.8/`
   - Test `overlay/test/yh_060_filter_checkbox_test.dart` (5 nhóm: logic, Mangayomi Select không còn Dropdown + tự vẽ lại, Sort đổi chiều, TriState/CheckBox, Kotatsu + Aniyomi không còn chip) – 8/8 ĐẠT cùng `yh_060_filters_json_test`.
 - Dây chuyền lần 3 (`x060_build_main4`, 12:51): sync -Regen 57 tệp → **test 942/942 ĐẠT** (3 phút) → apk 34 phút (3 APK) → tv …
 - **Note 9 (SM-N960N, Android 10), APK arm64 0.6.0 (2053)** – `audit/audit-0.6.0/evidence/note9/01..14`: MangaDex (hồ sơ Mangayomi) Sort ô chọn, bấm lại đổi ↓/↑, Status chọn Completed → kết quả A→Z; nguồn APK (hồ sơ Aniyomi) "Trạng thái"/"Sắp xếp theo" là ô chọn, chọn rồi áp dụng có kết quả; tiêu đề nhóm cập nhật lựa chọn ngay. Log phiên mới chỉ còn cảnh báo kho `kohiden.xyz` CERTIFICATE_VERIFY_FAILED (còn mở). Chưa kiểm trên thiết bị: hồ sơ Kotatsu (đã có test widget).
+
+### 15. Sau phát hành 0.6.0 (19/11 15:38–16:12) – README + sắp xếp thư mục (yêu cầu chủ dự án)
+- README viết lại theo mẫu Standard (The Documentation Compendium) – `1f7f528`; bản cũ `audit/audit-0.6.0/backup/README_before_template.md`.
+- 32 `.ps1` ở gốc + `build/` → `scripts/{lib,runner,setup,pipeline,sync,build,packaging,release,autosave}` (`9d284e3`, `22405f2`): gốc dự án = 2 cấp trên `$PSScriptRoot`, `common.ps1` `$KIT` = gốc; tác vụ Windows "YomiHub runners" → `scripts\runner\ensure_runners.ps1`; kiểm parse, `run_060_main.ps1 -RunSteps verify` (SHA256SUMS giống hệt), khởi động lại 2 runner.
+- `scripts/lib/yh_defines.ps1` gỡ khỏi GitHub, thêm `.gitignore` (`ed4c9ef`).
+- Logo → `assets/logo/`, ảnh chụp → `assets/screenshots/` (git-ignored), icon trang chủ → `docs/assets/` (sửa `index.html`, `privacy.html`, `og:image`) – `f096377`; kiểm HTTP 200 logo README + icon Pages.
+- `.bat` → `scripts/setup/` (0_probe, 1_setup_tools), `scripts/build/` (2_build_apk), `scripts/runner/` (3_run_jobs, 3b_run_fast_jobs); `ensure_runners.ps1` mở `.bat` từ `scripts\runner` – `7389c56`; runner chạy lại từ đường dẫn mới.

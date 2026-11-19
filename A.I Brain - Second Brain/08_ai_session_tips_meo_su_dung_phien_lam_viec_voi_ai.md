@@ -21,3 +21,9 @@
 - Muốn thấy quá trình: yêu cầu làm trực tiếp trong chat, mỗi bước 1 câu; mở `PROGRESS_*.md`/`NOTES_*.md` trong VS Code.
 - Muốn lưu thường xuyên: bật autosave (3 phút) – nhớ dừng bằng `jobs/STOP_AUTOSAVE`.
 - Cuối đợt: yêu cầu "cập nhật kiến thức" → Claude cập nhật ghi chú kỹ thuật + Second Brain + push.
+
+## Bổ sung 19/11/2026
+- Chờ bản dựng dài: Claude đặt lịch tự kiểm tra (`send_later`) 25–30 phút/lần và kết thúc lượt chat; chủ dự án có thể bấm chạy lịch sớm (lịch chạy tay vẫn còn giờ cũ → có thể nhận thêm một lần nhắc trùng – chỉ cần kiểm nhanh rồi bỏ qua).
+- Quyền computer use hết hạn sau 30 phút không dùng → xin lại (`computer_resolve_access` + `computer_request_access`) trước khi gửi /swarm tiếp; nếu chủ dự án ngắt lúc đang hỏi quyền thì hỏi lại.
+- Đổi yêu cầu khi đang dựng (vd. bộ lọc ô chọn 12:39): sửa mã + test nhanh trước, rồi mới dừng bản dựng cũ và dựng lại toàn bộ – tránh dựng 2 lần.
+- Sắp xếp tệp trên máy + GitHub: chuyển bằng `git mv` trong job Windows (VM không xóa được tệp/khóa git), sửa đường dẫn bằng Python, kiểm parse + chạy thử một bước dây chuyền + khởi động lại runner, rồi mới commit/push. `git add -A -- <đường dẫn>` lỗi cả lệnh nếu một đường dẫn không còn tồn tại → kiểm số tệp đã stage trước khi commit.

@@ -30,3 +30,6 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - Note 9: bộ lọc ô chọn MangaDex + nguồn APK ĐẠT (ảnh evidence/note9 01–14). Windows portable: mở được, bộ lọc ô chọn ĐẠT.
 - **14:08** chủ dự án yêu cầu giao Antigravity qua /swarm: đợt 3 (@device_tester + @doc_writer) – kiểm thử sơ sài → đợt 4 làm lại có ảnh: Kotatsu ô chọn, Cập nhật, Google Drive, gợi ý kho ĐẠT; changelog EN dùng được.
 - **15:25** phát hành GitHub Release v0.6.0 (19 tệp).
+- **15:29** Release `v0.6.0` 19/19 asset khớp; bàn giao (11-E), dừng autosave.
+- **15:38–16:12** theo yêu cầu chủ dự án: README viết lại theo mẫu Standard (The Documentation Compendium); sắp xếp toàn bộ `.ps1` → `scripts/{lib,runner,setup,pipeline,sync,build,packaging,release,autosave}` (sửa đường dẫn, tác vụ Windows runners, kiểm verify + khởi động lại runner); gỡ `scripts/lib/yh_defines.ps1` khỏi GitHub (giữ cục bộ, `.gitignore`); logo/ảnh → `assets/logo`, `assets/screenshots`, icon trang chủ → `docs/assets`; `.bat` → `scripts/setup`, `scripts/build`, `scripts/runner`. Lưu toàn bộ vào Second Brain (00, 03, 04, 05, 06, 08, 09, 10, 11, 12).
+- **Tiếp theo (0.6.1)**: xem 11-E.

@@ -51,3 +51,5 @@ Yêu cầu 09:24: tự lưu tiến độ mỗi 5 phút tới khi xong (`scripts/
 | 15:25 | Job `x060_release` = `release_060.ps1` (GitHub Release v0.6.0, make_latest; chủ dự án xác nhận phát hành 09:20, không đẩy Extension Repo) | Đang tải lên |
 | 15:29 | **GitHub Release v0.6.0**: 19/19 asset tải lên, đối chiếu kích thước ĐẠT (`jobs/done/x060_release.log`); Pages 409 = đã bật sẵn | ĐÃ PHÁT HÀNH |
 | 15:35 | Bàn giao: ghi chú kỹ thuật mục 1, Second Brain 04/11-E/12, dừng autosave (`jobs/STOP_AUTOSAVE_060`) sau commit + push cuối | XONG |
+| 15:38–15:41 | README viết lại theo mẫu Standard (The Documentation Compendium), đẩy GitHub `1f7f528` | XONG |
+| 15:45–15:52 | Sắp xếp `.ps1`: 32 script gốc + `build/` → `scripts/{lib,runner,setup,pipeline,sync,build,packaging,release,autosave}`; sửa đường dẫn (gốc = 2 cấp trên), `.bat`, tác vụ Windows "YomiHub runners"; kiểm: parse 0 lỗi mới, `run_060_main -RunSteps verify` ĐẠT (SHA256SUMS giống hệt), 2 runner chạy lại từ đường dẫn mới; GitHub `9d284e3` + `22405f2` | XONG |
