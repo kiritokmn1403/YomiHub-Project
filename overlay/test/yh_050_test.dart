@@ -80,7 +80,7 @@ void main() {
     test('new strings are translated in all 18 languages', () {
       const keys = ['Chỉ chạy trên vBook', 'Cài đặt', 'Tốc độ phát', 'Chất lượng', 'Phụ đề', 'Âm thanh', 'Shader', 'Bộ giải mã', 'Thống kê chi tiết'];
       final files = Directory('assets/yomihub_i18n').listSync().whereType<File>().where((f) => f.path.endsWith('.json')).toList();
-      expect(files.length, 18);
+      expect(files.length, greaterThanOrEqualTo(18)); // 0.6.2: 66 tệp (18 cũ + 48 mới)
       for (final f in files) {
         final m = jsonDecode(f.readAsStringSync()) as Map<String, dynamic>;
         for (final k in keys) {

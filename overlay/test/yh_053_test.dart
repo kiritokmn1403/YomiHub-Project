@@ -126,7 +126,7 @@ void main() {
         'Mở thư mục cài đặt',
       ];
       final files = Directory('assets/yomihub_i18n').listSync().whereType<File>().where((f) => f.path.endsWith('.json')).toList();
-      expect(files.length, 18);
+      expect(files.length, greaterThanOrEqualTo(18)); // 0.6.2: 66 tệp (18 cũ + 48 mới)
       for (final f in files) {
         final d = jsonDecode(f.readAsStringSync()) as Map<String, dynamic>;
         for (final k in keys) {

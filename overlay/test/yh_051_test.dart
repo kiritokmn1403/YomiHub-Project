@@ -208,7 +208,7 @@ void main() {
     test('new string translated in all 18 languages', () {
       const k = 'Kho vBook không còn tệp plugin.zip của tiện ích này (HTTP 404) – tác giả kho đã xóa hoặc đổi đường dẫn.';
       final files = Directory('assets/yomihub_i18n').listSync().whereType<File>().where((f) => f.path.endsWith('.json')).toList();
-      expect(files.length, 18);
+      expect(files.length, greaterThanOrEqualTo(18)); // 0.6.2: 66 tệp (18 cũ + 48 mới)
       for (final f in files) {
         final m = jsonDecode(f.readAsStringSync()) as Map<String, dynamic>;
         expect((m[k] as String?)?.isNotEmpty, isTrue, reason: f.path);
