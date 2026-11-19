@@ -40,8 +40,12 @@ class YomiFilterLoader {
         }
         if (out == null) {
           // 0.5.7: only a real failure (exception / timeout) reaches the WARNING
+          // 0.6.1: tiện ích tải Thể loại từ chính trang nguồn (KeiSource
+          // fetchFilterData) – trang bị nhà mạng chặn (DamCoNuong 19/11:
+          // DNS NXDOMAIN + TLS bị cắt) thì không nạp được → nói rõ cách xử lý.
           err = YomiFilterRefresh.lastError[source.id] ??
-              'tiện ích không trả về danh sách bộ lọc (sau 3 lần thử)';
+              'tiện ích không trả về danh sách bộ lọc (sau 3 lần thử) – danh sách thể loại được tải từ trang nguồn, '
+                  'nếu trang không vào được (bị chặn/lỗi mạng) hãy bật VPN/Tor cho tiện ích này rồi bấm "Đặt lại"';
         }
       } else {
         // JS / Dart / Aidoku / LNReader: build the list again from a fresh
