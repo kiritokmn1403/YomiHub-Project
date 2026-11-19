@@ -33,3 +33,5 @@
 19/11 14:29:11 --> buoc pack
 19/11 14:32:33 <-- buoc pack exit=0 (3 phut)
 19/11 14:32:33 --> buoc a6build
+19/11 15:01:07 <-- buoc a6build exit=0 (29 phut)
+19/11 15:01:07 --> buoc a6copy
