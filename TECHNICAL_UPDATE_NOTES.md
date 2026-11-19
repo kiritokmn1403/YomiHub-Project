@@ -3664,4 +3664,27 @@ Thư mục: `output/0.5.8/`
 ### 13. Dây chuyền dựng 0.6.1
 - 18:10 lần 1 (`x061_build_main`): bước sync lỗi "git không báo tệp overlay nào thay đổi" – `sync_061.ps1` so với tag `v0.6.1` (lỗi đổi số hàng loạt, xem Second Brain 04) → sửa thành `v0.6.0`.
 - 18:11 lần 2 (`x061_build_main2`): `git fetch --tags` (v0.6.0 = 0c8cfad) → sync ĐẠT → test …
+- 18:19 test 950/950 ĐẠT (8') → apk 37' → tv 28' → wintest 5' → win 14' → pack 3' → a6build (19:45) …
+
+### 14. Kiểm thử thiết bị thật – Note 9 (SM-N960N, Android 10), APK arm64 0.6.1 (2054) – 19/11 18:56–19:57
+- Note 9 mất kết nối adb (từ ~18:40); chủ dự án cắm lại 18:54 nhưng `adb devices` vẫn trống → `adb kill-server` + `start-server` (job `f061_adb_restart2`) mới thấy máy. Bài học: thiết bị cắm lại mà adb không thấy → khởi động lại adb server trước khi kết luận.
+- Cài đè `adb install -r` → versionName 0.6.1 / versionCode 2054; màn chờ + mở app: ảnh `n01`, `n02`, video `v01_splash_start.mp4`.
+- **Short Video cho mọi tiện ích video** (Bật/Tắt tính năng › Phim & Điện ảnh): tắt → bật, uiautomator `checked=true` – ảnh `n07`/`n08`, video `v02_feature_short.mp4` – ĐẠT.
+- **Google Drive 2 tùy chọn** (Sao Lưu & Đồng Bộ › Sao lưu đám mây): "Đăng nhập bằng tài khoản Google" (tài khoản cũ vẫn "Đã kết nối") + "Client ID" (chưa kết nối), cả hai logo Google; hộp thoại Client ID có Client ID / Client secret / thư mục / số bản giữ + hướng dẫn; bấm Tiếp tục khi trống → "Hãy nhập Client ID (và Client secret) trước khi kết nối" – ảnh `n09`–`n12` – ĐẠT. Lỗi nhỏ: thông báo có tiền tố "Exception:" và nhật ký ghi mức ERROR → đã sửa sau khi dựng, CHƯA có trong bản 0.6.1 (cất ở `audit/audit-0.6.1/pending_062/`, đưa vào 0.6.2).
+- **GIF Viewer** (Cài đặt › GIF Viewer): đẩy `yh_gif_test.gif` (6 khung 200 ms) vào /sdcard/Download, chọn bằng bộ chọn tệp hệ thống → phát, khung 4/6, 200 ms, "240×240 • 6 khung • 1.2 s" – ảnh `n13`–`n16`, video `v03_gif_viewer.mp4` – ĐẠT. (Bàn phím Telex biến "gif test" thành "gì tét" khi `input text` → tìm bằng "yh_".)
+- **DamCoNuong – bộ lọc Thể loại** (kho Keiyoushi, bản tiện ích đã cài 1.6.12, tên miền tự chọn `damconuong.name`; ẩn vì "Hiện nguồn NSFW" đang tắt → tạm bật để kiểm, xong tắt lại):
+  - Không VPN: mở Bộ lọc → "Đang tải toàn bộ bộ lọc…" → vẫn chỉ "Tap 'Reset' to load filters"; log: `getPopular 1: Connection closed by peer`, `[Bộ lọc] Không tải được bộ lọc của "DamCoNuong"…`. Nguyên nhân MẠNG: DNS nhà mạng trả NXDOMAIN cho damconuong.cool, DoH (Cloudflare) trả 104.21.91.127/172.67.219.158 nhưng TLS bị cắt (`schannel: failed to receive handshake`) → nhà mạng chặn trang; thể loại tải từ chính trang nên không có.
+  - Bật Tor trong app (VPN & DNS › Dịch vụ VPN › Tor, phạm vi "mọi tiện ích", kết nối sau ~10 s) → mở lại nguồn (danh sách tải được) → Bộ lọc › Đặt lại → **mục "Thể loại" nạp sau ~8 s**, toàn bộ thể loại là ô chọn; tick Action + Comedy (cả hai checked=true) → áp dụng → danh sách KHÁC hẳn danh sách Phổ biến không lọc → bộ lọc được gửi sang tiện ích – ảnh `n29`–`n41`, video `v05`–`v07` – ĐẠT (cần VPN/Tor vì trang bị chặn).
+  - Thấy luôn: dòng "Chọn được nhiều mục – kết quả là tổng các mục đã chọn" dưới "Trạng thái" (chọn nhiều), "Tìm theo" vẫn chọn một (bấm Tác giả rồi Doujinshi → chỉ còn Doujinshi).
+  - Đề xuất 0.6.2 (đã viết, cất `pending_062/`): câu cảnh báo bộ lọc gợi ý bật VPN/Tor khi trang nguồn bị chặn.
+- **kohiden.xyz**: hết CERTIFICATE_VERIFY_FAILED; còn "Connection closed before full header" (máy chủ – WARNING).
+- Trả máy về trạng thái cũ: Tor tắt, NSFW tắt, Short-all tắt. Log phiên 0.6.1: không có ERROR ngoài dòng Client ID (đã nêu).
+
+### 15. Kiểm thử Windows 11 – Setup.exe cài đè + app đã cài (19/11 20:03–20:09)
+- Bản portable `D:\yh\qa061win` (giải nén `.zip`, FileVersion 0.6.1+54) mở được (PID 17504) nhưng computer use không cấp quyền theo đường dẫn exe lần này (`computer_resolve_access` báo "not installed") → kiểm qua bản cài.
+- `YomiHub-0.6.1-windows-x64-Setup.exe` (xin quyền bằng tên tệp chữ thường `yomihub-0.6.1-windows-x64-setup.exe`): giao diện "YomiHub v0.6.1", thư mục `%LOCALAPPDATA%\YomiHub`, bấm "Cài Đặt Ngay" → cài đè 0.5.9+52 → 0.6.1+54 (ProductVersion), app tự mở, cửa sổ hiển thị đầy đủ (không trắng), thư viện có dữ liệu – ĐẠT.
+- Cài đặt › **GIF Viewer**: chọn `yh_gif_test.gif` qua hộp thoại Windows → phát; phím Space dừng, → sang khung 2/6, ↑ tốc độ 1.5x – ĐẠT.
+- Sao Lưu & Đồng Bộ › Sao lưu đám mây: 2 tùy chọn Google Drive – ĐẠT.
+- Antigravity /swarm 2 (20:05, yêu cầu chủ dự án): @claim_checker kiểm README_061/changelog/trang web bằng mã, @link_checker kiểm link tải v0.6.1 so với `output/0.6.1` – brief `audit/audit-0.6.1/antigravity/BRIEF_swarm2_061.md`.
+- 20:08 chủ dự án đổi tự lưu 5 → 3 phút (autosave PID 28116).
 
