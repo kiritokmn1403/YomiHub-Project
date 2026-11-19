@@ -24,3 +24,8 @@
 19/11 14:04:09 NGOAI LE buoc wintest: flutter.bat thất bại (exit 1) - xem chi tiết tại logs\b060_part_c_test.txt
 19/11 14:04:09 <-- buoc wintest exit=99 (4 phut)
 19/11 14:04:09 DUNG vi buoc wintest loi
+19/11 14:06:26 Loc buoc theo RunSteps: wintest, win, pack, a6build, a6copy, verify
+19/11 14:06:26 === BAT DAU dung bo goi chinh 0.6.0 ===
+19/11 14:06:26 --> buoc wintest
+19/11 14:08:06 <-- buoc wintest exit=0 (2 phut)
+19/11 14:08:06 --> buoc win
