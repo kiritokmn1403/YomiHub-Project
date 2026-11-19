@@ -85,7 +85,7 @@ class YomiUiStyleTile extends StatelessWidget {
               title: Text(tr('Giao diện ứng dụng')),
               subtitle: Text(
                 switch (style) {
-                  YomiUiStyle.mangayomiV2 => tr('YomiHub New Version – giao diện Mangayomi 0.9.96: thanh điều hướng nổi kéo-thả, chủ đề và thẻ truyện mới'),
+                  YomiUiStyle.mangayomiV2 => tr('Mới (v2) – giao diện Mangayomi 0.9.96: thanh điều hướng nổi kéo-thả, thẻ truyện và chủ đề mới'),
                   YomiUiStyle.modern => tr('Mới – điều hướng kiểu Mangayomi 0.9.95: Cập nhật và Lịch sử gộp thành mục Hoạt động, bộ chọn tab dạng viên'),
                   YomiUiStyle.classic => tr('Cũ – bố cục YomiHub: Lịch sử nằm trong Thêm, tab con của Thư Viện ở phía trên'),
                 },
@@ -105,7 +105,7 @@ class YomiUiStyleTile extends StatelessWidget {
                   ButtonSegment(
                     value: YomiUiStyle.modern,
                     icon: const Icon(Icons.auto_awesome_outlined),
-                    label: FittedBox(fit: BoxFit.scaleDown, child: Text(tr('Mới (0.9.95)'))),
+                    label: FittedBox(fit: BoxFit.scaleDown, child: Text(tr('Shiori (0.9.95)'))),
                   ),
                   ButtonSegment(
                     value: YomiUiStyle.mangayomiV2,

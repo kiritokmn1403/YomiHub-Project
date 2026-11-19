@@ -395,6 +395,10 @@ FilterV2Section? _matchText(String text) {
   // 0.6.2 (Claude): chọn từ khóa khớp DÀI NHẤT trên mọi ô (cùng độ dài thì theo
   // thứ tự _classifyOrder). Trước đây ô xét trước thắng ngay: "Thể loại" khớp
   // "loại" của Danh Mục trước khi tới "thể loại" của Thể Loại.
+  // "Sắp xếp theo …" / "Sort by Rating/Year" luôn là Sắp Xếp (ưu tiên tuyệt đối).
+  for (final kw in kFilterV2Keywords[FilterV2Section.sort]!) {
+    if (_matchesKeyword(norm, kw)) return FilterV2Section.sort;
+  }
   FilterV2Section? best;
   var bestLen = 0;
   for (final sec in _classifyOrder) {
