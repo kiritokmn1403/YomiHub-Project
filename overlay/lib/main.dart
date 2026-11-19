@@ -497,7 +497,7 @@ class _MyAppState extends ConsumerState<MyApp>
     final locale = ref.watch(l10nLocaleStateProvider);
     final router = ref.watch(routerProvider);
     // YomiHub 0.1.8: YomiHub's own texts follow the app language
-    YomiTr.use(locale.languageCode, locale.countryCode);
+    YomiTr.use(locale.languageCode, locale.countryCode ?? locale.scriptCode); // 0.6.2: zh_Hant
 
     return MaterialApp.router(
       theme: ref.watch(lightThemeProvider),

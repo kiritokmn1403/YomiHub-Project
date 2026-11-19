@@ -20,6 +20,12 @@ class YomiTr {
   static const languages = [
     'ar', 'as', 'de', 'en', 'es', 'es_419', 'fr', 'hi', 'id', 'it', 'ja',
     'ko', 'pt', 'pt_BR', 'ru', 'th', 'tr', 'zh',
+    // 0.6.2: ngôn ngữ của Aniyomi / Nekoyomi / Kotatsu (Antigravity /swarm 2);
+    // bỏ ceb, eo, jv, nn vì Flutter (Material/Cupertino) không hỗ trợ.
+    'am', 'be', 'bg', 'bn', 'ca', 'cs', 'da', 'el', 'et', 'eu', 'fa', 'fi',
+    'fil', 'gl', 'gu', 'he', 'hr', 'hu', 'ka', 'kk', 'km', 'kn', 'lo', 'lt',
+    'lv', 'ml', 'mr', 'ms', 'my', 'nb', 'ne', 'nl', 'or', 'pa', 'pl', 'ro',
+    'si', 'sk', 'sl', 'sq', 'sr', 'sv', 'ta', 'te', 'uk', 'ur', 'uz', 'zh_Hant',
   ];
 
   static Future<Map<String, String>> _read(String code) async {
@@ -36,6 +42,10 @@ class YomiTr {
     var code = languageCode;
     if (country != null && languages.contains('${languageCode}_$country')) {
       code = '${languageCode}_$country';
+    }
+    // 0.6.2: tiếng Trung phồn thể (Locale zh_Hant / zh_TW / zh_HK)
+    if (languageCode == 'zh' && (country == 'Hant' || country == 'TW' || country == 'HK')) {
+      code = 'zh_Hant';
     }
     if (code == lang && (_table.isNotEmpty || code == 'vi')) return;
     if (_loading == code) return;

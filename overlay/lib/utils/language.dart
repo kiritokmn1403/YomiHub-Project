@@ -9,6 +9,11 @@ String completeLanguageName(String lang) {
 }
 
 final languagesMap = {
+  // YomiHub 0.6.2: ngôn ngữ giao diện mới
+  'Galego': 'gl',
+  'Norsk bokmål': 'nb',
+  'ଓଡ଼ିଆ': 'or',
+  '繁體中文': 'zh-hant',
   'All': 'all',
   'Français': 'fr',
   'Català': 'ca',
