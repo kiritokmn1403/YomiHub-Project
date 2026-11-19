@@ -349,6 +349,19 @@ class MihonExtensionService implements ExtensionService {
     return filters.expand((e) sync* {
       if (e is TextFilter) {
         yield {"name": e.name, "stateString": e.state, "type": "TextFilter"};
+      } else if (e is CheckBoxFilter) {
+        // YomiHub 0.6.1: ô chọn / ba trạng thái ở cấp ngoài cùng trước đây
+        // không được gửi sang tiện ích APK (chọn rồi mà kết quả không đổi).
+        // Cầu nối Kotlin đọc CheckBox ở stateList[0].stateBoolean.
+        yield {
+          "name": e.name,
+          "stateList": [
+            {"name": e.name, "stateBoolean": e.state, "type": "CheckBoxFilter"},
+          ],
+          "type": "CheckBoxFilter",
+        };
+      } else if (e is TriStateFilter) {
+        yield {"name": e.name, "stateInt": e.state, "type": "TriStateFilter"};
       } else if (e is GroupFilter) {
         yield {
           "name": e.name,
@@ -365,6 +378,10 @@ class MihonExtensionService implements ExtensionService {
                 "stateInt": e.state,
                 "type": "TriStateFilter",
               };
+            } else if (e is SelectFilter) {
+              yield {"name": e.name, "stateInt": e.state, "type": "SelectFilter"};
+            } else if (e is TextFilter) {
+              yield {"name": e.name, "stateString": e.state, "type": "TextFilter"};
             }
           }).toList(),
           "type": "GroupFilter",

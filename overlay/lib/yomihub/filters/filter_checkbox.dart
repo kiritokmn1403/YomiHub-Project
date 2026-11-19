@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mangayomi/eval/model/filter.dart';
+import 'package:mangayomi/yomihub/filters/multi_select_search.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 
 /// YomiHub 0.6.0 (yêu cầu chủ dự án 19/11/2026): mọi mục lựa chọn trong bộ lọc
@@ -94,6 +95,7 @@ class _YomiCheckboxGroup extends StatefulWidget {
   final bool Function(int) checked;
   final Widget? Function(int)? trailing;
   final void Function(int) onTap;
+  final String? hint;
   const _YomiCheckboxGroup({
     super.key,
     required this.title,
@@ -103,6 +105,7 @@ class _YomiCheckboxGroup extends StatefulWidget {
     required this.checked,
     required this.onTap,
     this.trailing,
+    this.hint,
   });
 
   @override
@@ -145,6 +148,14 @@ class _YomiCheckboxGroupState extends State<_YomiCheckboxGroup> {
               overflow: TextOverflow.ellipsis,
             ),
       children: [
+        if (widget.hint != null)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
+            child: Text(
+              widget.hint!,
+              style: TextStyle(fontSize: 11, color: Theme.of(context).hintColor),
+            ),
+          ),
         if (widget.count >= kYomiFilterSearchMin)
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 6),
@@ -164,7 +175,8 @@ class _YomiCheckboxGroupState extends State<_YomiCheckboxGroup> {
   }
 }
 
-/// SelectFilter dạng ô chọn (chọn một).
+/// SelectFilter dạng ô chọn. 0.6.1: chọn được nhiều ô (trừ kiểu sắp xếp /
+/// "tìm theo"); nhiều ô = tìm từng ô rồi gộp kết quả (multi_select_search.dart).
 class YomiSelectCheckboxes extends StatelessWidget {
   final SelectFilter filter;
   final VoidCallback onChanged;
@@ -176,16 +188,19 @@ class YomiSelectCheckboxes extends StatelessWidget {
     if (f.values.isEmpty) {
       return ListTile(dense: true, title: Text(f.name));
     }
-    final cur = yomiSelectIndex(f);
+    final chosen = yomiSelectChosen(f);
+    final multi = yomiSelectMultiAllowed(f);
+    final sub = chosen.map((i) => _optName(f.values[i])).join(', ');
     return _YomiCheckboxGroup(
       key: PageStorageKey<String>('yh_sel_${f.name}_${f.values.length}'),
       title: f.name,
-      subtitle: _optName(f.values[cur]),
+      subtitle: chosen.length > 1 ? '${chosen.length} • $sub' : sub,
       count: f.values.length,
       label: (i) => _optName(f.values[i]),
-      checked: (i) => i == yomiSelectIndex(f),
+      checked: (i) => yomiSelectChosen(f).contains(i),
+      hint: multi ? tr('Chọn được nhiều mục – kết quả là tổng các mục đã chọn') : null,
       onTap: (i) {
-        if (yomiSelectPick(f, i)) onChanged();
+        if (yomiSelectToggle(f, i)) onChanged();
       },
     );
   }

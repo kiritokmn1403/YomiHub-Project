@@ -195,8 +195,42 @@ object MihonInvoker {
         }
 
     private fun invokeFiltersManga(source: CatalogueSource): FilterList {
-        val filterList = source.getFilterList()
+        var filterList = source.getFilterList()
+        // YomiHub 0.6.1: tiện ích Keiyoushi kiểu mới (KeiSource, vd. DamCoNuong)
+        // tải danh sách Thể loại ở nền (fetchFilterData) và lần gọi đầu chỉ trả
+        // dòng "Tap 'Reset' to load filters" → chờ tối đa 20 s cho bộ lọc đầy đủ.
+        if (supportsFilterFetching(source)) {
+            val deadline = System.currentTimeMillis() + 20_000
+            while (filterList.any { it is Filter.Header && isFilterFetchHint(it.name) } &&
+                System.currentTimeMillis() < deadline
+            ) {
+                Thread.sleep(500)
+                filterList = source.getFilterList()
+            }
+        }
         return filterList
+    }
+
+    private val filterFetchHintRegex =
+        Regex("(?i)(tap|press|click)\\W{0,3}['\"]?reset['\"]?\\s*to\\s*load|load(ing)? (the )?filters")
+
+    private fun isFilterFetchHint(text: String?): Boolean = text != null && filterFetchHintRegex.containsMatchIn(text)
+
+    /** KeiSource.supportsFilterFetching (protected open val) qua reflection. */
+    private fun supportsFilterFetching(source: Any): Boolean {
+        var c: Class<*>? = source.javaClass
+        while (c != null) {
+            try {
+                val m = c.getDeclaredMethod("getSupportsFilterFetching")
+                m.isAccessible = true
+                return m.invoke(source) as? Boolean ?: false
+            } catch (_: NoSuchMethodException) {
+                c = c.superclass
+            } catch (_: Throwable) {
+                return false
+            }
+        }
+        return false
     }
 
     private fun invokeSupportLatestManga(source: CatalogueSource): Boolean = source.supportsLatest
@@ -376,7 +410,16 @@ object MihonInvoker {
         }
 
     private fun invokeFiltersAnime(source: AnimeCatalogueSource): AnimeFilterList {
-        val filterList = source.getFilterList()
+        var filterList = source.getFilterList()
+        if (supportsFilterFetching(source)) {
+            val deadline = System.currentTimeMillis() + 20_000
+            while (filterList.any { it is AnimeFilter.Header && isFilterFetchHint(it.name) } &&
+                System.currentTimeMillis() < deadline
+            ) {
+                Thread.sleep(500)
+                filterList = source.getFilterList()
+            }
+        }
         return filterList
     }
 
@@ -845,11 +888,18 @@ object MihonInvoker {
         jFilters: List<JFilterList>,
     ): FilterList {
         // Apply the filter values from jFilters to the original filters
+        // YomiHub 0.6.1: khớp theo tên nhưng lấy dần (hai bộ lọc trùng tên, vd.
+        // hai nhóm "Thể loại", không còn nhận cùng một giá trị)
+        val pool = jFilters.toMutableList()
+        fun take(n: String?): JFilterList? {
+            val k = pool.indexOfFirst { it.name == n }
+            return if (k >= 0) pool.removeAt(k) else null
+        }
         val convertedFilters =
             originalFilters.map { filter ->
                 when (filter) {
                     is Filter.Select<*> -> {
-                        val jFilter = jFilters.find { it.name == filter.name }
+                        val jFilter = take(filter.name)
                         if (jFilter != null) {
                             val state = jFilter.stateInt
                             if (state != null) {
@@ -859,7 +909,7 @@ object MihonInvoker {
                         filter
                     }
                     is Filter.CheckBox -> {
-                        val jFilter = jFilters.find { it.name == filter.name }
+                        val jFilter = take(filter.name)
                         if (jFilter != null &&
                             jFilter.stateList != null &&
                             jFilter.stateList.isNotEmpty() &&
@@ -870,14 +920,14 @@ object MihonInvoker {
                         filter
                     }
                     is Filter.TriState -> {
-                        val jFilter = jFilters.find { it.name == filter.name }
+                        val jFilter = take(filter.name)
                         if (jFilter != null && jFilter.stateInt is Int) {
                             filter.state = jFilter.stateInt
                         }
                         filter
                     }
                     is Filter.Text -> {
-                        val jFilter = jFilters.find { it.name == filter.name }
+                        val jFilter = take(filter.name)
                         if (jFilter != null && jFilter.stateString is String) {
                             filter.state = jFilter.stateString
                         }
@@ -885,11 +935,12 @@ object MihonInvoker {
                     }
                     is Filter.Group<*> -> {
                         val groupFilter = filter as Filter.Group<Filter<*>>
-                        val jGroup = jFilters.find { it.name == groupFilter.name }
+                        val jGroup = take(groupFilter.name)
                         if (jGroup != null) {
-                            val subJFilters = jGroup.stateList
+                            val subPool = jGroup.stateList?.toMutableList() ?: mutableListOf()
                             for (state in groupFilter.state) {
-                                val jSubFilter = subJFilters?.find { it.name == state.name }
+                                val sk = subPool.indexOfFirst { it.name == state.name }
+                                val jSubFilter = if (sk >= 0) subPool.removeAt(sk) else null
                                 val dataGroup = jSubFilter
                                 if (dataGroup == null) {
                                     continue
@@ -908,14 +959,14 @@ object MihonInvoker {
                                 }
                                 if (state is Filter.Text) {
                                     val text = state
-                                    text.state = dataGroup.name ?: ""
+                                    text.state = dataGroup.stateString ?: text.state
                                 }
                             }
                         }
                         filter
                     }
                     is Filter.Sort -> {
-                        val jSort = jFilters.find { it.name == filter.name }
+                        val jSort = take(filter.name)
                         if (jSort != null) {
                             val dataSort = jSort.stateSort
                             if (dataSort != null && dataSort.index != null && dataSort.ascending != null) {
@@ -935,11 +986,18 @@ object MihonInvoker {
         jFilters: List<JFilterList>,
     ): AnimeFilterList {
         // Apply the filter values from jFilters to the original filters
+        // YomiHub 0.6.1: khớp theo tên nhưng lấy dần (hai bộ lọc trùng tên, vd.
+        // hai nhóm "Thể loại", không còn nhận cùng một giá trị)
+        val pool = jFilters.toMutableList()
+        fun take(n: String?): JFilterList? {
+            val k = pool.indexOfFirst { it.name == n }
+            return if (k >= 0) pool.removeAt(k) else null
+        }
         val convertedFilters =
             originalFilters.map { filter ->
                 when (filter) {
                     is AnimeFilter.Select<*> -> {
-                        val jFilter = jFilters.find { it.name == filter.name }
+                        val jFilter = take(filter.name)
                         if (jFilter != null) {
                             val state = jFilter.stateInt as? Int
                             if (state != null) {
@@ -949,7 +1007,7 @@ object MihonInvoker {
                         filter
                     }
                     is AnimeFilter.CheckBox -> {
-                        val jFilter = jFilters.find { it.name == filter.name }
+                        val jFilter = take(filter.name)
                         if (jFilter != null &&
                             jFilter.stateList != null &&
                             jFilter.stateList.isNotEmpty() &&
@@ -960,14 +1018,14 @@ object MihonInvoker {
                         filter
                     }
                     is AnimeFilter.TriState -> {
-                        val jFilter = jFilters.find { it.name == filter.name }
+                        val jFilter = take(filter.name)
                         if (jFilter != null && jFilter.stateInt is Int) {
                             filter.state = jFilter.stateInt as Int
                         }
                         filter
                     }
                     is AnimeFilter.Text -> {
-                        val jFilter = jFilters.find { it.name == filter.name }
+                        val jFilter = take(filter.name)
                         if (jFilter != null && jFilter.stateString is String) {
                             filter.state = jFilter.stateString
                         }
@@ -975,11 +1033,12 @@ object MihonInvoker {
                     }
                     is AnimeFilter.Group<*> -> {
                         val groupFilter = filter as AnimeFilter.Group<AnimeFilter<*>>
-                        val jGroup = jFilters.find { it.name == groupFilter.name }
+                        val jGroup = take(groupFilter.name)
                         if (jGroup != null) {
-                            val subJFilters = jGroup.stateList
+                            val subPool = jGroup.stateList?.toMutableList() ?: mutableListOf()
                             for (state in groupFilter.state) {
-                                val jSubFilter = subJFilters?.find { it.name == state.name }
+                                val sk = subPool.indexOfFirst { it.name == state.name }
+                                val jSubFilter = if (sk >= 0) subPool.removeAt(sk) else null
                                 val dataGroup = jSubFilter
                                 if (dataGroup == null) {
                                     continue
@@ -998,14 +1057,14 @@ object MihonInvoker {
                                 }
                                 if (state is AnimeFilter.Text) {
                                     val text = state
-                                    text.state = dataGroup.name ?: ""
+                                    text.state = dataGroup.stateString ?: text.state
                                 }
                             }
                         }
                         filter
                     }
                     is AnimeFilter.Sort -> {
-                        val jSort = jFilters.find { it.name == filter.name }
+                        val jSort = take(filter.name)
                         if (jSort != null) {
                             val dataSort = jSort.stateSort
                             if (dataSort != null && dataSort.index != null && dataSort.ascending != null) {

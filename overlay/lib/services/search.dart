@@ -4,6 +4,7 @@ import 'package:mangayomi/modules/more/settings/browse/providers/browse_state_pr
 import 'package:mangayomi/repositories/manga_repository.dart';
 import 'package:mangayomi/services/isolate_service.dart';
 import 'package:mangayomi/services/local_source_page.dart';
+import 'package:mangayomi/yomihub/filters/multi_select_search.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'search.g.dart';
 
@@ -26,12 +27,18 @@ Future<MPages?> search(
       page,
     );
   }
-  return getIsolateService.get<MPages?>(
-    query: query,
-    filterList: filterList,
-    source: source,
-    page: page,
-    serviceType: 'search',
-    proxyServer: ref.read(androidProxyServerStateProvider),
+  final proxy = ref.read(androidProxyServerStateProvider);
+  // YomiHub 0.6.1: SelectFilter chọn nhiều ô → tìm từng ô rồi gộp kết quả
+  return yomiSearchMulti(
+    filterList,
+    (filters) => getIsolateService.get<MPages?>(
+      query: query,
+      filterList: filters,
+      source: source,
+      page: page,
+      serviceType: 'search',
+      proxyServer: proxy,
+    ),
+    sourceName: source.name ?? '',
   );
 }

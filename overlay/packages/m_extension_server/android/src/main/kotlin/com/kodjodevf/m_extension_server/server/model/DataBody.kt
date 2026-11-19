@@ -79,6 +79,8 @@ data class JGroupFilter(
     val type: String?,
     val stateBoolean: Boolean? = null,
     val stateInt: Int? = null,
+    // YomiHub 0.6.1: ô chữ (Text) nằm trong nhóm
+    val stateString: String? = null,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)

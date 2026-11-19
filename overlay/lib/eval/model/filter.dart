@@ -16,7 +16,13 @@ class SelectFilter {
   List<dynamic> values;
   String? typeName;
 
-  SelectFilter(this.type, this.name, this.state, this.values, this.typeName);
+  /// YomiHub 0.6.1: các ô được chọn thêm (chọn nhiều). Tiện ích chỉ nhận một
+  /// chỉ số `state`, nên khi có > 1 ô YomiHub tìm lần lượt từng ô rồi gộp kết
+  /// quả (services/search.dart). Rỗng = chọn một như cũ.
+  List<int> multi;
+
+  SelectFilter(this.type, this.name, this.state, this.values, this.typeName, [List<int>? multi])
+    : multi = multi ?? <int>[];
   factory SelectFilter.fromJson(Map<String, dynamic> json) {
     return SelectFilter(
       json['type'],
@@ -24,6 +30,7 @@ class SelectFilter {
       json['state'] ?? 0,
       fromJsonFilterValuesToList(json['values']),
       json['type_name'],
+      (json['yh_multi'] as List?)?.whereType<int>().toList(),
     );
   }
   Map<String, dynamic> toJson() => {
@@ -32,6 +39,7 @@ class SelectFilter {
     'state': state,
     'values': filterValuesListToJson(values),
     'type_name': "SelectFilter",
+    if (multi.length > 1) 'yh_multi': List<int>.of(multi),
   };
 }
 
