@@ -2,3 +2,5 @@
 19/11 11:33:39 --> buoc sync
 19/11 11:36:43 <-- buoc sync exit=0 (3 phut)
 19/11 11:36:43 --> buoc test
+19/11 12:02:54 <-- buoc test exit=1 (26 phut)
+19/11 12:02:54 DUNG vi buoc test loi
