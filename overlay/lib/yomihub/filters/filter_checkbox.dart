@@ -57,6 +57,34 @@ int yomiTriNext(int state) => switch (state) {
 };
 
 /// Ô chọn ba trạng thái dùng chung cho mọi kiểu bộ lọc.
+/// YomiHub 0.6.2: vùng PageStorage riêng cho phần thân của một nhóm bộ lọc.
+/// ExpansionTile lưu trạng thái mở/gập (bool) vào PageStorage; mọi Scrollable
+/// bên trong (ô tìm TextField, danh sách bộ lọc lồng) cùng định danh sẽ đọc giá
+/// trị đó làm vị trí cuộn → "type 'bool' is not a subtype of type 'double?'"
+/// (ScrollPosition.restoreScrollOffset) rồi "Null check" ở EditableText
+/// (log 19/11/2026 21:53–21:54). Bucket riêng tách hai loại dữ liệu.
+class YomiFilterStorageScope extends StatefulWidget {
+  final List<Widget> children;
+  const YomiFilterStorageScope({super.key, required this.children});
+
+  @override
+  State<YomiFilterStorageScope> createState() => _YomiFilterStorageScopeState();
+}
+
+class _YomiFilterStorageScopeState extends State<YomiFilterStorageScope> {
+  final PageStorageBucket _bucket = PageStorageBucket();
+
+  @override
+  Widget build(BuildContext context) => PageStorage(
+        bucket: _bucket,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: widget.children,
+        ),
+      );
+}
+
 class YomiTriCheckbox extends StatelessWidget {
   final TriStateFilter filter;
   final VoidCallback onChanged;
@@ -148,6 +176,7 @@ class _YomiCheckboxGroupState extends State<_YomiCheckboxGroup> {
               overflow: TextOverflow.ellipsis,
             ),
       children: [
+       YomiFilterStorageScope(children: [
         if (widget.hint != null)
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
@@ -170,6 +199,7 @@ class _YomiCheckboxGroupState extends State<_YomiCheckboxGroup> {
             ),
           ),
         ...rows,
+       ]),
       ],
     );
   }

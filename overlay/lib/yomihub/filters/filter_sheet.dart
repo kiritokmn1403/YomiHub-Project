@@ -3,6 +3,7 @@ import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:mangayomi/yomihub/filters/filter_checkbox.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
 import 'package:hive/hive.dart';
@@ -424,6 +425,7 @@ class _YomiFilterSheetState extends State<YomiFilterSheet> {
                       ? Text(tr('Đang bật'), style: TextStyle(fontSize: 11))
                       : null,
                   children: [
+                   YomiFilterStorageScope(children: [
                     SwitchListTile(
                       dense: true,
                       title: Text(tr('Dùng chung cho mọi tiện ích')),
@@ -488,6 +490,7 @@ class _YomiFilterSheetState extends State<YomiFilterSheet> {
                         onChanged: (v) => YomiFilterStore.setExcluded(_id, v),
                       ),
                     ),
+                   ]),
                   ],
                 ),
               if (_query.isEmpty)

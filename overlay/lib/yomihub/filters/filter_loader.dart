@@ -40,8 +40,12 @@ class YomiFilterLoader {
         }
         if (out == null) {
           // 0.5.7: only a real failure (exception / timeout) reaches the WARNING
+          // 0.6.1: tiện ích tải Thể loại từ chính trang nguồn (KeiSource
+          // fetchFilterData) – trang bị nhà mạng chặn (DamCoNuong 19/11:
+          // DNS NXDOMAIN + TLS bị cắt) thì không nạp được → nói rõ cách xử lý.
           err = YomiFilterRefresh.lastError[source.id] ??
-              'tiện ích không trả về danh sách bộ lọc (sau 3 lần thử)';
+              'tiện ích không trả về danh sách bộ lọc (sau 3 lần thử) – danh sách thể loại được tải từ trang nguồn, '
+                  'nếu trang không vào được (bị chặn/lỗi mạng) hãy bật VPN/Tor cho tiện ích này rồi bấm "Đặt lại"';
         }
       } else {
         // JS / Dart / Aidoku / LNReader: build the list again from a fresh
@@ -58,6 +62,22 @@ class YomiFilterLoader {
       err = e;
     }
     if (out != null && YomiFilterRefresh.needsLoad(out)) {
+      // 0.6.2: còn bộ lọc khác dùng được → hiện chúng + cảnh báo thể loại
+      final usable = out.where((f) => !YomiFilterRefresh.needsLoad([f])).isNotEmpty;
+      if (usable) {
+        final why = YomiFilterRefresh.lastError[source.id] ?? 'thể loại chưa tải';
+        AppLogger.logOnce(
+          'filter_partial:${source.id}',
+          '[Bộ lọc] "${source.name}" (${source.lang}, ${source.sourceCodeLanguage.name}): '
+          'dùng bộ lọc hiện có, danh sách thể loại chưa tải được ($why)',
+          logLevel: LogLevel.warning,
+        );
+        return (
+          filters: out,
+          error: tr('Chưa tải được danh sách Thể loại từ trang nguồn – các bộ lọc khác vẫn dùng được. '
+              'Nếu trang bị chặn hãy bật VPN/Tor cho tiện ích này rồi bấm "Nạp bộ lọc".'),
+        );
+      }
       err ??= 'bộ lọc vẫn chỉ là dòng "Tap Reset to load filters"';
       out = null;
     }

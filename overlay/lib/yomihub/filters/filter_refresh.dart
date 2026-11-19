@@ -37,6 +37,8 @@ class YomiFilterRefresh {
   /// whose extension really has no filters (not an error).
   static final Map<int, String> lastError = {};
   static final Set<int> noFilters = {};
+  /// 0.6.2: tiện ích chỉ trả bộ lọc một phần (thể loại vẫn là dòng "Tap Reset").
+  static final Set<int> partialOnly = {};
 
   static String _names(List<dynamic> filters) {
     try {
@@ -74,6 +76,7 @@ class YomiFilterRefresh {
     try {
       final mes = await YomiMes.ensure() ?? '';
       final client = MClient.init(reqcopyWith: {'useDartHttpClient': true});
+      FilterList? lastFl;
       for (var attempt = 0; attempt < 3; attempt++) {
         yomiLastFilterFetchError = null;
         final fl = await fetchFilterListDalvik(client, source, mes).timeout(
@@ -91,6 +94,7 @@ class YomiFilterRefresh {
           lastError.remove(source.id);
           return const [];
         }
+        if (fl != null && fl.filters.isNotEmpty) lastFl = fl;
         if (fl == null && yomiLastFilterFetchError != null) {
           lastError[source.id!] = 'lỗi khi tải bộ lọc: $yomiLastFilterFetchError';
         }
@@ -104,18 +108,45 @@ class YomiFilterRefresh {
           }
           invalidateExtensionService(source.id);
           _failedAt.remove(source.id);
+          partialOnly.remove(source.id);
           return fl.filters;
         }
         // most extensions fetch their genre list during the first
         // popular / search request: make one, then ask again
         try {
-          await getIsolateService
-              .get<MPages?>(source: source, page: 1, serviceType: 'getPopular')
-              .timeout(const Duration(seconds: 25));
+          // 0.6.2: lượt 2 làm nóng bằng tìm kiếm rỗng – nhiều tiện ích (Madara,
+          // Comick, MeHentai…) chỉ nạp thể loại khi tìm kiếm, không phải ở
+          // trang phổ biến (log 19/11 21:51–21:56: 3 tiện ích "không trả về
+          // danh sách bộ lọc (sau 3 lần thử)").
+          if (attempt == 1) {
+            await getIsolateService
+                .get<MPages?>(
+                  source: source,
+                  page: 1,
+                  query: '',
+                  filterList: lastFl?.filters ?? const [],
+                  serviceType: 'search',
+                )
+                .timeout(const Duration(seconds: 25));
+          } else {
+            await getIsolateService
+                .get<MPages?>(source: source, page: 1, serviceType: 'getPopular')
+                .timeout(const Duration(seconds: 25));
+          }
         } catch (e) {
           lastError[source.id!] = 'trang nguồn không tải được (${'$e'.split('\n').first})';
         }
         await Future.delayed(Duration(milliseconds: 400 * (attempt + 1)));
+      }
+      // 0.6.2: tiện ích vẫn chỉ có dòng "Tap Reset…" nhưng còn các bộ lọc khác
+      // dùng được (Sắp xếp, Trạng thái…) → trả về để người dùng vẫn lọc được;
+      // loadAll ghi cảnh báo "thể loại chưa tải" thay vì báo hỏng cả bộ lọc.
+      final partial = lastFl?.filters.where((f) => !needsLoad([f])).toList();
+      if (partial != null && partial.isNotEmpty) {
+        _failedAt[source.id!] = DateTime.now();
+        partialOnly.add(source.id!);
+        lastError[source.id!] ??= 'tiện ích chưa nạp được danh sách thể loại từ trang nguồn';
+        return lastFl!.filters;
       }
     } catch (e) {
       AppLogger.logOnce('filters:${source.id}', 'Filters of "${source.name}" could not be loaded: $e');

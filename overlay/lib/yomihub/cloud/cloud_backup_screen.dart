@@ -42,9 +42,12 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
     try {
       return await f();
     } catch (e) {
-      _toast(tr('Lỗi: {p0}', {'p0': e}));
+      // 0.6.1: bỏ tiền tố "Exception: " trong thông báo; lỗi nhập liệu → WARNING
+      final msg = '$e'.replaceFirst(RegExp(r'^Exception:\s*'), '');
+      _toast(e is CloudInputError ? msg : tr('Lỗi: {p0}', {'p0': msg}));
       // 0.4.4: connect / upload / list / restore errors → application log
-      AppLogger.log('[Đồng bộ đám mây] $e', logLevel: LogLevel.error);
+      AppLogger.log('[Đồng bộ đám mây] $msg',
+          logLevel: e is CloudInputError ? LogLevel.warning : LogLevel.error);
       return null;
     } finally {
       if (mounted) setState(() => _busy = false);

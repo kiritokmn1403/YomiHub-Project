@@ -233,6 +233,7 @@ class _AniyomiFilterViewState extends State<AniyomiFilterView> {
                 ? Badge(label: Text('$n'), child: const Icon(Icons.expand_more))
                 : null,
             children: [
+             YomiFilterStorageScope(children: [
               if (long)
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 6),
@@ -247,6 +248,7 @@ class _AniyomiFilterViewState extends State<AniyomiFilterView> {
                   ),
                 ),
               ..._items(f.state, q: q),
+             ]),
             ],
           ),
         );

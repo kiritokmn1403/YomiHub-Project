@@ -645,6 +645,7 @@ object YomiKotatsu {
             add(Request.Builder().url(real).headers(base).removeHeader("Referer").build())
         }
         var lastErr = ""
+        var cfChallenge: String? = null
         for (req in attempts) {
             client.newCall(req).execute().use { r ->
                 val type = r.header("Content-Type") ?: "image/jpeg"
@@ -652,9 +653,17 @@ object YomiKotatsu {
                 val looksHtml = type.contains("html", true) || type.contains("json", true) ||
                     (bytes.size > 15 && String(bytes, 0, 15).trimStart().startsWith("<"))
                 if (r.isSuccessful && !looksHtml) return type to bytes
+                // 0.6.2 (log 19/11/2026 20:58–21:01, SayHentai → cdn.pubtranxzyzz.store):
+                // CDN ảnh trả trang thử thách Cloudflare (403/503 + cf-mitigated /
+                // server: cloudflare). Trước đây chỉ báo "HTTP 403" nên withCf không
+                // nhận ra → không giải, tải chương thất bại.
+                val cf = (r.code == 403 || r.code == 503) && looksHtml &&
+                    (r.header("cf-mitigated") != null || (r.header("Server") ?: "").contains("cloudflare", true))
+                if (cf && cfChallenge == null) cfChallenge = req.url.toString()
                 lastErr = "HTTP ${r.code}${if (looksHtml) " (trang HTML)" else ""} từ ${req.url.host}"
             }
         }
+        cfChallenge?.let { throw java.io.IOException("Kotatsu: Cloudflare chặn ảnh. Status=403, URL=$it") }
         throw java.io.IOException("Kotatsu: không tải được ảnh – $lastErr")
     }
 

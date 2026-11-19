@@ -18,6 +18,19 @@ const Duration kImageLoadBackstop = Duration(seconds: 45);
 /// it to be decoded and drawn before it shows "Không tải được ảnh này".
 const Duration kImageDecodeBackstop = Duration(seconds: 30);
 
+/// 0.6.2 (log 19/11/2026 20:58, SayHentai Kotatsu): ảnh qua cổng nội bộ
+/// Kotatsu (`127.0.0.1/kotatsu/image`) có thể phải chờ giải Cloudflare cho CDN
+/// (WebView, tới ~60–150 s) trước khi trả ảnh – hạn 30 s cắt ngang lúc đang giải
+/// → "không phản hồi (qua cổng nội bộ)" rồi HTTP 403. Cổng nội bộ được chờ lâu hơn.
+const Duration kImageLocalBridgeTimeout = Duration(seconds: 120);
+
+/// Hạn chờ cho một URL ảnh (cổng nội bộ Kotatsu được chờ lâu hơn).
+Duration imageTimeoutFor(Uri u) {
+  final h = u.host.toLowerCase();
+  final local = h == '127.0.0.1' || h == 'localhost' || h == '::1';
+  return local && u.path.startsWith('/kotatsu/') ? kImageLocalBridgeTimeout : kImageLoadTimeout;
+}
+
 /// Thrown when an image request exceeded [timeout].
 class ImageLoadTimeoutException implements TimeoutException {
   ImageLoadTimeoutException(this.host, this.timeout, {this.phase = 'connect'});

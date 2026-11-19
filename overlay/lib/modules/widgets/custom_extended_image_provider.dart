@@ -513,9 +513,9 @@ class CustomExtendedNetworkImageProvider
       int received = 0;
 
       await for (final chunk in response.stream.timeout(
-        kImageLoadTimeout,
+        imageTimeoutFor(resolved),
         onTimeout: (sink) => sink.addError(
-          ImageLoadTimeoutException(resolved.host, kImageLoadTimeout, phase: 'receive'),
+          ImageLoadTimeoutException(resolved.host, imageTimeoutFor(resolved), phase: 'receive'),
         ),
       )) {
         bytesBuilder.add(chunk);
@@ -674,12 +674,13 @@ class CustomExtendedNetworkImageProvider
     cancelToken?.throwIfCancellationRequested();
 
     int attempt = 0;
-    final deadline = DateTime.now().add(kImageLoadTimeout);
+    final limit = imageTimeoutFor(resolved); // 0.6.2: cổng Kotatsu chờ lâu hơn
+    final deadline = DateTime.now().add(limit);
     while (attempt < retries) {
       try {
         final remaining = deadline.difference(DateTime.now());
         if (remaining <= Duration.zero) {
-          throw ImageLoadTimeoutException(resolved.host, kImageLoadTimeout);
+          throw ImageLoadTimeoutException(resolved.host, limit);
         }
         return await CancellationTokenSource.register(
           cancelToken,

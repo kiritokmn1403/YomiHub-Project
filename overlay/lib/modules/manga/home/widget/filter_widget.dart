@@ -91,13 +91,15 @@ class _FilterWidgetState extends State<FilterWidget> {
             key: PageStorageKey<String>('yh_grp_${idx}_${filterState.name}'),
             title: Text(filterState.name, style: const TextStyle(fontSize: 13)),
             children: [
-              FilterWidget(
-                filterList: filterState.state,
-                onChanged: (values) {
-                  filterState.state = values;
-                  onChanged(filterList);
-                },
-              ),
+              YomiFilterStorageScope(children: [
+                FilterWidget(
+                  filterList: filterState.state,
+                  onChanged: (values) {
+                    filterState.state = values;
+                    onChanged(filterList);
+                  },
+                ),
+              ]),
             ],
           );
         } else if (filterState is SortFilter) {
