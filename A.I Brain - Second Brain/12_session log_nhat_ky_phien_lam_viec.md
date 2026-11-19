@@ -22,3 +22,11 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **16:12–16:38**: đưa lên **APKPure**: chủ dự án đăng ký "Kiritokmn" (Cốc Cốc, Cloudflare chặn trình duyệt tích hợp); Claude tạo `com.yomihub.app`, mô tả EN + VI, 6 ảnh (2:1), ảnh nổi bật, Mature 17+, tải APK arm64 → gửi duyệt 16:36.
 - **21:32–21:50**: tổ chức lại Second Brain 00–10 rồi 00–12 (thêm bàn giao, nhật ký phiên).
 - **Tiếp theo**: chờ APKPure duyệt; chuẩn bị 0.6.0 theo mục "Còn mở" ở 11-D.
+
+## 19/11/2026 · 0.6.0 · Claude Opus 5.5 (Cowork 09:02–11:40, rồi claude.ai + máy tính 11:45–) + Google Antigravity
+- **Sáng (09:02–11:40)**: đọc log 16–19/11 + 2 Excel; sửa lỗi log (trang Cập nhật treo, CBHentai đổi URL, ảnh Kotatsu 127.0.0.1, Tor, Health Connect, thông báo android6); Sao lưu Google Drive (logo G), Savior quét link video, Short Video +7 trang, kho Salmanbappi/Secozzi, 5 thay đổi Mangayomi v0.9.96, i18n; test 28/28. Máy quá tải (PC Manager, 3 PowerShell quét đệ quy của Antigravity). Bật dây chuyền 11:33.
+- **11:45** phiên mới nhận bàn giao: dây chuyền trượt bước test (5 test gắn cứng 0.5.x) → sửa test; sửa regex AppxBundle `0.5.9.0` trong `build_060.ps1`.
+- **12:39** chủ dự án yêu cầu: mọi lựa chọn trong bộ lọc tiện ích thành ô chọn → `filter_checkbox.dart`, `FilterWidget` thành StatefulWidget (sửa luôn lỗi "mục bộ lọc không chọn được"), Kotatsu/Aniyomi dùng ô chọn; test 8/8. Dừng bản dựng cũ, dựng lại: test 942/942 → apk 34' → tv 30' → wintest (lần 1 trượt yh_055 chập chờn, lần 2 ĐẠT) → win → pack → a6build → verify XONG 15:04.
+- Note 9: bộ lọc ô chọn MangaDex + nguồn APK ĐẠT (ảnh evidence/note9 01–14). Windows portable: mở được, bộ lọc ô chọn ĐẠT.
+- **14:08** chủ dự án yêu cầu giao Antigravity qua /swarm: đợt 3 (@device_tester + @doc_writer) – kiểm thử sơ sài → đợt 4 làm lại có ảnh: Kotatsu ô chọn, Cập nhật, Google Drive, gợi ý kho ĐẠT; changelog EN dùng được.
+- **15:25** phát hành GitHub Release v0.6.0 (19 tệp).
