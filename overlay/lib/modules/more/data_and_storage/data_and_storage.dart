@@ -24,6 +24,7 @@ import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:mangayomi/modules/widgets/tv_escapable_slider.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
+import 'package:mangayomi/yomihub/cloud/google_logo.dart';
 
 class DataAndStorage extends ConsumerWidget {
   /// 0.5.3 (sheet "YomiHub Update" mục 4): true = the "Sao Lưu & Đồng Bộ"
@@ -518,6 +519,14 @@ class DataAndStorage extends ConsumerWidget {
                 l10n.backup_and_restore_warning_info,
                 style: TextStyle(fontSize: 11, color: context.secondaryColor),
               ),
+            ),
+            // 0.6.0 (sheet YomiHub Update): its own entry with the Google
+            // logo – sign in with a Google account, then back up to Drive.
+            ListTile(
+              leading: const GoogleLogo(size: 24),
+              title: Text(tr('Sao Lưu Lên Google Drive')),
+              subtitle: Text(tr('Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive')),
+              onTap: () => context.push('/cloudBackup'),
             ),
             // YomiHub: cloud targets + "send to other apps"
             ListTile(

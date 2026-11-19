@@ -66,6 +66,14 @@ class ShortsDetect {
     'shorties',
     'shorts',
     'reels',
+    // 0.6.0 (YomiHub Update – Video Short Scroll): more short-form hosts
+    'kwai',
+    'redgifs',
+    'xfree',
+    'kwiky',
+    'facebook.com/reel',
+    'spotlight',
+    'moj.app',
   ];
 
   static const _negations = <String>{

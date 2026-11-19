@@ -7,3 +7,5 @@ Không thấy link trực tiếp – mở trình phát nhúng để quét?
 Đã tìm thấy {p0} link video mới – mở lại Savior để tải
 Không tìm thấy link video trong mã trang
 Không quét được mã trang
+Sao Lưu Lên Google Drive
+Đăng nhập bằng tài khoản Google rồi sao lưu, khôi phục qua Google Drive

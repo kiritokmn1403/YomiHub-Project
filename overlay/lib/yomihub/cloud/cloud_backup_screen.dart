@@ -9,6 +9,7 @@ import 'package:mangayomi/modules/more/data_and_storage/providers/backup.dart';
 import 'package:mangayomi/modules/more/data_and_storage/widgets/unified_restore.dart';
 import 'package:mangayomi/utils/share.dart';
 import 'package:mangayomi/yomihub/cloud/cloud_backup_service.dart';
+import 'package:mangayomi/yomihub/cloud/google_logo.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -275,8 +276,16 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
   Widget _tile(CloudProvider pr) {
     final connected = pr.isConnected;
     return ExpansionTile(
-      leading: Icon(connected ? Icons.cloud_done : Icons.cloud_off_outlined,
-          color: connected ? Colors.green : null),
+      // 0.6.0: Google Drive shows the Google logo (sheet YomiHub Update)
+      leading: pr.id == 'gdrive'
+          ? Badge(
+              isLabelVisible: connected,
+              backgroundColor: Colors.green,
+              smallSize: 9,
+              child: const GoogleLogo(size: 26),
+            )
+          : Icon(connected ? Icons.cloud_done : Icons.cloud_off_outlined,
+              color: connected ? Colors.green : null),
       title: Text(pr.displayName),
       subtitle: Text(connected ? tr('Đã kết nối') : tr('Chưa kết nối')),
       children: [
