@@ -29,3 +29,9 @@
 20. **Tự lưu tiến độ (0.6.1)**: 19/11 17:18 chủ dự án đặt 5 phút/lần, 20:08 đổi lại **3 phút/lần** – `scripts/autosave/autosave_progress_061.ps1`, dừng bằng `jobs/STOP_AUTOSAVE_061`. Mỗi lần chủ dự án đổi nhịp: sửa `Start-Sleep`, dừng tiến trình cũ (Win32_Process theo CommandLine) rồi chạy lại.
 21. **Mã phát hành = mã đã dựng**: sửa phát sinh SAU bước sync của dây chuyền mà không dựng lại → cất vào `audit/audit-<ver>/pending_<ver+1>/`, trả `overlay/` về bản trong thư mục dựng (so `cmp`) để mã đẩy lên GitHub khớp tệp cài.
 
+## Website (chủ dự án 20/11/2026)
+22. Website gồm đúng 4 trang **Trang Chủ · Tải Về · Hướng Dẫn · Chính Sách** với cùng menu mấu đánh dấu trang, chuyển trang liền mạch; thiết kế lấy **logo ứng dụng** (`icon-512.png` = icon launcher thật) và **banner ứng dụng** (`assets/logo/tv_banner.png`, gradient #5a2cb6 → #2371e1 → #00bda6) làm nền tảng.
+23. Link bản cài CHỈ nằm ở trang Tải Về; Trang Chủ chỉ có nút dẫn sang `download.html`.
+24. `privacy.html` giữ nguyên URL (Google OAuth); đổi giao diện phải giữ nguyên văn mọi đoạn chính sách (kiểm bằng so sánh văn bản).
+25. Không tải tài nguyên từ máy chủ ngoài trên website (phông tự lưu trữ; ngoại lệ duy nhất: script đọc API GitHub Releases).
+26. Mã SHA-256, dung lượng, tên menu trên website phải lấy từ tệp thật/mã nguồn, không chép từ bản mẫu của tác nhân (Antigravity từng điền SHA giả trong nhóm mẫu).

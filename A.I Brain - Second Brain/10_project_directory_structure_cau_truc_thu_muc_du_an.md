@@ -7,7 +7,7 @@
 | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` | Quy định cho tác nhân (trỏ tới Second Brain) |
 | `TECHNICAL_UPDATE_NOTES.md` | Ghi chú kỹ thuật & nhật ký mọi phiên bản (bắt buộc đọc) |
 | `README.md` | Giới thiệu + nút Download → releases/latest |
-| `docs/` | GitHub Pages: `index.html` (trang chủ, nút tải từng bản), `privacy.html`; favicon/icon trong `docs/assets/` (phải nằm dưới `docs/` để Pages phục vụ) |
+| `docs/` | GitHub Pages – **website 4 trang (từ 20/11/2026)**: `index.html` (Trang Chủ – giới thiệu, Có gì mới, Tính năng; KHÔNG chứa link tải), `download.html` (Tải Về – 18 tệp, dung lượng, SHA-256, nút Chép; script tự đổi link theo `releases/latest` qua `data-pat`), `guide.html` (Hướng Dẫn – 17 chương `section.chapter` id cố định, mục lục + tìm không dấu), `privacy.html` (Chính Sách – **URL cố định**, đã khai báo cho Google OAuth). Dùng chung `docs/assets/site.css`, `site.js`, `banner.png`, `icon-512.png`, `fonts/` (Be Vietnam Pro tự lưu trữ + `OFL.txt`); favicon/icon cũng trong `docs/assets/`. Bản làm việc/brief: `audit/audit-0.6.3/web/` |
 | `assets/` | Hình ảnh của dự án (19/11/2026): `logo/` (logo 1024 sáng/tối, `tv_banner.png`, `preview.png`, `make.py` sinh logo; icon ứng dụng thật ở `overlay/assets/app_icons/icon-red.png` – README dùng `assets/logo/yomihub_logo_1024.png`), `screenshots/` (ảnh chụp riêng – git-ignored). Ảnh/biểu tượng của chính ứng dụng vẫn ở `overlay/assets/`; ảnh kiểm thử ở `audit/audit-<ver>/evidence/`, `test/shots/` |
 | `overlay/` | **Mã YomiHub** (`lib/`, `lib/yomihub/`, `android/`, `windows/`, `assets/yomihub_i18n/`, `test/`, `pubspec.yaml`) |
 | `src/` | Nền Mangayomi upstream (`mangayomi`, `mangayomi-0.9.95`, `v0.9.7`, `BASE_VERSION.txt`) |

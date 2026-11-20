@@ -91,5 +91,9 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **13:38–13:50** Xiaomi 15T (APK lần 5) ĐẠT: Thể Loại DamCoNuong, Hako, trang Cập nhật, nhật ký. **13:52** đẩy Extension Repo `9d4b588`.
 - **14:26** APK lần 6 xong; Phone Link đòi cấp lại quyền chiếu màn hình (chưa cấp). **14:51** Note 9 vào lại adb → kiểm APK lần 6 (Tủ Sách hàng loạt + Cần mua, công tắc Tor, nhật ký 0 ERROR) có ảnh + 2 video.
 - **15:04–15:25** tv/wintest/win/pack xong; Windows Setup.exe cài đè 0.6.2 → 0.6.3+56, Tủ Sách có trên Windows ĐẠT. TECHNICAL_UPDATE_NOTES mục 0.6.3 thêm Phiên 3 + Tổng hợp; Second Brain 04/06/09/11/12.
-- **Tiếp theo**: a6build → verify → README ← README_063 → commit/push → release v0.6.3 → kiểm asset API → báo cáo thống kê.
+- **15:55–16:05** dây chuyền lần 6 XONG → commit `1cb297d` (README ← README_063) → **GitHub Release v0.6.3** 19/19 asset (kiểm API + tải APK 200 + Pages) → Second Brain 11 mục I, `6bc0b13`.
+- **19:23** chủ dự án: thêm tính năng mới lên Trang Chủ → mục "Có gì mới trong 0.6.3" (`3f7b5a6`).
+- **20:07–20:44** website: 20:07 thêm trang Hướng Dẫn + menu chuyển liền mạch 3 trang, nền tảng logo + banner; 20:12 chia việc Antigravity (thiết kế) + Codex (nội dung 17 chương, soát Trang Chủ); 20:29 thêm trang Tải Về chỉ chứa link bản cài (Antigravity khung + menu 4 mấu, Codex nội dung 18 tệp + đối chiếu Release). Claude ghép, sửa SHA mẫu giả, nút Chép, tràn ngang; Playwright kiểm; `80c0b8e`; Pages 200 cả 4 trang.
+- **20:46** chủ dự án: cập nhật A.I Brain → 03, 04, 06, 07 (quy tắc website 22–26), 09, 10, 11, 12.
+- **Tiếp theo (0.6.4)**: xem `TECHNICAL_UPDATE_NOTES.md` 0.6.3 › 4 "Còn mở"; mỗi bản mới cập nhật `download.html` (href, dung lượng, SHA) + "Có gì mới" trên Trang Chủ.
 

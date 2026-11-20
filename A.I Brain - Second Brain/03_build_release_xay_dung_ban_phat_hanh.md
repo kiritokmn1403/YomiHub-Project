@@ -33,3 +33,12 @@
 - Trước khi chạy `release_<ver>.ps1`: README ← bản nháp `audit/audit-<ver>/release/README_<ver>.md`; `docs/index.html` đổi mọi link tĩnh + chữ "phiên bản" sang bản mới (grep không còn số bản cũ); để autosave hoặc job git đẩy lên trước khi tạo Release.
 - Job phát hành: `jobs/pending/x<ver>_release.ps1` gọi `scripts\release\release_<ver>.ps1` (đường dẫn mới, không còn ở gốc). 0.6.1: 19 tệp ~2,9 GB trong ~11 phút.
 - Giao Antigravity /swarm theo dõi API Release + kiểm link sau phát hành (brief mẫu `audit/audit-0.6.1/antigravity/BRIEF_swarm3_061.md`).
+
+## Bổ sung 20/11/2026 (0.6.3 – website 4 trang)
+- Mỗi phiên bản mới, cập nhật website trong `docs/`:
+  1. `download.html`: 18 tệp – sửa `href` tĩnh `releases/download/v<ver>/…`, dung lượng (MB = byte/1048576, 1 chữ số; tệp < 1 MB ghi byte/KB) và SHA-256 (`data-sha`, `data-copy` của nút Chép) lấy từ `output/<ver>/SHA256SUMS-<ver>.txt`; giữ `data-pat` (`{v}`) để script tự đổi sang bản mới nhất. Kiểm khớp API `releases/latest` (size + `digest`) – có thể giao Codex (@verifier, xem `audit/audit-0.6.3/web/codex_dl/CHECK_dl.md`).
+  2. `index.html`: mục "Có gì mới trong <ver>" + nhãn "Mới/Cập nhật <ver>" trên thẻ tính năng; KHÔNG thêm lại bảng/link tải (chủ dự án 20/11 20:29: link tải chỉ ở trang Tải Về).
+  3. `guide.html`: thêm/sửa chương khi tính năng đổi (tên menu phải có bằng chứng `tệp:dòng`).
+  4. `privacy.html`: chỉ sửa nội dung khi app xử lý dữ liệu mới; KHÔNG đổi tên tệp/URL.
+- Sau push: kiểm Pages (~20–60 s) bằng job `Invoke-WebRequest` có `?t=<guid>` chống cache; so khớp bằng chuỗi ASCII (id, class) – PowerShell 5 giải mã sai tiếng Việt nên `-match 'Có gì mới'` báo trượt giả.
+- README mục Liên kết có đủ 4 trang: Trang chủ, Tải về (`download.html`), Hướng dẫn (`guide.html`), Chính sách (`privacy.html`).
