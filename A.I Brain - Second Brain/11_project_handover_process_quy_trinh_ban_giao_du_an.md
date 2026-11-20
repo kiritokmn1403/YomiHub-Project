@@ -59,3 +59,9 @@ Danh sách kiểm:
 - Kiểm thử thiết bị: Note 9 không vào được adb (lỗi ủy quyền phía máy) → dùng Xiaomi 15T qua Phone Link (xem 06).
 - Repo tiện ích có 2 commit cục bộ chưa push (`edf2fbd`, `9d4b588`); chủ dự án đã đồng ý đẩy sau khi kiểm thử Xiaomi.
 - Antigravity hết AI credits tới 20/11 14:11.
+
+## I. Trạng thái bàn giao hiện tại (sau 0.6.3 – 20/11/2026 16:05) – thay mục H
+- 0.6.3 (0.6.3+56) đã phát hành GitHub Release `v0.6.3` 16:04 (19 asset khớp kích thước, `releases/latest` = v0.6.3). README (19 link v0.6.3 + nút Download → releases/latest) và trang chủ/chính sách (GitHub Pages 200) trỏ v0.6.3. Commit `1cb297d`. Kiritokmn Extension Repo đã đẩy `9d4b588`. KHÔNG gửi APKPure.
+- Đã kiểm: Xiaomi 15T (APK 10:58 + lần 5), Note 9 (APK lần 6 – bản phát hành), Windows 11 Setup.exe (lần 6). Chưa kiểm sâu: APK TV và android6 trên AVD (chỉ dựng + verify), `.appxbundle`, nhập CSV Tủ Sách trên máy thật.
+- Còn mở cho 0.6.4: `TECHNICAL_UPDATE_NOTES.md` mục 0.6.3 › 4 "Còn mở" + log Windows 6 ERROR 404 kho `MiraiEnoki/anymex_extensions`, `Schnitzel5/sugoi-modules` (kho người dùng thêm đã chết).
+- Tác vụ nền: autosave 063 dừng bằng `jobs/STOP_AUTOSAVE_063`; lịch hẹn kiểm tra đã hết; Codex /swarm 1 xong; Antigravity hết credits (đến 26/11).
