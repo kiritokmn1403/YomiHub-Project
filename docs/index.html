@@ -2,9 +2,9 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YomiHub – Đọc truyện, xem phim, đọc tiểu thuyết &amp; Tủ Sách Cá Nhân</title>
-<meta name="description" content="YomiHub 0.6.3: ứng dụng mã nguồn mở đọc truyện tranh, xem phim &amp; anime, đọc tiểu thuyết, Google Play Sách, Booru và Tủ Sách Cá Nhân cho Android, Android TV và Windows.">
+<meta name="description" content="YomiHub 0.6.3: ứng dụng mã nguồn mở gom mọi thứ để đọc và xem vào một nơi: truyện tranh, phim &amp; anime, tiểu thuyết, Google Play Sách, Booru và Tủ Sách Cá Nhân – chạy trên Android (6.0+), Android TV (YumiHub Android TV) và Windows 10/11 x64.">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
@@ -12,181 +12,302 @@
 <meta property="og:title" content="YomiHub">
 <meta property="og:description" content="Đọc truyện tranh, xem phim &amp; anime, đọc tiểu thuyết và quản lý Tủ Sách Cá Nhân – Android, Android TV, Windows.">
 <meta property="og:image" content="https://kiritokmn1403.github.io/YomiHub-Project/assets/icon-512.png">
-<meta name="theme-color" content="#3b5bdb">
-<style>
-:root{--fg:#1d1d1f;--muted:#5f6368;--bg:#fff;--card:#f5f7fb;--line:#e3e7ef;--acc:#3b5bdb;--badge-bg:#e7edff;--badge-fg:#2845b8}
-@media (prefers-color-scheme:dark){:root{--fg:#ececf1;--muted:#a3a8b3;--bg:#121318;--card:#1c1e26;--line:#2c2f3a;--acc:#7c93ff;--badge-bg:#242c4a;--badge-fg:#b7c6ff}}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;color:var(--fg);background:var(--bg)}
-.wrap{max-width:960px;margin:0 auto;padding:0 20px}
-header{text-align:center;padding:48px 0 24px}
-header img{width:112px;height:112px;border-radius:24px}
-h1{font-size:2.2rem;margin:12px 0 4px}
-.lead{color:var(--muted);font-size:1.08rem;max-width:680px;margin:0 auto}
-.btn{display:inline-block;background:var(--acc);color:#fff;padding:12px 26px;border-radius:12px;text-decoration:none;font-weight:600;margin:20px 6px 0}
-.btn.ghost{background:transparent;color:var(--acc);border:1px solid var(--acc)}
-h2{font-size:1.35rem;margin:40px 0 14px}
-table{width:100%;border-collapse:collapse;font-size:.95rem}
-th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--muted);font-weight:600}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-.card h3{margin:0 0 6px;font-size:1.05rem;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.card ul{margin:0;padding-left:18px}
-.card li{margin:3px 0}
-.badge{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--badge-bg);color:var(--badge-fg);white-space:nowrap}
-.callout{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:14px 18px;margin:18px 0}
-.callout p{margin:0}
-.dlt td{vertical-align:middle}.note{color:var(--muted);font-size:.88rem}
-.dls{display:flex;flex-wrap:wrap;gap:8px}
-a.dl{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);text-decoration:none;font-weight:600;font-size:.9rem;white-space:nowrap}
-a.dl:hover{border-color:var(--acc)}
-a.dl svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-h2 small{font-size:.8rem;color:var(--muted);font-weight:500}
-footer{color:var(--muted);font-size:.9rem;text-align:center;padding:36px 0 48px;border-top:1px solid var(--line);margin-top:44px}
-a{color:var(--acc)}
-code{font-size:.9em}
-.nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line);font-weight:600}
-.nav a{text-decoration:none}.nav a.on{color:var(--fg)}
-.doc{max-width:780px;margin:0 auto}
-.doc h2{font-size:1.2rem;margin:32px 0 10px}
-header.small{padding:28px 0 8px}header.small img{width:72px;height:72px;border-radius:18px}
-.whatsnew{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin:6px 0 4px}
-.whatsnew .card h3{font-size:1rem}
-.whatsnew .card.fix{border-left:4px solid var(--acc)}
-</style>
+<meta name="theme-color" content="#2371e1">
+<link rel="prefetch" href="download.html">
+<link rel="prefetch" href="guide.html">
+<link rel="prefetch" href="privacy.html">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<div class="wrap">
-<nav class="nav"><a class="on" href="index.html">Trang chủ</a><a href="#moi">Có gì mới</a><a href="#tai-ve">Tải về</a><a href="privacy.html">Chính sách quyền riêng tư</a><a href="https://github.com/kiritokmn1403/YomiHub-Project">GitHub</a></nav>
-<header>
-  <img src="assets/icon-512.png" alt="Biểu tượng YomiHub">
-  <h1>YomiHub</h1>
-  <p class="lead">Ứng dụng mã nguồn mở gom mọi thứ để đọc và xem vào một nơi: truyện tranh, phim &amp; anime, tiểu thuyết, Google Play Sách, Booru và Tủ Sách Cá Nhân – chạy trên Android (6.0+), Android TV (YumiHub Android TV) và Windows 10/11 x64. Xây dựng trên nhân Mangayomi (Flutter).</p>
-  <a class="btn" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest">Tải YomiHub bản mới nhất</a>
-  <a class="btn ghost" href="https://github.com/kiritokmn1403/YomiHub-Project">Mã nguồn trên GitHub</a>
+
+<!-- Dải banner dốc màu tím -> xanh dương -> ngọc -->
+<header class="banner-band">
+  <div class="banner-container">
+    <div class="top-bar">
+      <a class="brand-link" href="index.html">
+        <img class="brand-logo" src="assets/icon-512.png" alt="Logo YomiHub" width="40" height="40">
+        <span>YomiHub</span>
+      </a>
+      <div class="top-actions">
+        <a class="btn-top" href="download.html">Tải bản mới nhất</a>
+      </div>
+    </div>
+
+    <!-- Hero Trang Chủ -->
+    <div class="hero-index">
+      <div class="hero-text">
+        <h1>YomiHub</h1>
+        <p class="hero-lead">Ứng dụng mã nguồn mở gom mọi thứ để đọc và xem vào một nơi: truyện tranh, phim &amp; anime, tiểu thuyết, Google Play Sách, Booru và Tủ Sách Cá Nhân – chạy trên Android (6.0+) và Windows 10/11 x64; bản YumiHub Android TV tập trung phim &amp; anime. Xây dựng trên nhân Mangayomi (Flutter).</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="download.html">Tải YomiHub</a>
+          <a class="btn btn-secondary" href="guide.html">Xem hướng dẫn sử dụng</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img class="book-tilt" src="assets/banner.png" alt="Banner YomiHub" width="640" height="360">
+      </div>
+    </div>
+
+    <!-- 4 mấu đánh dấu trang (bookmark tabs) -->
+    <nav class="bookmark-nav" aria-label="Trang">
+      <a class="tab-link active" href="index.html" aria-current="page">Trang Chủ</a>
+      <a class="tab-link" href="download.html">Tải Về</a>
+      <a class="tab-link" href="guide.html">Hướng Dẫn</a>
+      <a class="tab-link" href="privacy.html">Chính Sách</a>
+    </nav>
+  </div>
 </header>
 
-<h2 id="tai-ve">Chọn bản cài <small id="ver">· phiên bản 0.6.3</small></h2>
-<table class="dlt">
-<thead>
-<tr><th>Thiết bị</th><th>Tải về</th></tr>
-</thead>
-<tbody>
-<tr><td><b>Android 7.0 trở lên</b><br><span class="note">Điện thoại, máy tính bảng (chọn arm64-v8a nếu không chắc)</span></td><td class="dls"><a class="dl" data-pat="YomiHub-{v}-arm64-v8a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-arm64-v8a.apk" title="Tải YomiHub-0.6.3-arm64-v8a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>arm64-v8a</a><a class="dl" data-pat="YomiHub-{v}-armeabi-v7a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-armeabi-v7a.apk" title="Tải YomiHub-0.6.3-armeabi-v7a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>armeabi-v7a</a><a class="dl" data-pat="YomiHub-{v}-x86_64.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-x86_64.apk" title="Tải YomiHub-0.6.3-x86_64.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>x86_64</a></td></tr>
-<tr><td><b>Android 6.0</b><br><span class="note">Chỉ dành cho máy Android 6.0</span></td><td class="dls"><a class="dl" data-pat="YomiHub-{v}-android6-arm64-v8a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-android6-arm64-v8a.apk" title="Tải YomiHub-0.6.3-android6-arm64-v8a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>arm64-v8a</a><a class="dl" data-pat="YomiHub-{v}-android6-armeabi-v7a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-android6-armeabi-v7a.apk" title="Tải YomiHub-0.6.3-android6-armeabi-v7a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>armeabi-v7a</a><a class="dl" data-pat="YomiHub-{v}-android6-x86_64.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-android6-x86_64.apk" title="Tải YomiHub-0.6.3-android6-x86_64.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>x86_64</a></td></tr>
-<tr><td><b>Android TV</b><br><span class="note">YumiHub Android TV – điều khiển D-Pad, tập trung Phim &amp; Điện ảnh (bỏ Comic, Novel, Google Play Books, Booru và Tủ Sách Cá Nhân)</span></td><td class="dls"><a class="dl" data-pat="YumiHub-Android-TV-{v}-arm64-v8a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YumiHub-Android-TV-0.6.3-arm64-v8a.apk" title="Tải YumiHub-Android-TV-0.6.3-arm64-v8a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>arm64-v8a</a><a class="dl" data-pat="YumiHub-Android-TV-{v}-armeabi-v7a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YumiHub-Android-TV-0.6.3-armeabi-v7a.apk" title="Tải YumiHub-Android-TV-0.6.3-armeabi-v7a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>armeabi-v7a</a><a class="dl" data-pat="YumiHub-Android-TV-{v}-x86_64.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YumiHub-Android-TV-0.6.3-x86_64.apk" title="Tải YumiHub-Android-TV-0.6.3-x86_64.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>x86_64</a></td></tr>
-<tr><td><b>Windows 10/11 (x64)</b><br><span class="note">Hỗ trợ Windows 10/11 x64. Setup.exe: cài đặt; .appxbundle: gói ký số; .zip: chạy ngay; -full.zip: kèm Java (M-Extension-Server) cho tiện ích APK</span></td><td class="dls"><a class="dl" data-pat="YomiHub-{v}-windows-x64-Setup.exe" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-windows-x64-Setup.exe" title="Tải YomiHub-0.6.3-windows-x64-Setup.exe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>Setup.exe</a><a class="dl" data-pat="YomiHub-{v}-windows-x64.appxbundle" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-windows-x64.appxbundle" title="Tải YomiHub-0.6.3-windows-x64.appxbundle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>.appxbundle</a><a class="dl" data-pat="YomiHub-{v}-windows-x64.zip" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-windows-x64.zip" title="Tải YomiHub-0.6.3-windows-x64.zip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>.zip</a><a class="dl" data-pat="YomiHub-{v}-windows-x64-full.zip" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-windows-x64-full.zip" title="Tải YomiHub-0.6.3-windows-x64-full.zip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>-full.zip</a></td></tr>
-<tr><td><b>Hỗ trợ cài Windows &amp; Xác minh tệp</b><br><span class="note">Chứng chỉ/script cài gói <code>.appxbundle</code>, mã kiểm tra SHA-256 và nhật ký thay đổi</span></td><td class="dls"><a class="dl" data-pat="YomiHub-RootCA.cer" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-RootCA.cer" title="Tải YomiHub-RootCA.cer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>RootCA.cer</a><a class="dl" data-pat="Install-YomiHub.bat" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/Install-YomiHub.bat" title="Tải Install-YomiHub.bat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>Install.bat</a><a class="dl" data-pat="Install-YomiHub.ps1" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/Install-YomiHub.ps1" title="Tải Install-YomiHub.ps1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>Install.ps1</a><a class="dl" data-pat="SHA256SUMS-{v}.txt" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/SHA256SUMS-0.6.3.txt" title="Tải SHA256SUMS-0.6.3.txt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>SHA256SUMS</a><a class="dl" data-pat="YomiHub-{v}-changelog.md" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-changelog.md" title="Tải YomiHub-0.6.3-changelog.md"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>Changelog</a></td></tr>
-</tbody>
-</table>
-<p class="note">Tất cả bản cài và tệp <code>SHA256SUMS</code> có trên <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest">trang phát hành mới nhất</a>.</p>
-<script>
-// Tu cap nhat link sang ban phat hanh moi nhat (neu doc duoc API GitHub); loi thi giu link ban hien tai.
-fetch('https://api.github.com/repos/kiritokmn1403/YomiHub-Project/releases/latest').then(r=>r.ok?r.json():null).then(j=>{
-  if(!j||!j.tag_name)return; const v=j.tag_name.replace(/^v/,''); const names=new Set((j.assets||[]).map(a=>a.name));
-  let ok=0; document.querySelectorAll('a.dl').forEach(a=>{const n=a.dataset.pat.replace('{v}',v); if(names.has(n)){a.href='https://github.com/kiritokmn1403/YomiHub-Project/releases/download/'+j.tag_name+'/'+n; a.title='Tải '+n; ok++;}});
-  if(ok) document.getElementById('ver').textContent='· phiên bản '+v;
-}).catch(()=>{});
-</script>
+<!-- Tờ giấy nội dung -->
+<main class="wrap">
+  <h2 id="moi">Có gì mới trong 0.6.3 <small>· 20/11/2026</small></h2>
+  <div class="whatsnew-grid">
+    <div class="card new">
+      <h3><span>✨ Tính năng mới</span><span class="badge">5 mục</span></h3>
+      <ul>
+        <li><strong>Tủ Sách Cá Nhân</strong> – nút riêng cạnh Booru App: quản lý truyện &amp; sách giấy, quét mã vạch ISBN, chống mua trùng, tập thiếu, danh sách Cần mua, thống kê, nhập/xuất CSV</li>
+        <li><strong>Tự chuyển qua Tor khi trang bị chặn</strong> – tiện ích, ảnh bìa và tiểu thuyết LNReader tự thử lại qua Tor khi nhà mạng chặn trang</li>
+        <li><strong>Giao diện thích ứng</strong> cho máy tính bảng, Android TV và Windows (thanh bên thu gọn, lưới thẻ theo màn hình, D-pad)</li>
+        <li><strong>Dấu Đã hợp nhất · N nguồn</strong> và chọn tiện ích thành viên ngay trên danh sách chương</li>
+        <li>Thêm 46 liên kết vào <em>Dự án GitHub đã sử dụng</em>, +228 chuỗi dịch cho 18 ngôn ngữ</li>
+      </ul>
+    </div>
+    <div class="card fix">
+      <h3><span>🐛 Sửa lỗi &amp; cải tiến</span><span class="badge">Cập nhật 0.6.3</span></h3>
+      <ul>
+        <li>Mục <strong>Thể Loại</strong> của tiện ích Keiyoushi mới (vd. DamCoNuong) chọn được trở lại – kể cả bộ lọc đã lưu</li>
+        <li>Tiểu thuyết LNReader (Hako, TruyenSS…) đi qua Tor đúng như cài đặt VPN</li>
+        <li>Tor không còn báo "kẹt" giả sau khi ứng dụng bị treo nền</li>
+        <li>Trang <em>Cập nhật</em> nạp thông tin truyện ở nền, mở nhanh hơn khi danh sách dài</li>
+        <li>Tủ Sách: nhập CSV báo lỗi rõ khi không lưu được, không gộp nhầm bộ tên gần giống, giữ trạng thái đã đọc; tự chuyển Tor không gửi lặp yêu cầu ghi dữ liệu</li>
+        <li>Gợi ý lỗi nguồn dễ hiểu hơn và nhật ký gọn hơn</li>
+      </ul>
+    </div>
+  </div>
+  <p class="shelf-note">Đầy đủ: <a href="download.html#verify">ghi chú phát hành 0.6.3</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.6.3">trang phát hành v0.6.3</a></p>
 
-<h2 id="moi">Có gì mới trong 0.6.3 <small>· 20/11/2026</small></h2>
-<div class="whatsnew">
-  <div class="card"><h3><span>✨ Tính năng mới</span><span class="badge">5 mục</span></h3><ul>
-    <li><strong>Tủ Sách Cá Nhân</strong> – nút riêng cạnh Booru App: quản lý truyện &amp; sách giấy, quét mã vạch ISBN, chống mua trùng, tập thiếu, danh sách Cần mua, thống kê, nhập/xuất CSV</li>
-    <li><strong>Tự chuyển qua Tor khi trang bị chặn</strong> – tiện ích, ảnh bìa và tiểu thuyết LNReader tự thử lại qua Tor khi nhà mạng chặn trang</li>
-    <li><strong>Giao diện thích ứng</strong> cho máy tính bảng, Android TV và Windows (thanh bên thu gọn, lưới thẻ theo màn hình, D-pad)</li>
-    <li><strong>Dấu Đã hợp nhất · N nguồn</strong> và chọn tiện ích thành viên ngay trên danh sách chương</li>
-    <li>+46 dự án trong <em>Dự án GitHub đã sử dụng</em>, +228 chuỗi dịch cho 18 ngôn ngữ</li>
-  </ul></div>
-  <div class="card fix"><h3><span>🐛 Sửa lỗi &amp; cải tiến</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
-    <li>Mục <strong>Thể Loại</strong> của tiện ích Keiyoushi mới (vd. DamCoNuong) chọn được trở lại – kể cả bộ lọc đã lưu</li>
-    <li>Tiểu thuyết LNReader (Hako, TruyenSS…) đi qua Tor đúng như cài đặt VPN</li>
-    <li>Tor không còn báo "kẹt" giả sau khi ứng dụng bị treo nền</li>
-    <li>Trang <em>Cập nhật</em> mở nhanh, không đứng hình khi có hàng nghìn chương</li>
-    <li>Tủ Sách: nhập CSV báo lỗi rõ khi không lưu được, không gộp nhầm bộ tên gần giống, giữ trạng thái đã đọc; tự chuyển Tor không gửi lặp yêu cầu ghi dữ liệu</li>
-    <li>Gợi ý lỗi nguồn dễ hiểu hơn và nhật ký gọn hơn</li>
-  </ul></div>
-</div>
-<p class="note">Đầy đủ: <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-changelog.md">ghi chú phát hành 0.6.3</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.6.3">trang phát hành v0.6.3</a></p>
+  <h2>Tính năng</h2>
+  <div class="feature-grid">
+    <!-- Nhóm Mới / Cập nhật 0.6.3 đặt trước -->
+    <article class="feature-item highlight">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">🗂️</span>
+          <h3 class="feature-title">Tủ Sách Cá Nhân</h3>
+        </div>
+        <span class="badge">Mới 0.6.3</span>
+      </div>
+      <ul class="feature-list">
+        <li>Quản lý bộ truyện &amp; sách giấy ngoại tuyến (lưu cục bộ trên thiết bị), bật/tắt trong <em>Bật/Tắt tính năng &amp; Nguồn mở rộng</em></li>
+        <li>Tìm nhanh không dấu theo tên hoặc số tập (vd. <code>One Piece 105</code>), huy hiệu <em>Đã có / Có bản thường / Chưa mua</em> và 6 bộ gần đây</li>
+        <li>Quét mã vạch ISBN + tra cứu Google Books / Open Library, chống mua trùng theo bộ, tập và phiên bản</li>
+        <li>Chọn nhiều tập một lần (1-10, 1-100…), tập mua xong tự rời danh sách <em>Cần mua</em>; gợi ý tập tiếp theo của bộ đang ra</li>
+        <li>Phát hiện tập thiếu, danh sách <em>Cần mua</em>, thư mục bản Limited + phụ kiện + ảnh, thống kê, nhập/xuất CSV, sao lưu cùng ứng dụng (không có trên Android TV)</li>
+      </ul>
+      <a class="feature-link" href="guide.html#tu-sach">Xem hướng dẫn Tủ Sách</a>
+    </article>
 
-<h2>Tính năng</h2>
-<div class="grid">
-  <div class="card"><h3><span>🗂️ Tủ Sách Cá Nhân</span><span class="badge">Mới 0.6.3</span></h3><ul>
-    <li>Quản lý bộ truyện &amp; sách giấy ngoại tuyến (lưu cục bộ trên thiết bị), bật/tắt trong <em>Bật/Tắt tính năng &amp; Nguồn mở rộng</em></li>
-    <li>Tìm nhanh không dấu theo tên hoặc số tập (vd. <code>One Piece 105</code>), huy hiệu <em>Đã có / Có bản thường / Chưa mua</em> và 6 bộ gần đây</li>
-    <li>Quét mã vạch ISBN + tra cứu Google Books / Open Library, chống mua trùng theo bộ, tập và phiên bản</li>
-    <li>Chọn nhiều tập một lần (1-10, 1-100…), tập mua xong tự rời danh sách <em>Cần mua</em>; gợi ý tập tiếp theo của bộ đang ra</li>
-    <li>Phát hiện tập thiếu, danh sách <em>Cần mua</em>, thư mục bản Limited + phụ kiện + ảnh, thống kê, nhập/xuất CSV, sao lưu cùng ứng dụng (không có trên Android TV)</li>
-  </ul></div>
-  <div class="card"><h3><span>🛡️ VPN, DNS &amp; Tự chuyển Tor</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
-    <li><strong>Tự chuyển qua Tor khi trang bị chặn</strong>: khi Tor đang chạy, tự động thử lại qua Tor cho trang bị nhà mạng chặn (cả tiện ích APK và ảnh bìa trả về HTML chặn)</li>
-    <li>Tor (cầu nối Snowflake, obfs4, meek – tự đổi khi kẹt; bỏ qua thời gian app treo nền), Cloudflare WARP, WireGuard, VPN Gate</li>
-    <li>DNS-over-HTTPS, chặn quảng cáo; tự giải và hỗ trợ giải Cloudflare thủ công trong WebView</li>
-    <li>Chọn phạm vi VPN cho từng tiện ích</li>
-  </ul></div>
-  <div class="card"><h3><span>🧩 Hợp nhất tiện ích</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
-    <li>Gộp cùng một bộ truyện/phim từ nhiều nguồn vào một trang, gắn dấu <strong>Đã hợp nhất · N nguồn</strong></li>
-    <li>Chọn nguồn đọc/xem hoặc chuyển đọc từ tiện ích trong bộ hợp nhất ngay trên trang chi tiết</li>
-    <li>Gộp truyện trùng, gộp thủ công, gom theo nhóm tiện ích</li>
-  </ul></div>
-  <div class="card"><h3><span>🎨 Giao diện thích ứng &amp; Tiện ích</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
-    <li>Giao diện <strong>YomiHub New Version</strong> thích ứng máy tính bảng, Android TV và Windows (thanh bên thu gọn được, lưới phản hồi, hỗ trợ D-pad), cùng <em>Old Version</em> &amp; <em>Shiori</em></li>
-    <li>Health Connect (ghi thời gian đọc/xem, nhắc nghỉ mắt 20-20-20), GIF Viewer, thống kê, chế độ ẩn danh</li>
-    <li>Nhật ký ứng dụng chi tiết, kiểm tra cập nhật từ GitHub / Google Drive / MediaFire, danh sách <em>Dự án GitHub đã sử dụng</em></li>
-    <li>67 ngôn ngữ giao diện</li>
-  </ul></div>
-  <div class="card"><h3>📖 Truyện tranh</h3><ul>
-    <li>Đọc manga, manhwa, manhua, webtoon từ hàng nghìn nguồn</li>
-    <li>Cuộn dọc liên tục (cuộn vô hạn), lật trang, trang đôi, đọc phải sang trái</li>
-    <li>Tải chương để đọc ngoại tuyến, nhiều thư mục cục bộ</li>
-    <li>Thư viện có lọc, sắp xếp, danh mục, lịch sử, cập nhật chương mới</li>
-  </ul></div>
-  <div class="card"><h3>🎬 Phim &amp; Anime</h3><ul>
-    <li>Trình phát tích hợp, đổi máy chủ/luồng phát, phụ đề, SponsorBlock</li>
-    <li>Nhớ vị trí đã xem, xem tiếp đúng chỗ</li>
-    <li>Picture-in-Picture (PiP), tải tập về máy</li>
-    <li>Video ngắn (Shorts) vuốt liên tục cho mọi tiện ích video</li>
-  </ul></div>
-  <div class="card"><h3>📚 Tiểu thuyết, Ebook &amp; PDF</h3><ul>
-    <li>Đọc tiểu thuyết trực tuyến, chỉnh cỡ chữ, phông, giãn dòng, nền tối; tiện ích LNReader dùng chung VPN/Tor với ứng dụng</li>
-    <li>Mở tệp EPUB và PDF trên máy</li>
-    <li>Dịch ảnh (Image Translation) cho trang truyện và dịch tiểu thuyết</li>
-  </ul></div>
-  <div class="card"><h3>🛒 Google Play Sách</h3><ul>
-    <li>Google Play Sách nhúng ngay trong ứng dụng: Trang chủ, Thư viện, Danh sách yêu thích, Cửa hàng</li>
-    <li>Đăng nhập tài khoản Google để đọc sách đã mua (không có trên Android TV)</li>
-  </ul></div>
-  <div class="card"><h3>🎨 Booru App</h3><ul>
-    <li>Duyệt, tìm kiếm, tải ảnh từ các trang Booru (Danbooru, Yande.re…), thêm nguồn tùy chỉnh</li>
-    <li>Gợi ý thẻ, yêu thích, lịch sử tìm kiếm, danh sách chặn – có tùy chọn đi kèm bản sao lưu (không có trên Android TV)</li>
-  </ul></div>
-  <div class="card"><h3><span>🔌 Kho tiện ích &amp; Bộ lọc mới</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
-    <li>Chạy tiện ích Mihon/Tachiyomi, Aniyomi, Mangayomi, Kotatsu, LNReader, IReader, Aidoku và vBook</li>
-    <li>Bộ lọc mới (9 nhóm ô chọn, chọn nhiều mục) &amp; gợi ý lỗi thân thiện (JSON parse Aidoku, headless browser, chứng chỉ SSL, trang bị chặn)</li>
-    <li>Thể Loại 3 trạng thái (✓ gồm / ✗ loại) của tiện ích Keiyoushi kiểu mới hiển thị thành ô chọn</li>
-    <li>Tự gợi ý kho tiện ích mới, đổi URL/tên miền khi trang chuyển nhà</li>
-    <li>Mangayomi Extension Server, ApkBridge, máy chủ tiện ích Mihon</li>
-  </ul></div>
-  <div class="card"><h3>🌐 Trình duyệt &amp; Web Scanner</h3><ul>
-    <li>Trình duyệt tích hợp mở trang nguồn, đăng nhập, giải thử thách, bảo vệ dấu vân tay trình duyệt</li>
-    <li>Web Scanner tìm và mở nội dung từ trang web; Savior quét liên kết phát video</li>
-  </ul></div>
-  <div class="card"><h3>☁️ Sao lưu &amp; Đồng bộ</h3><ul>
-    <li>Chọn từng mục sao lưu: thư viện, lịch sử, tiện ích, cài đặt, Booru App và <strong>Tủ Sách Cá Nhân</strong></li>
-    <li>Đăng nhập bằng tài khoản Google hoặc Client ID riêng để sao lưu lên Google Drive</li>
-    <li>OneDrive, Dropbox, WebDAV, Telegram Bot, Rclone, MediaFire, tự sao lưu định kỳ</li>
-  </ul></div>
-  <div class="card"><h3>📡 Chia sẻ &amp; Theo dõi</h3><ul>
-    <li>AirDrop &amp; Quick Share (LAN / Bluetooth): gửi tệp giữa điện thoại và máy tính</li>
-    <li>Trình theo dõi MyAnimeList, AniList, Trakt…; xuất danh sách MyAnimeList</li>
-  </ul></div>
-</div>
+    <article class="feature-item highlight">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">🛡️</span>
+          <h3 class="feature-title">VPN, DNS &amp; Tự chuyển Tor</h3>
+        </div>
+        <span class="badge">Cập nhật 0.6.3</span>
+      </div>
+      <ul class="feature-list">
+        <li><strong>Tự chuyển qua Tor khi trang bị chặn</strong>: khi Tor đang chạy, tự động thử lại qua Tor cho trang bị nhà mạng chặn (cả tiện ích APK và ảnh bìa trả về HTML chặn)</li>
+        <li>Tor với cầu nối Snowflake, obfs4, meek (chọn Tự động để thử lần lượt khi bị chặn), Cloudflare WARP, OpenVPN, WireGuard, VPN Gate</li>
+        <li>DNS-over-HTTPS, chặn quảng cáo; tự giải và hỗ trợ giải Cloudflare thủ công trong WebView</li>
+        <li>Chọn tiện ích, WebView và trình duyệt dùng Tor/proxy; WARP, OpenVPN, WireGuard và SoftEther mang toàn bộ kết nối của YomiHub</li>
+      </ul>
+      <a class="feature-link" href="guide.html#vpn-tor">Xem hướng dẫn VPN &amp; Tor</a>
+    </article>
+
+    <article class="feature-item highlight">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">🧩</span>
+          <h3 class="feature-title">Hợp nhất tiện ích</h3>
+        </div>
+        <span class="badge">Cập nhật 0.6.3</span>
+      </div>
+      <ul class="feature-list">
+        <li>Gộp cùng một bộ truyện/phim từ nhiều nguồn vào một trang, gắn dấu <strong>Đã hợp nhất · N nguồn</strong></li>
+        <li>Chọn nguồn đọc/xem hoặc chuyển đọc từ tiện ích trong bộ hợp nhất ngay trên trang chi tiết</li>
+        <li>Gộp truyện trùng, gộp thủ công, gom theo nhóm tiện ích</li>
+      </ul>
+      <a class="feature-link" href="guide.html#hop-nhat">Xem hướng dẫn Hợp nhất</a>
+    </article>
+
+    <article class="feature-item highlight">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">🔌</span>
+          <h3 class="feature-title">Kho tiện ích &amp; Bộ lọc mới</h3>
+        </div>
+        <span class="badge">Cập nhật 0.6.3</span>
+      </div>
+      <ul class="feature-list">
+        <li>Chạy tiện ích Mihon/Tachiyomi, Aniyomi, Mangayomi, Kotatsu, LNReader, IReader, Aidoku và vBook</li>
+        <li>Bộ lọc mới (9 nhóm chính + mục Khác, chọn nhiều giá trị khi tiện ích hỗ trợ) &amp; gợi ý lỗi thân thiện (JSON parse Aidoku, headless browser, chứng chỉ SSL, trang bị chặn)</li>
+        <li>Thể Loại 3 trạng thái (✓ gồm / ✗ loại) của tiện ích Keiyoushi kiểu mới hiển thị thành ô chọn</li>
+        <li>Tự gợi ý kho tiện ích mới, đổi URL/tên miền khi trang chuyển nhà</li>
+        <li>Mangayomi Extension Server, ApkBridge, máy chủ tiện ích Mihon</li>
+      </ul>
+      <a class="feature-link" href="guide.html#kho-tien-ich">Xem hướng dẫn Kho tiện ích</a>
+    </article>
+
+    <article class="feature-item highlight">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">🎨</span>
+          <h3 class="feature-title">Giao diện thích ứng &amp; Tiện ích</h3>
+        </div>
+        <span class="badge">Cập nhật 0.6.3</span>
+      </div>
+      <ul class="feature-list">
+        <li>Giao diện <strong>YomiHub New Version</strong> thích ứng máy tính bảng, Android TV và Windows (thanh bên thu gọn được, lưới phản hồi, hỗ trợ D-pad), cùng <em>Old Version</em> &amp; <em>Shiori</em></li>
+        <li>Theo dõi thời gian đọc/xem, nhắc nghỉ mắt 20-20-20 (ghi sang Health Connect cần Android 14+), GIF Viewer, thống kê, chế độ ẩn danh</li>
+        <li>Nhật ký ứng dụng chi tiết, kiểm tra cập nhật từ GitHub / Google Drive / MediaFire, danh sách <em>Dự án GitHub đã sử dụng</em></li>
+        <li>67 ngôn ngữ giao diện</li>
+      </ul>
+      <a class="feature-link" href="guide.html#tv-windows">Xem hướng dẫn Giao diện thích ứng</a>
+    </article>
+
+    <!-- Các nhóm tính năng nền tảng khác -->
+    <article class="feature-item">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">📖</span>
+          <h3 class="feature-title">Truyện tranh</h3>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li>Đọc manga, manhwa, manhua, webtoon từ các nguồn trong tiện ích bạn đã cài</li>
+        <li>Cuộn dọc liên tục (cuộn vô hạn), lật trang, trang đôi, đọc phải sang trái</li>
+        <li>Tải chương để đọc ngoại tuyến, nhiều thư mục cục bộ</li>
+        <li>Thư viện có lọc, sắp xếp, danh mục, lịch sử, cập nhật chương mới</li>
+      </ul>
+      <a class="feature-link" href="guide.html#doc-xem">Xem hướng dẫn Đọc truyện</a>
+    </article>
+
+    <article class="feature-item">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">🎬</span>
+          <h3 class="feature-title">Phim &amp; Anime</h3>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li>Trình phát tích hợp, đổi máy chủ/luồng phát, phụ đề, SponsorBlock</li>
+        <li>Nhớ vị trí đã xem, xem tiếp đúng chỗ</li>
+        <li>Picture-in-Picture (PiP), tải tập về máy</li>
+        <li>Video ngắn (Shorts) vuốt liên tục cho mọi tiện ích video</li>
+      </ul>
+      <a class="feature-link" href="guide.html#doc-xem">Xem hướng dẫn Xem phim</a>
+    </article>
+
+    <article class="feature-item">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">📚</span>
+          <h3 class="feature-title">Tiểu thuyết, Ebook &amp; PDF</h3>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li>Đọc tiểu thuyết trực tuyến, chỉnh cỡ chữ, phông, giãn dòng, nền tối; tiện ích LNReader dùng chung VPN/Tor với ứng dụng</li>
+        <li>Mở tệp EPUB và PDF trên máy</li>
+        <li>Dịch ảnh (Image Translation) cho trang truyện và dịch tiểu thuyết</li>
+      </ul>
+      <a class="feature-link" href="guide.html#ebook-pdf">Xem hướng dẫn Tiểu thuyết &amp; PDF</a>
+    </article>
+
+    <article class="feature-item">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">🛒</span>
+          <h3 class="feature-title">Google Play Sách</h3>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li>Google Play Sách nhúng ngay trong ứng dụng: Trang chủ, Thư viện, Danh sách yêu thích, Cửa hàng</li>
+        <li>Đăng nhập tài khoản Google để đọc sách đã mua (không có trên Android TV)</li>
+      </ul>
+      <a class="feature-link" href="guide.html#play-sach">Xem hướng dẫn Google Play Sách</a>
+    </article>
+
+    <article class="feature-item">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">🎨</span>
+          <h3 class="feature-title">Booru App</h3>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li>Duyệt, tìm kiếm, tải ảnh từ các trang Booru (Danbooru, Yande.re…), thêm nguồn tùy chỉnh</li>
+        <li>Gợi ý thẻ, yêu thích, lịch sử tìm kiếm, danh sách chặn – có tùy chọn đi kèm bản sao lưu (không có trên Android TV)</li>
+      </ul>
+      <a class="feature-link" href="guide.html#booru">Xem hướng dẫn Booru</a>
+    </article>
+
+    <article class="feature-item">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">🌐</span>
+          <h3 class="feature-title">Trình duyệt &amp; Web Scanner</h3>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li>Trình duyệt tích hợp mở trang nguồn, đăng nhập, giải thử thách, bảo vệ dấu vân tay trình duyệt</li>
+        <li>Web Scanner kiểm tra độ an toàn của trang (HTTPS, chuyển hướng, quảng cáo, mã độc, đào coin); Savior tải video/âm thanh trên trang; menu <em>Quét mã trang tìm link video</em></li>
+      </ul>
+      <a class="feature-link" href="guide.html#trinh-duyet">Xem hướng dẫn Trình duyệt</a>
+    </article>
+
+    <article class="feature-item">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">☁️</span>
+          <h3 class="feature-title">Sao lưu &amp; Đồng bộ</h3>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li>Chọn từng mục sao lưu: thư viện, lịch sử, tiện ích, cài đặt, Booru App và <strong>Tủ Sách Cá Nhân</strong></li>
+        <li>Đăng nhập bằng tài khoản Google hoặc Client ID riêng để sao lưu lên Google Drive</li>
+        <li>OneDrive, Dropbox, WebDAV, Telegram Bot, Rclone, MediaFire, tự sao lưu định kỳ</li>
+      </ul>
+      <a class="feature-link" href="guide.html#sao-luu">Xem hướng dẫn Sao lưu</a>
+    </article>
+
+    <article class="feature-item">
+      <div class="feature-header">
+        <div class="feature-title-group">
+          <span class="feature-icon" aria-hidden="true">📡</span>
+          <h3 class="feature-title">Chia sẻ &amp; Theo dõi</h3>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li>AirDrop &amp; Quicksharing: gửi tệp qua mạng nội bộ hoặc Bluetooth; iPhone/Mac quét mã QR để trao đổi qua Wi-Fi</li>
+        <li>Trình theo dõi MyAnimeList, AniList, Trakt…; xuất danh sách MyAnimeList</li>
+      </ul>
+      <a class="feature-link" href="guide.html#tien-ich-khac">Xem hướng dẫn Chia sẻ &amp; Theo dõi</a>
+    </article>
+  </div>
+</main>
 
 <footer>
-  <p><a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest">Tải về</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project">GitHub</a> · <a href="privacy.html">Chính sách quyền riêng tư</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project/issues">Báo lỗi</a></p>
-  <p>YomiHub là phần mềm mã nguồn mở. Nội dung truyện/phim do các tiện ích bạn tự cài tải từ trang nguồn; YomiHub không lưu trữ nội dung.</p>
+  <div class="footer-nav">
+    <a href="index.html">Trang Chủ</a>
+    <a href="download.html">Tải về</a>
+    <a href="https://github.com/kiritokmn1403/YomiHub-Project">GitHub</a>
+    <a href="guide.html">Hướng dẫn sử dụng</a>
+    <a href="privacy.html">Chính sách quyền riêng tư</a>
+    <a href="https://github.com/kiritokmn1403/YomiHub-Project/issues">Báo lỗi</a>
+  </div>
+  <p class="footer-disclaimer">YomiHub là phần mềm mã nguồn mở. Nội dung truyện/phim đến từ trang nguồn của tiện ích bạn tự cài; YomiHub không có máy chủ lưu nội dung.</p>
 </footer>
-</div>
+
+<script src="assets/site.js"></script>
 </body>
 </html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YomiHub – Hướng dẫn sử dụng tính năng</title>
+<meta name="description" content="Hướng dẫn chi tiết sử dụng các tính năng của ứng dụng YomiHub: đọc truyện, xem phim, quản lý Tủ Sách Cá Nhân, VPN &amp; Tor, sao lưu và đồng bộ trên Android, Android TV và Windows.">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="YomiHub – Hướng dẫn sử dụng tính năng">
+<meta property="og:description" content="Hướng dẫn chi tiết từng bước sử dụng các tính năng của YomiHub trên mọi thiết bị.">
+<meta property="og:image" content="https://kiritokmn1403.github.io/YomiHub-Project/assets/icon-512.png">
+<meta name="theme-color" content="#2371e1">
+<link rel="prefetch" href="index.html">
+<link rel="prefetch" href="download.html">
+<link rel="prefetch" href="privacy.html">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<!-- Dải banner dốc màu tím -> xanh dương -> ngọc -->
+<header class="banner-band">
+  <div class="banner-container">
+    <div class="top-bar">
+      <a class="brand-link" href="index.html">
+        <img class="brand-logo" src="assets/icon-512.png" alt="Logo YomiHub" width="40" height="40">
+        <span>YomiHub</span>
+      </a>
+      <div class="top-actions">
+        <a class="btn-top" href="download.html">Tải bản mới nhất</a>
+      </div>
+    </div>
+
+    <!-- Hero Compact Hướng Dẫn -->
+    <div class="hero-compact">
+      <div class="hero-compact-text">
+        <h1>Hướng dẫn sử dụng</h1>
+        <p class="hero-compact-lead">Cẩm nang chi tiết các tính năng, đường dẫn menu, mẹo và lưu ý khi dùng YomiHub trên mọi thiết bị.</p>
+      </div>
+      <img class="hero-compact-icon" src="assets/icon-512.png" alt="Biểu tượng YomiHub" width="72" height="72">
+    </div>
+
+    <!-- 4 mấu đánh dấu trang (bookmark tabs) -->
+    <nav class="bookmark-nav" aria-label="Trang">
+      <a class="tab-link" href="index.html">Trang Chủ</a>
+      <a class="tab-link" href="download.html">Tải Về</a>
+      <a class="tab-link active" href="guide.html" aria-current="page">Hướng Dẫn</a>
+      <a class="tab-link" href="privacy.html">Chính Sách</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Tờ giấy nội dung: Bố cục 2 cột (Desktop) hoặc tích hợp (Mobile) -->
+<div class="wrap">
+  <!-- Mobile Accordion TOC & Search -->
+  <details class="toc-details">
+    <summary class="toc-summary">Mục lục hướng dẫn</summary>
+    <div class="guide-search-box" style="margin-top: 12px;">
+      <input type="search" class="guide-search-input" placeholder="Tìm trong hướng dẫn…" oninput="document.getElementById('guide-search').value = this.value; document.getElementById('guide-search').dispatchEvent(new Event('input'))">
+    </div>
+    <ul class="toc-list" id="toc-list-mobile" style="margin-top: 10px;"></ul>
+  </details>
+
+  <div class="guide-layout">
+    <!-- Cột trái: Mục lục dính (Sticky) & Ô tìm kiếm (Desktop >= 960px) -->
+    <aside class="guide-sidebar" aria-label="Mục lục hướng dẫn">
+      <div class="guide-search-box">
+        <input type="search" id="guide-search" class="guide-search-input" placeholder="Tìm trong hướng dẫn…" aria-label="Tìm kiếm chương">
+      </div>
+      <div class="toc-heading">Mục lục chương</div>
+      <ul class="toc-list" id="toc-list"></ul>
+    </aside>
+
+    <!-- Cột phải: Các chương nội dung -->
+    <main id="guide" class="guide-main">
+      <div id="guide-no-results" class="search-no-results">
+        Không có chương nào khớp. Thử từ khóa khác, ví dụ: <code>tor</code>, <code>sao lưu</code>, <code>bộ lọc</code>.
+      </div>
+
+<!-- GUIDE_SECTIONS (nội dung: ChatGPT Codex, đối chiếu mã nguồn 0.6.3) -->
+<section class="chapter" id="cai-dat" data-keywords="cai dat, android6, apk, windows, portable, cap nhat">
+  <h2><span class="ch-icon" aria-hidden="true">📦</span> Chọn bản và cài YomiHub</h2>
+  <p class="intro">Chọn gói theo thiết bị và hệ điều hành. Nếu đang cập nhật, hãy tạo một bản sao lưu trước khi cài đè.</p>
+  <h3>Điện thoại, máy tính bảng và TV</h3>
+  <ol class="steps"><li>Kiểm tra phiên bản Android trên máy. Với Android 7 trở lên, chọn APK thông thường. Nếu chưa biết kiến trúc bộ xử lý, thử <code>arm64-v8a</code>. Máy Android 6.0 dùng gói có chữ <code>android6</code>. TV dùng bản <strong>YumiHub Android TV</strong>.</li><li>Mở APK đã tải. Nếu Android yêu cầu, cho phép ứng dụng đang mở tệp cài ứng dụng từ nguồn này, rồi quay lại tệp APK để tiếp tục.</li><li>Khi cập nhật, chọn đúng dòng gói đang dùng và cài đè để giữ dữ liệu. Nếu máy báo không thể cập nhật, hãy giữ bản hiện tại cho đến khi đã sao lưu.</li></ol>
+  <h3>Windows 10 hoặc 11, bản x64</h3>
+  <ul class="tips"><li>Chạy <code>Setup.exe</code> để cài. Với bản di động <code>.zip</code>, giải nén rồi chạy ứng dụng trong thư mục vừa giải nén.</li><li>Nếu dùng tiện ích APK, chọn <code>-full.zip</code>. Gói này kèm Java và M-Extension-Server để chạy tiện ích.</li><li>Nếu chọn <code>.appxbundle</code>, tải cả <code>YomiHub-RootCA.cer</code>, <code>Install-YomiHub.bat</code> và <code>Install-YomiHub.ps1</code> của cùng bản phát hành. Đặt chúng cùng thư mục với gói rồi chạy tệp <code>.bat</code>.</li></ul>
+</section>
+
+<section class="chapter" id="lam-quen" data-keywords="thu vien, hoat dong, thanh dieu huong, giao dien, an hien">
+  <h2><span class="ch-icon" aria-hidden="true">🧭</span> Làm quen với thanh điều hướng</h2>
+  <p class="intro">Mở <strong>Thư viện</strong> để trở lại nội dung đã lưu. Trong bố cục có mục <strong>Hoạt động</strong>, bạn có thể chuyển giữa <strong>Cập nhật</strong> và <strong>Lịch sử</strong>.</p>
+  <p class="path"><span>Thêm</span><span>Cài đặt</span><span>Giao diện</span><span>Giao diện ứng dụng</span></p>
+  <ul class="tips"><li>Chọn một trong ba kiểu hiển thị: <strong>YomiHub Old Version</strong>, <strong>Shiori (0.9.95)</strong> hoặc <strong>YomiHub New Version</strong>. Các mục có thể được nhóm khác nhau theo bố cục.</li><li>Mở <strong>Duyệt</strong> để tìm nguồn. Khi đã bật tính năng tương ứng, <strong>Booru</strong> mở kho ảnh và <strong>Tủ Sách</strong> mở bộ sưu tập sách giấy.</li></ul>
+  <p class="path"><span>Thêm</span><span>Cài đặt</span><span>Bật/Tắt tính năng &amp; Nguồn mở rộng</span><span>Tùy chỉnh thứ tự thanh điều hướng</span></p>
+  <ul class="tips"><li>Ở đây bạn có thể sắp xếp lại các mục và ẩn hoặc hiện từng mục trên thanh điều hướng.</li></ul>
+</section>
+
+<section class="chapter" id="kho-tien-ich" data-keywords="kho tien ich, extensions repo, ma qr, doi url, nguon">
+  <h2><span class="ch-icon" aria-hidden="true">🧩</span> Thêm kho và cài tiện ích</h2>
+  <p class="intro">Kho là danh sách các tiện ích. Sau khi thêm kho, bạn chọn tiện ích cần cài để nguồn xuất hiện trong ứng dụng.</p>
+  <p class="path"><span>Thêm</span><span>Cài đặt</span><span>Duyệt</span><span>Extensions Repo</span></p>
+  <ol class="steps"><li>Chọn <strong>Thêm</strong> nếu đã có địa chỉ kho, hoặc mở <strong>Kho đề xuất</strong> để chọn một kho trong danh sách.</li><li>Quay về <strong>Duyệt</strong>, mở <strong>Tiện ích</strong>, tìm tiện ích trong kho vừa thêm và cài đặt.</li></ol>
+  <ul class="tips"><li>Nếu nhận được mã QR của kho, mở <strong>Mã QR</strong> trong cài đặt, quét mã hoặc chọn ảnh rồi chọn <strong>Thêm kho tiện ích</strong>.</li><li>Các kho phục vụ truyện tranh, phim hoặc tiểu thuyết. Ví dụ có tiện ích Mangayomi, plugin LNReader, tiện ích APK Aniyomi và bộ phân tích Kotatsu.</li><li>Khi nguồn đổi tên miền, dùng <strong>Đổi URL</strong> trong phần cấu hình tiện ích. Nếu tiện ích vẫn gửi yêu cầu tới miền cũ, <strong>Cưỡng chế đổi URL</strong> còn chuyển các yêu cầu khớp sang miền mới.</li></ul>
+</section>
+
+<section class="chapter" id="doc-xem" data-keywords="doc truyen, doc tieu thuyet, xem phim, tai chuong, webview, pip, short video">
+  <h2><span class="ch-icon" aria-hidden="true">📖</span> Tìm nội dung để đọc hoặc xem</h2>
+  <p class="intro">Mỗi tiện ích cung cấp một danh mục riêng. Từ danh mục, bạn có thể mở tác phẩm, chọn chương để đọc hoặc chọn tập để xem.</p>
+  <p class="path"><span>Duyệt</span><span>Nguồn</span></p>
+  <ol class="steps"><li>Chọn một nguồn đã cài. Dùng <strong>Phổ biến</strong> hoặc <strong>Mới nhất</strong> để duyệt danh sách. Mở <strong>Bộ lọc</strong> nếu muốn thu hẹp kết quả.</li><li>Mở một tác phẩm. Trên trang chi tiết, thêm tác phẩm vào thư viện để tìm lại. Với truyện, bạn có thể chọn tải chương để đọc sau hoặc mở trang gốc bằng WebView.</li><li>Chọn chương để đọc truyện tranh theo trang hoặc đọc văn bản tiểu thuyết. Với phim, chọn tập để mở trình phát.</li></ol>
+  <ul class="tips"><li>Nếu tập phim có nhiều máy chủ, bạn có thể chuyển máy chủ trong trình phát. Khi mở lại tập đã xem, trình phát có thể tiếp tục từ vị trí đã lưu.</li><li>Trên thiết bị hỗ trợ, dùng chế độ hình trong hình (PiP) để giữ video trong cửa sổ nhỏ. Để xem dạng video dọc, bật <strong>Short Video cho mọi tiện ích video</strong> trong phần bật/tắt tính năng.</li></ul>
+</section>
+
+<section class="chapter" id="bo-loc" data-keywords="bo loc, the loai, nap bo loc, danh dau, loai tru">
+  <h2><span class="ch-icon" aria-hidden="true">🔎</span> Lọc nội dung theo thể loại</h2>
+  <p class="intro">Bộ lọc mới gom tùy chọn của nguồn vào chín nhóm chính, chẳng hạn nhóm thể loại hoặc năm phát hành. Các tùy chọn còn lại có thể nằm trong nhóm <strong>Khác</strong>.</p>
+  <p class="path"><span>Duyệt</span><span>Nguồn</span></p>
+  <ol class="steps"><li>Mở nguồn rồi mở <strong>Bộ lọc</strong>. Nếu thiếu tùy chọn, chọn <strong>Nạp Bộ Lọc</strong> để lấy lại danh sách từ nguồn.</li><li>Mở <strong>Thể Loại</strong> và chọn các thể loại muốn lọc. Với ô ba trạng thái, chạm lần đầu để lấy thể loại đó, chạm lần nữa để loại trừ và chạm lần thứ ba để bỏ điều kiện.</li><li>Chọn <strong>Bộ Lọc</strong> để áp dụng. Dùng <strong>Đánh Dấu</strong> để lưu lựa chọn hoặc <strong>Đặt Lại</strong> khi muốn bắt đầu lại.</li></ol>
+  <p class="path"><span>Thêm</span><span>Cài đặt</span><span>Giao diện</span><span>Giao diện bộ lọc</span></p>
+  <ul class="tips"><li>Chọn <strong>Bộ lọc cũ</strong> nếu muốn dùng cách trình bày trước đây.</li></ul>
+</section>
+
+<section class="chapter" id="hop-nhat" data-keywords="hop nhat, trung ten, nguon, chon tien ich">
+  <h2><span class="ch-icon" aria-hidden="true">🔗</span> Hợp nhất tác phẩm và tiện ích</h2>
+  <p class="intro">Khi một tác phẩm có mặt ở nhiều nguồn, hợp nhất giúp bạn chuyển nguồn ngay tại danh sách chương. Bạn cũng có thể tự chọn các tiện ích cần gom thành nhóm.</p>
+  <p class="path"><span>Thêm</span><span>Hợp nhất tiện ích</span><span>Hợp nhất nội dung</span></p>
+  <ol class="steps"><li>Chọn <strong>Quét trùng tên và đề xuất hợp nhất</strong> để xem các bộ có thể trùng, hoặc chọn <strong>Người dùng tự chọn bộ để hợp nhất</strong>.</li><li>Kiểm tra tên và nguồn của các bộ trước khi xác nhận. Nếu ghép nhầm, mở lại nhóm và hủy hợp nhất.</li></ol>
+  <ul class="tips"><li>Để gom tiện ích, quay về <strong>Hợp nhất tiện ích</strong>, chọn <strong>Tự chọn các tiện ích để hợp nhất</strong>, chọn nguồn rồi chọn tiện ích đích.</li><li>Khi trang chi tiết hiện <strong>Đã hợp nhất · N nguồn</strong>, N là số nguồn trong nhóm. Dùng <strong>Đọc từ tiện ích trong bộ hợp nhất</strong> để chọn danh sách chương theo nguồn.</li></ul>
+</section>
+
+<section class="chapter" id="tu-sach" data-keywords="tu sach, tap thieu, isbn, limited, muon sach, csv, thong ke">
+  <h2><span class="ch-icon" aria-hidden="true">📚</span> Quản lý tủ sách giấy</h2>
+  <p class="intro">Tủ sách giúp theo dõi từng tập đã mua, tập còn thiếu và sách đang cho mượn. Nếu chưa thấy mục này, bật tính năng tủ sách trong cài đặt.</p>
+  <p class="path"><span>Tủ Sách</span><span>Thêm bộ mới</span></p>
+  <ol class="steps"><li>Nhập tên bộ, lưu rồi mở bộ vừa tạo.</li><li>Chạm ô số tập để đánh dấu đã mua. Chạm lại để bỏ dấu. Giữ ô để ghi chú, nhập giá, cập nhật trạng thái đọc hoặc ghi nhận cho mượn. Dùng <strong>Chọn hàng loạt</strong> để thao tác với nhiều tập.</li></ol>
+  <ul class="tips"><li>Dùng <strong>Quét mã vạch</strong> để đọc ISBN. Trong <strong>Tìm nhanh</strong>, bạn có thể gõ tên không dấu. Mở <strong>Cần mua</strong> để theo dõi sách định mua, <strong>Bản Limited</strong> để xem ấn phẩm đặc biệt hoặc <strong>Thống kê</strong> để xem số liệu bộ sưu tập.</li><li>Trong <strong>Tuỳ chọn</strong>, chọn <strong>Xuất CSV</strong> để lấy mẫu hoặc <strong>Nhập CSV</strong> để thêm dữ liệu. Giữ nguyên thứ tự chín cột: <code>Tên bộ,Tập,Phiên bản,ISBN,Giá,Ngày mua,Nơi mua,NXB,Trạng thái đọc</code>.</li><li>Bật <strong>Sao lưu dữ liệu Tủ Sách Cá Nhân</strong> khi tạo bản sao lưu để chuyển cả bộ sưu tập sang máy khác.</li></ul>
+  <aside class="note">Tủ Sách Cá Nhân không có trên bản Android TV.</aside>
+</section>
+
+<section class="chapter" id="booru" data-keywords="booru, anh, the, yeu thich, lich su tim">
+  <h2><span class="ch-icon" aria-hidden="true">🖼️</span> Tìm và lưu ảnh Booru</h2>
+  <p class="intro">Booru tìm ảnh theo thẻ trên trang bạn chọn. Bạn có thể lưu ảnh yêu thích và dùng lại các cụm thẻ đã tìm.</p>
+  <p class="path"><span>Booru</span><span>Cài đặt Booru App</span><span>Thêm trang Booru</span></p>
+  <ol class="steps"><li>Thêm trang muốn dùng, quay về Booru rồi mở <strong>Chọn trang Booru</strong> để chuyển sang trang đó.</li><li>Trong <strong>Duyệt</strong>, nhập thẻ, chẳng hạn <code>scenery</code>, rồi tìm. Mở một ảnh và chạm biểu tượng trái tim để lưu vào <strong>Yêu thích</strong>.</li></ol>
+  <ul class="tips"><li>Mở <strong>Lịch sử tìm</strong> để dùng lại truy vấn. Khi tạo bản sao lưu, bật <strong>Sao lưu dữ liệu Booru App</strong> để giữ dữ liệu Booru.</li></ul>
+</section>
+
+<section class="chapter" id="play-sach" data-keywords="play sach, google play books, dang nhap, sach dien tu">
+  <h2><span class="ch-icon" aria-hidden="true">📘</span> Dùng Google Play Sách</h2>
+  <p class="intro">YomiHub mở Google Play Sách ngay trong ứng dụng. Với bố cục nhóm các thư viện, mở mục dưới đây để tìm sách.</p>
+  <p class="path"><span>Thư viện</span><span>Play Books</span></p>
+  <ol class="steps"><li>Mở <strong>Play Books</strong>. Khi trang Google yêu cầu, đăng nhập bằng tài khoản Google bạn dùng cho sách.</li><li>Nhập tên sách vào <strong>Tìm kiếm trên Play Sách</strong> rồi chọn kết quả muốn mở.</li></ol>
+  <aside class="note">Bản Android TV không có Google Play Sách.</aside>
+</section>
+
+<section class="chapter" id="ebook-pdf" data-keywords="ebook, epub, pdf, tep tren may">
+  <h2><span class="ch-icon" aria-hidden="true">📖</span> Đọc Ebook và PDF trên máy</h2>
+  <p class="intro">Bạn có thể mở sách đã lưu trên thiết bị mà không cần thêm sách vào thư viện.</p>
+  <p class="path"><span>Thêm</span><span>Ebook &amp; PDF</span></p>
+  <ol class="steps">
+    <li>Chọn <strong>Mở Ebook</strong> cho tệp EPUB hoặc <strong>Mở tệp PDF</strong> cho tài liệu PDF.</li>
+    <li>Trong cửa sổ chọn tệp, tìm đến thư mục chứa sách rồi chọn tệp để đọc.</li>
+  </ol>
+</section>
+
+<section class="chapter" id="vpn-tor" data-keywords="vpn, tor, dns, cau noi, quoc gia, cloudflare">
+  <h2><span class="ch-icon" aria-hidden="true">🌐</span> Chọn kết nối cho tiện ích và trình duyệt</h2>
+  <p class="intro">Bạn có thể chọn dịch vụ mạng và quyết định phần nào của YomiHub sẽ dùng kết nối đó.</p>
+  <p class="path"><span>Thêm</span><span>VPN &amp; DNS</span><span>Dịch vụ VPN</span></p>
+  <ol class="steps">
+    <li>Nếu muốn dùng Tor, chọn <strong>Bật Tor</strong>. Chỉ một dịch vụ VPN có thể hoạt động tại một thời điểm.</li>
+    <li>Trên Android, trong <strong>Cầu nối (khi mạng chặn Tor)</strong>, chọn <strong>Tự động</strong> để thử kết nối thẳng trước rồi mới thử cầu nối.</li>
+    <li>Bật <strong>Tự chuyển qua Tor khi trang bị chặn</strong> nếu muốn tiện ích tự thử lại qua Tor khi gặp lỗi mạng phù hợp, kể cả tiện ích ngoài phạm vi VPN.</li>
+  </ol>
+  <ul class="tips">
+    <li>Trong <strong>VPN cho tiện ích, WebView &amp; trình duyệt</strong>, chọn các tiện ích cần dùng VPN. WebView của tiện ích và trình duyệt trong ứng dụng có công tắc riêng.</li>
+    <li>Trên Android, phạm vi đã chọn áp dụng cho Tor, Mihon Proxy và proxy riêng. WARP, OpenVPN, WireGuard và SoftEther chuyển toàn bộ kết nối của YomiHub qua VPN. Trên Windows, phạm vi đã chọn cũng áp dụng cho WARP và WireGuard. OpenVPN và SoftEther áp dụng cho cả máy. Sau khi đổi phạm vi, hãy khởi động lại YomiHub để WebView2 trên Windows dùng thiết lập mới.</li>
+    <li>Mở <strong>Quốc gia đích</strong> nếu dịch vụ đang dùng hỗ trợ chọn quốc gia. Mở <strong>DNS</strong> để chỉnh DNS-over-HTTPS và nhà cung cấp DNS.</li>
+    <li>Trong <strong>Cài đặt</strong>, mở <strong>Chặn quảng cáo (AdBlock)</strong> để chỉnh bộ lọc quảng cáo, hoặc <strong>Cài đặt vượt Cloudflare</strong> để xem tùy chọn xác minh.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="trinh-duyet" data-keywords="trinh duyet, savior, tai video, web scanner">
+  <h2><span class="ch-icon" aria-hidden="true">🧭</span> Duyệt web, tải media và kiểm tra một trang</h2>
+  <p class="intro">Savior liệt kê các tệp media phát hiện trên trang. Web Scanner kiểm tra các dấu hiệu an toàn của địa chỉ web.</p>
+  <p class="path"><span>Thêm</span><span>Trình duyệt</span></p>
+  <ol class="steps">
+    <li>Mở trang có video hoặc âm thanh bạn muốn lưu, rồi chọn <strong>Savior – tải media trên trang</strong>.</li>
+    <li>Nếu danh sách trống, chọn <strong>Quét mã trang tìm link video</strong>. Khi tìm được liên kết mới, mở lại Savior.</li>
+    <li>Chọn nút tải bên cạnh tệp nếu có. Với luồng có nhiều mức chất lượng, chọn mức muốn tải.</li>
+  </ol>
+  <ul class="tips">
+    <li>Để kiểm tra HTTPS, chuyển hướng hoặc dấu hiệu mã độc, mở menu trình duyệt và chọn <strong>Web Scanner – kiểm tra trang này</strong>.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="sao-luu" data-keywords="sao luu, dong bo, khoi phuc, google drive, dam may">
+  <h2><span class="ch-icon" aria-hidden="true">💾</span> Sao lưu và chuyển dữ liệu sang máy khác</h2>
+  <p class="intro">Bản sao lưu giúp bạn chuyển thư viện hoặc lấy lại các mục đã lưu khi đổi thiết bị.</p>
+  <p class="path"><span>Thêm</span><span>Sao Lưu &amp; Đồng Bộ</span></p>
+  <ol class="steps">
+    <li>Nếu cần mang theo ảnh yêu thích, lịch sử Booru hoặc bộ sưu tập sách, bật <strong>Sao lưu dữ liệu Booru App</strong> và <strong>Sao lưu dữ liệu Tủ Sách Cá Nhân</strong> cho phần tương ứng.</li>
+    <li>Chọn <strong>Tạo bản sao lưu</strong>, chọn các mục cần giữ rồi lưu tệp.</li>
+    <li>Trên máy nhận, mở cùng mục, chọn <strong>Khôi phục bản sao lưu</strong> rồi chọn tệp đã chuyển.</li>
+  </ol>
+  <ul class="tips">
+    <li>Để sao lưu định kỳ, đặt tần suất, số bản giữ lại và vị trí lưu. Bạn cũng có thể chỉnh mức nén hoặc bật mã hóa. Nếu mã hóa, hãy giữ thông tin mở bản sao lưu.</li>
+    <li>Chọn <strong>Sao Lưu Lên Google Drive</strong> để đăng nhập Google và lưu bản sao lên Drive. Trong <strong>Sao lưu đám mây</strong> còn có Google Drive – Client ID, OneDrive, Dropbox, WebDAV, Rclone, MediaFire và Telegram (bot).</li>
+    <li>Dùng <strong>Gửi sang ứng dụng khác</strong> nếu muốn chuyển bản sao lưu bằng một ứng dụng chia sẻ trên máy.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="tien-ich-khac" data-keywords="chia se, theo doi, suc khoe, qr, lich, danh muc">
+  <h2><span class="ch-icon" aria-hidden="true">🧰</span> Chia sẻ, theo dõi và các công cụ khác</h2>
+  <p class="intro">Chọn công cụ theo việc bạn đang làm, từ gửi tệp cho thiết bị gần đó đến đặt nhắc nghỉ mắt.</p>
+  <p class="path"><span>Thêm</span><span>Cài đặt</span></p>
+  <ul class="tips">
+    <li><strong>AirDrop &amp; Quicksharing</strong> dùng để gửi hoặc nhận tệp giữa các thiết bị được hỗ trợ. Mục này cũng mở được trực tiếp từ <strong>Thêm</strong>.</li>
+    <li>Mở <strong>Theo dõi</strong> để chọn dịch vụ theo dõi truyện hoặc phim như AniList hay MyAnimeList.</li>
+    <li>Trong <strong>Health Connect &amp; Sức khỏe</strong>, bạn có thể đặt lời nhắc nghỉ mắt theo quy tắc 20-20-20.</li>
+    <li>Mở <strong>GIF Viewer</strong> để xem ảnh động theo khung hình, <strong>SpeedTest</strong> để đo kết nối mạng, hoặc <strong>Mã QR</strong> để quét mã bằng camera hay ảnh có sẵn.</li>
+    <li>Ở mục <strong>Thêm</strong>, chọn <strong>Thống kê</strong> để xem số liệu sử dụng, <strong>Lịch</strong> để xem lịch hoặc <strong>Danh mục</strong> để quản lý cách nhóm nội dung.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="nhat-ky-cap-nhat" data-keywords="phien ban, cap nhat, nhat ky, bao cao loi, github">
+  <h2><span class="ch-icon" aria-hidden="true">📝</span> Kiểm tra phiên bản và gửi nhật ký khi báo lỗi</h2>
+  <p class="intro">Trang Giới thiệu cho biết phiên bản đang dùng và cung cấp nhật ký để bạn mô tả lỗi cụ thể.</p>
+  <p class="path"><span>Thêm</span><span>Giới thiệu</span></p>
+  <ol class="steps">
+    <li>Ghi lại <strong>Phiên bản</strong> đang dùng. Bật <strong>Bật ghi nhật ký</strong> rồi lặp lại thao tác gặp lỗi.</li>
+    <li>Mở <strong>Nhật ký ứng dụng</strong>. Tìm theo từ khóa hoặc bật <strong>Chỉ lỗi</strong> để thu hẹp kết quả.</li>
+    <li>Trở lại trang Giới thiệu, chọn <strong>Chia sẻ nhật ký ứng dụng</strong>. Khi gửi báo lỗi trên GitHub Issues, đính kèm phần nhật ký liên quan cùng phiên bản và các bước vừa thực hiện.</li>
+  </ol>
+  <ul class="tips">
+    <li>Chọn <strong>Kiểm tra cập nhật</strong> để kiểm tra ngay. Bật <strong>Kiểm tra cập nhật ứng dụng khi khởi động</strong> nếu muốn ứng dụng tự kiểm tra.</li>
+    <li><strong>Báo cáo lỗi</strong> mở danh sách báo cáo đã ghi. <strong>Dự án GitHub đã sử dụng</strong> liệt kê các dự án được dùng trong YomiHub.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="tv-windows" data-keywords="android tv, dieu khien, d-pad, windows, apk, nhat ky">
+  <h2><span class="ch-icon" aria-hidden="true">📺</span> Dùng trên Android TV và Windows</h2>
+  <p class="intro">Trên TV, bạn di chuyển bằng điều khiển từ xa. Trên Windows, màn hình chẩn đoán giúp tìm thành phần còn thiếu.</p>
+  <p class="path"><span>Thêm</span><span>Cài đặt</span><span>Chẩn đoán Windows</span></p>
+  <ul class="tips">
+    <li>Trên Android TV, dùng các phím hướng của D-pad để di chuyển tiêu điểm rồi nhấn nút giữa để chọn. Bản TV tập trung vào phim và video, không có Comic, Novel, Google Play Sách, Booru hoặc Tủ Sách Cá Nhân.</li>
+    <li>Trên Windows, nếu dùng bản di động và cần chạy tiện ích APK, chọn gói <code>-full.zip</code> có sẵn Java và M-Extension-Server. Mục chẩn đoán cho biết máy đang thiếu thành phần nào.</li>
+    <li>Nhật ký Windows thường nằm tại <code>Documents\YomiHub\logs.txt</code>. Bạn cũng có thể mở nhật ký từ trang Giới thiệu.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="hoi-dap" data-keywords="hoi dap, trang khong tai, bo loc, cai de, doi may, bao loi">
+  <h2><span class="ch-icon" aria-hidden="true">❓</span> Câu hỏi thường gặp</h2>
+  <p class="intro">Chọn tình huống giống với vấn đề bạn đang gặp.</p>
+  <h3>Trang của một tiện ích không tải thì làm gì?</h3>
+  <p>Nếu trang đã đổi địa chỉ, dùng <strong>Đổi URL</strong> trong trang tiện ích để nhập địa chỉ mới. Nếu nghi đường mạng chặn trang, mở <strong>VPN &amp; DNS</strong>, bật Tor và <strong>Tự chuyển qua Tor khi trang bị chặn</strong>, chờ Tor kết nối rồi thử lại.</p>
+  <h3>Trang yêu cầu xác minh Cloudflare thì làm gì?</h3>
+  <p>Mở trang bằng WebView của tiện ích và hoàn tất yêu cầu xác minh trên màn hình. Nếu vẫn lặp lại, kiểm tra xem WebView và tiện ích có đang dùng cùng đường mạng hay không.</p>
+  <h3>Vì sao tôi không chọn được thể loại?</h3>
+  <p>Trong giao diện bộ lọc mới, nhấn <strong>Nạp Bộ Lọc</strong> để lấy lại danh sách từ nguồn. Nếu danh sách vẫn trống, kiểm tra kết nối và xem tiện ích có bản cập nhật hay không.</p>
+  <h3>Cài bản cập nhật có mất dữ liệu không?</h3>
+  <p>Hãy tạo bản sao lưu trước. Khi nâng cấp cùng bản ứng dụng, cài đè bản mới lên bản đang dùng để giữ dữ liệu. Tránh gỡ bản cũ hoặc xóa dữ liệu ứng dụng trước khi cập nhật.</p>
+  <h3>Làm sao mang thư viện sang máy khác?</h3>
+  <p>Tạo bản sao lưu, chọn các mục cần chuyển rồi gửi tệp sang máy nhận. Trên máy nhận, chọn <strong>Khôi phục bản sao lưu</strong> và mở tệp đó.</p>
+  <h3>Tôi nên gửi gì khi báo lỗi?</h3>
+  <p>Mô tả kết quả bạn mong đợi, điều thực tế xảy ra và cách lặp lại. Dùng <strong>Chia sẻ nhật ký ứng dụng</strong> trong trang Giới thiệu để lấy nhật ký gửi kèm.</p>
+  <ul class="tips">
+    <li>Khi cần gửi báo lỗi, hãy ghi lại tên tiện ích, phiên bản ứng dụng và thao tác cuối cùng trước khi lỗi xuất hiện.</li>
+  </ul>
+</section>
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-nav">
+    <a href="index.html">Trang Chủ</a>
+    <a href="download.html">Tải về</a>
+    <a href="https://github.com/kiritokmn1403/YomiHub-Project">GitHub</a>
+    <a href="guide.html">Hướng dẫn sử dụng</a>
+    <a href="privacy.html">Chính sách quyền riêng tư</a>
+    <a href="https://github.com/kiritokmn1403/YomiHub-Project/issues">Báo lỗi</a>
+  </div>
+  <p class="footer-disclaimer">YomiHub là phần mềm mã nguồn mở. Nội dung truyện/phim đến từ trang nguồn của tiện ích bạn tự cài; YomiHub không có máy chủ lưu nội dung.</p>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
