@@ -41,4 +41,5 @@
   3. `guide.html`: thêm/sửa chương khi tính năng đổi (tên menu phải có bằng chứng `tệp:dòng`).
   4. `privacy.html`: chỉ sửa nội dung khi app xử lý dữ liệu mới; KHÔNG đổi tên tệp/URL.
 - Sau push: kiểm Pages (~20–60 s) bằng job `Invoke-WebRequest` có `?t=<guid>` chống cache; so khớp bằng chuỗi ASCII (id, class) – PowerShell 5 giải mã sai tiếng Việt nên `-match 'Có gì mới'` báo trượt giả.
+- **Song ngữ**: làm bước 1–2 cho CẢ `docs/download.html` và `docs/en/download.html` (cùng href, dung lượng, SHA); "Có gì mới" thêm ở cả `docs/index.html` và `docs/en/index.html`.
 - README mục Liên kết có đủ 4 trang: Trang chủ, Tải về (`download.html`), Hướng dẫn (`guide.html`), Chính sách (`privacy.html`).

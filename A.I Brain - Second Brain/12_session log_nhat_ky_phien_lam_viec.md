@@ -97,3 +97,4 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **20:46** chủ dự án: cập nhật A.I Brain → 03, 04, 06, 07 (quy tắc website 22–26), 09, 10, 11, 12.
 - **Tiếp theo (0.6.4)**: xem `TECHNICAL_UPDATE_NOTES.md` 0.6.3 › 4 "Còn mở"; mỗi bản mới cập nhật `download.html` (href, dung lượng, SHA) + "Có gì mới" trên Trang Chủ.
 
+- **20:50–21:20** chủ dự án: website song ngữ Việt / Anh cho 4 trang, chia ChatGPT Desktop + Google Antigravity. Codex dịch index/download/guide rồi hết hạn mức → Antigravity nhận nốt privacy EN + rà soát + bảng thuật ngữ. Claude ghép nút VI | EN + hreflang vào 4 trang EN, sửa chuỗi phiên bản, placeholder ô tìm cả 2 ô, tràn 390px; Playwright 8 trang × 1280/390/tối + kiểm giữ #anchor, nhớ lựa chọn, dải gợi ý; sao lưu `docs` → `backup/manual/docs_2120/`; README thêm link English; `93c9bbf`; Pages 200 cả 8 trang (en/download 18 link, en/guide 17 chương).
