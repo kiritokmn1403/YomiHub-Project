@@ -51,11 +51,14 @@ code{font-size:.9em}
 .doc{max-width:780px;margin:0 auto}
 .doc h2{font-size:1.2rem;margin:32px 0 10px}
 header.small{padding:28px 0 8px}header.small img{width:72px;height:72px;border-radius:18px}
+.whatsnew{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin:6px 0 4px}
+.whatsnew .card h3{font-size:1rem}
+.whatsnew .card.fix{border-left:4px solid var(--acc)}
 </style>
 </head>
 <body>
 <div class="wrap">
-<nav class="nav"><a class="on" href="index.html">Trang chủ</a><a href="#tai-ve">Tải về</a><a href="privacy.html">Chính sách quyền riêng tư</a><a href="https://github.com/kiritokmn1403/YomiHub-Project">GitHub</a></nav>
+<nav class="nav"><a class="on" href="index.html">Trang chủ</a><a href="#moi">Có gì mới</a><a href="#tai-ve">Tải về</a><a href="privacy.html">Chính sách quyền riêng tư</a><a href="https://github.com/kiritokmn1403/YomiHub-Project">GitHub</a></nav>
 <header>
   <img src="assets/icon-512.png" alt="Biểu tượng YomiHub">
   <h1>YomiHub</h1>
@@ -87,13 +90,34 @@ fetch('https://api.github.com/repos/kiritokmn1403/YomiHub-Project/releases/lates
 }).catch(()=>{});
 </script>
 
+<h2 id="moi">Có gì mới trong 0.6.3 <small>· 20/11/2026</small></h2>
+<div class="whatsnew">
+  <div class="card"><h3><span>✨ Tính năng mới</span><span class="badge">5 mục</span></h3><ul>
+    <li><strong>Tủ Sách Cá Nhân</strong> – nút riêng cạnh Booru App: quản lý truyện &amp; sách giấy, quét mã vạch ISBN, chống mua trùng, tập thiếu, danh sách Cần mua, thống kê, nhập/xuất CSV</li>
+    <li><strong>Tự chuyển qua Tor khi trang bị chặn</strong> – tiện ích, ảnh bìa và tiểu thuyết LNReader tự thử lại qua Tor khi nhà mạng chặn trang</li>
+    <li><strong>Giao diện thích ứng</strong> cho máy tính bảng, Android TV và Windows (thanh bên thu gọn, lưới thẻ theo màn hình, D-pad)</li>
+    <li><strong>Dấu Đã hợp nhất · N nguồn</strong> và chọn tiện ích thành viên ngay trên danh sách chương</li>
+    <li>+46 dự án trong <em>Dự án GitHub đã sử dụng</em>, +228 chuỗi dịch cho 18 ngôn ngữ</li>
+  </ul></div>
+  <div class="card fix"><h3><span>🐛 Sửa lỗi &amp; cải tiến</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
+    <li>Mục <strong>Thể Loại</strong> của tiện ích Keiyoushi mới (vd. DamCoNuong) chọn được trở lại – kể cả bộ lọc đã lưu</li>
+    <li>Tiểu thuyết LNReader (Hako, TruyenSS…) đi qua Tor đúng như cài đặt VPN</li>
+    <li>Tor không còn báo "kẹt" giả sau khi ứng dụng bị treo nền</li>
+    <li>Trang <em>Cập nhật</em> mở nhanh, không đứng hình khi có hàng nghìn chương</li>
+    <li>Tủ Sách: nhập CSV báo lỗi rõ khi không lưu được, không gộp nhầm bộ tên gần giống, giữ trạng thái đã đọc; tự chuyển Tor không gửi lặp yêu cầu ghi dữ liệu</li>
+    <li>Gợi ý lỗi nguồn dễ hiểu hơn và nhật ký gọn hơn</li>
+  </ul></div>
+</div>
+<p class="note">Đầy đủ: <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-changelog.md">ghi chú phát hành 0.6.3</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.6.3">trang phát hành v0.6.3</a></p>
+
 <h2>Tính năng</h2>
 <div class="grid">
   <div class="card"><h3><span>🗂️ Tủ Sách Cá Nhân</span><span class="badge">Mới 0.6.3</span></h3><ul>
     <li>Quản lý bộ truyện &amp; sách giấy ngoại tuyến (lưu cục bộ trên thiết bị), bật/tắt trong <em>Bật/Tắt tính năng &amp; Nguồn mở rộng</em></li>
     <li>Tìm nhanh không dấu theo tên hoặc số tập (vd. <code>One Piece 105</code>), huy hiệu <em>Đã có / Có bản thường / Chưa mua</em> và 6 bộ gần đây</li>
     <li>Quét mã vạch ISBN + tra cứu Google Books / Open Library, chống mua trùng theo bộ, tập và phiên bản</li>
-    <li>Phát hiện tập thiếu, danh sách <em>Cần mua</em>, thư mục bản Limited + phụ kiện + ảnh, thống kê, nhập/xuất CSV (không có trên Android TV)</li>
+    <li>Chọn nhiều tập một lần (1-10, 1-100…), tập mua xong tự rời danh sách <em>Cần mua</em>; gợi ý tập tiếp theo của bộ đang ra</li>
+    <li>Phát hiện tập thiếu, danh sách <em>Cần mua</em>, thư mục bản Limited + phụ kiện + ảnh, thống kê, nhập/xuất CSV, sao lưu cùng ứng dụng (không có trên Android TV)</li>
   </ul></div>
   <div class="card"><h3><span>🛡️ VPN, DNS &amp; Tự chuyển Tor</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
     <li><strong>Tự chuyển qua Tor khi trang bị chặn</strong>: khi Tor đang chạy, tự động thử lại qua Tor cho trang bị nhà mạng chặn (cả tiện ích APK và ảnh bìa trả về HTML chặn)</li>
@@ -125,7 +149,7 @@ fetch('https://api.github.com/repos/kiritokmn1403/YomiHub-Project/releases/lates
     <li>Video ngắn (Shorts) vuốt liên tục cho mọi tiện ích video</li>
   </ul></div>
   <div class="card"><h3>📚 Tiểu thuyết, Ebook &amp; PDF</h3><ul>
-    <li>Đọc tiểu thuyết trực tuyến, chỉnh cỡ chữ, phông, giãn dòng, nền tối</li>
+    <li>Đọc tiểu thuyết trực tuyến, chỉnh cỡ chữ, phông, giãn dòng, nền tối; tiện ích LNReader dùng chung VPN/Tor với ứng dụng</li>
     <li>Mở tệp EPUB và PDF trên máy</li>
     <li>Dịch ảnh (Image Translation) cho trang truyện và dịch tiểu thuyết</li>
   </ul></div>
@@ -137,9 +161,10 @@ fetch('https://api.github.com/repos/kiritokmn1403/YomiHub-Project/releases/lates
     <li>Duyệt, tìm kiếm, tải ảnh từ các trang Booru (Danbooru, Yande.re…), thêm nguồn tùy chỉnh</li>
     <li>Gợi ý thẻ, yêu thích, lịch sử tìm kiếm, danh sách chặn – có tùy chọn đi kèm bản sao lưu (không có trên Android TV)</li>
   </ul></div>
-  <div class="card"><h3>🔌 Kho tiện ích &amp; Bộ lọc mới</h3><ul>
+  <div class="card"><h3><span>🔌 Kho tiện ích &amp; Bộ lọc mới</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
     <li>Chạy tiện ích Mihon/Tachiyomi, Aniyomi, Mangayomi, Kotatsu, LNReader, IReader, Aidoku và vBook</li>
     <li>Bộ lọc mới (9 nhóm ô chọn, chọn nhiều mục) &amp; gợi ý lỗi thân thiện (JSON parse Aidoku, headless browser, chứng chỉ SSL, trang bị chặn)</li>
+    <li>Thể Loại 3 trạng thái (✓ gồm / ✗ loại) của tiện ích Keiyoushi kiểu mới hiển thị thành ô chọn</li>
     <li>Tự gợi ý kho tiện ích mới, đổi URL/tên miền khi trang chuyển nhà</li>
     <li>Mangayomi Extension Server, ApkBridge, máy chủ tiện ích Mihon</li>
   </ul></div>
