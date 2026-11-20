@@ -850,7 +850,8 @@ class _BookshelfScanScreenState extends State<BookshelfScanScreen> {
                             onPressed: () async {
                               final paths = await bsPickAndSavePhotos(
                                   allowMultiple: false);
-                              if (paths.isNotEmpty) {
+                              // 0.6.3 review: the dialog may be closed while the picker is open
+                              if (paths.isNotEmpty && ctx.mounted) {
                                 setState(() => coverPath = paths.first);
                               }
                             },

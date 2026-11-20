@@ -583,9 +583,10 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
  *  the Dart side found blocked go through Tor's HTTP proxy, everything else
  *  keeps the default selection (system properties set by "jvmProxy"). */
 object YomiAutoTorSelector : java.net.ProxySelector() {
-    @Volatile private var torHost = ""
-    @Volatile private var torPort = 0
-    @Volatile private var hosts: Set<String> = emptySet()
+    /** 0.6.3 (review Codex): one immutable snapshot, so select() never mixes
+     *  the host/port of one update with the host list of another. */
+    private data class Cfg(val host: String, val port: Int, val hosts: Set<String>)
+    @Volatile private var cfg = Cfg("", 0, emptySet())
     private var base: java.net.ProxySelector? = null
 
     @Synchronized fun install() {
@@ -596,13 +597,13 @@ object YomiAutoTorSelector : java.net.ProxySelector() {
     }
 
     fun update(url: String, list: List<String>) {
-        hosts = list.map { it.lowercase() }.toSet()
-        try {
-            if (url.isBlank()) { torHost = ""; torPort = 0; return }
-            val u = java.net.URI(url)
-            torHost = u.host ?: ""
-            torPort = if (u.port > 0) u.port else 8118
-        } catch (_: Exception) { torHost = ""; torPort = 0 }
+        val hs = list.map { it.lowercase() }.toSet()
+        cfg = try {
+            if (url.isBlank()) Cfg("", 0, hs) else {
+                val u = java.net.URI(url)
+                Cfg(u.host ?: "", if (u.port > 0) u.port else 8118, hs)
+            }
+        } catch (_: Exception) { Cfg("", 0, hs) }
     }
 
     private fun globalProxySet(): Boolean =
@@ -612,10 +613,11 @@ object YomiAutoTorSelector : java.net.ProxySelector() {
 
     override fun select(uri: java.net.URI?): MutableList<java.net.Proxy> {
         val h = (uri?.host ?: "").lowercase()
-        if (torPort > 0 && torHost.isNotEmpty() && h.isNotEmpty() && !globalProxySet() &&
-            hosts.any { h == it || h.endsWith(".$it") }
+        val c = cfg
+        if (c.port > 0 && c.host.isNotEmpty() && h.isNotEmpty() && !globalProxySet() &&
+            c.hosts.any { h == it || h.endsWith(".$it") }
         ) {
-            return mutableListOf(java.net.Proxy(java.net.Proxy.Type.HTTP, java.net.InetSocketAddress(torHost, torPort)))
+            return mutableListOf(java.net.Proxy(java.net.Proxy.Type.HTTP, java.net.InetSocketAddress(c.host, c.port)))
         }
         return base?.select(uri) ?: mutableListOf(java.net.Proxy.NO_PROXY)
     }

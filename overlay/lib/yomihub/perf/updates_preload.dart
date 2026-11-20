@@ -42,12 +42,18 @@ Future<List<Update>> preloadUpdateChapters(
       final id = c?.mangaId;
       if (id != null) ids.add(id);
     }
+    // 0.6.3 review (Codex): rebuild the cache from THIS emit only – a deleted
+    // manga (null from Isar) or one that left the list must not linger.
+    final fresh = <int, Manga>{};
     if (ids.isNotEmpty) {
       final ms = await isar.mangas.getAll(ids.toList());
       for (final m in ms) {
-        if (m?.id != null) kUpdateMangaCache[m!.id!] = m;
+        if (m?.id != null) fresh[m!.id!] = m;
       }
     }
+    kUpdateMangaCache
+      ..clear()
+      ..addAll(fresh);
   } catch (_) {
     // the screen falls back to a synchronous read
   }

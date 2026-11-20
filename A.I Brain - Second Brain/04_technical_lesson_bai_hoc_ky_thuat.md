@@ -124,3 +124,12 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - **Note 9 adb `offline` rồi biến mất** dù PnP thấy "SAMSUNG Android ADB Interface": lỗi ủy quyền phía điện thoại (thu hồi ủy quyền gỡ lỗi USB + cắm lại). Không gỡ được từ máy tính.
 - **Phát APK qua HTTP nội bộ thất bại** khi Wi‑Fi Windows đặt "Public" (tường lửa chặn cổng, ERR_CONNECTION_REFUSED). Dùng Phone Link: Explorer chọn tệp → nút Chia sẻ → tên điện thoại.
 - **Commit message từ PowerShell 5:** `Set-Content -Encoding UTF8` ghi BOM → tiêu đề commit bắt đầu bằng ký tự lạ. Ghi bằng `[IO.File]::WriteAllText($f, $m, (New-Object Text.UTF8Encoding $false))`.
+
+## Bổ sung 20/11/2026 chiều (0.6.3 – phiên 3)
+- **Thử lại qua mạng khác phải giới hạn và an toàn:** wrapper tự chuyển Tor từng gửi một yêu cầu tối đa 3 lần (Tor → thẳng → Tor) kể cả POST. Quy tắc: tối đa 1 lượt qua đường dự phòng; GET/HEAD/OPTIONS thử lại khi lỗi mạng kiểu bị chặn, phương thức ghi chỉ thử lại khi lỗi xảy ra TRƯỚC khi tới máy chủ (DNS, TLS handshake) – `YomiAutoTor.safeToResend`.
+- **Lưu Hive phải báo được thất bại:** hàm `_save` nuốt lỗi khiến nhập CSV báo "xong" dù không lưu. Trả `bool`, coi hộp null/đã đóng là lỗi, chức năng hàng loạt hoàn tác bộ nhớ và ném lỗi.
+- **Khớp mờ không dùng cho nhập tự động:** "Solaris Plus" bị gộp vào "Solaris" (chứa nhau → điểm 0,9). Nhập CSV chỉ gộp khi tên/bí danh khớp chính xác (không dấu); khớp mờ chỉ để gợi ý.
+- **Cấu hình đọc từ nhiều luồng (Kotlin ProxySelector):** gom host/cổng/danh sách vào một data class bất biến gán qua một `@Volatile`, đọc 1 bản chụp trong `select()`.
+- **Đồng bộ trạng thái sang JVM/worker phải gửi cả trạng thái rỗng** (tắt công tắc, quên host) – điều kiện `if (list.isNotEmpty)` làm JVM giữ cấu hình cũ; bản chụp cho worker phải THAY THẾ chứ không cộng dồn.
+- **Rà mã bằng tác nhân thứ hai trước khi dựng bản phát hành** (ChatGPT Codex /swarm @code_reviewer) tìm được 9 lỗi tiềm ẩn mà test hiện có không bắt – nên làm ở mỗi phiên bản, trước lần dựng cuối.
+- **Note 9 `offline` (10:00–14:50) rồi tự `device`** – không do Samsung DeX (không có tiến trình DeX); kiểm định kỳ `adb devices` bằng job ngắn (`Start-Job` + `Wait-Job -Timeout`).

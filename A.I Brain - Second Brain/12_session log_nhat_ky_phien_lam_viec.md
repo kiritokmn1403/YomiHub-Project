@@ -84,3 +84,12 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **11:55–12:38** repo tiện ích: Anime47 (`?genres=<id>`), commit cục bộ cùng Hako/FikFap/Phimmoi; AVSub bị chặn DNS.
 - **13:04** chủ dự án: lưu tiến độ → commit + push.
 - **Tiếp theo**: xem `audit/audit-0.6.3/notes/PROGRESS_063.md` mục "Còn lại".
+
+## 20/11/2026 · 0.6.3 · phiên 3 · Claude Opus 5.5 (claude.ai + máy tính, 13:15–) + ChatGPT Codex
+- **13:15** chủ dự án: phân tích tiến độ các phiên trước, xin đủ quyền (máy + GitHub), giao ChatGPT Desktop – Codex bằng /swarm. Đọc Second Brain 00/07/08/09/11/12 + PROGRESS; quyền computer use 13:17.
+- **13:20** Codex /swarm 1 (rà mã, nháp ghi chú, thống kê, kiểm duyệt) – xong 13:24. **13:28–13:40** sửa 9 lỗi theo REVIEW_CODE (Tủ Sách, auto-Tor, trang Cập nhật), test 23/23. **13:30** dừng dây chuyền lần 5 (bước tv), **13:44** dựng lần 6 (bản phát hành).
+- **13:38–13:50** Xiaomi 15T (APK lần 5) ĐẠT: Thể Loại DamCoNuong, Hako, trang Cập nhật, nhật ký. **13:52** đẩy Extension Repo `9d4b588`.
+- **14:26** APK lần 6 xong; Phone Link đòi cấp lại quyền chiếu màn hình (chưa cấp). **14:51** Note 9 vào lại adb → kiểm APK lần 6 (Tủ Sách hàng loạt + Cần mua, công tắc Tor, nhật ký 0 ERROR) có ảnh + 2 video.
+- **15:04–15:25** tv/wintest/win/pack xong; Windows Setup.exe cài đè 0.6.2 → 0.6.3+56, Tủ Sách có trên Windows ĐẠT. TECHNICAL_UPDATE_NOTES mục 0.6.3 thêm Phiên 3 + Tổng hợp; Second Brain 04/06/09/11/12.
+- **Tiếp theo**: a6build → verify → README ← README_063 → commit/push → release v0.6.3 → kiểm asset API → báo cáo thống kê.
+

@@ -439,6 +439,7 @@ class YomiVpnService extends ChangeNotifier {
   }
 
   String? _jvmProxy = '';
+  String _jvmAutoTorKey = '|';
 
   /// Keeps the built-in M-Extension-Server's JVM traffic on the same route
   /// (Tor / custom proxy) when it is applied to every source.
@@ -449,7 +450,11 @@ class YomiVpnService extends ChangeNotifier {
     // that would leave outside the VPN (Windows bridges are never proxied).
     YomiVpnState.jvmBridgeProxy = Platform.isAndroid ? p : null;
     // 0.6.3: keep the APK extensions' auto-Tor hosts on the current Tor port
-    if (YomiAutoTor.routedHosts.isNotEmpty) {
+    // (review Codex: also push an EMPTY list, so turning the switch off or
+    // forgetting the hosts clears the JVM selector too)
+    final autoTorKey = '${YomiAutoTor.torProxy() ?? ''}|${YomiAutoTor.routedHosts.join(',')}';
+    if (autoTorKey != _jvmAutoTorKey) {
+      _jvmAutoTorKey = autoTorKey;
       unawaited(YomiMes.setJvmAutoTor(YomiAutoTor.torProxy() ?? '', YomiAutoTor.routedHosts.toList()));
     }
     if (p == _jvmProxy) return;

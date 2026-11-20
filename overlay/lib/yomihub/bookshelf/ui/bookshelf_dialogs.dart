@@ -436,7 +436,7 @@ Future<BsSeries?> showBsSeriesFormDialog(
                       onPressed: () async {
                         final paths =
                             await bsPickAndSavePhotos(allowMultiple: false);
-                        if (paths.isNotEmpty) {
+                        if (paths.isNotEmpty && ctx.mounted) {
                           setState(() => coverCtrl.text = paths.first);
                         }
                       },
@@ -1226,7 +1226,7 @@ Future<bool> showBsItemDialog(
                       label: Text(tr('Thêm ảnh')),
                       onPressed: () async {
                         final added = await bsPickAndSavePhotos();
-                        if (added.isNotEmpty) {
+                        if (added.isNotEmpty && ctx.mounted) {
                           setState(() => photos.addAll(added));
                         }
                       },

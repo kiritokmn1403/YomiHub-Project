@@ -1220,19 +1220,25 @@ class YomiAutoTorClient extends BaseClient {
     final host = request.url.host;
     final tor = YomiAutoTor.torProxy();
     final eligible = tor != null && request is Request && YomiAutoTor.enabled && !YomiVpnState.isLoopbackHost(host);
+    // 0.6.3 (review Codex): at most ONE trip through Tor per request – a
+    // remembered host goes Tor → direct; a new block goes direct → Tor.
+    var torTried = false;
     if (eligible && YomiAutoTor.isRouted(host)) {
       final c = _copy(request);
+      torTried = true;
       try {
         return await MClient.torClientFor(tor, _settings).send(c!);
-      } catch (_) {
-        // Tor path failed too – try the direct path below as before
+      } catch (e) {
+        // Tor path failed: fall back to the direct path only when resending
+        // cannot repeat a write
+        if (!YomiAutoTor.isIdempotent(request.method) && !YomiAutoTor.failedBeforeSend(e)) rethrow;
       }
     }
-    final spare = eligible ? _copy(request) : null;
+    final spare = eligible && !torTried ? _copy(request) : null;
     try {
       return await _inner.send(request);
     } catch (e, st) {
-      if (spare == null || !YomiAutoTor.looksBlocked(e)) rethrow;
+      if (spare == null || !YomiAutoTor.safeToResend(request.method, e)) rethrow;
       try {
         final res = await MClient.torClientFor(tor!, _settings).send(spare);
         YomiAutoTor.remember(host, e);

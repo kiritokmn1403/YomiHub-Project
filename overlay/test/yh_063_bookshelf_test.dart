@@ -144,6 +144,25 @@ void main() {
       expect(store.search('frieren 11').first.ownership, BsOwnership.owned);
     });
 
+    test('0.6.3 review: CSV keeps read status, never merges near-named series', () async {
+      final r = await store.importCsv('Tên bộ,Tập,Phiên bản,ISBN,Giá,Ngày mua,Nơi mua,NXB,Trạng thái đọc\r\n'
+          'Solaris,1,regular,,,,,,read\r\nSolaris Plus,1,regular,,,,,,Đang đọc\r\n');
+      expect(r.series, 2);
+      expect(r.volumes, 2);
+      final a = store.series.firstWhere((s) => s.title == 'Solaris');
+      final b = store.series.firstWhere((s) => s.title == 'Solaris Plus');
+      expect(store.volumesOf(a.id).single.readStatus, BsReadStatus.read);
+      expect(store.volumesOf(b.id).single.readStatus, BsReadStatus.reading);
+    });
+
+    test('0.6.3 review: bulk add drops the matching wish', () async {
+      final s = store.series.firstWhere((s) => s.title == 'Solaris');
+      await store.addWish(s.id, volume: 2);
+      expect(store.shoppingList().any((e) => e.series.id == s.id && e.volume == 2 && e.reason == 'wish'), isTrue);
+      await store.addVolumes(s.id, [2]);
+      expect(store.shoppingList().any((e) => e.series.id == s.id && e.volume == 2 && e.reason == 'wish'), isFalse);
+    });
+
     test('data survives a reload from the box (backup restore path)', () async {
       final before = store.series.length;
       store.onRestored();

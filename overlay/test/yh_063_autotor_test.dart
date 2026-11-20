@@ -64,4 +64,23 @@ void main() {
     expect(s.kind, TorStallKind.switchTo);
     expect(s.to, 'obfs4');
   });
+
+  test('0.6.3 review: resend through Tor never repeats a write that reached the server', () {
+    final reset = Exception('connection reset by peer');
+    final dns = Exception("Failed host lookup: 'blocked.example'");
+    expect(YomiAutoTor.safeToResend('GET', reset), isTrue);
+    expect(YomiAutoTor.safeToResend('HEAD', dns), isTrue);
+    expect(YomiAutoTor.safeToResend('POST', reset), isFalse);
+    expect(YomiAutoTor.safeToResend('POST', dns), isTrue);
+    expect(YomiAutoTor.safeToResend('PUT', Exception('tls handshake eof')), isTrue);
+    expect(YomiAutoTor.safeToResend('GET', Exception('HTTP error 404')), isFalse);
+  });
+
+  test('0.6.3 review: a worker snapshot replaces the remembered hosts', () {
+    YomiAutoTor.applySnapshot({'enabled': true, 'routed': ['a.example', 'b.example']});
+    expect(YomiAutoTor.isRouted('a.example'), isTrue);
+    YomiAutoTor.applySnapshot({'enabled': true, 'routed': <String>[]});
+    expect(YomiAutoTor.isRouted('a.example'), isFalse);
+    YomiAutoTor.enabledOverride = null;
+  });
 }

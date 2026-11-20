@@ -79,7 +79,21 @@ class BookshelfStore extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _save(Iterable<String> keys) async {
+  /// Last write error (null = the last save reached the box).
+  String? lastSaveError;
+
+  /// Writes [keys] to the Hive box. Returns false (and logs) when the box is
+  /// closed/missing or the write throws – 0.6.3 review: callers that report
+  /// success (CSV import) must not claim data was stored when it was not.
+  Future<bool> _save(Iterable<String> keys) async {
+    final box = _box;
+    if (box == null || !box.isOpen) {
+      lastSaveError = 'box ${box == null ? 'chưa mở' : 'đã đóng'}';
+      AppLogger.log('[Tủ Sách] Không lưu được dữ liệu ($keys): $lastSaveError', logLevel: LogLevel.error);
+      notifyListeners();
+      return false;
+    }
+    var ok = true;
     try {
       for (final k in keys) {
         final v = switch (k) {
@@ -91,12 +105,16 @@ class BookshelfStore extends ChangeNotifier {
           'recent' => _recent,
           _ => null,
         };
-        if (v != null) await _box?.put(k, v);
+        if (v != null) await box.put(k, v);
       }
+      lastSaveError = null;
     } catch (e) {
+      ok = false;
+      lastSaveError = '$e';
       AppLogger.log('[Tủ Sách] Không lưu được dữ liệu ($keys): $e', logLevel: LogLevel.error);
     }
     notifyListeners();
+    return ok;
   }
 
   static int _seq = 0;
@@ -328,11 +346,13 @@ class BookshelfStore extends ChangeNotifier {
       if (findVolume(seriesId, x, edition) != null) continue;
       final v = BsVolume(id: newId('v'), seriesId: seriesId, number: x, edition: edition);
       _volumes[v.id] = v;
+      // 0.6.3 review: same rule as addVolume – a bought volume leaves the wish list
+      _wishes.removeWhere((_, w) => w.seriesId == seriesId && w.volume == x && w.edition == edition);
       n++;
     }
     final s = _series[seriesId];
     if (s != null) s.updatedAt = DateTime.now().millisecondsSinceEpoch;
-    await _save(['volumes', 'series']);
+    await _save(['volumes', 'wishes', 'series']);
     return n;
   }
 
@@ -513,6 +533,10 @@ class BookshelfStore extends ChangeNotifier {
   /// Nơi mua, NXB". Returns (added volumes, created series, skipped rows).
   Future<({int volumes, int series, int skipped})> importCsv(String text) async {
     final rows = bsParseCsv(text);
+    // 0.6.3 review: restore memory if the write fails, so the screen never
+    // shows rows that were not stored
+    final seriesBefore = Map<String, BsSeries>.of(_series);
+    final volumesBefore = Map<String, BsVolume>.of(_volumes);
     var addedV = 0, addedS = 0, skipped = 0;
     for (var i = 0; i < rows.length; i++) {
       final r = rows[i];
@@ -524,7 +548,13 @@ class BookshelfStore extends ChangeNotifier {
         skipped++;
         continue;
       }
-      var s = _series.values.where((e) => bsNormalize(e.title) == bsNormalize(title)).firstOrNull ?? matchSeries(title);
+      // 0.6.3 review: CSV rows join a series only on an exact (accent-free)
+      // title/original/alias match – fuzzy matching merged "Solaris" and
+      // "Solaris Plus"
+      final key = bsNormalize(title);
+      var s = _series.values
+          .where((e) => [e.title, e.original, ...e.aliases].any((c) => c.trim().isNotEmpty && bsNormalize(c) == key))
+          .firstOrNull;
       if (s == null) {
         s = BsSeries(id: newId('s'), title: title, publisher: col(7));
         _series[s.id] = s;
@@ -547,13 +577,37 @@ class BookshelfStore extends ChangeNotifier {
           price: nums.length == 1 ? price : null,
           purchaseDate: date?.millisecondsSinceEpoch,
           place: col(6),
+          readStatus: _readStatusOf(col(8)),
         );
         _volumes[v.id] = v;
         addedV++;
       }
     }
-    await _save(['series', 'volumes']);
+    if (!await _save(['series', 'volumes'])) {
+      _series
+        ..clear()
+        ..addAll(seriesBefore);
+      _volumes
+        ..clear()
+        ..addAll(volumesBefore);
+      notifyListeners();
+      throw StateError('Không lưu được dữ liệu Tủ Sách: $lastSaveError');
+    }
     return (volumes: addedV, series: addedS, skipped: skipped);
+  }
+
+  /// Column 9 of the CSV ("Trạng thái đọc"): enum name written by
+  /// [exportCsv] or the Vietnamese words; old files without it → unread.
+  static BsReadStatus _readStatusOf(String raw) {
+    final n = bsNormalize(raw);
+    if (n.isEmpty) return BsReadStatus.unread;
+    for (final e in BsReadStatus.values) {
+      if (n == e.name.toLowerCase()) return e;
+    }
+    if (n.contains('dang doc')) return BsReadStatus.reading;
+    if (n.contains('chua doc')) return BsReadStatus.unread;
+    if (n.contains('da doc')) return BsReadStatus.read;
+    return BsReadStatus.unread;
   }
 
   /// Number formatting shared by the UI ("105", "10.5").

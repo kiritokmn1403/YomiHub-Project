@@ -39,7 +39,13 @@ class YomiAutoTor {
     final e = m['enabled'];
     if (e is bool) enabledOverride = e;
     final r = m['routed'];
-    if (r is List) _routed.addAll(r.whereType<String>().map((h) => h.toLowerCase()));
+    // (review Codex) the snapshot replaces the worker's set – an empty list
+    // after "forget" must clear hosts a reused worker learnt earlier
+    if (r is List) {
+      _routed
+        ..clear()
+        ..addAll(r.whereType<String>().map((h) => h.toLowerCase()));
+    }
   }
 
   /// Tor's local HTTP proxy when Tor is really connected (never the kill
@@ -86,6 +92,35 @@ class YomiAutoTor {
     ];
     if (m.contains('certificate')) return false; // a broken certificate stays broken through Tor
     return needles.any(m.contains);
+  }
+
+  /// Failures that happen BEFORE the request reaches the server (DNS
+  /// refusal, TLS torn down during the handshake) – safe to resend any
+  /// method through Tor.
+  static bool failedBeforeSend(Object e) {
+    final m = e.toString().toLowerCase();
+    if (m.contains('certificate')) return false;
+    const needles = [
+      'tls handshake eof',
+      'connection terminated during handshake',
+      'handshakeexception: connection terminated',
+      'failed host lookup',
+      'unable to resolve host',
+      'no address associated',
+      'dns error',
+    ];
+    return needles.any(m.contains);
+  }
+
+  /// 0.6.3 (review Codex): resend through Tor only when that cannot repeat a
+  /// write – idempotent reads always, other methods only when the request
+  /// never reached the server.
+  static bool safeToResend(String method, Object e) =>
+      isIdempotent(method) ? looksBlocked(e) : failedBeforeSend(e);
+
+  static bool isIdempotent(String method) {
+    final m = method.toUpperCase();
+    return m == 'GET' || m == 'HEAD' || m == 'OPTIONS';
   }
 
   static String shortCause(Object e) {

@@ -8,6 +8,7 @@ import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/source.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
 import 'package:mangayomi/yomihub/vpn/auto_tor.dart';
+import 'package:mangayomi/yomihub/mes/yomi_mes.dart';
 import 'package:mangayomi/yomihub/booru/booru_models.dart';
 import 'package:mangayomi/yomihub/booru/booru_store.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_service.dart';
@@ -356,7 +357,11 @@ class _VpnScreenState extends State<VpnScreen> {
             value: YomiPrefs.get<bool>(YomiAutoTor.prefKey, true),
             onChanged: (v) {
               YomiPrefs.set(YomiAutoTor.prefKey, v);
-              if (!v) YomiAutoTor.forget();
+              if (!v) {
+                YomiAutoTor.forget();
+                // 0.6.3 (review Codex): clear the APK extensions' JVM selector too
+                YomiMes.setJvmAutoTor('', const []);
+              }
             },
           ),
         ),
