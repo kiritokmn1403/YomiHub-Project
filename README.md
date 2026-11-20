@@ -81,6 +81,7 @@ Cài đè lên bản cũ giữ nguyên dữ liệu; ứng dụng tự kiểm tra
 - ⬇️ Trang tải về: https://kiritokmn1403.github.io/YomiHub-Project/download.html
 - 📘 Hướng dẫn sử dụng: https://kiritokmn1403.github.io/YomiHub-Project/guide.html
 - 🔒 Chính sách quyền riêng tư: https://kiritokmn1403.github.io/YomiHub-Project/privacy.html
+- 🌐 English website: https://kiritokmn1403.github.io/YomiHub-Project/en/
 - 🐞 Báo lỗi: [GitHub Issues](https://github.com/kiritokmn1403/YomiHub-Project/issues)
 - 🛠️ Dành cho nhà phát triển: [BUILDING.md](BUILDING.md) · [TECHNICAL_UPDATE_NOTES.md](TECHNICAL_UPDATE_NOTES.md)
 - 🙏 Xây dựng trên [Mangayomi](https://github.com/kodjodevf/mangayomi); danh sách đầy đủ dự án GitHub & tài liệu tham khảo (gồm 46 liên kết bổ sung từ bảng Project GitHub trong 0.6.3) có trong ứng dụng: **Thêm › Giới thiệu › Dự án GitHub đã sử dụng**.

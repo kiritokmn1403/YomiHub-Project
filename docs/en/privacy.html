@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YomiHub – Privacy Policy</title>
+<meta name="description" content="Privacy Policy for the YomiHub application (Android, Android TV, Windows).">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:title" content="YomiHub – Privacy Policy">
+<meta property="og:description" content="Privacy Policy for the YomiHub application (Android, Android TV, Windows).">
+<meta property="og:image" content="https://kiritokmn1403.github.io/YomiHub-Project/assets/icon-512.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="vi_VN">
+<link rel="alternate" hreflang="vi" href="https://kiritokmn1403.github.io/YomiHub-Project/privacy.html">
+<link rel="alternate" hreflang="en" href="https://kiritokmn1403.github.io/YomiHub-Project/en/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://kiritokmn1403.github.io/YomiHub-Project/privacy.html">
+<meta name="theme-color" content="#2371e1">
+<link rel="prefetch" href="index.html">
+<link rel="prefetch" href="download.html">
+<link rel="prefetch" href="guide.html">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<!-- Gradient banner band: purple -> blue -> teal -->
+<header class="banner-band">
+  <div class="banner-container">
+    <div class="top-bar">
+      <a class="brand-link" href="index.html">
+        <img class="brand-logo" src="../assets/icon-512.png" alt="YomiHub Logo" width="40" height="40">
+        <span>YomiHub</span>
+      </a>
+      <div class="top-actions">
+        <div class="lang-switch" role="group" aria-label="Ngôn ngữ / Language">
+          <a class="lang-opt" href="../privacy.html" hreflang="vi" lang="vi">VI</a>
+          <a class="lang-opt active" href="privacy.html" hreflang="en" lang="en" aria-current="true">EN</a>
+        </div>
+        <a class="btn-top" href="download.html">Download latest</a>
+      </div>
+    </div>
+
+    <!-- Hero Compact Privacy -->
+    <div class="hero-compact">
+      <div class="hero-compact-text">
+        <h1>Privacy Policy</h1>
+        <p class="hero-compact-lead">Updated: 2026-11-20 · Applies to YomiHub (Android, YumiHub Android TV, Windows 10/11 x64)</p>
+      </div>
+      <img class="hero-compact-icon" src="../assets/icon-512.png" alt="YomiHub Icon" width="72" height="72">
+    </div>
+
+    <!-- 4 bookmark tabs -->
+    <nav class="bookmark-nav" aria-label="Pages">
+      <a class="tab-link" href="index.html">Home</a>
+      <a class="tab-link" href="download.html">Downloads</a>
+      <a class="tab-link" href="guide.html">Guide</a>
+      <a class="tab-link active" href="privacy.html" aria-current="page">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Content sheet -->
+<main class="wrap">
+  <div class="doc-privacy">
+    <!-- Table of Contents -->
+    <nav class="privacy-toc" aria-label="Privacy Policy Table of Contents">
+      <h3>Table of Contents</h3>
+      <ul>
+        <li><a href="#vi-1">1. Data Processed by the Application</a></li>
+        <li><a href="#vi-2">2. Personal Bookshelf</a></li>
+        <li><a href="#vi-3">3. Google Sign-In and Google Drive</a></li>
+        <li><a href="#vi-4">4. Third-Party Services</a></li>
+        <li><a href="#vi-5">5. Contact</a></li>
+        <li><a href="#en-policy">Summary: Privacy Policy (English)</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="vi-1">1. Data Processed by the Application</h2>
+    <p>YomiHub is an application for reading comics, watching movies, reading novels, and managing your bookshelf that runs entirely on your device. Your library, reading history, settings, and backups are stored locally on your device. YomiHub does not operate any central server, does not collect personal data, and contains no advertisements or behavioral analytics.</p>
+
+    <h2 id="vi-2">2. Personal Bookshelf</h2>
+    <div class="callout">
+      <p>Personal Bookshelf data resides locally on your device; it is only backed up to the cloud or exported to files when you explicitly choose to do so, and the ISBN lookup feature sends only the ISBN code to Google Books / Open Library.</p>
+    </div>
+    <p>When using the <strong>Personal Bookshelf</strong> feature (not available on YumiHub Android TV):</p>
+    <ul>
+      <li><strong>Local on-device storage:</strong> All manga/book series lists, purchased volumes, Limited edition folders, attached photos, wishlist/shopping list, and scan history are stored locally on your device (in the Hive <code>yomihub_bookshelf</code> box and the application's internal storage directory). Search and management features operate entirely offline.</li>
+      <li><strong>User-controlled backup &amp; data export:</strong> Personal Bookshelf data is only included in local/cloud backups when you explicitly enable the <em>"Back up Personal Bookshelf data"</em> switch in <em>Backup &amp; Sync</em>, or when you actively choose to export/import CSV files. YomiHub never automatically transmits your bookshelf data off the device.</li>
+      <li><strong>ISBN barcode lookup:</strong> When you scan or enter an ISBN code, the application checks your on-device bookshelf and scan history first. When performing an online lookup to retrieve book metadata (title, author, publisher, description, cover image), the app transmits <strong>only the ISBN code</strong> scanned or entered to the public services of <strong>Google Books</strong> (<code>googleapis.com</code>) and <strong>Open Library</strong> (<code>openlibrary.org</code>). If you use the camera to scan barcodes, the camera video feed is processed entirely on-device and is never sent anywhere.</li>
+    </ul>
+
+    <h2 id="vi-3">3. Google Sign-In and Google Drive</h2>
+    <p>If you choose "Google Drive – Sign in with Google account" (or "Google Drive – Client ID" using your own OAuth client) under Backup &amp; Sync, YomiHub only requests the following scopes: <code>openid</code>, <code>email</code> (to display the signed-in account) and <code>https://www.googleapis.com/auth/drive.file</code> (access only to files/folders created by YomiHub – by default the "YomiHub" folder). The application uses this permission solely to upload, list, download, and delete its own YomiHub backup files. YomiHub never reads, modifies, or shares any other files in your Google Drive.</p>
+    <p>Access tokens are stored locally on your device and are transmitted only to Google's servers. You can disconnect within the app or revoke access at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+    <p>YomiHub's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+    <h2 id="vi-4">4. Third-Party Services</h2>
+    <p>Comic, anime, and novel media content is fetched directly from source websites by user-installed extensions. Optional features such as Tor, Cloudflare WARP, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, ISBN lookup (Google Books / Open Library), and trackers (AniList, MyAnimeList, Trakt, etc.) only operate when you enable or use them, and are subject to the policies of the respective service providers.</p>
+
+    <h2 id="vi-5">5. Contact</h2>
+    <p>Open an issue on <a href="https://github.com/kiritokmn1403/YomiHub-Project/issues">GitHub Issues</a>.</p>
+
+    <hr>
+
+    <h1 id="en-policy">Summary: Privacy Policy (English)</h1>
+    <p>YomiHub runs entirely on your device and has no server of its own; it collects no personal data, analytics or ads.</p>
+
+    <h2>1. Personal Bookshelf</h2>
+    <p>Your Personal Bookshelf data (series, owned volumes, Limited folders, attached photos, shopping list and scan history) is stored locally on your device (in the <code>yomihub_bookshelf</code> Hive box and local app storage) and works offline. It is included in local/cloud backups or exported to CSV only when you explicitly choose to enable bookshelf backup or trigger an export. When looking up an ISBN online, YomiHub checks your local shelf and scan cache first and then sends only the scanned or entered ISBN code to <strong>Google Books</strong> and <strong>Open Library</strong> to retrieve book metadata. Camera barcode scanning runs on-device without uploading camera frames. (Personal Bookshelf is not available on YumiHub Android TV.)</p>
+
+    <h2>2. Google Sign-In &amp; Google Drive</h2>
+    <p>If you choose "Sign in with Google" (or your own OAuth Client ID) for backups, YomiHub requests only <code>openid</code>, <code>email</code> and <code>drive.file</code>, and uses them solely to upload, list, download and delete its own backup files in the folder it creates (default "YomiHub"). Tokens stay on your device and are sent only to Google. YomiHub's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. You can revoke access at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+
+    <h2>3. Third-Party Services &amp; Contact</h2>
+    <p>Media content is fetched directly from user-installed extensions. Optional features (Tor, Cloudflare WARP, OneDrive, Dropbox, Telegram, ISBN lookup via Google Books / Open Library, and trackers such as AniList or MyAnimeList) only run when you enable or trigger them and are governed by their respective providers' policies. For support, open an issue at <a href="https://github.com/kiritokmn1403/YomiHub-Project/issues">GitHub Issues</a>.</p>
+
+    <p style="margin-top: 32px;"><a class="btn btn-secondary" style="color: var(--blue); border-color: var(--blue);" href="index.html">← Back to Home</a></p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="download.html">Downloads</a>
+    <a href="https://github.com/kiritokmn1403/YomiHub-Project">GitHub</a>
+    <a href="guide.html">User guide</a>
+    <a href="privacy.html">Privacy policy</a>
+    <a href="https://github.com/kiritokmn1403/YomiHub-Project/issues">Report a bug</a>
+  </div>
+  <p class="footer-disclaimer">YomiHub is open-source software. The extensions you install get comics and videos from their source sites. YomiHub does not host this content.</p>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

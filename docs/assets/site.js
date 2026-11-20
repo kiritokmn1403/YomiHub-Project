@@ -1,15 +1,154 @@
 /**
- * YomiHub Website JavaScript
+ * YomiHub Website JavaScript (Multilingual vi/en)
  * Handles:
+ * - Language Dictionary & Strings
+ * - Language Switcher with Anchor Preservation & localStorage Preference
+ * - First-time English Suggestion Banner
  * - Table of Contents, Diacritic-insensitive Search, and Scrollspy for Hướng Dẫn (guide.html)
  * - Device Detection, Quick Jump, SHA-256 Copy, and Release Updater for Tải Về (download.html)
  */
 
+const I18N = {
+  vi: {
+    searchPlaceholder: 'Tìm trong hướng dẫn…',
+    searchNoResults: 'Không có chương nào khớp. Thử từ khóa khác, ví dụ: <code>tor</code>, <code>sao lưu</code>, <code>bộ lọc</code>.',
+    copySha: 'Chép',
+    copiedSha: 'Đã chép!',
+    deviceRec: '✨ Gợi ý cho bạn',
+    versionPrefix: 'Phiên bản ',
+    dlTitlePrefix: 'Tải ',
+    bannerText: 'This page is also available in English · ',
+    bannerAction: 'Switch to English',
+    dismissAria: 'Đóng thông báo'
+  },
+  en: {
+    searchPlaceholder: 'Search the guide…',
+    searchNoResults: 'No chapters match. Try a different search, such as <code>tor</code>, <code>backup</code>, <code>filter</code>.',
+    copySha: 'Copy',
+    copiedSha: 'Copied!',
+    deviceRec: '✨ Suggested for you',
+    versionPrefix: 'Version ',
+    dlTitlePrefix: 'Download ',
+    bannerText: 'Trang này cũng có bản tiếng Việt · ',
+    bannerAction: 'Chuyển sang Tiếng Việt',
+    dismissAria: 'Dismiss notification'
+  }
+};
+
+/**
+ * Get active language from <html lang="...">
+ */
+function getLang() {
+  const docLang = (document.documentElement.lang || 'vi').toLowerCase();
+  return docLang.startsWith('en') ? 'en' : 'vi';
+}
+
+/**
+ * Translate string helper
+ */
+function t(key) {
+  const lang = getLang();
+  return (I18N[lang] && I18N[lang][key]) || I18N.vi[key] || '';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initLanguageSwitcher();
+  initSuggestionBanner();
   initGuideFeatures();
   initDownloadFeatures();
   initReleaseUpdater();
 });
+
+/**
+ * 1. Language Switcher:
+ * - Preserves #hash anchor when switching languages
+ * - Saves user language preference to localStorage['yh-lang']
+ */
+function initLanguageSwitcher() {
+  const switchContainer = document.querySelector('.lang-switch');
+  if (!switchContainer) return;
+
+  const links = switchContainer.querySelectorAll('.lang-opt');
+  links.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const targetLang = link.getAttribute('lang') || (link.getAttribute('hreflang') === 'en' ? 'en' : 'vi');
+      try {
+        localStorage.setItem('yh-lang', targetLang);
+      } catch (_) {}
+
+      // Preserve hash anchor on navigation
+      const currentHash = window.location.hash;
+      if (currentHash) {
+        const currentHref = link.getAttribute('href') || '';
+        const baseHref = currentHref.split('#')[0];
+        link.setAttribute('href', baseHref + currentHash);
+      }
+    });
+  });
+}
+
+/**
+ * 2. Suggestion Banner:
+ * If user visits Vietnamese page, has no stored language preference, and navigator.language starts with 'en' ->
+ * Display a subtle banner: "This page is also available in English · [Switch to English]" (with dismiss button)
+ */
+function initSuggestionBanner() {
+  if (getLang() !== 'vi') return;
+
+  let storedLang = null;
+  try {
+    storedLang = localStorage.getItem('yh-lang');
+  } catch (_) {}
+
+  // Only show if user has not explicitly made a language choice yet
+  if (storedLang) return;
+
+  const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+  if (!navLang.startsWith('en')) return;
+
+  const enOpt = document.querySelector('.lang-opt[hreflang="en"]');
+  if (!enOpt) return;
+
+  const baseEnHref = enOpt.getAttribute('href') || 'en/index.html';
+  const targetHref = baseEnHref.split('#')[0] + (window.location.hash || '');
+
+  const banner = document.createElement('aside');
+  banner.className = 'lang-suggestion-banner';
+  banner.setAttribute('role', 'status');
+  banner.innerHTML = `
+    <span>${t('bannerText')}</span>
+    <a href="${targetHref}" class="lang-suggestion-action">${t('bannerAction')}</a>
+    <button type="button" class="lang-suggestion-close" aria-label="${t('dismissAria')}">&times;</button>
+  `;
+
+  // Attach action and close handlers
+  const actionLink = banner.querySelector('.lang-suggestion-action');
+  if (actionLink) {
+    actionLink.addEventListener('click', () => {
+      try {
+        localStorage.setItem('yh-lang', 'en');
+      } catch (_) {}
+    });
+  }
+
+  const closeBtn = banner.querySelector('.lang-suggestion-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      banner.remove();
+      try {
+        localStorage.setItem('yh-lang', 'vi');
+      } catch (_) {}
+    });
+  }
+
+  // Insert banner right below banner band
+  const bannerBand = document.querySelector('.banner-band');
+  if (bannerBand && bannerBand.nextSibling) {
+    bannerBand.parentNode.insertBefore(banner, bannerBand.nextSibling);
+  } else {
+    document.body.insertBefore(banner, document.body.firstChild);
+  }
+}
 
 /**
  * Remove Vietnamese accents/diacritics for smart fuzzy search
@@ -26,7 +165,7 @@ function stripDiacritics(str) {
 }
 
 /**
- * Initialize Guide (Hướng Dẫn) TOC, Live Search, and Scrollspy
+ * 3. Guide (Hướng Dẫn) TOC, Live Search, and Scrollspy
  */
 function initGuideFeatures() {
   const guideMain = document.getElementById('guide');
@@ -40,7 +179,15 @@ function initGuideFeatures() {
   const searchInput = document.getElementById('guide-search');
   const noResultsEl = document.getElementById('guide-no-results');
 
-  // 1. Build Table of Contents
+  // Set localized placeholder and no-results message
+  document.querySelectorAll('.guide-search-input').forEach((inp) => {
+    inp.placeholder = t('searchPlaceholder');
+  });
+  if (noResultsEl) {
+    noResultsEl.innerHTML = t('searchNoResults');
+  }
+
+  // Build Table of Contents
   chapters.forEach((chapter) => {
     const id = chapter.id;
     const h2 = chapter.querySelector('h2');
@@ -71,7 +218,7 @@ function initGuideFeatures() {
     }
   });
 
-  // 2. Active Chapter Highlight via IntersectionObserver
+  // Active Chapter Highlight via IntersectionObserver
   if ('IntersectionObserver' in window && desktopTocList) {
     const tocLinks = desktopTocList.querySelectorAll('.toc-link');
     const observer = new IntersectionObserver(
@@ -98,7 +245,7 @@ function initGuideFeatures() {
     chapters.forEach((chapter) => observer.observe(chapter));
   }
 
-  // 3. Live Search with diacritic-insensitive matching
+  // Live Search with diacritic-insensitive matching
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       const query = stripDiacritics(e.target.value);
@@ -126,7 +273,7 @@ function initGuideFeatures() {
 }
 
 /**
- * Initialize Download Page (download.html) Features:
+ * 4. Download Page (download.html) Features:
  * - Device Detection and highlighting
  * - Copy SHA-256 to clipboard
  */
@@ -156,7 +303,7 @@ function initDownloadFeatures() {
       quickBtn.classList.add('recommended');
       const badge = document.createElement('span');
       badge.className = 'device-badge';
-      badge.textContent = '✨ Gợi ý cho bạn';
+      badge.textContent = t('deviceRec');
       quickBtn.appendChild(badge);
     }
 
@@ -187,7 +334,7 @@ function initDownloadFeatures() {
 
   function showCopiedState(button) {
     const originalText = button.textContent;
-    button.textContent = 'Đã chép!';
+    button.textContent = t('copiedSha');
     button.classList.add('copied');
     setTimeout(() => {
       button.textContent = originalText;
@@ -211,7 +358,7 @@ function initDownloadFeatures() {
 }
 
 /**
- * Automatic Release Link Updater from GitHub Releases API
+ * 5. Automatic Release Link Updater from GitHub Releases API
  * Keeps existing links if GitHub API fails or is rate-limited
  */
 function initReleaseUpdater() {
@@ -233,13 +380,13 @@ function initReleaseUpdater() {
         const filename = pattern.replace('{v}', v);
         if (assetNames.has(filename)) {
           a.href = `https://github.com/kiritokmn1403/YomiHub-Project/releases/download/${release.tag_name}/${filename}`;
-          a.title = 'Tải ' + filename;
+          a.title = t('dlTitlePrefix') + filename;
           updatedCount++;
         }
       });
 
       if (updatedCount > 0 && verEl) {
-        verEl.textContent = 'Phiên bản ' + v;
+        verEl.textContent = t('versionPrefix') + v;
       }
     })
     .catch(() => {
