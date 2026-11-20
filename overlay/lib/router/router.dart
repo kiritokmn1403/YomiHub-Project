@@ -58,6 +58,7 @@ import 'package:mangayomi/yomihub/ui/app_log_screen.dart';
 import 'package:mangayomi/yomihub/qr/qr_screen.dart';
 import 'package:mangayomi/yomihub/playbooks/play_books_screen.dart';
 import 'package:mangayomi/yomihub/booru/booru_screen.dart';
+import 'package:mangayomi/yomihub/bookshelf/ui/bookshelf_home_screen.dart';
 import 'package:mangayomi/yomihub/booru/booru_settings_screen.dart';
 import 'package:mangayomi/yomihub/playbooks/playbooks_settings_screen.dart';
 import 'package:mangayomi/yomihub/microg/microg_screen.dart';
@@ -202,6 +203,8 @@ class RouterNotifier extends ChangeNotifier {
         _branch(_genericRoute(name: "playBooks", child: kIsTvBuild ? const _TvRemovedScreen() : const PlayBooksScreen())),
         // YomiHub 0.4.4: Booru App, right of Play Books.
         _branch(_genericRoute(name: "booru", child: kIsTvBuild ? const _TvRemovedScreen() : const BooruScreen())),
+        // YomiHub 0.6.3: "Tủ Sách Cá Nhân", right of Booru App (not on TV)
+        _branch(_genericRoute(name: "bookshelf", child: kIsTvBuild ? const _TvRemovedScreen() : const BookshelfHomeScreen())),
         _branch(
           _genericRoute<String?>(
             name: "trackerLibrary",

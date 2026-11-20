@@ -63,7 +63,9 @@ class _LibraryGridViewWidgetState extends State<LibraryGridViewWidget> {
             return Consumer(
               builder: (context, ref, child) {
                 // YomiHub 0.6.2: "YomiHub New Version" – thẻ bìa Mangayomi 0.9.96
-                if (YomiUi.isV2 && !isTv) {
+                // 0.6.3: New Version on tablet / TV / Windows too (TV: first
+                // card takes the d-pad focus like CoverViewWidget below)
+                if (YomiUi.isV2) {
                   return Padding(
                     padding: const EdgeInsets.all(2),
                     child: Mv2MangaCard(
@@ -78,6 +80,7 @@ class _LibraryGridViewWidgetState extends State<LibraryGridViewWidget> {
                       isComfortableGrid: widget.isComfortableGrid,
                       isCoverOnly: widget.isCoverOnlyGrid,
                       isSelected: widget.mangaIdsList.contains(entry.id),
+                      autofocus: isTv && index == 0,
                       onTap: () => onTapEntry(
                         isLongPressed: ref.read(isLongPressedStateProvider),
                         ref: ref,

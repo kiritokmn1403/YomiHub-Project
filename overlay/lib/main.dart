@@ -128,7 +128,9 @@ void main(List<String> args) async {
           // 0.2.2 & 0.3.2: missing site icons (google s2/favicons, apple-touch-icon,
           // repo icon.png, favicon.ico, ic_launcher.png) are cosmetic – not worth a log line
           if (m.contains('/s2/favicons') || m.contains('apple-touch-icon') || m.contains('/icon.png') ||
-              m.contains('favicon.ico') || m.contains('ic_launcher.png')) return;
+              m.contains('favicon.ico') || m.contains('ic_launcher.png') ||
+              // 0.6.3: source/extension logos (mimihentai.com/logo.png ×28 in logs 12)
+              m.contains('/logo.png') || m.contains('/logo.webp') || m.contains('/logo.svg')) return;
           // 0.5.7 (S1): one line per minute + a counter instead of one line per
           // host and session (164 lines in logs 7); still INFO / verbose only.
           _imageFailLog.record(
@@ -672,11 +674,11 @@ class _MyAppState extends ConsumerState<MyApp>
         }
         if (route.startsWith('/') && ctx != null && ctx.mounted) {
           final router = GoRouter.of(ctx);
-          const tabs = {'/MangaLibrary', '/AnimeLibrary', '/NovelLibrary', '/playBooks', '/booru'};
+          const tabs = {'/MangaLibrary', '/AnimeLibrary', '/NovelLibrary', '/playBooks', '/booru', '/bookshelf'};
           // YomiHub 0.2.0: no Play Books shortcut while it is switched off
           if ((route == YomiPlayBooks.route && !YomiPlayBooks.enabled) ||
               // 0.5.0: Android TV build has no Play Books / Booru
-              (kIsTvBuild && (route == '/playBooks' || route == '/booru'))) {
+              (kIsTvBuild && (route == '/playBooks' || route == '/booru' || route == '/bookshelf'))) {
             lastUri = null;
             return;
           }

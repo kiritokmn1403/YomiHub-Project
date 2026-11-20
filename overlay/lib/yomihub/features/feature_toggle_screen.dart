@@ -12,6 +12,7 @@ import 'package:mangayomi/yomihub/repos/extensions_repo_screen.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
 import 'package:mangayomi/yomihub/playbooks/playbooks_toggle.dart';
 import 'package:mangayomi/yomihub/booru/booru_settings_screen.dart';
+import 'package:mangayomi/yomihub/bookshelf/bookshelf_setting_tile.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 
 /// Screen allowing users to toggle features and extension repositories
@@ -268,6 +269,9 @@ class FeatureToggleScreen extends ConsumerWidget {
                     PlayBooksSettingTile(),
                     Divider(height: 1),
                     BooruSettingTile(),
+                    Divider(height: 1),
+                    // 0.6.3: Tủ Sách Cá Nhân (YomiHub Update mục 14)
+                    BookshelfSettingTile(),
                   ],
                 ),
               ),

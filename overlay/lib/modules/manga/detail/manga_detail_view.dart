@@ -1,3 +1,7 @@
+import 'package:mangayomi/yomihub/extensions/builtin_extensions.dart';
+import 'package:mangayomi/repositories/source_repository.dart';
+import 'package:mangayomi/models/source.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -126,15 +130,31 @@ class _MangaDetailViewState extends ConsumerState<MangaDetailView>
     return _sourcesCache = sources;
   }
 
+  /// 0.6.3 (sheet "Merge"): extensions merged with "Hợp nhất tiện ích"
+  /// (other members of the manga's extension group) – reading from another
+  /// member opens Migrate for this title.
+  List<Source> _groupMembers() {
+    final g = YomiMerge.groupOf(widget.manga?.sourceId);
+    if (g == null) return const [];
+    final out = <Source>[];
+    for (final id in (g.$2['members'] as List? ?? const []).whereType<int>()) {
+      final s = sourceRepository.getById(id);
+      if (s != null && (s.isAdded ?? false)) out.add(s);
+    }
+    return out.length > 1 ? out : const [];
+  }
+
   Widget _mergedSourceSelector() {
     final sources = _mergedSources();
-    if (sources.length < 2) return const SizedBox.shrink();
+    final members = _groupMembers();
+    if (sources.length < 2 && members.isEmpty) return const SizedBox.shrink();
+    if (sources.length < 2) return _groupMemberSelector(members, merged: false);
     // a remembered source that is gone (un-merged, chapters removed) no
     // longer filters the list
     if (_selectedMergedSource != null && !sources.containsKey(_selectedMergedSource)) {
       _selectedMergedSource = null;
     }
-    return Padding(
+    final chapterSources = Padding(
       padding: const EdgeInsets.all(12),
       child: DropdownButtonFormField<String>(
         key: ValueKey(_selectedMergedSource),
@@ -164,6 +184,55 @@ class _MangaDetailViewState extends ConsumerState<MangaDetailView>
         },
       ),
     );
+    if (members.isEmpty) return _mergedMark(sources.length, child: chapterSources);
+    return _mergedMark(sources.length, child: Column(children: [chapterSources, _groupMemberSelector(members, merged: true)]));
+  }
+
+  /// "Đã hợp nhất · N nguồn" marker above the picker (sheet "Merge": thêm ký
+  /// hiệu để đánh dấu bộ nào đã hợp nhất).
+  Widget _mergedMark(int n, {required Widget child}) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(14, 8, 14, 0),
+            child: Chip(
+              avatar: const Icon(Icons.call_merge_rounded, size: 18),
+              label: Text(tr('Đã hợp nhất · {p0} nguồn', {'p0': '$n'})),
+              visualDensity: VisualDensity.compact,
+            ),
+          ),
+          child,
+        ],
+      );
+
+  Widget _groupMemberSelector(List<Source> members, {required bool merged}) {
+    final current = widget.manga?.sourceId;
+    final body = Padding(
+      padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
+      child: DropdownButtonFormField<int>(
+        initialValue: members.any((m) => m.id == current) ? current : members.first.id,
+        isExpanded: true,
+        decoration: InputDecoration(
+          labelText: tr('Đọc từ tiện ích trong bộ hợp nhất'),
+          prefixIcon: const Icon(Icons.hub_outlined),
+          helperText: tr('Chọn tiện ích khác để tìm và chuyển bộ này sang nguồn đó'),
+          helperMaxLines: 2,
+          border: const OutlineInputBorder(),
+        ),
+        items: [
+          for (final m in members)
+            DropdownMenuItem(
+              value: m.id,
+              child: Text('${m.name ?? '?'} (${(m.lang ?? '').isEmpty ? 'all' : m.lang})', overflow: TextOverflow.ellipsis),
+            ),
+        ],
+        onChanged: (id) {
+          if (id == null || id == current || widget.manga == null) return;
+          context.push('/migrate', extra: widget.manga);
+        },
+      ),
+    );
+    return merged ? body : _mergedMark(members.length, child: body);
   }
 
   late final ScrollController _scrollController;

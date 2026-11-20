@@ -1,3 +1,5 @@
+import 'package:mangayomi/services/fetch_sources_list.dart' show yomiHealGroupHeaders;
+import 'package:mangayomi/yomihub/vpn/auto_tor.dart';
 import 'dart:io';
 import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
 import 'package:mangayomi/utils/log/logger.dart';
@@ -333,7 +335,9 @@ class MihonExtensionService implements ExtensionService {
 
   @override
   FilterList getFilterList() {
-    return source.getFilterList() ?? FilterList([]);
+    final fl = source.getFilterList() ?? FilterList([]);
+    yomiHealGroupHeaders(fl.filters);
+    return fl;
   }
 
   @override
@@ -409,6 +413,20 @@ class MihonExtensionService implements ExtensionService {
     Map<String, String>? headers,
   }) async {
     var res = await YomiMes.dalvik(proxy, body, headers: headers ?? getCookie());
+    // 0.6.3 (log 16–20/11: DamCoNuong / ViHentai / VinaHentai "connection
+    // closed"): the ISP blocks the site and the extension is outside the VPN
+    // scope → its host goes through Tor (Kotlin YomiAutoTorSelector), retry once.
+    final blocked = _blockedError(res);
+    if (blocked != null && Platform.isAndroid) {
+      final tor = YomiAutoTor.torProxy();
+      final host = Uri.tryParse(source.baseUrl ?? '')?.host ?? '';
+      if (tor != null && YomiAutoTor.enabled && host.isNotEmpty && !YomiAutoTor.isRouted(host) &&
+          YomiVpnState.jvmBridgeProxy == null) {
+        YomiAutoTor.remember(host, 'tiện ích APK "${source.name}": ${YomiAutoTor.shortCause(blocked)}');
+        await YomiMes.setJvmAutoTor(tor, YomiAutoTor.routedHosts.toList());
+        res = await YomiMes.dalvik(proxy, body, headers: headers ?? getCookie());
+      }
+    }
     if (!_isCf(res)) return res;
     final url = source.baseUrl ?? '';
     if (url.isEmpty || cfPort == 0) return res;
@@ -450,6 +468,18 @@ class MihonExtensionService implements ExtensionService {
       }
     } catch (_) {}
     return res;
+  }
+
+  /// The bridge's error text when it looks like ISP blocking, else null.
+  static String? _blockedError(Response r) {
+    if (!r.body.contains('"error"')) return null;
+    try {
+      final j = jsonDecode(r.body);
+      final e = j is Map ? j['error'] : null;
+      return e != null && YomiAutoTor.looksBlocked('$e') ? '$e' : null;
+    } catch (_) {
+      return null;
+    }
   }
 
   static bool _isCf(Response r) {

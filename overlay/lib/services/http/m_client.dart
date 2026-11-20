@@ -30,6 +30,7 @@ import 'package:mangayomi/services/http/doh/doh_resolver.dart';
 import 'package:mangayomi/services/http/doh/doh_providers.dart';
 import 'package:mangayomi/services/http/doh/doh_custom_store.dart';
 import 'package:mangayomi/services/http/cf_proxy_store.dart';
+import 'package:mangayomi/yomihub/vpn/auto_tor.dart';
 import 'package:mangayomi/yomihub/cloudscraper/cloudscraper.dart';
 import 'package:mangayomi/yomihub/cloudflare/cf_challenge.dart';
 import 'package:mangayomi/yomihub/cloudflare/cf_identity.dart';
@@ -123,7 +124,8 @@ class MClient {
         // 0.5.7: the app's own loopback servers (Kotatsu / IReader bridge,
         // WebView helper…) are never reached through Tor / the kill switch.
         return torProxy == null
-            ? pooled
+            // 0.6.3: direct requests the ISP blocks are retried through Tor
+            ? YomiAutoTorClient(pooled, s)
             : YomiLoopbackBypassClient(pooled, defaultClient, proxy: torProxy);
       } catch (_) {}
     }
@@ -150,7 +152,27 @@ class MClient {
       });
       return YomiLoopbackBypassClient(proxied, defaultClient, proxy: torProxy);
     }
-    return defaultClient;
+    return torProxy == null ? YomiAutoTorClient(defaultClient, null) : defaultClient;
+  }
+
+  /// 0.6.3: client that sends through Tor's HTTP proxy [tor] (pooled).
+  static Client torClientFor(String tor, rhttp.ClientSettings? base) {
+    try {
+      final s = (base ?? rhttp.ClientSettings(throwOnStatusCode: false)).copyWith(
+        proxySettings: rhttp.StaticProxy(url: tor, condition: rhttp.ProxyCondition.all),
+      );
+      final key = 'autotor|$tor|${base == null ? 'd' : identityHashCode(base)}';
+      final existing = rhttpPool[key];
+      if (existing is rhttp.RhttpCompatibleClient && existing.client.ref.isDisposed) rhttpPool.remove(key);
+      return rhttpPool.putIfAbsent(key, () => rhttp.RhttpCompatibleClient.createSync(settings: s));
+    } catch (_) {
+      return _dartProxyClients.putIfAbsent(tor, () {
+        final hc = HttpClient();
+        final pu = Uri.parse(tor);
+        hc.findProxy = (uri) => YomiVpnState.isLoopbackHost(uri.host) ? 'DIRECT' : 'PROXY ${pu.host}:${pu.port}';
+        return IOClient(hc);
+      });
+    }
   }
 
   static final Map<String, Client> _dartProxyClients = {};
@@ -1170,4 +1192,58 @@ bool isCloudflareChallengeResponse(int status, Map<String, String> headers) {
   if ((h('cf-mitigated') ?? '').contains('challenge')) return true;
   if (h('cf-chl-bypass') != null) return true;
   return (h('server') ?? '').contains('cloudflare') && h('cf-ray') != null;
+}
+
+
+/// YomiHub 0.6.3: wraps a DIRECT client. When the network blocks a request
+/// (TLS reset, DNS refusal… see [YomiAutoTor.looksBlocked]) and Tor is
+/// connected, the request is sent again through Tor and the host remembered
+/// for the session (log 16–20/11: DamCoNuong, Hako, AVSub, Phimmoi…).
+class YomiAutoTorClient extends BaseClient {
+  final Client _inner;
+  final rhttp.ClientSettings? _settings;
+  YomiAutoTorClient(this._inner, this._settings);
+
+  static Request? _copy(BaseRequest r) {
+    if (r is! Request) return null;
+    final c = Request(r.method, r.url)
+      ..headers.addAll(r.headers)
+      ..followRedirects = r.followRedirects
+      ..maxRedirects = r.maxRedirects
+      ..persistentConnection = r.persistentConnection;
+    if (r.bodyBytes.isNotEmpty) c.bodyBytes = r.bodyBytes;
+    return c;
+  }
+
+  @override
+  Future<StreamedResponse> send(BaseRequest request) async {
+    final host = request.url.host;
+    final tor = YomiAutoTor.torProxy();
+    final eligible = tor != null && request is Request && YomiAutoTor.enabled && !YomiVpnState.isLoopbackHost(host);
+    if (eligible && YomiAutoTor.isRouted(host)) {
+      final c = _copy(request);
+      try {
+        return await MClient.torClientFor(tor, _settings).send(c!);
+      } catch (_) {
+        // Tor path failed too – try the direct path below as before
+      }
+    }
+    final spare = eligible ? _copy(request) : null;
+    try {
+      return await _inner.send(request);
+    } catch (e, st) {
+      if (spare == null || !YomiAutoTor.looksBlocked(e)) rethrow;
+      try {
+        final res = await MClient.torClientFor(tor!, _settings).send(spare);
+        YomiAutoTor.remember(host, e);
+        return res;
+      } catch (_) {
+        // report the original (direct) failure, not Tor's
+        Error.throwWithStackTrace(e, st);
+      }
+    }
+  }
+
+  @override
+  void close() {}
 }

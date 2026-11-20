@@ -227,10 +227,13 @@ class YomiSuggestionEngine {
         if (YomiExtErrors.isSetupError(e)) {
           YomiExtErrors.markSetup(src.name, src.lang);
         }
-        // YomiHub 0.2.7: Ghi chi tiết lỗi Đề Xuất vào Nhật Ký Ứng Dụng
+        // YomiHub 0.2.7: Ghi chi tiết lỗi Đề Xuất vào Nhật Ký Ứng Dụng.
+        // 0.6.3: hết giờ / lỗi mạng của tính năng nền này là INFO (nguồn bị
+        // bỏ qua 30 phút); log 12 có 15 WARNING "TimeoutException after 20 s".
+        final netErr = e is TimeoutException || YomiExtErrors.isNetworkError(e);
         AppLogger.log(
-          'Đề Xuất [${src.name} (${src.lang})]: không tải được danh sách: ${YomiExtErrors.short(e)} ($e)',
-          logLevel: LogLevel.warning,
+          'Đề Xuất [${src.name} (${src.lang})]: không tải được danh sách: ${YomiExtErrors.short(e)}${netErr ? ' – bỏ qua nguồn này 30 phút' : ' ($e)'}',
+          logLevel: netErr ? LogLevel.info : LogLevel.warning,
         );
         return;
       }

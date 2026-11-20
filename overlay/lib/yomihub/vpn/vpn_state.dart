@@ -27,6 +27,62 @@ class YomiVpnState {
 
   static void bump() => revision++;
 
+  // ── YomiHub 0.6.3: worker isolates (LNReader) have their own copy of these
+  // statics, all at the defaults (Tor off) – Hako, TruyenSS, TruyenDich… never
+  // went through Tor / auto-Tor (logs 12, 19–20/11). The main isolate sends
+  // [snapshot] with every request; the worker calls [applySnapshot].
+
+  static Map<String, dynamic> snapshot() => <String, dynamic>{
+        'torEnabled': torEnabled,
+        'torRunning': torRunning,
+        'torHttpPort': torHttpPort,
+        'torSocksPort': torSocksPort,
+        'killSwitch': killSwitch,
+        'proxyEnabled': proxyEnabled,
+        'proxyUrl': proxyUrl,
+        'xrayRunning': xrayRunning,
+        'xrayHttpPort': xrayHttpPort,
+        'scopeAllSources': scopeAllSources,
+        'scopeSources': scopeSources.toList(),
+        'scopeAllBooru': scopeAllBooru,
+        'scopeBooruSites': scopeBooruSites.toList(),
+        'scopeWebView': scopeWebView,
+        'scopeBrowser': scopeBrowser,
+        'jvmBridgeProxy': jvmBridgeProxy,
+      };
+
+  /// Applies a [snapshot] taken in another isolate; bumps [revision] when the
+  /// routing changed so cached HTTP clients are rebuilt.
+  static void applySnapshot(Map<dynamic, dynamic>? m) {
+    if (m == null) return;
+    final before = snapshot().toString();
+    T v<T>(String k, T d) {
+      final x = m[k];
+      return x is T ? x : d;
+    }
+
+    torEnabled = v('torEnabled', torEnabled);
+    torRunning = v('torRunning', torRunning);
+    torHttpPort = v('torHttpPort', torHttpPort);
+    torSocksPort = v('torSocksPort', torSocksPort);
+    killSwitch = v('killSwitch', killSwitch);
+    proxyEnabled = v('proxyEnabled', proxyEnabled);
+    proxyUrl = v('proxyUrl', proxyUrl);
+    xrayRunning = v('xrayRunning', xrayRunning);
+    xrayHttpPort = v('xrayHttpPort', xrayHttpPort);
+    scopeAllSources = v('scopeAllSources', scopeAllSources);
+    final ss = m['scopeSources'];
+    if (ss is List) scopeSources = ss.whereType<int>().toSet();
+    scopeAllBooru = v('scopeAllBooru', scopeAllBooru);
+    final sb = m['scopeBooruSites'];
+    if (sb is List) scopeBooruSites = sb.whereType<String>().toSet();
+    scopeWebView = v('scopeWebView', scopeWebView);
+    scopeBrowser = v('scopeBrowser', scopeBrowser);
+    final jb = m['jvmBridgeProxy'];
+    jvmBridgeProxy = jb is String ? jb : null;
+    if (snapshot().toString() != before) bump();
+  }
+
   // ── YomiHub 0.1.5: one in-app scope for whichever VPN service is on ──
   // (only one service runs at a time, so Tor, Mihon Proxy and the custom
   // proxy share these settings instead of keeping three copies).

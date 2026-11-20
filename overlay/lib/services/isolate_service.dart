@@ -1,3 +1,5 @@
+import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
+import 'package:mangayomi/yomihub/vpn/auto_tor.dart';
 import 'package:mangayomi/yomihub/net/extra_roots.dart';
 import 'package:mangayomi/yomihub/extensions/ext_errors.dart';
 import 'package:mangayomi/utils/log/logger.dart';
@@ -139,6 +141,9 @@ class GetIsolateService {
                 final serviceType = message['serviceType'] as String?;
                 final useLoggerValue = message['useLogger'] as bool?;
                 cfPort = message['cfPort'] as int;
+                // 0.6.3: Tor / proxy / auto-Tor state of the main isolate
+                YomiVpnState.applySnapshot(message['vpn'] as Map?);
+                YomiAutoTor.applySnapshot(message['autoTor'] as Map?);
                 if (useLoggerValue != null) {
                   useLogger = useLoggerValue;
                 }
@@ -389,6 +394,8 @@ class GetIsolateService {
         'responsePort': responsePort.sendPort,
         'useLogger': ?useLogger,
         'cfPort': cfPort,
+        'vpn': YomiVpnState.snapshot(),
+        'autoTor': YomiAutoTor.snapshot(),
       });
     } catch (e) {
       timer.cancel();

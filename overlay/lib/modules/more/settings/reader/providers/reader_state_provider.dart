@@ -128,6 +128,7 @@ class NavigationOrderState extends _$NavigationOrderState {
     '/NovelLibrary',
     '/playBooks',
     '/booru',
+    '/bookshelf',
     '/updates',
     '/history',
     '/browse',
@@ -152,6 +153,11 @@ class NavigationOrderState extends _$NavigationOrderState {
     if (navigationOrder.isNotEmpty && !navigationOrder.contains('/booru')) {
       final i = navigationOrder.indexOf('/playBooks');
       navigationOrder.insert(i < 0 ? 0 : i + 1, '/booru');
+    }
+    // YomiHub 0.6.3: "Tủ Sách Cá Nhân" sits right after Booru App.
+    if (navigationOrder.isNotEmpty && !navigationOrder.contains('/bookshelf')) {
+      final i = navigationOrder.indexOf('/booru');
+      navigationOrder.insert(i < 0 ? 0 : i + 1, '/bookshelf');
     }
     navigationOrder.addAll(
       items.where((e) => !navigationOrder.contains(e)).toList(),

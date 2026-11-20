@@ -29,6 +29,7 @@ final navigationItems = {
   "/NovelLibrary": "Novel",
   "/playBooks": "Play Books",
   "/booru": "Booru",
+  "/bookshelf": "Tủ Sách Cá Nhân",
   "/updates": "Updates",
   "/history": "History",
   "/browse": "Browse",

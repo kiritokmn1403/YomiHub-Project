@@ -1724,6 +1724,77 @@ const yomiGithubProjects = <YomiGhGroup>[
       'https://github.com/onlymash/BooruHubDocs',
     ]),
   ]),
+  // 0.6.3: liên kết còn thiếu so với sheet Project GitHub (20/11/2026); bỏ các liên kết công cụ tấn công (quy tắc 8)
+  YomiGhGroup('Tính Năng Khác - Other Features – bổ sung 0.6.3', [
+    YomiGhProject('Tính Năng Khác - Other Features (tài liệu tham khảo)', [
+      'https://docs.github.com/en/actions/reference/runners/github-hosted-runners',
+      'https://blogs.windows.com/windowsexperience/2026/10/07/building-windows-for-hybrid-intelligence/',
+      'https://vgodsoe.github.io/ryzen-ai-documentation/hybrid_oga.html',
+      'https://stackoverflow.com/questions/71681277/how-to-scrape-video-url-from-webpage-using-python',
+      'https://getvidora.com/blog/find-m3u8-url/',
+    ]),
+  ]),
+  YomiGhGroup('Office Suite – bổ sung 0.6.3', [
+    YomiGhProject('Office Suite (tài liệu tham khảo)', [
+      'https://support.microsoft.com/vi-vn/excel/excel-functions-by-category',
+      'https://excel.net.vn/danh-sach-cac-ham-trong-excel/',
+      'https://support.microsoft.com/vi-vn/excel/excel-functions-alphabetical',
+      'https://1drv.ms/x/c/78d8476b55038486/ESRkXZpwfgtJk4FZFERr05UBu1SYcWfn5RJxoSmLmmaPSw?e=s2fFfN&nav=MTVfezZBRTU3MDkwLTEyMEEtNEY4Qi1BMTEyLTRGQzY5QkU3QTI0M30',
+      'https://blog.hocexcel.online/cac-ham-trong-excel-va-cac-vi-du-minh-hoa.html',
+      'https://itgo.vn/cac-ham-trong-excel',
+      'https://www.ketoan.vn/kien-thuc-excel/cac-ham-trong-excel/',
+      'https://excelx.com/formulas-functions/',
+      'https://softvn.vn/huong-dan-mathtype/',
+      'https://stackoverflow.com/questions/4854947/android-microsoft-office-library-doc-docx-xls-ppt-etc',
+      'https://blog.csdn.net/gitblog_00500/article/details/142156578',
+      'https://blog.csdn.net/gitblog_00797/article/details/142242607',
+      'https://y1uda.gumroad.com/l/droidslide',
+      'https://learn.microsoft.com/en-us/answers/questions/1852367/how-to-install-microsoft-visual-basic-for-applicat',
+      'https://www.techbloat.com/how-to-enable-macros-in-excel-for-office-365.html',
+      'https://www.supportyourtech.com/excel/how-to-add-vba-to-excel-a-step-by-step-guide-for-beginners/',
+      'https://support.microsoft.com/vi-vn/excel/work-with-vba-macros-in-excel-for-the-web',
+      'https://gitiho.com/blog/huong-dan-mo-vba-trong-excel-va-tim-hieu-cac-cua-so-lam-viec-trong-vba-7166.html',
+      'https://www.wps.com/academy/how-to-download-vba-support-library-for-wps-office-a-detailed-guide-quick-tutorials-1878140/',
+      'https://code.visualstudio.com/docs/other/office',
+      'https://bettersolutions.com/vba/ribbon/office-ribbonx-editor.htm',
+      'https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.7-windows-x64-installer',
+      'https://stackoverflow.com/questions/36024342/how-to-put-excel-vba-into-git',
+      'https://esbuild.github.io/content-types/#ts-vs-tsx',
+      'https://learn.microsoft.com/en-us/office/vba/library-reference/concepts/getting-started-with-vba-in-office',
+    ]),
+  ]),
+  YomiGhGroup('Google, Dropbox, Microsoft, Mediafire - Cloud – bổ sung 0.6.3', [
+    YomiGhProject('Google, Dropbox, Microsoft, Mediafire - Cloud (tài liệu tham khảo)', [
+      'https://www.ayudo.ai/app-integrations/github-microsoft-onedrive',
+    ]),
+  ]),
+  YomiGhGroup('A.I Chatbot – bổ sung 0.6.3', [
+    YomiGhProject('A.I Chatbot (tài liệu tham khảo)', [
+      'https://github.blog/changelog/2026-10-13-gemini-4-argon-in-github-copilot/',
+      'https://gemini.google.com/app',
+      'https://copilot.com/chat?fromcode=cmmlf487uwy&es=Click&redirfrom=userTypeCookie&redirfrom=cosmicRingCookie',
+      'https://support.microsoft.com/en-us/microsoft-365-copilot/control-review-sources-copilot-chat',
+      'https://chatgpt.com/',
+      'https://www.deepseek.com/en/harness/',
+      'https://chat.deepseek.com/',
+      'https://deepseek-ai.xin/vi/blog/deepseek-excel-data-guide/',
+      'https://github.blog/changelog/2026-08-14-grok-4-6-is-now-available-in-github-copilot/',
+      'https://grok.com/connectors',
+      'https://buildwire.ai/blog/the-5-best-github-repos-for-claude-code/',
+      'https://claude.ai/new',
+      'https://github.blog/changelog/2026-09-22-claude-opus-5-5-is-now-available-in-github-copilot/',
+    ]),
+  ]),
+  YomiGhGroup('Dex Mode – bổ sung 0.6.3', [
+    YomiGhProject('Dex Mode (tài liệu tham khảo)', [
+      'https://techydruid.com/android-dex-desktop-mode/',
+    ]),
+  ]),
+  YomiGhGroup('Booru Project – bổ sung 0.6.3', [
+    YomiGhProject('Booru Project (tài liệu tham khảo)', [
+      'https://deepwiki.com/khoadng/Boorusama/6-development-guide',
+    ]),
+  ]),
 ];
 
 class GithubProjectsScreen extends StatefulWidget {

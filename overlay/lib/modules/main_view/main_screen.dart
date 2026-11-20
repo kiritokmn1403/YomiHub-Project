@@ -1,4 +1,5 @@
 import 'package:mangayomi/yomihub/ui/mangayomi_v2/mv2_nav_shell.dart';
+import 'package:mangayomi/yomihub/ui/mangayomi_v2/mv2_adaptive.dart';
 import 'package:mangayomi/yomihub/perf/perf_watchdog.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/ui/liquid_glass.dart';
@@ -60,7 +61,9 @@ bool _isNotHiddenLibOnTv(String nav) =>
     nav != "/MangaLibrary" &&
     nav != "/NovelLibrary" &&
     nav != "/playBooks" &&
-    nav != "/booru";
+    nav != "/booru" &&
+    // 0.6.3: no "Tủ Sách Cá Nhân" on Android TV either
+    nav != "/bookshelf";
 
 /// The ItemType a nav destination maps to, or null for destinations with no
 /// single content type to scope a global search to (Updates, History,
@@ -528,11 +531,12 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                               }
 
               // YomiHub 0.6.2: "YomiHub New Version" (Mangayomi 0.9.96) – thanh
-              // điều hướng nổi trên điện thoại; máy tính bảng / TV / Windows
-              // giữ bố cục cũ (_TabletLayout / NavigationRail).
-              final useV2 = _uiStyle == YomiUiStyle.mangayomiV2 &&
-                  !context.isTablet &&
-                  !isTv;
+              // điều hướng nổi trên điện thoại. 0.6.3 (Antigravity /swarm 1
+              // @adaptive_ui, Claude tích hợp): máy tính bảng ≥ 600 dp, Windows
+              // và Android TV dùng thanh bên New Version (Mv2AdaptiveNavShell).
+              final isV2 = _uiStyle == YomiUiStyle.mangayomiV2;
+              final useV2Rail = isV2 && Mv2Adaptive.shouldUseRail(context);
+              final useV2 = isV2;
               Widget v2Shell() {
                 final w = _buildNavigationWidgetsMobile(ref, dest, context);
                 final d = <Mv2NavDestination>[
@@ -544,6 +548,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                             icon: (w[i] as NavigationDestination).icon,
                             selectedIcon:
                                 (w[i] as NavigationDestination).selectedIcon,
+                            tooltip: (w[i] as NavigationDestination).tooltip,
                           )
                         : Mv2NavDestination(
                             id: dest[i],
@@ -551,6 +556,20 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                             icon: const SizedBox.shrink(),
                           ),
                 ];
+                if (useV2Rail) {
+                  return Mv2AdaptiveNavShell(
+                    destinations: d,
+                    selectedIndex: currentIndex,
+                    onDestinationSelected: (i) => onMobileDest(dest[i]),
+                    hideNavigation: isLongPressed || !Mv2Adaptive.isRailLocation(location),
+                    initialExpanded: YomiPrefs.isOpen ? YomiPrefs.get<bool>('mv2RailExpanded', false) : false,
+                    onExpandedChanged: (expanded) {
+                      if (YomiPrefs.isOpen) YomiPrefs.set('mv2RailExpanded', expanded);
+                    },
+                    tvRailBadgeText: '',
+                    child: shellChild,
+                  );
+                }
                 return Mv2NavShell(
                   destinations: d,
                   selectedIndex: currentIndex,
@@ -572,7 +591,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                     _IncognitoModeBar(incognitoMode: incognitoMode, l10n: l10n),
                   Flexible(
                     child: Scaffold(
-                      body: context.isTablet
+                      body: useV2
+                          ? v2Shell()
+                          : context.isTablet
                           ? _TabletLayout(
                               isLongPressed: isLongPressed,
                               location: location,
@@ -584,8 +605,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                   _buildNavigationWidgetsDesktop,
                               child: shellChild,
                             )
-                          : useV2
-                          ? v2Shell()
                           : shellChild,
                       bottomNavigationBar: context.isTablet || useV2
                           ? null
@@ -756,6 +775,18 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         label: const Padding(
           padding: EdgeInsets.only(top: 5),
           child: Text('Booru'),
+        ),
+      );
+    }
+    // YomiHub 0.6.3: "Tủ Sách Cá Nhân" (personal bookshelf), right of Booru
+    if (dest.contains("/bookshelf")) {
+      destinations[dest.indexOf("/bookshelf")] = NavigationRailDestination(
+        padding: isTv ? const EdgeInsets.symmetric(vertical: 6) : null,
+        selectedIcon: const Icon(Icons.shelves),
+        icon: const Icon(Icons.shelves),
+        label: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Text(tr('Tủ Sách')),
         ),
       );
     }
@@ -930,6 +961,13 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         selectedIcon: Icon(Icons.photo_library),
         icon: Icon(Icons.photo_library_outlined),
         label: 'Booru',
+      );
+    }
+    if (dest.contains("/bookshelf")) {
+      destinations[dest.indexOf("/bookshelf")] = NavigationDestination(
+        selectedIcon: const Icon(Icons.shelves),
+        icon: const Icon(Icons.shelves),
+        label: tr('Tủ Sách'),
       );
     }
     if (dest.contains("/updates")) {
@@ -1318,6 +1356,7 @@ class _TabletLayoutState extends State<_TabletLayout> {
       '/NovelLibrary',
       '/playBooks',
       '/booru',
+      '/bookshelf',
       '/history',
       '/updates',
       '/browse',
@@ -1425,6 +1464,7 @@ class _MobileBottomNavigation extends StatelessWidget {
       '/NovelLibrary',
       '/playBooks',
       '/booru',
+      '/bookshelf',
       '/history',
       '/updates',
       '/browse',

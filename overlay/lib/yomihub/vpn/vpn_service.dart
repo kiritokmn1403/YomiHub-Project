@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/vpn/auto_tor.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
@@ -261,6 +262,8 @@ class YomiVpnService extends ChangeNotifier {
     final tracker = TorStallTracker(
       TorBridgeFallback.order(chosen, (_ptBridges ?? const {}).keys, lastGood: lastGood),
       DateTime.now(),
+      // 0.6.3: time the app spends frozen in the background is not a stall
+      pauseGap: torWatchInterval * 6,
     );
     if (lastGood != null) {
       AppLogger.log(
@@ -445,6 +448,10 @@ class YomiVpnService extends ChangeNotifier {
     // follow its proxy; the loopback bypass uses this to refuse a request
     // that would leave outside the VPN (Windows bridges are never proxied).
     YomiVpnState.jvmBridgeProxy = Platform.isAndroid ? p : null;
+    // 0.6.3: keep the APK extensions' auto-Tor hosts on the current Tor port
+    if (YomiAutoTor.routedHosts.isNotEmpty) {
+      unawaited(YomiMes.setJvmAutoTor(YomiAutoTor.torProxy() ?? '', YomiAutoTor.routedHosts.toList()));
+    }
     if (p == _jvmProxy) return;
     _jvmProxy = p;
     YomiMes.setJvmProxy(p);

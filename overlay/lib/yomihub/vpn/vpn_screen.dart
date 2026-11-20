@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/source.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
+import 'package:mangayomi/yomihub/vpn/auto_tor.dart';
 import 'package:mangayomi/yomihub/booru/booru_models.dart';
 import 'package:mangayomi/yomihub/booru/booru_store.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_service.dart';
@@ -344,6 +345,21 @@ class _VpnScreenState extends State<VpnScreen> {
         ),
         if (vpn.autoTorIdentity)
           _rotationInterval(tr('Thời gian làm mới danh tính'), vpn.torIdentityMinutes, 'torIdentityMinutes'),
+        // 0.6.3: blocked sites → Tor automatically (also for extensions
+        // outside "Phạm vi"), see yomihub/vpn/auto_tor.dart
+        ValueListenableBuilder<int>(
+          valueListenable: YomiPrefs.changes,
+          builder: (context, _, _) => SwitchListTile(
+            secondary: const Icon(Icons.shield_moon_outlined),
+            title: Text(tr('Tự chuyển qua Tor khi trang bị chặn')),
+            subtitle: Text(tr('Khi nhà mạng chặn một trang (lỗi TLS/DNS), tiện ích tự thử lại qua Tor – kể cả tiện ích ngoài Phạm vi VPN')),
+            value: YomiPrefs.get<bool>(YomiAutoTor.prefKey, true),
+            onChanged: (v) {
+              YomiPrefs.set(YomiAutoTor.prefKey, v);
+              if (!v) YomiAutoTor.forget();
+            },
+          ),
+        ),
         // 0.4.5: Android too (lyrebird), with "Tự động" as default
         if (Platform.isWindows || Platform.isAndroid)
           ListTile(

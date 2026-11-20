@@ -9,10 +9,13 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="YomiHub – Chính sách quyền riêng tư / Privacy Policy">
+<meta property="og:description" content="Chính sách quyền riêng tư của ứng dụng YomiHub (Android, Android TV, Windows).">
+<meta property="og:image" content="https://kiritokmn1403.github.io/YomiHub-Project/assets/icon-512.png">
 <meta name="theme-color" content="#3b5bdb">
 <style>
-:root{--fg:#1d1d1f;--muted:#5f6368;--bg:#fff;--card:#f5f7fb;--line:#e3e7ef;--acc:#3b5bdb}
-@media (prefers-color-scheme:dark){:root{--fg:#ececf1;--muted:#a3a8b3;--bg:#121318;--card:#1c1e26;--line:#2c2f3a;--acc:#7c93ff}}
+:root{--fg:#1d1d1f;--muted:#5f6368;--bg:#fff;--card:#f5f7fb;--line:#e3e7ef;--acc:#3b5bdb;--badge-bg:#e7edff;--badge-fg:#2845b8}
+@media (prefers-color-scheme:dark){:root{--fg:#ececf1;--muted:#a3a8b3;--bg:#121318;--card:#1c1e26;--line:#2c2f3a;--acc:#7c93ff;--badge-bg:#242c4a;--badge-fg:#b7c6ff}}
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;color:var(--fg);background:var(--bg)}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
@@ -28,9 +31,12 @@ th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vert
 th{color:var(--muted);font-weight:600}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-.card h3{margin:0 0 6px;font-size:1.05rem}
+.card h3{margin:0 0 6px;font-size:1.05rem;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .card ul{margin:0;padding-left:18px}
 .card li{margin:3px 0}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--badge-bg);color:var(--badge-fg);white-space:nowrap}
+.callout{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:14px 18px;margin:18px 0}
+.callout p{margin:0}
 .dlt td{vertical-align:middle}.note{color:var(--muted);font-size:.88rem}
 .dls{display:flex;flex-wrap:wrap;gap:8px}
 a.dl{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);text-decoration:none;font-weight:600;font-size:.9rem;white-space:nowrap}
@@ -53,22 +59,42 @@ header.small{padding:28px 0 8px}header.small img{width:72px;height:72px;border-r
 <header class="small">
   <a href="index.html"><img src="assets/icon-512.png" alt="Biểu tượng YomiHub"></a>
   <h1>Chính sách quyền riêng tư</h1>
-  <p class="lead">Cập nhật: 19/11/2026 · Áp dụng cho ứng dụng YomiHub (Android, Android TV, Windows)</p>
+  <p class="lead">Cập nhật: 20/11/2026 · Áp dụng cho ứng dụng YomiHub (Android, YumiHub Android TV, Windows 10/11 x64)</p>
 </header>
 <div class="doc">
 <h2>1. Dữ liệu ứng dụng xử lý</h2>
-<p>YomiHub là ứng dụng đọc truyện, xem phim và đọc tiểu thuyết chạy hoàn toàn trên thiết bị của bạn. Thư viện, lịch sử, cài đặt và bản sao lưu được lưu trên thiết bị. YomiHub không có máy chủ riêng và không thu thập dữ liệu cá nhân, không có quảng cáo hay phân tích hành vi.</p>
-<h2>2. Đăng nhập Google và Google Drive</h2>
+<p>YomiHub là ứng dụng đọc truyện, xem phim, đọc tiểu thuyết và quản lý tủ sách chạy hoàn toàn trên thiết bị của bạn. Thư viện, lịch sử, cài đặt và bản sao lưu được lưu trên thiết bị. YomiHub không có máy chủ riêng và không thu thập dữ liệu cá nhân, không có quảng cáo hay phân tích hành vi.</p>
+
+<h2>2. Tủ Sách Cá Nhân</h2>
+<div class="callout">
+  <p>Dữ liệu Tủ Sách Cá Nhân nằm trên thiết bị của bạn; chỉ sao lưu lên đám mây hoặc xuất tệp khi bạn tự chọn, và tính năng tra ISBN chỉ gửi mã ISBN tới Google Books / Open Library.</p>
+</div>
+<p>Khi sử dụng tính năng <strong>Tủ Sách Cá Nhân</strong> (không có trên bản YumiHub Android TV):</p>
+<ul>
+  <li><strong>Lưu trữ cục bộ trên thiết bị:</strong> toàn bộ danh sách bộ truyện/sách, tập đã mua, thư mục bản Limited, ảnh đính kèm, danh sách cần mua và lịch sử quét được lưu cục bộ trên máy (trong hộp dữ liệu Hive <code>yomihub_bookshelf</code> và thư mục lưu trữ nội bộ của ứng dụng). Các tính năng tìm kiếm và quản lý hoạt động ngoại tuyến.</li>
+  <li><strong>Sao lưu &amp; xuất dữ liệu do người dùng tự chọn:</strong> dữ liệu Tủ Sách Cá Nhân chỉ được đưa vào bản sao lưu cục bộ/đám mây khi bạn tự chọn bật công tắc <em>"Sao lưu dữ liệu Tủ Sách Cá Nhân"</em> trong <em>Sao Lưu &amp; Đồng Bộ</em>, hoặc khi bạn chủ động chọn xuất/nhập tệp CSV. YomiHub không tự động gửi dữ liệu tủ sách ra ngoài thiết bị.</li>
+  <li><strong>Tra cứu mã vạch ISBN:</strong> khi bạn quét hoặc nhập mã ISBN, ứng dụng kiểm tra tủ sách và lịch sử quét trên thiết bị trước. Khi thực hiện tra cứu trực tuyến để lấy thông tin sách (tên sách, tác giả, nhà xuất bản, mô tả, ảnh bìa), ứng dụng chỉ gửi <strong>duy nhất mã ISBN</strong> đã quét hoặc nhập tới dịch vụ công khai của <strong>Google Books</strong> (<code>googleapis.com</code>) và <strong>Open Library</strong> (<code>openlibrary.org</code>). Nếu bạn dùng máy ảnh để quét mã vạch, khung hình từ máy ảnh được xử lý trực tiếp trên thiết bị và không được gửi đi đâu.</li>
+</ul>
+
+<h2>3. Đăng nhập Google và Google Drive</h2>
 <p>Nếu bạn chọn "Google Drive – Đăng nhập bằng tài khoản Google" (hoặc "Google Drive – Client ID" với OAuth client của riêng bạn) trong mục Sao lưu &amp; Đồng bộ, YomiHub chỉ yêu cầu các quyền: <code>openid</code>, <code>email</code> (để hiển thị tài khoản đã đăng nhập) và <code>https://www.googleapis.com/auth/drive.file</code> (chỉ truy cập các tệp/thư mục do YomiHub tạo – mặc định thư mục "YomiHub"). Ứng dụng dùng quyền này duy nhất để tải lên, liệt kê, tải về và xóa các bản sao lưu của chính YomiHub. YomiHub không đọc, sửa hay chia sẻ bất kỳ tệp nào khác trong Google Drive của bạn.</p>
 <p>Mã truy cập (token) được lưu trên thiết bị của bạn và chỉ gửi tới máy chủ của Google. Bạn có thể ngắt kết nối trong ứng dụng hoặc thu hồi quyền tại <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
 <p>Việc sử dụng và chuyển giao thông tin nhận được từ API của Google tuân thủ <a href="https://developers.google.com/terms/api-services-user-data-policy">Chính sách dữ liệu người dùng của Dịch vụ API Google</a>, bao gồm các yêu cầu Sử dụng hạn chế (Limited Use).</p>
-<h2>3. Dịch vụ bên thứ ba</h2>
-<p>Nội dung truyện/phim do các tiện ích (extension) bạn tự cài tải trực tiếp từ các trang nguồn; các tính năng tùy chọn như Tor, Cloudflare WARP, OneDrive, Dropbox, Telegram, trình theo dõi (AniList, MyAnimeList…) chỉ hoạt động khi bạn bật và chịu chính sách của nhà cung cấp tương ứng.</p>
-<h2>4. Liên hệ</h2>
+
+<h2>4. Dịch vụ bên thứ ba</h2>
+<p>Nội dung truyện/phim do các tiện ích (extension) bạn tự cài tải trực tiếp từ các trang nguồn; các tính năng tùy chọn như Tor, Cloudflare WARP, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram, tra cứu ISBN (Google Books / Open Library), trình theo dõi (AniList, MyAnimeList, Trakt…) chỉ hoạt động khi bạn sử dụng và chịu chính sách của nhà cung cấp tương ứng.</p>
+
+<h2>5. Liên hệ</h2>
 <p>Mở issue tại <a href="https://github.com/kiritokmn1403/YomiHub-Project/issues">GitHub Issues</a>.</p>
 <hr>
 <h1>YomiHub Privacy Policy (English)</h1>
-<p>YomiHub runs entirely on your device and has no server of its own; it collects no personal data, analytics or ads. If you choose "Sign in with Google" for backups, YomiHub requests only <code>openid</code>, <code>email</code> and <code>drive.file</code>, and uses them solely to upload, list, download and delete its own backup files in the folder it creates (default "YomiHub"). Tokens stay on your device and are sent only to Google. YomiHub's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. You can revoke access at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+<p>YomiHub runs entirely on your device and has no server of its own; it collects no personal data, analytics or ads.</p>
+<h2>1. Personal Bookshelf</h2>
+<p>Your Personal Bookshelf data (series, owned volumes, Limited folders, attached photos, shopping list and scan history) is stored locally on your device (in the <code>yomihub_bookshelf</code> Hive box and local app storage) and works offline. It is included in local/cloud backups or exported to CSV only when you explicitly choose to enable bookshelf backup or trigger an export. When looking up an ISBN online, YomiHub checks your local shelf and scan cache first and then sends only the scanned or entered ISBN code to <strong>Google Books</strong> and <strong>Open Library</strong> to retrieve book metadata. Camera barcode scanning runs on-device without uploading camera frames. (Personal Bookshelf is not available on YumiHub Android TV.)</p>
+<h2>2. Google Sign-In &amp; Google Drive</h2>
+<p>If you choose "Sign in with Google" (or your own OAuth Client ID) for backups, YomiHub requests only <code>openid</code>, <code>email</code> and <code>drive.file</code>, and uses them solely to upload, list, download and delete its own backup files in the folder it creates (default "YomiHub"). Tokens stay on your device and are sent only to Google. YomiHub's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. You can revoke access at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+<h2>3. Third-Party Services &amp; Contact</h2>
+<p>Media content is fetched directly from user-installed extensions. Optional features (Tor, Cloudflare WARP, OneDrive, Dropbox, Telegram, ISBN lookup via Google Books / Open Library, and trackers such as AniList or MyAnimeList) only run when you enable or trigger them and are governed by their respective providers' policies. For support, open an issue at <a href="https://github.com/kiritokmn1403/YomiHub-Project/issues">GitHub Issues</a>.</p>
 <p><a class="btn ghost" href="index.html">← Về Trang chủ</a></p>
 </div>
 <footer>

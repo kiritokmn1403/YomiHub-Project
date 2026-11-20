@@ -463,4 +463,14 @@ class YomiMes {
       await _vpn.invokeMethod('jvmProxy', {'url': proxyUrl ?? ''});
     } catch (_) {}
   }
+
+  /// 0.6.3: hosts of APK extensions that the ISP blocks go through Tor
+  /// ([torProxy] '' = Tor not connected → direct). Android only (the
+  /// Windows M-Extension-Server JVM reads its proxy at start-up).
+  static Future<void> setJvmAutoTor(String torProxy, List<String> hosts) async {
+    if (!Platform.isAndroid) return;
+    try {
+      await _vpn.invokeMethod('jvmAutoTor', {'url': torProxy, 'hosts': hosts});
+    } catch (_) {}
+  }
 }

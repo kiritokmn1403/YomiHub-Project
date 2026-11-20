@@ -97,6 +97,20 @@ class YomiExtErrors {
     if (s.contains('tunnelunsuccessful')) {
       return tr('Máy chủ proxy/VPN từ chối kết nối tới trang này: đổi máy chủ VPN, tắt proxy cho tiện ích hoặc thử lại sau.');
     }
+    // 0.6.3 (log 18–20/11: Kagane, Hako Novel, Hako/TruyenSS/AVSub/Phimmoi)
+    if (s.contains('sourceerror: json parse error')) {
+      return tr('Trang nguồn trả về dữ liệu không đúng định dạng (trang đổi giao diện, bị chặn hoặc cần vượt Cloudflare): mở bằng WebView, bật VPN/Tor hoặc thử lại sau.');
+    }
+    if (s.contains('headless browser is not available')) {
+      return tr('Tiện ích này cần trình duyệt ẩn (headless browser) của Mangayomi để tải trang; hãy dùng tiện ích cùng trang ở kho khác (vd. LNReader) hoặc mở bằng WebView.');
+    }
+    if (s.contains('certificate_verify_failed') || s.contains('unable to get local issuer certificate')) {
+      return tr('Chứng chỉ SSL của trang không hợp lệ hoặc thiếu chứng chỉ trung gian: trang có thể đã đổi tên miền – dùng "Đổi URL" trong trang tiện ích, hoặc thử lại qua VPN/Tor.');
+    }
+    if (s.contains('tls handshake eof') || s.contains('connection terminated during handshake') ||
+        s.contains('connection closed') || s.contains('connectionaborted')) {
+      return tr('Nhà mạng có thể đang chặn trang này. Bật Tor trong "VPN & DNS" – YomiHub tự chuyển tiện ích sang Tor khi phát hiện trang bị chặn (tùy chọn "Tự chuyển qua Tor khi trang bị chặn").');
+    }
     if (s.contains('madara post id')) {
       return tr('Nguồn truyện đổi định dạng hoặc URL: mở bằng WebView hoặc chuyển sang nguồn phụ.');
     }

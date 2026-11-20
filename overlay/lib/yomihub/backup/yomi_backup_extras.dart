@@ -9,6 +9,7 @@ import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/repositories/source_repository.dart';
 import 'package:mangayomi/repositories/source_preference_repository.dart';
 import 'package:mangayomi/yomihub/booru/booru_store.dart';
+import 'package:mangayomi/yomihub/bookshelf/bookshelf_store.dart';
 
 /// YomiHub data that rides along in every backup, whatever options were
 /// ticked: the Extensions Repo lists (all three item types), the installed
@@ -29,6 +30,7 @@ class YomiBackupExtras {
     'yomihub_cloudscraper',
     'yomihub_userscripts',
     'yomihub_booru', // 0.4.4: Booru App (favourites, history, settings)
+    'yomihub_bookshelf', // 0.6.3: Tủ Sách Cá Nhân (series, volumes, wishlist…)
   ];
 
   static const _sensitiveKeys = {'warpAccount', 'proxyPassword', 'proxyUrl', 'creds'};
@@ -85,6 +87,8 @@ class YomiBackupExtras {
     for (final name in boxes) {
       // 0.5.3: "Sao lưu dữ liệu Booru App" switch in Sao Lưu & Đồng Bộ
       if (name == 'yomihub_booru' && !YomiPrefs.get<bool>('backupBooru', true)) continue;
+      // 0.6.3: "Tủ Sách Cá Nhân" can be left out too (YomiHub Update mục 10: chọn mục sao lưu)
+      if (name == 'yomihub_bookshelf' && !YomiPrefs.get<bool>('backupBookshelf', true)) continue;
       try {
         final box = Hive.isBoxOpen(name)
             ? Hive.box(name)
@@ -158,6 +162,9 @@ class YomiBackupExtras {
           }
           if (name == 'yomihub_booru') {
             BooruStore.instance.onRestored();
+          }
+          if (name == 'yomihub_bookshelf') {
+            BookshelfStore.instance.onRestored();
           }
         } catch (_) {}
       }

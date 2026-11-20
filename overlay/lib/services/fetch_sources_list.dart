@@ -712,7 +712,7 @@ List<SelectFilterOption> _valsOptions(dynamic list) {
   return out;
 }
 
-dynamic _filterFromJson(dynamic e) {
+dynamic _filterFromJson(dynamic e, {bool inGroup = false}) {
   if (e is! Map) return null;
   final name = e['name'];
   final state = e['state'];
@@ -736,24 +736,32 @@ dynamic _filterFromJson(dynamic e) {
     );
   } else if (name is String && state is bool) {
     return CheckBoxFilter(null, name, _optText(e['id']) ?? name, null, state: state);
-  } else if (e['included'] is bool && e['ignored'] is bool && e['excluded'] is bool) {
+  } else if ((e['included'] is bool && e['ignored'] is bool && e['excluded'] is bool) ||
+      (e['isIncluded'] is bool && e['isExcluded'] is bool)) {
     if (name is! String) return null;
     return TriStateFilter(null, name, _optText(e['id']) ?? name, null, state: state is int ? state : 0);
   } else if (name is String && state is List) {
-    return GroupFilter("${name}Filter", name, filtersFromJson(state), "GroupFilter");
+    return GroupFilter("${name}Filter", name, filtersFromJson(state, inGroup: true), "GroupFilter");
   } else if (name is String && state is String) {
     return TextFilter("${name}Filter", name, null, state: state);
+  } else if (name is String && state is int && inGroup && state >= 0 && state <= 2) {
+    // 0.6.3 (chủ dự án 20/11 11:28, DamCoNuong – Keiyoushi KeiSource): mục
+    // Thể loại kiểu TriState đến chỉ còn {name, state: 0..2} (không có khóa
+    // included/ignored/excluded) và bị đọc thành Header → hiện ⓘ, không chọn
+    // được. Mihon không đặt Header trong Group, nên mục số nguyên trong Group
+    // là ô 3 trạng thái.
+    return TriStateFilter(null, name, _optText(e['id']) ?? name, null, state: state);
   } else if (name is String && state is int) {
     return HeaderFilter(name, "${name}Filter");
   }
   return null;
 }
 
-List<dynamic> filtersFromJson(List<dynamic> json) {
+List<dynamic> filtersFromJson(List<dynamic> json, {bool inGroup = false}) {
   final out = <dynamic>[];
   for (final e in json) {
     try {
-      final f = _filterFromJson(e);
+      final f = _filterFromJson(e, inGroup: inGroup);
       if (f != null) out.add(f);
     } catch (_) {
       // a single malformed filter must not drop the extension's whole list
@@ -846,4 +854,20 @@ String? yomiFixRepoUrl(String? u) {
       .replaceAll('/{branchName}/', '/main/')
       .replaceAll('/\${branchName}/', '/main/')
       .replaceAll('/branchName/', '/main/');
+}
+
+/// 0.6.3 (chủ dự án 20/11 12:24): danh sách bộ lọc của tiện ích APK được lưu
+/// trong Source (Isar) lúc cài/cập nhật. Bản lưu bởi YomiHub ≤ 0.6.3 cũ đã đọc
+/// mục TriState trong Group thành HeaderFilter (ⓘ) – sửa ngay khi đọc, không
+/// cần tải lại bộ lọc (tải lại có thể thất bại khi trang bị chặn).
+List<dynamic> yomiHealGroupHeaders(List<dynamic> filters) {
+  for (final f in filters) {
+    if (f is GroupFilter) {
+      f.state = f.state
+          .map((e) => e is HeaderFilter ? TriStateFilter(null, e.name, e.name, null, state: 0) : e)
+          .toList();
+      yomiHealGroupHeaders(f.state);
+    }
+  }
+  return filters;
 }

@@ -186,6 +186,26 @@ class _CreateBackupState extends ConsumerState<CreateBackup> {
                     ),
                   ),
                 ),
+                // 0.6.3: Tủ Sách Cá Nhân (Hive box `yomihub_bookshelf`)
+                Card(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    child: StatefulBuilder(
+                      builder: (context, setLocal) {
+                        final on = YomiPrefs.get<bool>('backupBookshelf', true);
+                        return ListTileChapterFilter(
+                          label: tr('Tủ Sách Cá Nhân (bộ truyện, tập đã mua, cần mua, lịch sử quét)'),
+                          type: on ? 1 : 0,
+                          onTap: () async {
+                            await YomiPrefs.set('backupBookshelf', !on);
+                            setLocal(() {});
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
               ],
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),

@@ -101,9 +101,16 @@ class TorStallStep {
 
 /// Feeds on bootstrap percentages and says when to change transport.
 class TorStallTracker {
-  TorStallTracker(this.order, DateTime start)
+  TorStallTracker(this.order, DateTime start, {this.pauseGap})
       : assert(order.isNotEmpty),
         _since = start;
+
+  /// 0.6.3 (log 20/11 07:47→07:50): the app was frozen in the background
+  /// for 3½ minutes and the next reading counted it as "kẹt suốt 230 giây".
+  /// When two readings are further apart than [pauseGap] the gap is not
+  /// counted as stall time (null = off, as in the unit tests).
+  final Duration? pauseGap;
+  DateTime? _last;
 
   final List<String> order;
   int _index = 0;
@@ -126,6 +133,11 @@ class TorStallTracker {
   /// answering yet – that time is not counted as a stall).
   TorStallStep update(int? percent, DateTime now) {
     if (_finished) return const TorStallStep(TorStallKind.none);
+    final last = _last;
+    _last = now;
+    if (pauseGap != null && last != null && now.difference(last) > pauseGap!) {
+      _since = _since.add(now.difference(last));
+    }
     if (percent == null) {
       _since = now;
       return const TorStallStep(TorStallKind.none);

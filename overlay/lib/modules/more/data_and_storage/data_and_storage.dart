@@ -555,6 +555,17 @@ class DataAndStorage extends ConsumerWidget {
                   onChanged: (v) => YomiPrefs.set('backupBooru', v),
                 ),
               ),
+            if (!(isTv || kIsTvBuild))
+              ValueListenableBuilder<int>(
+                valueListenable: YomiPrefs.changes,
+                builder: (context, _, _) => SwitchListTile(
+                  secondary: const Icon(Icons.shelves),
+                  title: Text(tr('Sao lưu dữ liệu Tủ Sách Cá Nhân')),
+                  subtitle: Text(tr('Bộ truyện, tập đã mua, bản Limited, danh sách cần mua và lịch sử quét đi kèm bản sao lưu và sao lưu đám mây')),
+                  value: YomiPrefs.get<bool>('backupBookshelf', true),
+                  onChanged: (v) => YomiPrefs.set('backupBookshelf', v),
+                ),
+              ),
             ],
             if (!backupSync) ...[
             Padding(

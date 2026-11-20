@@ -115,3 +115,12 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - **Hai server adb khác phiên bản**: job gọi `%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe` trong khi job khác dùng adb của `common.ps1` (`D:\yh\tools\android-sdk`) → server bị khởi động lại, máy ảo/điện thoại "not found" giữa chừng. Mọi job adb dùng chung adb từ `common.ps1`.
 - **Máy ảo cũ còn sống** khi bật AVD khác: lấy nhầm `emulator-5554` cũ (INSTALL_FAILED_OLDER_SDK), hoặc "Running multiple emulators with the same AVD". Tắt hết emulator (`adb emu kill` + Stop-Process qemu/emulator), chờ ≥ 15 s, xóa `*.lock` của AVD rồi mới khởi động.
 - Máy có thể không phản hồi vài giờ (ngủ) giữa các bước computer use → kiểm lại `date` VM + `runner_alive.txt` trước khi suy luận thời gian.
+
+## Bổ sung 20/11/2026 (0.6.3 – Claude Opus 5.5)
+- **Trạng thái tĩnh (static) không qua isolate:** LNReader chạy trong worker isolate riêng → `YomiVpnState`/`YomiAutoTor` ở đó luôn mặc định (Tor tắt), nên mọi tính năng Tor/auto-Tor "không có tác dụng" với Hako/TruyenSS/TruyenDich dù bật. Mọi trạng thái cần ở worker phải gửi kèm mỗi tin nhắn (`snapshot()` → `applySnapshot()`), và đổi tuyến thì `bump()` revision để dựng lại client đã cache.
+- **Bộ lọc Mihon qua Jackson:** mục TriState của tiện ích Keiyoushi mới có thể đến Dart chỉ còn `{name, state: int}` (không có `included/ignored/excluded`) → bị đọc thành `HeaderFilter` (ⓘ, không chọn được). Mihon không đặt Header trong Group, nên trong Group số nguyên 0..2 = TriState. Khi sửa kiểu bộ lọc luôn kiểm đủ 3 đầu: Dart `_filterFromJson`, Dart `_convertFilters`, Kotlin `convertFilterList`.
+- **Trang Cập nhật:** nạp trước chương ở nền chưa đủ – `getAllByIds` (getAllSync) mọi truyện trên luồng UI vẫn tạo khung 891 ms; nạp truyện bằng `isar.mangas.getAll` (bất đồng bộ) trong provider.
+- **Runner:** job dài vòng lặp chờ thiết bị (≤ 30 phút) chiếm `pending_fast` → mọi job nhanh sau đó phải chờ. Job chờ nên ≤ 5 phút, lặp lại nếu cần; đừng để một job nhanh dài hơn 10 phút.
+- **Note 9 adb `offline` rồi biến mất** dù PnP thấy "SAMSUNG Android ADB Interface": lỗi ủy quyền phía điện thoại (thu hồi ủy quyền gỡ lỗi USB + cắm lại). Không gỡ được từ máy tính.
+- **Phát APK qua HTTP nội bộ thất bại** khi Wi‑Fi Windows đặt "Public" (tường lửa chặn cổng, ERR_CONNECTION_REFUSED). Dùng Phone Link: Explorer chọn tệp → nút Chia sẻ → tên điện thoại.
+- **Commit message từ PowerShell 5:** `Set-Content -Encoding UTF8` ghi BOM → tiêu đề commit bắt đầu bằng ký tự lạ. Ghi bằng `[IO.File]::WriteAllText($f, $m, (New-Object Text.UTF8Encoding $false))`.

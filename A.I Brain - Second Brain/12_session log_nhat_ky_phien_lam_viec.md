@@ -74,3 +74,13 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **01:52–02:24** Claude kiểm APK cuối trên Note 9 (bộ lọc cũ/mới, hồi quy văng, Polski, Drive). **03:07** Windows Setup.exe cài đè ĐẠT. (Máy không phản hồi ~03:10–06:00.)
 - **06:04–06:30** AVD Android 6 ĐẠT; AVD TV cài + màn hình chờ (máy ảo mất do xung đột adb). **06:38–06:45** phát hành **GitHub Release v0.6.2** (19/19 tệp), `latest` = v0.6.2.
 - **Tiếp theo (0.6.3)**: xem 11-G và ghi chú 0.6.2 › 18.
+
+## 20/11/2026 · 0.6.3 · phiên 2 · Claude Opus 5.5 (claude.ai + máy tính, 10:29–) + Google Antigravity
+- **10:29** chủ dự án gửi `logs (12).txt` + 3 Excel (thêm `Ke_Hoach_App_Quan_Ly_Tu_Sach_Ca_Nhan.xlsx`): kiểm tiến độ, xin đủ quyền (máy + GitHub), /swarm cho Antigravity, tiếp tục. Đọc Second Brain 00→12, AGENTS, ghi chú 0.6.2, `PROGRESS_063.md` (phiên 1 sáng nay đã làm Tủ Sách, auto-Tor, giao diện thích ứng, dây chuyền lần 2 đang chạy).
+- **10:33** quyền computer use; **10:37** /swarm 3 (log + Feature Check + sửa tiện ích). Note 9 adb offline → **10:46** chủ dự án: kiểm thử trên Xiaomi 15T qua Phone Link; **11:17** dùng Phone Link gửi file.
+- **10:58–11:20** sửa 4 lỗi app theo `LOG_COVERAGE_063.md` + test; dừng dây chuyền lần 2, dựng lần 3.
+- **11:20–11:45** Xiaomi: gửi APK qua Chia sẻ → Xiaomi 15T, cài đè, kiểm Tủ Sách, DamCoNuong, VPN, nhật ký ĐẠT.
+- **11:28/11:53/12:24** chủ dự án báo Thể Loại vẫn ⓘ → sửa chuyển đổi TriState (dựng lần 4) → phát hiện bộ lọc đã lưu trong Isar → tự sửa khi đọc (dựng lần 5, 12:36).
+- **11:55–12:38** repo tiện ích: Anime47 (`?genres=<id>`), commit cục bộ cùng Hako/FikFap/Phimmoi; AVSub bị chặn DNS.
+- **13:04** chủ dự án: lưu tiến độ → commit + push.
+- **Tiếp theo**: xem `audit/audit-0.6.3/notes/PROGRESS_063.md` mục "Còn lại".

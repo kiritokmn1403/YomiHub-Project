@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>YomiHub – Đọc truyện, xem phim, đọc tiểu thuyết</title>
-<meta name="description" content="YomiHub: ứng dụng mã nguồn mở đọc truyện tranh, xem phim & anime, đọc tiểu thuyết, Google Play Sách và Booru cho Android, Android TV và Windows.">
+<title>YomiHub – Đọc truyện, xem phim, đọc tiểu thuyết &amp; Tủ Sách Cá Nhân</title>
+<meta name="description" content="YomiHub 0.6.3: ứng dụng mã nguồn mở đọc truyện tranh, xem phim &amp; anime, đọc tiểu thuyết, Google Play Sách, Booru và Tủ Sách Cá Nhân cho Android, Android TV và Windows.">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:title" content="YomiHub">
-<meta property="og:description" content="Đọc truyện tranh, xem phim & anime, đọc tiểu thuyết – Android, Android TV, Windows.">
+<meta property="og:description" content="Đọc truyện tranh, xem phim &amp; anime, đọc tiểu thuyết và quản lý Tủ Sách Cá Nhân – Android, Android TV, Windows.">
 <meta property="og:image" content="https://kiritokmn1403.github.io/YomiHub-Project/assets/icon-512.png">
 <meta name="theme-color" content="#3b5bdb">
 <style>
-:root{--fg:#1d1d1f;--muted:#5f6368;--bg:#fff;--card:#f5f7fb;--line:#e3e7ef;--acc:#3b5bdb}
-@media (prefers-color-scheme:dark){:root{--fg:#ececf1;--muted:#a3a8b3;--bg:#121318;--card:#1c1e26;--line:#2c2f3a;--acc:#7c93ff}}
+:root{--fg:#1d1d1f;--muted:#5f6368;--bg:#fff;--card:#f5f7fb;--line:#e3e7ef;--acc:#3b5bdb;--badge-bg:#e7edff;--badge-fg:#2845b8}
+@media (prefers-color-scheme:dark){:root{--fg:#ececf1;--muted:#a3a8b3;--bg:#121318;--card:#1c1e26;--line:#2c2f3a;--acc:#7c93ff;--badge-bg:#242c4a;--badge-fg:#b7c6ff}}
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;color:var(--fg);background:var(--bg)}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
@@ -31,9 +31,12 @@ th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vert
 th{color:var(--muted);font-weight:600}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-.card h3{margin:0 0 6px;font-size:1.05rem}
+.card h3{margin:0 0 6px;font-size:1.05rem;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .card ul{margin:0;padding-left:18px}
 .card li{margin:3px 0}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--badge-bg);color:var(--badge-fg);white-space:nowrap}
+.callout{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:14px 18px;margin:18px 0}
+.callout p{margin:0}
 .dlt td{vertical-align:middle}.note{color:var(--muted);font-size:.88rem}
 .dls{display:flex;flex-wrap:wrap;gap:8px}
 a.dl{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);text-decoration:none;font-weight:600;font-size:.9rem;white-space:nowrap}
@@ -45,6 +48,9 @@ a{color:var(--acc)}
 code{font-size:.9em}
 .nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line);font-weight:600}
 .nav a{text-decoration:none}.nav a.on{color:var(--fg)}
+.doc{max-width:780px;margin:0 auto}
+.doc h2{font-size:1.2rem;margin:32px 0 10px}
+header.small{padding:28px 0 8px}header.small img{width:72px;height:72px;border-radius:18px}
 </style>
 </head>
 <body>
@@ -53,18 +59,23 @@ code{font-size:.9em}
 <header>
   <img src="assets/icon-512.png" alt="Biểu tượng YomiHub">
   <h1>YomiHub</h1>
-  <p class="lead">Ứng dụng mã nguồn mở gom mọi thứ để đọc và xem vào một nơi: truyện tranh, phim &amp; anime, tiểu thuyết, Google Play Sách và Booru – chạy trên Android, Android TV và Windows. Xây dựng trên nhân Mangayomi (Flutter).</p>
+  <p class="lead">Ứng dụng mã nguồn mở gom mọi thứ để đọc và xem vào một nơi: truyện tranh, phim &amp; anime, tiểu thuyết, Google Play Sách, Booru và Tủ Sách Cá Nhân – chạy trên Android (6.0+), Android TV (YumiHub Android TV) và Windows 10/11 x64. Xây dựng trên nhân Mangayomi (Flutter).</p>
   <a class="btn" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest">Tải YomiHub bản mới nhất</a>
   <a class="btn ghost" href="https://github.com/kiritokmn1403/YomiHub-Project">Mã nguồn trên GitHub</a>
 </header>
 
-<h2 id="tai-ve">Chọn bản cài <small id="ver">· phiên bản 0.6.2</small></h2>
+<h2 id="tai-ve">Chọn bản cài <small id="ver">· phiên bản 0.6.3</small></h2>
 <table class="dlt">
+<thead>
 <tr><th>Thiết bị</th><th>Tải về</th></tr>
-<tr><td><b>Android 7.0 trở lên</b><br><span class="note">Điện thoại, máy tính bảng (chọn arm64-v8a nếu không chắc)</span></td><td class="dls"><a class="dl" data-pat="YomiHub-{v}-arm64-v8a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-arm64-v8a.apk" title="Tải YomiHub-0.6.2-arm64-v8a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>arm64-v8a</a><a class="dl" data-pat="YomiHub-{v}-armeabi-v7a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-armeabi-v7a.apk" title="Tải YomiHub-0.6.2-armeabi-v7a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>armeabi-v7a</a><a class="dl" data-pat="YomiHub-{v}-x86_64.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-x86_64.apk" title="Tải YomiHub-0.6.2-x86_64.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>x86_64</a></td></tr>
-<tr><td><b>Android 6.0</b><br><span class="note">Chỉ dành cho máy Android 6.0</span></td><td class="dls"><a class="dl" data-pat="YomiHub-{v}-android6-arm64-v8a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-android6-arm64-v8a.apk" title="Tải YomiHub-0.6.2-android6-arm64-v8a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>arm64-v8a</a><a class="dl" data-pat="YomiHub-{v}-android6-armeabi-v7a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-android6-armeabi-v7a.apk" title="Tải YomiHub-0.6.2-android6-armeabi-v7a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>armeabi-v7a</a><a class="dl" data-pat="YomiHub-{v}-android6-x86_64.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-android6-x86_64.apk" title="Tải YomiHub-0.6.2-android6-x86_64.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>x86_64</a></td></tr>
-<tr><td><b>Android TV</b><br><span class="note">YumiHub Android TV – điều khiển từ xa, tập trung Phim &amp; Điện ảnh</span></td><td class="dls"><a class="dl" data-pat="YumiHub-Android-TV-{v}-arm64-v8a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YumiHub-Android-TV-0.6.2-arm64-v8a.apk" title="Tải YumiHub-Android-TV-0.6.2-arm64-v8a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>arm64-v8a</a><a class="dl" data-pat="YumiHub-Android-TV-{v}-armeabi-v7a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YumiHub-Android-TV-0.6.2-armeabi-v7a.apk" title="Tải YumiHub-Android-TV-0.6.2-armeabi-v7a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>armeabi-v7a</a><a class="dl" data-pat="YumiHub-Android-TV-{v}-x86_64.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YumiHub-Android-TV-0.6.2-x86_64.apk" title="Tải YumiHub-Android-TV-0.6.2-x86_64.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>x86_64</a></td></tr>
-<tr><td><b>Windows 10/11 (x64)</b><br><span class="note">Setup.exe: cài đặt; .appxbundle: gói ký số; .zip: chạy ngay; -full.zip: kèm Java cho máy chủ tiện ích</span></td><td class="dls"><a class="dl" data-pat="YomiHub-{v}-windows-x64-Setup.exe" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-windows-x64-Setup.exe" title="Tải YomiHub-0.6.2-windows-x64-Setup.exe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>Setup.exe</a><a class="dl" data-pat="YomiHub-{v}-windows-x64.appxbundle" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-windows-x64.appxbundle" title="Tải YomiHub-0.6.2-windows-x64.appxbundle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>.appxbundle</a><a class="dl" data-pat="YomiHub-{v}-windows-x64.zip" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-windows-x64.zip" title="Tải YomiHub-0.6.2-windows-x64.zip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>.zip</a><a class="dl" data-pat="YomiHub-{v}-windows-x64-full.zip" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.2/YomiHub-0.6.2-windows-x64-full.zip" title="Tải YomiHub-0.6.2-windows-x64-full.zip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>-full.zip</a></td></tr>
+</thead>
+<tbody>
+<tr><td><b>Android 7.0 trở lên</b><br><span class="note">Điện thoại, máy tính bảng (chọn arm64-v8a nếu không chắc)</span></td><td class="dls"><a class="dl" data-pat="YomiHub-{v}-arm64-v8a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-arm64-v8a.apk" title="Tải YomiHub-0.6.3-arm64-v8a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>arm64-v8a</a><a class="dl" data-pat="YomiHub-{v}-armeabi-v7a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-armeabi-v7a.apk" title="Tải YomiHub-0.6.3-armeabi-v7a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>armeabi-v7a</a><a class="dl" data-pat="YomiHub-{v}-x86_64.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-x86_64.apk" title="Tải YomiHub-0.6.3-x86_64.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>x86_64</a></td></tr>
+<tr><td><b>Android 6.0</b><br><span class="note">Chỉ dành cho máy Android 6.0</span></td><td class="dls"><a class="dl" data-pat="YomiHub-{v}-android6-arm64-v8a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-android6-arm64-v8a.apk" title="Tải YomiHub-0.6.3-android6-arm64-v8a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>arm64-v8a</a><a class="dl" data-pat="YomiHub-{v}-android6-armeabi-v7a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-android6-armeabi-v7a.apk" title="Tải YomiHub-0.6.3-android6-armeabi-v7a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>armeabi-v7a</a><a class="dl" data-pat="YomiHub-{v}-android6-x86_64.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-android6-x86_64.apk" title="Tải YomiHub-0.6.3-android6-x86_64.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>x86_64</a></td></tr>
+<tr><td><b>Android TV</b><br><span class="note">YumiHub Android TV – điều khiển D-Pad, tập trung Phim &amp; Điện ảnh (bỏ Comic, Novel, Google Play Books, Booru và Tủ Sách Cá Nhân)</span></td><td class="dls"><a class="dl" data-pat="YumiHub-Android-TV-{v}-arm64-v8a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YumiHub-Android-TV-0.6.3-arm64-v8a.apk" title="Tải YumiHub-Android-TV-0.6.3-arm64-v8a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>arm64-v8a</a><a class="dl" data-pat="YumiHub-Android-TV-{v}-armeabi-v7a.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YumiHub-Android-TV-0.6.3-armeabi-v7a.apk" title="Tải YumiHub-Android-TV-0.6.3-armeabi-v7a.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>armeabi-v7a</a><a class="dl" data-pat="YumiHub-Android-TV-{v}-x86_64.apk" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YumiHub-Android-TV-0.6.3-x86_64.apk" title="Tải YumiHub-Android-TV-0.6.3-x86_64.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>x86_64</a></td></tr>
+<tr><td><b>Windows 10/11 (x64)</b><br><span class="note">Hỗ trợ Windows 10/11 x64. Setup.exe: cài đặt; .appxbundle: gói ký số; .zip: chạy ngay; -full.zip: kèm Java (M-Extension-Server) cho tiện ích APK</span></td><td class="dls"><a class="dl" data-pat="YomiHub-{v}-windows-x64-Setup.exe" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-windows-x64-Setup.exe" title="Tải YomiHub-0.6.3-windows-x64-Setup.exe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>Setup.exe</a><a class="dl" data-pat="YomiHub-{v}-windows-x64.appxbundle" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-windows-x64.appxbundle" title="Tải YomiHub-0.6.3-windows-x64.appxbundle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>.appxbundle</a><a class="dl" data-pat="YomiHub-{v}-windows-x64.zip" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-windows-x64.zip" title="Tải YomiHub-0.6.3-windows-x64.zip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>.zip</a><a class="dl" data-pat="YomiHub-{v}-windows-x64-full.zip" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-windows-x64-full.zip" title="Tải YomiHub-0.6.3-windows-x64-full.zip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>-full.zip</a></td></tr>
+<tr><td><b>Hỗ trợ cài Windows &amp; Xác minh tệp</b><br><span class="note">Chứng chỉ/script cài gói <code>.appxbundle</code>, mã kiểm tra SHA-256 và nhật ký thay đổi</span></td><td class="dls"><a class="dl" data-pat="YomiHub-RootCA.cer" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-RootCA.cer" title="Tải YomiHub-RootCA.cer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>RootCA.cer</a><a class="dl" data-pat="Install-YomiHub.bat" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/Install-YomiHub.bat" title="Tải Install-YomiHub.bat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>Install.bat</a><a class="dl" data-pat="Install-YomiHub.ps1" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/Install-YomiHub.ps1" title="Tải Install-YomiHub.ps1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>Install.ps1</a><a class="dl" data-pat="SHA256SUMS-{v}.txt" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/SHA256SUMS-0.6.3.txt" title="Tải SHA256SUMS-0.6.3.txt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>SHA256SUMS</a><a class="dl" data-pat="YomiHub-{v}-changelog.md" href="https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.3/YomiHub-0.6.3-changelog.md" title="Tải YomiHub-0.6.3-changelog.md"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3"/></svg>Changelog</a></td></tr>
+</tbody>
 </table>
 <p class="note">Tất cả bản cài và tệp <code>SHA256SUMS</code> có trên <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest">trang phát hành mới nhất</a>.</p>
 <script>
@@ -78,6 +89,29 @@ fetch('https://api.github.com/repos/kiritokmn1403/YomiHub-Project/releases/lates
 
 <h2>Tính năng</h2>
 <div class="grid">
+  <div class="card"><h3><span>🗂️ Tủ Sách Cá Nhân</span><span class="badge">Mới 0.6.3</span></h3><ul>
+    <li>Quản lý bộ truyện &amp; sách giấy ngoại tuyến (lưu cục bộ trên thiết bị), bật/tắt trong <em>Bật/Tắt tính năng &amp; Nguồn mở rộng</em></li>
+    <li>Tìm nhanh không dấu theo tên hoặc số tập (vd. <code>One Piece 105</code>), huy hiệu <em>Đã có / Có bản thường / Chưa mua</em> và 6 bộ gần đây</li>
+    <li>Quét mã vạch ISBN + tra cứu Google Books / Open Library, chống mua trùng theo bộ, tập và phiên bản</li>
+    <li>Phát hiện tập thiếu, danh sách <em>Cần mua</em>, thư mục bản Limited + phụ kiện + ảnh, thống kê, nhập/xuất CSV (không có trên Android TV)</li>
+  </ul></div>
+  <div class="card"><h3><span>🛡️ VPN, DNS &amp; Tự chuyển Tor</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
+    <li><strong>Tự chuyển qua Tor khi trang bị chặn</strong>: khi Tor đang chạy, tự động thử lại qua Tor cho trang bị nhà mạng chặn (cả tiện ích APK và ảnh bìa trả về HTML chặn)</li>
+    <li>Tor (cầu nối Snowflake, obfs4, meek – tự đổi khi kẹt; bỏ qua thời gian app treo nền), Cloudflare WARP, WireGuard, VPN Gate</li>
+    <li>DNS-over-HTTPS, chặn quảng cáo; tự giải và hỗ trợ giải Cloudflare thủ công trong WebView</li>
+    <li>Chọn phạm vi VPN cho từng tiện ích</li>
+  </ul></div>
+  <div class="card"><h3><span>🧩 Hợp nhất tiện ích</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
+    <li>Gộp cùng một bộ truyện/phim từ nhiều nguồn vào một trang, gắn dấu <strong>Đã hợp nhất · N nguồn</strong></li>
+    <li>Chọn nguồn đọc/xem hoặc chuyển đọc từ tiện ích trong bộ hợp nhất ngay trên trang chi tiết</li>
+    <li>Gộp truyện trùng, gộp thủ công, gom theo nhóm tiện ích</li>
+  </ul></div>
+  <div class="card"><h3><span>🎨 Giao diện thích ứng &amp; Tiện ích</span><span class="badge">Cập nhật 0.6.3</span></h3><ul>
+    <li>Giao diện <strong>YomiHub New Version</strong> thích ứng máy tính bảng, Android TV và Windows (thanh bên thu gọn được, lưới phản hồi, hỗ trợ D-pad), cùng <em>Old Version</em> &amp; <em>Shiori</em></li>
+    <li>Health Connect (ghi thời gian đọc/xem, nhắc nghỉ mắt 20-20-20), GIF Viewer, thống kê, chế độ ẩn danh</li>
+    <li>Nhật ký ứng dụng chi tiết, kiểm tra cập nhật từ GitHub / Google Drive / MediaFire, danh sách <em>Dự án GitHub đã sử dụng</em></li>
+    <li>67 ngôn ngữ giao diện</li>
+  </ul></div>
   <div class="card"><h3>📖 Truyện tranh</h3><ul>
     <li>Đọc manga, manhwa, manhua, webtoon từ hàng nghìn nguồn</li>
     <li>Cuộn dọc liên tục (cuộn vô hạn), lật trang, trang đôi, đọc phải sang trái</li>
@@ -85,58 +119,42 @@ fetch('https://api.github.com/repos/kiritokmn1403/YomiHub-Project/releases/lates
     <li>Thư viện có lọc, sắp xếp, danh mục, lịch sử, cập nhật chương mới</li>
   </ul></div>
   <div class="card"><h3>🎬 Phim &amp; Anime</h3><ul>
-    <li>Trình phát tích hợp, đổi máy chủ/luồng phát, phụ đề</li>
+    <li>Trình phát tích hợp, đổi máy chủ/luồng phát, phụ đề, SponsorBlock</li>
     <li>Nhớ vị trí đã xem, xem tiếp đúng chỗ</li>
     <li>Picture-in-Picture (PiP), tải tập về máy</li>
-    <li>Video ngắn (Shorts) vuốt liên tục cho tiện ích có hỗ trợ</li>
+    <li>Video ngắn (Shorts) vuốt liên tục cho mọi tiện ích video</li>
   </ul></div>
   <div class="card"><h3>📚 Tiểu thuyết, Ebook &amp; PDF</h3><ul>
     <li>Đọc tiểu thuyết trực tuyến, chỉnh cỡ chữ, phông, giãn dòng, nền tối</li>
     <li>Mở tệp EPUB và PDF trên máy</li>
-    <li>Dịch ảnh (Image Translation) cho trang truyện</li>
+    <li>Dịch ảnh (Image Translation) cho trang truyện và dịch tiểu thuyết</li>
   </ul></div>
   <div class="card"><h3>🛒 Google Play Sách</h3><ul>
     <li>Google Play Sách nhúng ngay trong ứng dụng: Trang chủ, Thư viện, Danh sách yêu thích, Cửa hàng</li>
-    <li>Đăng nhập tài khoản Google để đọc sách đã mua</li>
+    <li>Đăng nhập tài khoản Google để đọc sách đã mua (không có trên Android TV)</li>
   </ul></div>
   <div class="card"><h3>🎨 Booru App</h3><ul>
     <li>Duyệt, tìm kiếm, tải ảnh từ các trang Booru (Danbooru, Yande.re…), thêm nguồn tùy chỉnh</li>
-    <li>Gợi ý thẻ, yêu thích, lịch sử tìm kiếm, danh sách chặn – có trong bản sao lưu</li>
+    <li>Gợi ý thẻ, yêu thích, lịch sử tìm kiếm, danh sách chặn – có tùy chọn đi kèm bản sao lưu (không có trên Android TV)</li>
   </ul></div>
-  <div class="card"><h3>🔌 Kho tiện ích nhiều nền tảng</h3><ul>
+  <div class="card"><h3>🔌 Kho tiện ích &amp; Bộ lọc mới</h3><ul>
     <li>Chạy tiện ích Mihon/Tachiyomi, Aniyomi, Mangayomi, Kotatsu, LNReader, IReader, Aidoku và vBook</li>
-    <li>Tự gợi ý kho tiện ích mới từ các trang cộng đồng</li>
-    <li>Bộ lọc tìm kiếm của tiện ích, đổi URL/tên miền khi trang chuyển nhà</li>
+    <li>Bộ lọc mới (9 nhóm ô chọn, chọn nhiều mục) &amp; gợi ý lỗi thân thiện (JSON parse Aidoku, headless browser, chứng chỉ SSL, trang bị chặn)</li>
+    <li>Tự gợi ý kho tiện ích mới, đổi URL/tên miền khi trang chuyển nhà</li>
     <li>Mangayomi Extension Server, ApkBridge, máy chủ tiện ích Mihon</li>
   </ul></div>
-  <div class="card"><h3>🧩 Hợp nhất tiện ích</h3><ul>
-    <li>Gộp cùng một bộ truyện/phim từ nhiều nguồn vào một trang</li>
-    <li>Chọn nguồn đọc/xem, gộp truyện trùng, gộp thủ công</li>
-  </ul></div>
-  <div class="card"><h3>🛡️ VPN, DNS &amp; Cloudflare</h3><ul>
-    <li>Tor (cầu nối Snowflake, obfs4, meek – tự đổi khi bị kẹt), Cloudflare WARP, WireGuard, VPN Gate</li>
-    <li>DNS-over-HTTPS, chặn quảng cáo</li>
-    <li>Tự giải và hỗ trợ giải Cloudflare thủ công trong WebView</li>
-    <li>Chọn phạm vi VPN cho từng tiện ích</li>
-  </ul></div>
   <div class="card"><h3>🌐 Trình duyệt &amp; Web Scanner</h3><ul>
-    <li>Trình duyệt tích hợp mở trang nguồn, đăng nhập, giải thử thách</li>
-    <li>Web Scanner tìm và mở nội dung từ trang web</li>
+    <li>Trình duyệt tích hợp mở trang nguồn, đăng nhập, giải thử thách, bảo vệ dấu vân tay trình duyệt</li>
+    <li>Web Scanner tìm và mở nội dung từ trang web; Savior quét liên kết phát video</li>
   </ul></div>
   <div class="card"><h3>☁️ Sao lưu &amp; Đồng bộ</h3><ul>
-    <li>Chọn từng mục sao lưu: thư viện, lịch sử, tiện ích, cài đặt, Booru</li>
-    <li>Đăng nhập bằng tài khoản Google để sao lưu lên Google Drive</li>
-    <li>OneDrive, Dropbox, Telegram Bot, Rclone, tự sao lưu định kỳ</li>
+    <li>Chọn từng mục sao lưu: thư viện, lịch sử, tiện ích, cài đặt, Booru App và <strong>Tủ Sách Cá Nhân</strong></li>
+    <li>Đăng nhập bằng tài khoản Google hoặc Client ID riêng để sao lưu lên Google Drive</li>
+    <li>OneDrive, Dropbox, WebDAV, Telegram Bot, Rclone, MediaFire, tự sao lưu định kỳ</li>
   </ul></div>
   <div class="card"><h3>📡 Chia sẻ &amp; Theo dõi</h3><ul>
-    <li>AirDrop &amp; Quick Share: gửi tệp giữa điện thoại và máy tính</li>
+    <li>AirDrop &amp; Quick Share (LAN / Bluetooth): gửi tệp giữa điện thoại và máy tính</li>
     <li>Trình theo dõi MyAnimeList, AniList, Trakt…; xuất danh sách MyAnimeList</li>
-  </ul></div>
-  <div class="card"><h3>🩺 Sức khỏe &amp; Tiện ích</h3><ul>
-    <li>Health Connect: ghi thời gian đọc/xem, nhắc nghỉ mắt 20-20-20</li>
-    <li>Thống kê, chế độ ẩn danh, giao diện Cũ/Mới (Liquid Glass, Shiori)</li>
-    <li>Nhật ký ứng dụng chi tiết để báo lỗi; kiểm tra cập nhật từ GitHub, Google Drive, MediaFire</li>
-    <li>18 ngôn ngữ giao diện</li>
   </ul></div>
 </div>
 

@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/vpn/auto_tor.dart';
 // ignore_for_file: non_nullable_equals_parameter, depend_on_referenced_packages, implementation_imports
 import 'dart:async';
 import 'dart:convert';
@@ -539,6 +540,14 @@ class CustomExtendedNetworkImageProvider
       if (bytes.length >= 6) {
         final prefix = String.fromCharCodes(bytes.sublist(0, bytes.length < 40 ? bytes.length : 40)).toLowerCase();
         if (prefix.contains('<!doctype') || prefix.contains('<html') || prefix.contains('{"error"') || prefix.contains('{"code"')) {
+          // 0.6.3 (log 18–20/11: uploads.mangadex.org covers at every start):
+          // an ISP block page instead of the picture – the next loads of this
+          // host go through Tor when Tor is connected.
+          if (prefix.contains('<html') || prefix.contains('<!doctype')) {
+            if (YomiAutoTor.torProxy() != null && YomiAutoTor.enabled && !YomiAutoTor.isRouted(resolved.host)) {
+              YomiAutoTor.remember(resolved.host, 'trang HTML thay vì ảnh');
+            }
+          }
           return await Future<Uint8List>.error(
             StateError('Server returned error/HTML instead of image: $resolved'),
           );

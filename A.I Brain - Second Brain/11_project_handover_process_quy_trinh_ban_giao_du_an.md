@@ -53,3 +53,9 @@ Danh sách kiểm:
 - Đã kiểm: Note 9 (APK arm64 cuối – New Version, bộ lọc cũ/mới, hồi quy bool→double, Polski, Drive 2 tùy chọn, nhãn log), Windows 11 (Setup.exe cài đè, bộ lọc mới), AVD Android 6.0 (mở app), AVD API 34 (APK TV cài + màn hình chờ).
 - Còn mở cho 0.6.3: `TECHNICAL_UPDATE_NOTES.md` mục 0.6.2 › 18.
 - Tác vụ nền: autosave 0.6.2 dừng bằng `jobs/STOP_AUTOSAVE_062`; lịch hẹn kiểm tra đã hết; máy ảo đã tắt; Antigravity hết credits tới 26/11.
+
+## H. Trạng thái bàn giao hiện tại (0.6.3 đang làm – 20/11/2026 13:05) – thay mục G
+- 0.6.3 (0.6.3+56) CHƯA phát hành; dây chuyền lần 5 đang chạy (`x063_build_main5`). Tiến độ chi tiết: `audit/audit-0.6.3/notes/PROGRESS_063.md` (cuối tệp).
+- Kiểm thử thiết bị: Note 9 không vào được adb (lỗi ủy quyền phía máy) → dùng Xiaomi 15T qua Phone Link (xem 06).
+- Repo tiện ích có 2 commit cục bộ chưa push (`edf2fbd`, `9d4b588`); chủ dự án đã đồng ý đẩy sau khi kiểm thử Xiaomi.
+- Antigravity hết AI credits tới 20/11 14:11.

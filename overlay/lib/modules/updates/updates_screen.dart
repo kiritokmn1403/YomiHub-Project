@@ -14,6 +14,7 @@ import 'package:mangayomi/modules/history/providers/isar_providers.dart';
 import 'package:mangayomi/providers/l10n_providers.dart';
 import 'package:mangayomi/services/library_updater.dart';
 import 'package:mangayomi/utils/date.dart';
+import 'package:mangayomi/yomihub/perf/updates_preload.dart';
 import 'package:mangayomi/modules/widgets/error_text.dart';
 import 'package:mangayomi/modules/widgets/progress_center.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
@@ -204,10 +205,23 @@ class _UpdateTabState extends ConsumerState<UpdateTab>
                 .whereType<int>()
                 .toSet()
                 .toList();
-            final mangaById = {
-              for (final m in mangaRepository.getAllByIds(mangaIds))
-                m?.id!: m!,
-            };
+            // 0.6.3: mangas come from the provider's async preload
+            // (kUpdateMangaCache); only ids it missed are read synchronously.
+            final missing = <int>[];
+            final mangaById = <int, Manga>{};
+            for (final id in mangaIds) {
+              final m = kUpdateMangaCache[id];
+              if (m != null) {
+                mangaById[id] = m;
+              } else {
+                missing.add(id);
+              }
+            }
+            if (missing.isNotEmpty) {
+              for (final m in mangaRepository.getAllByIds(missing)) {
+                if (m?.id != null) mangaById[m!.id!] = m;
+              }
+            }
 
             // Both maps above skip an entry that no longer resolves, and the
             // itemBuilder below then asserted it was there. An update whose

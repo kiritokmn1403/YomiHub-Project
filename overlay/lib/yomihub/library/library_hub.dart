@@ -112,7 +112,7 @@ List<String> buildMainNav({
     }
     if (_hidden(nav, hidden)) continue;
     if (nav == '/history' && !modern) continue;
-    if (tv && nav == '/booru') continue;
+    if (tv && (nav == '/booru' || nav == '/bookshelf')) continue;
     if (activity.contains(nav)) {
       if (!out.contains(kActivityNav)) out.add(kActivityNav);
       continue;

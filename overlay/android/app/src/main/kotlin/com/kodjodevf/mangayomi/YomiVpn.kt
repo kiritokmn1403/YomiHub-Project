@@ -92,6 +92,9 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
     }
 
     init {
+        // 0.6.3: must be installed before the extension runner builds its
+        // OkHttp clients (they keep the ProxySelector they were built with)
+        YomiAutoTorSelector.install()
         instance = this
         YomiWg.warpListener = { up -> main.post { channel.invokeMethod("warpState", up) } }
         LocalBroadcastManager.getInstance(ctx)
@@ -134,6 +137,14 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
                 }
                 "jvmProxy" -> {
                     setJvmProxy(call.argument<String>("url") ?: ""); result.success(true)
+                }
+                // 0.6.3: ISP-blocked hosts of APK extensions → Tor (YomiAutoTor)
+                "jvmAutoTor" -> {
+                    YomiAutoTorSelector.update(
+                        call.argument<String>("url") ?: "",
+                        call.argument<List<String>>("hosts") ?: emptyList(),
+                    )
+                    result.success(true)
                 }
                 "torExitNodes" -> {
                     val cc = (call.argument<String>("country") ?: "").lowercase()
@@ -564,4 +575,52 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
         }
     }
 
+}
+
+
+/** YomiHub 0.6.3 (log 16–20/11/2026: DamCoNuong, ViHentai, VinaHentai…
+ *  "connection closed" / 3-minute timeouts – the ISP blocks the site): hosts
+ *  the Dart side found blocked go through Tor's HTTP proxy, everything else
+ *  keeps the default selection (system properties set by "jvmProxy"). */
+object YomiAutoTorSelector : java.net.ProxySelector() {
+    @Volatile private var torHost = ""
+    @Volatile private var torPort = 0
+    @Volatile private var hosts: Set<String> = emptySet()
+    private var base: java.net.ProxySelector? = null
+
+    @Synchronized fun install() {
+        val cur = java.net.ProxySelector.getDefault()
+        if (cur === this) return
+        base = cur
+        java.net.ProxySelector.setDefault(this)
+    }
+
+    fun update(url: String, list: List<String>) {
+        hosts = list.map { it.lowercase() }.toSet()
+        try {
+            if (url.isBlank()) { torHost = ""; torPort = 0; return }
+            val u = java.net.URI(url)
+            torHost = u.host ?: ""
+            torPort = if (u.port > 0) u.port else 8118
+        } catch (_: Exception) { torHost = ""; torPort = 0 }
+    }
+
+    private fun globalProxySet(): Boolean =
+        !System.getProperty("https.proxyHost").isNullOrBlank() ||
+            !System.getProperty("http.proxyHost").isNullOrBlank() ||
+            !System.getProperty("socksProxyHost").isNullOrBlank()
+
+    override fun select(uri: java.net.URI?): MutableList<java.net.Proxy> {
+        val h = (uri?.host ?: "").lowercase()
+        if (torPort > 0 && torHost.isNotEmpty() && h.isNotEmpty() && !globalProxySet() &&
+            hosts.any { h == it || h.endsWith(".$it") }
+        ) {
+            return mutableListOf(java.net.Proxy(java.net.Proxy.Type.HTTP, java.net.InetSocketAddress(torHost, torPort)))
+        }
+        return base?.select(uri) ?: mutableListOf(java.net.Proxy.NO_PROXY)
+    }
+
+    override fun connectFailed(uri: java.net.URI?, sa: java.net.SocketAddress?, ioe: java.io.IOException?) {
+        base?.connectFailed(uri, sa, ioe)
+    }
 }
