@@ -140,3 +140,15 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - **Tác nhân có thể ghi đè sửa của Claude:** Antigravity đợt 2 chép từ `merged/` nhưng `site.js` lại về chuỗi cũ ("· phiên bản"). Sau mỗi đợt, diff bản mới với bản ghép trước của Claude.
 - **Kiểm website không cần trình duyệt thật:** Playwright + `/usr/bin/google-chrome` headless trong container: chụp 1280/390/tối, đo `document.documentElement.scrollWidth` (tràn ngang), chặn `api.github.com` khi chạy `file://`, kiểm TOC/tìm kiếm/nút Chép bằng `fill`/`click`, giả `user_agent` Android để thử gợi ý thiết bị. Tràn ngang hay gặp: URL dài trong `<code>` → `overflow-wrap:anywhere`.
 - **Container của phiên có thể khởi động lại giữa chừng** (tiến trình `environment-manager … --session-mode resume`): tệp tải lên thành chỉ đọc, thư mục tạm có thể bị thay bằng tệp lạ. Không tin thư mục tạm cũ – dựng lại từ tệp trên máy chủ dự án (nguồn sự thật là thư mục trên máy).
+
+## Bổ sung 21/11/2026 (0.6.4 – Claude Opus 5.5)
+- **Chép bộ script bản trước bằng thay chuỗi: KHÔNG thay nối tiếp** `v0.6.2→v0.6.3` rồi `0.6.3→0.6.4` – lượt sau biến tag so sánh thành `v0.6.4` (chưa có) → sync báo "git không báo tệp overlay nào thay đổi". Thay tag so sánh SAU CÙNG hoặc dùng ký hiệu tạm; sau khi chép, `grep -n "diff .*v0\.6\."` trong `sync_<ver>.ps1` phải là tag bản TRƯỚC.
+- **Đọc log nhiều phiên bản: lọc theo nhãn `[YH x.y.z (build)]` trước khi sửa** – log 13 có 77 ERROR nhưng hầu hết thuộc 0.5.9–0.6.2 (đã sửa); chỉ 5 nhóm thuộc 0.6.3. Dòng không nhãn là bản cũ (< 0.5.9).
+- **Tor "dừng ở 100%: Done" mà vẫn báo chưa kết nối**: hết 90 s chờ đúng lúc bootstrap vừa xong, broadcast ON của TorService đến sau → kiểm `PROGRESS=100` + `status/circuit-established == 1` ở nhánh hết giờ (Kotlin) và thăm dò lại phía Dart.
+- **Proxy nội bộ cho trình phát không được trả 502** khi đọc nguồn lỗi: mpv coi cả máy chủ hỏng. Lỗi → `302` về URL gốc; luôn có `.timeout()` cho yêu cầu playlist.
+- **Giới hạn thời gian theo phương thức của cầu nối APK**: getPageList/duyệt/tìm 90 s, chi tiết/chương/video 3 phút; hết giờ coi như "bị chặn" → auto-Tor 1 lần.
+- **file_picker 12**: `PlatformFile.bytes` không còn, `withData` deprecated → `await file.readAsBytes()`. **package:image** `decodeImage` có thể NÉM (PsdDecoder RangeError) với dữ liệu rác thay vì trả null → bọc try/catch.
+- **Khớp tên theo nguyên từ cần độ dài tối thiểu ≥ 4 ký tự** (tên bộ "Tôi" khớp mọi tiêu đề có chữ "tôi").
+- **Kho chết**: 404/410/451 (451 = gỡ theo DMCA) → cảnh báo 1 lần + hướng dẫn, không ERROR mỗi lần làm mới; thử `index.json` ↔ `index.min.json` (sugoi-modules chỉ có `index.json`).
+- **device_bash giới hạn độ dài lệnh ~128 KB**: tệp dữ liệu lớn (bản dịch) ghi trong container bằng Write rồi `device_commit_files` vào máy.
+- **`grep -r` trên ổ gắn của VM rất chậm** (quá 120 s với `overlay/lib`) → dùng `git grep` (~4 s).
