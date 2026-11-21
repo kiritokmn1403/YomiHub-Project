@@ -7,7 +7,9 @@ import 'package:mangayomi/utils/share.dart';
 import 'package:mangayomi/yomihub/bookshelf/bookshelf_logic.dart';
 import 'package:mangayomi/yomihub/bookshelf/bookshelf_models.dart';
 import 'package:mangayomi/yomihub/bookshelf/bookshelf_store.dart';
+import 'package:mangayomi/yomihub/bookshelf/bookshelf_feed.dart';
 import 'package:mangayomi/yomihub/bookshelf/ui/bookshelf_dialogs.dart';
+import 'package:mangayomi/yomihub/bookshelf/ui/bookshelf_feed_ui.dart';
 import 'package:mangayomi/yomihub/bookshelf/ui/bookshelf_scan_screen.dart';
 import 'package:mangayomi/yomihub/bookshelf/ui/bookshelf_series_screen.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
@@ -42,7 +44,8 @@ class _BookshelfHomeScreenState extends State<BookshelfHomeScreen> {
   @override
   void initState() {
     super.initState();
-    _store.init();
+    // 0.6.4 FN-16: publisher news are read at most once a day
+    _store.init().then((_) => BookshelfFeed.instance.refresh());
   }
 
   @override
@@ -220,6 +223,10 @@ class _BookshelfHomeScreenState extends State<BookshelfHomeScreen> {
                       await _importCsv();
                     case 'export':
                       await _exportCsv();
+                    case 'cover':
+                      await showBsCoverMatch(context, onOpenSeries: _openSeries);
+                    case 'feed':
+                      await showBsFeedSettings(context);
                   }
                 },
                 itemBuilder: (_) => [
@@ -239,6 +246,24 @@ class _BookshelfHomeScreenState extends State<BookshelfHomeScreen> {
                       contentPadding: EdgeInsets.zero,
                       leading: const Icon(Icons.add_shopping_cart_outlined),
                       title: Text(tr('Thêm vào Cần mua')),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'cover',
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.image_search_outlined),
+                      title: Text(tr('Nhận diện bìa bằng ảnh')),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'feed',
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.campaign_outlined),
+                      title: Text(tr('Cài đặt thanh gợi ý & nguồn tin')),
                     ),
                   ),
                   const PopupMenuDivider(),
@@ -422,6 +447,9 @@ class _BookshelfHomeScreenState extends State<BookshelfHomeScreen> {
           ),
         ),
         const SizedBox(height: 8),
+
+        // 0.6.4 FN-16: publisher news related to the shelf
+        if (trimmed.isEmpty) BsFeedBanner(onOpenSeries: _openSeries),
 
         // Instant search results (FN-02)
         if (trimmed.isNotEmpty) ...[

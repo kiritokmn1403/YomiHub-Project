@@ -10,6 +10,7 @@ import 'package:mangayomi/models/source.dart';
 import 'package:mangayomi/repositories/settings_repository.dart';
 import 'package:mangayomi/services/fetch_item_sources.dart';
 import 'package:mangayomi/services/http/m_client.dart';
+import 'package:mangayomi/services/fetch_sources_list.dart' show yomiSiblingIndexUrl;
 import 'package:mangayomi/services/extension_store_service.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -227,6 +228,10 @@ Future<Repo?> getRepoInfos(Ref ref, {required String jsonUrl}) async {
 
   // Normalize URLs that don't end with a file name (e.g. https://aidoku-community.github.io/sources)
   final urlsToTry = <String>[cleanUrl];
+  // 0.6.4: a repo that only has index.json (sugoi-modules) or only
+  // index.min.json can be added with either name.
+  final sibling = yomiSiblingIndexUrl(cleanUrl);
+  if (sibling != null) urlsToTry.add(sibling);
   if (!cleanUrl.endsWith('.json') && !cleanUrl.endsWith('.pb')) {
     final normalized = cleanUrl.endsWith('/')
         ? cleanUrl.substring(0, cleanUrl.length - 1)

@@ -417,6 +417,7 @@ class YomiMes {
     String configured,
     String body, {
     Map<String, String>? headers,
+    Duration timeout = const Duration(minutes: 3),
   }) async {
     if (active && _base == null) await ensure();
     if (Platform.isWindows && active && _base == null) {
@@ -434,7 +435,7 @@ class YomiMes {
     try {
       return await _local
           .post(Uri.parse('$base/dalvik'), body: body, headers: h)
-          .timeout(const Duration(minutes: 3));
+          .timeout(timeout);
     } on TimeoutException {
       rethrow;
     } catch (e) {
@@ -443,7 +444,7 @@ class YomiMes {
       if (nb == null) rethrow;
       return _local
           .post(Uri.parse('$nb/dalvik'), body: body, headers: h)
-          .timeout(const Duration(minutes: 3));
+          .timeout(timeout);
     }
   }
 

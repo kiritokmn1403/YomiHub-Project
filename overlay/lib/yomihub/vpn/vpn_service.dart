@@ -598,6 +598,17 @@ class YomiVpnService extends ChangeNotifier {
 
   Future<void> _put(String k, Object v) async => _box?.put(k, v);
 
+  /// 0.6.4: tor reported 100 % when [startTor] gave up – poll its status a
+  /// few times (3 s, 8 s, 20 s) and adopt the connection as soon as it is ON.
+  void _scheduleTorRecheck(int generation) {
+    for (final s in const [3, 8, 20]) {
+      Timer(Duration(seconds: s), () {
+        if (generation != _torGeneration || !YomiVpnState.torEnabled || YomiVpnState.torRunning) return;
+        unawaited(_onTorLateOn());
+      });
+    }
+  }
+
   /// 0.4.4: adopts a Tor connection that came up after [startTor] returned.
   Future<void> _onTorLateOn() async {
     // 0.5.7 (V3): on a normal start the native "ON" arrives ~300 ms before
@@ -747,9 +758,17 @@ class YomiVpnService extends ChangeNotifier {
       final pct = RegExp(r'PROGRESS=(\d+)').firstMatch(boot)?.group(1);
       final sum = RegExp(r'SUMMARY="([^"]*)"').firstMatch(boot)?.group(1);
       _softNextError = !YomiVpnState.torRunning && pct != null;
+      // 0.6.4 (logs 13, 20/11 12:40): "dừng ở 100%: Done" = tor finished
+      // bootstrapping right at the 90 s limit; its ON status follows a moment
+      // later. Re-check instead of reporting a failed connection.
+      if (!YomiVpnState.torRunning && pct == '100') {
+        _scheduleTorRecheck(generation);
+      }
       lastError = YomiVpnState.torRunning
           ? null
-          : (pct == null
+          : pct == '100'
+              ? tr('Tor đã tải xong (100%) – đang chờ xác nhận mạch kết nối, YomiHub sẽ tự dùng Tor ngay khi sẵn sàng.')
+              : (pct == null
               ? tr('Tor chưa kết nối được (có thể mạng đang chặn Tor).')
               : (Platform.isAndroid && (torBridge == 'auto' || (torBridgeFallback && TorBridgeFallback.appliesTo(torBridge)))
                   ? tr('Tor chưa kết nối được sau 90 giây (dừng ở {p0}%{p1}) – YomiHub đang thử cầu nối (Snowflake/obfs4/meek) ở nền và sẽ tự dùng Tor khi kết nối xong.',

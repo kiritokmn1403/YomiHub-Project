@@ -449,10 +449,26 @@ class YomiVpn(private val activity: Activity, messenger: BinaryMessenger) {
             if (torWaiters.contains(result)) {
                 torWaiters.remove(result)
                 io.execute {
+                    val c = torService?.torControlConnection
                     torBoot = try {
-                        torService?.torControlConnection?.getInfo("status/bootstrap-phase") ?: ""
+                        c?.getInfo("status/bootstrap-phase") ?: ""
                     } catch (_: Exception) { "" }
-                    main.post { result.success(torInfo()) }
+                    // 0.6.4 (logs 13, 20/11 12:40): bootstrap was already
+                    // "PROGRESS=100 TAG=done" when the 90 s wait ended, but the
+                    // TorService ON broadcast had not arrived yet, so the app
+                    // reported "Tor chưa kết nối được (dừng ở 100%: Done)" and
+                    // kept every source on the kill switch. A finished
+                    // bootstrap with an established circuit IS a working Tor.
+                    val circuit = try { c?.getInfo("status/circuit-established") ?: "" } catch (_: Exception) { "" }
+                    val lateOn = torStatus != TorService.STATUS_ON && torBoot.contains("PROGRESS=100") && circuit == "1"
+                    if (lateOn) {
+                        torStatus = TorService.STATUS_ON
+                        refreshTorPorts()
+                    }
+                    main.post {
+                        if (lateOn) channel.invokeMethod("torStatus", torStatus)
+                        result.success(torInfo())
+                    }
                 }
             }
         }, 90_000)

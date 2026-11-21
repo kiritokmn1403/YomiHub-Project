@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:mangayomi/services/fetch_sources_list.dart' show yomiHealGroupHeaders;
 import 'package:mangayomi/yomihub/vpn/auto_tor.dart';
 import 'dart:io';
@@ -407,12 +408,43 @@ class MihonExtensionService implements ExtensionService {
   /// solved by YomiHub's own solver (WebView on the main isolate via the
   /// local resolve_cf endpoint) and the call is retried once with the new
   /// cf_clearance cookie and its User-Agent.
+  /// 0.6.4: per-method bridge time limit (public for tests). Browsing, search
+  /// and page lists are interactive – 90 s; the rest (details, chapter lists,
+  /// videos with slow resolvers) keep the bridge's 3 minutes.
+  static Duration dalvikTimeoutFor(String body) {
+    final m = RegExp(r'"method"\s*:\s*"([A-Za-z]+)"').firstMatch(body)?.group(1) ?? '';
+    // "getPopular$name" → getPopularManga / getPopularAnime, etc.
+    const quick = ['getPageList', 'getPopular', 'getLatest', 'getSearch', 'getFilterList'];
+    return quick.any(m.startsWith) ? const Duration(seconds: 90) : const Duration(minutes: 3);
+  }
+
   Future<Response> _dalvikCf(
     String proxy,
     String body, {
     Map<String, String>? headers,
   }) async {
-    var res = await YomiMes.dalvik(proxy, body, headers: headers ?? getCookie());
+    // 0.6.4 (logs 13, 20/11 16:10 CBHentai, 23:06 DamCoNuong): getPageList
+    // waited the bridge's full 3 minutes on a dead/blocked site. Browsing and
+    // page lists now give up after 90 s; a timeout counts as "blocked" so the
+    // host can go through Tor once (auto-Tor) before the error is shown.
+    final limit = dalvikTimeoutFor(body);
+    http.Response res;
+    try {
+      res = await YomiMes.dalvik(proxy, body, headers: headers ?? getCookie(), timeout: limit);
+    } on TimeoutException {
+      final host = Uri.tryParse(source.baseUrl ?? '')?.host ?? '';
+      final tor = Platform.isAndroid ? YomiAutoTor.torProxy() : null;
+      if (tor == null || !YomiAutoTor.enabled || host.isEmpty || YomiAutoTor.isRouted(host) ||
+          YomiVpnState.jvmBridgeProxy != null) {
+        throw TimeoutException(
+            tr('Trang của tiện ích không phản hồi sau {p0} giây (có thể trang đang lỗi hoặc bị nhà mạng chặn) – thử bật VPN/Tor cho tiện ích hoặc đổi tên miền.',
+                {'p0': limit.inSeconds}),
+            limit);
+      }
+      YomiAutoTor.remember(host, 'tiện ích APK "${source.name}": quá ${limit.inSeconds} giây không phản hồi');
+      await YomiMes.setJvmAutoTor(tor, YomiAutoTor.routedHosts.toList());
+      res = await YomiMes.dalvik(proxy, body, headers: headers ?? getCookie(), timeout: limit);
+    }
     // 0.6.3 (log 16–20/11: DamCoNuong / ViHentai / VinaHentai "connection
     // closed"): the ISP blocks the site and the extension is outside the VPN
     // scope → its host goes through Tor (Kotlin YomiAutoTorSelector), retry once.

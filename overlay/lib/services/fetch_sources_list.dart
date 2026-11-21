@@ -86,7 +86,15 @@ Future<void> fetchSourcesList({
   } else {
     // Fallback parsing for non-Mihon direct JSON lists (LNReader or custom format)
     try {
-      final req = await GhMirror.get(http, Uri.parse(url));
+      var req = await GhMirror.get(http, Uri.parse(url));
+      // 0.6.4 (Windows log 0.6.3: Schnitzel5/sugoi-modules 404): some repos
+      // only publish index.json (or only index.min.json) – try the sibling
+      // name before giving up.
+      final sibling = yomiSiblingIndexUrl(url);
+      if (req.statusCode == 404 && sibling != null) {
+        final alt = await GhMirror.get(http, Uri.parse(sibling));
+        if (alt.statusCode == 200 && alt.bodyBytes.isNotEmpty) req = alt;
+      }
       if (req.statusCode == 200 && req.bodyBytes.isNotEmpty) {
         dynamic decoded;
         final bytes = req.bodyBytes;
@@ -158,9 +166,22 @@ Future<void> fetchSourcesList({
                           -1),
             )
             .toList();
+      } else if (yomiRepoGone(req.statusCode)) {
+        // 0.6.4: a removed repo (404/410, 451 = taken down by DMCA – e.g.
+        // MiraiEnoki/anymex_extensions) is not an app error: warn once per
+        // session with what to do instead of an ERROR on every refresh.
+        AppLogger.logOnce(
+          'repo-gone:$url',
+          '[Kho tiện ích] Kho $url không còn tồn tại (HTTP ${req.statusCode}${req.statusCode == 451 ? ' – bị gỡ theo yêu cầu bản quyền' : ''}) – '
+              'hãy xoá kho này hoặc thay địa chỉ mới trong Duyệt › Kho tiện ích.',
+          logLevel: LogLevel.warning,
+        );
+        throw YomiLoggedError(HttpException('Repository removed: HTTP ${req.statusCode}'));
       } else {
         throw HttpException('Invalid repository response: HTTP ${req.statusCode}');
       }
+    } on YomiLoggedError {
+      rethrow;
     } catch (e, st) {
       // A failure here drops sources from the list with no sign of why.
       final t = e.toString().toLowerCase();
@@ -871,3 +892,17 @@ List<dynamic> yomiHealGroupHeaders(List<dynamic> filters) {
   }
   return filters;
 }
+
+/// 0.6.4: `…/index.min.json` ↔ `…/index.json` (null for other names). Public
+/// for tests.
+String? yomiSiblingIndexUrl(String url) {
+  final q = url.indexOf('?');
+  final path = q < 0 ? url : url.substring(0, q);
+  final rest = q < 0 ? '' : url.substring(q);
+  if (path.endsWith('/index.min.json')) return '${path.substring(0, path.length - 'index.min.json'.length)}index.json$rest';
+  if (path.endsWith('/index.json')) return '${path.substring(0, path.length - 'index.json'.length)}index.min.json$rest';
+  return null;
+}
+
+/// 0.6.4: HTTP codes meaning the repository index is gone for good.
+bool yomiRepoGone(int code) => code == 404 || code == 410 || code == 451;

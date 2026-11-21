@@ -12,6 +12,7 @@ import 'package:mangayomi/modules/manga/reader/u_chap_data_preload.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:mangayomi/yomihub/reader/frank_yomik.dart';
 import 'package:mangayomi/yomihub/reader/novel_translate.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -132,6 +133,22 @@ class YomiImageTranslate {
         if (bytes == null) await Future.delayed(const Duration(seconds: 2));
       }
       if (bytes == null) return null;
+      // 0.6.4 (R7): the user's FrankYomik server returns the finished page;
+      // on failure fall back to the built-in OCR + translation below.
+      if (FrankYomikClient.selected) {
+        final c = FrankYomikClient();
+        try {
+          final png = await c.process(bytes);
+          await out.writeAsBytes(png, flush: true);
+          return out.path;
+        } catch (e) {
+          AppLogger.logOnce('frank:${e.runtimeType}:$e',
+              '[Dịch ảnh] Máy chủ Frank Yomik (${c.base}) lỗi: $e – dùng bộ dịch có sẵn của YomiHub cho trang này',
+              logLevel: LogLevel.warning);
+        } finally {
+          c.close();
+        }
+      }
       final blocks = await recognize(bytes);
       final useful = blocks.where((b) => _worth(b.text)).toList();
       debugPrint('YomiImageTranslate: ${blocks.length} blocks, ${useful.length} with text');
@@ -412,6 +429,72 @@ foreach ($l in $res.Lines) {
                       }
                     : null,
               ),
+              ListTile(
+                title: Text(tr('Bộ máy dịch ảnh')),
+                trailing: DropdownButton<String>(
+                  value: FrankYomikClient.selected ? 'frank' : 'builtin',
+                  items: [
+                    DropdownMenuItem(value: 'builtin', child: Text(tr('Có sẵn (OCR + dịch máy)'))),
+                    DropdownMenuItem(value: 'frank', child: Text(tr('Frank Yomik (máy chủ tự dựng)'))),
+                  ],
+                  onChanged: (v) async {
+                    await YomiPrefs.set('imgTranslateEngine', v);
+                    await clear();
+                    set(() {});
+                  },
+                ),
+              ),
+              if (FrankYomikClient.selected) ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  child: TextFormField(
+                    initialValue: FrankYomikClient.baseUrl,
+                    decoration: InputDecoration(labelText: tr('Địa chỉ máy chủ Frank Yomik'), hintText: 'http://192.168.1.10:8080'),
+                    onChanged: (v) => YomiPrefs.set('frankYomikUrl', v.trim()),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  child: TextFormField(
+                    initialValue: FrankYomikClient.token,
+                    obscureText: true,
+                    decoration: InputDecoration(labelText: tr('Token (Authorization: Bearer)')),
+                    onChanged: (v) => YomiPrefs.set('frankYomikToken', v.trim()),
+                  ),
+                ),
+                ListTile(
+                  title: Text(tr('Chế độ xử lý')),
+                  trailing: DropdownButton<String>(
+                    value: FrankYomikClient.pipeline,
+                    items: [
+                      for (final e in FrankYomikClient.pipelines.entries)
+                        DropdownMenuItem(value: e.key, child: Text(tr(e.value))),
+                    ],
+                    onChanged: (v) async {
+                      await YomiPrefs.set('frankYomikPipeline', v);
+                      await clear();
+                      set(() {});
+                    },
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.wifi_tethering),
+                  title: Text(tr('Kiểm tra kết nối máy chủ')),
+                  onTap: () async {
+                    final c = FrankYomikClient();
+                    String msg;
+                    try {
+                      msg = tr('Kết nối được: {p0}', {'p0': await c.health()});
+                    } catch (e) {
+                      msg = tr('Không kết nối được: {p0}', {'p0': '$e'});
+                      AppLogger.log('[Dịch ảnh] Kiểm tra máy chủ Frank Yomik (${c.base}) thất bại: $e', logLevel: LogLevel.warning);
+                    } finally {
+                      c.close();
+                    }
+                    if (ctx.mounted) ScaffoldMessenger.maybeOf(ctx)?.showSnackBar(SnackBar(content: Text(msg)));
+                  },
+                ),
+              ],
               ListTile(
                 title: Text(tr('Ngôn ngữ trong ảnh')),
                 trailing: DropdownButton<String>(

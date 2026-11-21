@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:mangayomi/services/http/m_client.dart';
+import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/browser/adblock.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
@@ -326,11 +327,16 @@ class YomiHlsAdFilter {
 
   static Future<void> handle(HttpRequest request) async {
     final response = request.response;
+    Uri? target;
     try {
-      final target = Uri.parse(request.uri.queryParameters['u'] ?? '');
+      target = Uri.parse(request.uri.queryParameters['u'] ?? '');
       final enc = request.uri.queryParameters['h'];
       final h = _headers(enc);
-      final body = await _fetch(target, h);
+      // 0.6.4 (logs 13, 20/11 21:45 "Failed to open http://127.0.0.1:…/yh_hls"):
+      // the playlist fetch could hang or fail (proxy/Tor/CDN reset) and the
+      // 502 made mpv give up on a server that plays fine directly. Bound the
+      // fetch and fall back to the origin on any failure (catch below).
+      final body = await _fetch(target, h).timeout(const Duration(seconds: 25));
       if (body == null || !body.trimLeft().startsWith('#EXTM3U')) {
         // not a playlist (or refused): let the player go to the origin
         response.statusCode = HttpStatus.found;
@@ -352,9 +358,18 @@ class YomiHlsAdFilter {
       response.contentLength = bytes.length;
       response.add(bytes);
       await response.close();
-    } catch (_) {
+    } catch (e) {
+      final origin = target;
+      AppLogger.log(
+          '[Trình phát] Bộ lọc quảng cáo HLS không đọc được playlist (${e.runtimeType}) – phát thẳng từ máy chủ gốc ${origin?.host ?? ''}',
+          logLevel: LogLevel.warning);
       try {
-        response.statusCode = HttpStatus.badGateway;
+        if (origin != null && origin.hasScheme && origin.host.isNotEmpty) {
+          response.statusCode = HttpStatus.found;
+          response.headers.set(HttpHeaders.locationHeader, origin.toString());
+        } else {
+          response.statusCode = HttpStatus.badGateway;
+        }
         await response.close();
       } catch (_) {}
     }

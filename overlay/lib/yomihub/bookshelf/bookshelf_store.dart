@@ -117,6 +117,22 @@ class BookshelfStore extends ChangeNotifier {
     return ok;
   }
 
+  /// 0.6.4: raw values kept in the same box (publisher feed FN-16/29, cover
+  /// hashes FN-22) – so backups / cloud sync carry them with the bookshelf.
+  Object? raw(String key) => _box?.get(key);
+
+  Future<bool> putRaw(String key, Object? value) async {
+    final box = _box;
+    if (box == null || !box.isOpen) return false;
+    try {
+      await box.put(key, value);
+      return true;
+    } catch (e) {
+      AppLogger.log('[Tủ Sách] Không lưu được dữ liệu ($key): $e', logLevel: LogLevel.error);
+      return false;
+    }
+  }
+
   static int _seq = 0;
   static String newId(String p) =>
       '$p${DateTime.now().microsecondsSinceEpoch.toRadixString(36)}${(_seq++ % 1296).toRadixString(36)}';
