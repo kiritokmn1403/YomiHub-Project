@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YomiHub – Đọc truyện, xem phim, đọc tiểu thuyết &amp; Tủ Sách Cá Nhân</title>
-<meta name="description" content="YomiHub 0.6.3: ứng dụng mã nguồn mở gom mọi thứ để đọc và xem vào một nơi: truyện tranh, phim &amp; anime, tiểu thuyết, Google Play Sách, Booru và Tủ Sách Cá Nhân – chạy trên Android (6.0+), Android TV (YumiHub Android TV) và Windows 10/11 x64.">
+<meta name="description" content="YomiHub 0.6.4: ứng dụng mã nguồn mở gom mọi thứ để đọc và xem vào một nơi: truyện tranh, phim &amp; anime, tiểu thuyết, Google Play Sách, Booru và Tủ Sách Cá Nhân – chạy trên Android (6.0+), Android TV (YumiHub Android TV) và Windows 10/11 x64.">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
@@ -69,32 +69,29 @@
 
 <!-- Tờ giấy nội dung -->
 <main class="wrap">
-  <h2 id="moi">Có gì mới trong 0.6.3 <small>· 20/11/2026</small></h2>
+  <h2 id="moi">Có gì mới trong 0.6.4 <small>· 21/11/2026</small></h2>
   <div class="whatsnew-grid">
     <div class="card new">
-      <h3><span>✨ Tính năng mới</span><span class="badge">5 mục</span></h3>
+      <h3><span>✨ Tính năng mới</span><span class="badge">4 mục</span></h3>
       <ul>
-        <li><strong>Tủ Sách Cá Nhân</strong> – nút riêng cạnh Booru App: quản lý truyện &amp; sách giấy, quét mã vạch ISBN, chống mua trùng, tập thiếu, danh sách Cần mua, thống kê, nhập/xuất CSV</li>
-        <li><strong>Tự chuyển qua Tor khi trang bị chặn</strong> – tiện ích, ảnh bìa và tiểu thuyết LNReader tự thử lại qua Tor khi nhà mạng chặn trang</li>
-        <li><strong>Giao diện thích ứng</strong> cho máy tính bảng, Android TV và Windows (thanh bên thu gọn, lưới thẻ theo màn hình, D-pad)</li>
-        <li><strong>Dấu Đã hợp nhất · N nguồn</strong> và chọn tiện ích thành viên ngay trên danh sách chương</li>
-        <li>Thêm 46 liên kết vào <em>Dự án GitHub đã sử dụng</em>, +228 chuỗi dịch cho 18 ngôn ngữ</li>
+        <li><strong>Ấn phẩm liên quan tủ sách của bạn</strong> – thanh tin sách mới của NXB Kim Đồng, Trẻ, IPM, AMAK, Hikari khớp với các bộ trong Tủ Sách; chọn nguồn tin, loại tin (Limited, Artbook, Poster, ColorWalk, DataBook, Boxset), ẩn tin, bỏ quan tâm bộ</li>
+        <li><strong>Nhận diện bìa bằng ảnh</strong> – chụp/chọn ảnh bìa sách cũ không có mã vạch, Tủ Sách gợi ý bộ có bìa giống nhất</li>
+        <li><strong>Dịch ảnh bằng máy chủ Frank Yomik</strong> tự dựng (dịch bong bóng thoại, thêm furigana, webtoon); máy chủ lỗi thì tự dùng bộ dịch có sẵn</li>
+        <li>Kho tiện ích chỉ có <code>index.json</code> (hoặc chỉ <code>index.min.json</code>) thêm được bằng tên nào cũng được</li>
       </ul>
     </div>
     <div class="card fix">
-      <h3><span>🐛 Sửa lỗi &amp; cải tiến</span><span class="badge">Cập nhật 0.6.3</span></h3>
+      <h3><span>🐛 Sửa lỗi &amp; cải tiến</span><span class="badge">Cập nhật 0.6.4</span></h3>
       <ul>
-        <li>Mục <strong>Thể Loại</strong> của tiện ích Keiyoushi mới (vd. DamCoNuong) chọn được trở lại – kể cả bộ lọc đã lưu</li>
-        <li>Tiểu thuyết LNReader (Hako, TruyenSS…) đi qua Tor đúng như cài đặt VPN</li>
-        <li>Tor không còn báo "kẹt" giả sau khi ứng dụng bị treo nền</li>
-        <li>Trang <em>Cập nhật</em> nạp thông tin truyện ở nền, mở nhanh hơn khi danh sách dài</li>
-        <li>Tủ Sách: nhập CSV báo lỗi rõ khi không lưu được, không gộp nhầm bộ tên gần giống, giữ trạng thái đã đọc; tự chuyển Tor không gửi lặp yêu cầu ghi dữ liệu</li>
-        <li>Gợi ý lỗi nguồn dễ hiểu hơn và nhật ký gọn hơn</li>
+        <li>Tor tải xong 100% đúng lúc hết 90 giây không còn bị báo "chưa kết nối" – YomiHub tự dùng Tor ngay khi mạch sẵn sàng</li>
+        <li>Video HLS qua bộ lọc quảng cáo không còn lỗi <em>Failed to open</em>: playlist lỗi thì phát thẳng từ máy chủ gốc</li>
+        <li>Tiện ích APK (Mihon/Aniyomi) không còn chờ 3 phút khi duyệt/tìm/mở trang: dừng sau 90 giây, thử lại qua Tor một lần và báo lỗi rõ ràng</li>
+        <li>Kho tiện ích đã bị gỡ (404/410/451) chỉ cảnh báo một lần kèm hướng dẫn, không ghi lỗi mỗi lần làm mới</li>
+        <li>Sửa nguồn trong Kiritokmn Extension Repo: FikFap, AnimeVN, SexVietTop…</li>
       </ul>
     </div>
   </div>
-  <p class="shelf-note">Đầy đủ: <a href="download.html#verify">ghi chú phát hành 0.6.3</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.6.3">trang phát hành v0.6.3</a></p>
-
+  <p class="shelf-note">Đầy đủ: <a href="download.html#verify">ghi chú phát hành 0.6.4</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.6.4">trang phát hành v0.6.4</a></p>
   <h2>Tính năng</h2>
   <div class="feature-grid">
     <!-- Nhóm Mới / Cập nhật 0.6.3 đặt trước -->
@@ -104,7 +101,7 @@
           <span class="feature-icon" aria-hidden="true">🗂️</span>
           <h3 class="feature-title">Tủ Sách Cá Nhân</h3>
         </div>
-        <span class="badge">Mới 0.6.3</span>
+        <span class="badge">Cập nhật 0.6.4</span>
       </div>
       <ul class="feature-list">
         <li>Quản lý bộ truyện &amp; sách giấy ngoại tuyến (lưu cục bộ trên thiết bị), bật/tắt trong <em>Bật/Tắt tính năng &amp; Nguồn mở rộng</em></li>
@@ -122,7 +119,7 @@
           <span class="feature-icon" aria-hidden="true">🛡️</span>
           <h3 class="feature-title">VPN, DNS &amp; Tự chuyển Tor</h3>
         </div>
-        <span class="badge">Cập nhật 0.6.3</span>
+        <span class="badge">Cập nhật 0.6.4</span>
       </div>
       <ul class="feature-list">
         <li><strong>Tự chuyển qua Tor khi trang bị chặn</strong>: khi Tor đang chạy, tự động thử lại qua Tor cho trang bị nhà mạng chặn (cả tiện ích APK và ảnh bìa trả về HTML chặn)</li>
@@ -155,7 +152,7 @@
           <span class="feature-icon" aria-hidden="true">🔌</span>
           <h3 class="feature-title">Kho tiện ích &amp; Bộ lọc mới</h3>
         </div>
-        <span class="badge">Cập nhật 0.6.3</span>
+        <span class="badge">Cập nhật 0.6.4</span>
       </div>
       <ul class="feature-list">
         <li>Chạy tiện ích Mihon/Tachiyomi, Aniyomi, Mangayomi, Kotatsu, LNReader, IReader, Aidoku và vBook</li>

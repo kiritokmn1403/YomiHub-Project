@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YomiHub – Comics, movies, novels and your personal bookshelf</title>
-<meta name="description" content="YomiHub 0.6.3 brings comics, movies, anime, novels, Google Play Books, Booru and a personal bookshelf to Android 6.0+ and Windows 10/11 x64. YumiHub Android TV focuses on movies and anime.">
+<meta name="description" content="YomiHub 0.6.4 brings comics, movies, anime, novels, Google Play Books, Booru and a personal bookshelf to Android 6.0+ and Windows 10/11 x64. YumiHub Android TV focuses on movies and anime.">
 <link rel="icon" href="../assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
@@ -69,32 +69,29 @@
 
 <!-- Page content -->
 <main class="wrap">
-  <h2 id="moi">What’s new in 0.6.3 <small>· November 20, 2026</small></h2>
+  <h2 id="moi">What’s new in 0.6.4 <small>· November 21, 2026</small></h2>
   <div class="whatsnew-grid">
     <div class="card new">
-      <h3><span>✨ New features</span><span class="badge">5 additions</span></h3>
+      <h3><span>✨ New features</span><span class="badge">4 additions</span></h3>
       <ul>
-        <li><strong>Personal Bookshelf</strong> – open it next to Booru App to manage print comics and books, scan ISBN barcodes, avoid duplicate purchases, find missing volumes, keep a shopping list, view statistics, and import or export CSV files</li>
-        <li><strong>Automatically switch to Tor when a site is blocked</strong> – extensions, cover images and LNReader novels can retry through Tor when your network provider blocks a site</li>
-        <li><strong>Adaptive layout</strong> for tablets, Android TV and Windows, with a collapsible sidebar, a card grid that fits the screen, and D-pad navigation</li>
-        <li><strong>Merged · N sources badge</strong> and a choice of source extensions directly above the chapter list</li>
-        <li>Added 46 links to <em>GitHub projects used</em>, plus 228 translated strings for each of 18 languages</li>
+        <li><strong>Releases related to your bookshelf</strong> – a news bar with new books from Kim Đồng, Trẻ, IPM, AMAK and Hikari that match the series on your Personal Bookshelf; choose news sources and types (Limited, Artbook, Poster, ColorWalk, DataBook, Boxset), hide news or ignore a series</li>
+        <li><strong>Recognise a cover from a photo</strong> – take or pick a photo of an old book without a barcode and the bookshelf suggests the series with the most similar cover</li>
+        <li><strong>Image translation with your own Frank Yomik server</strong> (speech-bubble translation, furigana, webtoon); if the server fails, the built-in translator is used</li>
+        <li>Extension repositories that only publish <code>index.json</code> (or only <code>index.min.json</code>) can be added with either name</li>
       </ul>
     </div>
     <div class="card fix">
-      <h3><span>🐛 Fixes and improvements</span><span class="badge">Updated in 0.6.3</span></h3>
+      <h3><span>🐛 Fixes and improvements</span><span class="badge">Updated in 0.6.4</span></h3>
       <ul>
-        <li>The <strong>Genre</strong> filter works again in newer Keiyoushi extensions such as DamCoNuong, including previously saved filters</li>
-        <li>LNReader novels from sources such as Hako and TruyenSS now use Tor as configured in your VPN settings</li>
-        <li>Tor no longer reports a false stall after the app is suspended in the background</li>
-        <li>The <em>Updates</em> page loads title details in the background and opens faster with long lists</li>
-        <li>CSV imports in Personal Bookshelf report save failures, keep similarly named series separate and preserve read status. Automatic Tor retries no longer repeat requests that write data</li>
-        <li>Clearer suggestions for source errors and less clutter in the logs</li>
+        <li>Tor finishing at 100% right at the 90-second limit is no longer reported as "not connected" – YomiHub uses Tor as soon as the circuit is ready</li>
+        <li>HLS videos through the ad filter no longer fail with <em>Failed to open</em>: if the playlist cannot be read, playback goes straight to the origin server</li>
+        <li>APK extensions (Mihon/Aniyomi) no longer wait 3 minutes when browsing, searching or opening pages: they stop after 90 seconds, retry once through Tor and show a clear error</li>
+        <li>Removed extension repositories (404/410/451) are reported once with instructions instead of an error on every refresh</li>
+        <li>Fixed sources in Kiritokmn Extension Repo: FikFap, AnimeVN, SexVietTop…</li>
       </ul>
     </div>
   </div>
-  <p class="shelf-note">Full details: <a href="download.html#verify">0.6.3 release notes</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.6.3">v0.6.3 on GitHub</a></p>
-
+  <p class="shelf-note">Full details: <a href="download.html#verify">0.6.4 release notes</a> · <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.6.4">v0.6.4 on GitHub</a></p>
   <h2>Features</h2>
   <div class="feature-grid">
     <!-- New and updated features in 0.6.3 -->
@@ -104,7 +101,7 @@
           <span class="feature-icon" aria-hidden="true">🗂️</span>
           <h3 class="feature-title">Personal Bookshelf</h3>
         </div>
-        <span class="badge">New in 0.6.3</span>
+        <span class="badge">Updated in 0.6.4</span>
       </div>
       <ul class="feature-list">
         <li>Manage your print comics and books offline, with data stored on your device. Turn the feature on or off under <em>Enable/Disable Features &amp; Extension Sources</em></li>
@@ -122,7 +119,7 @@
           <span class="feature-icon" aria-hidden="true">🛡️</span>
           <h3 class="feature-title">VPN, DNS &amp; automatic Tor switching</h3>
         </div>
-        <span class="badge">Updated in 0.6.3</span>
+        <span class="badge">Updated in 0.6.4</span>
       </div>
       <ul class="feature-list">
         <li><strong>Automatically switch to Tor when a site is blocked</strong>: when Tor is running, the app can retry blocked requests through Tor, including those from APK extensions and cover image requests that return an HTML block page</li>
@@ -155,7 +152,7 @@
           <span class="feature-icon" aria-hidden="true">🔌</span>
           <h3 class="feature-title">Extension repositories and new filters</h3>
         </div>
-        <span class="badge">Updated in 0.6.3</span>
+        <span class="badge">Updated in 0.6.4</span>
       </div>
       <ul class="feature-list">
         <li>Use extensions from Mihon/Tachiyomi, Aniyomi, Mangayomi, Kotatsu, LNReader, IReader, Aidoku and vBook</li>
