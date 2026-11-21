@@ -66,3 +66,9 @@ Danh sách kiểm:
 - Còn mở cho 0.6.4: `TECHNICAL_UPDATE_NOTES.md` mục 0.6.3 › 4 "Còn mở" + log Windows 6 ERROR 404 kho `MiraiEnoki/anymex_extensions`, `Schnitzel5/sugoi-modules` (kho người dùng thêm đã chết).
 - **Website (20/11 20:44, commit `80c0b8e`)**: GitHub Pages 4 trang Trang Chủ (`index.html`) · Tải Về (`download.html`) · Hướng Dẫn (`guide.html`, 17 chương) · Chính Sách (`privacy.html`) – thiết kế theo logo + banner, menu mấu đánh dấu trang; link tải chỉ ở trang Tải Về (18 tệp, SHA-256 khớp Release). Mỗi bản mới: cập nhật theo 03 › "Bổ sung 20/11/2026 (website)".
 - Tác vụ nền: autosave 063 dừng bằng `jobs/STOP_AUTOSAVE_063`; lịch hẹn kiểm tra đã hết; Codex /swarm 1–3 xong; Antigravity /swarm 4–5 (website) xong – còn chạy được bằng Gemini 3.8 Flash.
+
+## J. Trạng thái bàn giao hiện tại (sau 0.6.4 – 21/11/2026 ~22:00) – thay mục I
+- 0.6.4 (0.6.4+57) phát hành GitHub Release `v0.6.4` (tạo 21:46, 19 asset – xem ghi chú kỹ thuật mục 0.6.4 › 7 để biết kết quả đối chiếu). README + website VI/EN (`f569ed5`) trỏ v0.6.4. Kiritokmn Extension Repo đẩy 6 commit (đến `39d60ed`). KHÔNG gửi APKPure.
+- Đã kiểm: Note 9 (Antigravity S1–S7 + Claude đối chiếu ảnh/log), Windows 11 Setup.exe cài đè + Tủ Sách thanh tin NXB. Chưa kiểm: AVD Android 6/TV 0.6.4, `.appxbundle`, Xiaomi 15T (Phone Link chờ quyền chiếu màn hình).
+- Còn mở cho 0.6.5: `audit/audit-0.6.4/pending_065/README.md` (48 ngôn ngữ phụ, 2 sửa REVIEW, bố cục Frank Yomik, AMAK 404) + nháp Hướng Dẫn `audit/audit-0.6.4/antigravity/web/guide_064_*`.
+- Tác vụ nền: autosave 064b dừng bằng `jobs/STOP_AUTOSAVE_064b`; lịch hẹn kiểm tra đã hết; Antigravity /swarm 5 XONG; Codex không dùng.

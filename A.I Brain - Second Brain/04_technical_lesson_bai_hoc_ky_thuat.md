@@ -152,3 +152,12 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - **Kho chết**: 404/410/451 (451 = gỡ theo DMCA) → cảnh báo 1 lần + hướng dẫn, không ERROR mỗi lần làm mới; thử `index.json` ↔ `index.min.json` (sugoi-modules chỉ có `index.json`).
 - **device_bash giới hạn độ dài lệnh ~128 KB**: tệp dữ liệu lớn (bản dịch) ghi trong container bằng Write rồi `device_commit_files` vào máy.
 - **`grep -r` trên ổ gắn của VM rất chậm** (quá 120 s với `overlay/lib`) → dùng `git grep` (~4 s).
+
+## Bổ sung 21/11/2026 tối (0.6.4 – phiên 2)
+- **Note 9 adb "offline"/biến mất khi cắm cáp = Samsung DeX trên PC** (`SamsungDeX.exe` tự mở, chiếm USB). Đóng DeX → `adb devices` về `device` ngay. Kiểm `Get-Process SamsungDeX` trước khi kết luận lỗi ủy quyền.
+- **`adb devices`/`kill-server` có thể treo job runner** (2 phút timeout) – luôn bọc `Start-Job` + `Wait-Job -Timeout 20`; `adb start-server` qua `cmd /c` giữ handle → dùng `Start-Process adb start-server`.
+- **`adb shell input text` không hiểu `%20` như dấu cách khi tác nhân tự mã hoá** – tên bộ thử thành "Tham%20Tu…". Kiểm ảnh trước khi nhận "ĐẠT"; với chữ có dấu/khoảng trắng dùng clipboard hoặc ADBKeyboard.
+- **DropdownButton ở `ListTile.trailing` với chữ dài ép `title` thành 1 chữ/dòng trên điện thoại** (Frank Yomik "Chế độ xử lý"): đặt dropdown ở `subtitle` + `isExpanded: true` + `overflow: ellipsis`.
+- **Trang NXB có thể trả HTTP 404 cho client app nhưng 200 cho trình duyệt** (AMAK) – nguồn tin HTML cần thử User-Agent khác/chấp nhận thân trang.
+- **Sửa changelog sau verify** → cập nhật dòng băm trong `SHA256SUMS-<ver>.txt` giữ nguyên BOM/CRLF, rồi `sha256sum -c` trước khi phát hành.
+- **Labels/uiautomator đọc tệp tạm cũ khi adb mất kết nối** (`Get-UiXml` đọc `%TEMP%\yh_ui060.xml` cũ) → xoá tệp tạm trước khi dump, đừng tin nhãn khi lệnh adb báo "not found".

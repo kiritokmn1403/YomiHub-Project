@@ -98,3 +98,12 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **Tiếp theo (0.6.4)**: xem `TECHNICAL_UPDATE_NOTES.md` 0.6.3 › 4 "Còn mở"; mỗi bản mới cập nhật `download.html` (href, dung lượng, SHA) + "Có gì mới" trên Trang Chủ.
 
 - **20:50–21:20** chủ dự án: website song ngữ Việt / Anh cho 4 trang, chia ChatGPT Desktop + Google Antigravity. Codex dịch index/download/guide rồi hết hạn mức → Antigravity nhận nốt privacy EN + rà soát + bảng thuật ngữ. Claude ghép nút VI | EN + hreflang vào 4 trang EN, sửa chuỗi phiên bản, placeholder ô tìm cả 2 ô, tràn 390px; Playwright 8 trang × 1280/390/tối + kiểm giữ #anchor, nhớ lựa chọn, dải gợi ý; sao lưu `docs` → `backup/manual/docs_2120/`; README thêm link English; `93c9bbf`; Pages 200 cả 8 trang (en/download 18 link, en/guide 17 chương).
+
+## 21/11/2026 · 0.6.4 · phiên 2 · Claude Opus 5.5 (claude.ai + máy tính, 19:33–) + Google Antigravity
+- **19:33** chủ dự án gửi log 13 + 3 Excel: phân tích tiến độ, xin đủ quyền, /swarm chia Antigravity + Codex, lưu phiên 5 phút/lần cho cả 3. Đọc Second Brain 00→12, AGENTS, ghi chú 0.6.4, PROGRESS (dây chuyền lần 2 đang dựng TV).
+- **19:40–19:46** quyền computer use; Antigravity hết credits (cả Claude Sonnet 5.5), Codex hết hạn mức; autosave 064b (5 phút, gồm ghi chú tác nhân).
+- **19:55** chủ dự án bỏ Codex → Claude rà mã (0 lỗi Cao/TB), soạn trang chủ 0.6.4 VI/EN nháp, pending_065.
+- **20:04** /swarm 4 (8 nguồn + 48 ngôn ngữ) – xong 20:45. **20:52** Note 9 adb về device sau khi đóng Samsung DeX; cài 0.6.4. **20:59** /swarm 5 (Note 9 S1–S7 + nháp Hướng Dẫn) – xong 21:37.
+- **20:44–21:16** Windows Setup.exe cài đè 0.6.4+57; Tủ Sách thanh tin NXB khớp 4 tin Kim Đồng, ẩn/hiện lại tin ĐẠT; AMAK 404 → 0.6.5. **21:01** chủ dự án: 48 ngôn ngữ phụ để 0.6.5, xong thì đẩy GitHub.
+- **21:39** dây chuyền XONG → changelog bổ sung + SHA → website/README `f569ed5` → Extension Repo push 21:47 → Release v0.6.4 (21:46–).
+- **Tiếp theo (0.6.5)**: 11-J.
