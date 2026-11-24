@@ -351,8 +351,10 @@ void main() {
 
       // Consolidated actions and tools
       expect(code, contains('CustomMergeSourcesTile()'));
-      expect(code, contains('MergeDuplicateMangaTile()'));
-      expect(code, contains('ManualMergeMangaTile()'));
+      // 0.6.5: series tools moved to "Hợp Nhất Các Bộ" (content_merge_screen)
+      final series = _read('lib/yomihub/merge/content_merge_screen.dart');
+      expect(series, contains('MergeDuplicateMangaTile()'));
+      expect(series, contains('ManualMergeMangaTile()'));
       expect(code, contains("context.push('/contentMerge')"));
       expect(code, contains("ValueKey('mergeTools')"));
       expect(code, contains('Tự chọn các tiện ích để hợp nhất'));

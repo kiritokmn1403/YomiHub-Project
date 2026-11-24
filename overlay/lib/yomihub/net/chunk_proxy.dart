@@ -360,7 +360,9 @@ class YomiHlsAdFilter {
       await response.close();
     } catch (e) {
       final origin = target;
-      AppLogger.log(
+      // 0.6.5 (REVIEW_CODE_064 #3): once per host – variant/live playlists
+      // would otherwise repeat the line.
+      AppLogger.logOnce('hls-fallback:${origin?.host ?? ''}',
           '[Trình phát] Bộ lọc quảng cáo HLS không đọc được playlist (${e.runtimeType}) – phát thẳng từ máy chủ gốc ${origin?.host ?? ''}',
           logLevel: LogLevel.warning);
       try {

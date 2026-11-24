@@ -443,7 +443,16 @@ class MihonExtensionService implements ExtensionService {
       }
       YomiAutoTor.remember(host, 'tiện ích APK "${source.name}": quá ${limit.inSeconds} giây không phản hồi');
       await YomiMes.setJvmAutoTor(tor, YomiAutoTor.routedHosts.toList());
-      res = await YomiMes.dalvik(proxy, body, headers: headers ?? getCookie(), timeout: limit);
+      try {
+        res = await YomiMes.dalvik(proxy, body, headers: headers ?? getCookie(), timeout: limit);
+      } on TimeoutException {
+        // 0.6.5 (REVIEW_CODE_064 #1): still no answer through Tor – same
+        // Vietnamese hint instead of the raw "Future not completed".
+        throw TimeoutException(
+            tr('Trang của tiện ích không phản hồi sau {p0} giây (có thể trang đang lỗi hoặc bị nhà mạng chặn) – thử bật VPN/Tor cho tiện ích hoặc đổi tên miền.',
+                {'p0': limit.inSeconds}),
+            limit);
+      }
     }
     // 0.6.3 (log 16–20/11: DamCoNuong / ViHentai / VinaHentai "connection
     // closed"): the ISP blocks the site and the extension is outside the VPN

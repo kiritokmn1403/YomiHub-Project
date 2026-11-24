@@ -15,6 +15,8 @@ import 'package:mangayomi/utils/share.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 import 'package:path/path.dart' as p;
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
+import 'package:mangayomi/yomihub/search/reverse_image_search.dart';
 
 /// Bottom sheet dialog for long-press actions on manga images.
 ///
@@ -51,6 +53,7 @@ class ImageActionsDialog {
         imageBytes: imageBytes,
         manga: manga,
         fileName: name,
+        imageUrl: data.pageUrl?.url,
       ),
     );
   }
@@ -60,11 +63,13 @@ class _ImageActionsSheet extends StatelessWidget {
   final Uint8List imageBytes;
   final Manga manga;
   final String fileName;
+  final String? imageUrl;
 
   const _ImageActionsSheet({
     required this.imageBytes,
     required this.manga,
     required this.fileName,
+    this.imageUrl,
   });
 
   @override
@@ -111,6 +116,16 @@ class _ImageActionsSheet extends StatelessWidget {
                     label: context.l10n.save,
                     icon: Icons.save_outlined,
                     onPressed: () => _saveImage(context),
+                  ),
+                  // 0.6.5: Google Lens / SauceNAO (YomiHub Update)
+                  _ActionButton(
+                    label: tr('Tìm ảnh'),
+                    icon: Icons.image_search_outlined,
+                    onPressed: () => YomiReverseImageSearch.show(
+                      context,
+                      image: imageBytes,
+                      imageUrl: imageUrl,
+                    ),
                   ),
                 ],
               ),

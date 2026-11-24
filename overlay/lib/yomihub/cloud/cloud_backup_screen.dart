@@ -5,11 +5,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mangayomi/modules/more/data_and_storage/providers/auto_backup.dart';
 import 'package:mangayomi/modules/more/data_and_storage/providers/backup.dart';
 import 'package:mangayomi/modules/more/data_and_storage/widgets/unified_restore.dart';
 import 'package:mangayomi/utils/share.dart';
 import 'package:mangayomi/yomihub/cloud/cloud_backup_service.dart';
-import 'package:mangayomi/yomihub/cloud/google_logo.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -54,11 +54,17 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
     }
   }
 
-  /// Full backup (every section) into a temp folder.
+  /// Backup into a temp folder, using the sections the user chose in
+  /// Sao lưu. YomiHub 0.6.5: never include section 8 (sensitive settings:
+  /// tracker tokens, WARP account, proxy password) when the file leaves the
+  /// device (cloud upload or share to another app).
   Future<String> _makeBackup() async {
     final dir = await svc.tempDir();
     return writeMangayomiBackupZip(
-      list: List.generate(11, (i) => i),
+      list: ref
+          .read(backupFrequencyOptionsStateProvider)
+          .where((i) => i != 8)
+          .toList(),
       directory: dir.path,
     );
   }
@@ -242,7 +248,9 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
-                  for (final pr in svc.providers) _tile(pr),
+                  // 0.6.5 (YomiHub Update mục 11–13): one entry per service;
+                  // its sign-in options appear when it is opened.
+                  for (final fam in _families()) fam.length == 1 ? _tile(fam.single) : _familyTile(fam),
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.cloud_upload_outlined),
@@ -276,20 +284,61 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
     );
   }
 
+  /// 0.6.5: service name + icon (images from sheet "YomiHub Update").
+  static const _familyInfo = <String, (String, String)>{
+    'gdrive': ('Google Drive', 'assets/cloud_icons/google.png'),
+    'onedrive': ('Microsoft OneDrive', 'assets/cloud_icons/microsoft.png'),
+    'dropbox': ('Dropbox', 'assets/cloud_icons/dropbox.png'),
+    'mediafire': ('MediaFire', 'assets/cloud_icons/mediafire.png'),
+    'telegram': ('Telegram Bot', 'assets/cloud_icons/telegram.png'),
+  };
+
+  List<List<CloudProvider>> _families() {
+    final order = <String>[];
+    final map = <String, List<CloudProvider>>{};
+    for (final pr in svc.providers) {
+      if (!map.containsKey(pr.family)) order.add(pr.family);
+      map.putIfAbsent(pr.family, () => []).add(pr);
+    }
+    return [for (final f in order) map[f]!];
+  }
+
+  Widget _logo(String family, bool connected) {
+    final asset = _familyInfo[family]?.$2;
+    if (asset == null) {
+      return Icon(connected ? Icons.cloud_done : Icons.cloud_off_outlined,
+          color: connected ? Colors.green : null);
+    }
+    return Badge(
+      isLabelVisible: connected,
+      backgroundColor: Colors.green,
+      smallSize: 9,
+      child: Image.asset(asset, width: 28, height: 28, filterQuality: FilterQuality.medium),
+    );
+  }
+
+  Widget _familyTile(List<CloudProvider> fam) {
+    final family = fam.first.family;
+    final connected = fam.any((e) => e.isConnected);
+    final name = _familyInfo[family]?.$1 ?? fam.first.displayName;
+    return ExpansionTile(
+      key: PageStorageKey('cloud_family_$family'),
+      leading: _logo(family, connected),
+      title: Text(name),
+      subtitle: Text(connected
+          ? tr('Đã kết nối: {p0}', {'p0': fam.where((e) => e.isConnected).map((e) => e.displayName).join(', ')})
+          : tr('{p0} cách kết nối – bấm để chọn', {'p0': '${fam.length}'})),
+      childrenPadding: const EdgeInsets.only(left: 12),
+      children: [for (final pr in fam) _tile(pr)],
+    );
+  }
+
   Widget _tile(CloudProvider pr) {
     final connected = pr.isConnected;
     return ExpansionTile(
       // 0.6.0: Google Drive shows the Google logo (sheet YomiHub Update)
-      // 0.6.1: cả hai tùy chọn Google Drive (Đăng nhập Google / Client ID)
-      leading: pr.id.startsWith('gdrive')
-          ? Badge(
-              isLabelVisible: connected,
-              backgroundColor: Colors.green,
-              smallSize: 9,
-              child: const GoogleLogo(size: 26),
-            )
-          : Icon(connected ? Icons.cloud_done : Icons.cloud_off_outlined,
-              color: connected ? Colors.green : null),
+      // 0.6.5: every service with an icon in the sheet shows it
+      leading: _logo(pr.family, connected),
       title: Text(pr.displayName),
       subtitle: Text(connected ? tr('Đã kết nối') : tr('Chưa kết nối')),
       children: [

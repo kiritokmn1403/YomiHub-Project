@@ -1,0 +1,126 @@
+import 'dart:io';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mangayomi/modules/more/data_and_storage/providers/auto_backup.dart';
+import 'package:mangayomi/modules/more/data_and_storage/providers/backup.dart';
+import 'package:mangayomi/providers/storage_provider.dart';
+import 'package:mangayomi/utils/log/logger.dart';
+import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:path/path.dart' as p;
+
+/// YomiHub 0.6.5 (sheet "YomiHub Update" mục 14): a "Sao Lưu" button in the
+/// Library. One tap writes a backup with the items chosen in
+/// Sao Lưu & Khôi Phục (the same list as the automatic backup), into the
+/// automatic backup folder (so "Số bản sao lưu giữ lại" prunes it), and the
+/// existing hook in doBackUp pushes it to every cloud target with
+/// automatic upload on.
+class YomiQuickBackup {
+  YomiQuickBackup._();
+
+  /// Pref: show the button in the Library app bar.
+  static const showKey = 'libraryBackupButton';
+
+  /// Pref: ask before starting.
+  static const confirmKey = 'libraryBackupConfirm';
+
+  static bool get showButton => YomiPrefs.get<bool>(showKey, true);
+  static bool get confirm => YomiPrefs.get<bool>(confirmKey, false);
+
+  static bool _running = false;
+  static bool get running => _running;
+
+  /// The folder a quick backup goes to: `<backup location>/autobackup`,
+  /// falling back to the app's default backup folder.
+  static Future<Directory?> targetDirectory(WidgetRef ref) async {
+    final storage = StorageProvider();
+    if (Platform.isIOS) {
+      final d = await storage.getIosBackupDirectory();
+      return d == null ? null : automaticBackupDirectory(d.path);
+    }
+    final location = ref.read(autoBackupLocationStateProvider).$2;
+    final fromSetting = location.isNotEmpty ? automaticBackupDirectory(location) : null;
+    if (fromSetting != null) return fromSetting;
+    final def = await storage.getDefaultDirectory();
+    if (def == null) return null;
+    return automaticBackupDirectory(p.join(def.path, 'backup'));
+  }
+
+  /// Runs a backup now. Returns the folder, or null when it failed.
+  static Future<String?> run(WidgetRef ref, BuildContext context) async {
+    if (_running) {
+      BotToast.showText(text: tr('Đang sao lưu, vui lòng chờ…'));
+      return null;
+    }
+    if (confirm) {
+      final ok = await showDialog<bool>(
+        context: context,
+        builder: (c) => AlertDialog(
+          title: Text(tr('Sao lưu ngay?')),
+          content: Text(tr('Tạo bản sao lưu theo các mục đã chọn trong Sao Lưu & Khôi Phục và tải lên các dịch vụ đám mây đang bật tự động.')),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(c, false), child: Text(tr('Hủy'))),
+            FilledButton(onPressed: () => Navigator.pop(c, true), child: Text(tr('Sao lưu'))),
+          ],
+        ),
+      );
+      if (ok != true) return null;
+    }
+    _running = true;
+    final close = BotToast.showLoading();
+    try {
+      final dir = await targetDirectory(ref);
+      if (dir == null) {
+        throw Exception(tr('Chưa có thư mục sao lưu dùng được – hãy chọn vị trí trong Sao Lưu & Khôi Phục.'));
+      }
+      await StorageProvider().createDirectorySafely(dir.path);
+      await ref.read(
+        doBackUpProvider(
+          list: ref.read(backupFrequencyOptionsStateProvider),
+          path: dir.path,
+          context: null,
+        ).future,
+      );
+      await pruneOldBackups(dir.path);
+      close();
+      BotToast.showText(
+        text: tr('Đã sao lưu vào {p0}', {'p0': dir.path}),
+        duration: const Duration(seconds: 4),
+      );
+      return dir.path;
+    } catch (e, st) {
+      close();
+      AppLogger.log('[Sao lưu] Nút Sao Lưu trong Thư Viện thất bại: $e\n$st', logLevel: LogLevel.error);
+      BotToast.showText(
+        text: tr('Tạo bản sao lưu thất bại: {e}', {'e': e}),
+        duration: const Duration(seconds: 6),
+      );
+      return null;
+    } finally {
+      _running = false;
+    }
+  }
+}
+
+/// The button itself (Library app bar).
+class YomiQuickBackupButton extends ConsumerWidget {
+  const YomiQuickBackupButton({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ValueListenableBuilder<int>(
+      valueListenable: YomiPrefs.changes,
+      builder: (context, _, _) {
+        if (!YomiQuickBackup.showButton) return const SizedBox.shrink();
+        return IconButton(
+          splashRadius: 20,
+          tooltip: tr('Sao lưu'),
+          icon: const Icon(Icons.backup_outlined),
+          onPressed: () => YomiQuickBackup.run(ref, context),
+        );
+      },
+    );
+  }
+}

@@ -3960,3 +3960,26 @@ Yêu cầu chủ dự án (16:46): log `logs (13).txt` (16–21/11, 3.136 dòng)
 - **Kết quả Release (22:22–22:25)**: GitHub Release `v0.6.4` (id 453759599) 19/19 asset, tải 21:46–22:22 (~1,1 MB/s); xác minh độc lập (job Windows `f064_r03_verify`): API `releases/tags/v0.6.4` 19 asset, kích thước khớp `output/0.6.4` (0 lệch), `releases/latest` = v0.6.4, HEAD APK arm64 200 (182.444.645 B), Pages `/`, `download.html`, `en/download.html` (18 link v0.6.4), `en/index.html`, `privacy.html` đều 200.
 - **Phát hành**: website VI/EN (Có gì mới 0.6.4; Tải Về 18 tệp – href/dung lượng/SHA lấy từ `output/0.6.4`, script `audit/audit-0.6.4/release/update_docs_064.py`, kiểm SHA từng tệp) + README ← README_064 → `f569ed5`; Extension Repo push 21:47; GitHub Release `v0.6.4` (job `x064_release`).
 - **Còn mở cho 0.6.5**: xem `audit/audit-0.6.4/pending_065/README.md` (48 ngôn ngữ phụ, REVIEW #1/#3, bố cục Frank Yomik, AMAK 404); chương Hướng Dẫn 0.6.4 (nháp Antigravity, chưa ghép vào `docs/guide.html`); 4 điểm Thấp còn lại của REVIEW (#2 torStatus @Volatile, #4 feed qua MClient, #5, #6 Referer bìa).
+
+## 2026-11-25 — 0.6.5 (0.6.5+58): sửa log 14/15, tính năng sheet, chuyển tổ chức GitHub
+
+**Điều phối**: Claude (sửa `overlay/`, dựng, phát hành) + /swarm Antigravity (dịch i18n 2 đợt 65×28 + 65×8, DEVICE_TEST_PLAN_065, docs EN) + Codex (LOG_COVERAGE, FEATURE_CHECK, INTEGRATION_GAP, README nháp; hết lượt 02:21–02:51) + GitHub Copilot (REVIEW_065 phản biện Codex, REVIEW_r3 49 điểm, PERF_backupSync, A7, đợt 4 nhận lại changelog/README/docs). Tiến độ mỗi bên lưu 5 phút/lần trong `audit/audit-0.6.5/<bên>/NOTES_*.md`.
+
+**Mục đã sửa (overlay)** — chi tiết trong `audit/audit-0.6.5/codex/CHANGELOG_065_draft.md` (có tệp:dòng):
+- Stack Overflow trang Cập nhật Windows: `isar_providers.dart` bỏ `async*`/`await for`/`yield*`, dùng `yomiSwitchMap` (`yomihub/perf/updates_preload.dart`).
+- Tạo WebView thất bại Windows: `m_client.dart` (unawaited + createFailed + gợi ý WebView2), `web_player.dart` và `browser/browser_screen.dart` truyền `webViewEnvironment`.
+- VerifyError M-Extension-Server: `-XX:-BytecodeVerificationRemote` (`yomi_mes.dart`), `_incompatible` + nhãn `[Lỗi Nguồn]`/`[Lỗi Mạng]` (`ext_errors.dart`, `logger.dart`).
+- Tor tắt vội: `torCrashStrikes` (tắt ở lần 2), đặt lại sau 25 s.
+- Kho tiện ích: `migrateUrl`/`_migrate065` (kiritokmn1403 → YomiHub-Project, `/repo/mangayomi/*.json` → `/repo/index.json`), `splitInput` dán nhiều URL, nguồn cập nhật dự phòng kho cũ.
+- Sao lưu: Lịch sử trình duyệt + VPN/DNS (công tắc), Sao lưu nhanh ở Thư Viện, đám mây xoá bản cũ, OneDrive/Dropbox dựng sẵn (`--dart-define` từ `secrets/cloud_public.json`, không đưa vào git), biểu tượng nhà cung cấp.
+- Bộ lọc Quốc Gia Phát Hành, dấu "đã có trong Danh Mục" lưới + danh sách, logo mới, mã vạch QR, Tìm ảnh ngược (Lens/SauceNAO), Hợp Nhất Các Bộ thành màn riêng.
+- Bảo mật/hiệu năng (từ REVIEW_r3 của Copilot, Claude tự kiểm lại trước khi sửa): N1 sao lưu đám mây/chia sẻ dùng mục người dùng chọn và luôn bỏ mục 8; N2 `saucenaoApiKey` vào `_sensitiveKeys`; V1 che API key trong lỗi SauceNAO; `AppLogger.redactSecrets` che `api_key|login|token|password…` mọi dòng log (Danbooru); V5 `_runtimeKeys` (cờ Tor không đi theo sao lưu); V6 khôi phục kho chạy `migrateUrl`; PERF A+B: `/backupSync` không watch kích thước cache, `_getdirectorySize` chạy `Isolate.run` + `statSync`.
+- i18n: gộp 2.376 bản dịch (66 tệp × 36 khoá) từ `antigravity/i18n_new*`; bản gốc lưu `audit/audit-0.6.5/backup/i18n_pre_merge/`.
+
+**Lỗi gặp khi làm**: regex raw Dart chứa `\'` (r'…') → lỗi cú pháp; dùng r'''…'''. Job chạy trước khi sửa tên tệp test → `yh_049_i18n_test.dart` không tồn tại (tên đúng `yh_049_test.dart`). Cửa sổ Cốc Cốc/Outlook/cmd nhảy lên trước làm gõ nhầm tin vào Antigravity → xoá tin xếp hàng; đưa cửa sổ lên bằng `jobs/front065.ps1` + ShowWindow(6/3).
+
+**Kiểm chứng**: job `f065_b04_i18n` (analyze 0 lỗi; 69/70 test, 1 lỗi tên tệp) → `f065_b06_sec` 02:38: analyze 0 lỗi (2 cảnh báo `!` có sẵn từ Mangayomi), **40/40 test đạt** (yh_049, yh_065 có test `redactSecrets`, yh_057_s1). Trước đó yh_058/yh_062/yh_057 đạt trong b04.
+
+**Dropbox**: app `YomiHub` (Scoped, App folder, PKCE) đã lưu icon 64/256 (qua Dropbox Chooser). Form *Apply for production* yêu cầu tài khoản test + mật khẩu → chủ dự án tự điền; ở trạng thái Development app vẫn liên kết tối đa 500 người dùng. **Microsoft**: `microsoft_client_id` còn trống → OneDrive dựng sẵn báo "chưa cấu hình", vẫn dùng được Client ID riêng.
+
+**Dựng**: `jobs/pending/x065_build_main.ps1` → `scripts/pipeline/run_065_main.ps1` bắt đầu 02:41 25/11 (trạng thái `audit/audit-0.6.5/release/main_build_status_065.txt`).

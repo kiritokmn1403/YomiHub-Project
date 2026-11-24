@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:mangayomi/main.dart' show webViewEnvironment;
 import 'package:mangayomi/models/chapter.dart';
 import 'package:mangayomi/models/video.dart' as vid;
 import 'package:mangayomi/repositories/chapter_repository.dart';
@@ -425,6 +426,11 @@ class _YomiWebPlayerState extends State<YomiWebPlayer> {
         children: [
           InAppWebView(
             key: ValueKey(_i),
+            // 0.6.5 (log 14, Windows 23/11 09:05 "Cannot create the
+            // InAppWebView instance!"): WebView2 refuses a second
+            // environment with other options in the same process – use the
+            // app's shared one like every other WebView screen.
+            webViewEnvironment: Platform.isWindows ? webViewEnvironment : null,
             initialUrlRequest: URLRequest(
               url: WebUri(_url),
               headers: _cur.headers,

@@ -1,6 +1,7 @@
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/cloud/google_oauth_config.dart';
+import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:mangayomi/services/http/m_client.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -54,6 +55,15 @@ abstract class CloudProvider {
   /// Whether files can be listed and downloaded back (restore).
   bool get canRestore => true;
 
+  /// 0.6.5 (YomiHub Update mục 11–13): the providers of one service (sign-in
+  /// with an account / own Client ID) are shown under one entry.
+  String get family => id;
+
+  /// 0.6.5: providers that can delete old backups (cloud retention).
+  bool get canDelete => false;
+  Future<void> delete(CloudFile f) async =>
+      throw UnsupportedError('$displayName: delete');
+
   late CloudConfig config;
 
   bool get isConnected;
@@ -88,6 +98,20 @@ class CloudField {
 }
 
 const _folderName = 'YomiHub';
+
+/// 0.6.5 (YomiHub Update mục 18): the number of backups kept in the cloud is
+/// the "Số bản sao lưu giữ lại" of Sao Lưu & Đồng Bộ (0 = keep all).
+int yomiCloudKeep() => YomiPrefs.get<int>('backupMaxCount', 0);
+
+/// Newest-first backup files of YomiHub that are beyond [keep].
+List<CloudFile> yomiCloudFilesToPrune(List<CloudFile> files, int keep) {
+  if (keep <= 0) return const [];
+  final backups = files
+      .where((f) => f.name.toLowerCase().endsWith('.backup') && f.name.toLowerCase().contains('yomihub'))
+      .toList()
+    ..sort((a, b) => (b.modified ?? DateTime(0)).compareTo(a.modified ?? DateTime(0)));
+  return backups.length <= keep ? const [] : backups.sublist(keep);
+}
 final _client = http.Client();
 
 String _q(Map<String, String> m) =>
@@ -209,6 +233,10 @@ class GoogleDriveProvider extends CloudProvider with _OAuth {
   @override
   String get displayName => tr('Google Drive – Đăng nhập bằng tài khoản Google');
   @override
+  String get family => 'gdrive';
+  @override
+  bool get canDelete => true;
+  @override
   CloudAuthKind get authKind => CloudAuthKind.deviceCode;
   @override
   String get tokenUrl => 'https://oauth2.googleapis.com/token';
@@ -217,7 +245,6 @@ class GoogleDriveProvider extends CloudProvider with _OAuth {
   @override
   List<CloudField> get fields => [
         CloudField('folder_name', tr('Tên thư mục sao lưu (mặc định YomiHub)'), hint: 'YomiHub'),
-        CloudField('keep', tr('Giữ bao nhiêu bản sao lưu gần nhất (mặc định 10, 0 = giữ hết)')),
       ];
   @override
   String get help =>
@@ -448,22 +475,9 @@ class GoogleDriveProvider extends CloudProvider with _OAuth {
     } finally {
       await raf.close();
     }
-    await _prune();
   }
 
-  /// Keeps the newest [keep] YomiHub backups in the Drive folder.
-  int get keep => int.tryParse(config['keep'] ?? '') ?? 10;
-
-  Future<void> _prune() async {
-    if (keep <= 0) return;
-    try {
-      final files = (await list()).where((f) => f.name.endsWith('.backup')).toList();
-      for (final f in files.skip(keep)) {
-        await delete(f);
-      }
-    } catch (_) {}
-  }
-
+  @override
   Future<void> delete(CloudFile f) async {
     final r = await _client.delete(
       Uri.parse('https://www.googleapis.com/drive/v3/files/${f.id}'),
@@ -517,7 +531,6 @@ class GoogleDriveClientIdProvider extends GoogleDriveProvider {
         CloudField('client_id', 'Client ID'),
         CloudField('client_secret', 'Client secret', secret: true),
         CloudField('folder_name', tr('Tên thư mục sao lưu (mặc định YomiHub)'), hint: 'YomiHub'),
-        CloudField('keep', tr('Giữ bao nhiêu bản sao lưu gần nhất (mặc định 10, 0 = giữ hết)')),
       ];
   @override
   String get help => tr('Nhập Client ID và Client secret của OAuth client riêng (Google Cloud Console › Credentials › loại "TVs and Limited Input devices", bật Google Drive API) rồi bấm Kết nối và nhập mã hiển thị ở google.com/device. Dùng quyền drive.file với thư mục sao lưu (mặc định YomiHub).');
@@ -543,7 +556,11 @@ class OneDriveProvider extends CloudProvider with _OAuth {
   @override
   String get id => 'onedrive';
   @override
-  String get displayName => 'OneDrive';
+  String get displayName => tr('OneDrive – Client ID riêng');
+  @override
+  String get family => 'onedrive';
+  @override
+  bool get canDelete => true;
   @override
   CloudAuthKind get authKind => CloudAuthKind.deviceCode;
   @override
@@ -595,6 +612,17 @@ class OneDriveProvider extends CloudProvider with _OAuth {
   }
 
   @override
+  Future<void> delete(CloudFile f) async {
+    final r = await _client.delete(
+      Uri.parse('https://graph.microsoft.com/v1.0/me/drive/items/${f.id}'),
+      headers: await _h(),
+    );
+    if (r.statusCode >= 400 && r.statusCode != 404) {
+      throw Exception('OneDrive delete: HTTP ${r.statusCode}');
+    }
+  }
+
+  @override
   Future<File> download(CloudFile f, Directory into) async {
     final r = await _client.get(
       Uri.parse('https://graph.microsoft.com/v1.0/me/drive/items/${f.id}/content'),
@@ -611,7 +639,11 @@ class DropboxProvider extends CloudProvider with _OAuth {
   @override
   String get id => 'dropbox';
   @override
-  String get displayName => 'Dropbox';
+  String get displayName => tr('Dropbox – App key riêng');
+  @override
+  String get family => 'dropbox';
+  @override
+  bool get canDelete => true;
   @override
   CloudAuthKind get authKind => CloudAuthKind.pasteCode;
   @override
@@ -687,6 +719,18 @@ class DropboxProvider extends CloudProvider with _OAuth {
   }
 
   @override
+  Future<void> delete(CloudFile f) async {
+    final r = await _client.post(
+      Uri.parse('https://api.dropboxapi.com/2/files/delete_v2'),
+      headers: {...await _h(), 'Content-Type': 'application/json'},
+      body: jsonEncode({'path': f.id}),
+    );
+    if (r.statusCode >= 400 && r.statusCode != 409) {
+      throw Exception('Dropbox delete: HTTP ${r.statusCode}');
+    }
+  }
+
+  @override
   Future<File> download(CloudFile f, Directory into) async {
     final r = await _client.post(
       Uri.parse('https://content.dropboxapi.com/2/files/download'),
@@ -694,6 +738,55 @@ class DropboxProvider extends CloudProvider with _OAuth {
     );
     if (r.statusCode != 200) throw Exception('Dropbox download: HTTP ${r.statusCode}');
     return File(p.join(into.path, f.name)).writeAsBytes(r.bodyBytes);
+  }
+}
+
+// ─────────────── 0.6.5: sign in with a Microsoft / Dropbox account ───────────────
+// YomiHub Update mục 12–13: besides "own Client ID / App key", the user can
+// simply sign in. The public client id of YomiHub's own registration comes
+// from --dart-define (scripts/lib/yh_defines.ps1 ← secrets/); no secret is
+// shipped (public client + device code / PKCE).
+
+class YomiCloudBuiltIn {
+  static const microsoftClientId = String.fromEnvironment('YH_MS_CLIENT_ID');
+  static const dropboxAppKey = String.fromEnvironment('YH_DROPBOX_APP_KEY');
+}
+
+class OneDriveAccountProvider extends OneDriveProvider {
+  @override
+  String get id => 'onedrive_acc';
+  @override
+  String get displayName => tr('OneDrive – Đăng nhập bằng tài khoản Microsoft');
+  @override
+  List<CloudField> get fields => const [];
+  @override
+  String get help => tr('Bấm Kết nối, mở trang microsoft.com/devicelogin, nhập mã hiển thị và đăng nhập tài khoản Microsoft. Bản sao lưu nằm trong thư mục Ứng dụng › YomiHub trên OneDrive.');
+  @override
+  Future<CloudAuthPrompt?> beginAuth() {
+    if (YomiCloudBuiltIn.microsoftClientId.isEmpty) {
+      throw CloudInputError(tr('Bản cài này chưa có cấu hình đăng nhập Microsoft – hãy dùng tùy chọn "Client ID riêng".'));
+    }
+    config['client_id'] = YomiCloudBuiltIn.microsoftClientId;
+    return super.beginAuth();
+  }
+}
+
+class DropboxAccountProvider extends DropboxProvider {
+  @override
+  String get id => 'dropbox_acc';
+  @override
+  String get displayName => tr('Dropbox – Đăng nhập bằng tài khoản Dropbox');
+  @override
+  List<CloudField> get fields => const [];
+  @override
+  String get help => tr('Bấm Kết nối, đăng nhập Dropbox trên trình duyệt, cho phép YomiHub rồi dán mã Dropbox hiển thị vào app. Bản sao lưu nằm trong thư mục Ứng dụng › YomiHub trên Dropbox.');
+  @override
+  Future<CloudAuthPrompt?> beginAuth() {
+    if (YomiCloudBuiltIn.dropboxAppKey.isEmpty) {
+      throw CloudInputError(tr('Bản cài này chưa có cấu hình đăng nhập Dropbox – hãy dùng tùy chọn "App key riêng".'));
+    }
+    config['client_id'] = YomiCloudBuiltIn.dropboxAppKey;
+    return super.beginAuth();
   }
 }
 
@@ -1437,7 +1530,9 @@ class CloudBackupService {
   final List<CloudProvider> providers = [
     GoogleDriveProvider(),
     GoogleDriveClientIdProvider(), // 0.6.1: tách khỏi đăng nhập Google
+    OneDriveAccountProvider(), // 0.6.5: đăng nhập tài khoản Microsoft
     OneDriveProvider(),
+    DropboxAccountProvider(), // 0.6.5: đăng nhập tài khoản Dropbox
     DropboxProvider(),
     WebDavProvider(),
     RcloneProvider(), // 0.4.4
@@ -1485,6 +1580,7 @@ class CloudBackupService {
       try {
         await pr.upload(File(path));
         results.add(CloudUploadResult(pr.displayName, null));
+        await _prune(pr);
       } catch (e) {
         results.add(CloudUploadResult(pr.displayName, e));
         // 0.4.4: every failed cloud upload goes to the application log
@@ -1493,6 +1589,20 @@ class CloudBackupService {
     }
     if (results.isNotEmpty) lastResults.value = results;
     return results;
+  }
+
+  /// 0.6.5: keeps the newest [yomiCloudKeep] YomiHub backups on [pr].
+  Future<void> _prune(CloudProvider pr) async {
+    final keep = yomiCloudKeep();
+    if (keep <= 0 || !pr.canDelete) return;
+    try {
+      for (final f in yomiCloudFilesToPrune(await pr.list(), keep)) {
+        await pr.delete(f);
+      }
+    } catch (e) {
+      AppLogger.log('[Đồng bộ đám mây] Không xóa được bản sao lưu cũ trên ${pr.displayName}: $e',
+          logLevel: LogLevel.warning);
+    }
   }
 
   Future<Directory> tempDir() async {

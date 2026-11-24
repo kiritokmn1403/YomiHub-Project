@@ -53,8 +53,10 @@ void main() {
       for (final e in BuiltinExtensions.all) {
         expect(File('assets/yomihub_extensions/${e.asset}').existsSync(), isFalse, reason: e.asset);
       }
+      // 0.6.5: the repo moved to the YomiHub-Project organization
+      // (old kiritokmn1403 addresses are migrated by BuiltinExtensions.migrateUrl).
       expect(BuiltinExtensions.repoJson,
-          'https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/index.json');
+          'https://raw.githubusercontent.com/YomiHub-Project/Kiritokmn---Extension-Repo/main/repo/index.json');
       // the repo is added once, never twice
       final once = BuiltinExtensions.withRepo([Repo(name: 'x', jsonUrl: 'https://a/index.json')]);
       expect(once.length, 2);

@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/extensions/builtin_extensions.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -32,9 +33,39 @@ class YomiRepoImporter {
     return s;
   }
 
+  /// 0.6.5 (log 14, 24/11 08:14): the user pasted three links in one box
+  /// ("…/mangayomi/anime.json · .../manga.json · .../novel.json") and the
+  /// whole string was fetched as one URL. Splits on whitespace, commas, "·",
+  /// "|" and new lines; "…/x.json" / ".../x.json" reuse the folder of the
+  /// previous full link; old addresses of the Kiritokmn repo are rewritten.
+  static List<String> splitInput(String text) {
+    final parts = text
+        .split(RegExp(r'[\s,;|·•]+'))
+        .map((e) => e.trim())
+        .where((e) => e.isNotEmpty)
+        .toList();
+    final out = <String>[];
+    String? lastFull;
+    for (var part in parts) {
+      final abbr = RegExp(r'^(?:\.{3}|…)/?(.+)$').firstMatch(part);
+      if (abbr != null) {
+        if (lastFull == null) continue;
+        final dir = lastFull.substring(0, lastFull.lastIndexOf('/') + 1);
+        part = '$dir${abbr.group(1)}';
+      } else if (!RegExp(r'^[a-z][a-z0-9+.\-]*://', caseSensitive: false).hasMatch(part)) {
+        if (!part.contains('.') || !part.contains('/')) continue; // not a link
+        part = 'https://$part';
+      }
+      lastFull = part;
+      final u = BuiltinExtensions.migrateUrl(part);
+      if (!out.any((e) => _norm(e) == _norm(u))) out.add(u);
+    }
+    return out;
+  }
+
   /// Candidate index URLs for what the user (or the other app) gave us.
   static List<String> candidates(String url) {
-    var u = _norm(url);
+    var u = _norm(BuiltinExtensions.migrateUrl(url));
     // 0.2.1: codeKK mirror page of a GitHub project → the GitHub project
     final ck = RegExp(r'p\.codekk\.com/detail/Android/([\w.\-]+)/([\w.\-]+)', caseSensitive: false).firstMatch(u);
     if (ck != null) u = 'https://github.com/${ck.group(1)}/${ck.group(2)}';

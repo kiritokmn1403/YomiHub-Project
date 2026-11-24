@@ -152,8 +152,14 @@ void main() {
 
     test('merge tools live on "Hợp Nhất Tiện Ích"; Data & Storage keeps one shortcut', () {
       final m = _read('lib/yomihub/merge/extension_merge_screen.dart');
-      for (final w in ['CustomMergeSourcesTile()', 'MergeDuplicateMangaTile()', 'ManualMergeMangaTile()', "context.push('/contentMerge')"]) {
+      for (final w in ['CustomMergeSourcesTile()', "context.push('/contentMerge')"]) {
         expect(m, contains(w), reason: w);
+      }
+      // 0.6.5 (YomiHub Update mục 16): series merge tools live on "Hợp Nhất Các Bộ"
+      final c = _read('lib/yomihub/merge/content_merge_screen.dart');
+      for (final w in ['MergeDuplicateMangaTile()', 'ManualMergeMangaTile()']) {
+        expect(c, contains(w), reason: w);
+        expect(m, isNot(contains(w)), reason: w);
       }
       final d = _read('lib/modules/more/data_and_storage/data_and_storage.dart');
       for (final w in ['MergeDuplicateMangaTile', 'ManualMergeMangaTile', 'CustomMergeSourcesTile']) {
@@ -164,9 +170,9 @@ void main() {
   });
 
   group('0.5.7 bổ sung – Hợp nhất nội dung, nhãn "Nguồn đọc", FC41', () {
-    test('"Hợp nhất nội dung" is no longer a second entry in Settings', () {
+    test('0.6.5: "Hợp Nhất Các Bộ" is its own entry in Settings again', () {
       final st = _read('lib/modules/more/settings/settings_screen.dart');
-      expect(st, isNot(contains("context.push('/contentMerge')")));
+      expect(st, contains("context.push('/contentMerge')"));
       expect(st, contains("context.push('/mergeExtensions')"));
       expect(_read('lib/modules/more/more_screen.dart'), contains("context.push('/mergeExtensions')"));
     });

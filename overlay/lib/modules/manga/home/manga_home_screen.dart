@@ -84,6 +84,24 @@ class _MangaHomeScreenState extends ConsumerState<MangaHomeScreen> {
   final List<MManga> _mangaList = [];
   late StreamSubscription<List<Manga>> _mangaStreamSub;
   Map<String, Manga> _libraryIndex = {};
+
+  // 0.6.5: link / normalised-title keys of [_libraryIndex].
+  static String _linkKey(String link) {
+    var l = link.trim().toLowerCase();
+    l = l.replaceFirst(RegExp(r'^https?://(www\.)?'), '');
+    while (l.endsWith('/')) {
+      l = l.substring(0, l.length - 1);
+    }
+    return 'link:$l';
+  }
+
+  static String _nameKey(String name) =>
+      'name:${name.toLowerCase().replaceAll(RegExp(r'\s+'), ' ').trim()}';
+
+  Manga? _libFor(MManga m) =>
+      _libraryIndex[m.name] ??
+      ((m.link ?? '').isNotEmpty ? _libraryIndex[_linkKey(m.link!)] : null) ??
+      (m.name == null ? null : _libraryIndex[_nameKey(m.name!)]);
   List<TypeMangaSelector> _types(BuildContext context) {
     final l10n = l10nLocalizations(context)!;
     return [
@@ -174,11 +192,21 @@ class _MangaHomeScreenState extends ConsumerState<MangaHomeScreen> {
                 (e) => e.sourceId == null || e.sourceId == source.id,
               )) {
                 if (m.name == null) continue;
-                final existing = _libraryIndex[m.name!];
-                // Prefer the record with the lower id (first inserted = real entry).
-                // Guards against pre-existing duplicate records in the DB.
-                if (existing == null || m.id! < existing.id!) {
-                  _libraryIndex[m.name!] = m;
+                // 0.6.5 (YomiHub Update mục 3): series added to a category
+                // lost their "in library" mark when the source returned the
+                // title slightly differently (case, spaces) – also index by
+                // the series link and by a normalised title.
+                for (final key in [
+                  m.name!,
+                  if ((m.link ?? '').isNotEmpty) _linkKey(m.link!),
+                  _nameKey(m.name!),
+                ]) {
+                  final existing = _libraryIndex[key];
+                  // Prefer the record with the lower id (first inserted = real entry).
+                  // Guards against pre-existing duplicate records in the DB.
+                  if (existing == null || m.id! < existing.id!) {
+                    _libraryIndex[key] = m;
+                  }
                 }
               }
             });
@@ -934,8 +962,7 @@ class _MangaHomeScreenState extends ConsumerState<MangaHomeScreen> {
                                     itemType: source.itemType,
                                     manga: _mangaList[index],
                                     source: source,
-                                    libraryManga:
-                                        _libraryIndex[_mangaList[index].name],
+                                    libraryManga: _libFor(_mangaList[index]),
                                   );
                                 },
                               )
@@ -965,9 +992,7 @@ class _MangaHomeScreenState extends ConsumerState<MangaHomeScreen> {
                                         manga: _mangaList[index],
                                         source: source,
                                         isComfortableGrid: isComfortableGrid,
-                                        libraryManga:
-                                            _libraryIndex[_mangaList[index]
-                                                .name],
+                                        libraryManga: _libFor(_mangaList[index]),
                                       );
                                     },
                                   );

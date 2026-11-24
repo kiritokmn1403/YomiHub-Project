@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/extensions/builtin_extensions.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
 
 import 'dart:convert';
@@ -31,9 +32,20 @@ class YomiBackupExtras {
     'yomihub_userscripts',
     'yomihub_booru', // 0.4.4: Booru App (favourites, history, settings)
     'yomihub_bookshelf', // 0.6.3: Tủ Sách Cá Nhân (series, volumes, wishlist…)
+    'yomihub_browser_history', // 0.6.5: lịch sử trình duyệt web (YomiHub Update mục 14)
   ];
 
-  static const _sensitiveKeys = {'warpAccount', 'proxyPassword', 'proxyUrl', 'creds'};
+  static const _sensitiveKeys = {
+    'warpAccount',
+    'proxyPassword',
+    'proxyUrl',
+    'creds',
+    'saucenaoApiKey', // 0.6.5: SauceNAO API key
+  };
+
+  // 0.6.5: runtime state of the Tor crash guard must not travel in a backup
+  // (restoring torStartPending=true would count a crash that never happened).
+  static const _runtimeKeys = {'torStartPending', 'torCrashStrikes'};
 
   static dynamic _safe(dynamic v) {
     if (v == null || v is num || v is bool || v is String) return v;
@@ -89,6 +101,10 @@ class YomiBackupExtras {
       if (name == 'yomihub_booru' && !YomiPrefs.get<bool>('backupBooru', true)) continue;
       // 0.6.3: "Tủ Sách Cá Nhân" can be left out too (YomiHub Update mục 10: chọn mục sao lưu)
       if (name == 'yomihub_bookshelf' && !YomiPrefs.get<bool>('backupBookshelf', true)) continue;
+      // 0.6.5 (YomiHub Update mục 14): browser history and VPN settings have
+      // their own switches in Sao Lưu & Khôi Phục.
+      if (name == 'yomihub_browser_history' && !YomiPrefs.get<bool>('backupBrowserHistory', true)) continue;
+      if (name == 'yomihub_vpn' && !YomiPrefs.get<bool>('backupVpn', true)) continue;
       try {
         final box = Hive.isBoxOpen(name)
             ? Hive.box(name)
@@ -98,7 +114,8 @@ class YomiBackupExtras {
         if (!includeSensitive && name == 'yomihub_trackers') continue;
         data[name] = {
           for (final k in box.keys)
-            if (includeSensitive || !_sensitiveKeys.contains('$k'))
+            if (!_runtimeKeys.contains('$k') &&
+                (includeSensitive || !_sensitiveKeys.contains('$k')))
               '$k': _safe(box.get(k)),
         };
       } catch (_) {}
@@ -125,12 +142,22 @@ class YomiBackupExtras {
       if (s != null) {
         List<Repo> merge(List<Repo>? current, dynamic incoming) {
           final list = [...?current];
-          final known = list.map((e) => _norm(e.jsonUrl)).toSet();
+          // 0.6.5: backups made before the move to YomiHub-Project still
+          // carry kiritokmn1403/... and /repo/mangayomi/<type>.json - migrate
+          // them so a restore never re-adds the old repo next to the new one.
+          final known = list
+              .map((e) => _norm(BuiltinExtensions.migrateUrl(e.jsonUrl ?? '')))
+              .toSet();
           if (incoming is List) {
             for (final j in incoming.whereType<Map>()) {
               final r = Repo.fromJson(Map<String, dynamic>.from(j));
-              if (_norm(r.jsonUrl).isEmpty || !known.add(_norm(r.jsonUrl))) {
+              final nu = BuiltinExtensions.migrateUrl(r.jsonUrl ?? '');
+              if (_norm(nu).isEmpty || !known.add(_norm(nu))) {
                 continue;
+              }
+              r.jsonUrl = nu;
+              if (r.website != null) {
+                r.website = BuiltinExtensions.migrateUrl(r.website!);
               }
               list.add(r);
             }
@@ -158,6 +185,7 @@ class YomiBackupExtras {
             if (name == 'yomihub_prefs' && kv.key == 'mergedChapterOrigins') {
               continue;
             }
+            if (_runtimeKeys.contains('${kv.key}')) continue;
             await box.put('${kv.key}', kv.value);
           }
           if (name == 'yomihub_booru') {

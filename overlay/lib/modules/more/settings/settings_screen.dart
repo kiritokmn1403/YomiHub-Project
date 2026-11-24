@@ -190,9 +190,16 @@ class SettingsScreen extends StatelessWidget {
             // sub-entry of this screen (it used to be a second entry here)
             ListTileWidget(
               title: tr('Hợp nhất tiện ích'),
-              subtitle: tr('Hợp nhất bộ trùng, tự chọn bộ, hợp nhất tiện ích theo lựa chọn'),
+              subtitle: tr('Tự chọn các tiện ích nguồn để gộp chung, nhóm tiện ích đã hợp nhất'),
               icon: Icons.hub_rounded,
               onTap: () => context.push('/mergeExtensions'),
+            ),
+            // 0.6.5 (YomiHub Update mục 16): series merge is separate again
+            ListTileWidget(
+              title: tr('Hợp Nhất Các Bộ'),
+              subtitle: tr('Gộp truyện, phim, tiểu thuyết cùng tác phẩm từ các nguồn khác nhau, chọn nguồn đọc/xem, hủy hợp nhất'),
+              icon: Icons.auto_stories_rounded,
+              onTap: () => context.push('/contentMerge'),
             ),
             // YomiHub 0.3.0: Health Connect & Digital Wellbeing
             ListTileWidget(

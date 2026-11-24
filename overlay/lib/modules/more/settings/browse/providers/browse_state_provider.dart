@@ -1,3 +1,4 @@
+import 'package:mangayomi/yomihub/extensions/builtin_extensions.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -224,7 +225,9 @@ class CheckForExtensionsUpdateState extends _$CheckForExtensionsUpdateState {
 @riverpod
 Future<Repo?> getRepoInfos(Ref ref, {required String jsonUrl}) async {
   final http = MClient.init(reqcopyWith: {'useDartHttpClient': true});
-  final cleanUrl = jsonUrl.trim();
+  // 0.6.5: old kiritokmn1403 addresses / per-type mangayomi/<type>.json of the
+  // Kiritokmn repo map to the current repo/index.json (log 14, 24/11/2026).
+  final cleanUrl = BuiltinExtensions.migrateUrl(jsonUrl.trim());
 
   // Normalize URLs that don't end with a file name (e.g. https://aidoku-community.github.io/sources)
   final urlsToTry = <String>[cleanUrl];

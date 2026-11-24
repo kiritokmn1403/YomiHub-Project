@@ -513,7 +513,7 @@ void main() {
       tester,
     ) async {
       await pump(tester, brightness: Brightness.dark);
-      expect(asset(tester), 'assets/app_icons/icon.png');
+      expect(asset(tester), 'assets/app_icons/icon-glyph.png');
       expect(logo(tester).color, Colors.white);
     });
 
@@ -523,7 +523,7 @@ void main() {
       // The mark is a silhouette, so it vanishes into one background or the
       // other unless the tint is flipped with the theme.
       await pump(tester, brightness: Brightness.light);
-      expect(asset(tester), 'assets/app_icons/icon.png');
+      expect(asset(tester), 'assets/app_icons/icon-glyph.png');
       expect(logo(tester).color, Colors.black);
     });
   });

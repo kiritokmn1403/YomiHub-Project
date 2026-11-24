@@ -30,7 +30,7 @@ Stream<List<Update>> getAllUpdateStream(
   Ref ref, {
   required ItemType itemType,
   String search = "",
-}) async* {
+}) {
   // Filtering via .chapter((q) => q.manga(...)) makes Isar walk and fully
   // deserialize the linked Chapter+Manga for every Update row on every watch
   // re-evaluation. Resolving matching manga ids up front (indexed) and
@@ -39,11 +39,17 @@ Stream<List<Update>> getAllUpdateStream(
     itemType,
     search,
   );
-
-  await for (final mangaIds in mangaIdsStream) {
-    // 0.6.0: chapter links resolved off the UI thread before emitting.
-    yield* updateRepository
+  // 0.6.5 (log 14, Windows: "PlatformDispatcher error: Stack Overflow",
+  // 11 646 frames of async* continuations): `await for` + `yield*` into an
+  // endless Isar watch never left the first inner stream, so every later
+  // manga-id list (library restored: 4 877 series) piled up behind it and
+  // was completed in one synchronous chain. Switch to the newest inner stream
+  // instead (no async* generator involved).
+  // 0.6.0: chapter links resolved off the UI thread before emitting.
+  return yomiSwitchMap<List<int>, List<Update>>(
+    mangaIdsStream,
+    (mangaIds) => updateRepository
         .watchByMangaIds(mangaIds)
-        .asyncMap(preloadUpdateChapters);
-  }
+        .asyncMap(preloadUpdateChapters),
+  );
 }

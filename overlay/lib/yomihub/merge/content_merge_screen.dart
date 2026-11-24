@@ -95,7 +95,7 @@ class _ContentMergeScreenState extends ConsumerState<ContentMergeScreen> {
     final mergedMangas = _mergedMangas;
 
     return Scaffold(
-      appBar: AppBar(title: Text(tr('Hợp Nhất Nội Dung'))),
+      appBar: AppBar(title: Text(tr('Hợp Nhất Các Bộ'))),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         children: [
@@ -143,6 +143,21 @@ class _ContentMergeScreenState extends ConsumerState<ContentMergeScreen> {
                     ],
                   ),
                 ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          // 0.6.5 (YomiHub Update mục 16): the two series tools moved here
+          // from "Hợp Nhất Tiện Ích".
+          Card(
+            key: const ValueKey('seriesMergeTools'),
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: const Column(
+              children: [
+                MergeDuplicateMangaTile(),
+                Divider(height: 1),
+                ManualMergeMangaTile(),
               ],
             ),
           ),

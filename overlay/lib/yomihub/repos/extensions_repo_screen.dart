@@ -314,6 +314,16 @@ class _ExtensionsRepoScreenState extends ConsumerState<ExtensionsRepoScreen> {
   }
 
   Future<int> _add(String text, {Set<ItemType>? forceTypes}) async {
+    // 0.6.5: several links may be pasted at once (log 14).
+    final urls = YomiRepoImporter.splitInput(text);
+    if (urls.length > 1) {
+      var n = 0;
+      for (final u in urls) {
+        n += await _add(u, forceTypes: forceTypes);
+      }
+      return n;
+    }
+    if (urls.length == 1) text = urls.single;
     if (forceTypes != null && forceTypes.isNotEmpty) {
       var n = 0;
       final resolved = await YomiRepoImporter.resolve(ImportedRepo(text));

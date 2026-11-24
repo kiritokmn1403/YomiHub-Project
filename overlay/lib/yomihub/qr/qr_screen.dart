@@ -50,7 +50,18 @@ class _YomiQrScreenState extends ConsumerState<YomiQrScreen>
     super.initState();
     if (_hasCamera) {
       _cam = MobileScannerController(
-        formats: const [BarcodeFormat.qrCode],
+        // 0.6.5 (YomiHub Update: QR Code & Barcode Generator & Scanner
+        // Project): book / product barcodes too (EAN-13 = ISBN, UPC, Code128…)
+        formats: const [
+          BarcodeFormat.qrCode,
+          BarcodeFormat.ean13,
+          BarcodeFormat.ean8,
+          BarcodeFormat.upcA,
+          BarcodeFormat.upcE,
+          BarcodeFormat.code128,
+          BarcodeFormat.code39,
+          BarcodeFormat.dataMatrix,
+        ],
         detectionSpeed: DetectionSpeed.noDuplicates,
       );
     }

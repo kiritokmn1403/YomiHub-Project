@@ -152,7 +152,9 @@ class YomiExtErrors {
   /// methods; never an error a stack trace of the app helps with.
   static final RegExp _incompatible = RegExp(
     r'(abstract method "|abstractmethoderror|nosuchmethoderror|noclassdeffounderror|'
-    r'incompatibleclasschangeerror|no (static|virtual|direct|interface) method )',
+    r'incompatibleclasschangeerror|no (static|virtual|direct|interface) method |'
+    // 0.6.5 (log 14, Windows M-Extension-Server)
+    r'verifyerror|bad type on operand stack|cannot be cast to class)',
     caseSensitive: false,
   );
   static bool isIncompatible(Object e) => _incompatible.hasMatch(e.toString());

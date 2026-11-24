@@ -5,6 +5,7 @@ import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/app_identity.dart';
 import 'dart:io';
+import 'package:mangayomi/main.dart' show webViewEnvironment;
 import 'dart:collection';
 import 'dart:convert';
 
@@ -491,6 +492,8 @@ class _BrowserScreenState extends State<BrowserScreen> {
     if (t.gecko) return _geckoView(t);
     return InAppWebView(
       key: ValueKey(t.id),
+      // 0.6.5: dùng chung WebView2 environment trên Windows (log 14: tạo WebView thất bại)
+      webViewEnvironment: Platform.isWindows ? webViewEnvironment : null,
       windowId: t.windowId,
       initialUrlRequest: t.windowId == null ? URLRequest(url: WebUri(t.url)) : null,
       initialSettings: _settings(t),

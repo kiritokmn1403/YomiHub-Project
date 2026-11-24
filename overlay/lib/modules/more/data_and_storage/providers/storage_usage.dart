@@ -1,3 +1,4 @@
+import 'dart:isolate';
 import 'dart:io';
 
 import 'package:mangayomi/eval/model/m_bridge.dart';
@@ -58,20 +59,16 @@ class TotalChapterCacheSizeState extends _$TotalChapterCacheSizeState {
     return 0;
   }
 
+  // YomiHub 0.6.5: đo dung lượng trong Isolate riêng để không chặn luồng UI
+  // (log 0.6.4: khung hình /backupSync 1,2–2,4 s do lengthSync từng tệp).
   Future<int> _getdirectorySize(Directory directory) async {
+    final path = directory.path;
     try {
-      if (await directory.exists()) {
-        return await directory
-            .list(recursive: true, followLinks: false)
-            .where((entity) => entity is File)
-            .cast<File>()
-            .fold(0, (total, file) {
-              return total + file.lengthSync();
-            });
-      }
+      return await Isolate.run(() => _yomiDirSizeSync(path));
     } catch (_) {}
     return 0;
   }
+
 }
 
 @riverpod
@@ -86,4 +83,20 @@ class ClearChapterCacheOnAppLaunchState
     state = value;
     settingsRepository.update((s) => s.clearChapterCacheOnAppLaunch = value);
   }
+}
+
+int _yomiDirSizeSync(String path) {
+  final dir = Directory(path);
+  if (!dir.existsSync()) return 0;
+  var total = 0;
+  try {
+    for (final e in dir.listSync(recursive: true, followLinks: false)) {
+      if (e is File) {
+        try {
+          total += e.statSync().size;
+        } catch (_) {}
+      }
+    }
+  } catch (_) {}
+  return total;
 }

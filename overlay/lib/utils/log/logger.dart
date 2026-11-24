@@ -117,10 +117,22 @@ class AppLogger {
   /// [always]: 0.5.2 - an INFO line that is written even with "Enable logs"
   /// off (backup / restore results, Windows diagnostics), so a log sent in
   /// by a user shows what happened, not only what failed.
+  // 0.6.5: query-string secrets that must never reach logs.txt / báo lỗi.
+  static final RegExp _secretParam = RegExp(
+    r'''((?:api[_-]?key|apikey|access_token|refresh_token|token|password|passwd|login|client_secret|auth|sig)=)[^&\s"'<>]+''',
+    caseSensitive: false,
+  );
+
+  static String redactSecrets(String message) =>
+      message.replaceAllMapped(_secretParam, (m) => '${m[1]}***');
+
   static void log(String message, {LogLevel logLevel = LogLevel.info, bool always = false}) {
     final important =
         logLevel == LogLevel.error || logLevel == LogLevel.warning;
     if (!important && !always && !verbose) return;
+
+    // 0.6.5: che khoá bí mật trong URL (api_key Danbooru/SauceNAO, token…)
+    message = redactSecrets(message);
 
     // 0.5.4: Phân loại nguồn lỗi rõ ràng (nguồn 404/403/Cloudflare vs Tor timeout vs ứng dụng)
     message = classifyMessage(message, logLevel);
@@ -171,6 +183,12 @@ class AppLogger {
     caseSensitive: false,
   );
 
+  static final RegExp _torWordRegex = RegExp(r'\b(tor|warp|snowflake|obfs4|meek)\b', caseSensitive: false);
+  static final RegExp _jvmIncompatibleRegex = RegExp(
+    r'(verifyerror|bad type on operand stack|cannot be cast to class)',
+    caseSensitive: false,
+  );
+
   static final RegExp _networkTorRegex = RegExp(
     r'\b(tor|warp|timeout|timed\s*out|socketexception|connection\s+(?:closed|refused|reset|error|aborted)|tls\s+handshake)\b',
     caseSensitive: false,
@@ -214,9 +232,21 @@ class AppLogger {
       return '[Lỗi Nguồn 403 / Cloudflare] $msg';
     }
 
+    // 3b. 0.6.5 (log 14, Windows): an APK extension rejected by the desktop
+    // JVM ("VerifyError: Bad type on operand stack", "class x2 cannot be cast
+    // to class d0") is the extension's problem, not the network's.
+    if (_jvmIncompatibleRegex.hasMatch(msg)) {
+      return '[Lỗi Nguồn] $msg';
+    }
+
     // 4. Kiểm tra Lỗi Mạng / Tor Timeout với ranh giới từ nguyên (\b)
+    // 0.6.5 (Codex LOG_COVERAGE_065 B): "Tor" only when Tor/WARP is really
+    // involved – a lost Wi-Fi (SocketException, Failed host lookup) was
+    // labelled "Tor Timeout" and looked like a Tor bug.
     if (_networkTorRegex.hasMatch(msg)) {
-      return '[Lỗi Mạng / Tor Timeout] $msg';
+      return _torWordRegex.hasMatch(msg)
+          ? '[Lỗi Mạng / Tor Timeout] $msg'
+          : '[Lỗi Mạng] $msg';
     }
 
     if (isExtension) return '[Lỗi Nguồn] $msg';

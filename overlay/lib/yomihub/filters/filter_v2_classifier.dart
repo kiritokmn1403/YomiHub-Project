@@ -7,6 +7,7 @@ enum FilterV2Section {
   status,
   category,
   contentRating,
+  country, // 0.6.5: "Quốc Gia Phát Hành" (sheet New Filter)
   releaseYear,
   searchBy,
   rating,
@@ -15,12 +16,14 @@ enum FilterV2Section {
   other,
 }
 
-/// 9 nhóm chính của sheet "New Filter" theo đúng thứ tự thiết kế.
+/// 10 nhóm chính của sheet "New Filter" theo đúng thứ tự thiết kế
+/// (0.6.5: thêm "Quốc Gia Phát Hành").
 const List<FilterV2Section> kFilterV2PrimarySections = [
   FilterV2Section.sort,
   FilterV2Section.status,
   FilterV2Section.category,
   FilterV2Section.contentRating,
+  FilterV2Section.country,
   FilterV2Section.releaseYear,
   FilterV2Section.searchBy,
   FilterV2Section.rating,
@@ -35,6 +38,7 @@ extension FilterV2SectionMeta on FilterV2Section {
     FilterV2Section.status => 'Tình Trạng',
     FilterV2Section.category => 'Danh Mục',
     FilterV2Section.contentRating => 'Phân Loại Nội Dung',
+    FilterV2Section.country => 'Quốc Gia Phát Hành',
     FilterV2Section.releaseYear => 'Năm Phát Hành',
     FilterV2Section.searchBy => 'Tìm Theo',
     FilterV2Section.rating => 'Đánh Giá',
@@ -63,8 +67,11 @@ const Map<String, FilterV2Section> kFilterV2TypeHints = {
   'formats': FilterV2Section.category,
   'demographic': FilterV2Section.category,
   'demographics': FilterV2Section.category,
-  'country': FilterV2Section.category,
-  'origin': FilterV2Section.category,
+  'country': FilterV2Section.country,
+  'countries': FilterV2Section.country,
+  'origin': FilterV2Section.country,
+  'nation': FilterV2Section.country,
+  'region': FilterV2Section.country,
   'vb_tab': FilterV2Section.category,
   'ratings': FilterV2Section.contentRating,
   'contentrating': FilterV2Section.contentRating,
@@ -120,6 +127,14 @@ const Map<String, FilterV2Section> kFilterV2TypeHints = {
 /// như "Sort by Rating" (→ [FilterV2Section.sort]), "Content Rating" (→
 /// [FilterV2Section.contentRating]) hay "Search by Genre" (→ [FilterV2Section.searchBy]).
 const Map<FilterV2Section, List<String>> kFilterV2Keywords = {
+  // 0.6.5: "Quốc Gia Phát Hành" (sheet New Filter)
+  FilterV2Section.country: [
+    'quốc gia phát hành', 'quoc gia phat hanh', 'quốc gia', 'quoc gia', 'xuất xứ', 'xuat xu',
+    'nước', 'nuoc', 'khu vực', 'khu vuc',
+    'country', 'country of origin', 'countries', 'origin', 'nation', 'region',
+    '国家', '國家', '地区', '地區', '国・地域',
+    '국가', 'страна', 'страны', 'país', 'pais', 'países', 'origem', 'origen', 'pays', 'paese', 'negara', 'ülke', 'ประเทศ',
+  ],
   FilterV2Section.sort: [
     // Tiếng Việt
     'sắp xếp', 'sap xep', 'xếp theo', 'xep theo', 'thứ tự', 'thu tu',
@@ -269,11 +284,11 @@ const Map<FilterV2Section, List<String>> kFilterV2Keywords = {
     // Tiếng Việt
     'danh mục', 'danh muc', 'chuyên mục', 'chuyen muc', 'loại', 'loai',
     'loại truyện', 'loại phim', 'kiểu truyện', 'dạng', 'đối tượng', 'doi tuong',
-    'quốc gia', 'quoc gia', 'xuất xứ', 'xuat xu', 'tạp chí', 'bộ sưu tập',
+    'tạp chí', 'bộ sưu tập',
     // Tiếng Anh
     'category', 'categories', 'type', 'types', 'format', 'formats',
     'demographic', 'demographics', 'media type', 'content type', 'publication type',
-    'country', 'origin', 'region', 'magazine', 'collection', 'section',
+    'magazine', 'collection', 'section',
     // Nhật / Trung
     'カテゴリー', 'カテゴリ', 'タイプ', '種別', '種類', '形式', '媒体', '雑誌', '対象', '少年', '青年', '少女',
     '分类', '分類', '类别', '類別', '类型', '類型', '形式', '地区', '地區', '国家', '國家', '连载杂志', '受众', '受眾',
@@ -312,6 +327,7 @@ const Map<FilterV2Section, List<String>> kFilterV2Keywords = {
 const List<FilterV2Section> _classifyOrder = [
   FilterV2Section.sort,
   FilterV2Section.contentRating,
+  FilterV2Section.country,
   FilterV2Section.searchBy,
   FilterV2Section.releaseYear,
   FilterV2Section.status,

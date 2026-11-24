@@ -9,6 +9,8 @@
 // Fix: the provider resolves the chapter links before it emits, in chunks,
 // with Isar's async API (runs on Isar's own thread). build() then finds the
 // links already loaded and never touches the database row by row.
+import 'dart:async';
+
 import 'package:mangayomi/main.dart' show isar;
 import 'package:mangayomi/models/manga.dart';
 import 'package:mangayomi/models/update.dart';
@@ -71,4 +73,39 @@ Future<void> _load(Update u) async {
   } catch (_) {
     // A deleted chapter just stays unresolved; the screen drops that row.
   }
+}
+
+
+/// 0.6.5: "switchMap" without async*: for every [source] event, cancels the
+/// previous inner stream and forwards the one built by [map]. Used by the
+/// Updates provider (log 14 Stack Overflow, see isar_providers.dart).
+Stream<R> yomiSwitchMap<T, R>(Stream<T> source, Stream<R> Function(T) map) {
+  StreamSubscription<T>? outer;
+  StreamSubscription<R>? inner;
+  late final StreamController<R> c;
+  c = StreamController<R>(
+    onListen: () {
+      outer = source.listen(
+        (v) {
+          final old = inner;
+          inner = map(v).listen(c.add, onError: c.addError);
+          old?.cancel();
+        },
+        onError: c.addError,
+      );
+    },
+    onPause: () {
+      outer?.pause();
+      inner?.pause();
+    },
+    onResume: () {
+      outer?.resume();
+      inner?.resume();
+    },
+    onCancel: () async {
+      await inner?.cancel();
+      await outer?.cancel();
+    },
+  );
+  return c.stream;
 }

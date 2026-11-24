@@ -13,12 +13,15 @@ import 'package:mangayomi/yomihub/update/drive_update.dart';
 /// "Website Update Apps" sheet in its listed order and offers the first
 /// source that has a newer version with installers for this platform:
 ///
-///  I.  GitHub kiritokmn1403/YomiHub-Project (repo + Releases)
-///  II. Google Drive ×3, MediaFire ×3 (YomiHub, Alpha, Beta)
+///  I.  GitHub YomiHub-Project/YomiHub-Project (repo + Releases)
+///  II. Google Drive ×3, MediaFire ×3 (YomiHub, Alpha, Beta), then the old
+///      GitHub kiritokmn1403/YomiHub-Project (0.6.5: the repo moved to the
+///      YomiHub-Project organisation – sheet "Website Update Apps" 24/11/2026).
 class YomiUpdateSources {
   YomiUpdateSources._();
 
-  static const githubRepo = 'kiritokmn1403/YomiHub-Project';
+  static const githubRepo = 'YomiHub-Project/YomiHub-Project';
+  static const legacyGithubRepo = 'kiritokmn1403/YomiHub-Project';
   static const driveFolders = [
     '16PCPorl1Ae9nmKMMWAC3Oz1rp_w9tH__',
     '1EF_4MJQVxLpeKhRoMSctHBFPklPsmAdn',
@@ -52,6 +55,7 @@ class YomiUpdateSources {
           ('Google Drive $id', () => YomiDriveUpdate.check(current, client: c, acceptsFile: acceptsFile, folderId: id)),
         for (final key in mediafireFolders)
           ('MediaFire $key', () => _mediafire(c, key, acceptsFile)),
+        ('GitHub Releases (kiritokmn1403)', () => _github(c, acceptsFile, repo: legacyGithubRepo)),
       ];
       // 0.5.7 (S1): all 7 checks start at once (logs 7: sequential, one slow
       // MediaFire/Drive folder cost 20-60 s each). Each retries once and never
@@ -123,8 +127,10 @@ class YomiUpdateSources {
   // ---------------------------------------------------------------- GitHub
   static Future<(String, String, String, List<dynamic>)?> _github(
     http.Client c,
-    bool Function(String) accepts,
-  ) async {
+    bool Function(String) accepts, {
+    String repo = githubRepo,
+  }) async {
+    final githubRepo = repo;
     final api = await c.get(
       Uri.parse('https://api.github.com/repos/$githubRepo/releases/latest'),
       headers: {'Accept': 'application/vnd.github+json', 'User-Agent': 'YomiHub'},

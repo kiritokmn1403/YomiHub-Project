@@ -29,7 +29,7 @@ import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 class YomiA6Notice {
   YomiA6Notice._();
   static const _key = 'a6NoticeShownFor';
-  static const releasesUrl = 'https://github.com/kiritokmn1403/YomiHub-Project/releases/latest';
+  static const releasesUrl = 'https://github.com/YomiHub-Project/YomiHub-Project/releases/latest';
 
   /// Android 7.0 (API 24) and later can run the regular APK.
   static bool applies({required bool a6Build, required int sdkInt}) => a6Build && sdkInt >= 24;

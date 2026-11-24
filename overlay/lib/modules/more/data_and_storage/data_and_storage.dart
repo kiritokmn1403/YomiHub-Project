@@ -39,7 +39,10 @@ class DataAndStorage extends ConsumerWidget {
     final backupFrequency = ref.watch(backupFrequencyStateProvider);
     final autoBackupLocation = ref.watch(autoBackupLocationStateProvider);
     final downloadLocationState = ref.watch(downloadLocationStateProvider);
-    final totalChapterCacheSize = ref.watch(totalChapterCacheSizeStateProvider);
+    // 0.6.5: /backupSync never shows the cache size - watching it there
+    // started a full scan of the image/chapter cache on every open.
+    final totalChapterCacheSize =
+        backupSync ? '' : ref.watch(totalChapterCacheSizeStateProvider);
     final clearChapterCacheOnAppLaunch = ref.watch(
       clearChapterCacheOnAppLaunchStateProvider,
     );
@@ -566,6 +569,49 @@ class DataAndStorage extends ConsumerWidget {
                   onChanged: (v) => YomiPrefs.set('backupBookshelf', v),
                 ),
               ),
+            // 0.6.5 (YomiHub Update mục 14): "Sao Lưu" button in the Library
+            ValueListenableBuilder<int>(
+              valueListenable: YomiPrefs.changes,
+              builder: (context, _, _) => SwitchListTile(
+                secondary: const Icon(Icons.backup_outlined),
+                title: Text(tr('Nút Sao Lưu trong Thư Viện')),
+                subtitle: Text(tr('Bấm một lần để sao lưu theo các mục đã chọn ở đây, lưu vào thư mục tự sao lưu và tải lên các dịch vụ đám mây đang bật tự động')),
+                value: YomiPrefs.get<bool>('libraryBackupButton', true),
+                onChanged: (v) => YomiPrefs.set('libraryBackupButton', v),
+              ),
+            ),
+            ValueListenableBuilder<int>(
+              valueListenable: YomiPrefs.changes,
+              builder: (context, _, _) => SwitchListTile(
+                secondary: const Icon(Icons.help_outline),
+                title: Text(tr('Hỏi trước khi sao lưu bằng nút Sao Lưu')),
+                value: YomiPrefs.get<bool>('libraryBackupConfirm', false),
+                onChanged: YomiPrefs.get<bool>('libraryBackupButton', true)
+                    ? (v) => YomiPrefs.set('libraryBackupConfirm', v)
+                    : null,
+              ),
+            ),
+            // 0.6.5 (YomiHub Update mục 14): browser history + VPN settings
+            ValueListenableBuilder<int>(
+              valueListenable: YomiPrefs.changes,
+              builder: (context, _, _) => SwitchListTile(
+                secondary: const Icon(Icons.travel_explore),
+                title: Text(tr('Sao lưu lịch sử trình duyệt')),
+                subtitle: Text(tr('Các trang đã mở trong trình duyệt của YomiHub đi kèm bản sao lưu và sao lưu đám mây')),
+                value: YomiPrefs.get<bool>('backupBrowserHistory', true),
+                onChanged: (v) => YomiPrefs.set('backupBrowserHistory', v),
+              ),
+            ),
+            ValueListenableBuilder<int>(
+              valueListenable: YomiPrefs.changes,
+              builder: (context, _, _) => SwitchListTile(
+                secondary: const Icon(Icons.vpn_lock_outlined),
+                title: Text(tr('Sao lưu cài đặt VPN')),
+                subtitle: Text(tr('Chế độ VPN, cầu nối Tor, DNS, danh sách trang đi qua VPN (không gồm mật khẩu proxy và tài khoản WARP)')),
+                value: YomiPrefs.get<bool>('backupVpn', true),
+                onChanged: (v) => YomiPrefs.set('backupVpn', v),
+              ),
+            ),
             ],
             if (!backupSync) ...[
             Padding(

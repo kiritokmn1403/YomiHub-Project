@@ -281,6 +281,12 @@ class YomiMes {
     final args = <String>[
       '-Xmx768m',
       '-Dfile.encoding=UTF-8',
+      // 0.6.5 (log 14, CBHentai on Windows): classes converted from an APK's
+      // dex fail the JVM verifier ("VerifyError: Bad type on operand stack in
+      // putfield") although ART runs them fine. Extension classes are loaded
+      // by the server's own class loader, so skipping verification of
+      // non-bootstrap classes is enough; the JDK itself is still verified.
+      '-XX:-BytecodeVerificationRemote',
       ..._jvmProxyArgs(_winJvmProxy),
       '-jar',
       WinProc.shortPath(winJar),

@@ -22,6 +22,7 @@ import 'package:mangayomi/modules/widgets/manga_image_card_widget.dart';
 import 'package:mangayomi/modules/widgets/tv_menu.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mangayomi/yomihub/library/foreign_downloads.dart';
+import 'package:mangayomi/yomihub/backup/quick_backup.dart';
 
 /// AppBar for the library screen.
 ///
@@ -236,6 +237,8 @@ class LibraryAppBar extends ConsumerWidget implements PreferredSizeWidget {
               ),
             ],
           ),
+        // 0.6.5 (YomiHub Update mục 14): one-tap backup
+        if (!isSearch) const YomiQuickBackupButton(),
         IconButton(
           splashRadius: 20,
           onPressed: () {

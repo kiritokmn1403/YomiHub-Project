@@ -207,6 +207,46 @@ class _CreateBackupState extends ConsumerState<CreateBackup> {
                   ),
                 ),
               ],
+              // 0.6.5 (YomiHub Update mục 14)
+              Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  child: StatefulBuilder(
+                    builder: (context, setLocal) {
+                      final on = YomiPrefs.get<bool>('backupBrowserHistory', true);
+                      return ListTileChapterFilter(
+                        label: tr('Lịch sử trình duyệt web'),
+                        type: on ? 1 : 0,
+                        onTap: () async {
+                          await YomiPrefs.set('backupBrowserHistory', !on);
+                          setLocal(() {});
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
+              // 0.6.5 (YomiHub Update mục 14)
+              Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  child: StatefulBuilder(
+                    builder: (context, setLocal) {
+                      final on = YomiPrefs.get<bool>('backupVpn', true);
+                      return ListTileChapterFilter(
+                        label: tr('Cài đặt VPN & DNS'),
+                        type: on ? 1 : 0,
+                        onTap: () async {
+                          await YomiPrefs.set('backupVpn', !on);
+                          setLocal(() {});
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Divider(color: context.primaryColor, height: 0.3),

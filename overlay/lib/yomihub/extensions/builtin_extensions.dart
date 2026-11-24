@@ -391,31 +391,140 @@ class BuiltinExtensions {
   // installed are re-linked to the repo so they keep working and receive
   // updates from it (repo version 0.5.3 > bundled versions).
   static const repoName = 'Kiritokmn Extension Repo';
+  // 0.6.5: the repo moved to the YomiHub-Project organisation (log 14: adding
+  // ".../YomiHub-Project/.../repo/mangayomi/anime.json" failed – that file
+  // does not exist, the index is repo/index.json).
   static const repoBase =
+      'https://raw.githubusercontent.com/YomiHub-Project/Kiritokmn---Extension-Repo/main';
+  static const legacyRepoBase =
       'https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main';
   static const repoJson = '$repoBase/repo/index.json';
   static const repoWebsite =
-      'https://github.com/kiritokmn1403/Kiritokmn---Extension-Repo';
+      'https://github.com/YomiHub-Project/Kiritokmn---Extension-Repo';
 
   static Repo get repo =>
       Repo(name: repoName, website: repoWebsite, jsonUrl: repoJson);
 
-  /// Adds [repoJson] to a repo list unless it is there already.
+  static final _legacyOwner = RegExp(
+    r'(raw\.githubusercontent\.com|github\.com)/kiritokmn1403/Kiritokmn---Extension-Repo',
+    caseSensitive: false,
+  );
+  static final _perTypeIndex = RegExp(
+    r'/Kiritokmn---Extension-Repo/main/repo/mangayomi/(anime|manga|novel)(_index)?\.json$',
+    caseSensitive: false,
+  );
+
+  /// 0.6.5: maps old addresses of this repo to the current ones (owner moved
+  /// to YomiHub-Project; per-type "mangayomi/<type>.json" → repo/index.json).
+  /// Any other URL is returned unchanged.
+  static String migrateUrl(String url) {
+    var u = url.trim();
+    u = u.replaceAllMapped(
+      _legacyOwner,
+      (m) => '${m[1]}/YomiHub-Project/Kiritokmn---Extension-Repo',
+    );
+    final q = u.indexOf('?');
+    final path = q < 0 ? u : u.substring(0, q);
+    if (_perTypeIndex.hasMatch(path)) {
+      u = path.replaceFirst(RegExp(r'/repo/mangayomi/[^/]+$'), '/repo/index.json');
+    }
+    return u;
+  }
+
+  static bool _sameRepo(String? a, String b) {
+    final x = migrateUrl(a ?? '').toLowerCase().replaceAll(RegExp(r'/+$'), '');
+    return x == b.toLowerCase();
+  }
+
+  /// Adds [repoJson] to a repo list unless it is there already (old
+  /// kiritokmn1403 addresses count as the same repo).
   static List<Repo> withRepo(List<Repo>? current) {
     final list = List<Repo>.from(current ?? const <Repo>[]);
-    final key = repoJson.toLowerCase();
-    final has = list.any((r) {
-      final u = (r.jsonUrl ?? '').trim().toLowerCase();
-      return u == key || u == '$key/';
-    });
+    final has = list.any((r) => _sameRepo(r.jsonUrl, repoJson));
     if (!has) list.add(repo);
     return list;
+  }
+
+  /// 0.6.5: rewrites saved repo entries that still use an old address and
+  /// drops duplicates created by the move. Returns the number changed.
+  static (List<Repo>, int) migrateRepos(List<Repo>? current) {
+    final out = <Repo>[];
+    var changed = 0;
+    final seen = <String>{};
+    for (final r in current ?? const <Repo>[]) {
+      final url = r.jsonUrl ?? '';
+      final nu = migrateUrl(url);
+      final key = nu.toLowerCase().replaceAll(RegExp(r'/+$'), '');
+      if (key.isNotEmpty && !seen.add(key)) {
+        changed++;
+        continue;
+      }
+      if (nu != url) {
+        changed++;
+        out.add(Repo(
+          name: r.name,
+          website: r.website == null ? null : migrateUrl(r.website!),
+          jsonUrl: nu,
+          hidden: r.hidden,
+        ));
+      } else {
+        out.add(r);
+      }
+    }
+    return (out, changed);
+  }
+
+  static Future<void> _migrate065(dynamic box) async {
+    if (box.get('repo_migrated_065') == true) return;
+    var repos = 0;
+    await settingsRepository.update((s) {
+      final (m, mc) = migrateRepos(s.mangaExtensionsRepo);
+      final (a, ac) = migrateRepos(s.animeExtensionsRepo);
+      final (n, nc) = migrateRepos(s.novelExtensionsRepo);
+      s.mangaExtensionsRepo = m;
+      s.animeExtensionsRepo = a;
+      s.novelExtensionsRepo = n;
+      repos = mc + ac + nc;
+    });
+    var sources = 0;
+    for (final src in sourceRepository.getAllOrInstalled(installedOnly: true)) {
+      final code = src.sourceCodeUrl ?? '';
+      final repoUrl = src.repo?.jsonUrl ?? '';
+      if (!_legacyOwner.hasMatch(code) && !_legacyOwner.hasMatch(repoUrl)) continue;
+      src.sourceCodeUrl = migrateUrl(code);
+      if (src.repo != null) {
+        src.repo = Repo(
+          name: src.repo!.name,
+          website: src.repo!.website == null ? null : migrateUrl(src.repo!.website!),
+          jsonUrl: migrateUrl(repoUrl),
+          hidden: src.repo!.hidden,
+        );
+      }
+      await sourceRepository.save(src);
+      sources++;
+    }
+    await box.put('repo_migrated_065', true);
+    if (repos + sources > 0) {
+      AppLogger.log(
+        '[Tiện ích] 0.6.5: kho "$repoName" đã chuyển sang tổ chức YomiHub-Project – '
+        'cập nhật $repos địa chỉ kho và $sources tiện ích đã cài.',
+        always: true,
+      );
+    }
   }
 
   /// Runs once (before the first frame, right after the database opens).
   static Future<void> install() async {
     try {
       final box = await YomiHive.open(_box);
+      try {
+        await _migrate065(box);
+      } catch (error, st) {
+        AppLogger.log(
+          '[Tiện ích] Chuyển địa chỉ kho Kiritokmn sang YomiHub-Project thất bại: $error\n$st',
+          logLevel: LogLevel.warning,
+        );
+      }
       if (box.get('repo_migrated_053') == true) return;
       await settingsRepository.update((s) {
         s.mangaExtensionsRepo = withRepo(s.mangaExtensionsRepo);

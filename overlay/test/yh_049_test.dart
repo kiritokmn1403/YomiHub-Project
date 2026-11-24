@@ -148,7 +148,9 @@ void main() {
   });
 
   test('update sources follow the "Website Update Apps" sheet order', () {
-    expect(YomiUpdateSources.githubRepo, 'kiritokmn1403/YomiHub-Project');
+    // 0.6.5: the repo moved to the YomiHub-Project organisation (sheet 24/11/2026)
+    expect(YomiUpdateSources.githubRepo, 'YomiHub-Project/YomiHub-Project');
+    expect(YomiUpdateSources.legacyGithubRepo, 'kiritokmn1403/YomiHub-Project');
     expect(YomiUpdateSources.driveFolders, [
       '16PCPorl1Ae9nmKMMWAC3Oz1rp_w9tH__',
       '1EF_4MJQVxLpeKhRoMSctHBFPklPsmAdn',

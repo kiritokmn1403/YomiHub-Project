@@ -18,7 +18,9 @@ const metadataApiUserAgent =
 const appIconAssets = [
   'assets/app_icons/icon-black.png',
   'assets/app_icons/icon-red.png',
-  'assets/app_icons/icon.png',
+  // 0.6.5: index 2 is always drawn tinted (color:) - the new full-colour
+  // logo became a solid blob, so use the white book/play glyph instead.
+  'assets/app_icons/icon-glyph.png',
 ];
 
 /// `transparent.png`

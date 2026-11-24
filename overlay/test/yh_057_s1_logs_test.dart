@@ -23,7 +23,7 @@ void main() {
       );
       expect(
         AppLogger.classifyMessage('Extension "A" (en, engine: mihon) search q: connection closed', LogLevel.warning),
-        startsWith('[Lỗi Mạng / Tor Timeout]'),
+        startsWith('[Lỗi Mạng'), // 0.6.5: "[Lỗi Mạng]" unless Tor is involved
       );
     });
 
@@ -125,7 +125,8 @@ void main() {
     });
 
     test('all 8 sources of the "Website Update Apps" sheet are configured', () {
-      expect(YomiUpdateSources.githubRepo, 'kiritokmn1403/YomiHub-Project');
+      expect(YomiUpdateSources.githubRepo, 'YomiHub-Project/YomiHub-Project'); // 0.6.5
+      expect(YomiUpdateSources.legacyGithubRepo, 'kiritokmn1403/YomiHub-Project');
       expect(YomiUpdateSources.driveFolders.length, 3);
       expect(YomiUpdateSources.mediafireFolders.length, 3);
     });

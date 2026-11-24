@@ -462,13 +462,16 @@ foreach ($l in $res.Lines) {
                     onChanged: (v) => YomiPrefs.set('frankYomikToken', v.trim()),
                   ),
                 ),
+                // 0.6.5 (Note 9 S4 0.6.4: long pipeline names squeezed the
+                // title to one letter per line) – dropdown below the title.
                 ListTile(
                   title: Text(tr('Chế độ xử lý')),
-                  trailing: DropdownButton<String>(
+                  subtitle: DropdownButton<String>(
+                    isExpanded: true,
                     value: FrankYomikClient.pipeline,
                     items: [
                       for (final e in FrankYomikClient.pipelines.entries)
-                        DropdownMenuItem(value: e.key, child: Text(tr(e.value))),
+                        DropdownMenuItem(value: e.key, child: Text(tr(e.value), overflow: TextOverflow.ellipsis)),
                     ],
                     onChanged: (v) async {
                       await YomiPrefs.set('frankYomikPipeline', v);

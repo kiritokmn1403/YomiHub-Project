@@ -23,6 +23,7 @@ void main() {
         FilterV2Section.status,
         FilterV2Section.category,
         FilterV2Section.contentRating,
+        FilterV2Section.country,
         FilterV2Section.releaseYear,
         FilterV2Section.searchBy,
         FilterV2Section.rating,
@@ -30,7 +31,7 @@ void main() {
         FilterV2Section.genre,
         FilterV2Section.other,
       ]);
-      expect(kFilterV2PrimarySections.length, 9);
+      expect(kFilterV2PrimarySections.length, 10); // 0.6.5: + Quốc Gia Phát Hành
       expect(kFilterV2PrimarySections.last, FilterV2Section.genre);
     });
 

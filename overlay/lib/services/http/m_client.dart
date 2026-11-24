@@ -845,10 +845,25 @@ Future<(bool, CfPageState)> _headlessResolveCf(String url) async {
     },
   );
 
-  headlessWebView.run();
+  // 0.6.5 (log 14, Windows 23/11 09:05): run() was not awaited, so a failed
+  // WebView2 creation ("Cannot create the InAppWebView instance!") escaped to
+  // runZonedGuarded as an ERROR and the solver still waited 20 s for nothing.
+  var createFailed = false;
+  unawaited(
+    headlessWebView.run().catchError((Object e) {
+      createFailed = true;
+      AppLogger.logOnce(
+        'cf-webview-create',
+        '[Cloudflare] Không tạo được WebView ẩn để giải Cloudflare cho '
+        '${Uri.tryParse(url)?.host ?? url}: $e – trên Windows hãy cài/cập nhật '
+        '"Microsoft Edge WebView2 Runtime", đóng bớt cửa sổ WebView rồi thử lại.',
+        logLevel: LogLevel.warning,
+      );
+    }),
+  );
 
   await Future.doWhile(() async {
-    timeOut = time == 20;
+    timeOut = time == 20 || createFailed;
     if ((solved && savedDone) || timeOut) {
       return false;
     }

@@ -554,11 +554,22 @@ class YomiVpnService extends ChangeNotifier {
         Platform.isAndroid && b.get('torStartPending', defaultValue: false) == true;
     if (torCrashed) {
       await _put('torStartPending', false);
-      YomiVpnState.torEnabled = false;
-      await _put('torEnabled', false);
-      YomiVpnState.bump();
-      lastError = tr('Tor đã làm ứng dụng thoát ở lần mở trước nên đã được tắt. Bật lại trong VPN & DNS nếu muốn thử lại.');
-      AppLogger.log('[VPN] Ứng dụng bị đóng trong lúc Tor đang khởi động (chưa tải xong dữ liệu mạng Tor) – đã tắt Tor để ứng dụng mở được; bật lại trong VPN & DNS', logLevel: LogLevel.error);
+      // 0.6.5 (log 15, Android 16 23/11 14:34): a single death while Tor was
+      // starting is usually the system (low memory – logged just before) or
+      // the user closing the app, not tor's exit(). Only a second one in a
+      // row switches Tor off; the first one retries and is a WARNING.
+      final strikes = (b.get('torCrashStrikes', defaultValue: 0) as int? ?? 0) + 1;
+      if (strikes >= 2) {
+        await _put('torCrashStrikes', 0);
+        YomiVpnState.torEnabled = false;
+        await _put('torEnabled', false);
+        YomiVpnState.bump();
+        lastError = tr('Tor đã làm ứng dụng thoát ở lần mở trước nên đã được tắt. Bật lại trong VPN & DNS nếu muốn thử lại.');
+        AppLogger.log('[VPN] Ứng dụng bị đóng 2 lần liên tiếp trong lúc Tor đang khởi động – đã tắt Tor để ứng dụng mở được; bật lại trong VPN & DNS', logLevel: LogLevel.warning);
+      } else {
+        await _put('torCrashStrikes', strikes);
+        AppLogger.log('[VPN] Lần mở trước ứng dụng bị đóng khi Tor đang khởi động (có thể do hệ thống thiếu bộ nhớ hoặc người dùng đóng app) – thử khởi động Tor lại; nếu lặp lại, Tor sẽ được tắt tự động', logLevel: LogLevel.warning);
+      }
     }
     if (YomiVpnState.torEnabled) {
       // don't block startup
@@ -660,6 +671,7 @@ class YomiVpnService extends ChangeNotifier {
     if (!(_torGuardTimer?.isActive ?? false)) return;
     _torGuardTimer!.cancel();
     unawaited(_put('torStartPending', false));
+    unawaited(_put('torCrashStrikes', 0));
   }
 
   Future<void> _armTorGuard() async {
@@ -671,6 +683,7 @@ class YomiVpnService extends ChangeNotifier {
     _torGuardTimer?.cancel();
     _torGuardTimer = Timer(const Duration(seconds: 25), () {
       unawaited(_put('torStartPending', false));
+      unawaited(_put('torCrashStrikes', 0)); // 0.6.5: survived the start
     });
     _torGuardLife ??= AppLifecycleListener(
       onHide: _clearTorGuard,

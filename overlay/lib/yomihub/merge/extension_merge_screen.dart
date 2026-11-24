@@ -135,13 +135,12 @@ class _ExtensionMergeScreenState extends ConsumerState<ExtensionMergeScreen> {
               children: [
                 const CustomMergeSourcesTile(),
                 const Divider(height: 1),
-                const MergeDuplicateMangaTile(),
-                const Divider(height: 1),
-                const ManualMergeMangaTile(),
-                const Divider(height: 1),
+                // 0.6.5 (YomiHub Update mục 16): merging series from different
+                // sources is its own feature again ("Hợp Nhất Các Bộ", entry
+                // in Cài Đặt); this screen only keeps a shortcut to it.
                 ListTile(
                   leading: const Icon(Icons.auto_stories_rounded),
-                  title: Text(tr('Hợp nhất nội dung')),
+                  title: Text(tr('Hợp Nhất Các Bộ')),
                   subtitle: Text(
                     tr('Hợp nhất truyện tranh, tiểu thuyết, phim ảnh (tự động đề xuất, chọn thủ công, hủy hợp nhất)'),
                     style: TextStyle(fontSize: 11, color: cs.onSurfaceVariant),
