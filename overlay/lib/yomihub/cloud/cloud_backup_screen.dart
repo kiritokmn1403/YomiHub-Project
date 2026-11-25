@@ -179,11 +179,17 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
   Future<void> _uploadNow() async {
     await _guard(() async {
       final path = await _makeBackup();
-      final res = await svc.uploadInBackground(path, onlyAuto: false);
-      if (res.isEmpty) {
-        _toast(tr('Chưa kết nối dịch vụ nào.'));
-      } else {
-        _toast(res.map((r) => '${r.provider}: ${r.error == null ? 'OK' : 'lỗi'}').join(' • '));
+      try {
+        final res = await svc.uploadInBackground(path, onlyAuto: false);
+        if (res.isEmpty) {
+          _toast(tr('Chưa kết nối dịch vụ nào.'));
+        } else {
+          _toast(res.map((r) => '${r.provider}: ${r.error == null ? 'OK' : 'lỗi'}').join(' • '));
+        }
+      } finally {
+        try {
+          await File(path).delete();
+        } catch (_) {}
       }
     });
   }
@@ -228,6 +234,9 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
     final file = await _guard(() async => pr.download(pick, await svc.tempDir()));
     if (file == null || !mounted) return;
     await performRestore(context, ref, presetPath: file.path);
+    try {
+      await file.delete();
+    } catch (_) {}
   }
 
   @override

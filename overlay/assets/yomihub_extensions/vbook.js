@@ -658,12 +658,26 @@ function __vbConsts() {
   return s;
 }
 
-function __vbExpandLoads(code) {
+// 0.6.6 (logs 16, 25/11 15:37 Anime47 vBook "SyntaxError: invalid
+// redefinition of lexical identifier"): a file loaded twice (main script and a
+// helper both load('config.js')) pasted its `const` declarations twice. Each
+// file is now inlined once, nested load() calls included.
+function __vbExpandLoads(code, seen) {
+  seen = seen || {};
   return code.replace(/load\(\s*(['"])([^'"]+)\1\s*\)\s*;?/g, (m, q, file) => {
-    if (file === "crypto.js") return typeof CryptoJS !== "undefined" ? "" : "";
+    if (file === "crypto.js") return "";
+    if (seen[file]) return "";
     const inc = VB_SCRIPTS[file];
-    return inc ? "\n" + inc + "\n" : "";
+    if (!inc) return "";
+    seen[file] = true;
+    return "\n" + __vbExpandLoads(inc, seen) + "\n";
   });
+}
+
+// Top-level `const`/`let` → `var` (redeclaring a var is legal): used only when
+// the script does not compile because two of its files declare the same name.
+function __vbLooseDecls(code) {
+  return code.replace(/^(\s*)(?:const|let)(\s+[A-Za-z_$])/gm, "$1var$2");
 }
 
 function __vbRehost(code) {
@@ -683,11 +697,26 @@ function __vbFn(file) {
   let tr;
   try { tr = __vbTranspile(code); } catch (e) { __vbLog("transpile " + file + ": " + e); tr = { code }; }
   let fn = null;
+  // 0.6.6: the plugin's config values live in an OUTER function, the script
+  // in an inner one – a script that declares its own `let BASE_URL` (same
+  // name as a config key) shadows it instead of failing to compile.
+  const wrap = (body) => "(function(){\n" + __vbConsts() + "return (function(){\n" + body +
+    "\n;return typeof execute === 'function' ? execute : null;\n})();\n})";
   try {
-    fn = (0, eval)("(function(){\n" + __vbConsts() + tr.code + "\n;return typeof execute === 'function' ? execute : null;\n})")();
+    fn = (0, eval)(wrap(tr.code))();
   } catch (e) {
-    __vbLog("compile " + file + ": " + e);
-    throw new Error("vBook: không biên dịch được " + file + " (" + e + ")");
+    if (/redefinition|already been declared|redeclar/i.test("" + e)) {
+      try {
+        fn = (0, eval)(wrap(__vbLooseDecls(tr.code)))();
+        __vbLog("compile " + file + ": khai báo trùng tên – đã chạy lại với var (" + e + ")");
+      } catch (e2) {
+        __vbLog("compile " + file + ": " + e2);
+        throw new Error("vBook: không biên dịch được " + file + " (" + e2 + ")");
+      }
+    } else {
+      __vbLog("compile " + file + ": " + e);
+      throw new Error("vBook: không biên dịch được " + file + " (" + e + ")");
+    }
   }
   __vbCompiled[file] = fn;
   __vbIsAsync[file] = !!tr.executeAsync;

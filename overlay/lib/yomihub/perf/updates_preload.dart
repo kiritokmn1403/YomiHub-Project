@@ -22,12 +22,17 @@ const int kUpdatePreloadChunk = 150;
 /// [preloadUpdateChapters]; refreshed on every emit (lastUpdate may change).
 final Map<int, Manga> kUpdateMangaCache = {};
 
+/// Generation of the newest preload: a slower, older one must not overwrite
+/// [kUpdateMangaCache] with stale data.
+int _cacheGen = 0;
+
 /// Loads `chapter` of every [Update] that is not loaded yet, [chunk] at a time.
 /// Returns the same list (for `Stream.asyncMap`).
 Future<List<Update>> preloadUpdateChapters(
   List<Update> list, {
   int chunk = kUpdatePreloadChunk,
 }) async {
+  final gen = ++_cacheGen;
   final sw = Stopwatch()..start();
   final pending = [for (final u in list) if (!u.chapter.isLoaded) u];
   for (var i = 0; i < pending.length; i += chunk) {
@@ -53,9 +58,11 @@ Future<List<Update>> preloadUpdateChapters(
         if (m?.id != null) fresh[m!.id!] = m;
       }
     }
-    kUpdateMangaCache
-      ..clear()
-      ..addAll(fresh);
+    if (gen == _cacheGen) {
+      kUpdateMangaCache
+        ..clear()
+        ..addAll(fresh);
+    }
   } catch (_) {
     // the screen falls back to a synchronous read
   }
@@ -82,16 +89,36 @@ Future<void> _load(Update u) async {
 Stream<R> yomiSwitchMap<T, R>(Stream<T> source, Stream<R> Function(T) map) {
   StreamSubscription<T>? outer;
   StreamSubscription<R>? inner;
+  var outerDone = false;
   late final StreamController<R> c;
   c = StreamController<R>(
     onListen: () {
       outer = source.listen(
         (v) {
           final old = inner;
-          inner = map(v).listen(c.add, onError: c.addError);
-          old?.cancel();
+          inner = null;
+          if (old != null) unawaited(old.cancel().catchError((_) {}));
+          try {
+            final paused = c.isPaused;
+            final sub = map(v).listen(
+              c.add,
+              onError: c.addError,
+              onDone: () {
+                inner = null;
+                if (outerDone) c.close();
+              },
+            );
+            if (paused) sub.pause();
+            inner = sub;
+          } catch (e, st) {
+            c.addError(e, st);
+          }
         },
         onError: c.addError,
+        onDone: () {
+          outerDone = true;
+          if (inner == null) c.close();
+        },
       );
     },
     onPause: () {
@@ -103,8 +130,11 @@ Stream<R> yomiSwitchMap<T, R>(Stream<T> source, Stream<R> Function(T) map) {
       inner?.resume();
     },
     onCancel: () async {
-      await inner?.cancel();
-      await outer?.cancel();
+      try {
+        await inner?.cancel();
+      } finally {
+        await outer?.cancel();
+      }
     },
   );
   return c.stream;

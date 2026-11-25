@@ -112,7 +112,24 @@ List<CloudFile> yomiCloudFilesToPrune(List<CloudFile> files, int keep) {
     ..sort((a, b) => (b.modified ?? DateTime(0)).compareTo(a.modified ?? DateTime(0)));
   return backups.length <= keep ? const [] : backups.sublist(keep);
 }
-final _client = http.Client();
+/// 0.6.6: every request gets a timeout (until the response headers arrive),
+/// so a stalled service cannot hang the sequential background upload.
+class _TimeoutClient extends http.BaseClient {
+  _TimeoutClient(this._inner);
+  final http.Client _inner;
+  static const timeout = Duration(minutes: 3);
+
+  @override
+  Future<http.StreamedResponse> send(http.BaseRequest request) => _inner.send(request).timeout(timeout);
+}
+
+final http.Client _client = _TimeoutClient(http.Client());
+
+/// Server-supplied file names must stay inside the target folder.
+String _safeName(String name) {
+  final base = p.basename(name.replaceAll('\\', '/'));
+  return base.isEmpty || base == '.' || base == '..' ? 'yomihub_download.backup' : base;
+}
 
 String _q(Map<String, String> m) =>
     m.entries.map((e) => '${Uri.encodeQueryComponent(e.key)}=${Uri.encodeQueryComponent(e.value)}').join('&');
@@ -436,6 +453,7 @@ class GoogleDriveProvider extends CloudProvider with _OAuth {
     final raf = await file.open();
     try {
       var pos = 0;
+      var stalls = 0;
       while (pos < total) {
         final end = min(pos + chunk, total);
         await raf.setPosition(pos);
@@ -460,9 +478,12 @@ class GoogleDriveProvider extends CloudProvider with _OAuth {
         }
         if (r == null) throw Exception('Drive upload: no response');
         if (r.statusCode == 308) {
-          // resume from what Google has
+          // resume from what Google has; no Range header = nothing received yet
           final range = r.headers['range'];
-          pos = range == null ? end : int.parse(range.split('-').last) + 1;
+          final next = range == null ? 0 : int.parse(range.split('-').last) + 1;
+          stalls = next <= pos ? stalls + 1 : 0;
+          if (stalls >= 3) throw Exception('Drive upload: ${tr('không tiến triển sau nhiều lần thử lại')}');
+          pos = next;
           continue;
         }
         if (r.statusCode == 200 || r.statusCode == 201) {
@@ -510,7 +531,7 @@ class GoogleDriveProvider extends CloudProvider with _OAuth {
       ..headers.addAll(await _h());
     final r = await _client.send(req);
     if (r.statusCode != 200) throw Exception('Drive download: HTTP ${r.statusCode}');
-    final out = File(p.join(into.path, f.name));
+    final out = File(p.join(into.path, _safeName(f.name)));
     final sink = out.openWrite();
     await r.stream.pipe(sink);
     return out;
@@ -629,7 +650,7 @@ class OneDriveProvider extends CloudProvider with _OAuth {
       headers: await _h(),
     );
     if (r.statusCode != 200) throw Exception('OneDrive download: HTTP ${r.statusCode}');
-    return File(p.join(into.path, f.name)).writeAsBytes(r.bodyBytes);
+    return File(p.join(into.path, _safeName(f.name))).writeAsBytes(r.bodyBytes);
   }
 }
 
@@ -737,7 +758,7 @@ class DropboxProvider extends CloudProvider with _OAuth {
       headers: {...await _h(), 'Dropbox-API-Arg': jsonEncode({'path': f.id})},
     );
     if (r.statusCode != 200) throw Exception('Dropbox download: HTTP ${r.statusCode}');
-    return File(p.join(into.path, f.name)).writeAsBytes(r.bodyBytes);
+    return File(p.join(into.path, _safeName(f.name))).writeAsBytes(r.bodyBytes);
   }
 }
 
@@ -873,7 +894,7 @@ class WebDavProvider extends CloudProvider {
   Future<File> download(CloudFile f, Directory into) async {
     final r = await _send('GET', f.id);
     if (r.statusCode != 200) throw Exception('WebDAV download: HTTP ${r.statusCode}');
-    final file = File(p.join(into.path, f.name));
+    final file = File(p.join(into.path, _safeName(f.name)));
     await r.stream.pipe(file.openWrite());
     return file;
   }
@@ -980,7 +1001,7 @@ class RcloneProvider extends CloudProvider {
     // needs `rclone rcd --rc-serve`: GET /[remote:]/path
     final r = await _client.get(Uri.parse('$_url/[$fs]/${f.id.split('/').map(Uri.encodeComponent).join('/')}'), headers: _h);
     if (r.statusCode != 200) throw Exception('rclone download: HTTP ${r.statusCode} (${tr('cần chạy rclone rcd với --rc-serve')})');
-    final file = File(p.join(into.path, f.name));
+    final file = File(p.join(into.path, _safeName(f.name)));
     await file.writeAsBytes(r.bodyBytes, flush: true);
     return file;
   }
@@ -1116,7 +1137,7 @@ class MediaFireProvider extends CloudProvider {
     if (url.isEmpty) throw Exception('MediaFire: không lấy được liên kết tải');
     final r = await _client.get(Uri.parse(url));
     if (r.statusCode != 200) throw Exception('MediaFire download: HTTP ${r.statusCode}');
-    final file = File(p.join(into.path, f.name));
+    final file = File(p.join(into.path, _safeName(f.name)));
     await file.writeAsBytes(r.bodyBytes, flush: true);
     return file;
   }
@@ -1489,7 +1510,7 @@ class TelegramProvider extends CloudProvider {
 
   @override
   Future<File> download(CloudFile file, Directory into) async {
-    final dest = File(p.join(into.path, file.name));
+    final dest = File(p.join(into.path, _safeName(file.name)));
     final ids = file.id.startsWith('parts:') ? file.id.substring(6).split(',') : [file.id];
     final sink = dest.openWrite();
     try {
@@ -1578,7 +1599,7 @@ class CloudBackupService {
     final results = <CloudUploadResult>[];
     for (final pr in providers.where((e) => e.isConnected && (!onlyAuto || autoUpload(e)))) {
       try {
-        await pr.upload(File(path));
+        await pr.upload(File(path)).timeout(const Duration(minutes: 20));
         results.add(CloudUploadResult(pr.displayName, null));
         await _prune(pr);
       } catch (e) {
@@ -1605,9 +1626,22 @@ class CloudBackupService {
     }
   }
 
+  bool _tempSwept = false;
+
+  /// 0.6.6: temp backups (they may hold sensitive data) older than a day are
+  /// removed once per run; files just shared to another app are left alone.
   Future<Directory> tempDir() async {
     final d = Directory(p.join((await getTemporaryDirectory()).path, 'yomihub_cloud'));
     await d.create(recursive: true);
+    if (!_tempSwept) {
+      _tempSwept = true;
+      try {
+        final limit = DateTime.now().subtract(const Duration(days: 1));
+        await for (final e in d.list()) {
+          if (e is File && (await e.lastModified()).isBefore(limit)) await e.delete();
+        }
+      } catch (_) {}
+    }
     return d;
   }
 }

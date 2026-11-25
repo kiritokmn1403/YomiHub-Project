@@ -382,7 +382,7 @@ Future<void> _postLaunchInit(StorageProvider storage) async {
       try {
         await YomiVpnService.instance.loaded.future.timeout(const Duration(seconds: 5));
       } catch (_) {}
-      final proxy = YomiVpnService.instance.windowsWebViewProxyArg();
+      final proxy = await YomiVpnService.instance.windowsWebViewProxyArgIfReady();
       YomiVpnService.instance.webViewProxyAtStart = proxy;
       webViewEnvironment = await WebViewEnvironment.create(
         settings: WebViewEnvironmentSettings(

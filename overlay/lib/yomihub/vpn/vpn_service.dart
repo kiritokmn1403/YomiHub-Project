@@ -402,6 +402,37 @@ class YomiVpnService extends ChangeNotifier {
     return '127.0.0.1:${WinVpnBackend.httpPort}';
   }
 
+  /// Windows: like [windowsWebViewProxyArg], but only when the local proxy
+  /// front is really accepting connections (waits up to [wait] for a service
+  /// that is still starting). Otherwise null (direct): a `--proxy-server`
+  /// pointing at a closed port makes every page fail with
+  /// ERR_PROXY_CONNECTION_FAILED. The VPN screen then offers a restart.
+  Future<String?> windowsWebViewProxyArgIfReady({
+    Duration wait = const Duration(seconds: 8),
+  }) async {
+    final arg = windowsWebViewProxyArg();
+    if (arg == null) return null;
+    final deadline = DateTime.now().add(wait);
+    while (true) {
+      try {
+        final s = await Socket.connect(
+          InternetAddress.loopbackIPv4,
+          WinVpnBackend.httpPort,
+          timeout: const Duration(seconds: 1),
+        );
+        s.destroy();
+        return arg;
+      } catch (_) {}
+      if (DateTime.now().isAfter(deadline)) break;
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+    }
+    AppLogger.log(
+      '[VPN] WebView2: proxy cục bộ 127.0.0.1:${WinVpnBackend.httpPort} chưa chạy → mở trực tiếp (không dùng proxy)',
+      logLevel: LogLevel.warning,
+    );
+    return null;
+  }
+
   /// Windows: WebView2 would need a restart to follow the current settings.
   bool get webViewNeedsRestart =>
       Platform.isWindows && windowsWebViewProxyArg() != webViewProxyAtStart;

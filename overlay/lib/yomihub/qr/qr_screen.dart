@@ -1,4 +1,5 @@
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
@@ -431,11 +432,11 @@ class _YomiQrScreenState extends ConsumerState<YomiQrScreen>
             child: Container(
               color: Colors.white,
               padding: const EdgeInsets.all(16),
-              child: data.length > 2900
+              child: utf8.encode(data).length > 2331
                   ? SizedBox(
                       width: 260,
                       child: Text(
-                        tr('Nội dung quá dài cho một mã QR (tối đa ~2.900 ký tự).'),
+                        tr('Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).'),
                         style: TextStyle(color: Colors.black),
                       ),
                     )

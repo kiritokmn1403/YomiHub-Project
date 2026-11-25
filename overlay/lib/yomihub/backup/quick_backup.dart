@@ -7,6 +7,7 @@ import 'package:mangayomi/modules/more/data_and_storage/providers/auto_backup.da
 import 'package:mangayomi/modules/more/data_and_storage/providers/backup.dart';
 import 'package:mangayomi/providers/storage_provider.dart';
 import 'package:mangayomi/utils/log/logger.dart';
+import 'package:mangayomi/yomihub/cloud/cloud_backup_service.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:path/path.dart' as p;
@@ -32,15 +33,32 @@ class YomiQuickBackup {
   static bool _running = false;
   static bool get running => _running;
 
+  /// One-shot: toasts the outcome of the next background cloud upload.
+  static void _reportCloudResult(CloudBackupService cloud) {
+    void listener() {
+      cloud.lastResults.removeListener(listener);
+      final res = cloud.lastResults.value;
+      final failed = [for (final r in res) if (r.error != null) r.provider];
+      BotToast.showText(
+        text: failed.isEmpty
+            ? tr('Đã tải lên đám mây xong')
+            : tr('Tải lên đám mây lỗi: {p0} – xem Sao lưu đám mây', {'p0': failed.join(', ')}),
+        duration: const Duration(seconds: 5),
+      );
+    }
+
+    cloud.lastResults.addListener(listener);
+  }
+
   /// The folder a quick backup goes to: `<backup location>/autobackup`,
   /// falling back to the app's default backup folder.
-  static Future<Directory?> targetDirectory(WidgetRef ref) async {
+  static Future<Directory?> targetDirectory(ProviderContainer container) async {
     final storage = StorageProvider();
     if (Platform.isIOS) {
       final d = await storage.getIosBackupDirectory();
       return d == null ? null : automaticBackupDirectory(d.path);
     }
-    final location = ref.read(autoBackupLocationStateProvider).$2;
+    final location = container.read(autoBackupLocationStateProvider).$2;
     final fromSetting = location.isNotEmpty ? automaticBackupDirectory(location) : null;
     if (fromSetting != null) return fromSetting;
     final def = await storage.getDefaultDirectory();
@@ -50,6 +68,9 @@ class YomiQuickBackup {
 
   /// Runs a backup now. Returns the folder, or null when it failed.
   static Future<String?> run(WidgetRef ref, BuildContext context) async {
+    // The widget may be disposed while the backup runs (user leaves the
+    // Library): take the container now and never use `ref` after an await.
+    final container = ProviderScope.containerOf(context, listen: false);
     if (_running) {
       BotToast.showText(text: tr('Đang sao lưu, vui lòng chờ…'));
       return null;
@@ -71,22 +92,30 @@ class YomiQuickBackup {
     _running = true;
     final close = BotToast.showLoading();
     try {
-      final dir = await targetDirectory(ref);
+      final dir = await targetDirectory(container);
       if (dir == null) {
         throw Exception(tr('Chưa có thư mục sao lưu dùng được – hãy chọn vị trí trong Sao Lưu & Khôi Phục.'));
       }
       await StorageProvider().createDirectorySafely(dir.path);
-      await ref.read(
+      await container.read(
         doBackUpProvider(
-          list: ref.read(backupFrequencyOptionsStateProvider),
+          list: container.read(backupFrequencyOptionsStateProvider),
           path: dir.path,
           context: null,
         ).future,
       );
       await pruneOldBackups(dir.path);
       close();
+      // The upload to the cloud targets runs in the background (doBackUp):
+      // say so now and report its real result when it ends.
+      final cloud = CloudBackupService.instance;
+      await cloud.load();
+      final pending = cloud.providers.any((e) => e.isConnected && cloud.autoUpload(e));
+      if (pending) _reportCloudResult(cloud);
       BotToast.showText(
-        text: tr('Đã sao lưu vào {p0}', {'p0': dir.path}),
+        text: pending
+            ? '${tr('Đã sao lưu vào {p0}', {'p0': dir.path})}\n${tr('Đang tải lên đám mây…')}'
+            : tr('Đã sao lưu vào {p0}', {'p0': dir.path}),
         duration: const Duration(seconds: 4),
       );
       return dir.path;

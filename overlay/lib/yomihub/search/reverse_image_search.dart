@@ -217,19 +217,69 @@ class _SearchSheetState extends State<_SearchSheet> {
                 ListTile(
                   leading: m.thumbnail.isEmpty
                       ? const Icon(Icons.image_outlined)
-                      : Image.network(m.thumbnail, width: 48, height: 48, fit: BoxFit.cover,
-                          errorBuilder: (_, _, _) => const Icon(Icons.image_outlined)),
+                      : _SauceThumb(url: m.thumbnail),
                   title: Text(m.title.isEmpty ? m.index : m.title, maxLines: 2, overflow: TextOverflow.ellipsis),
                   subtitle: Text('${m.similarity.toStringAsFixed(1)}% • ${m.index}', maxLines: 1, overflow: TextOverflow.ellipsis),
                   trailing: m.urls.isEmpty ? null : const Icon(Icons.open_in_new, size: 18),
                   onTap: m.urls.isEmpty
                       ? null
-                      : () => launchUrl(Uri.parse(m.urls.first), mode: LaunchMode.externalApplication),
+                      : () {
+                          final u = Uri.tryParse(m.urls.first);
+                          if (u != null && (u.scheme == 'http' || u.scheme == 'https') && u.host.isNotEmpty) {
+                            launchUrl(u, mode: LaunchMode.externalApplication);
+                          }
+                        },
                 ),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+/// 0.6.6: result thumbnails go through the same HTTP client as the upload
+/// (VPN/Tor aware) instead of Image.network, which bypasses it.
+class _SauceThumb extends StatefulWidget {
+  final String url;
+  const _SauceThumb({required this.url});
+
+  @override
+  State<_SauceThumb> createState() => _SauceThumbState();
+}
+
+class _SauceThumbState extends State<_SauceThumb> {
+  Uint8List? _bytes;
+  bool _failed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final u = Uri.tryParse(widget.url);
+    if (u == null || !(u.scheme == 'http' || u.scheme == 'https') || u.host.isEmpty) {
+      _failed = true;
+      return;
+    }
+    final c = IOClient(yomiDartHttpClient());
+    try {
+      final r = await c.get(u).timeout(const Duration(seconds: 20));
+      if (r.statusCode != 200) throw Exception('HTTP ${r.statusCode}');
+      if (mounted) setState(() => _bytes = r.bodyBytes);
+    } catch (_) {
+      if (mounted) setState(() => _failed = true);
+    } finally {
+      c.close();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_bytes == null || _failed) return const SizedBox(width: 48, height: 48, child: Icon(Icons.image_outlined));
+    return Image.memory(_bytes!, width: 48, height: 48, fit: BoxFit.cover,
+        errorBuilder: (_, _, _) => const Icon(Icons.image_outlined));
   }
 }

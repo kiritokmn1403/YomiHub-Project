@@ -330,14 +330,20 @@ class _Mv2NavShellState extends State<Mv2NavShell> {
             : _buildDockedMobileBar(context, clampedIndex))
         : null;
 
+    // 0.6.6 (ảnh chủ dự án 25/11 21:35): with extendBody the page ran under
+    // the floating bar and any screen with its own fixed padding (Thêm →
+    // "Giới thiệu", settings lists, sheets …) had its last button covered.
+    // The body now ends above the bar, so no screen can be hidden behind it;
+    // the scope reports "not overlapping" so grids/Tủ Sách stop adding the
+    // extra bottom inset they used to compensate with.
     return Mv2FloatingNavScope(
-      enabled: floatingActive && !widget.hideNavigation,
+      enabled: false,
       child: Column(
         children: [
           if (widget.topBanner != null) widget.topBanner!,
           Expanded(
             child: Scaffold(
-              extendBody: floatingActive && !widget.hideNavigation,
+              extendBody: false,
               body: NotificationListener<ScrollNotification>(
                 onNotification: (n) =>
                     _onPageScroll(n, floatingActive: floatingActive),

@@ -57,6 +57,20 @@ class LNReaderExtensionService implements ExtensionService {
     return s;
   }
 
+  /// 0.6.6 (logs 16, 25/11 16:01 Hako: "Failed host lookup:
+  /// 'ln.hako.vnhttps'"): links saved as full URLs (after the source moved
+  /// ln.hako.vn → docln.sbs) were handed to the plugin, which prefixes its own
+  /// site to every path. LNReader plugins take site-relative paths, so a full
+  /// http(s) URL is reduced to path + query + fragment.
+  static String relPath(String url) {
+    final u = url.trim();
+    if (!RegExp(r'^https?://', caseSensitive: false).hasMatch(u)) return u;
+    final uri = Uri.tryParse(u);
+    if (uri == null || uri.host.isEmpty) return u;
+    final path = uri.path.isEmpty ? '/' : uri.path;
+    return '$path${uri.hasQuery ? '?${uri.query}' : ''}${uri.hasFragment ? '#${uri.fragment}' : ''}';
+  }
+
   void _init() {
     if (_isInitialized) return;
     runtime = getJavascriptRuntime();
@@ -314,7 +328,7 @@ const sessionStorage = { get() { return {}; } };
   @override
   Future<MManga> getDetail(String url) async {
     final raw = await _extensionCallAsync<dynamic>(
-      'parseNovel(${jsonEncode(url)})',
+      'parseNovel(${jsonEncode(relPath(url))})',
       <String, dynamic>{},
     );
     final json = Map<String, dynamic>.from(raw as Map);
@@ -330,7 +344,7 @@ const sessionStorage = { get() { return {}; } };
           final page = SourcePage.fromJson(
             Map<String, dynamic>.from(
               await _extensionCallAsync<dynamic>(
-                'parsePage(${jsonEncode(item.path)}, ${jsonEncode('$p')})',
+                'parsePage(${jsonEncode(relPath(item.path))}, ${jsonEncode('$p')})',
                 <String, dynamic>{},
               ) as Map,
             ),
@@ -395,7 +409,7 @@ const sessionStorage = { get() { return {}; } };
     _init();
     final res = (await runtime.handlePromise(
       await runtime.evaluateAsync(
-        'jsonStringify(() => extension.parseChapter(${jsonEncode(url)}))',
+        'jsonStringify(() => extension.parseChapter(${jsonEncode(relPath(url))}))',
       ),
     )).stringResult;
     // Make relative image / link URLs absolute so the reader can load them.
