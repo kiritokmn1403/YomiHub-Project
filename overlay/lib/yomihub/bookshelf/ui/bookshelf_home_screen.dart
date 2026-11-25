@@ -20,7 +20,9 @@ import 'package:share_plus/share_plus.dart';
 
 enum _BsTab { home, shelf, latest, limited, shopping, stats }
 
-enum _ShelfFilter { all, ongoing, completed, missing }
+enum _ShelfFilter { all, ongoing, completed, missing, loaned }
+
+enum _ShelfSort { recent, title, publisher, volumes }
 
 /// Main screen of "Tủ Sách Cá Nhân" (route `/bookshelf`, FN-01..FN-07, FN-24,
 /// FN-25, FN-30).
@@ -38,6 +40,7 @@ class _BookshelfHomeScreenState extends State<BookshelfHomeScreen> {
 
   _BsTab _tab = _BsTab.home;
   _ShelfFilter _shelfFilter = _ShelfFilter.all;
+  _ShelfSort _shelfSort = _ShelfSort.recent;
   bool _gridMode = true;
   String _query = '';
 
@@ -878,14 +881,42 @@ class _BookshelfHomeScreenState extends State<BookshelfHomeScreen> {
         _ShelfFilter.ongoing => s.status == BsStatus.ongoing,
         _ShelfFilter.completed => s.status == BsStatus.completed,
         _ShelfFilter.missing => _store.gapsOf(s.id).isNotEmpty,
+        _ShelfFilter.loaned => _store
+            .volumesOf(s.id)
+            .any((v) => (v.borrower ?? '').trim().isNotEmpty),
       };
     }).toList();
+    // FN-06 "sắp xếp đa chiều" (0.6.6); the store list is newest-first already
+    switch (_shelfSort) {
+      case _ShelfSort.recent:
+        break;
+      case _ShelfSort.title:
+        filtered.sort((a, b) => bsNormalize(a.title).compareTo(bsNormalize(b.title)));
+      case _ShelfSort.publisher:
+        filtered.sort((a, b) {
+          final pa = bsNormalize(a.publisher), pb = bsNormalize(b.publisher);
+          if (pa.isEmpty != pb.isEmpty) return pa.isEmpty ? 1 : -1;
+          final c = pa.compareTo(pb);
+          return c != 0 ? c : bsNormalize(a.title).compareTo(bsNormalize(b.title));
+        });
+      case _ShelfSort.volumes:
+        final counts = {for (final s in filtered) s.id: _store.volumesOf(s.id).length};
+        filtered.sort((a, b) => counts[b.id]!.compareTo(counts[a.id]!));
+    }
+
+    String sortLabel(_ShelfSort o) => switch (o) {
+          _ShelfSort.recent => tr('Mới cập nhật'),
+          _ShelfSort.title => tr('Tên A → Z'),
+          _ShelfSort.publisher => tr('Nhà xuất bản'),
+          _ShelfSort.volumes => tr('Nhiều tập nhất'),
+        };
 
     String filterLabel(_ShelfFilter f) => switch (f) {
           _ShelfFilter.all => tr('Tất cả'),
           _ShelfFilter.ongoing => tr('Đang ra'),
           _ShelfFilter.completed => tr('Đã trọn bộ'),
           _ShelfFilter.missing => tr('Thiếu tập'),
+          _ShelfFilter.loaned => tr('Đang cho mượn'),
         };
 
     return Column(
@@ -911,6 +942,16 @@ class _BookshelfHomeScreenState extends State<BookshelfHomeScreen> {
                     ],
                   ),
                 ),
+              ),
+              PopupMenuButton<_ShelfSort>(
+                tooltip: tr('Sắp xếp'),
+                icon: const Icon(Icons.sort),
+                initialValue: _shelfSort,
+                onSelected: (v) => setState(() => _shelfSort = v),
+                itemBuilder: (_) => [
+                  for (final o in _ShelfSort.values)
+                    PopupMenuItem(value: o, child: Text(sortLabel(o))),
+                ],
               ),
               IconButton(
                 tooltip: _gridMode ? tr('Chế độ danh sách') : tr('Chế độ lưới'),
@@ -1388,6 +1429,7 @@ class _BookshelfHomeScreenState extends State<BookshelfHomeScreen> {
         : monthEntries.map((e) => e.value).reduce((a, b) => a > b ? a : b);
     final gapSeries =
         _store.series.where((s) => _store.gapsOf(s.id).isNotEmpty).toList();
+    final loans = _store.loans();
 
     Widget kpi(String label, String val, IconData icon, Color color) => Card(
           child: Padding(
@@ -1525,6 +1567,46 @@ class _BookshelfHomeScreenState extends State<BookshelfHomeScreen> {
               ),
             ),
           ),
+        ],
+        if (loans.isNotEmpty) ...[
+          const SizedBox(height: 18),
+          Text(
+            tr('Đang cho mượn ({p0})', {'p0': loans.length}),
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+          for (final l in loans)
+            Card(
+              margin: const EdgeInsets.only(bottom: 6),
+              child: ListTile(
+                onTap: () => _openSeries(l.series.id),
+                title: Text(
+                    '${l.series.title} · ${tr('Tập số {p0}', {'p0': l.volume.numberText})}',
+                    style: const TextStyle(fontWeight: FontWeight.w600)),
+                subtitle: Text(
+                  l.volume.loanDue == null
+                      ? tr('Người mượn: {p0}', {'p0': l.volume.borrower})
+                      : tr('Người mượn: {p0} · Hạn trả: {p1}', {
+                          'p0': l.volume.borrower,
+                          'p1': bsFormatDate(l.volume.loanDue),
+                        }),
+                  style: l.volume.loanDue != null &&
+                          l.volume.loanDue! < DateTime.now().millisecondsSinceEpoch
+                      ? const TextStyle(color: Colors.red)
+                      : null,
+                ),
+                trailing: TextButton(
+                  onPressed: () async {
+                    await _store.returnLoan(l.volume.id);
+                    if (mounted) setState(() {});
+                  },
+                  child: Text(tr('Đã trả')),
+                ),
+              ),
+            ),
         ],
         if (gapSeries.isNotEmpty) ...[
           const SizedBox(height: 18),

@@ -2024,5 +2024,13 @@
   "Gửi ảnh trang này lên saucenao.com để tìm nguồn gốc (truyện, artbook, anime).": "Send this page's image to saucenao.com to find its source (comic, artbook, anime).",
   "API key SauceNAO (không bắt buộc)": "SauceNAO API key (optional)",
   "Tìm bằng SauceNAO": "Search with SauceNAO",
-  "SauceNAO: đã hết lượt tìm trong khoảng thời gian này – thử lại sau hoặc nhập API key riêng.": "SauceNAO: the search limit for now has been reached – try again later or enter your own API key."
+  "SauceNAO: đã hết lượt tìm trong khoảng thời gian này – thử lại sau hoặc nhập API key riêng.": "SauceNAO: the search limit for now has been reached – try again later or enter your own API key.",
+  "Đã trả": "Returned",
+  "Đang cho mượn": "Lent out",
+  "Đang cho mượn ({p0})": "Lent out ({p0})",
+  "Mới cập nhật": "Recently updated",
+  "Người mượn: {p0}": "Borrower: {p0}",
+  "Người mượn: {p0} · Hạn trả: {p1}": "Borrower: {p0} · Due: {p1}",
+  "Nhiều tập nhất": "Most volumes",
+  "Tên A → Z": "Name A → Z"
 }

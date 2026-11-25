@@ -53,8 +53,25 @@ void main() {
       final rows = bsParseCsv('﻿a,"b ""q"", c"\r\nx;y\n');
       expect(rows, [
         ['a', 'b "q", c'],
-        ['x', 'y'],
+        ['x;y'],
       ]);
+      expect(bsParseCsv('Tên;Tập\r\nA, B;1,5\r\n'), [
+        ['Tên', 'Tập'],
+        ['A, B', '1,5'],
+      ]);
+      expect(bsParseMoney('120.000đ'), 120000);
+      expect(bsParseMoney('1.200.000 VNĐ'), 1200000);
+      expect(bsParseMoney('120,000'), 120000);
+      expect(bsParseMoney('45000'), 45000);
+      expect(bsParseMoney('12,5'), 12.5);
+      expect(bsParseMoney('abc'), isNull);
+      expect(bsParseDate('25/11/2026'), DateTime(2026, 11, 25));
+      expect(bsParseDate('2026-11-25'), DateTime(2026, 11, 25));
+      expect(bsParseDate('31/02/2026'), isNull);
+      expect(bsCsvEscape('=SUM(A1)'), "'=SUM(A1)");
+      expect(bsCsvEscape('A; B'), '"A; B"');
+      expect(bsCsvUnguard("'=SUM(A1)"), '=SUM(A1)');
+      expect(bsCsvUnguard("'Tis"), "'Tis");
     });
   });
 
@@ -153,6 +170,33 @@ void main() {
       final b = store.series.firstWhere((s) => s.title == 'Solaris Plus');
       expect(store.volumesOf(a.id).single.readStatus, BsReadStatus.read);
       expect(store.volumesOf(b.id).single.readStatus, BsReadStatus.reading);
+    });
+
+    test('0.6.6: CSV keeps copies, loan, empty series; VN price/date and ; delimiter', () async {
+      final r = await store.importCsv('Tên bộ;Tập;Phiên bản;ISBN;Giá;Ngày mua;Nơi mua;NXB;Trạng thái đọc;Số bản;Người mượn;Hạn trả;Tác giả;Trạng thái bộ\r\n'
+          'Vagabond;1;regular;;120.000đ;25/11/2026;Fahasa;IPM;read;2;Minh;30/11/2026;Inoue;hoàn thành\r\n'
+          'Bộ trống;;;;;;;;;;;;Ai đó;\r\n');
+      expect(r.series, 2);
+      expect(r.volumes, 1);
+      final v = store.volumesOf(store.series.firstWhere((s) => s.title == 'Vagabond').id).single;
+      expect(v.price, 120000);
+      expect(v.copies, 2);
+      expect(v.borrower, 'Minh');
+      expect(v.loanDue, DateTime(2026, 11, 30).millisecondsSinceEpoch);
+      expect(v.purchaseDate, DateTime(2026, 11, 25).millisecondsSinceEpoch);
+      expect(store.series.firstWhere((s) => s.title == 'Vagabond').status, BsStatus.completed);
+      final csv = store.exportCsv();
+      expect(csv.contains('Bộ trống'), isTrue);
+      expect(csv.contains(',Minh,2026-11-30,'), isTrue);
+    });
+
+    test('0.6.6: loans() lists lent volumes and returnLoan clears them', () async {
+      final s = store.series.firstWhere((s) => s.title == 'Vagabond');
+      final v = store.volumesOf(s.id).single;
+      expect(store.loans().any((l) => l.volume.id == v.id), isTrue);
+      await store.returnLoan(v.id);
+      expect(store.loans().any((l) => l.volume.id == v.id), isFalse);
+      expect(store.volumesOf(s.id).single.loanDue, isNull);
     });
 
     test('0.6.3 review: bulk add drops the matching wish', () async {

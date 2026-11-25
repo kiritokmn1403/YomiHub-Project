@@ -136,6 +136,28 @@ class YomiVpnState {
     return activeProxy();
   }
 
+  // ── YomiHub 0.6.6: Windows – follow WebView2's route after a CF solve ──
+
+  /// Hosts whose Cloudflare challenge was solved in WebView2 through a
+  /// proxy (WebView2 keeps the proxy it was started with). Requests of
+  /// extensions / Booru for that host then use the same proxy so
+  /// cf_clearance matches their IP (logs 16: Danbooru solved through
+  /// 127.0.0.1:10809 while the request went direct → 403 again).
+  /// Only proxy routes are recorded – never "direct" over a VPN choice.
+  static final Map<String, String> _cfAligned = {};
+
+  static void alignHostToWebView(String host, String proxyUrl) {
+    final h = host.trim().toLowerCase();
+    if (h.isEmpty || proxyUrl.isEmpty || isLoopbackHost(h)) return;
+    _cfAligned[h] = proxyUrl;
+  }
+
+  static String? alignedRoute(String? host) {
+    final h = (host ?? '').trim().toLowerCase();
+    if (h.isEmpty || _cfAligned.isEmpty) return null;
+    return _cfAligned[h];
+  }
+
   // ── YomiHub 0.5.7: Cloudflare clearance vs. route ──
 
   /// Proxy the in-app WebViews (Cloudflare solver, WebView mode) use on

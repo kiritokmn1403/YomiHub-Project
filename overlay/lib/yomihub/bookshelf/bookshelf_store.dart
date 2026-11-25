@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
@@ -9,6 +10,8 @@ import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/bookshelf/bookshelf_logic.dart';
 import 'package:mangayomi/yomihub/bookshelf/bookshelf_models.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_hive.dart';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 /// YomiHub 0.6.3 – "Tủ Sách Cá Nhân" store (YomiHub Update, mục 14).
 ///
@@ -56,8 +59,88 @@ class BookshelfStore extends ChangeNotifier {
 
   /// Called after a backup restore replaced the box contents.
   void onRestored() {
-    if (_box == null) return;
+    if (_box == null) {
+      unawaited(init().then((_) => restorePhotoFiles()));
+      return;
+    }
     _load();
+    unawaited(restorePhotoFiles());
+  }
+
+  // ───────────────── photos in the app backup (0.6.6, FN-14 / FN-18) ─────────────────
+  // Item photos and local covers are files outside the Hive box; a backup of
+  // the box alone restored dead paths on another device. They travel as
+  // base64 under the box key `photoFiles` (name → data), capped in size.
+
+  static const maxBackupPhotoBytes = 32 * 1024 * 1024;
+
+  static bool _isLocalPath(String s) => s.trim().isNotEmpty && !RegExp(r'^[a-z][a-z0-9+.\-]*://', caseSensitive: false).hasMatch(s.trim());
+  static String _baseName(String s) => s.split(RegExp(r'[\\/]')).last;
+
+  Iterable<String> _localImagePaths() sync* {
+    for (final s in _series.values) {
+      if (_isLocalPath(s.cover)) yield s.cover;
+    }
+    for (final f in _folders.values) {
+      for (final i in f.items) {
+        for (final ph in i.photos) {
+          if (_isLocalPath(ph)) yield ph;
+        }
+      }
+    }
+  }
+
+  /// Existing local images by file name, stopping at [maxBackupPhotoBytes].
+  Future<Map<String, String>> photoFilesForBackup() async {
+    await init();
+    final out = <String, String>{};
+    var total = 0;
+    for (final path in _localImagePaths()) {
+      final name = _baseName(path);
+      if (name.isEmpty || out.containsKey(name)) continue;
+      try {
+        final f = File(path);
+        if (!await f.exists()) continue;
+        final len = await f.length();
+        if (total + len > maxBackupPhotoBytes) continue;
+        out[name] = base64Encode(await f.readAsBytes());
+        total += len;
+      } catch (_) {}
+    }
+    return out;
+  }
+
+  /// Writes the images of a restored backup to the photo folder and points
+  /// covers / item photos at the new files; then drops `photoFiles`.
+  Future<void> restorePhotoFiles() async {
+    final box = _box;
+    final raw = box?.get('photoFiles');
+    if (box == null || !box.isOpen || raw is! Map || raw.isEmpty) return;
+    try {
+      final docs = await getApplicationDocumentsDirectory();
+      final dir = Directory(p.join(docs.path, 'yomihub_bookshelf', 'photos'));
+      if (!await dir.exists()) await dir.create(recursive: true);
+      final moved = <String, String>{};
+      for (final e in raw.entries) {
+        final name = _baseName('${e.key}');
+        if (name.isEmpty) continue;
+        final dest = p.join(dir.path, name);
+        if (!await File(dest).exists()) await File(dest).writeAsBytes(base64Decode('${e.value}'));
+        moved[name] = dest;
+      }
+      String fix(String s) => _isLocalPath(s) ? (moved[_baseName(s)] ?? s) : s;
+      for (final s in _series.values) {
+        s.cover = fix(s.cover);
+      }
+      for (final f in _folders.values) {
+        for (final i in f.items) {
+          i.photos = [for (final ph in i.photos) fix(ph)];
+        }
+      }
+      if (await _save(['series', 'folders'])) await box.delete('photoFiles');
+    } catch (e) {
+      AppLogger.log('[Tủ Sách] Không khôi phục được ảnh từ bản sao lưu: $e', logLevel: LogLevel.error);
+    }
   }
 
   void _load() {
@@ -242,6 +325,31 @@ class BookshelfStore extends ChangeNotifier {
       if (s != null) out.add((series: s, volume: w.volume, reason: 'wish', wishId: w.id));
     }
     return out;
+  }
+
+  /// FN-28 (0.6.6): volumes currently lent out, earliest due date first
+  /// (no due date last).
+  List<({BsSeries series, BsVolume volume})> loans() {
+    final out = <({BsSeries series, BsVolume volume})>[];
+    for (final v in _volumes.values) {
+      final s = _series[v.seriesId];
+      if (s != null && (v.borrower ?? '').trim().isNotEmpty) out.add((series: s, volume: v));
+    }
+    out.sort((a, b) {
+      final x = a.volume.loanDue, y = b.volume.loanDue;
+      if (x == null || y == null) return x == y ? 0 : (x == null ? 1 : -1);
+      return x.compareTo(y);
+    });
+    return out;
+  }
+
+  /// Marks a lent volume as returned.
+  Future<void> returnLoan(String volumeId) async {
+    final v = _volumes[volumeId];
+    if (v == null) return;
+    v.borrower = null;
+    v.loanDue = null;
+    await _save(['volumes']);
   }
 
   /// FN-24 statistics.
@@ -521,23 +629,42 @@ class BookshelfStore extends ChangeNotifier {
 
   // ───────────────────────── CSV (FN-30) ─────────────────────────
 
-  static const csvHeader = ['Tên bộ', 'Tập', 'Phiên bản', 'ISBN', 'Giá', 'Ngày mua', 'Nơi mua', 'NXB', 'Trạng thái đọc'];
+  static const csvHeader = [
+    'Tên bộ', 'Tập', 'Phiên bản', 'ISBN', 'Giá', 'Ngày mua', 'Nơi mua', 'NXB', 'Trạng thái đọc',
+    'Số bản', 'Người mượn', 'Hạn trả', 'Tác giả', 'Trạng thái bộ',
+  ];
 
+  static String _dateText(int? ms) =>
+      ms == null ? '' : DateTime.fromMillisecondsSinceEpoch(ms).toIso8601String().substring(0, 10);
+
+  /// Exports every series – also those without a volume yet (empty "Tập") –
+  /// with copies, loan and series columns (0.6.6, FN-30 / FN-28 / FN-26).
   String exportCsv() {
     final b = StringBuffer('﻿${csvHeader.map(bsCsvEscape).join(',')}\r\n');
     for (final s in series) {
-      for (final v in volumesOf(s.id)) {
-        final d = v.purchaseDate == null ? '' : DateTime.fromMillisecondsSinceEpoch(v.purchaseDate!).toIso8601String().substring(0, 10);
+      final vols = volumesOf(s.id);
+      if (vols.isEmpty) {
+        b.write([s.title, '', '', '', '', '', '', s.publisher, '', '', '', '', s.author, s.status.name]
+            .map(bsCsvEscape)
+            .join(','));
+        b.write('\r\n');
+      }
+      for (final v in vols) {
         b.write([
           s.title,
           v.numberText,
           v.edition.name,
           v.isbn,
           v.price == null ? '' : v.price!.toStringAsFixed(0),
-          d,
+          _dateText(v.purchaseDate),
           v.place,
           s.publisher,
           v.readStatus.name,
+          '${v.copies}',
+          v.borrower ?? '',
+          _dateText(v.loanDue),
+          s.author,
+          s.status.name,
         ].map(bsCsvEscape).join(','));
         b.write('\r\n');
       }
@@ -545,8 +672,21 @@ class BookshelfStore extends ChangeNotifier {
     return b.toString();
   }
 
+  static BsStatus _statusOf(String raw) {
+    final n = bsNormalize(raw);
+    for (final e in BsStatus.values) {
+      if (n == e.name.toLowerCase()) return e;
+    }
+    if (n.contains('hoan thanh') || n.contains('tron bo')) return BsStatus.completed;
+    if (n.contains('tam ngung') || n.contains('tam dung')) return BsStatus.paused;
+    return BsStatus.ongoing;
+  }
+
   /// Imports rows "Tên bộ, Tập (1-20 allowed), Phiên bản, ISBN, Giá, Ngày mua,
-  /// Nơi mua, NXB". Returns (added volumes, created series, skipped rows).
+  /// Nơi mua, NXB, Trạng thái đọc, Số bản, Người mượn, Hạn trả, Tác giả,
+  /// Trạng thái bộ" (columns after NXB are optional). A row with a title and
+  /// an empty "Tập" cell only creates the series. Returns (added volumes,
+  /// created series, skipped rows).
   Future<({int volumes, int series, int skipped})> importCsv(String text) async {
     final rows = bsParseCsv(text);
     // 0.6.3 review: restore memory if the write fails, so the screen never
@@ -557,10 +697,11 @@ class BookshelfStore extends ChangeNotifier {
     for (var i = 0; i < rows.length; i++) {
       final r = rows[i];
       if (i == 0 && r.isNotEmpty && bsNormalize(r.first).startsWith('ten bo')) continue;
-      String col(int k) => k < r.length ? r[k].trim() : '';
+      String col(int k) => k < r.length ? bsCsvUnguard(r[k].trim()) : '';
       final title = col(0);
       final nums = bsParseRange(col(1));
-      if (title.isEmpty || nums.isEmpty) {
+      final seriesOnly = title.isNotEmpty && col(1).isEmpty && r.length >= 9;
+      if (title.isEmpty || (nums.isEmpty && !seriesOnly)) {
         skipped++;
         continue;
       }
@@ -572,16 +713,22 @@ class BookshelfStore extends ChangeNotifier {
           .where((e) => [e.title, e.original, ...e.aliases].any((c) => c.trim().isNotEmpty && bsNormalize(c) == key))
           .firstOrNull;
       if (s == null) {
-        s = BsSeries(id: newId('s'), title: title, publisher: col(7));
+        s = BsSeries(
+            id: newId('s'),
+            title: title,
+            publisher: col(7),
+            author: col(12),
+            status: col(13).isEmpty ? BsStatus.ongoing : _statusOf(col(13)));
         _series[s.id] = s;
         addedS++;
       }
+      if (seriesOnly) continue;
       final ed = BsEdition.values.where((e) => bsNormalize(col(2)).contains(e.name) ||
               (e == BsEdition.limited && bsNormalize(col(2)).contains('gioi han')) ||
               (e == BsEdition.special && bsNormalize(col(2)).contains('dac biet'))).firstOrNull ??
           BsEdition.regular;
-      final price = double.tryParse(col(4).replaceAll(RegExp(r'[^0-9.]'), ''));
-      final date = DateTime.tryParse(col(5));
+      final price = bsParseMoney(col(4));
+      final date = bsParseDate(col(5));
       for (final n in nums) {
         if (findVolume(s.id, n, ed) != null) continue;
         final v = BsVolume(
@@ -594,6 +741,9 @@ class BookshelfStore extends ChangeNotifier {
           purchaseDate: date?.millisecondsSinceEpoch,
           place: col(6),
           readStatus: _readStatusOf(col(8)),
+          copies: math.max(1, int.tryParse(col(9)) ?? 1),
+          borrower: col(10).isEmpty ? null : col(10),
+          loanDue: col(10).isEmpty ? null : bsParseDate(col(11))?.millisecondsSinceEpoch,
         );
         _volumes[v.id] = v;
         addedV++;

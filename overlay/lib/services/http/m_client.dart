@@ -73,11 +73,16 @@ class MClient {
   }) {
     // YomiHub VPN: route this request through Tor when the source (or every
     // source) is switched to Tor in Settings > VPN.
-    final torProxy = (reqcopyWith?["noProxy"] ?? false)
+    var torProxy = (reqcopyWith?["noProxy"] ?? false)
         ? null
         : (reqcopyWith?["booruSiteId"] != null
             ? YomiVpnState.proxyForBooru(reqcopyWith!["booruSiteId"] as String?)
             : YomiVpnState.proxyFor(sourceId ?? reqcopyWith?["yomihubSourceId"] as int?));
+    // 0.6.6 (logs 16, Danbooru on Windows): after a Cloudflare solve in
+    // WebView2 (fixed proxy) the host follows that proxy too.
+    if (torProxy == null && Platform.isWindows && !(reqcopyWith?["noProxy"] ?? false) && baseUrl != null) {
+      torProxy = YomiVpnState.alignedRoute(Uri.tryParse(baseUrl)?.host);
+    }
     if (!(reqcopyWith?["useDartHttpClient"] ?? false)) {
       try {
         final callerSettings = settings;
@@ -766,7 +771,23 @@ void _handleResolveCf(HttpRequest request) async {
     // WebView would leave through another route, solve on the extension's
     // route so cf_clearance matches its IP (kill-switch route excluded).
     final route = data['route'] as String?;
-    final align = route != null &&
+    // 0.6.6 (logs 16): Windows WebView2 cannot change route while running
+    // (withWebViewRoute is Android-only) – the extension follows WebView2's
+    // proxy for this host instead, so cf_clearance stays usable.
+    if (Platform.isWindows && route != null) {
+      final wv = YomiVpnService.instance.webViewProxyAtStart ?? '';
+      final wvUrl = wv.isEmpty ? '' : (wv.contains('://') ? wv : 'http://$wv');
+      final host = Uri.tryParse(url)?.host ?? '';
+      if (wvUrl.isNotEmpty && wvUrl != route && host.isNotEmpty) {
+        YomiVpnState.alignHostToWebView(host, wvUrl);
+        AppLogger.log(
+          '[Cloudflare] $host: WebView2 đi qua $wvUrl còn tiện ích ${route.isEmpty ? 'đi thẳng' : route} – '
+          'các yêu cầu tới $host trong phiên này đi cùng đường với WebView2 để cookie cf_clearance dùng được',
+        );
+      }
+    }
+    final align = Platform.isAndroid &&
+        route != null &&
         route != (YomiVpnState.webViewProxy() ?? '') &&
         !route.endsWith(':9');
     if (align) {

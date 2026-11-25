@@ -212,12 +212,71 @@ List<double> bsParseRange(String s) {
 
 // ───────────────────────── CSV ─────────────────────────
 
-String bsCsvEscape(String v) =>
-    RegExp(r'[",\n\r]').hasMatch(v) ? '"${v.replaceAll('"', '""')}"' : v;
+/// Quotes cells with `,` `;` tab or line breaks (Excel in Vietnamese locales
+/// uses `;`) and neutralises spreadsheet formulas (`=`, `+`, `@`, `-x`) with a
+/// leading `'` that [bsCsvUnguard] removes again on import.
+String bsCsvEscape(String v) {
+  if (RegExp(r'^(?:[=+@]|-(?!\d))').hasMatch(v)) v = "'$v";
+  return RegExp(r'[",;\t\n\r]').hasMatch(v) ? '"${v.replaceAll('"', '""')}"' : v;
+}
 
-/// RFC 4180-ish CSV parser (quotes, doubled quotes, CRLF, BOM).
-List<List<String>> bsParseCsv(String text) {
+String bsCsvUnguard(String v) =>
+    RegExp(r"^'(?:[=+@]|-(?!\d))").hasMatch(v) ? v.substring(1) : v;
+
+/// Picks `,` `;` or tab from the first line (outside quotes) – the most
+/// frequent one wins, `,` on a tie / no delimiter.
+String bsDetectCsvDelimiter(String text) {
+  var inQ = false;
+  final count = {',': 0, ';': 0, '\t': 0};
+  for (var i = 0; i < text.length; i++) {
+    final c = text[i];
+    if (c == '"') {
+      inQ = !inQ;
+    } else if (!inQ) {
+      if (c == '\n' || c == '\r') break;
+      if (count.containsKey(c)) count[c] = count[c]! + 1;
+    }
+  }
+  var best = ',';
+  for (final e in count.entries) {
+    if (e.value > count[best]!) best = e.key;
+  }
+  return best;
+}
+
+/// VND / plain amounts: "120.000đ", "120,000", "1.200.000 VNĐ", "45000",
+/// "12.5", "12,50". Returns null when no number is found.
+double? bsParseMoney(String raw) {
+  final s = raw.replaceAll(RegExp(r'[^0-9.,]'), '');
+  if (s.isEmpty || !RegExp(r'\d').hasMatch(s)) return null;
+  if (RegExp(r'^\d{1,3}([.,]\d{3})+$').hasMatch(s)) {
+    return double.tryParse(s.replaceAll(RegExp(r'[.,]'), ''));
+  }
+  final m = RegExp(r'^(\d+)[.,](\d{1,2})$').firstMatch(s);
+  if (m != null) return double.tryParse('${m.group(1)}.${m.group(2)}');
+  return double.tryParse(s.replaceAll(RegExp(r'[.,]'), ''));
+}
+
+/// "2026-11-25", "25/11/2026", "25-11-2026", "25.11.2026" (day first).
+DateTime? bsParseDate(String raw) {
+  final s = raw.trim();
+  if (s.isEmpty) return null;
+  final iso = DateTime.tryParse(s);
+  if (iso != null) return iso;
+  final m = RegExp(r'^(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{4})$').firstMatch(s);
+  if (m == null) return null;
+  final d = int.parse(m.group(1)!), mo = int.parse(m.group(2)!), y = int.parse(m.group(3)!);
+  if (mo < 1 || mo > 12 || d < 1 || d > 31) return null;
+  final out = DateTime(y, mo, d);
+  return out.month == mo ? out : null;
+}
+
+/// RFC 4180-ish CSV parser (quotes, doubled quotes, CRLF, BOM). The
+/// delimiter is detected from the first line ([bsDetectCsvDelimiter]) so a
+/// `;` inside a title of a comma file no longer splits the cell.
+List<List<String>> bsParseCsv(String text, {String? delimiter}) {
   if (text.startsWith('﻿')) text = text.substring(1);
+  final delim = delimiter ?? bsDetectCsvDelimiter(text);
   final rows = <List<String>>[];
   var row = <String>[];
   final cell = StringBuffer();
@@ -237,7 +296,7 @@ List<List<String>> bsParseCsv(String text) {
       }
     } else if (c == '"') {
       inQ = true;
-    } else if (c == ',' || c == ';' || c == '\t') {
+    } else if (c == delim) {
       row.add(cell.toString());
       cell.clear();
     } else if (c == '\n' || c == '\r') {

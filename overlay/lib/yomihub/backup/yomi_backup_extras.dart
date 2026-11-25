@@ -121,6 +121,14 @@ class YomiBackupExtras {
       } catch (_) {}
     }
     out['boxes'] = data;
+    // 0.6.6: Tủ Sách photos / local covers are files, not box values
+    final shelf = data['yomihub_bookshelf'];
+    if (shelf is Map && YomiPrefs.get<bool>('backupBookshelfPhotos', true)) {
+      try {
+        final files = await BookshelfStore.instance.photoFilesForBackup();
+        if (files.isNotEmpty) shelf['photoFiles'] = files;
+      } catch (_) {}
+    }
     return out;
   }
 

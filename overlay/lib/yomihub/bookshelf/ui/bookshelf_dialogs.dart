@@ -849,8 +849,7 @@ Future<bool> showBsVolumeEditDialog(
                 setState(() => numErr = tr('Số tập không hợp lệ'));
                 return;
               }
-              final price = double.tryParse(
-                  priceCtrl.text.trim().replaceAll(RegExp(r'[^0-9.]'), ''));
+              final price = bsParseMoney(priceCtrl.text);
               final borrower = borrowerCtrl.text.trim();
               final store = BookshelfStore.instance;
 
@@ -1309,8 +1308,7 @@ Future<bool> showBsItemDialog(
                 setState(() => err = tr('Tên không được để trống'));
                 return;
               }
-              final price = double.tryParse(
-                  priceCtrl.text.trim().replaceAll(RegExp(r'[^0-9.]'), ''));
+              final price = bsParseMoney(priceCtrl.text);
               final isbn =
                   bsToIsbn13(isbnCtrl.text) ?? bsCleanIsbn(isbnCtrl.text);
               if (existing != null) {
