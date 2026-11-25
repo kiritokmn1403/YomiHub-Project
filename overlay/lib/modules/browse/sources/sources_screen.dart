@@ -102,8 +102,12 @@ class _SourcesScreenState extends ConsumerState<SourcesScreen> {
               .where((e) => !folded.contains(e.id))
               .toList();
           if (sources.isEmpty) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            // 0.6.6 (UI-15): scrollable so short windows / landscape never
+            // push the "Show extensions" button off-screen.
+            return Center(
+              child: SingleChildScrollView(
+              child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const ExtensionServerWarningBanner(),
                 Padding(
@@ -151,6 +155,8 @@ class _SourcesScreenState extends ConsumerState<SourcesScreen> {
                   itemType: widget.itemType,
                 ),
               ],
+            ),
+              ),
             );
           }
           final lastUsedEntries = sources.where((e) => e.lastUsed!).toList();

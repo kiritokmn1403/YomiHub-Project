@@ -88,6 +88,7 @@ class YomiMes {
   static Future<void> setRemoteUrl(String v) async {
     await open();
     await _box?.put('remote', v.trim());
+    _altGeneration++;
     _altCheckedAt = null;
     _altBridge = null;
     _altProbe = null;
@@ -517,7 +518,7 @@ class YomiMes {
           try {
             final r2 = await _local.post(Uri.parse('$remote/dalvik'), body: body, headers: h).timeout(timeout);
             AppLogger.logOnce('mes-android-fallback',
-                '[M-Extension-Server] Tiện ích APK cần Android – đã chuyển sang ApkBridge đã lưu ($remote)',
+                '[M-Extension-Server] Tiện ích APK cần Android – đã chuyển sang ApkBridge đã lưu',
                 logLevel: LogLevel.info);
             return r2;
           } catch (_) {}
@@ -590,6 +591,7 @@ class YomiMes {
   static String? _altBridge;
   static DateTime? _altCheckedAt;
   static Future<String?>? _altProbe;
+  static int _altGeneration = 0;
 
   /// The ApkBridge / external M-Extension-Server address the user saved in
   /// settings, when it answers. Only that saved address is used
@@ -599,19 +601,24 @@ class YomiMes {
   static Future<String?> fallbackBridge() async {
     final now = DateTime.now();
     if (_altCheckedAt != null && now.difference(_altCheckedAt!) < const Duration(seconds: 60)) return _altBridge;
+    // In-flight probes must not restore a URL the user has replaced.
+    final generation = _altGeneration;
     // single-flight: parallel source calls share one probe (Antigravity C2)
     return _altProbe ??= () async {
       String? hit;
       final u = remoteUrl.trim().replaceAll(RegExp(r'/+$'), '');
       final uri = Uri.tryParse(u);
-      if (u.isNotEmpty && uri != null && const ['http', 'https'].contains(uri.scheme) && uri.host.isNotEmpty && u != _base) {
+      if (u.isNotEmpty && uri != null && const ['http', 'https'].contains(uri.scheme) && uri.host.isNotEmpty && uri.userInfo.isEmpty && !uri.hasQuery && !uri.hasFragment && u != _base) {
         if (await aliveAny(u)) hit = u;
       }
+      if (generation != _altGeneration) return null;
       _altBridge = hit;
       _altCheckedAt = DateTime.now();
       return hit;
     }()
-        .whenComplete(() => _altProbe = null);
+        .whenComplete(() {
+      if (generation == _altGeneration) _altProbe = null;
+    });
   }
 
   /// The Windows (Java) server answered with an error only an Android

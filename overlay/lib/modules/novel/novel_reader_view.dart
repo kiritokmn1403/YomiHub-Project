@@ -1361,7 +1361,8 @@ class _NovelWebViewState extends ConsumerState<NovelWebView>
                         YomihonNovelEnhancer.showReadingTime &&
                         _currentHtmlContent != null)
                       Positioned(
-                        bottom: 124,
+                        // 0.6.6 (UI-17): above the TTS bar when it is open.
+                        bottom: (_ttsSupported && _showTts) ? 215 : 124,
                         right: 12,
                         child: IgnorePointer(
                           child: Container(

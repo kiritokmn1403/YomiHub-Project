@@ -7,6 +7,9 @@ import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 
 import 'mv2_theme.dart';
 
+/// Two lines of 12.5 px overlay title plus its bottom padding (UI-16).
+const double _kOverlayTitleClearance = 48;
+
 /// Compact status pill used for unread counts, downloads, local/merged and language chips.
 class Mv2Badge extends StatelessWidget {
   const Mv2Badge({
@@ -333,7 +336,10 @@ class _Mv2MangaCardState extends State<Mv2MangaCard> {
               ),
             if (widget.sourceLabel != null && widget.sourceLabel!.isNotEmpty)
               PositionedDirectional(
-                bottom: widget.progress > 0 ? Mv2Space.s8 : Mv2Space.s4,
+                // 0.6.6 (UI-16): sit above the overlay title instead of on it.
+                bottom: showOverlayTitle
+                    ? _kOverlayTitleClearance
+                    : (widget.progress > 0 ? Mv2Space.s8 : Mv2Space.s4),
                 start: Mv2Space.s4,
                 child: IgnorePointer(
                   child: ConstrainedBox(
@@ -348,7 +354,9 @@ class _Mv2MangaCardState extends State<Mv2MangaCard> {
               ),
             if (widget.showContinueButton && widget.onContinueTap != null)
               PositionedDirectional(
-                bottom: Mv2Space.s8,
+                bottom: showOverlayTitle
+                    ? _kOverlayTitleClearance
+                    : Mv2Space.s8,
                 end: Mv2Space.s8,
                 child: _Mv2ContinueButton(onTap: widget.onContinueTap!),
               ),
