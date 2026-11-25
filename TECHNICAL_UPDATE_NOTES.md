@@ -4028,4 +4028,5 @@ Yêu cầu chủ dự án (16:46): log `logs (13).txt` (16–21/11, 3.136 dòng)
 - Bản vá Antigravity `review_02` hỏng đuôi `yomi_mes.dart` (ký tự `$` khi tạo diff) → viết lại đuôi tệp; `review_03` hỏng `bookshelf_logic.dart` (lỗi dây chuyền sang store/dialogs/scan/series) → khôi phục từ `19391ff` + thêm `bsParseMoney`; `review_04` dùng `key:` cho `_SauceThumb` chưa có `super.key` → thêm.
 - Job `f066_a07`: analyze 2 lỗi – `migrate_screen.dart:396` thừa/thiếu ngoặc (`ui_02` đổi `Row` scanlator) và `_SauceThumb` → sửa, chạy lại `f066_a08_recheck` với toàn bộ 123 tệp khác v0.6.5.
 - 22:38 Antigravity báo "AI credits balance is too low" (Gemini 5h hết, mở lại ~00:05; Claude/GPT ~03:05); Codex mở lại 03:19 26/11 → đặt lịch tự giao việc r4 (Antigravity: kiểm thiết bị) và r2 (Codex: review cuối + precheck phát hành). Không bấm Add Credits/Upgrade.
+- Build lần 1 (23:01): bộ test đầy đủ 1067/1068 – `yh_057_t4` mong gợi ý "Android 6.0" nhưng chạy trên Windows nên nhận gợi ý ApkBridge mới → test chọn chuỗi theo `Platform.isWindows`; build lại 00:15 từ bước sync (không chạy lại bước test Android).
 
