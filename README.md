@@ -1,26 +1,9 @@
 <p align="center">
-  <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest"><img width="160" height="160" src="assets/logo/yomihub_logo_1024.png" alt="YomiHub logo"></a>
+  <img width="160" height="160" src="https://raw.githubusercontent.com/YomiHub-Project/Yomi-Logo/main/YomiHub.png" alt="Logo YomiHub">
 </p>
-
 <h3 align="center">YomiHub</h3>
-
-<div align="center">
-
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![Latest release](https://img.shields.io/github/v/release/kiritokmn1403/YomiHub-Project?label=release)](https://github.com/kiritokmn1403/YomiHub-Project/releases/latest)
-[![GitHub Issues](https://img.shields.io/github/issues/kiritokmn1403/YomiHub-Project.svg)](https://github.com/kiritokmn1403/YomiHub-Project/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kiritokmn1403/YomiHub-Project.svg)](https://github.com/kiritokmn1403/YomiHub-Project/pulls)
-[![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
-
-</div>
-
----
-
-<p align="center"> Ứng dụng giải trí đa phương tiện mã nguồn mở: đọc truyện tranh (Comic), xem phim & Anime (Film & Movie), đọc tiểu thuyết (Novel), Google Play Books, duyệt ảnh Booru và quản lý Tủ Sách Cá Nhân – trên Android, Android TV và Windows.
-    <br>
-    <br>
-    <a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest"><img src="https://img.shields.io/badge/Download-YomiHub%20Latest%20Release-blue?style=for-the-badge&logo=github" alt="Download YomiHub"></a>
-</p>
+<p align="center">Đọc truyện, xem phim và quản lý tủ sách trong một ứng dụng.</p>
+<p align="center"><a href="https://github.com/YomiHub-Project/YomiHub-Project/releases/tag/v0.6.5"><img src="https://img.shields.io/badge/Download-YomiHub-blue?style=for-the-badge&logo=github" alt="Download YomiHub"></a></p>
 
 ## 📝 Mục lục
 
@@ -28,62 +11,106 @@
 - [Tính năng](#features)
 - [Tải về](#download)
 - [Yêu cầu hệ thống](#requirements)
+- [Sử dụng](#usage)
+- [Lộ trình](#roadmap)
+- [Đóng góp](#contributing)
+- [Giấy phép](#license)
+- [Liên hệ](#contact)
+- [Lời cảm ơn](#acknowledgements)
 - [Liên kết](#links)
 
-## 🧐 Giới thiệu <a name = "about"></a>
+## 🧐 Giới thiệu <a name="about"></a>
 
-YomiHub gom các tính năng của nhiều ứng dụng đọc truyện/xem phim mã nguồn mở (Mangayomi, Aniyomi, Nekoyomi, Kotatsu, LNReader, IReader, Aidoku, vBook…) vào một ứng dụng duy nhất, tối ưu cho tiếng Việt và hỗ trợ 67 ngôn ngữ giao diện (bao gồm 19 ngôn ngữ nền tảng và 48 ngôn ngữ mở rộng từ Aniyomi, Nekoyomi, Kotatsu). Ứng dụng chạy trên Android, Android TV (tập trung Phim & Điện ảnh) và Windows 10/11 x64; dữ liệu thư viện, Tủ Sách Cá Nhân và cài đặt nằm trên thiết bị của bạn (tra mã ISBN trong Tủ Sách chỉ gửi mã ISBN tới Google Books/Open Library khi bạn quét/tra cứu).
+YomiHub tập hợp trình đọc truyện tranh, trình phát phim/anime, trình đọc sách và các công cụ quản lý bộ sưu tập. Bạn có thể chọn các nhóm tính năng phù hợp với nhu cầu sử dụng.
 
-## ✨ Tính năng <a name = "features"></a>
+## ✨ Tính năng <a name="features"></a>
 
-- **📖 Comic:** cuộn dọc (Webtoon), lật trang đơn/đôi, đọc phải sang trái, lọc màu, tải trước chương và tải về đọc ngoại tuyến. **Dịch ảnh** trong trang truyện bằng OCR + dịch máy có sẵn, hoặc (mới 0.6.4) bằng máy chủ **Frank Yomik** tự dựng của bạn (dịch bong bóng thoại / thêm furigana / webtoon).
-- **🎬 Film & Movie:** trình phát mpv (`media_kit`), Picture-in-Picture, nhớ vị trí xem, đổi máy chủ/luồng phát, tải tập về máy; Short Video vuốt dọc (YouTube Shorts, TikTok, Kwai, RedGifs, Facebook Reels…) – có thể bật cho mọi tiện ích video.
-- **📚 Novel & Google Play Books:** tiểu thuyết trực tuyến, đọc EPUB/PDF trên máy, tùy chỉnh chữ/giãn dòng/nền tối; Google Play Sách nhúng trong ứng dụng (không có trên Android TV).
-- **🎨 Booru App:** tìm, duyệt và tải ảnh từ các nguồn Booru, gợi ý thẻ, yêu thích và lịch sử tìm kiếm (không có trên Android TV).
-- **🗄️ Tủ Sách Cá Nhân (My Manga & Book Shelf):** tab riêng (`/bookshelf`) đặt cạnh Booru App, bật/tắt trong **Cài đặt › Bật/Tắt tính năng & Nguồn mở rộng** (**không có trên Android TV**); tìm nhanh không dấu theo tên/viết tắt/số tập (vd. `"One Piece 105"`, `"jjk"`), huy hiệu sở hữu (**Đã có / Có bản thường – chưa Limited / Chưa mua**), 6 bộ gần đây; quét mã vạch ISBN (`mobile_scanner`, quét đơn/hàng loạt) và tra cứu Google Books / Open Library; chống mua trùng theo bộ/tập/phiên bản, phát hiện tập thiếu, danh sách Cần mua, tập mới nhất hiện có, thư mục **Bản Limited / Artbook / Goods** (kèm thẻ phụ kiện Postcard, Poster, Standee, Nguyên Seal và ảnh thực tế), thống kê tủ sách, nhập/xuất CSV và sao lưu cùng ứng dụng (hộp `yomihub_bookshelf`, công tắc chọn mục riêng). **Mới 0.6.4:** thanh **"Ấn phẩm liên quan tủ sách của bạn"** (sách mới của NXB Kim Đồng, Trẻ, IPM, AMAK, Hikari khớp với bộ bạn đang có; cài đặt nguồn tin, loại tin Limited/Artbook/Poster/ColorWalk/DataBook/Boxset, ẩn tin, bỏ quan tâm bộ) và **nhận diện bìa bằng ảnh** cho sách cũ không có mã vạch.
-- **🔌 Tiện ích nhiều nền tảng & Hợp nhất:** Mihon/Tachiyomi, Aniyomi, Mangayomi, Kotatsu, LNReader, IReader, Aidoku, vBook; tự gợi ý kho tiện ích; hợp nhất nhiều nguồn của cùng một bộ truyện/phim với dấu **`Đã hợp nhất · N nguồn`**, bộ chọn **Nguồn đọc** và tiện ích thành viên ngay trên danh sách chương; gợi ý lỗi thân thiện khi nguồn trả lỗi Aidoku JSON, thiếu headless browser, lỗi chứng chỉ SSL hoặc bị nhà mạng chặn.
-- **☑️ Bộ lọc mới (`New Filter`) & chọn nhiều ô:** gom toàn bộ bộ lọc của mọi tiện ích thành 9 nhóm thẻ gập/mở (**Sắp Xếp**, **Tình Trạng**, **Danh Mục**, **Phân Loại Nội Dung**, **Năm Phát Hành**, **Tìm Theo**, **Đánh Giá**, **Bản Dịch**, **Thể Loại** + **Khác**) với 4 nút Đặt Lại / Nạp Bộ Lọc / Đánh Dấu / Bộ Lọc; mọi lựa chọn là ô chọn, tick được nhiều ô cùng lúc (kết quả gộp, bỏ trùng), thể loại bao gồm → loại trừ → tắt, sắp xếp ↑/↓; tùy chọn chuyển đổi giữa Bộ lọc mới và Bộ lọc cũ trong **Cài đặt › Giao diện**.
-- **🎨 Giao diện YomiHub New Version (Mangayomi v0.9.96):** chủ đề Mv2, thanh điều hướng nổi kéo-thả tự thu gọn khi cuộn trên điện thoại, thanh điều hướng bên thu gọn được cho **máy tính bảng (≥ 600 dp), Android TV và Windows** với lưới thẻ thích ứng và hỗ trợ điều hướng **D-pad** trên TV; công tắc 3 chế độ **YomiHub Old Version / Shiori (0.9.95) / YomiHub New Version** trong **Cài đặt › Giao diện**.
-- **🌐 67 ngôn ngữ giao diện:** tiếng Việt, tiếng Anh và 65 ngôn ngữ quốc tế (19 ngôn ngữ nền tảng – gồm 18 tệp ngôn ngữ cốt lõi trong `yomihub_i18n` được bổ sung +228 chuỗi mới lên **1.955 khóa** mỗi ngôn ngữ – cùng 48 ngôn ngữ đồng bộ từ Aniyomi, Nekoyomi, Kotatsu và 1.004 khóa ARB).
-- **🛡️ VPN & DNS:** Tor (cầu nối Snowflake/obfs4/meek), Cloudflare WARP, OpenVPN, WireGuard, proxy riêng, DNS-over-HTTPS (DoH); bật cho từng tiện ích hoặc toàn ứng dụng; **Tự chuyển qua Tor khi trang bị chặn** (tự thử lại qua Tor khi gặp lỗi TLS/DNS hoặc ảnh bìa trả trang HTML và ghi nhớ tên miền trong phiên cho cả yêu cầu Dart, ảnh bìa và tiện ích APK); vượt Cloudflare qua WebView.
-- **☁️ Sao lưu & đồng bộ:** chọn từng mục sao lưu (thư viện, lịch sử, tiện ích, cài đặt, dữ liệu Booru, dữ liệu Tủ Sách Cá Nhân); Google Drive bằng đăng nhập Google hoặc Client ID riêng, OneDrive, Dropbox, WebDAV, Rclone, MediaFire, Telegram Bot.
-- **🧭 Trình duyệt tích hợp:** nhiều tab, chặn quảng cáo, bảo vệ dấu vân tay trình duyệt, công cụ Savior tải video và quét mã trang tìm link `m3u8`/`mp4`.
-- **🖼️ GIF Viewer:** xem ảnh động GIF / WebP / APNG từng khung hình, chỉnh tốc độ, lặp lại.
-- **🩺 Tiện ích khác:** Health Connect, nhắc nghỉ mắt 20-20-20, trình theo dõi (AniList, MAL, Trakt, MangaUpdates, Shikimori, Bangumi…), AirDrop & Quicksharing, SpeedTest, quét mã QR.
+- **Comic:** trình đọc truyện tranh trong ứng dụng.
+- **Film & Movie:** trình phát phim và anime, có giao diện điều khiển dành cho TV.
+- **Novel và sách trên máy:** trình đọc tiểu thuyết, EPUB và PDF.
+- **Google Play Books:** màn hình Google Play Sách tích hợp.
+- **Booru:** màn hình duyệt ảnh Booru và phần cài đặt riêng.
+- **Tủ Sách Cá Nhân:** quản lý bộ sưu tập sách, quét mã (QR, EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, DataMatrix), nhập và xuất CSV.
+- **Sao lưu:** giao diện sao lưu đám mây (Google Drive, OneDrive, Dropbox, MediaFire, Telegram); OneDrive và Dropbox dùng được ngay, Google Drive có lựa chọn đăng nhập tài khoản Google hoặc cấu hình Client ID riêng; tự dọn bản cũ theo "Số bản sao lưu giữ lại". Khả năng kết nối phụ thuộc cấu hình dịch vụ và nền tảng.
+- **Trình duyệt tích hợp:** mở trang web trong ứng dụng và quản lý tùy chọn chặn quảng cáo.
+- **Tùy chỉnh:** bật/tắt các nhóm tính năng và nguồn mở rộng từ phần cài đặt.
 
-## ⬇️ Tải về <a name = "download"></a>
+**Có gì mới ở 0.6.5** (chi tiết: [YomiHub-0.6.5-changelog.md](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-changelog.md)):
 
-<p align="center"><a href="https://github.com/kiritokmn1403/YomiHub-Project/releases/latest"><img src="https://img.shields.io/badge/Download-YomiHub%20Latest%20Release-blue?style=for-the-badge&logo=github" alt="Download YomiHub"></a></p>
+- **Logo mới** cho ứng dụng, màn khởi động, biểu tượng Android/Windows.
+- Dự án chuyển sang tổ chức GitHub **YomiHub-Project**; kho tiện ích đã thêm tự chuyển sang địa chỉ mới.
+- **Thêm nhiều kho tiện ích một lần** (dán nhiều URL).
+- **Sao lưu Lịch sử trình duyệt web và Cài đặt VPN & DNS**; nút **Sao lưu nhanh** trên thanh Thư Viện.
+- **Hợp Nhất Các Bộ** thành mục riêng trong Cài Đặt; dấu "đã có trong Danh Mục" ở cả dạng lưới và danh sách; bộ lọc **Quốc Gia Phát Hành**.
+- **Tìm ảnh ngược** từ trình đọc (Google Lens hoặc SauceNAO).
+- Sửa lỗi Stack Overflow trang Cập nhật, "Tạo WebView thất bại" và `VerifyError` của tiện ích APK trên Windows; Tor không còn tự tắt sau một lần lỗi.
+- Nhật ký che `api_key`/token; bản sao lưu đám mây/chia sẻ không còn kèm cài đặt nhạy cảm; màn Sao Lưu & Đồng Bộ mở tức thì.
 
-Bản mới nhất **0.6.4** ([ghi chú phát hành](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-changelog.md) · [trang phát hành v0.6.4](https://github.com/kiritokmn1403/YomiHub-Project/releases/tag/v0.6.4)):
+**YumiHub Android TV** tập trung vào phim/anime. Theo phạm vi bản TV, Comic, Novel, Google Play Books, Booru và Tủ Sách Cá Nhân không nằm trong trải nghiệm này.
+
+## ⬇️ Tải về <a name="download"></a>
+
+[Download — YomiHub v0.6.5](https://github.com/YomiHub-Project/YomiHub-Project/releases/tag/v0.6.5)
+
+Mã kiểm tra SHA-256 của từng tệp nằm trong `SHA256SUMS-0.6.5.txt`.
 
 | Thiết bị | Tải về |
 | :--- | :--- |
-| **Android 7.0+** | [YomiHub-0.6.4-arm64-v8a.apk](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-arm64-v8a.apk) (hầu hết điện thoại) · [YomiHub-0.6.4-armeabi-v7a.apk](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-armeabi-v7a.apk) · [YomiHub-0.6.4-x86_64.apk](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-x86_64.apk) |
-| **Android 6.0** | [YomiHub-0.6.4-android6-arm64-v8a.apk](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-android6-arm64-v8a.apk) · [YomiHub-0.6.4-android6-armeabi-v7a.apk](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-android6-armeabi-v7a.apk) · [YomiHub-0.6.4-android6-x86_64.apk](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-android6-x86_64.apk) |
-| **Android TV** (`YumiHub Android TV`) | [YumiHub-Android-TV-0.6.4-arm64-v8a.apk](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YumiHub-Android-TV-0.6.4-arm64-v8a.apk) · [YumiHub-Android-TV-0.6.4-armeabi-v7a.apk](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YumiHub-Android-TV-0.6.4-armeabi-v7a.apk) · [YumiHub-Android-TV-0.6.4-x86_64.apk](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YumiHub-Android-TV-0.6.4-x86_64.apk) – không có Comic, Novel, Google Play Books, Booru, Tủ Sách Cá Nhân |
-| **Windows 10/11 x64** | [YomiHub-0.6.4-windows-x64-Setup.exe](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-windows-x64-Setup.exe) (cài đặt) · [YomiHub-0.6.4-windows-x64.appxbundle](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-windows-x64.appxbundle) (kèm [YomiHub-RootCA.cer](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-RootCA.cer), [Install-YomiHub.bat](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/Install-YomiHub.bat) và [Install-YomiHub.ps1](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/Install-YomiHub.ps1)) · [YomiHub-0.6.4-windows-x64.zip](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-windows-x64.zip) (portable) · [YomiHub-0.6.4-windows-x64-full.zip](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-windows-x64-full.zip) (kèm M-Extension-Server cho tiện ích APK) |
-| **Kiểm tra & Ghi chú** | [SHA256SUMS-0.6.4.txt](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/SHA256SUMS-0.6.4.txt) · [YomiHub-0.6.4-changelog.md](https://github.com/kiritokmn1403/YomiHub-Project/releases/download/v0.6.4/YomiHub-0.6.4-changelog.md) |
+| **Android 7.0+** | [YomiHub-0.6.5-arm64-v8a.apk](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-arm64-v8a.apk) (hầu hết điện thoại) · [YomiHub-0.6.5-armeabi-v7a.apk](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-armeabi-v7a.apk) · [YomiHub-0.6.5-x86_64.apk](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-x86_64.apk) |
+| **Android 6.0** | [YomiHub-0.6.5-android6-arm64-v8a.apk](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-android6-arm64-v8a.apk) · [YomiHub-0.6.5-android6-armeabi-v7a.apk](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-android6-armeabi-v7a.apk) · [YomiHub-0.6.5-android6-x86_64.apk](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-android6-x86_64.apk) |
+| **Android TV** (`YumiHub Android TV`) | [YumiHub-Android-TV-0.6.5-arm64-v8a.apk](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YumiHub-Android-TV-0.6.5-arm64-v8a.apk) · [YumiHub-Android-TV-0.6.5-armeabi-v7a.apk](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YumiHub-Android-TV-0.6.5-armeabi-v7a.apk) · [YumiHub-Android-TV-0.6.5-x86_64.apk](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YumiHub-Android-TV-0.6.5-x86_64.apk) – không có Comic, Novel, Google Play Books, Booru, Tủ Sách Cá Nhân |
+| **Windows 10/11 x64** | [YomiHub-0.6.5-windows-x64-Setup.exe](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-windows-x64-Setup.exe) (cài đặt) · [YomiHub-0.6.5-windows-x64.appxbundle](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-windows-x64.appxbundle) (kèm [YomiHub-RootCA.cer](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-RootCA.cer), [Install-YomiHub.bat](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/Install-YomiHub.bat) và [Install-YomiHub.ps1](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/Install-YomiHub.ps1)) · [YomiHub-0.6.5-windows-x64.zip](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-windows-x64.zip) (portable) · [YomiHub-0.6.5-windows-x64-full.zip](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-windows-x64-full.zip) (kèm Java cho tiện ích APK) |
+| **Kiểm tra & Ghi chú** | [SHA256SUMS-0.6.5.txt](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/SHA256SUMS-0.6.5.txt) · [YomiHub-0.6.5-changelog.md](https://github.com/YomiHub-Project/YomiHub-Project/releases/download/v0.6.5/YomiHub-0.6.5-changelog.md) |
 
-Cài đè lên bản cũ giữ nguyên dữ liệu; ứng dụng tự kiểm tra cập nhật từ GitHub Releases.
-
-## 📋 Yêu cầu hệ thống <a name = "requirements"></a>
+## 📋 Yêu cầu hệ thống <a name="requirements"></a>
 
 | Nền tảng | Yêu cầu |
 | :--- | :--- |
 | Android | Android 7.0 trở lên (bản `android6` riêng cho Android 6.0) |
 | Android TV | Android TV 7.0 trở lên, điều khiển D-Pad |
-| Windows | Windows 10 / 11 x64 |
+| Windows | Windows 10 / 11 x64 (nên có WebView2 Runtime để dùng trình duyệt tích hợp và vượt Cloudflare) |
 
-## 🔗 Liên kết <a name = "links"></a>
+## 🎈 Sử dụng <a name="usage"></a>
 
-- 🏠 Trang chủ: https://kiritokmn1403.github.io/YomiHub-Project/
-- ⬇️ Trang tải về: https://kiritokmn1403.github.io/YomiHub-Project/download.html
-- 📘 Hướng dẫn sử dụng: https://kiritokmn1403.github.io/YomiHub-Project/guide.html
-- 🔒 Chính sách quyền riêng tư: https://kiritokmn1403.github.io/YomiHub-Project/privacy.html
-- 🌐 English website: https://kiritokmn1403.github.io/YomiHub-Project/en/
-- 🐞 Báo lỗi: [GitHub Issues](https://github.com/kiritokmn1403/YomiHub-Project/issues)
-- 🛠️ Dành cho nhà phát triển: [BUILDING.md](BUILDING.md) · [TECHNICAL_UPDATE_NOTES.md](TECHNICAL_UPDATE_NOTES.md)
-- 🙏 Xây dựng trên [Mangayomi](https://github.com/kodjodevf/mangayomi); danh sách đầy đủ dự án GitHub & tài liệu tham khảo (đã đối chiếu đủ toàn bộ bảng Project GitHub) có trong ứng dụng: **Thêm › Giới thiệu › Dự án GitHub đã sử dụng**.
+1. Tải bản phù hợp ở mục [Tải về](#download), cài đè lên bản cũ để giữ nguyên dữ liệu.
+2. Mở **Thêm › Tiện ích** (Extensions) và thêm kho tiện ích của bạn (có thể dán nhiều URL cùng lúc); YomiHub không kèm sẵn nội dung.
+3. Duyệt nguồn, thêm truyện/phim vào **Danh Mục** trong Thư viện; mục đã thêm có dấu nhận biết ở cả dạng lưới và danh sách.
+4. Bật/tắt nhóm tính năng (Comic, Film & Movie, Novel, Booru, Tủ Sách…) trong phần cài đặt.
+5. Sao lưu: dùng nút **Sao lưu nhanh** ở Thư viện hoặc màn Sao Lưu & Đồng Bộ (tệp cục bộ, Google Drive, OneDrive, Dropbox, Telegram).
+6. Xem [Hướng dẫn](https://yomihub-project.github.io/YomiHub-Project/guide.html) để biết chi tiết từng tính năng.
 
-> Giấy phép: [GNU GPL v3.0](LICENSE). YomiHub không lưu trữ nội dung; mọi nội dung đến từ các tiện ích do người dùng tự thêm.
+## 🛣️ Lộ trình <a name="roadmap"></a>
+
+Các hạng mục đã biết, chưa hoàn tất ở 0.6.5 (mục "Đã biết" trong changelog):
+
+- [ ] Sao lưu cách hiển thị/sắp xếp riêng của từng Danh Mục.
+- [ ] Nguồn Danbooru qua Cloudflare khi WebView và tiện ích đi khác đường mạng (bật/tắt VPN cho cả hai).
+- [ ] Hỗ trợ TeraBox (hiện chưa hỗ trợ).
+
+Đề xuất mới: mở [Issue](https://github.com/YomiHub-Project/YomiHub-Project/issues).
+
+## 🤝 Đóng góp <a name="contributing"></a>
+
+Báo lỗi và góp ý qua [GitHub Issues](https://github.com/YomiHub-Project/YomiHub-Project/issues): ghi phiên bản (dòng `[YH …]` trong nhật ký), nền tảng, các bước tái hiện; **che** `api_key`, token, mật khẩu trước khi đính kèm log. Muốn gửi mã: fork, tạo nhánh, mở Pull Request; hướng dẫn dựng trong [BUILDING.md](BUILDING.md).
+
+## 📜 Giấy phép <a name="license"></a>
+
+Phát hành theo [GNU GPL v3.0](LICENSE). YomiHub không lưu trữ nội dung; mọi nội dung đến từ các tiện ích do người dùng tự thêm.
+
+## 📬 Liên hệ <a name="contact"></a>
+
+Kênh chính thức: [GitHub Issues](https://github.com/YomiHub-Project/YomiHub-Project/issues) và tổ chức [YomiHub-Project](https://github.com/YomiHub-Project). Chính sách quyền riêng tư: [privacy](https://yomihub-project.github.io/YomiHub-Project/privacy.html).
+
+## 🙏 Lời cảm ơn <a name="acknowledgements"></a>
+
+- Xây dựng trên [Mangayomi](https://github.com/kodjodevf/mangayomi) và cộng đồng tiện ích Mihon/Aniyomi/Kotatsu.
+- Danh sách đầy đủ dự án GitHub và tài liệu tham khảo có trong ứng dụng: **Thêm › Giới thiệu › Dự án GitHub đã sử dụng**.
+- Các nhà cung cấp dịch vụ tuỳ chọn (Google, Microsoft, Dropbox, Telegram, AniList, MyAnimeList…) thuộc chính sách của từng bên.
+
+## 🔗 Liên kết <a name="links"></a>
+
+- [Trang chủ](https://yomihub-project.github.io/YomiHub-Project/)
+- [Tải về](https://yomihub-project.github.io/YomiHub-Project/download.html)
+- [Hướng dẫn](https://yomihub-project.github.io/YomiHub-Project/guide.html)
+- [Chính sách quyền riêng tư](https://yomihub-project.github.io/YomiHub-Project/privacy.html)
+- [Báo lỗi](https://github.com/YomiHub-Project/YomiHub-Project/issues)

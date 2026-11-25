@@ -366,7 +366,7 @@ function initReleaseUpdater() {
   const dlLinks = document.querySelectorAll('a.dl[data-pat]');
   if (!verEl && dlLinks.length === 0) return;
 
-  fetch('https://api.github.com/repos/kiritokmn1403/YomiHub-Project/releases/latest')
+  fetch('https://api.github.com/repos/YomiHub-Project/YomiHub-Project/releases/latest')
     .then((res) => (res.ok ? res.json() : null))
     .then((release) => {
       if (!release || !release.tag_name) return;
@@ -379,7 +379,7 @@ function initReleaseUpdater() {
         if (!pattern) return;
         const filename = pattern.replace('{v}', v);
         if (assetNames.has(filename)) {
-          a.href = `https://github.com/kiritokmn1403/YomiHub-Project/releases/download/${release.tag_name}/${filename}`;
+          a.href = `https://github.com/YomiHub-Project/YomiHub-Project/releases/download/${release.tag_name}/${filename}`;
           a.title = t('dlTitlePrefix') + filename;
           updatedCount++;
         }
