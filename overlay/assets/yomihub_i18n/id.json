@@ -2043,5 +2043,8 @@
   "Tải lên đám mây lỗi: {p0} – xem Sao lưu đám mây": "Gagal mengunggah ke cloud: {p0} – lihat Cadangan cloud",
   "Đang tải lên đám mây…": "Mengunggah ke cloud…",
   "không tiến triển sau nhiều lần thử lại": "tidak ada kemajuan setelah beberapa percobaan ulang",
-  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Konten terlalu panjang untuk satu kode QR (maks ~2.300 byte)."
+  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Konten terlalu panjang untuk satu kode QR (maks ~2.300 byte).",
+  "Cài đặt riêng cho Danh Mục này": "Pengaturan khusus untuk kategori ini",
+  "Tắt = dùng cài đặt chung của Thư Viện": "Mati = gunakan pengaturan umum Pustaka",
+  "Đảo ngược thứ tự": "Balik urutan"
 }

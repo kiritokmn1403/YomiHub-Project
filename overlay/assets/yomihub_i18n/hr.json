@@ -1815,5 +1815,8 @@
   "Tải lên đám mây lỗi: {p0} – xem Sao lưu đám mây": "Pogreška prijenosa u oblak: {p0} – vidi Sigurnosna kopija u oblaku",
   "Đang tải lên đám mây…": "Prijenos u oblak…",
   "không tiến triển sau nhiều lần thử lại": "nema napretka nakon više pokušaja",
-  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Sadržaj je predugačak za jedan QR kôd (maks. ~2.300 bajtova)."
+  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Sadržaj je predugačak za jedan QR kôd (maks. ~2.300 bajtova).",
+  "Cài đặt riêng cho Danh Mục này": "Vlastite postavke za ovu kategoriju",
+  "Tắt = dùng cài đặt chung của Thư Viện": "Isključeno = koristi opće postavke Knjižnice",
+  "Đảo ngược thứ tự": "Obrni redoslijed"
 }

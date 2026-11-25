@@ -444,11 +444,7 @@ class AppearanceScreen extends ConsumerWidget {
                         dense: true,
                         contentPadding: const EdgeInsets.all(0),
                         value: index,
-                        title: Row(
-                          children: [
-                            Text(relativeTimestampsList(context)[index]),
-                          ],
-                        ),
+                        title: Text(relativeTimestampsList(context)[index]),
                       );
                     },
                   ),
@@ -511,13 +507,9 @@ class AppearanceScreen extends ConsumerWidget {
                         dense: true,
                         contentPadding: const EdgeInsets.all(0),
                         value: dateFormatsList[index],
-                        title: Row(
-                          children: [
-                            Text(
+                        title: Text(
                               "${dateFormatsList[index]} (${dateFormat(context: context, DateTime.now().millisecondsSinceEpoch.toString(), useRelativeTimesTamps: false, dateFormat: dateFormatsList[index], ref: ref)})",
                             ),
-                          ],
-                        ),
                       );
                     },
                   ),

@@ -2043,5 +2043,8 @@
   "Tải lên đám mây lỗi: {p0} – xem Sao lưu đám mây": "Erro no carregamento para a nuvem: {p0} – ver Cópia de segurança na nuvem",
   "Đang tải lên đám mây…": "A carregar para a nuvem…",
   "không tiến triển sau nhiều lần thử lại": "sem progresso após várias tentativas",
-  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "O conteúdo é demasiado longo para um único código QR (máx. ~2300 bytes)."
+  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "O conteúdo é demasiado longo para um único código QR (máx. ~2300 bytes).",
+  "Cài đặt riêng cho Danh Mục này": "Definições próprias para esta categoria",
+  "Tắt = dùng cài đặt chung của Thư Viện": "Desligado = usar as definições gerais da Biblioteca",
+  "Đảo ngược thứ tự": "Inverter ordem"
 }

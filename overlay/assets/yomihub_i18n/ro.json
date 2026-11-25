@@ -1815,5 +1815,8 @@
   "Tải lên đám mây lỗi: {p0} – xem Sao lưu đám mây": "Eroare la încărcarea în cloud: {p0} – vedeți Backup în cloud",
   "Đang tải lên đám mây…": "Se încarcă în cloud…",
   "không tiến triển sau nhiều lần thử lại": "nicio progres după mai multe încercări",
-  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Conținutul este prea lung pentru un singur cod QR (max. ~2.300 octeți)."
+  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Conținutul este prea lung pentru un singur cod QR (max. ~2.300 octeți).",
+  "Cài đặt riêng cho Danh Mục này": "Setări proprii pentru această categorie",
+  "Tắt = dùng cài đặt chung của Thư Viện": "Oprit = folosește setările generale ale Bibliotecii",
+  "Đảo ngược thứ tự": "Inversează ordinea"
 }

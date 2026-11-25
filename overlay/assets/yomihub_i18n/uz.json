@@ -1815,5 +1815,8 @@
   "Tải lên đám mây lỗi: {p0} – xem Sao lưu đám mây": "Bulutga yuklash xatosi: {p0} – Bulut zaxirasini ko'ring",
   "Đang tải lên đám mây…": "Bulutga yuklanmoqda…",
   "không tiến triển sau nhiều lần thử lại": "bir necha urinishdan so'ng ham progress yo'q",
-  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Kontent bitta QR kodi uchun juda uzun (maksimal ~2 300 bayt)."
+  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Kontent bitta QR kodi uchun juda uzun (maksimal ~2 300 bayt).",
+  "Cài đặt riêng cho Danh Mục này": "Ushbu toifa uchun alohida sozlamalar",
+  "Tắt = dùng cài đặt chung của Thư Viện": "Oʻchiq = Kutubxonaning umumiy sozlamalaridan foydalanish",
+  "Đảo ngược thứ tự": "Tartibni teskari qilish"
 }

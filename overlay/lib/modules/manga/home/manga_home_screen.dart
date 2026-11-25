@@ -757,9 +757,17 @@ class _MangaHomeScreenState extends ConsumerState<MangaHomeScreen> {
                                     if (context.mounted) setState(() {});
                                   });
                                 }
-                                return SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.85,
+                                // 0.6.6 (UI-19): shrink above the keyboard
+                                // and keep clear of the gesture bar.
+                                final kb = MediaQuery.viewInsetsOf(context).bottom;
+                                return Padding(
+                                  padding: EdgeInsets.only(bottom: kb),
+                                  child: SafeArea(
+                                  top: false,
+                                  child: SizedBox(
+                                  height: ((MediaQuery.sizeOf(context).height - kb) * 0.85)
+                                      .clamp(200.0, double.infinity)
+                                      .toDouble(),
                                   child: YomiFilterSheet(
                                     source: source,
                                     filters: filters,
@@ -796,6 +804,8 @@ class _MangaHomeScreenState extends ConsumerState<MangaHomeScreen> {
                                         setState(() => filters = values),
                                     onFilter: () =>
                                         Navigator.pop(context, 'filter'),
+                                  ),
+                                ),
                                   ),
                                 );
                               },

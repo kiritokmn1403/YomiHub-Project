@@ -493,7 +493,7 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
           Positioned(
             left: 14,
             right: 80,
-            bottom: 24,
+            bottom: 24 + MediaQuery.paddingOf(context).bottom,
             child: Text(
               c.item.name ?? '',
               maxLines: 3,
@@ -501,10 +501,19 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
               style: const TextStyle(color: Colors.white, fontSize: 15, shadows: [Shadow(blurRadius: 6)]),
             ),
           ),
+          // 0.6.6 (UI-18): keep the 6 side buttons between the top bar and
+          // the bottom edge; on short windows they scroll instead of being
+          // pushed under the back/mute row.
           Positioned(
             right: 8,
-            bottom: 24,
-            child: Column(
+            top: MediaQuery.paddingOf(context).top + 56,
+            bottom: 24 + MediaQuery.paddingOf(context).bottom,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: SingleChildScrollView(
+              reverse: true,
+              child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 _side(Icons.info_outline, tr('Chi tiết'), () => pushToMangaReaderDetail(
                       ref: ref,
@@ -538,6 +547,8 @@ class _YomiShortsScreenState extends ConsumerState<YomiShortsScreen> {
                       curve: Curves.easeOut,
                     )),
               ],
+            ),
+              ),
             ),
           ),
         ],

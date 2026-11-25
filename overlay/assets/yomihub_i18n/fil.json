@@ -1815,5 +1815,8 @@
   "Tải lên đám mây lỗi: {p0} – xem Sao lưu đám mây": "Error sa pag-upload sa cloud: {p0} – tingnan ang Cloud Backup",
   "Đang tải lên đám mây…": "Nag-a-upload sa cloud…",
   "không tiến triển sau nhiều lần thử lại": "walang progreso pagkatapos ng maraming ulit na pagsubok",
-  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Masyadong mahaba ang nilalaman para sa isang QR code (max ~2,300 bytes)."
+  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Masyadong mahaba ang nilalaman para sa isang QR code (max ~2,300 bytes).",
+  "Cài đặt riêng cho Danh Mục này": "Sariling setting para sa kategoryang ito",
+  "Tắt = dùng cài đặt chung của Thư Viện": "Naka-off = gamitin ang pangkalahatang setting ng Library",
+  "Đảo ngược thứ tự": "Baligtarin ang pagkakasunod"
 }

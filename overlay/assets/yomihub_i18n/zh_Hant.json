@@ -1815,5 +1815,8 @@
   "Tải lên đám mây lỗi: {p0} – xem Sao lưu đám mây": "雲端上傳錯誤：{p0} – 請查看雲端備份",
   "Đang tải lên đám mây…": "正在上傳至雲端…",
   "không tiến triển sau nhiều lần thử lại": "多次重試後仍無進展",
-  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "內容對於單個 QR 碼來說過長（最多約 2,300 位元組）。"
+  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "內容對於單個 QR 碼來說過長（最多約 2,300 位元組）。",
+  "Cài đặt riêng cho Danh Mục này": "此分類的獨立設定",
+  "Tắt = dùng cài đặt chung của Thư Viện": "關閉 = 使用書庫的通用設定",
+  "Đảo ngược thứ tự": "反轉順序"
 }

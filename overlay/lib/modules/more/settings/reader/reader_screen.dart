@@ -101,16 +101,12 @@ class ReaderScreen extends ConsumerWidget {
                                 dense: true,
                                 contentPadding: const EdgeInsets.all(0),
                                 value: ReaderMode.values[index],
-                                title: Row(
-                                  children: [
-                                    Text(
+                                title: Text(
                                       getReaderModeName(
                                         ReaderMode.values[index],
                                         context,
                                       ),
                                     ),
-                                  ],
-                                ),
                               );
                             },
                           ),
@@ -167,15 +163,11 @@ class ReaderScreen extends ConsumerWidget {
                               return RadioListTile(
                                 contentPadding: const EdgeInsets.all(0),
                                 value: index,
-                                title: Row(
-                                  children: [
-                                    Text(
+                                title: Text(
                                       getScaleTypeNames(
                                         context,
                                       )[index].toString(),
                                     ),
-                                  ],
-                                ),
                               );
                             },
                           ),
@@ -233,16 +225,12 @@ class ReaderScreen extends ConsumerWidget {
                                 dense: true,
                                 contentPadding: const EdgeInsets.all(0),
                                 value: BackgroundColor.values[index],
-                                title: Row(
-                                  children: [
-                                    Text(
+                                title: Text(
                                       getBackgroundColorName(
                                         BackgroundColor.values[index],
                                         context,
                                       ),
                                     ),
-                                  ],
-                                ),
                               );
                             },
                           ),
@@ -386,11 +374,7 @@ class ReaderScreen extends ConsumerWidget {
                                 dense: true,
                                 contentPadding: const EdgeInsets.all(0),
                                 value: index,
-                                title: Row(
-                                  children: [
-                                    Text(getAnimationSpeedName(index, context)),
-                                  ],
-                                ),
+                                title: Text(getAnimationSpeedName(index, context)),
                               );
                             },
                           ),

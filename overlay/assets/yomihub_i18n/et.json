@@ -1815,5 +1815,8 @@
   "Tải lên đám mây lỗi: {p0} – xem Sao lưu đám mây": "Pilve üleslaadimise viga: {p0} – vaata Pilvevarukoopiat",
   "Đang tải lên đám mây…": "Pilve üleslaadimine…",
   "không tiến triển sau nhiều lần thử lại": "pärast mitmeid katseid edasiminekut ei ole",
-  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Sisu on ühe QR-koodi jaoks liiga pikk (maks ~2300 baiti)."
+  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Sisu on ühe QR-koodi jaoks liiga pikk (maks ~2300 baiti).",
+  "Cài đặt riêng cho Danh Mục này": "Selle kategooria oma seaded",
+  "Tắt = dùng cài đặt chung của Thư Viện": "Väljas = kasuta Raamatukogu üldseadeid",
+  "Đảo ngược thứ tự": "Pööra järjestus ümber"
 }
