@@ -50,7 +50,9 @@ void main() {
       expect(YomiExtErrors.isIncompatible('java.lang.NoClassDefFoundError: kotlinx/serialization/protobuf/ProtoNumber'), isTrue);
       expect(YomiExtErrors.isIncompatible('HTTP error 404'), isFalse);
       expect(YomiExtErrors.isIncompatible('Refresh the chapter list.'), isFalse);
-      expect(YomiExtErrors.incompatibleHint(), contains('Android 6.0'));
+      // 0.6.6: trên Windows gợi ý ApkBridge / tiện ích JS (log 16).
+      expect(YomiExtErrors.incompatibleHint(),
+          contains(Platform.isWindows ? 'ApkBridge' : 'Android 6.0'));
     });
 
     test('answers the extension cannot read are source errors (no stack)', () {
