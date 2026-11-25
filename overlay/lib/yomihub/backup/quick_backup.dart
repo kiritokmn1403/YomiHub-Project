@@ -34,7 +34,7 @@ class YomiQuickBackup {
   static bool get running => _running;
 
   /// One-shot: toasts the outcome of the next background cloud upload.
-  static void _reportCloudResult(CloudBackupService cloud) {
+  static void Function() _reportCloudResult(CloudBackupService cloud) {
     void listener() {
       cloud.lastResults.removeListener(listener);
       final res = cloud.lastResults.value;
@@ -48,6 +48,7 @@ class YomiQuickBackup {
     }
 
     cloud.lastResults.addListener(listener);
+    return () => cloud.lastResults.removeListener(listener);
   }
 
   /// The folder a quick backup goes to: `<backup location>/autobackup`,
@@ -91,12 +92,17 @@ class YomiQuickBackup {
     }
     _running = true;
     final close = BotToast.showLoading();
+    void Function()? cancelCloudReport;
     try {
       final dir = await targetDirectory(container);
       if (dir == null) {
         throw Exception(tr('Chưa có thư mục sao lưu dùng được – hãy chọn vị trí trong Sao Lưu & Khôi Phục.'));
       }
       await StorageProvider().createDirectorySafely(dir.path);
+      final cloud = CloudBackupService.instance;
+      await cloud.load();
+      final pending = cloud.providers.any((e) => e.isConnected && cloud.autoUpload(e));
+      if (pending) cancelCloudReport = _reportCloudResult(cloud);
       await container.read(
         doBackUpProvider(
           list: container.read(backupFrequencyOptionsStateProvider),
@@ -106,12 +112,6 @@ class YomiQuickBackup {
       );
       await pruneOldBackups(dir.path);
       close();
-      // The upload to the cloud targets runs in the background (doBackUp):
-      // say so now and report its real result when it ends.
-      final cloud = CloudBackupService.instance;
-      await cloud.load();
-      final pending = cloud.providers.any((e) => e.isConnected && cloud.autoUpload(e));
-      if (pending) _reportCloudResult(cloud);
       BotToast.showText(
         text: pending
             ? '${tr('Đã sao lưu vào {p0}', {'p0': dir.path})}\n${tr('Đang tải lên đám mây…')}'
@@ -120,6 +120,7 @@ class YomiQuickBackup {
       );
       return dir.path;
     } catch (e, st) {
+      cancelCloudReport?.call();
       close();
       AppLogger.log('[Sao lưu] Nút Sao Lưu trong Thư Viện thất bại: $e\n$st', logLevel: LogLevel.error);
       BotToast.showText(

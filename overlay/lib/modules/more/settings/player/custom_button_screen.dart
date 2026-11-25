@@ -53,6 +53,7 @@ class _CustomButtonScreenState extends ConsumerState<CustomButtonScreen> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: ReorderableListView.builder(
+              padding: const EdgeInsets.only(bottom: 96),
               buildDefaultDragHandles: false,
               itemCount: data.length,
               itemBuilder: (context, index) {

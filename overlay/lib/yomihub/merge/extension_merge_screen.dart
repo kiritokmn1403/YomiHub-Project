@@ -293,7 +293,10 @@ class _ExtensionMergeScreenState extends ConsumerState<ExtensionMergeScreen> {
               title: Text(tr('Chọn các tiện ích nguồn')),
               content: SizedBox(
                 width: double.maxFinite,
-                height: 380,
+                height: ((MediaQuery.sizeOf(dContext).height -
+                            MediaQuery.viewInsetsOf(dContext).bottom) *
+                        0.52)
+                    .clamp(160.0, 380.0),
                 child: Column(
                   children: [
                     TextField(

@@ -271,7 +271,8 @@ Future<void> showBsCoverMatch(BuildContext context, {required void Function(Stri
             if (snap.hasError || list.isEmpty) {
               return Text(tr('Không tìm thấy bộ nào có bìa giống ảnh này. Hãy chụp thẳng, đủ sáng, cả bìa – hoặc thêm ảnh bìa cho các bộ trong tủ sách.'));
             }
-            return Column(
+            return SingleChildScrollView(
+              child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.memory(data, height: 140, fit: BoxFit.contain),
@@ -287,6 +288,7 @@ Future<void> showBsCoverMatch(BuildContext context, {required void Function(Stri
                     },
                   ),
               ],
+              ),
             );
           },
         ),

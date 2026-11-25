@@ -171,3 +171,14 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - **Đo dung lượng thư mục trên luồng UI** (`lengthSync` từng tệp) làm giật 1–2,4 s → `Isolate.run` + `statSync`, và không watch provider ở màn không hiển thị.
 - **Android 6**: một số nguồn (MangaDex) lỗi TLS (`HTTP 0`/`Handshake failed`) dù đã thêm 121 CA gốc; ghi "Đã biết".
 - **WebView2 Windows** đi qua proxy 127.0.0.1 khi cài đặt VPN bật dịch vụ cho WebView dù dịch vụ chưa chạy → `ERR_PROXY_CONNECTION_FAILED` (0.6.6: patches_066/V15).
+
+## Bổ sung 25/11/2026 (0.6.6)
+- **M-Extension-Server Windows "chưa cài"**: `locateWindows()` cần CẢ `java(w).exe` VÀ `MExtensionServer*.jar` trong `yomihub_bin\mes` hoặc `%APPDATA%\...\mes`. Gói 0.6.5 có `yomihub_bin\mes\jre` (dùng cho cầu khác) nhưng không có jar → mọi tiện ích Mihon lỗi. 0.6.6: tự cài nền 1 lần/phiên (`autoInstallWindows`), lỗi dùng `MesUnavailableException` và chỉ ghi 1 dòng/phiên.
+- **Không tự dò cổng lạ làm cầu tiện ích** (Codex B2): chỉ dùng địa chỉ ApkBridge người dùng đã lưu; probe phải single-flight (Antigravity C2) để các nguồn chạy song song không nhận `null` giả.
+- **vBook**: cấu hình plugin (`__vbConsts`) phải ở hàm NGOÀI, script ở hàm TRONG – script `var API_URL` trùng khoá config `API_URL` làm QuickJS báo "invalid redefinition of lexical identifier". `load()` gộp mỗi tệp 1 lần.
+- **LNReader**: plugin luôn ghép `site + path` → truyền đường dẫn tương đối (`relPath`), không truyền URL đầy đủ (Hako sau khi đổi tên miền).
+- **Windows WebView2 không đổi proxy khi đang chạy** (`withWebViewRoute` chỉ Android) → sau khi giải Cloudflare bằng WebView2 qua proxy, cho tiện ích/Booru đi cùng proxy cho host đó (`YomiVpnState.alignHostToWebView`), không bao giờ ép "đi thẳng".
+- **Thanh điều hướng nổi (mv2)**: `extendBody: true` làm mọi màn có padding cố định bị che nút cuối (tab Thêm → "Giới thiệu"). Dùng `extendBody: false`.
+- **Biến `var` trong Dart mất type promotion trong closure** (`torProxy` đổi từ final sang var → `Uri.parse(torProxy)` lỗi `String?`): tính bằng biến tạm rồi gán `final`.
+- **Bản vá do tác nhân tạo bằng ghép chuỗi có ký tự `$`** (Antigravity `review_02`): `git apply --check` vẫn exit 0 nhưng tệp kết quả bị lặp nửa sau (2 lần `setJvmProxy`). Sau khi áp diff của tác nhân: đếm định nghĩa trùng / chạy analyze trước khi tin.
+- **Đếm theo kho trên màn Kho tiện ích**: không gọi `getByItemType()` (quét toàn bộ nguồn) trong vòng lặp từng kho trên luồng UI → lập chỉ mục 1 lượt/loại.

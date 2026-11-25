@@ -194,7 +194,7 @@ class _BookshelfHomeScreenState extends State<BookshelfHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final floatingNav = Mv2FloatingNavScope.enabledOf(context);
-    final bottomInset = MediaQuery.paddingOf(context).bottom + (floatingNav ? 82 : 16);
+    final bottomInset = MediaQuery.paddingOf(context).bottom + (floatingNav ? 148 : 88);
 
     return ListenableBuilder(
       listenable: Listenable.merge([_store, YomiTr.version]),

@@ -374,7 +374,7 @@ class _MangaDetailViewState extends ConsumerState<MangaDetailView>
                       controller: _scrollController,
                       slivers: [
                         SliverPadding(
-                          padding: const EdgeInsets.only(top: 0, bottom: 60),
+                          padding: const EdgeInsets.only(top: 0, bottom: 96),
                           sliver: SuperSliverList.builder(
                             itemCount: chapters.length + 1,
                             itemBuilder: (context, index) {

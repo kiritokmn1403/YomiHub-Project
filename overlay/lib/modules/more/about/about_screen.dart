@@ -151,19 +151,17 @@ class AboutScreen extends ConsumerWidget {
                       ),
                       ListTile(
                         onTap: () async {
-                          final storage = StorageProvider();
-                          final directory = await storage.getDefaultDirectory();
-                          final file = File(
-                            path.join(directory!.path, 'logs.txt'),
-                          );
-                          if (await file.exists()) {
+                          // 0.6.6: the log in use (YomiHub-log.txt, or the
+                          // app-folder fallback) instead of a fixed logs.txt
+                          final file = await AppLogger.logFile();
+                          if (file != null && await file.exists()) {
                             if (context.mounted) {
                               final box =
                                   context.findRenderObject() as RenderBox?;
                               await shareOrCopy(
                                 ShareParams(
                                   files: [XFile(file.path)],
-                                  text: "log.txt",
+                                  text: AppLogger.fileName,
                                   sharePositionOrigin:
                                       box!.localToGlobal(Offset.zero) &
                                       box.size,

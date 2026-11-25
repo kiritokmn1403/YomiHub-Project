@@ -378,13 +378,20 @@ class _MigrationMangaGlobalImageCardState
                                           ),
                                           if (chapter.scanlator?.isNotEmpty ??
                                               false)
-                                            Row(
-                                              children: [
-                                                const Text(' • '),
-                                                Text(
-                                                  chapter.scanlator!,
-                                                  style: TextStyle(
-                                                    fontSize: 11,
+                                            Flexible(
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  const Text(' • '),
+                                                  Flexible(
+                                                    child: Text(
+                                                      chapter.scanlator!,
+                                                      maxLines: 1,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      style: TextStyle(
+                                                        fontSize: 11,
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
                                               ],

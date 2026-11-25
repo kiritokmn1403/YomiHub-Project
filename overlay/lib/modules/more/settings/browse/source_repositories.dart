@@ -113,6 +113,7 @@ class _SourceRepositoriesState extends ConsumerState<SourceRepositories> {
           _entries = data;
 
           return SuperListView.builder(
+            padding: const EdgeInsets.only(bottom: 96),
             itemCount: _entries.length,
             itemBuilder: (context, index) {
               final repo = _entries[index];

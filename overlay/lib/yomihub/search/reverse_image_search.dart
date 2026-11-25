@@ -217,7 +217,7 @@ class _SearchSheetState extends State<_SearchSheet> {
                 ListTile(
                   leading: m.thumbnail.isEmpty
                       ? const Icon(Icons.image_outlined)
-                      : _SauceThumb(url: m.thumbnail),
+                      : _SauceThumb(key: ValueKey(m.thumbnail), url: m.thumbnail),
                   title: Text(m.title.isEmpty ? m.index : m.title, maxLines: 2, overflow: TextOverflow.ellipsis),
                   subtitle: Text('${m.similarity.toStringAsFixed(1)}% • ${m.index}', maxLines: 1, overflow: TextOverflow.ellipsis),
                   trailing: m.urls.isEmpty ? null : const Icon(Icons.open_in_new, size: 18),
@@ -258,10 +258,20 @@ class _SauceThumbState extends State<_SauceThumb> {
     _load();
   }
 
+  @override
+  void didUpdateWidget(covariant _SauceThumb oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.url != widget.url) {
+      _bytes = null;
+      _failed = false;
+      _load();
+    }
+  }
+
   Future<void> _load() async {
     final u = Uri.tryParse(widget.url);
     if (u == null || !(u.scheme == 'http' || u.scheme == 'https') || u.host.isEmpty) {
-      _failed = true;
+      if (mounted) setState(() => _failed = true);
       return;
     }
     final c = IOClient(yomiDartHttpClient());

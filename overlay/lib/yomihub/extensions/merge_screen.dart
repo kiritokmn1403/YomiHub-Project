@@ -162,7 +162,10 @@ class _ExtensionMergeScreenState extends State<ExtensionMergeScreen> {
             title: Text(tr('Tự chọn tiện ích để hợp nhất')),
             content: SizedBox(
               width: double.maxFinite,
-              height: 420,
+              height: ((MediaQuery.sizeOf(dc).height -
+                          MediaQuery.viewInsetsOf(dc).bottom) *
+                      0.52)
+                  .clamp(160.0, 420.0),
               child: Column(
                 children: [
                   TextField(
@@ -366,7 +369,7 @@ class _ExtensionMergeScreenState extends State<ExtensionMergeScreen> {
       body: _all.isEmpty
           ? Center(child: Text(tr('Không có tiện ích nào trùng tên miền. Bấm "Tự chọn tiện ích" để hợp nhất các tiện ích bất kỳ.'), textAlign: TextAlign.center))
           : ListView(
-              padding: const EdgeInsets.only(bottom: 24),
+              padding: const EdgeInsets.only(bottom: 96),
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),

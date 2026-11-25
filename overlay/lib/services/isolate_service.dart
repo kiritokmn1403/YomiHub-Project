@@ -252,7 +252,9 @@ class GetIsolateService {
       if (e is MesUnavailableException) {
         // 0.6.6 (logs 16): one line per run instead of one ERROR + stack per
         // APK source and call while the Windows extension server is missing.
-        YomiExtErrors.markSetup(source?.name, source?.lang);
+        if (!e.installing) {
+          YomiExtErrors.markSlow(source?.name, source?.lang);
+        }
         if (MesUnavailableException.firstInSession()) {
           AppLogger.log('[M-Extension-Server] $where: ${e.message}', logLevel: LogLevel.warning);
         }

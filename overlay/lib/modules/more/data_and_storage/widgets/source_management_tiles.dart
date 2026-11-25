@@ -661,7 +661,10 @@ Future<void> _manualMergeManga(BuildContext context, WidgetRef ref) async {
             title: Text(tr('Chọn các bộ cần hợp nhất')),
             content: SizedBox(
               width: double.maxFinite,
-              height: 400,
+              height: ((MediaQuery.sizeOf(dialogContext).height -
+                          MediaQuery.viewInsetsOf(dialogContext).bottom) *
+                      0.52)
+                  .clamp(160.0, 400.0),
               child: Column(
                 children: [
                   TextField(

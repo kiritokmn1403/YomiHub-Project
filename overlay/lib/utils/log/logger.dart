@@ -47,11 +47,29 @@ class AppLogger {
   /// Path of the application log, once known.
   static String? get path_ => _logFile?.path;
 
+  /// 0.6.6 (YomiHub Update sheet): log files are named with the prefix
+  /// "YomiHub-log" (was logs.txt). [init] renames an existing logs.txt once.
+  static const fileName = 'YomiHub-log.txt';
+  static const legacyFileName = 'logs.txt';
+
   static Future<File?> logFile() async {
     if (_logFile != null) return _logFile;
     final directory = await StorageProvider().getDefaultDirectory();
     if (directory == null) return null;
-    return File(path.join(directory.path, 'logs.txt'));
+    return File(path.join(directory.path, fileName));
+  }
+
+  /// Renames logs.txt (+ .old) in [dir] to the YomiHub-log names when the
+  /// new file does not exist yet.
+  @visibleForTesting
+  static Future<void> migrateLegacyName(String dir) async {
+    for (final suffix in const ['', '.old']) {
+      try {
+        final legacy = File(path.join(dir, '$legacyFileName$suffix'));
+        final now = File(path.join(dir, '$fileName$suffix'));
+        if (await legacy.exists() && !await now.exists()) await legacy.rename(now.path);
+      } catch (_) {}
+    }
   }
 
   /// Initialize the logger
@@ -62,7 +80,8 @@ class AppLogger {
     try {
       final storage = StorageProvider();
       final directory = await storage.getDefaultDirectory();
-      var candidate = File(path.join(directory!.path, 'logs.txt'));
+      await migrateLegacyName(directory!.path);
+      var candidate = File(path.join(directory.path, fileName));
       // 0.5.1: Note 9 / Android 10 had no storage permission (see
       // StorageProvider.requestPermission), /storage/emulated/0/YomiHub could
       // not be created, init() failed silently and NO error was ever written
@@ -71,7 +90,9 @@ class AppLogger {
         await candidate.parent.create(recursive: true);
         await candidate.writeAsString('', mode: FileMode.append, flush: true);
       } catch (_) {
-        candidate = File(path.join((await getApplicationSupportDirectory()).path, 'logs.txt'));
+        final support = (await getApplicationSupportDirectory()).path;
+        await migrateLegacyName(support);
+        candidate = File(path.join(support, fileName));
         await candidate.parent.create(recursive: true);
       }
       _logFile = candidate;

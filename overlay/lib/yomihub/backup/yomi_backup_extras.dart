@@ -200,7 +200,7 @@ class YomiBackupExtras {
             BooruStore.instance.onRestored();
           }
           if (name == 'yomihub_bookshelf') {
-            BookshelfStore.instance.onRestored();
+            await BookshelfStore.instance.onRestored();
           }
         } catch (_) {}
       }

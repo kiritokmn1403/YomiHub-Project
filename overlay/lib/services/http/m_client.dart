@@ -73,16 +73,17 @@ class MClient {
   }) {
     // YomiHub VPN: route this request through Tor when the source (or every
     // source) is switched to Tor in Settings > VPN.
-    var torProxy = (reqcopyWith?["noProxy"] ?? false)
+    var routeProxy = (reqcopyWith?["noProxy"] ?? false)
         ? null
         : (reqcopyWith?["booruSiteId"] != null
             ? YomiVpnState.proxyForBooru(reqcopyWith!["booruSiteId"] as String?)
             : YomiVpnState.proxyFor(sourceId ?? reqcopyWith?["yomihubSourceId"] as int?));
     // 0.6.6 (logs 16, Danbooru on Windows): after a Cloudflare solve in
     // WebView2 (fixed proxy) the host follows that proxy too.
-    if (torProxy == null && Platform.isWindows && !(reqcopyWith?["noProxy"] ?? false) && baseUrl != null) {
-      torProxy = YomiVpnState.alignedRoute(Uri.tryParse(baseUrl)?.host);
+    if (routeProxy == null && Platform.isWindows && !(reqcopyWith?["noProxy"] ?? false) && baseUrl != null) {
+      routeProxy = YomiVpnState.alignedRoute(Uri.tryParse(baseUrl)?.host);
     }
+    final torProxy = routeProxy;
     if (!(reqcopyWith?["useDartHttpClient"] ?? false)) {
       try {
         final callerSettings = settings;

@@ -225,7 +225,9 @@ class YomiSuggestionEngine {
         if (e is MesUnavailableException) {
           // 0.6.6 (logs 16, 25/11 15:37): already logged once by the isolate
           // service – Đề Xuất just skips APK sources until the server is up.
-          YomiExtErrors.markSetup(src.name, src.lang);
+          if (!e.installing) {
+            YomiExtErrors.markSlow(src.name, src.lang);
+          }
           return;
         }
         if (e is TimeoutException || YomiExtErrors.isNetworkError(e)) {

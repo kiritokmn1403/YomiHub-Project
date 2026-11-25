@@ -95,32 +95,36 @@ class SourceListTile extends StatelessWidget {
         ),
         subtitle: Row(
           children: [
-            Builder(
-              builder: (context) {
-                final label = Text(
-                  completeLanguageName(source.lang!.toLowerCase()),
-                  style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
-                );
-                // YomiHub 0.1.8: merged extension in several languages
-                final langs = isLocal ? const <String, Source>{} : YomiMerge.languagesOf(source.id);
-                if (langs.isEmpty) return label;
-                return InkWell(
-                  borderRadius: BorderRadius.circular(6),
-                  onTap: () => _pickLanguage(context, langs),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.translate, size: 13, color: context.primaryColor),
-                        const SizedBox(width: 3),
-                        label,
-                        Icon(Icons.arrow_drop_down, size: 16, color: context.primaryColor),
-                      ],
+            Flexible(
+              child: Builder(
+                builder: (context) {
+                  final label = Text(
+                    completeLanguageName(source.lang!.toLowerCase()),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
+                  );
+                  // YomiHub 0.1.8: merged extension in several languages
+                  final langs = isLocal ? const <String, Source>{} : YomiMerge.languagesOf(source.id);
+                  if (langs.isEmpty) return label;
+                  return InkWell(
+                    borderRadius: BorderRadius.circular(6),
+                    onTap: () => _pickLanguage(context, langs),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.translate, size: 13, color: context.primaryColor),
+                          const SizedBox(width: 3),
+                          Flexible(child: label),
+                          Icon(Icons.arrow_drop_down, size: 16, color: context.primaryColor),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
             if (source.isNsfw ?? false)
               Padding(

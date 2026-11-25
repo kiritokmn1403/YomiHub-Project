@@ -201,6 +201,7 @@ class ChapterListTileWidget extends ConsumerWidget {
                               if (chapter.lastPageRead!.isNotEmpty &&
                                   chapter.lastPageRead != "1")
                                 Row(
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     const Text(' • '),
                                     Text(
@@ -221,14 +222,24 @@ class ChapterListTileWidget extends ConsumerWidget {
                                   ],
                                 ),
                             if (chapter.scanlator?.isNotEmpty ?? false)
-                              Row(
-                                children: [
-                                  const Text(' • '),
-                                  Text(chapter.scanlator!),
-                                ],
+                              Flexible(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Text(' • '),
+                                    Flexible(
+                                      child: Text(
+                                        chapter.scanlator!,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             if (chapter.downloadSize != null)
                               Row(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   const Text(' • '),
                                   Text(chapter.downloadSize!),

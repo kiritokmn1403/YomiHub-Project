@@ -88,6 +88,9 @@ class YomiMes {
   static Future<void> setRemoteUrl(String v) async {
     await open();
     await _box?.put('remote', v.trim());
+    _altCheckedAt = null;
+    _altBridge = null;
+    _altProbe = null;
   }
 
 
@@ -364,11 +367,20 @@ class YomiMes {
   /// Downloads the latest Windows bundle (JRE + server JAR, ~130 MB) from
   /// kodjodevf/M-Extension-Server and unpacks it for YomiHub.
   static Future<String?>? _installing;
+  static final List<void Function(int received, int total)> _installListeners = [];
 
   /// Manual (settings) and automatic installs share one download
   /// (Codex B2: two writers of bundle.zip.part at once).
   static Future<String?> installWindows({void Function(int received, int total)? progress}) {
-    return _installing ??= _installWindows(progress: progress).whenComplete(() => _installing = null);
+    if (progress != null) _installListeners.add(progress);
+    return _installing ??= _installWindows(progress: (got, total) {
+      for (final cb in List.of(_installListeners)) {
+        cb(got, total);
+      }
+    }).whenComplete(() {
+      _installing = null;
+      _installListeners.clear();
+    });
   }
 
   static Future<String?> _installWindows({void Function(int received, int total)? progress}) async {
@@ -561,7 +573,7 @@ class YomiMes {
             logLevel: LogLevel.warning);
         return err;
       }
-      final url = await ensure(restart: true);
+      final url = _base ?? await ensure();
       AppLogger.log(
           url == null
               ? '[M-Extension-Server] Đã cài (${sw.elapsed.inSeconds} s) nhưng chưa khởi động được: ${lastError ?? ''}'
@@ -577,6 +589,7 @@ class YomiMes {
 
   static String? _altBridge;
   static DateTime? _altCheckedAt;
+  static Future<String?>? _altProbe;
 
   /// The ApkBridge / external M-Extension-Server address the user saved in
   /// settings, when it answers. Only that saved address is used
@@ -586,15 +599,19 @@ class YomiMes {
   static Future<String?> fallbackBridge() async {
     final now = DateTime.now();
     if (_altCheckedAt != null && now.difference(_altCheckedAt!) < const Duration(seconds: 60)) return _altBridge;
-    _altCheckedAt = now;
-    _altBridge = null;
-    final u = remoteUrl.trim().replaceAll(RegExp(r'/+$'), '');
-    final uri = Uri.tryParse(u);
-    if (u.isEmpty || uri == null || !const ['http', 'https'].contains(uri.scheme) || uri.host.isEmpty || u == _base) {
-      return null;
-    }
-    if (await aliveAny(u)) _altBridge = u;
-    return _altBridge;
+    // single-flight: parallel source calls share one probe (Antigravity C2)
+    return _altProbe ??= () async {
+      String? hit;
+      final u = remoteUrl.trim().replaceAll(RegExp(r'/+$'), '');
+      final uri = Uri.tryParse(u);
+      if (u.isNotEmpty && uri != null && const ['http', 'https'].contains(uri.scheme) && uri.host.isNotEmpty && u != _base) {
+        if (await aliveAny(u)) hit = u;
+      }
+      _altBridge = hit;
+      _altCheckedAt = DateTime.now();
+      return hit;
+    }()
+        .whenComplete(() => _altProbe = null);
   }
 
   /// The Windows (Java) server answered with an error only an Android
@@ -609,7 +626,10 @@ class YomiMes {
       return error.contains('verifyerror') ||
           error.contains('bad type on operand stack') ||
           error.contains('cannot be cast to class') ||
-          RegExp(r'^\s*android\.(app|content|webkit|os)\.').hasMatch(error);
+          error.contains('noclassdeffounderror') ||
+          error.contains('abstractmethoderror') ||
+          error.contains('nosuchmethoderror') ||
+          RegExp(r'android[./](app|content|webkit|os|net|util|graphics|text)[./]').hasMatch(error);
     } catch (_) {
       return false;
     }

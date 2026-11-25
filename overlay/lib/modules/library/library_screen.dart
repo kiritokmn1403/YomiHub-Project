@@ -30,6 +30,7 @@ import 'package:mangayomi/modules/history/history_screen.dart';
 import 'package:mangayomi/modules/history/providers/isar_providers.dart';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
+import 'package:mangayomi/yomihub/library/category_display_store.dart';
 import 'package:mangayomi/providers/l10n_providers.dart';
 import 'package:mangayomi/utils/extensions/build_context_extensions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -249,6 +250,8 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
                 int? categoryId,
                 bool withoutCategories = false,
               }) {
+                // 0.6.6 (A7): display / sort / order saved for this category
+                final cd = CategoryDisplayStore.of(widget.itemType, _categoryName(categoryId));
                 return LibraryBody(
                   itemType: widget.itemType,
                   categoryId: categoryId,
@@ -259,17 +262,18 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
                   bookmarkedFilterType: bookmarkedFilterType,
                   completedFilterType: completedFilterType,
                   trackingFilterType: trackingFilterType,
-                  reverse: reverse,
+                  reverse: cd?.reverse ?? reverse,
                   downloadedChapter: downloadedChapter,
                   continueReaderBtn: continueReaderBtn,
                   localSource: localSource,
                   language: language,
-                  displayType: displayType,
+                  displayType: cd?.display ?? displayType,
                   settings: settings,
                   downloadedOnly: downloadedOnly,
                   searchQuery: searchQuery,
                   ignoreFiltersOnSearch: _ignoreFiltersOnSearch,
                   sourceIds: sourceFilterIds,
+                  sortOverride: cd?.sort,
                 );
               }
 
@@ -510,8 +514,16 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
           ],
         ),
         for (var i = 0; i < entr.length; i++)
-          Row(
+          GestureDetector(
+            // 0.6.6 (A7): long-press a category tab → its own display / sort
+            onLongPress: () => _editCategoryDisplay(context, entr[i].name ?? ''),
+            child: Row(
             children: [
+              if (CategoryDisplayStore.of(widget.itemType, entr[i].name) != null)
+                const Padding(
+                  padding: EdgeInsets.only(right: 4),
+                  child: Icon(Icons.tune, size: 14),
+                ),
               Tab(text: entr[i].name ?? ''),
               if (showNumbersOfItems && entr[i].id != null) ...[
                 const SizedBox(width: 4),
@@ -519,8 +531,108 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
               ],
             ],
           ),
+          ),
       ],
     );
+  }
+
+  String? _categoryName(int? id) {
+    if (id == null) return null;
+    for (final c in _visibleCategories) {
+      if (c.id == id) return c.name as String?;
+    }
+    return null;
+  }
+
+  /// 0.6.6 (A7): per-category display type, sort and order (saved in the
+  /// app backup through yomihub_prefs).
+  Future<void> _editCategoryDisplay(BuildContext context, String name) async {
+    if (name.isEmpty) return;
+    final l10n = l10nLocalizations(context)!;
+    final anime = widget.itemType == ItemType.anime;
+    final cur = CategoryDisplayStore.of(widget.itemType, name);
+    var own = cur != null;
+    var display = cur?.display ?? DisplayType.comfortableGrid;
+    var sort = cur?.sort ?? 0;
+    var reverse = cur?.reverse ?? false;
+    String sortName(int i) => switch (i) {
+          0 => l10n.alphabetically,
+          1 => anime ? l10n.last_watched : l10n.last_read,
+          2 => l10n.last_update_check,
+          3 => anime ? l10n.unwatched_count : l10n.unread_count,
+          4 => anime ? l10n.total_episodes : l10n.total_chapters,
+          5 => anime ? l10n.latest_episode : l10n.latest_chapter,
+          _ => l10n.date_added,
+        };
+    String displayName(DisplayType d) => switch (d) {
+          DisplayType.compactGrid => l10n.compact_grid,
+          DisplayType.comfortableGrid => l10n.comfortable_grid,
+          DisplayType.coverOnlyGrid => l10n.cover_only_grid,
+          DisplayType.list => l10n.list,
+        };
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setD) => AlertDialog(
+          title: Text(name, maxLines: 2, overflow: TextOverflow.ellipsis),
+          scrollable: true,
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(tr('Cài đặt riêng cho Danh Mục này')),
+                subtitle: Text(tr('Tắt = dùng cài đặt chung của Thư Viện')),
+                value: own,
+                onChanged: (v) => setD(() => own = v),
+              ),
+              if (own) ...[
+                const SizedBox(height: 8),
+                Text(l10n.display, style: Theme.of(ctx).textTheme.labelLarge),
+                DropdownButton<DisplayType>(
+                  isExpanded: true,
+                  value: display,
+                  items: [
+                    for (final d in DisplayType.values)
+                      DropdownMenuItem(value: d, child: Text(displayName(d), overflow: TextOverflow.ellipsis)),
+                  ],
+                  onChanged: (v) => setD(() => display = v ?? display),
+                ),
+                const SizedBox(height: 8),
+                Text(l10n.sort, style: Theme.of(ctx).textTheme.labelLarge),
+                DropdownButton<int>(
+                  isExpanded: true,
+                  value: sort,
+                  items: [
+                    for (var i = 0; i <= 6; i++)
+                      DropdownMenuItem(value: i, child: Text(sortName(i), overflow: TextOverflow.ellipsis)),
+                  ],
+                  onChanged: (v) => setD(() => sort = v ?? sort),
+                ),
+                CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(tr('Đảo ngược thứ tự')),
+                  value: reverse,
+                  onChanged: (v) => setD(() => reverse = v ?? false),
+                ),
+              ],
+            ],
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.cancel)),
+            FilledButton(onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.ok)),
+          ],
+        ),
+      ),
+    );
+    if (ok != true) return;
+    await CategoryDisplayStore.put(
+      widget.itemType,
+      name,
+      own ? CategoryDisplay(display: display, sort: sort, reverse: reverse) : const CategoryDisplay(),
+    );
+    if (mounted) setState(() {});
   }
 
   List<Widget> _buildCategoryBodies({

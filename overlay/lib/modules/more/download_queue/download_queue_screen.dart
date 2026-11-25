@@ -105,6 +105,7 @@ class _DownloadQueueScreenState extends ConsumerState<DownloadQueueScreen> {
             ),
           ),
           body: ReorderableListView.builder(
+            padding: const EdgeInsets.only(bottom: 96),
             buildDefaultDragHandles: false,
             itemCount: entries.length,
             // onReorderItem already accounts for the item being lifted out at

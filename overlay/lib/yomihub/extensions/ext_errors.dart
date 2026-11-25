@@ -155,10 +155,10 @@ class YomiExtErrors {
     r'(abstract method "|abstractmethoderror|nosuchmethoderror|noclassdeffounderror|'
     r'incompatibleclasschangeerror|no (static|virtual|direct|interface) method |'
     // 0.6.5 (log 14, Windows M-Extension-Server)
-    r'verifyerror|bad type on operand stack|cannot be cast to class|'
+    r'verifyerror|bad type on operand stack|cannot be cast to class|classnotfoundexception|'
     // 0.6.6 (logs 16, 24/11 08:27 AVSub on Windows: the error text is only
     // the missing Android class name)
-    r'^\s*android\.(app|content|webkit|os)\.[a-z0-9_$.]+\s*$)',
+    r'\bandroid\.(app|content|webkit|os|net|util|graphics|text)\.[a-z0-9_$.]+)',
     caseSensitive: false,
     multiLine: true,
   );

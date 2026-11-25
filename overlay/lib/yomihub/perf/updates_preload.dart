@@ -100,24 +100,26 @@ Stream<R> yomiSwitchMap<T, R>(Stream<T> source, Stream<R> Function(T) map) {
           if (old != null) unawaited(old.cancel().catchError((_) {}));
           try {
             final paused = c.isPaused;
+            var innerDone = false;
             final sub = map(v).listen(
-              c.add,
-              onError: c.addError,
+              (e) { if (!c.isClosed) c.add(e); },
+              onError: (e, st) { if (!c.isClosed) c.addError(e, st); },
               onDone: () {
+                innerDone = true;
                 inner = null;
-                if (outerDone) c.close();
+                if (outerDone && !c.isClosed) c.close();
               },
             );
             if (paused) sub.pause();
-            inner = sub;
+            if (!innerDone) inner = sub;
           } catch (e, st) {
-            c.addError(e, st);
+            if (!c.isClosed) c.addError(e, st);
           }
         },
-        onError: c.addError,
+        onError: (e, st) { if (!c.isClosed) c.addError(e, st); },
         onDone: () {
           outerDone = true;
-          if (inner == null) c.close();
+          if (inner == null && !c.isClosed) c.close();
         },
       );
     },

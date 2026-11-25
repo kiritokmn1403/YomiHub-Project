@@ -683,8 +683,12 @@ Future<bool> showBsVolumeEditDialog(
                     for (final e in BsEdition.values)
                       ButtonSegment(
                         value: e,
-                        label: Text(bsEditionLabel(e),
-                            style: const TextStyle(fontSize: 12)),
+                        label: Text(
+                          bsEditionLabel(e),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 12),
+                        ),
                       ),
                   ],
                   selected: {edition},
@@ -978,8 +982,12 @@ Future<int> showBsBulkSelectDialog(
                     for (final e in BsEdition.values)
                       ButtonSegment(
                         value: e,
-                        label: Text(bsEditionLabel(e),
-                            style: const TextStyle(fontSize: 12)),
+                        label: Text(
+                          bsEditionLabel(e),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 12),
+                        ),
                       ),
                   ],
                   selected: {edition},
@@ -1383,7 +1391,8 @@ Future<BsWish?> showBsAddWishDialog(
         title: Text(tr('Thêm vào Cần mua')),
         content: SizedBox(
           width: 400,
-          child: Column(
+          child: SingleChildScrollView(
+            child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -1423,8 +1432,12 @@ Future<BsWish?> showBsAddWishDialog(
                   for (final e in BsEdition.values)
                     ButtonSegment(
                       value: e,
-                      label: Text(bsEditionLabel(e),
-                          style: const TextStyle(fontSize: 12)),
+                      label: Text(
+                        bsEditionLabel(e),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 12),
+                      ),
                     ),
                 ],
                 selected: {edition},
@@ -1439,6 +1452,7 @@ Future<BsWish?> showBsAddWishDialog(
                 ),
               ),
             ],
+            ),
           ),
         ),
         actions: [

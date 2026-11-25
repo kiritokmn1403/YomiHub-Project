@@ -58,13 +58,14 @@ class BookshelfStore extends ChangeNotifier {
   }
 
   /// Called after a backup restore replaced the box contents.
-  void onRestored() {
+  Future<void> onRestored() async {
     if (_box == null) {
-      unawaited(init().then((_) => restorePhotoFiles()));
+      await init();
+      await restorePhotoFiles();
       return;
     }
     _load();
-    unawaited(restorePhotoFiles());
+    await restorePhotoFiles();
   }
 
   // ───────────────── photos in the app backup (0.6.6, FN-14 / FN-18) ─────────────────
@@ -94,16 +95,20 @@ class BookshelfStore extends ChangeNotifier {
   Future<Map<String, String>> photoFilesForBackup() async {
     await init();
     final out = <String, String>{};
+    final seenPaths = <String>{};
     var total = 0;
     for (final path in _localImagePaths()) {
+      if (!seenPaths.add(path)) continue;
       final name = _baseName(path);
-      if (name.isEmpty || out.containsKey(name)) continue;
+      if (name.isEmpty || name == '.' || name == '..') continue;
+      final key = out.containsKey(name) ? path : name;
+      if (out.containsKey(key)) continue;
       try {
         final f = File(path);
         if (!await f.exists()) continue;
         final len = await f.length();
         if (total + len > maxBackupPhotoBytes) continue;
-        out[name] = base64Encode(await f.readAsBytes());
+        out[key] = base64Encode(await f.readAsBytes());
         total += len;
       } catch (_) {}
     }
@@ -121,14 +126,20 @@ class BookshelfStore extends ChangeNotifier {
       final dir = Directory(p.join(docs.path, 'yomihub_bookshelf', 'photos'));
       if (!await dir.exists()) await dir.create(recursive: true);
       final moved = <String, String>{};
+      final usedNames = <String>{};
+      var seq = 0;
       for (final e in raw.entries) {
-        final name = _baseName('${e.key}');
-        if (name.isEmpty) continue;
-        final dest = p.join(dir.path, name);
-        if (!await File(dest).exists()) await File(dest).writeAsBytes(base64Decode('${e.value}'));
-        moved[name] = dest;
+        final origKey = '${e.key}';
+        final name = _baseName(origKey);
+        if (name.isEmpty || name == '.' || name == '..') continue;
+        final fileName = usedNames.add(name) ? name : '${seq++}_$name';
+        final dest = p.join(dir.path, fileName);
+        await File(dest).writeAsBytes(base64Decode('${e.value}'));
+        moved[origKey] = dest;
+        moved.putIfAbsent(name, () => dest);
       }
-      String fix(String s) => _isLocalPath(s) ? (moved[_baseName(s)] ?? s) : s;
+      String fix(String s) =>
+          _isLocalPath(s) ? (moved[s] ?? moved[_baseName(s)] ?? s) : s;
       for (final s in _series.values) {
         s.cover = fix(s.cover);
       }

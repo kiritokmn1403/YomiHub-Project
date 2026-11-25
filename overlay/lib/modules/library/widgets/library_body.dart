@@ -41,6 +41,9 @@ class LibraryBody extends ConsumerWidget {
   final bool ignoreFiltersOnSearch;
   final List<String> sourceIds;
 
+  /// 0.6.6 (A7): sort chosen for this category only (null = library setting).
+  final int? sortOverride;
+
   const LibraryBody({
     super.key,
     required this.itemType,
@@ -63,16 +66,18 @@ class LibraryBody extends ConsumerWidget {
     required this.searchQuery,
     required this.ignoreFiltersOnSearch,
     required this.sourceIds,
+    this.sortOverride,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = l10nLocalizations(context)!;
-    final sortType = ref
+    final globalSort = ref
         .watch(
           sortLibraryMangaStateProvider(itemType: itemType, settings: settings),
         )
         .index;
+    final sortType = sortOverride ?? globalSort;
     final mangaIdsList = ref.watch(mangasListStateProvider);
     final sourceBadge = ref.watch(librarySourceBadgeProvider);
 

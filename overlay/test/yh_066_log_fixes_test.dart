@@ -1,6 +1,9 @@
 // YomiHub 0.6.6 – fixes for logs 16 (YH 0.6.4/0.6.5 on Windows 26H2,
 // 23–25/11/2026) and the owner's screenshot of 25/11 21:35.
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/eval/lnreader/service.dart';
 import 'package:mangayomi/yomihub/extensions/ext_errors.dart';
 import 'package:mangayomi/yomihub/mes/yomi_mes.dart';
@@ -54,6 +57,23 @@ void main() {
       expect(YomiVpnState.alignedRoute('example.com'), isNull);
       YomiVpnState.alignHostToWebView('127.0.0.1', 'http://127.0.0.1:10809');
       expect(YomiVpnState.alignedRoute('127.0.0.1'), isNull);
+    });
+  });
+
+  group('Log file is named YomiHub-log (YomiHub Update sheet)', () {
+    test('logs.txt and logs.txt.old are renamed once', () async {
+      final dir = Directory.systemTemp.createTempSync('yh066log_');
+      try {
+        File('${dir.path}/logs.txt').writeAsStringSync('a');
+        File('${dir.path}/logs.txt.old').writeAsStringSync('b');
+        await AppLogger.migrateLegacyName(dir.path);
+        expect(File('${dir.path}/YomiHub-log.txt').readAsStringSync(), 'a');
+        expect(File('${dir.path}/YomiHub-log.txt.old').readAsStringSync(), 'b');
+        expect(File('${dir.path}/logs.txt').existsSync(), isFalse);
+        expect(AppLogger.fileName, startsWith('YomiHub-log'));
+      } finally {
+        dir.deleteSync(recursive: true);
+      }
     });
   });
 }

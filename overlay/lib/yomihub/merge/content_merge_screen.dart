@@ -371,7 +371,10 @@ class _ContentMergeScreenState extends ConsumerState<ContentMergeScreen> {
               title: Text(tr('Chọn các bộ để hợp nhất')),
               content: SizedBox(
                 width: double.maxFinite,
-                height: 380,
+                height: ((MediaQuery.sizeOf(dContext).height -
+                            MediaQuery.viewInsetsOf(dContext).bottom) *
+                        0.52)
+                    .clamp(160.0, 380.0),
                 child: Column(
                   children: [
                     TextField(

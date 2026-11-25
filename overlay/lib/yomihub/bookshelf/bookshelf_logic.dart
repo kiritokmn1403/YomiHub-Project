@@ -249,10 +249,198 @@ String bsDetectCsvDelimiter(String text) {
 double? bsParseMoney(String raw) {
   final s = raw.replaceAll(RegExp(r'[^0-9.,]'), '');
   if (s.isEmpty || !RegExp(r'\d').hasMatch(s)) return null;
-  if (RegExp(r'^\d{1,3}([.,]\d{3})+$').hasMatch(s)) {
+  if (RegExp(r'^\d{1,3}([.,]\d{3})+
+  if (m != null) return double.tryParse('${m.group(1)}.${m.group(2)}');
+  return double.tryParse(s.replaceAll(RegExp(r'[.,]'), ''));
+}
+
+/// "2026-11-25", "25/11/2026", "25-11-2026", "25.11.2026" (day first).
+DateTime? bsParseDate(String raw) {
+  final s = raw.trim();
+  if (s.isEmpty) return null;
+  final iso = DateTime.tryParse(s);
+  if (iso != null) return iso;
+  final m = RegExp(r'^(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{4})$').firstMatch(s);
+  if (m == null) return null;
+  final d = int.parse(m.group(1)!), mo = int.parse(m.group(2)!), y = int.parse(m.group(3)!);
+  if (mo < 1 || mo > 12 || d < 1 || d > 31) return null;
+  final out = DateTime(y, mo, d);
+  return out.month == mo ? out : null;
+}
+
+/// RFC 4180-ish CSV parser (quotes, doubled quotes, CRLF, BOM). The
+/// delimiter is detected from the first line ([bsDetectCsvDelimiter]) so a
+/// `;` inside a title of a comma file no longer splits the cell.
+List<List<String>> bsParseCsv(String text, {String? delimiter}) {
+  if (text.startsWith('﻿')) text = text.substring(1);
+  final delim = delimiter ?? bsDetectCsvDelimiter(text);
+  final rows = <List<String>>[];
+  var row = <String>[];
+  final cell = StringBuffer();
+  var inQ = false;
+  for (var i = 0; i < text.length; i++) {
+    final c = text[i];
+    if (inQ) {
+      if (c == '"') {
+        if (i + 1 < text.length && text[i + 1] == '"') {
+          cell.write('"');
+          i++;
+        } else {
+          inQ = false;
+        }
+      } else {
+        cell.write(c);
+      }
+    } else if (c == '"') {
+      inQ = true;
+    } else if (c == delim) {
+      row.add(cell.toString());
+      cell.clear();
+    } else if (c == '\n' || c == '\r') {
+      if (c == '\r' && i + 1 < text.length && text[i + 1] == '\n') i++;
+      row.add(cell.toString());
+      cell.clear();
+      if (row.any((e) => e.trim().isNotEmpty)) rows.add(row);
+      row = <String>[];
+    } else {
+      cell.write(c);
+    }
+  }
+  row.add(cell.toString());
+  if (row.any((e) => e.trim().isNotEmpty)) rows.add(row);
+  return rows;
+}
+).hasMatch(s)) {
     return double.tryParse(s.replaceAll(RegExp(r'[.,]'), ''));
   }
-  final m = RegExp(r'^(\d+)[.,](\d{1,2})$').firstMatch(s);
+  final mixed = RegExp(r'^(\d{1,3}(?:([.,])\d{3})+)([.,])(\d{1,2})
+  if (m != null) return double.tryParse('${m.group(1)}.${m.group(2)}');
+  return double.tryParse(s.replaceAll(RegExp(r'[.,]'), ''));
+}
+
+/// "2026-11-25", "25/11/2026", "25-11-2026", "25.11.2026" (day first).
+DateTime? bsParseDate(String raw) {
+  final s = raw.trim();
+  if (s.isEmpty) return null;
+  final iso = DateTime.tryParse(s);
+  if (iso != null) return iso;
+  final m = RegExp(r'^(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{4})$').firstMatch(s);
+  if (m == null) return null;
+  final d = int.parse(m.group(1)!), mo = int.parse(m.group(2)!), y = int.parse(m.group(3)!);
+  if (mo < 1 || mo > 12 || d < 1 || d > 31) return null;
+  final out = DateTime(y, mo, d);
+  return out.month == mo ? out : null;
+}
+
+/// RFC 4180-ish CSV parser (quotes, doubled quotes, CRLF, BOM). The
+/// delimiter is detected from the first line ([bsDetectCsvDelimiter]) so a
+/// `;` inside a title of a comma file no longer splits the cell.
+List<List<String>> bsParseCsv(String text, {String? delimiter}) {
+  if (text.startsWith('﻿')) text = text.substring(1);
+  final delim = delimiter ?? bsDetectCsvDelimiter(text);
+  final rows = <List<String>>[];
+  var row = <String>[];
+  final cell = StringBuffer();
+  var inQ = false;
+  for (var i = 0; i < text.length; i++) {
+    final c = text[i];
+    if (inQ) {
+      if (c == '"') {
+        if (i + 1 < text.length && text[i + 1] == '"') {
+          cell.write('"');
+          i++;
+        } else {
+          inQ = false;
+        }
+      } else {
+        cell.write(c);
+      }
+    } else if (c == '"') {
+      inQ = true;
+    } else if (c == delim) {
+      row.add(cell.toString());
+      cell.clear();
+    } else if (c == '\n' || c == '\r') {
+      if (c == '\r' && i + 1 < text.length && text[i + 1] == '\n') i++;
+      row.add(cell.toString());
+      cell.clear();
+      if (row.any((e) => e.trim().isNotEmpty)) rows.add(row);
+      row = <String>[];
+    } else {
+      cell.write(c);
+    }
+  }
+  row.add(cell.toString());
+  if (row.any((e) => e.trim().isNotEmpty)) rows.add(row);
+  return rows;
+}
+).firstMatch(s);
+  if (mixed != null && mixed.group(2) != mixed.group(3)) {
+    final intPart = mixed.group(1)!.replaceAll(RegExp(r'[.,]'), '');
+    return double.tryParse('$intPart.${mixed.group(4)}');
+  }
+  final m = RegExp(r'^(\d+)[.,](\d{1,2})
+  if (m != null) return double.tryParse('${m.group(1)}.${m.group(2)}');
+  return double.tryParse(s.replaceAll(RegExp(r'[.,]'), ''));
+}
+
+/// "2026-11-25", "25/11/2026", "25-11-2026", "25.11.2026" (day first).
+DateTime? bsParseDate(String raw) {
+  final s = raw.trim();
+  if (s.isEmpty) return null;
+  final iso = DateTime.tryParse(s);
+  if (iso != null) return iso;
+  final m = RegExp(r'^(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{4})$').firstMatch(s);
+  if (m == null) return null;
+  final d = int.parse(m.group(1)!), mo = int.parse(m.group(2)!), y = int.parse(m.group(3)!);
+  if (mo < 1 || mo > 12 || d < 1 || d > 31) return null;
+  final out = DateTime(y, mo, d);
+  return out.month == mo ? out : null;
+}
+
+/// RFC 4180-ish CSV parser (quotes, doubled quotes, CRLF, BOM). The
+/// delimiter is detected from the first line ([bsDetectCsvDelimiter]) so a
+/// `;` inside a title of a comma file no longer splits the cell.
+List<List<String>> bsParseCsv(String text, {String? delimiter}) {
+  if (text.startsWith('﻿')) text = text.substring(1);
+  final delim = delimiter ?? bsDetectCsvDelimiter(text);
+  final rows = <List<String>>[];
+  var row = <String>[];
+  final cell = StringBuffer();
+  var inQ = false;
+  for (var i = 0; i < text.length; i++) {
+    final c = text[i];
+    if (inQ) {
+      if (c == '"') {
+        if (i + 1 < text.length && text[i + 1] == '"') {
+          cell.write('"');
+          i++;
+        } else {
+          inQ = false;
+        }
+      } else {
+        cell.write(c);
+      }
+    } else if (c == '"') {
+      inQ = true;
+    } else if (c == delim) {
+      row.add(cell.toString());
+      cell.clear();
+    } else if (c == '\n' || c == '\r') {
+      if (c == '\r' && i + 1 < text.length && text[i + 1] == '\n') i++;
+      row.add(cell.toString());
+      cell.clear();
+      if (row.any((e) => e.trim().isNotEmpty)) rows.add(row);
+      row = <String>[];
+    } else {
+      cell.write(c);
+    }
+  }
+  row.add(cell.toString());
+  if (row.any((e) => e.trim().isNotEmpty)) rows.add(row);
+  return rows;
+}
+).firstMatch(s);
   if (m != null) return double.tryParse('${m.group(1)}.${m.group(2)}');
   return double.tryParse(s.replaceAll(RegExp(r'[.,]'), ''));
 }

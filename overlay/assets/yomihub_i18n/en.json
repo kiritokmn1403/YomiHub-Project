@@ -2038,5 +2038,13 @@
   "đang bắt đầu": "starting",
   "Tiện ích APK này dùng mã Android mà M-Extension-Server trên Windows (Java) không chạy được: dùng ApkBridge (điện thoại Android cùng mạng, Cài đặt › Duyệt › M-Extension-Server) hoặc cài tiện ích cùng nguồn dạng JavaScript/Kotatsu.": "This APK extension uses Android code that M-Extension-Server on Windows (Java) cannot run: use ApkBridge (an Android phone on the same network, Settings › Browse › M-Extension-Server) or install a JavaScript/Kotatsu extension for the same source.",
   "máy chủ phát trả về dữ liệu không phải video (thường là trang chặn hoặc liên kết đã hết hạn): chọn máy chủ khác, tải lại danh sách tập hoặc mở tập bằng WebView": "the video server returned data that is not a video (usually a block page or an expired link): pick another server, reload the episode list or open the episode in WebView",
-  "Sắp xếp": "Sort"
+  "Sắp xếp": "Sort",
+  "Đã tải lên đám mây xong": "Cloud upload complete",
+  "Tải lên đám mây lỗi: {p0} – xem Sao lưu đám mây": "Cloud upload error: {p0} – see Cloud Backup",
+  "Đang tải lên đám mây…": "Uploading to cloud…",
+  "không tiến triển sau nhiều lần thử lại": "no progress after multiple retries",
+  "Nội dung quá dài cho một mã QR (tối đa ~2.300 byte).": "Content is too long for a single QR code (max ~2,300 bytes).",
+  "Cài đặt riêng cho Danh Mục này": "Own settings for this category",
+  "Tắt = dùng cài đặt chung của Thư Viện": "Off = use the Library's general settings",
+  "Đảo ngược thứ tự": "Reverse order"
 }
