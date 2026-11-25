@@ -44,3 +44,10 @@
 - **Điện thoại thật của chủ dự án (Note 9)**: kịch bản chạm theo toạ độ đã mở nhầm TikTok/TeamViewer → chỉ Claude kiểm, bằng `jobs/n9lib.ps1` (Fg/IsYomi/TapText theo nhãn uiautomator, dừng nếu gói trước không phải `com.yomihub.app`); không dùng phím Back ở màn gốc; tránh mở thư viện cá nhân. Tác nhân khác chỉ dùng AVD.
 - Ca cần trình đọc (Tìm ảnh) làm trên AVD với ảnh thử cục bộ; không bấm tìm thật (không gửi ảnh ra ngoài).
 - Windows: bản portable giải nén vào `audit/.../scratch/win_portable/`, chụp đúng cửa sổ chính YomiHub (EnumWindows, không dùng MainWindowHandle của cửa sổ phụ).
+
+## Bổ sung 26/11/2026 (0.6.6)
+- AVD `YomiHub_TV_API34` là 32-bit (`x86,armeabi-v7a`) → cài `YumiHub-Android-TV-*-armeabi-v7a.apk`; x86_64 báo `INSTALL_FAILED_NO_MATCHING_ABIS`. AVD `OOS_Android6_API23` là x86_64.
+- `flutter test` chạy trên máy Windows: test kiểm chuỗi phụ thuộc `Platform.isWindows` (vd. gợi ý tiện ích không tương thích) phải chọn kỳ vọng theo nền tảng.
+- PowerShell trong job: `"... $k: ..."` là lỗi cú pháp (biến có phạm vi) → job thoát ngay EXIT 1 không log; dùng `${k}`.
+- Kiểm Windows portable: job phải tự huỷ nếu `YomiHub.exe` đang chạy (chủ dự án đang dùng) trước khi đổi tên `Documents\YomiHub`/`Mangayomi`.
+- `TapText` trên Note 9: nhãn ghép dạng `text|content-desc` → regex `(^|\|)Thêm($|\|)`, không dùng `^Thêm$`.

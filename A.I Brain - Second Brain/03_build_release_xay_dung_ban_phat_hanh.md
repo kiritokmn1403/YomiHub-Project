@@ -50,3 +50,9 @@
 - Máy ngủ/khởi động lại giữa bước a6build → `BUILD_LOCK.txt` ("A6 hh:mm") treo, pipeline mới chờ 6 giờ: kiểm không còn java/flutter/dart rồi mới làm rỗng khoá; rút job dựng trùng khỏi `jobs/pending` (sang `jobs/_hold`).
 - Không tự kill tiến trình dựng (bị chặn) – nếu cần dừng sớm, nhờ chủ dự án đóng cửa sổ runner.
 - Changelog sửa trước bước `pack` thì pack tự chép + sinh lại SHA256SUMS; kiểm bằng `copilot/verify_sha256_065.ps1` (17 khớp).
+
+## Bổ sung 26/11/2026 (0.6.6)
+- Script sinh bằng `sed` từ bản trước giữ **số build ghi cứng** (`make_installer_exe_066.ps1` đòi `0.6.6+58`) → bước `pack` hỏng sau 1 giờ dựng. Mọi kiểm phiên bản phải đọc `version:` trong `overlay/pubspec.yaml`; sau khi sao script, `grep` số build cũ (vd. `+58`, `52`) trước khi chạy.
+- Chạy lại từ bước hỏng bằng `run_066_main.ps1 -RunSteps 'pack,a6build,a6copy,verify'` (không dựng lại APK). Trước phát hành so `overlay/` với `overlay_manifest_066.txt` (SHA-256) để chắc mã phát hành = mã đã dựng.
+- Sửa changelog sau khi dựng → cập nhật dòng băm trong `SHA256SUMS-<ver>.txt` rồi `sha256sum -c`.
+- README/docs: soạn bản nháp trong `audit/.../release/` và chỉ chép vào `README.md`/`docs/` sau khi asset Release đã lên đủ (autosave đẩy main mỗi 5 phút → liên kết chết nếu chép sớm).

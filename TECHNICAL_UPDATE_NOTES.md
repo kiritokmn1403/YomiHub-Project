@@ -4030,3 +4030,23 @@ Yêu cầu chủ dự án (16:46): log `logs (13).txt` (16–21/11, 3.136 dòng)
 - 22:38 Antigravity báo "AI credits balance is too low" (Gemini 5h hết, mở lại ~00:05; Claude/GPT ~03:05); Codex mở lại 03:19 26/11 → đặt lịch tự giao việc r4 (Antigravity: kiểm thiết bị) và r2 (Codex: review cuối + precheck phát hành). Không bấm Add Credits/Upgrade.
 - Build lần 1 (23:01): bộ test đầy đủ 1067/1068 – `yh_057_t4` mong gợi ý "Android 6.0" nhưng chạy trên Windows nên nhận gợi ý ApkBridge mới → test chọn chuỗi theo `Platform.isWindows`; build lại 00:15 từ bước sync (không chạy lại bước test Android).
 
+### Dựng & kiểm thử (26/11/2026)
+- Bản dựng `run_066_main.ps1`: lần 1 (23:01) dừng ở bộ test (1067/1068, `yh_057_t4`) → sửa test; lần 2 (00:15–02:02) sync → apk 49' → tv 31' → wintest 7' → win 19'; dừng ở `pack` vì `make_installer_exe_066.ps1` ghi cứng `0.6.6+58` (sao từ 065) → đọc số build từ pubspec; lần 3 (02:52–03:28) pack 5' → android6 29' → verify 2'. Mã overlay khớp manifest bản dựng 124/124 tệp (SHA-256) trước khi phát hành.
+- Kiểm tra: `dart analyze` 0 lỗi (123 tệp đổi so với v0.6.5); `flutter test` toàn bộ 1068 bài (0.6.5: 1044) – 1067 đạt + 1 sửa rồi chạy lại riêng đạt 9/9; `yh_066_patches` 13/13.
+- Thiết bị (`audit/audit-0.6.6/evidence/DEVICE_RESULT_066.md`): Note 9 thật (cài đè 0.6.5→0.6.6 giữ dữ liệu, "Giới thiệu" không bị che) ĐẠT; AVD TV API34 (APK armeabi-v7a – AVD 32-bit) ĐẠT, thanh bên chỉ Thư viện/Cập nhật/Duyệt/Thêm; AVD Android 6 API23 (x86_64) ĐẠT. Windows: kiểm tĩnh ĐẠT (portable/full có MExtensionServer jar + JRE, Setup, appx); chạy thử bị huỷ an toàn vì YomiHub.exe đang mở trên máy chủ dự án.
+- Bản vá chờ bản sau: `antigravity/patches_066/r4_01_manga_filter_sheet_clamp.diff` (bảng bộ lọc khi xoay ngang + bàn phím) – ghi "Đã biết" trong changelog/README.
+- Repo tiện ích: đẩy commit `8cfe2be` (vBook Anime47 không khai báo lại `API_URL`) lên `YomiHub-Project/Kiritokmn---Extension-Repo` (GitHub báo repo đã chuyển sang `YomiHub-Project/YomiHub-Extension-Repo`, push vẫn qua chuyển hướng).
+- Phiên AI: Codex/Copilot/Antigravity lần lượt hết hạn mức; 02:57 chủ dự án dừng quyền điều khiển máy tính → phần kiểm thiết bị Antigravity định làm do Claude chạy bằng job adb.
+
+### Thống kê so với 0.6.5
+| Mục | 0.6.5 | 0.6.6 |
+|---|---|---|
+| Thay đổi overlay so với bản trước | – | 124 tệp (+3.186 / −283 dòng); `lib/` 51 tệp (+1.326 / −208); 65 tệp ngôn ngữ; 3 tệp test mới |
+| Bài test tự động | 1.044 | 1.068 (+24) |
+| Tính năng / lỗi sửa / cải tiến (changelog) | – | 6 / 12 / 5 |
+| APK arm64 (byte) | 183.977.996 | 184.058.468 (+80 KB) |
+| APK android6 arm64 | 193.204.129 | 193.286.029 |
+| APK TV arm64 | 183.576.488 | 183.659.516 |
+| Windows Setup.exe | 132.717.056 | 132.807.680 |
+| Windows appxbundle | 271.868.396 | 271.971.947 |
+| Commit tự lưu trên nhánh main kể từ v0.6.5 (`dc850f3`) | – | 17 |
