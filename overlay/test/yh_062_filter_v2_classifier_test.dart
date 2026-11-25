@@ -381,5 +381,29 @@ void main() {
       ], 'SelectFilter');
       expect(classify(f), isNot(FilterV2Section.country));
     });
+    test('REVIEW_r6 R1: Type Manga/Comic/Webtoon không phải Quốc Gia', () {
+      final f = SelectFilter('SelectFilter', 'Type', 0, [
+        SelectFilterOption('Manga', 'manga', 'SelectOption'),
+        SelectFilterOption('Comic', 'comic', 'SelectOption'),
+        SelectFilterOption('Webtoon', 'webtoon', 'SelectOption'),
+      ], 'SelectFilter');
+      expect(classify(f), isNot(FilterV2Section.country));
+    });
+    test('REVIEW_r6 R2: ngôn ngữ English/Japanese/Korean/Chinese không phải Quốc Gia', () {
+      final f = SelectFilter('SelectFilter', '', 0, [
+        SelectFilterOption('English', 'en', 'SelectOption'),
+        SelectFilterOption('Japanese', 'ja', 'SelectOption'),
+        SelectFilterOption('Korean', 'ko', 'SelectOption'),
+        SelectFilterOption('Chinese', 'zh', 'SelectOption'),
+      ], 'SelectFilter');
+      expect(classify(f), isNot(FilterV2Section.country));
+    });
+    test('REVIEW_r6: Type Manhwa/Manhua (2 nhãn) → Quốc Gia', () {
+      final f = SelectFilter('SelectFilter', 'Type', 0, [
+        SelectFilterOption('Manhwa', 'kr', 'SelectOption'),
+        SelectFilterOption('Manhua', 'cn', 'SelectOption'),
+      ], 'SelectFilter');
+      expect(classify(f), FilterV2Section.country);
+    });
   });
 }

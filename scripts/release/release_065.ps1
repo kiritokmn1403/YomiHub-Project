@@ -2,7 +2,7 @@
 # progress line per file and a final size check against the local files.
 # The GitHub token comes from Git Credential Manager at run time and is never
 # printed or written to disk.
-param([string]$tag = 'v0.6.5', [string]$repo = 'kiritokmn1403/YomiHub-Project')
+param([string]$tag = 'v0.6.5', [string]$repo = 'YomiHub-Project/YomiHub-Project')
 $ErrorActionPreference = 'Stop'
 if ($tag -ne 'v0.6.5') { throw "release_065.ps1 chi phat hanh v0.6.5 (khong sua tag/Release cu: $tag)" }
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)  # 0.6.5: scripts\release -> goc du an

@@ -517,7 +517,7 @@ FilterV2Section? _inferFromGroupChildren(GroupFilter f) {
 // phát hành vào): nhiều nguồn đặt tên bộ lọc là "Type"/"Loại" nhưng lựa chọn lại
 // là quốc gia (Manga/Manhwa/Manhua, Japan/Korea/China…). Xét giá trị trước tên.
 const Set<String> _kOriginValues = {
-  'manga', 'manhwa', 'manhua', 'manhuа', 'manhwa/webtoon', 'comic', 'comics',
+  'manga', 'manhwa', 'manhua', 'manhwa/webtoon',
   'japan', 'japanese', 'korea', 'korean', 'south korea', 'china', 'chinese',
   'taiwan', 'hong kong', 'vietnam', 'viet nam', 'vietnamese', 'thailand', 'indonesia',
   'jp', 'kr', 'cn', 'tw', 'hk', 'vn', 'ja', 'ko', 'zh',
@@ -533,10 +533,26 @@ List<String> _optionLabels(dynamic filter) {
     ];
   }
   if (filter is GroupFilter) {
-    return [for (final c in filter.state) _nameOf(c)];
+    // Chỉ các ô chọn thật (bỏ Header/Separator con).
+    return [
+      for (final c in filter.state)
+        if (c is CheckBoxFilter || c is TriStateFilter) _nameOf(c),
+    ];
   }
   return const [];
 }
+
+// Nhãn ngôn ngữ: nếu bộ lọc có ngôn ngữ (English/Vietnamese/en/vi…) thì đó là
+// bộ lọc Ngôn ngữ/Bản dịch, không phải Quốc Gia (REVIEW_r6 R2).
+const Set<String> _kLanguageOnly = {
+  'english', 'en', 'vietnamese', 'tiếng việt', 'tieng viet', 'vi', 'japanese', 'korean',
+  'chinese', 'ja', 'ko', 'zh', 'spanish', 'french', 'german', 'portuguese',
+  'russian', 'indonesian', 'thai', 'italian', 'tiếng anh', 'tieng anh',
+};
+const Set<String> _kLanguageMarkers = {
+  'english', 'en', 'vietnamese', 'tiếng việt', 'tieng viet', 'vi', 'spanish', 'french',
+  'german', 'portuguese', 'russian', 'italian', 'tiếng anh', 'tieng anh',
+};
 
 bool _looksLikeOrigin(dynamic filter) {
   final labels = _optionLabels(filter)
@@ -544,6 +560,10 @@ bool _looksLikeOrigin(dynamic filter) {
       .where((e) => e.isNotEmpty && e != 'all' && e != 'tất cả' && e != 'tat ca' && e != 'any')
       .toList();
   if (labels.length < 2) return false;
+  if (labels.any(_kLanguageMarkers.contains) &&
+      labels.where(_kLanguageOnly.contains).length * 2 >= labels.length) {
+    return false;
+  }
   final hits = labels.where(_kOriginValues.contains).length;
   return hits >= 2 && hits * 2 >= labels.length;
 }
