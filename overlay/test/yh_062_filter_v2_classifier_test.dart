@@ -353,4 +353,33 @@ void main() {
       expect((genre.state.first as TriStateFilter).state, 2);
     });
   });
+
+  group('0.6.5 Quốc Gia Phát Hành theo giá trị lựa chọn', () {
+    test('Comick "Type: Manga/Manhwa/Manhua" (Select) → country', () {
+      final f = SelectFilter('SelectFilter', 'Type', 0, [
+        SelectFilterOption('All', '', 'SelectOption'),
+        SelectFilterOption('Manga', 'jp', 'SelectOption'),
+        SelectFilterOption('Manhwa', 'kr', 'SelectOption'),
+        SelectFilterOption('Manhua', 'cn', 'SelectOption'),
+      ], 'SelectFilter');
+      expect(classify(f), FilterV2Section.country);
+    });
+    test('Group checkbox Nhật/Hàn/Trung → country', () {
+      final f = GroupFilter('g', 'Loại', [
+        CheckBoxFilter('c', 'Nhật Bản', 'jp', 'CheckBox'),
+        CheckBoxFilter('c', 'Hàn Quốc', 'kr', 'CheckBox'),
+        CheckBoxFilter('c', 'Trung Quốc', 'cn', 'CheckBox'),
+      ], 'GroupFilter');
+      expect(classify(f), FilterV2Section.country);
+    });
+    test('Type: Manga/Novel/Doujinshi vẫn là Danh Mục', () {
+      final f = SelectFilter('SelectFilter', 'Type', 0, [
+        SelectFilterOption('Manga', 'manga', 'SelectOption'),
+        SelectFilterOption('Novel', 'novel', 'SelectOption'),
+        SelectFilterOption('Doujinshi', 'doujinshi', 'SelectOption'),
+        SelectFilterOption('One shot', 'oneshot', 'SelectOption'),
+      ], 'SelectFilter');
+      expect(classify(f), isNot(FilterV2Section.country));
+    });
+  });
 }

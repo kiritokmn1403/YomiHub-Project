@@ -513,6 +513,41 @@ FilterV2Section? _inferFromGroupChildren(GroupFilter f) {
   return best;
 }
 
+// 0.6.5 (sheet New Filter – ô "Quốc Gia Phát Hành": đưa thông tin các quốc gia
+// phát hành vào): nhiều nguồn đặt tên bộ lọc là "Type"/"Loại" nhưng lựa chọn lại
+// là quốc gia (Manga/Manhwa/Manhua, Japan/Korea/China…). Xét giá trị trước tên.
+const Set<String> _kOriginValues = {
+  'manga', 'manhwa', 'manhua', 'manhuа', 'manhwa/webtoon', 'comic', 'comics',
+  'japan', 'japanese', 'korea', 'korean', 'south korea', 'china', 'chinese',
+  'taiwan', 'hong kong', 'vietnam', 'viet nam', 'vietnamese', 'thailand', 'indonesia',
+  'jp', 'kr', 'cn', 'tw', 'hk', 'vn', 'ja', 'ko', 'zh',
+  'nhật', 'nhat', 'nhật bản', 'nhat ban', 'hàn', 'han', 'hàn quốc', 'han quoc',
+  'trung', 'trung quốc', 'trung quoc', 'việt nam', 'âu mỹ', 'au my', 'mỹ', 'my',
+  '日本', '韩国', '韓国', '中国', '中國', '日漫', '韩漫', '韓漫', '国漫', '國漫',
+};
+
+List<String> _optionLabels(dynamic filter) {
+  if (filter is SelectFilter) {
+    return [
+      for (final v in filter.values) v is SelectFilterOption ? v.name : '$v',
+    ];
+  }
+  if (filter is GroupFilter) {
+    return [for (final c in filter.state) _nameOf(c)];
+  }
+  return const [];
+}
+
+bool _looksLikeOrigin(dynamic filter) {
+  final labels = _optionLabels(filter)
+      .map((e) => _normalize(e))
+      .where((e) => e.isNotEmpty && e != 'all' && e != 'tất cả' && e != 'tat ca' && e != 'any')
+      .toList();
+  if (labels.length < 2) return false;
+  final hits = labels.where(_kOriginValues.contains).length;
+  return hits >= 2 && hits * 2 >= labels.length;
+}
+
 /// Phân loại thuần một đối tượng bộ lọc (từ bất kỳ nguồn nào) vào đúng 1 trong
 /// 9 ô thiết kế của sheet "New Filter" hoặc [FilterV2Section.other] nếu không khớp.
 FilterV2Section classify(dynamic filter) {
@@ -528,6 +563,13 @@ FilterV2Section classify(dynamic filter) {
 
   final name = _nameOf(filter);
   final byName = _matchText(name);
+  // 0.6.5: "Type: Manga/Manhwa/Manhua" (Comick…) là quốc gia phát hành.
+  if ((byName == null ||
+          byName == FilterV2Section.category ||
+          byName == FilterV2Section.other) &&
+      _looksLikeOrigin(filter)) {
+    return FilterV2Section.country;
+  }
   if (byName != null) return byName;
 
   final byType = _matchTypeField(typeStr);
