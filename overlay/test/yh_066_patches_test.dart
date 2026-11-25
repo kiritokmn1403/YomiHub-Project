@@ -63,7 +63,8 @@ void main() {
   });
 
   group('V8 – Drive resumable upload: 308', () {
-    final up = _block(cloud, 'class GoogleDriveProvider');
+    // late: _block dùng expect(), chỉ được chạy bên trong test().
+    late final up = _block(cloud, 'class GoogleDriveProvider');
     test('không có Range => tiếp tục từ 0, không nhảy tới end', () {
       expect(up, contains('range == null ? 0 :'));
       expect(up, isNot(contains('range == null ? end :')));
@@ -92,12 +93,14 @@ void main() {
   });
 
   group('V12 – yomiSwitchMap', () {
-    final sw = _block(preload, 'Stream<R> yomiSwitchMap<T, R>(', open: 'map) {');
+    // late: _block dùng expect(), chỉ được chạy bên trong test().
+    late final sw = _block(preload, 'Stream<R> yomiSwitchMap<T, R>(', open: 'map) {');
     test('đóng luồng ra khi nguồn và luồng trong đều xong', () {
       expect(sw, contains('var outerDone = false;'));
       expect(sw, contains('outerDone = true;'));
-      expect(sw, contains('if (inner == null) c.close();'));
-      expect(sw, contains('if (outerDone) c.close();'));
+      // review_04 (Antigravity) thêm điều kiện !c.isClosed.
+      expect(sw, contains('if (inner == null && !c.isClosed) c.close();'));
+      expect(sw, contains('if (outerDone && !c.isClosed) c.close();'));
     });
     test('map() ném lỗi => addError', () {
       expect(sw, contains('} catch (e, st) {'));
