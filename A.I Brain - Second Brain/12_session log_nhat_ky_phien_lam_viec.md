@@ -107,3 +107,13 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **20:44–21:16** Windows Setup.exe cài đè 0.6.4+57; Tủ Sách thanh tin NXB khớp 4 tin Kim Đồng, ẩn/hiện lại tin ĐẠT; AMAK 404 → 0.6.5. **21:01** chủ dự án: 48 ngôn ngữ phụ để 0.6.5, xong thì đẩy GitHub.
 - **21:39** dây chuyền XONG → changelog bổ sung + SHA → website/README `f569ed5` → Extension Repo push 21:47 → Release v0.6.4 (21:46–).
 - **Tiếp theo (0.6.5)**: 11-J.
+
+## 24–25/11/2026 · 0.6.5 · Claude Opus 5.5 (claude.ai + máy tính) + Google Antigravity + ChatGPT Codex + GitHub Copilot
+- **24/11 chiều–tối**: tóm tắt yêu cầu 0.6.5, chủ dự án chọn Windows 10/11 x64, đồng ý phát hành; /swarm 3 bên (Codex: LOG/FEATURE/README; Copilot: REVIEW; Antigravity: i18n 65 ngôn ngữ ×2 đợt). Sửa overlay theo log 14/15 + sheet (xem TECHNICAL_UPDATE_NOTES "0.6.5"). Dropbox app YomiHub (icon 64/256 qua Chooser, Apply for production cần tài khoản test → chủ dự án tự điền).
+- **25/11 00:30–02:40**: Dropbox (Cốc Cốc), gộp 2 376 bản dịch, Copilot REVIEW_r3 (49 điểm, 2 nghiêm trọng – Claude kiểm rồi sửa N1/N2/V1/V5/V6/PERF), dựng lần 1 (02:41).
+- **02:50–05:15**: test yh_053 (repo mới) → dựng lại; Antigravity vòng 1 nộp ảnh chữ tự dựng → không nhận; phát hiện logo TV ô vuông → icon-glyph.
+- **06:42** máy khởi động lại → BUILD_LOCK treo → gỡ; **07:55–08:05** vòng 2 Antigravity chạm mù TikTok/TeamViewer trên Note 9 → STOP_DEVICE, Claude tự kiểm Note 9 (uiautomator theo nhãn); phát hiện bộ lọc Quốc Gia không nhận "Type: Manga/Manhwa/Manhua" → sửa.
+- **09:35–09:50** Copilot REVIEW_r6 + RELEASE_PRECHECK (repo mặc định script sai, comic/mã ngôn ngữ) → sửa, đồng bộ vào build+buildwin khi main4 đang test.
+- **09:46–11:38** dựng main4 (1044/1044 test, verify OK, SHA 17/17); kiểm thử ảnh thật: Note 9 (Claude), TV/Windows/Android 6 (Antigravity) – Claude xem từng ảnh.
+- **12:06–12:16** docs/README/Second Brain → commit `dc850f3` → **Release v0.6.5** (19 tệp, kích thước khớp) → Pages download VI/EN 200, 38 link v0.6.5.
+- **Tiếp theo (0.6.6)**: copilot/patches_066 (V2–V4, V8–V15), che bí mật JSON/header, A7 sao lưu hiển thị Danh Mục, Microsoft client ID (OneDrive dựng sẵn), nhãn sheet ảnh màn hẹp, Dropbox production (chủ dự án).
