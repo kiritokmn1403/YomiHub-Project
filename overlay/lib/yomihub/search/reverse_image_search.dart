@@ -242,7 +242,7 @@ class _SearchSheetState extends State<_SearchSheet> {
 /// (VPN/Tor aware) instead of Image.network, which bypasses it.
 class _SauceThumb extends StatefulWidget {
   final String url;
-  const _SauceThumb({required this.url});
+  const _SauceThumb({super.key, required this.url});
 
   @override
   State<_SauceThumb> createState() => _SauceThumbState();
