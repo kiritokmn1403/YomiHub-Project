@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:mangayomi/yomihub/i18n/yomi_tr.dart';
 // YomiHub 0.2.0: classify extension errors so logs.txt only keeps real faults.
 //
@@ -154,13 +155,20 @@ class YomiExtErrors {
     r'(abstract method "|abstractmethoderror|nosuchmethoderror|noclassdeffounderror|'
     r'incompatibleclasschangeerror|no (static|virtual|direct|interface) method |'
     // 0.6.5 (log 14, Windows M-Extension-Server)
-    r'verifyerror|bad type on operand stack|cannot be cast to class)',
+    r'verifyerror|bad type on operand stack|cannot be cast to class|'
+    // 0.6.6 (logs 16, 24/11 08:27 AVSub on Windows: the error text is only
+    // the missing Android class name)
+    r'^\s*android\.(app|content|webkit|os)\.[a-z0-9_$.]+\s*$)',
     caseSensitive: false,
+    multiLine: true,
   );
   static bool isIncompatible(Object e) => _incompatible.hasMatch(e.toString());
 
-  static String incompatibleHint() => tr(
-      'Tiện ích này cần thư viện mới hơn bộ chạy tiện ích APK của bản cài hiện tại: hãy cập nhật YomiHub; nếu đang dùng bản APK dành cho Android 6.0 trên máy Android 7.0 trở lên, hãy cài bản APK thường.');
+  static String incompatibleHint() => Platform.isWindows
+      // 0.6.6 (logs 16: CBHentai, Manga Ball, DamCoNuong, AVSub on Windows)
+      ? tr('Tiện ích APK này dùng mã Android mà M-Extension-Server trên Windows (Java) không chạy được: dùng ApkBridge (điện thoại Android cùng mạng, Cài đặt › Duyệt › M-Extension-Server) hoặc cài tiện ích cùng nguồn dạng JavaScript/Kotatsu.')
+      : tr(
+          'Tiện ích này cần thư viện mới hơn bộ chạy tiện ích APK của bản cài hiện tại: hãy cập nhật YomiHub; nếu đang dùng bản APK dành cho Android 6.0 trên máy Android 7.0 trở lên, hãy cài bản APK thường.');
 
   /// The source answered, but not with what the extension expects (Aidoku
   /// "SourceError: missing result / JSON parse error", an empty body, a

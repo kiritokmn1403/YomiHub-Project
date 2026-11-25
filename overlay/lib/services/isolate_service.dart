@@ -2,6 +2,7 @@ import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
 import 'package:mangayomi/yomihub/vpn/auto_tor.dart';
 import 'package:mangayomi/yomihub/net/extra_roots.dart';
 import 'package:mangayomi/yomihub/extensions/ext_errors.dart';
+import 'package:mangayomi/yomihub/mes/yomi_mes.dart' show MesUnavailableException;
 import 'package:mangayomi/utils/log/logger.dart';
 import 'dart:async';
 import 'dart:io';
@@ -248,7 +249,14 @@ class GetIsolateService {
       final q = query != null && query.length > 80 ? '${query.substring(0, 80)}…' : query;
       final where = 'Extension "${source?.name}" (${source?.lang}, engine: $langEngine, repo: $repoInfo) $serviceType '
           '${url ?? q ?? page ?? ''}';
-      if (YomiExtErrors.isDiscontinued(source?.name)) {
+      if (e is MesUnavailableException) {
+        // 0.6.6 (logs 16): one line per run instead of one ERROR + stack per
+        // APK source and call while the Windows extension server is missing.
+        YomiExtErrors.markSetup(source?.name, source?.lang);
+        if (MesUnavailableException.firstInSession()) {
+          AppLogger.log('[M-Extension-Server] $where: ${e.message}', logLevel: LogLevel.warning);
+        }
+      } else if (YomiExtErrors.isDiscontinued(source?.name)) {
         // 0.5.7 (logs 7, 14/11: "Phim Nhựa (Ngừng hoạt động)", "Rổ Phim (Ngừng
         // hoạt động)" … were ERRORs): the repository itself says the site is
         // gone – one information line per run, and background work skips it

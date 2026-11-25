@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar_community/isar.dart';
 import 'package:mangayomi/yomihub/extensions/ext_errors.dart';
+import 'package:mangayomi/yomihub/mes/yomi_mes.dart' show MesUnavailableException;
 import 'package:mangayomi/eval/model/filter.dart';
 import 'package:mangayomi/eval/model/m_manga.dart';
 import 'package:mangayomi/eval/model/m_pages.dart';
@@ -221,6 +222,12 @@ class YomiSuggestionEngine {
               .timeout(_kSuggestTimeout);
         }
       } catch (e) {
+        if (e is MesUnavailableException) {
+          // 0.6.6 (logs 16, 25/11 15:37): already logged once by the isolate
+          // service – Đề Xuất just skips APK sources until the server is up.
+          YomiExtErrors.markSetup(src.name, src.lang);
+          return;
+        }
         if (e is TimeoutException || YomiExtErrors.isNetworkError(e)) {
           YomiExtErrors.markSlow(src.name, src.lang);
         }

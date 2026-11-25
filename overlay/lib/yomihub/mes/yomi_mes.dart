@@ -12,9 +12,35 @@ import 'package:http/http.dart' as http;
 import 'package:mangayomi/yomihub/cloudscraper/cloudscraper.dart';
 import 'package:mangayomi/yomihub/prefs/yomi_prefs.dart';
 import 'package:mangayomi/yomihub/win/win_process.dart';
+import 'package:mangayomi/utils/log/logger.dart';
 import 'package:m_extension_server/m_extension_server.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+
+/// 0.6.6 (logs 16, 25/11 15:35–16:33): every Mihon/Aniyomi source on Windows
+/// failed with "M-Extension-Server chưa chạy" (AVSub, Anime47, Xvideos,
+/// MissAV, CBHentai …) and the error was logged once per source and call.
+/// Thrown by [YomiMes.dalvik] when no extension bridge can be reached, so
+/// callers (isolate service, Đề Xuất) log it once per session instead.
+class MesUnavailableException implements Exception {
+  MesUnavailableException(this.message, {this.installing = false});
+  final String message;
+
+  /// YomiHub is downloading the Windows bundle in the background.
+  final bool installing;
+
+  static bool _logged = false;
+
+  /// true the first time in this run (callers log only then).
+  static bool firstInSession() {
+    if (_logged) return false;
+    _logged = true;
+    return true;
+  }
+
+  @override
+  String toString() => message;
+}
 
 /// YomiHub: M-Extension-Server built into the app.
 ///
@@ -426,10 +452,25 @@ class YomiMes {
     Duration timeout = const Duration(minutes: 3),
   }) async {
     if (active && _base == null) await ensure();
+    String? alt;
     if (Platform.isWindows && active && _base == null) {
-      throw Exception(
-        tr('M-Extension-Server chưa chạy: {p0} (Cài đặt › Duyệt › M-Extension-Server để cài hoặc chuyển sang ApkBridge).', {'p0': lastError ?? ''}),
-      );
+      // 0.6.6: an ApkBridge / external server the user set up (or the
+      // ApkBridge app on this PC, port 8080) keeps APK sources working
+      // while the built-in server is missing or down.
+      alt = await fallbackBridge();
+      if (alt == null) {
+        if (winJar.isEmpty && !_autoInstallFailed) {
+          unawaited(autoInstallWindows());
+          throw MesUnavailableException(
+            tr('M-Extension-Server chưa cài trên Windows – YomiHub đang tự tải và cài ({p0}). Thử lại sau khi cài xong, hoặc dùng ApkBridge (Cài đặt › Duyệt › M-Extension-Server).',
+                {'p0': autoInstallText}),
+            installing: true,
+          );
+        }
+        throw MesUnavailableException(
+          tr('M-Extension-Server chưa chạy: {p0} (Cài đặt › Duyệt › M-Extension-Server để cài hoặc chuyển sang ApkBridge).', {'p0': lastError ?? ''}),
+        );
+      }
     }
     final h = {
       'content-type': 'application/json',
@@ -437,7 +478,7 @@ class YomiMes {
       if (CloudScraper.proxyUrl.isNotEmpty) 'cf-proxy-url': CloudScraper.proxyUrl,
       ...?headers,
     };
-    final base = resolve(configured);
+    final base = alt ?? resolve(configured);
     try {
       return await _local
           .post(Uri.parse('$base/dalvik'), body: body, headers: h)
@@ -452,6 +493,79 @@ class YomiMes {
           .post(Uri.parse('$nb/dalvik'), body: body, headers: h)
           .timeout(timeout);
     }
+  }
+
+  // ───────────── 0.6.6: auto-install + ApkBridge fallback (Windows) ─────────────
+
+  static Future<String?>? _autoInstall;
+  static bool _autoInstallFailed = false;
+  static double? autoInstallProgress;
+  static int _autoInstallGot = 0;
+
+  /// Short progress text for messages ("12.3 / 131.0 MB", "đang bắt đầu").
+  static String get autoInstallText {
+    if (_autoInstall == null) return tr('đang bắt đầu');
+    final mb = (_autoInstallGot / 1048576).toStringAsFixed(1);
+    final pc = autoInstallProgress == null ? '' : ' – ${(autoInstallProgress! * 100).round()}%';
+    return '$mb MB$pc';
+  }
+
+  static bool get autoInstalling => _autoInstall != null;
+
+  /// Downloads and starts the Windows M-Extension-Server once, in the
+  /// background, the first time an APK source needs it. A failure is
+  /// remembered for this run (no download loop); the settings screen can
+  /// still install it by hand.
+  static Future<String?> autoInstallWindows() {
+    if (!Platform.isWindows || _autoInstallFailed) return Future.value(null);
+    return _autoInstall ??= () async {
+      AppLogger.log('[M-Extension-Server] Chưa cài trên Windows – tự tải gói windows-x64-bundle.zip và cài nền (một lần)',
+          logLevel: LogLevel.info);
+      final sw = Stopwatch()..start();
+      final err = await installWindows(progress: (got, total) {
+        _autoInstallGot = got;
+        autoInstallProgress = total > 0 ? got / total : null;
+      });
+      if (err != null) {
+        _autoInstallFailed = true;
+        AppLogger.log('[M-Extension-Server] Tự cài thất bại: $err – vào Cài đặt › Duyệt › M-Extension-Server để cài lại hoặc dùng ApkBridge',
+            logLevel: LogLevel.warning);
+        return err;
+      }
+      final url = await ensure(restart: true);
+      AppLogger.log(
+          url == null
+              ? '[M-Extension-Server] Đã cài (${sw.elapsed.inSeconds} s) nhưng chưa khởi động được: ${lastError ?? ''}'
+              : '[M-Extension-Server] Đã tự cài và khởi động trong ${sw.elapsed.inSeconds} s: $url',
+          logLevel: url == null ? LogLevel.warning : LogLevel.info);
+      return url == null ? lastError : null;
+    }()
+        .whenComplete(() {
+      _autoInstall = null;
+      autoInstallProgress = null;
+    });
+  }
+
+  static String? _altBridge;
+  static DateTime? _altCheckedAt;
+
+  /// An answering ApkBridge / external M-Extension-Server: the address typed
+  /// in settings, else the ApkBridge app on this PC (127.0.0.1:8080).
+  /// Cached for 60 s so a burst of source calls probes once.
+  static Future<String?> fallbackBridge() async {
+    final now = DateTime.now();
+    if (_altCheckedAt != null && now.difference(_altCheckedAt!) < const Duration(seconds: 60)) return _altBridge;
+    _altCheckedAt = now;
+    _altBridge = null;
+    for (final c in [remoteUrl, 'http://127.0.0.1:8080']) {
+      final u = c.trim().replaceAll(RegExp(r'/+$'), '');
+      if (u.isEmpty) continue;
+      if (await aliveAny(u)) {
+        _altBridge = u;
+        break;
+      }
+    }
+    return _altBridge;
   }
 
   /// Routes the extension bridge's own OkHttp traffic (inside the JVM)
