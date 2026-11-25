@@ -363,13 +363,21 @@ class YomiMes {
 
   /// Downloads the latest Windows bundle (JRE + server JAR, ~130 MB) from
   /// kodjodevf/M-Extension-Server and unpacks it for YomiHub.
-  static Future<String?> installWindows({void Function(int received, int total)? progress}) async {
+  static Future<String?>? _installing;
+
+  /// Manual (settings) and automatic installs share one download
+  /// (Codex B2: two writers of bundle.zip.part at once).
+  static Future<String?> installWindows({void Function(int received, int total)? progress}) {
+    return _installing ??= _installWindows(progress: progress).whenComplete(() => _installing = null);
+  }
+
+  static Future<String?> _installWindows({void Function(int received, int total)? progress}) async {
     final client = http.Client();
     try {
       final rel = await client.get(
         Uri.parse('https://api.github.com/repos/kodjodevf/M-Extension-Server/releases?per_page=10'),
         headers: const {'Accept': 'application/vnd.github+json'},
-      );
+      ).timeout(const Duration(seconds: 30));
       if (rel.statusCode != 200) return tr('GitHub trả lỗi HTTP {p0}', {'p0': rel.statusCode});
       String? url;
       for (final r in jsonDecode(rel.body) as List) {
@@ -386,17 +394,24 @@ class YomiMes {
       final dir = await _winInstallDir();
       await dir.create(recursive: true);
       final zip = File(p.join(dir.path, 'bundle.zip.part'));
-      final res = await client.send(http.Request('GET', Uri.parse(url)));
+      final res = await client.send(http.Request('GET', Uri.parse(url))).timeout(const Duration(seconds: 30));
       if (res.statusCode != 200) return tr('Tải gói lỗi HTTP {p0}', {'p0': res.statusCode});
       final total = res.contentLength ?? 0;
       var got = 0;
       final sink = zip.openWrite();
-      await for (final chunk in res.stream) {
-        sink.add(chunk);
-        got += chunk.length;
-        progress?.call(got, total);
+      try {
+        // a stalled download ends after 45 s without data instead of hanging
+        await for (final chunk in res.stream.timeout(const Duration(seconds: 45))) {
+          sink.add(chunk);
+          got += chunk.length;
+          progress?.call(got, total);
+        }
+      } finally {
+        await sink.close();
       }
-      await sink.close();
+      if (total > 0 && got != total) {
+        return tr('Tải gói chưa đủ ({p0}/{p1} byte) – thử lại', {'p0': got, 'p1': total});
+      }
       await stop();
       for (final old in ['jre', 'app']) {
         final d = Directory(p.join(dir.path, old));
@@ -480,9 +495,23 @@ class YomiMes {
     };
     final base = alt ?? resolve(configured);
     try {
-      return await _local
+      final res = await _local
           .post(Uri.parse('$base/dalvik'), body: body, headers: h)
           .timeout(timeout);
+      if (Platform.isWindows && alt == null && active && needsAndroidRuntime(res.body)) {
+        // 0.6.6: retry once on the user's ApkBridge (Android phone) if set.
+        final remote = await fallbackBridge();
+        if (remote != null) {
+          try {
+            final r2 = await _local.post(Uri.parse('$remote/dalvik'), body: body, headers: h).timeout(timeout);
+            AppLogger.logOnce('mes-android-fallback',
+                '[M-Extension-Server] Tiện ích APK cần Android – đã chuyển sang ApkBridge đã lưu ($remote)',
+                logLevel: LogLevel.info);
+            return r2;
+          } catch (_) {}
+        }
+      }
+      return res;
     } on TimeoutException {
       rethrow;
     } catch (e) {
@@ -549,23 +578,41 @@ class YomiMes {
   static String? _altBridge;
   static DateTime? _altCheckedAt;
 
-  /// An answering ApkBridge / external M-Extension-Server: the address typed
-  /// in settings, else the ApkBridge app on this PC (127.0.0.1:8080).
-  /// Cached for 60 s so a burst of source calls probes once.
+  /// The ApkBridge / external M-Extension-Server address the user saved in
+  /// settings, when it answers. Only that saved address is used
+  /// automatically (Codex B2 review: never an arbitrary local port that
+  /// happens to return HTTP 200). Cached for 60 s so a burst of source calls
+  /// probes once.
   static Future<String?> fallbackBridge() async {
     final now = DateTime.now();
     if (_altCheckedAt != null && now.difference(_altCheckedAt!) < const Duration(seconds: 60)) return _altBridge;
     _altCheckedAt = now;
     _altBridge = null;
-    for (final c in [remoteUrl, 'http://127.0.0.1:8080']) {
-      final u = c.trim().replaceAll(RegExp(r'/+$'), '');
-      if (u.isEmpty) continue;
-      if (await aliveAny(u)) {
-        _altBridge = u;
-        break;
-      }
+    final u = remoteUrl.trim().replaceAll(RegExp(r'/+$'), '');
+    final uri = Uri.tryParse(u);
+    if (u.isEmpty || uri == null || !const ['http', 'https'].contains(uri.scheme) || uri.host.isEmpty || u == _base) {
+      return null;
     }
+    if (await aliveAny(u)) _altBridge = u;
     return _altBridge;
+  }
+
+  /// The Windows (Java) server answered with an error only an Android
+  /// runtime avoids (dex converted for the JVM fails verification, or the
+  /// extension needs android.* classes) – logs 16: CBHentai, Manga Ball,
+  /// DamCoNuong, AVSub.
+  static bool needsAndroidRuntime(String body) {
+    try {
+      final decoded = jsonDecode(body);
+      if (decoded is! Map || decoded['error'] == null) return false;
+      final error = decoded['error'].toString().toLowerCase();
+      return error.contains('verifyerror') ||
+          error.contains('bad type on operand stack') ||
+          error.contains('cannot be cast to class') ||
+          RegExp(r'^\s*android\.(app|content|webkit|os)\.').hasMatch(error);
+    } catch (_) {
+      return false;
+    }
   }
 
   /// Routes the extension bridge's own OkHttp traffic (inside the JVM)

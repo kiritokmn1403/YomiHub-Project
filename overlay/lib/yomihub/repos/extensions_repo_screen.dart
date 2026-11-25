@@ -223,14 +223,26 @@ class _ExtensionsRepoScreenState extends ConsumerState<ExtensionsRepoScreen> {
         u;
   }
 
+  // 0.6.6 (logs 16, 24/11 08:14–08:16: UI frozen 5.3 s and 11.9 s on
+  // /browseS while repos were added): every repo card read ALL sources of
+  // each type from the database again (repos × types full scans on the UI
+  // thread). One pass per type now builds the counts of every repo; the
+  // index is rebuilt once per frame / refresh.
+  Map<ItemType, Map<String, ({int total, int installed})>>? _countIdx;
+
   ({int total, int installed}) _count(String key, ItemType t) {
-    var total = 0, installed = 0;
-    for (final s in sourceRepository.getByItemType(t)) {
-      if (_norm(s.repo?.jsonUrl) != key) continue;
-      total++;
-      if ((s.sourceCode ?? '').isNotEmpty || (s.isAdded ?? false)) installed++;
-    }
-    return (total: total, installed: installed);
+    final idx = _countIdx ??= {};
+    final perType = idx[t] ??= () {
+      final m = <String, ({int total, int installed})>{};
+      for (final s in sourceRepository.getByItemType(t)) {
+        final k = _norm(s.repo?.jsonUrl);
+        final c = m[k] ?? (total: 0, installed: 0);
+        final inst = (s.sourceCode ?? '').isNotEmpty || (s.isAdded ?? false);
+        m[k] = (total: c.total + 1, installed: c.installed + (inst ? 1 : 0));
+      }
+      return m;
+    }();
+    return perType[key] ?? (total: 0, installed: 0);
   }
 
   Future<void> _refreshAll() async {
@@ -252,6 +264,7 @@ class _ExtensionsRepoScreenState extends ConsumerState<ExtensionsRepoScreen> {
       }
     }
     if (!mounted) return;
+    _countIdx = null;
     for (final e in _entries()) {
       final total = e.types.fold<int>(0, (sum, t) => sum + _count(e.key, t).total);
       if (total == 0) {
@@ -345,6 +358,7 @@ class _ExtensionsRepoScreenState extends ConsumerState<ExtensionsRepoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _countIdx = null;
     final entries = _entries();
     final shown = _filter == null
         ? entries
