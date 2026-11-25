@@ -3983,3 +3983,15 @@ Yêu cầu chủ dự án (16:46): log `logs (13).txt` (16–21/11, 3.136 dòng)
 **Dropbox**: app `YomiHub` (Scoped, App folder, PKCE) đã lưu icon 64/256 (qua Dropbox Chooser). Form *Apply for production* yêu cầu tài khoản test + mật khẩu → chủ dự án tự điền; ở trạng thái Development app vẫn liên kết tối đa 500 người dùng. **Microsoft**: `microsoft_client_id` còn trống → OneDrive dựng sẵn báo "chưa cấu hình", vẫn dùng được Client ID riêng.
 
 **Dựng**: `jobs/pending/x065_build_main.ps1` → `scripts/pipeline/run_065_main.ps1` bắt đầu 02:41 25/11 (trạng thái `audit/audit-0.6.5/release/main_build_status_065.txt`).
+
+### 0.6.5 — phần tiếp 25/11/2026 (02:40 → 12:10)
+- **Dựng**: x065_build_main (02:41) dừng ở test (yh_053 kỳ vọng repo cũ → sửa test theo kho `YomiHub-Project/Kiritokmn---Extension-Repo`, URL mới trả 200, 140 803 B giống kho cũ). main2 (03:01→09:29). Máy khởi động lại ~06:42 giữa a6build → `BUILD_LOCK` treo "A6 04:58" (không còn java/flutter) → làm rỗng khoá. **main4 (09:46→11:38, bản phát hành)**: test 1044/1044, verify exit 0, `verify_sha256_065.ps1` 17/17 khớp.
+- **Sửa thêm sau kiểm thử thiết bị**: (1) logo mới là hình tròn tô màu → 7 chỗ `Image.asset(appIconAssets[2], color:)` thành ô vuông (thấy trên thanh bên TV) → `appIconAssets[2]` = `assets/app_icons/icon-glyph.png` (glyph sách + play trắng, tách từ Yomi-Logo), sửa test onboarding; (2) bộ lọc "Quốc Gia Phát Hành" không hiện với Comick ("Type: Manga/Manhwa/Manhua" bị xếp Danh Mục) → `_looksLikeOrigin` xét giá trị lựa chọn (Manga/Manhwa/Manhua, Nhật/Hàn/Trung…), loại `comic` và bộ lọc ngôn ngữ (REVIEW_r6 Copilot), +6 test yh_062 (36/36).
+- **Phát hành**: `release_065.ps1` mặc định repo sửa từ `kiritokmn1403/...` → `YomiHub-Project/YomiHub-Project` (Copilot RELEASE_PRECHECK). Changelog thêm: Quốc Gia nhận "Type", Đã biết: WebView2 Windows `ERR_PROXY_CONNECTION_FAILED` khi dịch vụ VPN cho WebView chưa chạy, Android 6 một số nguồn (MangaDex) lỗi TLS.
+- **Kiểm thử thiết bị (ảnh thật, Claude đã xem từng ảnh)** — tổng hợp `audit/audit-0.6.5/release/NOTE9_CLAUDE_065.md`:
+  - Note 9 (Claude, uiautomator theo nhãn + kiểm gói đang ở trước): cài đè 0.6.5 (versionCode 2058), logo tab Thêm, Sao lưu nhanh tạo .backup 25,4 MB, bộ lọc Quốc Gia (bản 10:22) — ĐẠT.
+  - AVD Android TV (Antigravity): logo thanh bên/Thêm/Giới thiệu, không Comic/Novel/Play Books/Booru/Tủ Sách — ĐẠT (bản 08:20 và 10:46).
+  - Windows portable (Antigravity): tab Cập nhật không Stack Overflow, logo, WebView2 tạo được — ĐẠT (lỗi proxy ghi "Đã biết").
+  - AVD Android 6 (Antigravity): cài/mở, logo, ComicK tải + bìa, Sao lưu nhanh, Quốc Gia (Manga/Manhwa/Manhua), Tìm ảnh (Lens/SauceNAO, không gửi thật) — ĐẠT; MangaDex lỗi TLS trên Android 6.
+  - Vòng 1–2 của Antigravity KHÔNG nhận: ảnh chữ tự dựng, ảnh trùng, chạm mù vào ứng dụng khác trên Note 9 → `STOP_DEVICE.txt`, quy tắc fg/nhãn.
+- **Để 0.6.6**: `copilot/patches_066/` (V2–V4, V8–V15: thumbnail qua VPN, ref sau await, timeout đám mây, yomiSwitchMap, WebView proxy…), che bí mật dạng JSON/header trong log, sao lưu cách hiển thị từng Danh Mục (A7), nhãn nút sheet ảnh xuống dòng trên màn hẹp.

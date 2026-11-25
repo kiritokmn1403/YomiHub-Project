@@ -41,3 +41,8 @@
 
 30. **Tự lưu phiên 5 phút/lần cho mọi tác nhân** (chủ dự án 21/11/2026 19:33): ngoài commit + push phần Claude, chụp NOTES/REVIEW/BRIEF của Antigravity/Codex + PROGRESS vào `audit/audit-<ver>/backup/autosave/<giờ>/` và lưu `git diff` chưa commit của repo tiện ích (`autosave_progress_064b.ps1`). Không đưa `audit/` lên GitHub.
 31. **Không sửa `docs/` trước khi phát hành** khi autosave đang đẩy `docs/` – soạn ở `audit/audit-<ver>/release/docs_<ver>/` rồi chép lúc phát hành.
+
+## Bổ sung 25/11/2026 (0.6.5)
+32. **Không tác nhân nào chạy kịch bản tự động trên thiết bị cá nhân** của chủ dự án nếu chưa có rào chắn kiểm ứng dụng đang ở trước; vi phạm → `STOP_DEVICE.txt`, kết quả = không hợp lệ.
+33. **ĐẠT chỉ khi Claude đã xem bằng chứng** (ảnh thật, đúng màn, đúng bản dựng – thời gian tệp sau mốc dựng).
+34. Lịch kiểm tra do chủ dự án đặt được ưu tiên; nếu giờ đặt đã qua (ví dụ "10:15" lúc 11:06) hiểu là giờ gần nhất phía sau (11:15) và nói rõ.

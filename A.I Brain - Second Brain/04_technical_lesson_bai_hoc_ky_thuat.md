@@ -161,3 +161,13 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - **Trang NXB có thể trả HTTP 404 cho client app nhưng 200 cho trình duyệt** (AMAK) – nguồn tin HTML cần thử User-Agent khác/chấp nhận thân trang.
 - **Sửa changelog sau verify** → cập nhật dòng băm trong `SHA256SUMS-<ver>.txt` giữ nguyên BOM/CRLF, rồi `sha256sum -c` trước khi phát hành.
 - **Labels/uiautomator đọc tệp tạm cũ khi adb mất kết nối** (`Get-UiXml` đọc `%TEMP%\yh_ui060.xml` cũ) → xoá tệp tạm trước khi dump, đừng tin nhãn khi lệnh adb báo "not found".
+
+## Bổ sung 25/11/2026 (0.6.5)
+- **Logo màu đặc + `Image.asset(color:)` = khối đặc**: `appIconAssets[2]` được vẽ có tô màu ở 7 chỗ (thanh bên TV, Giới thiệu, Thêm, onboarding, loading, mv2) → logo mới (hình tròn tô màu) thành ô vuông. Cần bản **glyph** (hình trắng nền trong suốt): `assets/app_icons/icon-glyph.png`. Khi thay logo luôn tìm `appIconAssets[` + `color:`.
+- **Phân loại bộ lọc theo giá trị lựa chọn**: nguồn đặt tên "Type" nhưng giá trị là Manga/Manhwa/Manhua → Quốc Gia. Tránh từ trùng nghĩa (`comic` là loại; `en/ja/ko/zh` là ngôn ngữ) – có ngôn ngữ như English/Vietnamese thì không xếp Quốc Gia.
+- **Chuỗi raw Dart không escape được `'`**: `r'...[^"\'<>]'` lỗi biên dịch → dùng `r'''...'''`.
+- **Che bí mật trong log**: `AppLogger.redactSecrets` che `api_key|login|token|password…=` trong URL (Danbooru). Chưa che JSON/header Authorization/Cookie/user:pass@ → 0.6.6.
+- **Bản sao lưu rời máy** (đám mây/chia sẻ) không được kèm mục 8 (token, mật khẩu proxy); khoá API mới phải thêm vào `_sensitiveKeys`; cờ runtime (Tor) không đi theo bản sao lưu.
+- **Đo dung lượng thư mục trên luồng UI** (`lengthSync` từng tệp) làm giật 1–2,4 s → `Isolate.run` + `statSync`, và không watch provider ở màn không hiển thị.
+- **Android 6**: một số nguồn (MangaDex) lỗi TLS (`HTTP 0`/`Handshake failed`) dù đã thêm 121 CA gốc; ghi "Đã biết".
+- **WebView2 Windows** đi qua proxy 127.0.0.1 khi cài đặt VPN bật dịch vụ cho WebView dù dịch vụ chưa chạy → `ERR_PROXY_CONNECTION_FAILED` (0.6.6: patches_066/V15).

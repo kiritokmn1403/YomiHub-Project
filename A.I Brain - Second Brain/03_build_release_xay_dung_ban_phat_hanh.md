@@ -43,3 +43,10 @@
 - Sau push: kiểm Pages (~20–60 s) bằng job `Invoke-WebRequest` có `?t=<guid>` chống cache; so khớp bằng chuỗi ASCII (id, class) – PowerShell 5 giải mã sai tiếng Việt nên `-match 'Có gì mới'` báo trượt giả.
 - **Song ngữ**: làm bước 1–2 cho CẢ `docs/download.html` và `docs/en/download.html` (cùng href, dung lượng, SHA); "Có gì mới" thêm ở cả `docs/index.html` và `docs/en/index.html`.
 - README mục Liên kết có đủ 4 trang: Trang chủ, Tải về (`download.html`), Hướng dẫn (`guide.html`), Chính sách (`privacy.html`).
+
+## Bổ sung 25/11/2026 (0.6.5 – chuyển tổ chức GitHub)
+- Đổi tổ chức (kiritokmn1403 → YomiHub-Project): rà **mọi** `param` mặc định (`scripts/release/release_*.ps1` còn `repo='kiritokmn1403/...'` – Copilot bắt được), URL cập nhật trong app (giữ kho cũ làm nguồn dự phòng), `repoBase` kho tiện ích + `migrateUrl` cho cài đặt và bản sao lưu cũ, README/docs/`site.js`.
+- Sửa mã khi pipeline đang ở bước `test`: đồng bộ vào **cả** `D:\yh\build\mangayomi` và `D:\yh\buildwin\mangayomi` (Sync-Overlay của q065_lib chỉ chép vào `build`); bước `a6build` chép lại từ `build` nên Android 6 tự nhận.
+- Máy ngủ/khởi động lại giữa bước a6build → `BUILD_LOCK.txt` ("A6 hh:mm") treo, pipeline mới chờ 6 giờ: kiểm không còn java/flutter/dart rồi mới làm rỗng khoá; rút job dựng trùng khỏi `jobs/pending` (sang `jobs/_hold`).
+- Không tự kill tiến trình dựng (bị chặn) – nếu cần dừng sớm, nhờ chủ dự án đóng cửa sổ runner.
+- Changelog sửa trước bước `pack` thì pack tự chép + sinh lại SHA256SUMS; kiểm bằng `copilot/verify_sha256_065.ps1` (17 khớp).

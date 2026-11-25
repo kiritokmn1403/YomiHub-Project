@@ -38,3 +38,9 @@
 - AVD có sẵn (`%USERPROFILE%\.android\avd`): `OOS_Android6_API23` (x86_64, Android 6.0 – APK android6 x86_64), `YH_Android10_API29`, `YomiHub056_Phone_API34` (x86_64 – dùng cho APK TV x86_64), `YomiHub_TV_API34` (x86 32-bit – KHÔNG cài được APK x86_64), `Medium_Phone_API_37.0`.
 - Mẫu job: tắt máy ảo cũ → đặt `ANDROID_SDK_ROOT` = SDK Android Studio → `Start-Process emulator.exe -avd <tên> -no-boot-anim -no-audio -no-snapshot-load -gpu swiftshader_indirect -memory 1536` → chờ `sys.boot_completed=1` → `install -r -g` → mở app → `screencap` → logcat lọc `FATAL|ANR|UnsatisfiedLink`. Mẫu: `jobs/done/f061_avd6_run5.ps1`, `f061_avdtv_run2.ps1`. Bằng chứng: `audit/audit-<ver>/evidence/avd6/`, `avdtv/`.
 - Tiêu chí TV: chỉ thư viện Phim & Điện ảnh, thanh bên Thư viện · Cập nhật · Duyệt · Thêm (không Truyện tranh/Tiểu thuyết/Play Books/Booru).
+
+## 8. Bổ sung 25/11/2026 (0.6.5) – bằng chứng phải thật
+- **Không nhận ảnh chữ tự dựng** ("[PASSED] …"), không 2 ca dùng chung 1 ảnh (so md5), mỗi ảnh ghi `fg=` (gói/cửa sổ đang ở trước) lúc chụp. Claude mở xem ảnh trước khi nhận ĐẠT.
+- **Điện thoại thật của chủ dự án (Note 9)**: kịch bản chạm theo toạ độ đã mở nhầm TikTok/TeamViewer → chỉ Claude kiểm, bằng `jobs/n9lib.ps1` (Fg/IsYomi/TapText theo nhãn uiautomator, dừng nếu gói trước không phải `com.yomihub.app`); không dùng phím Back ở màn gốc; tránh mở thư viện cá nhân. Tác nhân khác chỉ dùng AVD.
+- Ca cần trình đọc (Tìm ảnh) làm trên AVD với ảnh thử cục bộ; không bấm tìm thật (không gửi ảnh ra ngoài).
+- Windows: bản portable giải nén vào `audit/.../scratch/win_portable/`, chụp đúng cửa sổ chính YomiHub (EnumWindows, không dùng MainWindowHandle của cửa sổ phụ).
