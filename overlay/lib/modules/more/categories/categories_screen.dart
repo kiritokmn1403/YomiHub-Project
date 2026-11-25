@@ -1,4 +1,5 @@
 import 'package:mangayomi/modules/main_view/providers/tv_mode_provider.dart';
+import 'package:mangayomi/yomihub/library/category_display_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mangayomi/repositories/category_repository.dart';
@@ -442,8 +443,13 @@ class _CategoriesTabState extends ConsumerState<CategoriesTab> {
                           controller.text.isEmpty || isExist || isSameName
                           ? null
                           : () async {
+                              // 0.6.6 (A7): keep the category's own display / sort
+                              final oldName = category.name ?? '';
                               category.name = controller.text;
                               await categoryRepository.save(category);
+                              if (oldName.isNotEmpty) {
+                                await CategoryDisplayStore.rename(category.forItemType, oldName, controller.text);
+                              }
                               if (context.mounted) {
                                 Navigator.pop(context);
                               }
