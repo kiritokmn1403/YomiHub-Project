@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mangayomi/eval/lnreader/service.dart';
 import 'package:mangayomi/yomihub/extensions/ext_errors.dart';
 import 'package:mangayomi/yomihub/mes/yomi_mes.dart';
+import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
 
 void main() {
   group('LNReader plugins get site-relative paths (Hako ln.hako.vnhttps)', () {
@@ -41,6 +42,18 @@ void main() {
       expect(e.installing, isTrue);
       expect(MesUnavailableException.firstInSession(), isTrue);
       expect(MesUnavailableException.firstInSession(), isFalse);
+    });
+  });
+
+  group('Windows: extension follows WebView2 route after a Cloudflare solve', () {
+    test('only proxy routes are recorded, per host, case-insensitive', () {
+      expect(YomiVpnState.alignedRoute('danbooru.donmai.us'), isNull);
+      YomiVpnState.alignHostToWebView('Danbooru.Donmai.us', 'http://127.0.0.1:10809');
+      expect(YomiVpnState.alignedRoute('danbooru.donmai.us'), 'http://127.0.0.1:10809');
+      YomiVpnState.alignHostToWebView('example.com', '');
+      expect(YomiVpnState.alignedRoute('example.com'), isNull);
+      YomiVpnState.alignHostToWebView('127.0.0.1', 'http://127.0.0.1:10809');
+      expect(YomiVpnState.alignedRoute('127.0.0.1'), isNull);
     });
   });
 }

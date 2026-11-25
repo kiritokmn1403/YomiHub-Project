@@ -2221,9 +2221,14 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       final lower = message.toLowerCase();
       if (lower.contains('subtitle') || lower.contains('font')) return;
       if (_handleRejectedSeek(message)) return;
+      // 0.6.6 (logs 16: "Failed to recognize file format" ×3): mpv got bytes
+      // that are not a video – usually a block/expired-link page of the host.
+      final hint = lower.contains('recognize file format')
+          ? ' – ${tr('máy chủ phát trả về dữ liệu không phải video (thường là trang chặn hoặc liên kết đã hết hạn): chọn máy chủ khác, tải lại danh sách tập hoặc mở tập bằng WebView')}'
+          : '';
       AppLogger.logOnce(
         'player-load-${widget.episode.id}-${message.hashCode}',
-        '[Trình phát] Lỗi video không tải được – tập "${widget.episode.name}": $message',
+        '[Trình phát] Lỗi video không tải được – tập "${widget.episode.name}": $message$hint',
         logLevel: LogLevel.error,
       );
       return;

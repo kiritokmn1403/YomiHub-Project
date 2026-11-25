@@ -9,13 +9,17 @@ import 'package:mangayomi/yomihub/booru/booru_models.dart';
 /// (`test/yh_044_test.dart`). The app passes [MClient.init] as [client], so
 /// requests follow "VPN & DNS" (Tor/WARP/proxy, DNS-over-HTTPS).
 class BooruApi {
-  BooruApi(this.client, {this.userAgent = 'YomiHub/0.4.6 (Booru App)', this.clientFactory});
+  BooruApi(this.client, {this.userAgent = 'YomiHub/0.4.6 (Booru App)', this.clientFactory, this.siteClientFactory});
 
   final http.Client client;
   final http.Client Function(String? siteId)? clientFactory;
+
+  /// 0.6.6: factory that also knows the site's address (route alignment
+  /// after a Cloudflare solve on Windows needs the host).
+  final http.Client Function(BooruSite site)? siteClientFactory;
   final String userAgent;
 
-  http.Client _clientFor(BooruSite s) => clientFactory?.call(s.id) ?? client;
+  http.Client _clientFor(BooruSite s) => siteClientFactory?.call(s) ?? clientFactory?.call(s.id) ?? client;
 
   static const pageSize = 40;
 

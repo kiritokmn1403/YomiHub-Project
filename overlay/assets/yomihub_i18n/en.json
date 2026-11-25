@@ -2032,5 +2032,11 @@
   "Người mượn: {p0}": "Borrower: {p0}",
   "Người mượn: {p0} · Hạn trả: {p1}": "Borrower: {p0} · Due: {p1}",
   "Nhiều tập nhất": "Most volumes",
-  "Tên A → Z": "Name A → Z"
+  "Tên A → Z": "Name A → Z",
+  "Tải gói chưa đủ ({p0}/{p1} byte) – thử lại": "Download incomplete ({p0}/{p1} bytes) – try again",
+  "M-Extension-Server chưa cài trên Windows – YomiHub đang tự tải và cài ({p0}). Thử lại sau khi cài xong, hoặc dùng ApkBridge (Cài đặt › Duyệt › M-Extension-Server).": "M-Extension-Server is not installed on Windows – YomiHub is downloading and installing it ({p0}). Try again once it is installed, or use ApkBridge (Settings › Browse › M-Extension-Server).",
+  "đang bắt đầu": "starting",
+  "Tiện ích APK này dùng mã Android mà M-Extension-Server trên Windows (Java) không chạy được: dùng ApkBridge (điện thoại Android cùng mạng, Cài đặt › Duyệt › M-Extension-Server) hoặc cài tiện ích cùng nguồn dạng JavaScript/Kotatsu.": "This APK extension uses Android code that M-Extension-Server on Windows (Java) cannot run: use ApkBridge (an Android phone on the same network, Settings › Browse › M-Extension-Server) or install a JavaScript/Kotatsu extension for the same source.",
+  "máy chủ phát trả về dữ liệu không phải video (thường là trang chặn hoặc liên kết đã hết hạn): chọn máy chủ khác, tải lại danh sách tập hoặc mở tập bằng WebView": "the video server returned data that is not a video (usually a block page or an expired link): pick another server, reload the episode list or open the episode in WebView",
+  "Sắp xếp": "Sort"
 }

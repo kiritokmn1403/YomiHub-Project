@@ -32,9 +32,10 @@ class BooruScreen extends ConsumerStatefulWidget {
 }
 
 /// Shared HTTP client: follows "VPN & DNS" (Tor/WARP/proxy, DoH).
-http.Client booruClient({String? siteId}) => MClient.init(reqcopyWith: {
+http.Client booruClient({String? siteId, String? baseUrl}) => MClient.init(reqcopyWith: {
       'useDartHttpClient': true,
       if (siteId != null) 'booruSiteId': siteId,
+      if (baseUrl != null) 'baseUrl': baseUrl,
     });
 
 void booruLog(String where, Object e, {BooruSite? site}) {
@@ -76,6 +77,7 @@ class _BooruScreenState extends ConsumerState<BooruScreen> with SingleTickerProv
   late final BooruApi _api = BooruApi(
     booruClient(),
     clientFactory: (siteId) => booruClient(siteId: siteId),
+    siteClientFactory: (site) => booruClient(siteId: site.id, baseUrl: site.baseUrl),
   );
 
   final List<BooruPost> _posts = [];
