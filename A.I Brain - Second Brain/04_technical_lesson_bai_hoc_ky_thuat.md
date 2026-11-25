@@ -182,3 +182,6 @@ un_058_main.ps1) cần hỗ trợ tham số lọc bước (-RunSteps) kết hợ
 - **Biến `var` trong Dart mất type promotion trong closure** (`torProxy` đổi từ final sang var → `Uri.parse(torProxy)` lỗi `String?`): tính bằng biến tạm rồi gán `final`.
 - **Bản vá do tác nhân tạo bằng ghép chuỗi có ký tự `$`** (Antigravity `review_02`): `git apply --check` vẫn exit 0 nhưng tệp kết quả bị lặp nửa sau (2 lần `setJvmProxy`). Sau khi áp diff của tác nhân: đếm định nghĩa trùng / chạy analyze trước khi tin.
 - **Đếm theo kho trên màn Kho tiện ích**: không gọi `getByItemType()` (quét toàn bộ nguồn) trong vòng lặp từng kho trên luồng UI → lập chỉ mục 1 lượt/loại.
+- **flutter_test `OutsideTestException`**: gọi hàm có `expect()` ở cấp `group()` (ngoài `test()`) làm cả tệp test "Failed to load". Dùng `late final x = ...` trong group để chỉ tính khi test chạy.
+- **Bản vá UI đổi cấu trúc cây widget** (Antigravity `ui_02`, `migrate_screen.dart`): `git apply --check` exit 0 nhưng ngoặc `)`/`]` đảo chỗ → lỗi biên dịch dây chuyền làm hỏng mọi test. Sau khi áp bản vá UI luôn chạy `dart analyze` trên tệp đó trước khi gộp thêm.
+- **ListView trong `showModalBottomSheet` tự đệm vùng an toàn đáy** (padding null → lấy MediaQuery padding) → không cần bọc SafeArea; chỉ sheet có chiều cao cố định + ô nhập cần trừ `viewInsets.bottom`.
