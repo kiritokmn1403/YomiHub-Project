@@ -5,6 +5,8 @@
 $pubVer = ([regex]::Match((Get-Content "$KIT\overlay\pubspec.yaml" -Raw), '(?m)^version:\s*(\d+\.\d+\.\d+)')).Groups[1].Value
 if ($pubVer -ne '0.6.6') { throw "overlay/pubspec.yaml la '$pubVer', ky vong 0.6.6" }
 $ver = '0.6.6'
+# 0.6.6: so build lay tu pubspec (truoc day ghi cung +58 do sao tu ban 065)
+$pubBuild = ([regex]::Match((Get-Content "$KIT\overlay\pubspec.yaml" -Raw), '(?m)^version:\s*\d+\.\d+\.\d+\+(\d+)')).Groups[1].Value
 $csc = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
 $out = "$KIT\output"
 $rel = "$YH\buildwin\mangayomi\build\windows\x64\runner\Release"
@@ -13,8 +15,8 @@ if (-not (Test-Path "$rel\YomiHub.exe")) {
 }
 # 0.6.6: package_info_plus doc ProductVersion va tach '+' -> phai la "0.6.6+59" (Runner.rc trong overlay)
 $pv = (Get-Item "$rel\YomiHub.exe").VersionInfo.ProductVersion
-if ($pv -ne "$ver+58") {
-    throw "YomiHub.exe ProductVersion la '$pv', ky vong '$ver+58' (kiem tra overlay/windows/runner/Runner.rc va --build-name $pubVer)"
+if ($pv -ne "$ver+$pubBuild") {
+    throw "YomiHub.exe ProductVersion la '$pv', ky vong '$ver+$pubBuild' (kiem tra overlay/windows/runner/Runner.rc va --build-name $pubVer)"
 }
 
 Say "INSTALLER BUILD START: Compiling YomiHub $ver Setup (.exe)"
