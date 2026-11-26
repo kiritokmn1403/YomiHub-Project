@@ -72,3 +72,9 @@ Danh sách kiểm:
 - Đã kiểm: Note 9 (Antigravity S1–S7 + Claude đối chiếu ảnh/log), Windows 11 Setup.exe cài đè + Tủ Sách thanh tin NXB. Chưa kiểm: AVD Android 6/TV 0.6.4, `.appxbundle`, Xiaomi 15T (Phone Link chờ quyền chiếu màn hình).
 - Còn mở cho 0.6.5: `audit/audit-0.6.4/pending_065/README.md` (48 ngôn ngữ phụ, 2 sửa REVIEW, bố cục Frank Yomik, AMAK 404) + nháp Hướng Dẫn `audit/audit-0.6.4/antigravity/web/guide_064_*`.
 - Tác vụ nền: autosave 064b dừng bằng `jobs/STOP_AUTOSAVE_064b`; lịch hẹn kiểm tra đã hết; Antigravity /swarm 5 XONG; Codex không dùng.
+
+## K. Trạng thái bàn giao hiện tại (sau 0.6.6 – 26/11/2026 ~07:15) – thay mục J
+- 0.6.6 (0.6.6+59) phát hành GitHub Release `v0.6.6` (06:19–07:04, 19 asset khớp kích thước, `releases/latest` = v0.6.6, tag `3556145` = mã đã dựng – overlay khớp manifest 124/124). README + website VI/EN (download/index) chuyển 0.6.6 ở commit `31a3e15`, Pages download hiển thị 0.6.6.
+- Đã kiểm: Note 9 (Claude), AVD TV API34 (APK armeabi-v7a), AVD Android 6 API23 – ảnh thật trong `audit/audit-0.6.6/evidence/`. Chưa chạy thử Windows (YomiHub.exe đang mở trên máy chủ dự án; mới kiểm tĩnh gói).
+- Còn mở cho bản sau: `audit/audit-0.6.6/coordination/PENDING_REBUILD_066.md` (r4_01 bảng bộ lọc xoay ngang + bàn phím); Codex r2 (review diff cuối) chưa gửi vì quyền điều khiển máy tính bị dừng 02:57 – brief sẵn ở `audit/audit-0.6.6/codex/BRIEF_codex_066_r2.md`; Antigravity R4-3 kiểm thiết bị chưa làm (GO_DEVICE_066.txt đã tạo); 2 ghi chú Thấp của Antigravity về `mv2_manga_card` (lưới 3 cột 360 px, cỡ chữ lớn trên TV); repo tiện ích đã đổi tên thành `YomiHub-Project/YomiHub-Extension-Repo` (kiểm URL mặc định trong app).
+- Tác vụ nền: autosave 066 dừng bằng `jobs/STOP_AUTOSAVE_066`; các lịch hẹn kiểm tra đã chạy hết.

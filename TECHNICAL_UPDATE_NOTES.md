@@ -4038,6 +4038,10 @@ Yêu cầu chủ dự án (16:46): log `logs (13).txt` (16–21/11, 3.136 dòng)
 - Repo tiện ích: đẩy commit `8cfe2be` (vBook Anime47 không khai báo lại `API_URL`) lên `YomiHub-Project/Kiritokmn---Extension-Repo` (GitHub báo repo đã chuyển sang `YomiHub-Project/YomiHub-Extension-Repo`, push vẫn qua chuyển hướng).
 - Phiên AI: Codex/Copilot/Antigravity lần lượt hết hạn mức; 02:57 chủ dự án dừng quyền điều khiển máy tính → phần kiểm thiết bị Antigravity định làm do Claude chạy bằng job adb.
 
+### Phát hành (26/11/2026)
+- GitHub Release `v0.6.6` (YomiHub 0.6.6, Latest), tạo 06:19, 19 asset (17 gói + SHA256SUMS + TECHNICAL_UPDATE_NOTES) – `release_066.ps1` xác minh 19/19 cùng kích thước; tải công khai `SHA256SUMS-0.6.6.txt` HTTP 200. Tag trỏ `3556145` (mã đã dựng).
+- README + `docs/{download,index}.html` và bản EN chuyển 0.6.6 (commit `31a3e15`); trang Pages download hiển thị "Phiên bản 0.6.6", link `/releases/download/v0.6.6/`.
+
 ### Thống kê so với 0.6.5
 | Mục | 0.6.5 | 0.6.6 |
 |---|---|---|

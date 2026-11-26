@@ -117,3 +117,10 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **09:46–11:38** dựng main4 (1044/1044 test, verify OK, SHA 17/17); kiểm thử ảnh thật: Note 9 (Claude), TV/Windows/Android 6 (Antigravity) – Claude xem từng ảnh.
 - **12:06–12:16** docs/README/Second Brain → commit `dc850f3` → **Release v0.6.5** (19 tệp, kích thước khớp) → Pages download VI/EN 200, 38 link v0.6.5.
 - **Tiếp theo (0.6.6)**: copilot/patches_066 (V2–V4, V8–V15), che bí mật JSON/header, A7 sao lưu hiển thị Danh Mục, Microsoft client ID (OneDrive dựng sẵn), nhãn sheet ảnh màn hẹp, Dropbox production (chủ dự án).
+
+## 25–26/11/2026 – YomiHub 0.6.6 (Claude Opus 5.5 + Antigravity + Codex + Copilot)
+- **21:14–22:40**: phạm vi lỗi log 16, ApkBridge/MES, phần dở 0.6.5, Tủ Sách; chia 4 phần (/swarm). Copilot hết credit, Codex hết lượt (21:57); Antigravity r1–r3 (kho, vBook, UI che nút 19 mục, review 14 điểm, i18n 65 ngôn ngữ). Claude áp và sửa các bản vá hỏng (review_02/03/04, ui_02).
+- **22:40–23:01**: Antigravity cũng hết quota → Claude tự làm UI-11/15–19 + 3 khóa A7×65; a08 analyze 0 lỗi, test đạt.
+- **23:01–03:28**: dựng 3 lần (test yh_057_t4 theo nền tảng; pack ghi cứng +58) → 17 gói, SHA 17/17.
+- **00:16–00:45** Antigravity r4 review 7 tệp UI (1 TB → r4_01 để bản sau). **01:32** Note 9 ĐẠT. **02:57** chủ dự án dừng điều khiển máy tính; **05:51** "Tiếp tục" → Claude kiểm AVD TV/Android 6 bằng job adb, đẩy repo tiện ích `8cfe2be`.
+- **06:19–07:05**: Release v0.6.6 (19 asset), README + Pages VI/EN 0.6.6.
