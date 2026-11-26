@@ -95,7 +95,7 @@
   <h3>Điện thoại, máy tính bảng và TV</h3>
   <ol class="steps"><li>Kiểm tra phiên bản Android trên máy. Với Android 7 trở lên, chọn APK thông thường. Nếu chưa biết kiến trúc bộ xử lý, thử <code>arm64-v8a</code>. Máy Android 6.0 dùng gói có chữ <code>android6</code>. TV dùng bản <strong>YumiHub Android TV</strong>.</li><li>Mở APK đã tải. Nếu Android yêu cầu, cho phép ứng dụng đang mở tệp cài ứng dụng từ nguồn này, rồi quay lại tệp APK để tiếp tục.</li><li>Khi cập nhật, chọn đúng dòng gói đang dùng và cài đè để giữ dữ liệu. Nếu máy báo không thể cập nhật, hãy giữ bản hiện tại cho đến khi đã sao lưu.</li></ol>
   <h3>Windows 10 hoặc 11, bản x64</h3>
-  <ul class="tips"><li>Chạy <code>Setup.exe</code> để cài. Với bản di động <code>.zip</code>, giải nén rồi chạy ứng dụng trong thư mục vừa giải nén.</li><li>Nếu dùng tiện ích APK, chọn <code>-full.zip</code>. Gói này kèm Java và M-Extension-Server để chạy tiện ích.</li><li>Nếu chọn <code>.appxbundle</code>, tải cả <code>YomiHub-RootCA.cer</code>, <code>Install-YomiHub.bat</code> và <code>Install-YomiHub.ps1</code> của cùng bản phát hành. Đặt chúng cùng thư mục với gói rồi chạy tệp <code>.bat</code>.</li></ul>
+  <ul class="tips"><li>Chạy <code>Setup.exe</code> để cài. Với bản di động <code>.zip</code>, giải nén rồi chạy ứng dụng trong thư mục vừa giải nén.</li><li>Mọi gói Windows (Setup.exe, <code>.zip</code>, <code>.appxbundle</code>) đều kèm sẵn Java và M-Extension-Server để chạy tiện ích APK – không phải tải thêm.</li><li>Nếu chọn <code>.appxbundle</code>, tải cả <code>YomiHub-RootCA.cer</code>, <code>Install-YomiHub.bat</code> và <code>Install-YomiHub.ps1</code> của cùng bản phát hành. Đặt chúng cùng thư mục với gói rồi chạy tệp <code>.bat</code>.</li></ul>
 </section>
 
 <section class="chapter" id="lam-quen" data-keywords="thu vien, hoat dong, thanh dieu huong, giao dien, an hien">
@@ -256,7 +256,7 @@
   <p class="path"><span>Thêm</span><span>Cài đặt</span><span>Chẩn đoán Windows</span></p>
   <ul class="tips">
     <li>Trên Android TV, dùng các phím hướng của D-pad để di chuyển tiêu điểm rồi nhấn nút giữa để chọn. Bản TV tập trung vào phim và video, không có Comic, Novel, Google Play Sách, Booru hoặc Tủ Sách Cá Nhân.</li>
-    <li>Trên Windows, nếu dùng bản di động và cần chạy tiện ích APK, chọn gói <code>-full.zip</code> có sẵn Java và M-Extension-Server. Mục chẩn đoán cho biết máy đang thiếu thành phần nào.</li>
+    <li>Trên Windows, M-Extension-Server và Java nằm sẵn trong thư mục <code>yomihub_bin\mes</code> của ứng dụng và tự khởi động khi mở tiện ích APK. Mục chẩn đoán cho biết máy đang thiếu thành phần nào.</li>
     <li>Nhật ký Windows thường nằm tại <code>Documents\YomiHub\logs.txt</code>. Bạn cũng có thể mở nhật ký từ trang Giới thiệu.</li>
   </ul>
 </section>

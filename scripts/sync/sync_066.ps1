@@ -35,7 +35,8 @@ $targets = @(
 )
 
 $ps = Get-Content (Join-Path $root "overlay\pubspec.yaml") -Raw
-if ($ps -notmatch '(?m)^version:\s*0\.6\.6\+59\s*$') { Write-Error "LỖI: overlay/pubspec.yaml phải là version: 0.6.6+59"; exit 1 }
+# 0.6.6 hotfix Windows (26/11): +60 cho bản dựng lại Windows (APK Android vẫn +59)
+if ($ps -notmatch '(?m)^version:\s*0\.6\.6\+(59|60)\s*$') { Write-Error "LỖI: overlay/pubspec.yaml phải là version: 0.6.6+59 hoặc +60"; exit 1 }
 if ($list -notcontains 'overlay/pubspec.yaml' -and ($list | Where-Object { $_ -match 'pubspec\.yaml$' }).Count -eq 0) { Write-Error "LỖI: manifest thiếu overlay/pubspec.yaml"; exit 1 }
 
 # 1. PRE-FLIGHT CHECK: Kiểm tra sự tồn tại của toàn bộ tệp overlay trong manifest

@@ -4054,3 +4054,18 @@ Yêu cầu chủ dự án (16:46): log `logs (13).txt` (16–21/11, 3.136 dòng)
 | Windows Setup.exe | 132.717.056 | 132.807.680 |
 | Windows appxbundle | 271.868.396 | 271.971.947 |
 | Commit tự lưu trên nhánh main kể từ v0.6.5 (`dc850f3`) | – | 17 |
+
+## 26/11/2026 07:25–09:00 — Hotfix Windows 0.6.6+60: M-Extension-Server tích hợp sẵn (Claude Opus 5.5)
+**Yêu cầu chủ dự án (07:25)**: "M-Extension Server vẫn đang lỗi, tôi cần nó tích hợp thẳng vào trong ứng dụng luôn mà không cần tải về nữa." 07:45: cập nhật A.I Brain và đưa hết lên GitHub. 08:15: quy tắc mới – mọi gói cài đặt phải tích hợp sẵn M-Extension-Server và ApkBridge (Second Brain 07).
+**Chẩn đoán (job `x066_mes_test` chạy java của gói với đúng tham số app)**:
+1. `-XX:-BytecodeVerificationRemote` (thêm ở 0.6.5) là tuỳ chọn chẩn đoán trên JDK 21 → JVM báo `VM option 'BytecodeVerificationRemote' is diagnostic and must be enabled via -XX:+UnlockDiagnosticVMOptions` và thoát ngay → M-Extension-Server không bao giờ lên trên Windows (cả bản 1.0.8-r1 kèm gói lẫn bản tự tải). Thêm cờ mở khoá đứng trước: cả v1.0.8-r1 và v1.1.1 trả `/capabilities` 200 có `mangayomiMihonBridge` sau 0–1 s.
+2. `make_installer_exe_066.ps1` nhúng `output\0.6.6\YomiHub-0.6.6-windows-x64.zip` – bản portable KHÔNG có `yomihub_bin\mes` (chỉ `-full.zip` và `.appxbundle` có) → Setup.exe phải tải máy chủ.
+**Sửa**:
+- `overlay/lib/yomihub/mes/yomi_mes.dart` (`_startWindows`): thêm `'-XX:+UnlockDiagnosticVMOptions'` trước `'-XX:-BytecodeVerificationRemote'` (+6 dòng kèm chú thích). Test mới `overlay/test/yh_066_win_mes_test.dart` (3 bài). `dart analyze` 0 lỗi; 23/23 test (win_mes, 066/065 log fixes) đạt.
+- `overlay/pubspec.yaml` 0.6.6+60 (chỉ dựng lại Windows; APK Android/Android 6/TV giữ +59, không đổi tệp).
+- `scripts/build/build_066.ps1`: bước `win` giải nén M-Extension-Server vào `yomihub_bin\mes` trước khi nén `.zip` (kiểm đúng 1 jar + javaw), bỏ `-full.zip`, Setup lấy `.zip` này; bước verify chặn `.zip` thiếu MES. `sync_066.ps1`/`build_066.ps1` nhận build 59|60.
+- `D:\yh\win_deps\mes-windows-x64-bundle.zip` → M-Extension-Server **v1.1.1** (upstream kodjodevf, 134.285.920 byte, SHA-256 73F51761A6D84FCCCE785F645A93E844ABC722B04FCCB181AC923740D4FA75A7; thêm `webviewBridge`, `remoteWebView`); bản cũ giữ tên `mes-windows-x64-bundle-v1.0.8-r1.zip`.
+- Changelog (mục "Cập nhật gói Windows 26/11"), README, `docs/download.html`, `docs/guide.html` + bản EN: bỏ `-full.zip`, ghi rõ mọi gói Windows kèm sẵn M-Extension-Server + Java.
+**Dựng** `run_066_main.ps1 -RunSteps 'wintest,win,pack,verify'` 08:00–08:36 (wintest 7', win 22', pack 5', verify 1'); `sha256sum -c` 16/16.
+**Kiểm gói mới**: `.zip` giải nén → `YomiHub.exe` ProductVersion 0.6.6+60, `version.json` build 60, `yomihub_bin\mes\MExtensionServer-v1.1.1-r1.jar` + `jre\jre\bin\javaw.exe`, chạy với đúng tham số app → `/capabilities` HTTP 200 (1 s, marker có). `.appxbundle` chứa jar + javaw; Setup.exe nhúng `.zip` có jar (254,8 MB).
+**Lỗi gặp khi làm**: sync/wintest dừng vì script ghi cứng `+59` → cho nhận 59|60; xin quyền đọc `Documents\YomiHub` + `AppData\Local\YomiHub` bị từ chối → chẩn đoán từ mã + chạy thử gói, không đọc dữ liệu cá nhân. Chuỗi trong app `win_diag_screen.dart` còn nhắc `-full.zip` (sửa ở bản sau).

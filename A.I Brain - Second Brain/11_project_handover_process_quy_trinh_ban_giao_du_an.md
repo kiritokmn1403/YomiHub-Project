@@ -78,3 +78,8 @@ Danh sách kiểm:
 - Đã kiểm: Note 9 (Claude), AVD TV API34 (APK armeabi-v7a), AVD Android 6 API23 – ảnh thật trong `audit/audit-0.6.6/evidence/`. Chưa chạy thử Windows (YomiHub.exe đang mở trên máy chủ dự án; mới kiểm tĩnh gói).
 - Còn mở cho bản sau: `audit/audit-0.6.6/coordination/PENDING_REBUILD_066.md` (r4_01 bảng bộ lọc xoay ngang + bàn phím); Codex r2 (review diff cuối) chưa gửi vì quyền điều khiển máy tính bị dừng 02:57 – brief sẵn ở `audit/audit-0.6.6/codex/BRIEF_codex_066_r2.md`; Antigravity R4-3 kiểm thiết bị chưa làm (GO_DEVICE_066.txt đã tạo); 2 ghi chú Thấp của Antigravity về `mv2_manga_card` (lưới 3 cột 360 px, cỡ chữ lớn trên TV); repo tiện ích đã đổi tên thành `YomiHub-Project/YomiHub-Extension-Repo` (kiểm URL mặc định trong app).
 - Tác vụ nền: autosave 066 dừng bằng `jobs/STOP_AUTOSAVE_066`; các lịch hẹn kiểm tra đã chạy hết.
+
+## L. Cập nhật sau hotfix Windows 0.6.6+60 (26/11/2026 ~09:00) – bổ sung mục K
+- Gói Windows trên Release v0.6.6 đã thay bằng 0.6.6+60: Setup.exe / `.zip` / `.appxbundle` đều kèm M-Extension-Server v1.1.1 + JRE 21; bỏ `-full.zip`; sửa cờ JVM `-XX:+UnlockDiagnosticVMOptions` (trước đó máy chủ không khởi động trên Windows từ 0.6.5). APK Android/Android 6/TV vẫn 0.6.6+59 (tag `v0.6.6` = `3556145`); mã hotfix nằm trên `main` sau tag.
+- Quy tắc mới (07): mọi gói cài đặt phải tích hợp sẵn M-Extension-Server và ApkBridge.
+- Còn mở: chuỗi `win_diag_screen.dart` còn nhắc `-full.zip`; chưa chạy thử YomiHub.exe 0.6.6+60 bằng giao diện với tiện ích APK thật (mới kiểm máy chủ kèm gói bằng đúng tham số app) – nhờ chủ dự án cài Setup.exe mới và mở 1 tiện ích Mihon/Aniyomi để xác nhận.

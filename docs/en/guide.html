@@ -95,7 +95,7 @@
   <h3>Phones, tablets and TVs</h3>
   <ol class="steps"><li>Check which version of Android your device runs. For Android 7 or later, choose a standard APK. If you are unsure which processor architecture to select, try <code>arm64-v8a</code>. Android 6.0 devices use the package marked <code>android6</code>. For TVs, use <strong>YumiHub Android TV</strong>.</li><li>Open the downloaded APK. If Android prompts you, allow the app that opened the file to install apps from this source, then return to the APK to continue.</li><li>To keep your data when updating, install the same package variant over your current version. If your device cannot install the update, keep your current version until you have backed up your data.</li></ol>
   <h3>Windows 10 or 11 (x64)</h3>
-  <ul class="tips"><li>Run <code>Setup.exe</code> to install YomiHub. For the portable <code>.zip</code> version, extract the archive and run the app from the extracted folder.</li><li>If you use APK extensions, choose <code>-full.zip</code>. It includes Java and M-Extension-Server to run them.</li><li>If you choose <code>.appxbundle</code>, also download <code>YomiHub-RootCA.cer</code>, <code>Install-YomiHub.bat</code> and <code>Install-YomiHub.ps1</code> from the same release. Put all four files in one folder, then run the <code>.bat</code> file.</li></ul>
+  <ul class="tips"><li>Run <code>Setup.exe</code> to install YomiHub. For the portable <code>.zip</code> version, extract the archive and run the app from the extracted folder.</li><li>Every Windows package (Setup.exe, <code>.zip</code>, <code>.appxbundle</code>) includes Java and M-Extension-Server for APK extensions – nothing else to download.</li><li>If you choose <code>.appxbundle</code>, also download <code>YomiHub-RootCA.cer</code>, <code>Install-YomiHub.bat</code> and <code>Install-YomiHub.ps1</code> from the same release. Put all four files in one folder, then run the <code>.bat</code> file.</li></ul>
 </section>
 
 <section class="chapter" id="lam-quen" data-keywords="library, activity, navigation bar, appearance, visibility">
@@ -256,7 +256,7 @@
   <p class="path"><span>More</span><span>Settings</span><span>Windows diagnostics</span></p>
   <ul class="tips">
     <li>On Android TV, use the directional pad to move the focus and press the center button to select. The TV version focuses on films and video. Comics, novels, Google Play Books, Booru and Personal Bookshelf are unavailable.</li>
-    <li>On Windows, if you use the portable version and need APK extensions, choose <code>-full.zip</code>, which includes Java and M-Extension-Server. The diagnostics screen shows which components are missing.</li>
+    <li>On Windows, M-Extension-Server and Java ship in the app's <code>yomihub_bin\mes</code> folder and start automatically when an APK extension is opened. The diagnostics screen shows which components are missing.</li>
     <li>On Windows, the log is usually at <code>Documents\YomiHub\logs.txt</code>. You can also open it from About.</li>
   </ul>
 </section>

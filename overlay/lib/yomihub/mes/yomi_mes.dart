@@ -316,6 +316,12 @@ class YomiMes {
       // putfield") although ART runs them fine. Extension classes are loaded
       // by the server's own class loader, so skipping verification of
       // non-bootstrap classes is enough; the JDK itself is still verified.
+      // 0.6.6 (Windows hotfix, 26/11): BytecodeVerificationRemote is a
+      // *diagnostic* option on JDK 21 – without the unlock flag the JVM
+      // refuses to start ("VM option ... is diagnostic and must be enabled
+      // via -XX:+UnlockDiagnosticVMOptions"), so M-Extension-Server never
+      // came up on Windows since 0.6.5. The unlock flag must come first.
+      '-XX:+UnlockDiagnosticVMOptions',
       '-XX:-BytecodeVerificationRemote',
       ..._jvmProxyArgs(_winJvmProxy),
       '-jar',

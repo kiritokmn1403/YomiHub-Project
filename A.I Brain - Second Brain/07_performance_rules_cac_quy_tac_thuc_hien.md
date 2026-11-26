@@ -46,3 +46,9 @@
 32. **Không tác nhân nào chạy kịch bản tự động trên thiết bị cá nhân** của chủ dự án nếu chưa có rào chắn kiểm ứng dụng đang ở trước; vi phạm → `STOP_DEVICE.txt`, kết quả = không hợp lệ.
 33. **ĐẠT chỉ khi Claude đã xem bằng chứng** (ảnh thật, đúng màn, đúng bản dựng – thời gian tệp sau mốc dựng).
 34. Lịch kiểm tra do chủ dự án đặt được ưu tiên; nếu giờ đặt đã qua (ví dụ "10:15" lúc 11:06) hiểu là giờ gần nhất phía sau (11:15) và nói rõ.
+
+## Bổ sung 26/11/2026 (chủ dự án, 08:15) – BẮT BUỘC
+- **Mọi gói cài đặt đều phải tích hợp sẵn M-Extension-Server và ApkBridge** – người dùng không phải tải, cài hay cấu hình thêm gì để chạy tiện ích APK:
+  - Android 7.0+, Android 6, Android TV: M-Extension-Server nhúng trong app (nạp lớp Dalvik trực tiếp) + máy chủ ApkBridge tích hợp (cho máy khác trong mạng dùng chung).
+  - Windows (Setup.exe, `.zip`, `.appxbundle`): `yomihub_bin\mes` có sẵn `MExtensionServer-*.jar` + JRE (`javaw.exe`), tự khởi động khi mở tiện ích APK; ApkBridge (điện thoại chạy YomiHub/ApkBridge trong mạng) dùng làm dự phòng cho tiện ích cần Android.
+  - Trước khi phát hành: bước verify phải chặn gói thiếu MES; kiểm thật bằng cách chạy java của gói với đúng tham số app và gọi `/capabilities` (phải có `mangayomiMihonBridge`). Không phát hành gói Windows nào không kèm MES (bài học hotfix 0.6.6+60).
