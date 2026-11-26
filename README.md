@@ -75,7 +75,7 @@ Mã kiểm tra SHA-256 của từng tệp nằm trong `SHA256SUMS-0.6.6.txt`.
 3. Duyệt nguồn, thêm truyện/phim vào **Danh Mục** trong Thư viện; mục đã thêm có dấu nhận biết ở cả dạng lưới và danh sách.
 4. Bật/tắt nhóm tính năng (Comic, Film & Movie, Novel, Booru, Tủ Sách…) trong phần cài đặt.
 5. Sao lưu: dùng nút **Sao lưu nhanh** ở Thư viện hoặc màn Sao Lưu & Đồng Bộ (tệp cục bộ, Google Drive, OneDrive, Dropbox, Telegram).
-6. Xem [Hướng dẫn](https://yomihub-project.github.io/YomiHub-Project/guide.html) để biết chi tiết từng tính năng.
+6. Xem [Hướng dẫn](https://yomihub-project.github.io/Yomi-Website/guide.html) để biết chi tiết từng tính năng.
 
 ## 🛣️ Lộ trình <a name="roadmap"></a>
 
@@ -98,7 +98,7 @@ Phát hành theo [GNU GPL v3.0](LICENSE). YomiHub không lưu trữ nội dung; 
 
 ## 📬 Liên hệ <a name="contact"></a>
 
-Kênh chính thức: [GitHub Issues](https://github.com/YomiHub-Project/YomiHub-Project/issues) và tổ chức [YomiHub-Project](https://github.com/YomiHub-Project). Chính sách quyền riêng tư: [privacy](https://yomihub-project.github.io/YomiHub-Project/privacy.html).
+Kênh chính thức: [GitHub Issues](https://github.com/YomiHub-Project/YomiHub-Project/issues) và tổ chức [YomiHub-Project](https://github.com/YomiHub-Project). Chính sách quyền riêng tư: [privacy](https://yomihub-project.github.io/Yomi-Website/privacy.html).
 
 ## 🙏 Lời cảm ơn <a name="acknowledgements"></a>
 
@@ -108,8 +108,8 @@ Kênh chính thức: [GitHub Issues](https://github.com/YomiHub-Project/YomiHub-
 
 ## 🔗 Liên kết <a name="links"></a>
 
-- [Trang chủ](https://yomihub-project.github.io/YomiHub-Project/)
-- [Tải về](https://yomihub-project.github.io/YomiHub-Project/download.html)
-- [Hướng dẫn](https://yomihub-project.github.io/YomiHub-Project/guide.html)
-- [Chính sách quyền riêng tư](https://yomihub-project.github.io/YomiHub-Project/privacy.html)
+- [Trang chủ](https://yomihub-project.github.io/Yomi-Website/)
+- [Tải về](https://yomihub-project.github.io/Yomi-Website/download.html)
+- [Hướng dẫn](https://yomihub-project.github.io/Yomi-Website/guide.html)
+- [Chính sách quyền riêng tư](https://yomihub-project.github.io/Yomi-Website/privacy.html)
 - [Báo lỗi](https://github.com/YomiHub-Project/YomiHub-Project/issues)
