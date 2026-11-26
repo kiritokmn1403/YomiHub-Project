@@ -4070,7 +4070,7 @@ Yêu cầu chủ dự án (16:46): log `logs (13).txt` (16–21/11, 3.136 dòng)
 **Kiểm gói mới**: `.zip` giải nén → `YomiHub.exe` ProductVersion 0.6.6+60, `version.json` build 60, `yomihub_bin\mes\MExtensionServer-v1.1.1-r1.jar` + `jre\jre\bin\javaw.exe`, chạy với đúng tham số app → `/capabilities` HTTP 200 (1 s, marker có). `.appxbundle` chứa jar + javaw; Setup.exe nhúng `.zip` có jar (254,8 MB).
 **Lỗi gặp khi làm**: sync/wintest dừng vì script ghi cứng `+59` → cho nhận 59|60; xin quyền đọc `Documents\YomiHub` + `AppData\Local\YomiHub` bị từ chối → chẩn đoán từ mã + chạy thử gói, không đọc dữ liệu cá nhân. Chuỗi trong app `win_diag_screen.dart` còn nhắc `-full.zip` (sửa ở bản sau).
 
-## 26/11/2026 — YomiHub 0.6.7 (0.6.7+61) – Claude Opus 5.5 (claude.ai + máy tính) + Google Antigravity + ChatGPT Codex — ĐANG LÀM
+## 26–27/11/2026 — YomiHub 0.6.7 (0.6.7+61) – Claude Opus 5.5 (claude.ai + máy tính) + Google Antigravity + ChatGPT Codex — ĐÃ PHÁT HÀNH v0.6.7
 **Phạm vi chốt với chủ dự án:** ưu tiên app Samsung TV Tizen 2018+, sửa lỗi trong log 17 + Issues GitHub; Android 6.0+, APK "YumiHub Android TV", Windows 10+ (`.appxbundle`, Setup `.exe`, portable); dựng bằng cả GitHub Actions và dây chuyền máy (`D:\yh`).
 
 **Phân việc:** Codex (đợt 1: LOG_COVERAGE/ISSUES/FEATURE_CHECK + bản vá i18n `-full.zip`), Antigravity (đợt 1: TIZEN_PLAN, khung Tizen Web App `.wgt` ES5, REPO_COMPAT, DEVICE_TEST_PLAN 38 ca; đợt 2 22:15: Issue #2 phía app + kiểm ES5/workflow Tizen chưa ký + phím remote). Brief: `audit/audit-0.6.7/{coordination,codex,antigravity}/`.
@@ -4100,3 +4100,25 @@ Yêu cầu chủ dự án (16:46): log `logs (13).txt` (16–21/11, 3.136 dòng)
 - TV: Samsung UA55MU6500 (đời 2017, **Tizen 3.0**, armv7, IP 192.168.1.7; PC 192.168.1.15). Cổng 26101 chỉ mở sau khi khởi động lại hẳn TV từ lúc bật Developer mode. `tizen/config.xml` hạ `required_version` 4.0 → **3.0**.
 - Lỗi gặp: (1) gọi sai tên hồ sơ (`yumihub` thay vì `yomihub`) → gói không ký, `tizen install` treo; (2) hồ sơ thiếu distributor → "Both an author and a first distributor must be required"; (3) `vd_appinstall` → `install failed[118]` ở 22% vì TV chưa được cấp quyền → `tizen install-permit -s 192.168.1.7:26101` ("Install Permitted") → **install completed**; `tizen run` → launch start / resumed; `vd_applist` có `yomihubTV1.YumiHubTV` 0.6.7. Biến PowerShell không phân biệt hoa thường: `$t` ghi đè `$T`.
 - Gói đã ký `YumiHub-SamsungTV-0.6.7.wgt` (725.331 byte, bản lưu `audit/audit-0.6.7/release/tizen/`) **đưa lên Release theo yêu cầu chủ dự án 00:56**, changelog + trang Tải Về ghi rõ: chỉ cài được trên TV có DUID trong chứng chỉ (hiện UA55MU6500, Tizen 3.0, Developer Mode), TV khác phải ký lại; `release_067.ps1` tự chép gói vào `output/0.6.7` và thêm dòng SHA-256.
+
+**Rà mã lần 2 (Codex G1, Antigravity F2) → sửa trước khi dựng lần cuối (26/11 23:00–23:40):**
+- Cao: `ImageHostBreaker` – lỗi/thành công muộn của yêu cầu đang bay mở lại host đang ngắt → `fail()`/`success()` bỏ qua khi còn trong khoảng ngắt; chỉ tính 403/429/5xx/mất kết nối (`countsAsHostFailure`, 404/410 không tính); +2 test.
+- TB: `FetchGate` hàng đã huỷ vẫn chạy sau khi nhận slot (áp G1_01); tên kho cũ của nguồn đã cài trỏ URL mới không đổi (G1_02, Claude sửa thêm `migrateUrl` trước `_sameRepo`, khoá `repo_migrated_067_name`); `file://` đọc có giới hạn bằng `openRead(0, max+1)`, log không ghi đường dẫn (G1_03); chốt vị trí chỉ khi lỗi phát thật (G1_04); i18n 2 khoá mới 66 ngôn ngữ (G2).
+- Trình phát khựng 3,8–4,2 s (Antigravity `PLAYER_STALL_067.md`): `seekable` nghe qua `observeProperty` thay vì gọi `mpv_get_property_string` đồng bộ tới 12 lần (patch 01); phông phụ đề 6,2 MB chỉ ghi khi khác kích thước (một phần patch 03). Patch 02/04 + phần lịch sử của 03 để 0.6.8.
+- `yh_054_test` so chuỗi chữ ký `_querySeekable` → cập nhật.
+
+**Dây chuyền dựng (`x067_build_main5`, 27/11 00:26–03:15):** test 12' (1096 đạt; lần trước yh_055 hỏng ngẫu nhiên do máy bận cài Tizen), apk 45', tv 36', wintest 6', win 18', pack 4', a6build 45', a6copy 1', verify 2' → 17 tệp `output/0.6.7`, SHA256SUMS khớp, APK android6 versionCode 4061 chữ ký hợp lệ. Lần `x067_build_main2` dừng tay (mã cũ), `main3` hỏng yh_054, `main4` hỏng yh_055.
+**Kiểm thiết bị:** AVD `YomiHub_TV_API34` (APK TV armeabi-v7a, versionName 0.6.7, LEANBACK): lần 1 ANR màn chờ khi máy đang dựng a6build; lần 2 (máy rảnh) Thư viện Phim & Điện ảnh, D-pad xuống/phải, chọn Duyệt, Back – không FATAL/ANR (`evidence/avd_tv/r2tv0*.png`). AVD `OOS_Android6_API23` (APK android6 x86_64, 4061): Thư viện + thanh dưới đủ Booru/Tủ Sách, D-pad 5 bước không thoát (`evidence/avd_a6/a60*.png`). Samsung TV UA55MU6500: cài + mở thật (mục trên). Windows: verify kiểm MES/JRE trong gói (chưa chạy tay).
+**Phát hành:** `release_067.ps1` → GitHub Release `v0.6.7` (id 459871643, 19 tệp: 17 gói + `YumiHub-SamsungTV-0.6.7.wgt` + ghi chú kỹ thuật); lần chạy đầu thoát ngay (không có thông báo lỗi), lần 2 bọc try/catch chạy được. Mã nguồn commit `a6ddf31`; website `64da0da` (Yomi-Website) + WordPress 8 trang cập nhật từ `wp-export`; README 0.6.7 (bản nháp Antigravity, Claude sửa Tizen 3.0/giới hạn DUID).
+
+### Thống kê so với 0.6.6
+| Hạng mục | 0.6.6 (+59/+60) | 0.6.7 (+61) |
+|---|---|---|
+| Tính năng mới / lỗi sửa / cải tiến (changelog) | 6 / 12 / 5 | 3 / 8 / 4 (+5 lỗi từ rà mã Codex, 2 điểm khựng trình phát) |
+| Nền tảng | Android 7+, Android 6, Android TV, Windows | + **Samsung TV Tizen 3.0+** (`.wgt` đã ký, giới hạn DUID) |
+| Tệp trên Release | 19 | 19 (thêm `.wgt`) |
+| Thay đổi `overlay/` | – | 89 tệp, +1360/−138 (66 tệp i18n) |
+| Test mới | yh_066_* | 5 tệp yh_067_* (26 test); tổng bộ 1096 test đạt |
+| APK arm64 / Setup.exe / zip | 184.058.468 / 267.183.104 / 267.088.929 byte | 184.073.664 / 267.208.704 / 267.114.400 byte |
+| Website | `docs/` repo chính | repo `Yomi-Website` (GitHub Pages) + WordPress.com (giao diện giống hệt) |
+| Tác nhân | Claude + Antigravity + Codex + Copilot | Claude + Antigravity (3 đợt) + Codex (2 đợt) |
