@@ -56,7 +56,7 @@ void main() {
       // 0.6.5: the repo moved to the YomiHub-Project organization
       // (old kiritokmn1403 addresses are migrated by BuiltinExtensions.migrateUrl).
       expect(BuiltinExtensions.repoJson,
-          'https://raw.githubusercontent.com/YomiHub-Project/Kiritokmn---Extension-Repo/main/repo/index.json');
+          'https://raw.githubusercontent.com/YomiHub-Project/YomiHub-Extension-Repo/main/repo/index.json');
       // the repo is added once, never twice
       final once = BuiltinExtensions.withRepo([Repo(name: 'x', jsonUrl: 'https://a/index.json')]);
       expect(once.length, 2);

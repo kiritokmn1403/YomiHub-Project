@@ -17,6 +17,7 @@ import 'package:mangayomi/modules/library/widgets/search_text_form_field.dart';
 import 'package:mangayomi/modules/widgets/tv_pill.dart';
 import 'package:mangayomi/services/fetch_sources_list.dart';
 import 'package:mangayomi/services/fetch_item_sources.dart';
+import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/utils/platform_utils.dart';
 import 'package:mangayomi/modules/browse/providers/browse_initial_tab_provider.dart';
 import 'package:mangayomi/modules/more/settings/browse/providers/browse_state_provider.dart';
@@ -223,13 +224,48 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen>
                         final repos = ref.read(extensionsRepoStateProvider(tabType));
                         final proxy = ref.read(androidProxyServerStateProvider);
                         final autoUpdate = ref.read(autoUpdateExtensionsStateProvider);
-                        final result = await refreshExtensionRepos(repos, (repo) => fetchSourcesList(
+                        final result = await refreshExtensionReposDetailed(repos, (repo) => fetchSourcesList(
                           repo: repo, refresh: true, id: null, itemType: tabType,
                           androidProxyServer: proxy, autoUpdateExtensions: autoUpdate,
                         ));
                         if (!mounted) return;
-                        BotToast.showText(text: tr('Kho thành công: {p0}. Kho lỗi: {p1}.',
-                            {'p0': result.ok, 'p1': result.failed}));
+                        if (result.failures.isEmpty) {
+                          BotToast.showText(
+                            text: tr('Kho thành công: {p0}. Kho lỗi: {p1}.', {
+                              'p0': result.ok,
+                              'p1': result.failed,
+                            }),
+                          );
+                        } else {
+                          final allDetails = result.failures
+                              .map((f) => '${f.repoLabel} (${f.shortReason})')
+                              .join('; ');
+                          AppLogger.log(
+                            '[Tiện ích] Kiểm tra cập nhật kho: thành công ${result.ok}, lỗi ${result.failed}: $allDetails',
+                            logLevel: LogLevel.warning,
+                          );
+                          final preview = result.failures
+                              .take(3)
+                              .map((f) => '${f.repoLabel} (${f.shortReason})')
+                              .join('; ');
+                          final extra = result.failures.length - 3;
+                          final toastText = extra > 0
+                              ? tr('Kho thành công: {p0}. Kho lỗi: {p1} ({p2}; +{p3} kho khác).', {
+                                  'p0': result.ok,
+                                  'p1': result.failed,
+                                  'p2': preview,
+                                  'p3': extra,
+                                })
+                              : tr('Kho thành công: {p0}. Kho lỗi: {p1} ({p2}).', {
+                                  'p0': result.ok,
+                                  'p1': result.failed,
+                                  'p2': preview,
+                                });
+                          BotToast.showText(
+                            text: toastText,
+                            duration: const Duration(seconds: 5),
+                          );
+                        }
                       } catch (e) {
                         if (!mounted) return;
                         BotToast.showText(text: tr('Lỗi kiểm tra cập nhật: {p0}', {'p0': '$e'}));

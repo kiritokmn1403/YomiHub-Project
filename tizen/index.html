@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, initial-scale=1.0, user-scalable=no">
+  <title>YumiHub Samsung TV</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Man cho 5 giay voi logo morph tu vuong sang tron (Tizen 4.0+ TV) -->
+  <div id="splash-screen" class="splash-screen" role="dialog" aria-label="YumiHub Samsung TV Splash">
+    <div class="splash-aurora"></div>
+    <div class="splash-center">
+      <div class="splash-orbit">
+        <div id="splash-logo-wrap" class="splash-logo-wrap">
+          <img id="splash-logo-img" class="splash-logo-img" src="assets/icon-red.png" alt="YumiHub Logo">
+        </div>
+        <div id="splash-badge" class="splash-badge">
+          <span class="splash-badge-dot"></span>
+          <span>Phim &amp; Điện ảnh</span>
+        </div>
+      </div>
+      <h1 class="splash-title">YumiHub Samsung TV</h1>
+      <p class="splash-subtitle">Phim &amp; Điện ảnh · Tizen 4.0+ Smart TV</p>
+      <div class="splash-progress-track">
+        <div id="splash-progress-fill" class="splash-progress-fill"></div>
+      </div>
+      <p id="splash-status" class="splash-status">Đang khởi động…</p>
+      <button id="splash-skip-btn" type="button" class="btn-skip focusable" data-focusable="true" data-zone="splash">
+        Bỏ qua / Vào ngay (Enter)
+      </button>
+    </div>
+  </div>
+
+  <!-- Khung ung dung chinh -->
+  <div id="app-shell" class="app-shell is-hidden">
+    <!-- Thanh ben 4 muc giong YumiHub Android TV -->
+    <aside id="sidebar" class="sidebar" role="navigation" aria-label="Điều hướng chính">
+      <div class="sidebar-brand">
+        <div class="brand-icon-box">
+          <img src="assets/icon-glyph.png" class="brand-glyph" alt="YumiHub">
+        </div>
+        <div class="brand-meta">
+          <div class="brand-name">YumiHub</div>
+          <div class="brand-sub">Samsung TV</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button type="button" class="nav-item focusable is-active" data-focusable="true" data-zone="sidebar" data-nav="library">
+          <span class="nav-icon">&#9638;</span>
+          <span class="nav-label">Thư viện</span>
+        </button>
+        <button type="button" class="nav-item focusable" data-focusable="true" data-zone="sidebar" data-nav="updates">
+          <span class="nav-icon">&#9733;</span>
+          <span class="nav-label">Cập nhật</span>
+        </button>
+        <button type="button" class="nav-item focusable" data-focusable="true" data-zone="sidebar" data-nav="browse">
+          <span class="nav-icon">&#9678;</span>
+          <span class="nav-label">Duyệt</span>
+        </button>
+        <button type="button" class="nav-item focusable" data-focusable="true" data-zone="sidebar" data-nav="more">
+          <span class="nav-icon">&#9881;</span>
+          <span class="nav-label">Thêm</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="tv-pill">Chỉ Phim &amp; Điện ảnh</div>
+        <div class="tv-ver">v0.6.7 · ES5</div>
+      </div>
+    </aside>
+
+    <!-- Noi dung chinh -->
+    <main id="main-content" class="main-content">
+      <header id="topbar" class="topbar">
+        <div class="topbar-left">
+          <h2 id="page-title" class="page-title">Thư viện Phim &amp; Điện ảnh</h2>
+          <span id="page-count" class="page-count">0 bộ phim</span>
+        </div>
+        <div class="topbar-hints">
+          <span class="hint-key">↑↓←→ Di chuyển</span>
+          <span class="hint-key">OK / Enter Chọn</span>
+          <span class="hint-key">Back / Esc Quay lại</span>
+          <span class="hint-key">Space Phát/Tạm dừng</span>
+        </div>
+      </header>
+
+      <!-- 1. Thu vien Phim & Dien anh -->
+      <section id="view-library" class="view-panel">
+        <div id="library-toolbar" class="toolbar-row">
+          <div id="library-categories" class="chip-row"></div>
+          <div class="toolbar-actions">
+            <button type="button" id="btn-sort-toggle" class="chip-btn focusable" data-focusable="true" data-zone="toolbar">
+              Sắp xếp: Mới cập nhật
+            </button>
+          </div>
+        </div>
+        <div id="library-grid" class="movie-grid"></div>
+        <div id="library-empty" class="empty-state is-hidden">
+          <div class="empty-icon">&#127916;</div>
+          <h3>Thư viện Phim &amp; Điện ảnh đang trống</h3>
+          <p>Bạn có thể nạp tệp sao lưu <code>.backup</code> từ YomiHub điện thoại/PC (tự động lọc riêng Phim &amp; Điện ảnh) hoặc nạp bộ dữ liệu mẫu để kiểm thử ngay.</p>
+          <div class="empty-actions">
+            <button type="button" id="btn-empty-sample" class="btn-primary focusable" data-focusable="true" data-zone="content">
+              Nạp dữ liệu mẫu để kiểm thử
+            </button>
+            <button type="button" id="btn-empty-goto-more" class="btn-secondary focusable" data-focusable="true" data-zone="content">
+              Nhập tệp .backup
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Cap nhat -->
+      <section id="view-updates" class="view-panel is-hidden">
+        <div id="updates-list" class="updates-list"></div>
+      </section>
+
+      <!-- 3. Duyet -->
+      <section id="view-browse" class="view-panel is-hidden">
+        <div class="toolbar-row">
+          <div id="browse-genres" class="chip-row"></div>
+          <div class="toolbar-actions">
+            <span id="browse-bridge-badge" class="bridge-status-pill">Nguồn mẫu cục bộ</span>
+          </div>
+        </div>
+        <div id="browse-grid" class="movie-grid"></div>
+      </section>
+
+      <!-- 4. Them (Nhap .backup, du lieu mau, cai dat TV) -->
+      <section id="view-more" class="view-panel is-hidden">
+        <div class="more-layout">
+          <div class="more-card">
+            <h3>Nhập thư viện từ bản sao lưu YomiHub (<code>.backup</code>)</h3>
+            <p class="card-desc">
+              Hỗ trợ trực tiếp tệp <code>.backup</code> (ZIP không mật khẩu), tệp JSON <code>.backup.db</code> đã giải nén hoặc <code>.gz</code>.
+              Ứng dụng tự động chỉ lọc dữ liệu <strong>Phim &amp; Điện ảnh</strong> (<code>ItemType.anime</code> / <code>itemType == 1</code>, danh mục <code>forItemType == 1</code>) và giữ nguyên tiến độ xem.
+            </p>
+            <div class="more-btn-row">
+              <input type="file" id="backup-file-input" class="file-input-hidden" accept=".backup,.db,.json,.gz,.zip">
+              <button type="button" id="btn-choose-backup" class="btn-primary focusable" data-focusable="true" data-zone="content">
+                Chọn tệp .backup / .json
+              </button>
+              <button type="button" id="btn-load-sample" class="btn-secondary focusable" data-focusable="true" data-zone="content">
+                Nạp dữ liệu mẫu để kiểm thử
+              </button>
+              <button type="button" id="btn-clear-data" class="btn-danger focusable" data-focusable="true" data-zone="content">
+                Xóa dữ liệu đã lưu
+              </button>
+            </div>
+            <div id="backup-status-box" class="status-box">
+              Chưa có tệp sao lưu nào được nạp trong phiên này.
+            </div>
+            <div id="library-stats-grid" class="stats-grid"></div>
+          </div>
+
+          <div class="more-side-col">
+            <div class="more-card">
+              <h3>Hướng dẫn xuất &amp; nạp sao lưu lên Samsung TV</h3>
+              <ol class="guide-list">
+                <li>Trên YomiHub điện thoại hoặc Windows: vào <strong>Thêm › Sao lưu &amp; Khôi phục › Tạo bản sao lưu</strong> (tắt mã hóa mật khẩu nếu muốn TV giải nén trực tiếp tệp <code>.backup</code>).</li>
+                <li>Chép tệp <code>yomihub_*.backup</code> (hoặc giải nén lấy tệp <code>.backup.db</code> JSON) vào USB hoặc mở từ máy chủ LAN.</li>
+                <li>Bấm <strong>Chọn tệp .backup / .json</strong> để nhập toàn bộ Phim &amp; Điện ảnh, danh mục và lịch sử xem vào <code>localStorage</code>.</li>
+              </ol>
+            </div>
+
+            <div class="more-card">
+              <h3>Cầu nối LAN (ApkBridge / M-Extension-Server)</h3>
+              <p class="card-desc">Địa chỉ máy chủ YomiHub trong mạng nội bộ (tùy chọn cho 0.6.8+):</p>
+              <div class="bridge-form-row">
+                <input type="text" id="bridge-url-input" class="tv-input focusable" data-focusable="true" data-zone="content" placeholder="http://192.168.1.100:8080" value="">
+                <button type="button" id="btn-save-bridge" class="btn-secondary focusable" data-focusable="true" data-zone="content">
+                  Lưu URL
+                </button>
+              </div>
+            </div>
+
+            <div class="more-card">
+              <h3>Phím điều khiển Remote &amp; PC</h3>
+              <div class="remote-map">
+                <div><span class="key-badge">↑ ↓ ← →</span> Di chuyển vùng chọn</div>
+                <div><span class="key-badge">OK / Enter</span> Mở phim · Phát tập</div>
+                <div><span class="key-badge">Back / Esc</span> Quay lại · Đóng trình phát</div>
+                <div><span class="key-badge">Play / Space / P</span> Phát / Tạm dừng</div>
+                <div><span class="key-badge">Rew / ← / J</span> Tua lùi 10 giây</div>
+                <div><span class="key-badge">FF / → / L</span> Tua tới 10 giây</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Trang chi tiet phim & danh sach tap -->
+      <section id="view-detail" class="view-panel is-hidden">
+        <div class="detail-top-actions">
+          <button type="button" id="btn-detail-back" class="btn-secondary focusable" data-focusable="true" data-zone="detail">
+            &#8592; Quay lại (Back)
+          </button>
+        </div>
+        <div id="detail-hero" class="detail-hero"></div>
+        <div class="detail-episodes-header">
+          <h3>Danh sách tập phim</h3>
+          <span id="detail-ep-summary" class="detail-ep-summary"></span>
+        </div>
+        <div id="detail-episodes" class="episodes-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 6. Trinh phat video HTML5 + Adapter webapis.avplay -->
+  <div id="view-player" class="player-overlay is-hidden">
+    <video id="tv-video" class="tv-video" preload="metadata" playsinline></video>
+
+    <div id="player-osd" class="player-osd">
+      <div class="osd-top">
+        <button type="button" id="btn-player-back" class="btn-osd focusable" data-focusable="true" data-zone="player">
+          &#8592; Thoát (Back)
+        </button>
+        <div class="osd-title-wrap">
+          <div id="player-movie-title" class="osd-movie-title">Tên phim</div>
+          <div id="player-ep-title" class="osd-ep-title">Tập 1</div>
+        </div>
+        <div class="osd-badges">
+          <span id="player-engine-badge" class="osd-badge">HTML5 Video</span>
+          <span id="player-saved-badge" class="osd-badge is-accent">Đã lưu vị trí</span>
+        </div>
+      </div>
+
+      <div class="osd-bottom">
+        <div class="osd-progress-row">
+          <span id="player-time-current" class="osd-time">00:00</span>
+          <div class="osd-seek-track">
+            <div id="player-seek-fill" class="osd-seek-fill"></div>
+          </div>
+          <span id="player-time-total" class="osd-time">00:00</span>
+        </div>
+        <div class="osd-controls-row">
+          <button type="button" id="btn-player-prev" class="btn-osd focusable" data-focusable="true" data-zone="player">&#9198; Tập trước</button>
+          <button type="button" id="btn-player-rew" class="btn-osd focusable" data-focusable="true" data-zone="player">&#9194; -10s</button>
+          <button type="button" id="btn-player-play" class="btn-osd btn-osd-primary focusable" data-focusable="true" data-zone="player">&#9654; Phát / Tạm dừng</button>
+          <button type="button" id="btn-player-ff" class="btn-osd focusable" data-focusable="true" data-zone="player">+10s &#9193;</button>
+          <button type="button" id="btn-player-next" class="btn-osd focusable" data-focusable="true" data-zone="player">Tập tiếp &#9197;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thong bao Toast -->
+  <div id="toast" class="toast is-hidden"></div>
+
+  <!-- Cac module ES5 thuan -->
+  <script src="js/inflate.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/sample_data.js"></script>
+  <script src="js/backup.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/remote.js"></script>
+  <script src="js/splash.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

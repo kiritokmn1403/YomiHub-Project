@@ -14,12 +14,12 @@ import 'package:mangayomi/yomihub/update/multi_source_update.dart';
 void main() {
   group('Kiritokmn repo moved to the YomiHub-Project organisation', () {
     const newIndex =
-        'https://raw.githubusercontent.com/YomiHub-Project/Kiritokmn---Extension-Repo/main/repo/index.json';
+        'https://raw.githubusercontent.com/YomiHub-Project/YomiHub-Extension-Repo/main/repo/index.json';
 
     test('the built-in repo points at the new owner', () {
       expect(BuiltinExtensions.repoJson, newIndex);
       expect(BuiltinExtensions.repoWebsite,
-          'https://github.com/YomiHub-Project/Kiritokmn---Extension-Repo');
+          'https://github.com/YomiHub-Project/YomiHub-Extension-Repo');
     });
 
     test('old kiritokmn1403 addresses are rewritten', () {
@@ -31,7 +31,7 @@ void main() {
       expect(
         BuiltinExtensions.migrateUrl(
             'https://raw.githubusercontent.com/kiritokmn1403/Kiritokmn---Extension-Repo/main/repo/mangayomi/07br.js'),
-        'https://raw.githubusercontent.com/YomiHub-Project/Kiritokmn---Extension-Repo/main/repo/mangayomi/07br.js',
+        'https://raw.githubusercontent.com/YomiHub-Project/YomiHub-Extension-Repo/main/repo/mangayomi/07br.js',
       );
     });
 
@@ -39,7 +39,7 @@ void main() {
       for (final t in ['anime', 'manga', 'novel', 'anime_index']) {
         expect(
           BuiltinExtensions.migrateUrl(
-              'https://raw.githubusercontent.com/YomiHub-Project/Kiritokmn---Extension-Repo/main/repo/mangayomi/$t.json'),
+              'https://raw.githubusercontent.com/YomiHub-Project/YomiHub-Extension-Repo/main/repo/mangayomi/$t.json'),
           newIndex,
           reason: t,
         );
@@ -78,7 +78,7 @@ void main() {
       ]);
       expect(out.length, 2);
       expect(out.first.jsonUrl, newIndex);
-      expect(out.first.website, 'https://github.com/YomiHub-Project/Kiritokmn---Extension-Repo');
+      expect(out.first.website, 'https://github.com/YomiHub-Project/YomiHub-Extension-Repo');
       expect(changed, 2);
     });
   });
@@ -86,12 +86,12 @@ void main() {
   group('Several repository links pasted in one box (log 14)', () {
     test('splits the "·" list and expands ".../x.json" from the previous link', () {
       final urls = YomiRepoImporter.splitInput(
-        'https://raw.githubusercontent.com/YomiHub-Project/Kiritokmn---Extension-Repo/main/repo/mangayomi/anime.json'
+        'https://raw.githubusercontent.com/YomiHub-Project/YomiHub-Extension-Repo/main/repo/mangayomi/anime.json'
         ' · .../manga.json · .../novel.json',
       );
       // all three map to the same repo/index.json → one entry
       expect(urls, [
-        'https://raw.githubusercontent.com/YomiHub-Project/Kiritokmn---Extension-Repo/main/repo/index.json',
+        'https://raw.githubusercontent.com/YomiHub-Project/YomiHub-Extension-Repo/main/repo/index.json',
       ]);
     });
 

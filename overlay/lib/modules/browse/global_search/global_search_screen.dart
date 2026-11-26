@@ -51,21 +51,65 @@ class FetchGate {
   int _active = 0;
   final _waiting = <Completer<void>>[];
 
+  /// 0.6.7 (Codex LOG_COVERAGE_067, log 17 dòng 644–702: hàng chục tiện ích
+  /// cùng hết 90 s trong một giây): [release] trước đây giảm bộ đếm rồi mới
+  /// đánh thức lượt chờ – trong khe đó một lượt mới vượt giới hạn. Nay slot
+  /// được TRAO thẳng cho lượt chờ (bộ đếm không giảm), nên luôn ≤ max.
   Future<void> acquire() async {
-    if (_active < _maxConcurrent) {
+    if (_active < _maxConcurrent && _waiting.isEmpty) {
       _active++;
       return;
     }
     final completer = Completer<void>();
     _waiting.add(completer);
-    await completer.future;
-    _active++;
+    await completer.future; // slot đã được trao, _active giữ nguyên
   }
 
   void release() {
-    _active--;
-    if (_waiting.isNotEmpty) _waiting.removeAt(0).complete();
+    if (_waiting.isNotEmpty) {
+      _waiting.removeAt(0).complete();
+    } else if (_active > 0) {
+      _active--;
+    }
   }
+
+  @visibleForTesting
+  int get activeForTest => _active;
+}
+
+/// 0.6.7 (log 17 dòng 577–897: cùng một tên miền Kotatsu chết – vd.
+/// nettruyen1905.com ×7 – bị hỏi lại ở mỗi lần tìm kiếm toàn cục): tiện ích
+/// báo "không phân giải được tên miền" được nhớ [ttl] và bỏ qua ngay ở các lần
+/// tìm sau (hiện lại lỗi cũ), thay vì chiếm một slot của [FetchGate].
+class GlobalSearchDeadSources {
+  GlobalSearchDeadSources._();
+  static const ttl = Duration(minutes: 10);
+  static final Map<int, (DateTime, String)> _dead = {};
+  static final _dns = RegExp(
+    r'Unable to resolve host|Failed host lookup|No address associated|nodename nor servname|không phân giải',
+    caseSensitive: false,
+  );
+
+  static bool isDnsFailure(String error) => _dns.hasMatch(error);
+
+  /// Lỗi đã nhớ của nguồn (null = cứ tìm bình thường).
+  static String? cached(int? sourceId, {DateTime? now}) {
+    if (sourceId == null) return null;
+    final e = _dead[sourceId];
+    if (e == null) return null;
+    if ((now ?? DateTime.now()).difference(e.$1) > ttl) {
+      _dead.remove(sourceId);
+      return null;
+    }
+    return e.$2;
+  }
+
+  static void record(int? sourceId, String error, {DateTime? now}) {
+    if (sourceId == null || !isDnsFailure(error)) return;
+    _dead[sourceId] = (now ?? DateTime.now(), error);
+  }
+
+  static void clear() => _dead.clear();
 }
 
 class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
@@ -356,21 +400,37 @@ class _SourceSearchScreenState extends ConsumerState<SourceSearchScreen> {
   Future<void> _init() async {
     // Throttled: with many sources installed, letting every row fire its
     // isolate call the moment it's built is what made this screen laggy.
-    await widget.fetchGate.acquire();
+    final source = widget.source;
+    final query = widget.query;
+    final gate = widget.fetchGate;
+
+    bool showCachedFailure() {
+      final dead = GlobalSearchDeadSources.cached(source.id);
+      if (dead == null) return false;
+      setState(() {
+        _errorMessage = dead;
+        _isLoading = false;
+      });
+      return true;
+    }
+
+    if (showCachedFailure()) return;
+    await gate.acquire();
     try {
+      if (!mounted || showCachedFailure()) return;
       _errorMessage = "";
       // No query: same "Popular" request the source's own tab makes, so an
       // empty global search reads as a discovery feed rather than a blank
       // page, without inventing a heavier request just for this screen.
-      pages = widget.query.trim().isEmpty
+      pages = query.trim().isEmpty
           ? await ref.read(
-              getPopularProvider(source: widget.source, page: 1).future,
+              getPopularProvider(source: source, page: 1).future,
             )
           : await ref.read(
               searchProvider(
-                source: widget.source,
+                source: source,
                 page: 1,
-                query: widget.query,
+                query: query,
                 filterList: const [],
               ).future,
             );
@@ -380,6 +440,7 @@ class _SourceSearchScreenState extends ConsumerState<SourceSearchScreen> {
         });
       }
     } catch (e) {
+      GlobalSearchDeadSources.record(source.id, e.toString());
       if (mounted) {
         setState(() {
           _errorMessage = e.toString();
@@ -387,7 +448,7 @@ class _SourceSearchScreenState extends ConsumerState<SourceSearchScreen> {
         });
       }
     } finally {
-      widget.fetchGate.release();
+      gate.release();
     }
   }
 

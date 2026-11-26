@@ -612,7 +612,7 @@ void main() {
       expect(playerSrc, contains('final openStart = widget.isLocal ? start : Duration.zero;'));
 
       // 3. Query seekable without defaulting to yes on error, and re-read seekable after wait
-      expect(playerSrc, contains('Future<String?> _querySeekable() async'));
+      expect(playerSrc, contains('Future<String?> _querySeekable({bool allowSyncFallback = false}) async'));
       expect(playerSrc, contains('seekable = await _querySeekable();'));
 
       // 4. Stale callback invalidation on episode switch and dispose

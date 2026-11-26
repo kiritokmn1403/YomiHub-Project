@@ -352,9 +352,19 @@ List<Source> installedSourcesFor(ItemType itemType) => sourceRepository
 /// already-decrypted) JSON rather than a path to re-read from disk.
 Future<TachiBkImportPreview> previewMangayomiBackup(Map<String, dynamic> backup) async {
   final swPreview = Stopwatch()..start();
-  final mangaList = (backup["manga"] as List?)
-      ?.map((e) => Manga.fromJson(e)..itemType = convertToItemType(e))
-      .toList();
+  // 0.6.7 (log 17 dòng 320/322: khung hình 2,4 s + 2,1 s ở /backupSync với bản
+  // sao lưu 4.902 bộ / 95.155 chương): dựng Manga và lập chỉ mục chương theo
+  // lô, nhường luồng giao diện giữa các lô – cùng kết quả, không còn khung dài.
+  List<Manga>? mangaList;
+  final rawManga = backup["manga"] as List?;
+  if (rawManga != null) {
+    mangaList = <Manga>[];
+    for (var i = 0; i < rawManga.length; i++) {
+      if (i > 0 && i % 300 == 0) await Future<void>.delayed(Duration.zero);
+      final e = rawManga[i];
+      mangaList.add(Manga.fromJson(e)..itemType = convertToItemType(e));
+    }
+  }
   // 0.5.2: only mangaId + url are needed here - read them from the raw JSON
   // instead of building ~90 000 Chapter objects on the UI isolate.
   final categoryList = (backup["categories"] as List?)
@@ -395,7 +405,9 @@ Future<TachiBkImportPreview> previewMangayomiBackup(Map<String, dynamic> backup)
       if (m.link != null) existingMangaByKey['${m.itemType.index}|${m.link}']?.id,
   ]);
   final chaptersByMangaId = <int, List<String?>>{};
+  var chapterN = 0;
   for (final c in (backup["chapters"] as List?) ?? const []) {
+    if (++chapterN % 4000 == 0) await Future<void>.delayed(Duration.zero);
     if (c is! Map) continue;
     final mid = c['mangaId'];
     if (mid is! int) continue;

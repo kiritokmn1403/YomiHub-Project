@@ -125,3 +125,9 @@ Mỗi phiên thêm một mục MỚI Ở CUỐI: ngày · phiên bản · tác n
 - **00:16–00:45** Antigravity r4 review 7 tệp UI (1 TB → r4_01 để bản sau). **01:32** Note 9 ĐẠT. **02:57** chủ dự án dừng điều khiển máy tính; **05:51** "Tiếp tục" → Claude kiểm AVD TV/Android 6 bằng job adb, đẩy repo tiện ích `8cfe2be`.
 - **06:19–07:05**: Release v0.6.6 (19 asset), README + Pages VI/EN 0.6.6.
 - **07:25–09:00 (26/11) hotfix Windows**: Kiệt báo MES vẫn lỗi, muốn tích hợp sẵn → chạy thử java của gói: JVM từ chối cờ chẩn đoán → thêm `-XX:+UnlockDiagnosticVMOptions`; Setup.exe nhúng nhầm `.zip` không có MES → bước `win` nhúng MES v1.1.1 vào mọi gói, bỏ `-full.zip`; dựng lại Windows 0.6.6+60 (08:00–08:36), kiểm `/capabilities` 200 từ gói; thay 3 asset Windows + xoá `-full.zip` trên Release v0.6.6; README/docs/changelog/Second Brain cập nhật, đẩy lên GitHub.
+
+## 26/11/2026 – 0.6.7 (Claude Opus 5.5, claude.ai + máy tính; Antigravity đợt 1–2; Codex đợt 1)
+- 21:00–21:40 brief + chia việc; Codex (log/issues/feature check + bản vá i18n), Antigravity (Tizen Web App `.wgt` ES5, kho tiện ích, kế hoạch test thiết bị).
+- Sửa: ảnh `content://`, bộ ngắt máy chủ ảnh, kho tiện ích đổi tên `YomiHub-Extension-Repo`, FetchGate + nguồn chết DNS, xem trước sao lưu theo lô, chốt vị trí xem khi trình phát lỗi, chuỗi win_diag; Antigravity đợt 2 (22:13–22:23) Issue #2 (ID + phiên bản nguồn trong log, kho lỗi cụ thể khi kiểm tra cập nhật) + `check_es5.mjs` + workflow `.github/workflows/tizen-wgt.yml` + phím ColorF0–3.
+- Website: chuyển sang `Yomi-Website` (6298e94, 50364aa, fe2a9e6); WordPress 8 trang giống hệt giao diện GitHub (22:00–22:20).
+- 22:34 dây chuyền `run_067_main` (bước test → verify) chạy; `.wgt` chưa ký 716 KB ở `audit/audit-0.6.7/release/tizen/`. IP máy tính 192.168.1.15 (Wi-Fi) cho test TV Samsung; chưa có Tizen Studio/chứng chỉ Samsung.

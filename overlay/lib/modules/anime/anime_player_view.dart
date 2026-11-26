@@ -1347,8 +1347,9 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
   void _yhInitAutoSwitch() {
     if (widget.isLocal ||
         widget.isTorrent ||
-        (widget.videos.length < 2 && YomiWebPlayer.pending.isEmpty))
+        (widget.videos.length < 2 && YomiWebPlayer.pending.isEmpty)) {
       return;
+    }
     _yhBufSub = _player.stream.buffering.listen((buffering) {
       if (!YomiPrefs.autoServerSwitch) return;
       _yhStallTimer?.cancel();
@@ -1379,6 +1380,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       // not a broken source – never switch servers or log an ERROR for it.
       if (_handleRejectedSeek(msg)) return;
       if (!YomiPrefs.autoServerSwitch) return;
+      _checkpointOnPlaybackError();
       AppLogger.log(
         "[Trình phát] Lỗi video không tải được: $msg",
         logLevel: LogLevel.error,
@@ -1470,7 +1472,10 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     return true;
   }
 
-  Future<String?> _querySeekable() async {
+  Future<String?> _querySeekable({bool allowSyncFallback = false}) async {
+    final cached = _nativeTracks['seekable']?.trim().toLowerCase();
+    if (cached != null && cached.isNotEmpty) return cached;
+    if (!allowSyncFallback) return null;
     try {
       final p = _player.platform;
       if (p is NativePlayer) {
@@ -1520,7 +1525,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       if (!mounted || _mediaSessionId != sessionId || _resumeToken != token) return;
 
       // Always re-read seekable after waiting
-      seekable = await _querySeekable();
+      seekable ??= await _querySeekable(allowSyncFallback: true);
       if (!mounted || _mediaSessionId != sessionId || _resumeToken != token) return;
 
       final hasKnownDuration = _player.state.duration > Duration.zero ||
@@ -2210,6 +2215,15 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
     return hasVideoCodec && !hasAudioCodec;
   }
 
+  void _checkpointOnPlaybackError() {
+    // Save VOD progress before an actual playback failure or server switch.
+    if (_currentPosition.value > const Duration(seconds: 5)) {
+      try {
+        _setCurrentPosition(true);
+      } catch (_) {}
+    }
+  }
+
   void _reportPlaybackError(String error) {
     final message = error.trim();
     if (message.isEmpty) return;
@@ -2221,6 +2235,7 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       final lower = message.toLowerCase();
       if (lower.contains('subtitle') || lower.contains('font')) return;
       if (_handleRejectedSeek(message)) return;
+      _checkpointOnPlaybackError();
       // 0.6.6 (logs 16: "Failed to recognize file format" ×3): mpv got bytes
       // that are not a video – usually a block/expired-link page of the host.
       final hint = lower.contains('recognize file format')
@@ -2295,13 +2310,18 @@ mp.register_script_message('call_button_${button.id}_long', button${button.id}lo
       try {
         final subDir = await getApplicationDocumentsDirectory();
         final fontPath = path.join(subDir.path, 'subfont.ttf');
+        // 0.6.7 (Antigravity PLAYER_STALL_067 hạng 3): chỉ ghi phông 6,2 MB khi
+        // chưa có hoặc khác kích thước, không ghi lại mỗi lần mở trình phát.
         final data = await rootBundle.load('assets/fonts/subfont.ttf');
-        final bytes = data.buffer.asInt8List(
-          data.offsetInBytes,
-          data.lengthInBytes,
-        );
-        final fontFile = await File(fontPath).create(recursive: true);
-        await fontFile.writeAsBytes(bytes);
+        final fontFile = File(fontPath);
+        if (!await fontFile.exists() || await fontFile.length() != data.lengthInBytes) {
+          final bytes = data.buffer.asInt8List(
+            data.offsetInBytes,
+            data.lengthInBytes,
+          );
+          await fontFile.create(recursive: true);
+          await fontFile.writeAsBytes(bytes);
+        }
         await (_player.platform as NativePlayer).setProperty(
           'sub-fonts-dir',
           subDir.path,

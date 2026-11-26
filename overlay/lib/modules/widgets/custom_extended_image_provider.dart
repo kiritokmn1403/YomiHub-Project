@@ -18,6 +18,7 @@ import 'package:mangayomi/utils/avif.dart';
 import 'package:mangayomi/utils/image_load_timeout.dart';
 import 'package:mangayomi/utils/log/logger.dart';
 import 'package:mangayomi/yomihub/a6/a6_native.dart';
+import 'package:mangayomi/yomihub/library/local_image_uri.dart';
 import 'package:path/path.dart';
 import 'package:extended_image_library/src/network/extended_network_image_provider.dart'
     as image_provider;
@@ -125,6 +126,9 @@ class _CacheManager {
 }
 
 /// YomiHub 0.5.7 (QA3): one WARNING per host per minute for images that fail.
+/// 0.6.7: ngắt tạm host ảnh lỗi liên tục (xem [ImageHostBreaker]).
+final ImageHostBreaker _imageHostBreaker = ImageHostBreaker();
+
 final ImageFailWarnLog _imageWarnLog = ImageFailWarnLog(
   emit: (line) => AppLogger.log(line, logLevel: LogLevel.warning),
 );
@@ -480,6 +484,22 @@ class CustomExtendedNetworkImageProvider
     if (key.url.startsWith('data:')) {
       return tryDecodeDataUri(key.url);
     }
+    // 0.6.7 (log 17 dòng 946/1015/1029): ảnh bìa từ bộ nhớ máy (content://,
+    // file://) đọc thẳng – trước đây bị gửi như URL HTTP và luôn "từ chối".
+    if (isLocalImageUri(key.url)) {
+      try {
+        return await readLocalImageUri(key.url);
+      } catch (e) {
+        _lastNetError = e;
+        key._lastNetError = e;
+        AppLogger.logOnce(
+          'local-img:${key.url.hashCode}',
+          '[Ảnh cục bộ] Không đọc được ảnh từ bộ nhớ máy.',
+          logLevel: LogLevel.warning,
+        );
+        return null;
+      }
+    }
     try {
       String resolvedUrl = key.url.trim();
       if (resolvedUrl.startsWith('//')) {
@@ -498,6 +518,13 @@ class CustomExtendedNetworkImageProvider
       if (resolved == null || !resolved.hasScheme || !resolved.hasAuthority) {
         return null;
       }
+      final pause = _imageHostBreaker.blockedFor(resolved.host);
+      if (pause != null) {
+        final msg = '${resolved.host} tạm ngưng ${pause.inSeconds}s sau nhiều lần lỗi liên tiếp';
+        _lastNetError = msg;
+        key._lastNetError = msg;
+        return null;
+      }
       final StreamedResponse? response = await _tryGetResponse(resolved);
 
       if (response == null || response.statusCode != HttpStatus.ok) {
@@ -506,6 +533,13 @@ class CustomExtendedNetworkImageProvider
         _lastNetError = httpErr;
         key._lastNetError = httpErr;
         _imageWarnLog.record(logImageHost(resolved.toString()), '${resolved.host} $httpErr');
+        if (ImageHostBreaker.countsAsHostFailure(response?.statusCode) &&
+            _imageHostBreaker.fail(resolved.host)) {
+          AppLogger.log(
+            '[Ảnh] ${logImageHost(resolved.toString())} lỗi liên tục ($httpErr) – tạm ngưng tải ảnh từ máy chủ này 30 giây',
+            logLevel: LogLevel.warning,
+          );
+        }
         return null;
       }
 
@@ -554,6 +588,7 @@ class CustomExtendedNetworkImageProvider
         }
       }
 
+      _imageHostBreaker.success(resolved.host);
       return bytes;
     } on OperationCanceledError catch (_) {
       if (kDebugMode) {
@@ -571,6 +606,13 @@ class CustomExtendedNetworkImageProvider
         logImageHost(key.url),
         e is ImageLoadTimeoutException ? e : '${key.url} $e',
       );
+      final failedHost = Uri.tryParse(key.url.trim())?.host ?? '';
+      if (failedHost.isNotEmpty && _imageHostBreaker.fail(failedHost)) {
+        AppLogger.log(
+          '[Ảnh] ${logImageHost(key.url)} lỗi liên tục – tạm ngưng tải ảnh từ máy chủ này 30 giây',
+          logLevel: LogLevel.warning,
+        );
+      }
       // A timeout is surfaced (not swallowed into null) so the in-flight
       // entry is released and the UI can say why; "Thử lại" re-requests.
       if (isImageLoadTimeout(e)) rethrow;

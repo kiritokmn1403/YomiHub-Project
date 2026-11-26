@@ -180,3 +180,82 @@ class ImageFailWarnLog {
     );
   }
 }
+
+/// YomiHub 0.6.7 (log 17 dòng 948: `cdn.donmai.us` lỗi 239 lần/phút, 0.6.5):
+/// khi một máy chủ ảnh trả lỗi liên tục (403 Cloudflare, 503, hết giờ), lưới
+/// bìa/thu nhỏ vẫn gửi hàng trăm yêu cầu mỗi phút – tốn pin, mạng và làm tràn
+/// nhật ký. Sau [threshold] lần lỗi liên tiếp trong [window] mà không có lần
+/// nào thành công, host bị "ngắt" [cooldown]: yêu cầu mới trả lỗi ngay. Một
+/// lần tải thành công gỡ ngắt. Chỉ áp cho máy chủ mạng (không cổng nội bộ).
+class ImageHostBreaker {
+  ImageHostBreaker({
+    this.threshold = 8,
+    this.window = const Duration(seconds: 60),
+    this.cooldown = const Duration(seconds: 30),
+    DateTime Function()? clock,
+  }) : _now = clock ?? DateTime.now;
+
+  final int threshold;
+  final Duration window;
+  final Duration cooldown;
+  final DateTime Function() _now;
+  final Map<String, ({int fails, DateTime first, DateTime? openUntil})> _s = {};
+
+  static bool _exempt(String host) {
+    final h = host.toLowerCase();
+    return h.isEmpty || h == '127.0.0.1' || h == 'localhost' || h == '::1';
+  }
+
+  /// Còn bao lâu nữa host mới được thử lại (null = được gọi ngay).
+  Duration? blockedFor(String host) {
+    if (_exempt(host)) return null;
+    final st = _s[host.toLowerCase()];
+    final until = st?.openUntil;
+    if (until == null) return null;
+    final left = until.difference(_now());
+    if (left <= Duration.zero) {
+      // hết thời gian ngắt: cho 1 lượt thử, lỗi tiếp là ngắt lại ngay
+      _s[host.toLowerCase()] = (fails: threshold - 1, first: _now(), openUntil: null);
+      return null;
+    }
+    return left;
+  }
+
+  /// Trả true khi lần lỗi này vừa làm host bị ngắt.
+  bool fail(String host) {
+    if (_exempt(host)) return false;
+    final k = host.toLowerCase();
+    final now = _now();
+    final st = _s[k];
+    // 0.6.7 (Codex REVIEW_CODE_067 – Cao): một yêu cầu đang bay từ trước khi
+    // ngắt báo lỗi muộn không được đóng lại khoảng ngắt đang mở.
+    final openUntil = st?.openUntil;
+    if (openUntil != null && now.isBefore(openUntil)) return false;
+    var fails = 1;
+    var first = now;
+    if (st != null && st.openUntil == null && now.difference(st.first) <= window) {
+      fails = st.fails + 1;
+      first = st.first;
+    }
+    if (fails >= threshold) {
+      _s[k] = (fails: fails, first: first, openUntil: now.add(cooldown));
+      return true;
+    }
+    _s[k] = (fails: fails, first: first, openUntil: null);
+    if (_s.length > 200) _s.remove(_s.keys.first);
+    return false;
+  }
+
+  void success(String host) {
+    final k = host.toLowerCase();
+    final until = _s[k]?.openUntil;
+    // một yêu cầu cũ thành công muộn không mở khoá host đang bị ngắt
+    if (until != null && _now().isBefore(until)) return;
+    _s.remove(k);
+  }
+
+  /// 0.6.7: chỉ lỗi phía máy chủ/kết nối mới tính cho bộ ngắt; 404/410/400 là
+  /// lỗi của riêng ảnh đó.
+  static bool countsAsHostFailure(int? status) =>
+      status == null || status == 403 || status == 429 || (status >= 500 && status < 600);
+}

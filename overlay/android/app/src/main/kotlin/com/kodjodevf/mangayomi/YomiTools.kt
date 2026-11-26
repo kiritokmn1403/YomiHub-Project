@@ -183,6 +183,30 @@ class YomiTools(private val activity: Activity, messenger: BinaryMessenger) {
                         val after = rt.totalMemory() - rt.freeMemory()
                         result.success(mapOf("kotatsu" to k, "freed" to (before - after).coerceAtLeast(0)))
                     }
+                    // YomiHub 0.6.7: read a local cover (content:// from the
+                    // Storage Access Framework) for the image loader – it used
+                    // to be sent as an HTTP URL (log 17, 0.6.5).
+                    "readUri" -> {
+                        val uri = Uri.parse(call.argument<String>("uri")!!)
+                        require(uri.scheme == "content") { "unsupported URI scheme" }
+                        val limit = 32 shl 20
+                        val max = (call.argument<Int>("max") ?: limit)
+                            .coerceIn(1, limit).toLong()
+                        val bytes = activity.contentResolver.openInputStream(uri)?.use { input ->
+                            val out = ByteArrayOutputStream()
+                            val buf = ByteArray(64 * 1024)
+                            var total = 0L
+                            while (true) {
+                                val n = input.read(buf)
+                                if (n < 0) break
+                                total += n
+                                if (total > max) throw IllegalStateException("file larger than $max bytes")
+                                out.write(buf, 0, n)
+                            }
+                            out.toByteArray()
+                        } ?: throw IllegalStateException("cannot open image URI")
+                        result.success(bytes)
+                    }
                     "openAppInfo" -> {
                         val pkg = call.argument<String>("package")!!
                         val ok = try {

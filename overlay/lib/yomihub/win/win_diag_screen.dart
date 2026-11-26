@@ -115,7 +115,7 @@ class _WinDiagScreenState extends State<WinDiagScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.info_outline),
-              title: Text(tr('Gói Setup.exe và portable -full.zip đã có sẵn VC++ runtime, Java và M-Extension-Server. Nếu thiếu thành phần, hãy cài lại bằng Setup.exe của bản mới nhất.')),
+              title: Text(tr('Gói Setup.exe và portable .zip đã có sẵn VC++ runtime, Java và M-Extension-Server. Nếu thiếu thành phần, hãy cài lại bằng Setup.exe của bản mới nhất.')),
             ),
           ],
         ),

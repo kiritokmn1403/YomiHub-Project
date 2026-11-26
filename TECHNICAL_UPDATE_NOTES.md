@@ -4069,3 +4069,34 @@ Yêu cầu chủ dự án (16:46): log `logs (13).txt` (16–21/11, 3.136 dòng)
 **Dựng** `run_066_main.ps1 -RunSteps 'wintest,win,pack,verify'` 08:00–08:36 (wintest 7', win 22', pack 5', verify 1'); `sha256sum -c` 16/16.
 **Kiểm gói mới**: `.zip` giải nén → `YomiHub.exe` ProductVersion 0.6.6+60, `version.json` build 60, `yomihub_bin\mes\MExtensionServer-v1.1.1-r1.jar` + `jre\jre\bin\javaw.exe`, chạy với đúng tham số app → `/capabilities` HTTP 200 (1 s, marker có). `.appxbundle` chứa jar + javaw; Setup.exe nhúng `.zip` có jar (254,8 MB).
 **Lỗi gặp khi làm**: sync/wintest dừng vì script ghi cứng `+59` → cho nhận 59|60; xin quyền đọc `Documents\YomiHub` + `AppData\Local\YomiHub` bị từ chối → chẩn đoán từ mã + chạy thử gói, không đọc dữ liệu cá nhân. Chuỗi trong app `win_diag_screen.dart` còn nhắc `-full.zip` (sửa ở bản sau).
+
+## 26/11/2026 — YomiHub 0.6.7 (0.6.7+61) – Claude Opus 5.5 (claude.ai + máy tính) + Google Antigravity + ChatGPT Codex — ĐANG LÀM
+**Phạm vi chốt với chủ dự án:** ưu tiên app Samsung TV Tizen 2018+, sửa lỗi trong log 17 + Issues GitHub; Android 6.0+, APK "YumiHub Android TV", Windows 10+ (`.appxbundle`, Setup `.exe`, portable); dựng bằng cả GitHub Actions và dây chuyền máy (`D:\yh`).
+
+**Phân việc:** Codex (đợt 1: LOG_COVERAGE/ISSUES/FEATURE_CHECK + bản vá i18n `-full.zip`), Antigravity (đợt 1: TIZEN_PLAN, khung Tizen Web App `.wgt` ES5, REPO_COMPAT, DEVICE_TEST_PLAN 38 ca; đợt 2 22:15: Issue #2 phía app + kiểm ES5/workflow Tizen chưa ký + phím remote). Brief: `audit/audit-0.6.7/{coordination,codex,antigravity}/`.
+
+**Lỗi phát hiện → sửa (overlay):**
+- Ảnh bìa `content://`/`file://` (Tủ Sách, thư mục cục bộ) không tải được ở 0.6.5/0.6.6 → mới `lib/yomihub/library/local_image_uri.dart` (`isLocalImageUri`, `readLocalImageUri`, trần 32 MB, lỗi "mất quyền"); `YomiTools.kt` thêm kênh `readUri` (đọc `contentResolver` theo khối 64 KB); `custom_extended_image_provider.dart` nhánh ảnh cục bộ trước HTTP.
+- `cdn.donmai.us` thử lại 239 lần/phút, Danbooru 403 → `ImageHostBreaker` trong `lib/utils/image_load_timeout.dart` (8 lỗi/60 s → ngưng host 30 s, bỏ qua localhost, tối đa 200 host), nối vào `_loadNetwork`.
+- Issue #2 / kho tiện ích đổi tên → `builtin_extensions.dart`: `repoName='YomiHub Extension Repo'`, URL `YomiHub-Project/YomiHub-Extension-Repo`, nhận cả 2 tên cũ (`kiritokmn1403/…`, `YomiHub-Project/Kiritokmn---…`), đổi tên kho mặc định, khoá di trú `repo_migrated_067`. Đã kiểm URL cũ/mới đều HTTP 200 cùng chỉ mục.
+- Tìm kiếm toàn cục: `FetchGate` có tranh chấp (lượt mới chen lượt chờ) → trao slot thẳng cho lượt chờ; `GlobalSearchDeadSources` nhớ nguồn lỗi DNS 10 phút.
+- Xem trước sao lưu treo 2,4 s → `previewMangayomiBackup` dựng theo lô, nhường UI mỗi 300 bộ / 4000 chương.
+- Trình phát lỗi giữa chừng mất vị trí → `_reportPlaybackError` chốt vị trí (>5 s) trước khi đổi máy chủ; thêm ngoặc nhọn `_yhInitAutoSwitch` (lint).
+- Chuỗi win_diag "portable -full.zip" (gói đã gộp từ 0.6.6+60) → bản vá Codex `patches_067/B1_01_windows_portable_label.diff` (1 Dart + 66 i18n) đã áp.
+- `pubspec.yaml` 0.6.6+60 → **0.6.7+61**. Script mới: `scripts/sync/sync_067.ps1` (gốc so sánh `3556145`=v0.6.6), `scripts/build/build_067{,_android,_android6}.ps1`, `scripts/packaging/make_{appxbundle,installer_exe}_067.ps1`, `scripts/pipeline/run_067_main.ps1` (thêm 4 test yh_067 vào hồi quy Windows, thêm tệp mới vào analyze Android).
+
+**Kiểm thử (runner `jobs/`, Flutter 3.47.6, build `D:\yh\build\mangayomi`):**
+- f067_a01: analyze 0 lỗi, test local_image + image_breaker 10/10.
+- f067_a02: test yh_067_repo_rename lỗi biên dịch (thiếu import `models/settings.dart` cho `Repo`) → sửa; f067_a04: analyze 0 lỗi, 4/4 đạt; yh_053 + yh_065 + local_image 27/27 đạt.
+- f067_a03: global_search/backup_format/anime_player_view analyze exit 0; yh_067_global_search + yh_058_core + yh_052 23/23 đạt.
+- f067_a05: i18n + win_diag + anime_player_view analyze "No issues found!"; test yh_049/052/058 (xem log).
+
+**Website:** chuyển `docs/` sang repo `YomiHub-Project/Yomi-Website` (GitHub Pages `https://yomihub-project.github.io/Yomi-Website/`, commit 6298e94); `docs/` của repo chính thành trang tự chuyển (edf3cc9; privacy.html giữ nguyên văn + URL). WordPress.com `https://yomihubproject.wordpress.com/` (gói Free): 8 trang VI/EN dùng **đúng giao diện GitHub** — công cụ `Yomi-Website/tools/wp_inline.py` (chạy: `python3 tools/wp_inline.py . wp-export`) (bs4 + soupsieve) chuyển `assets/site.css` thành style nội dòng (WordPress Free bỏ `<style>`, `<script>`, `<nav>`, svg, button, input); bản xuất `Yomi-Website/wp-export/` (commit 50364aa); trang dùng template `template-blank` của theme Assembler; mục lục Hướng Dẫn dựng tĩnh. Giới hạn gói Free: không font Be Vietnam Pro, không chế độ tối, không hover, không tìm kiếm/nút chép SHA (cần Premium để có CSS tuỳ chỉnh). Bỏ dòng nhắc kho tên cũ khỏi `index.html` + `en/index.html` của Yomi-Website.
+
+**Còn lại:** Issue #2 (ID nguồn + phiên bản trong log, kho lỗi cụ thể khi kiểm tra cập nhật – Antigravity đợt 2); Tizen `.wgt` ký bằng chứng chỉ Samsung của chủ dự án; dựng đủ bộ gói 0.6.7; kiểm thử thiết bị có ảnh; Release v0.6.7 chờ chủ dự án xác nhận; đổi link chính sách OAuth sau khi chủ dự án bật 2SV; trình phát treo 3,8–4,2 s (cần profile, 0.6.8).
+
+**Samsung TV – cài thật lên TV (27/11/2026 00:05–00:56):**
+- Công cụ: Tizen Studio 6.1 CLI (`D:\tizen-studio`, bộ cài Samsung ký số hợp lệ; chủ dự án đồng ý cài 22:58), gói `cert-add-on` 2.0.75 + `TV-SAMSUNG-Extension-Tools/Resources` 10.0.0 (cần quyền Administrator → `scripts/tizen/CAI_GOI_SAMSUNG_TV.bat`, chủ dự án bấm UAC). Chứng chỉ Samsung hồ sơ `yomihub` (author + distributor, DUID TV) do chủ dự án tạo trong Certificate Manager (cửa sổ javaw không điều khiển được bằng computer use); mật khẩu do Tizen lưu mã hoá, Claude không biết.
+- TV: Samsung UA55MU6500 (đời 2017, **Tizen 3.0**, armv7, IP 192.168.1.7; PC 192.168.1.15). Cổng 26101 chỉ mở sau khi khởi động lại hẳn TV từ lúc bật Developer mode. `tizen/config.xml` hạ `required_version` 4.0 → **3.0**.
+- Lỗi gặp: (1) gọi sai tên hồ sơ (`yumihub` thay vì `yomihub`) → gói không ký, `tizen install` treo; (2) hồ sơ thiếu distributor → "Both an author and a first distributor must be required"; (3) `vd_appinstall` → `install failed[118]` ở 22% vì TV chưa được cấp quyền → `tizen install-permit -s 192.168.1.7:26101` ("Install Permitted") → **install completed**; `tizen run` → launch start / resumed; `vd_applist` có `yomihubTV1.YumiHubTV` 0.6.7. Biến PowerShell không phân biệt hoa thường: `$t` ghi đè `$T`.
+- Gói đã ký `YumiHub-SamsungTV-0.6.7.wgt` (725.331 byte, bản lưu `audit/audit-0.6.7/release/tizen/`) **đưa lên Release theo yêu cầu chủ dự án 00:56**, changelog + trang Tải Về ghi rõ: chỉ cài được trên TV có DUID trong chứng chỉ (hiện UA55MU6500, Tizen 3.0, Developer Mode), TV khác phải ký lại; `release_067.ps1` tự chép gói vào `output/0.6.7` và thêm dòng SHA-256.

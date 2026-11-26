@@ -2,6 +2,7 @@ import 'package:mangayomi/yomihub/vpn/vpn_state.dart';
 import 'package:mangayomi/yomihub/vpn/auto_tor.dart';
 import 'package:mangayomi/yomihub/net/extra_roots.dart';
 import 'package:mangayomi/yomihub/extensions/ext_errors.dart';
+import 'package:mangayomi/yomihub/extensions/repo_log_format.dart';
 import 'package:mangayomi/yomihub/mes/yomi_mes.dart' show MesUnavailableException;
 import 'package:mangayomi/utils/log/logger.dart';
 import 'dart:async';
@@ -240,15 +241,21 @@ class GetIsolateService {
     } catch (e, st) {
       // YomiHub 0.2.0: configuration errors are warnings (once per source),
       // repeats within 60 s are dropped, timeouts carry no stack.
-      final repoInfo = source?.repo != null
-          ? '${source!.repo!.name ?? 'repo'}${source!.repo!.jsonUrl != null ? ' <${source!.repo!.jsonUrl}>' : ''}'
-          : 'Built-in/Local';
       final langEngine = source?.sourceCodeLanguage.name ?? 'unknown';
       // 0.5.2: a global search with a long title repeated the whole title
       // in every source's line (logs 2, 04/11 09:51) - keep 80 characters.
       final q = query != null && query.length > 80 ? '${query.substring(0, 80)}…' : query;
-      final where = 'Extension "${source?.name}" (${source?.lang}, engine: $langEngine, repo: $repoInfo) $serviceType '
-          '${url ?? q ?? page ?? ''}';
+      final where = formatExtensionLogHeader(
+        name: source?.name,
+        id: source?.id,
+        version: source?.version,
+        lang: source?.lang,
+        engine: langEngine,
+        repoName: source?.repo?.name,
+        repoUrl: source?.repo?.jsonUrl,
+        serviceType: serviceType,
+        target: '${url ?? q ?? page ?? ''}',
+      );
       if (e is MesUnavailableException) {
         // 0.6.6 (logs 16): one line per run instead of one ERROR + stack per
         // APK source and call while the Windows extension server is missing.

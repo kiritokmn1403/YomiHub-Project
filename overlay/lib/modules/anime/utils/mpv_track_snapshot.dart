@@ -12,6 +12,7 @@ class MpvTrackSnapshot {
     'current-tracks/audio/id',
     'current-tracks/sub/id',
     'alang',
+    'seekable',
   };
   final _values = <String, String>{};
 
@@ -31,6 +32,8 @@ class MpvTrackSnapshot {
         value = node.u.string.cast<Utf8>().toDartString().trim();
       } else if (node.format == mpv.mpv_format.MPV_FORMAT_INT64) {
         value = node.u.int64.toString();
+      } else if (node.format == mpv.mpv_format.MPV_FORMAT_FLAG) {
+        value = node.u.flag > 0 ? 'yes' : 'no';
       } else if (name == 'alang' &&
           node.format == mpv.mpv_format.MPV_FORMAT_NODE_ARRAY &&
           node.u.list != nullptr) {

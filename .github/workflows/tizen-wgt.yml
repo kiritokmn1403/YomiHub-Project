@@ -1,0 +1,140 @@
+name: Package YumiHub Samsung TV (.wgt)
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Override version for .wgt filename (defaults to config.xml version)"
+        required: false
+        default: ""
+  push:
+    paths:
+      - "tizen/**"
+      - ".github/workflows/tizen-wgt.yml"
+  pull_request:
+    paths:
+      - "tizen/**"
+      - ".github/workflows/tizen-wgt.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  package-tizen-wgt:
+    name: Check ES5 & Package Unsigned .wgt
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Locate Tizen Web App directory
+        id: locate
+        run: |
+          if [ -f "tizen/config.xml" ]; then
+            echo "tizen_dir=tizen" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::Cannot find Tizen config.xml in expected paths."
+            exit 1
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run pure-ES5 syntax check
+        run: |
+          node "${{ steps.locate.outputs.tizen_dir }}/tools/check_es5.mjs" "${{ steps.locate.outputs.tizen_dir }}/js"
+
+      - name: Validate config.xml, icon, and resolve version
+        id: meta
+        run: |
+          TIZEN_DIR="${{ steps.locate.outputs.tizen_dir }}"
+          test -f "${TIZEN_DIR}/config.xml"
+          test -f "${TIZEN_DIR}/index.html"
+
+          ICON_REL=$(node -e "
+            const fs = require('node:fs');
+            const xml = fs.readFileSync(process.argv[1], 'utf8');
+            const m = xml.match(/<icon[^>]*\bsrc=[\"']([^\"']+)[\"']/);
+            if (!m) process.exit(1);
+            process.stdout.write(m[1]);
+          " "${TIZEN_DIR}/config.xml")
+          echo "Icon path: ${TIZEN_DIR}/${ICON_REL}"
+          test -f "${TIZEN_DIR}/${ICON_REL}"
+
+          XML_VERSION=$(node -e "
+            const fs = require('node:fs');
+            const xml = fs.readFileSync(process.argv[1], 'utf8');
+            const m = xml.match(/<widget[^>]*\bversion=[\"']([^\"']+)[\"']/);
+            if (!m) process.exit(1);
+            process.stdout.write(m[1]);
+          " "${TIZEN_DIR}/config.xml")
+
+          INPUT_VERSION="${{ inputs.version }}"
+          VERSION="${INPUT_VERSION:-$XML_VERSION}"
+          if [ -z "$VERSION" ]; then
+            echo "::error::Unable to resolve version from config.xml or inputs."
+            exit 1
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Resolved version: ${VERSION}"
+
+      - name: Package unsigned .wgt archive and SHA-256 checksum
+        id: pack
+        run: |
+          TIZEN_DIR="${{ steps.locate.outputs.tizen_dir }}"
+          VERSION="${{ steps.meta.outputs.version }}"
+          OUT_DIR="${GITHUB_WORKSPACE}/dist"
+          WGT_NAME="YumiHub-SamsungTV-${VERSION}-unsigned.wgt"
+
+          mkdir -p "${OUT_DIR}"
+          STAGE_DIR=$(mktemp -d)
+          cp "${TIZEN_DIR}/index.html" "${STAGE_DIR}/"
+          cp "${TIZEN_DIR}/config.xml" "${STAGE_DIR}/"
+          cp -r "${TIZEN_DIR}/js" "${STAGE_DIR}/"
+          cp -r "${TIZEN_DIR}/css" "${STAGE_DIR}/"
+          if [ -d "${TIZEN_DIR}/assets" ]; then
+            cp -r "${TIZEN_DIR}/assets" "${STAGE_DIR}/"
+          fi
+          if [ -d "${TIZEN_DIR}/img" ]; then
+            cp -r "${TIZEN_DIR}/img" "${STAGE_DIR}/"
+          fi
+
+          # Ensure config.xml and index.html sit at the archive root (.wgt spec)
+          (cd "${STAGE_DIR}" && zip -r -9 "${OUT_DIR}/${WGT_NAME}" .)
+          (cd "${OUT_DIR}" && sha256sum "${WGT_NAME}" > "${WGT_NAME}.sha256")
+          rm -rf "${STAGE_DIR}"
+
+          echo "wgt_name=${WGT_NAME}" >> "$GITHUB_OUTPUT"
+          unzip -l "${OUT_DIR}/${WGT_NAME}"
+          cat "${OUT_DIR}/${WGT_NAME}.sha256"
+
+      - name: Upload unsigned .wgt artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: YumiHub-SamsungTV-${{ steps.meta.outputs.version }}-unsigned
+          path: |
+            dist/${{ steps.pack.outputs.wgt_name }}
+            dist/${{ steps.pack.outputs.wgt_name }}.sha256
+          if-no-files-found: error
+
+      # Optional Tizen CLI signing step (DISABLED BY DEFAULT).
+      # To enable signing later:
+      # 1. Configure GitHub Secrets: TIZEN_AUTHOR_P12, TIZEN_AUTHOR_PASSWORD,
+      #    TIZEN_DIST_P12, TIZEN_DIST_PASSWORD (never store passwords in repo).
+      # 2. Set repository variable ENABLE_TIZEN_SIGNING=true.
+      # 3. Remove `false &&` from the `if:` condition below and install Tizen Studio CLI.
+      - name: Sign .wgt with Tizen CLI (disabled until certificates are provided)
+        if: ${{ false && vars.ENABLE_TIZEN_SIGNING == 'true' }}
+        env:
+          TIZEN_AUTHOR_P12: ${{ secrets.TIZEN_AUTHOR_P12 }}
+          TIZEN_AUTHOR_PASSWORD: ${{ secrets.TIZEN_AUTHOR_PASSWORD }}
+          TIZEN_DIST_P12: ${{ secrets.TIZEN_DIST_P12 }}
+          TIZEN_DIST_PASSWORD: ${{ secrets.TIZEN_DIST_PASSWORD }}
+        run: |
+          echo "Signing requires Tizen Studio CLI + TV Extension and valid P12 secrets."
+          # Example once Tizen CLI is installed on the runner:
+          # tizen security-profiles add -n yumihub_ci -a author.p12 -p "$TIZEN_AUTHOR_PASSWORD" -d distributor.p12 -dp "$TIZEN_DIST_PASSWORD"
+          # tizen package -t wgt -s yumihub_ci -- "${{ steps.locate.outputs.tizen_dir }}"
